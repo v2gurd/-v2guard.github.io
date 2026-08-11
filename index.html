@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#03060a">
-<meta name="description" content="V2GURD | Digital Services">
+<meta name="theme-color" content="#05080d">
 <title>V2GURD | Digital Services</title>
 
 <style>
 :root{
-  --bg:#03060a;
-  --card:#080e16;
-  --card2:#0d151f;
+  --bg:#05080d;
+  --card:#0b1119;
+  --card2:#101923;
   --text:#f5f7fa;
-  --muted:#7f8b9b;
+  --muted:#8994a3;
   --green:#b8ff00;
-  --blue:#159cff;
-  --cyan:#00e5ff;
+  --blue:#18aaff;
   --red:#ff3158;
-  --border:rgba(255,255,255,.075);
-  --shadow:0 20px 60px rgba(0,0,0,.28);
+  --cyan:#00f6ff;
+  --border:rgba(255,255,255,.08);
 }
 
 *{
@@ -34,12 +32,13 @@ html{
 
 body{
   background:
-    radial-gradient(circle at 80% -10%,rgba(0,229,255,.035),transparent 28%),
-    radial-gradient(circle at 10% 80%,rgba(184,255,0,.025),transparent 30%),
+    radial-gradient(circle at 15% 20%,rgba(0,246,255,.025),transparent 25%),
+    radial-gradient(circle at 85% 70%,rgba(184,255,0,.025),transparent 25%),
     var(--bg);
   color:var(--text);
   font-family:Tahoma,Arial,sans-serif;
   overflow-x:hidden;
+  transition:.35s ease;
 }
 
 body.light{
@@ -51,40 +50,79 @@ body.light{
   --border:rgba(0,0,0,.1);
 }
 
-/* BACKGROUND LIGHTS */
+a{
+  -webkit-tap-highlight-color:transparent;
+}
+
+button{
+  font-family:inherit;
+}
+
+/* ================= LIGHTS ================= */
 
 .bg-light{
   position:fixed;
-  width:220px;
-  height:220px;
+  width:260px;
+  height:260px;
   border-radius:50%;
   filter:blur(90px);
-  opacity:.045;
+  opacity:.07;
   pointer-events:none;
   z-index:-1;
+  animation:floatLight 12s ease-in-out infinite alternate;
 }
 
 .green-light{
   background:var(--green);
-  top:-100px;
-  right:-90px;
+  top:-120px;
+  right:-100px;
 }
 
 .blue-light{
   background:var(--blue);
-  bottom:-100px;
-  left:-90px;
+  bottom:-120px;
+  left:-100px;
+  animation-delay:3s;
 }
 
-/* HEADER */
+.red-light{
+  background:var(--red);
+  top:45%;
+  left:45%;
+  opacity:.035;
+  animation-delay:6s;
+}
+
+@keyframes floatLight{
+  to{
+    transform:translate(80px,100px);
+  }
+}
+
+/* ================= CYBER GRID ================= */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+  opacity:.025;
+  background-image:
+    linear-gradient(rgba(0,246,255,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,246,255,.5) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+/* ================= HEADER ================= */
 
 header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(3,6,10,.84);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  background:rgba(5,8,13,.78);
+  backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
 }
 
@@ -95,7 +133,7 @@ body.light header{
 .nav{
   max-width:1180px;
   margin:auto;
-  padding:13px 18px;
+  padding:14px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -110,12 +148,10 @@ body.light header{
   letter-spacing:1.5px;
 }
 
-.logo .brand{
+.logo span.brand{
   color:var(--green);
-  text-shadow:0 0 13px rgba(184,255,0,.35);
+  text-shadow:0 0 14px rgba(184,255,0,.4);
 }
-
-/* BLUE VERIFIED */
 
 .verified{
   width:17px;
@@ -127,24 +163,14 @@ body.light header{
   align-items:center;
   justify-content:center;
   font-size:10px;
-  font-weight:1000;
-  box-shadow:0 0 12px rgba(21,156,255,.55);
-  flex:none;
+  box-shadow:0 0 12px rgba(21,156,255,.65);
+  animation:verified 2s ease-in-out infinite;
 }
 
-/* CYBER LINE */
-
-.cyber-line{
-  height:1px;
-  width:100%;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(184,255,0,.35),
-    rgba(0,229,255,.45),
-    transparent
-  );
-  opacity:.6;
+@keyframes verified{
+  50%{
+    box-shadow:0 0 22px rgba(21,156,255,.9);
+  }
 }
 
 .nav-links{
@@ -155,36 +181,35 @@ body.light header{
 .nav-links a{
   color:var(--muted);
   text-decoration:none;
-  font-size:9px;
-  padding:8px 9px;
-  border-radius:9px;
-  transition:.18s;
+  font-size:10px;
+  padding:8px 10px;
+  border-radius:10px;
 }
 
 .nav-links a:hover{
   color:var(--text);
-  background:rgba(255,255,255,.045);
+  background:rgba(255,255,255,.05);
 }
 
 .theme{
-  width:37px;
-  height:37px;
-  border-radius:11px;
+  width:38px;
+  height:38px;
+  border-radius:12px;
   border:1px solid var(--border);
   background:var(--card);
   color:var(--text);
   cursor:pointer;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero{
   max-width:1180px;
   margin:auto;
-  padding:68px 18px 50px;
+  padding:75px 18px 55px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:45px;
+  gap:55px;
   align-items:center;
 }
 
@@ -193,13 +218,13 @@ body.light header{
   align-items:center;
   gap:7px;
   color:var(--green);
-  font-size:8px;
+  font-size:9px;
   font-weight:900;
-  padding:7px 11px;
-  border:1px solid rgba(184,255,0,.14);
-  background:rgba(184,255,0,.035);
+  padding:7px 12px;
+  border:1px solid rgba(184,255,0,.16);
+  background:rgba(184,255,0,.05);
   border-radius:30px;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .badge i{
@@ -207,40 +232,47 @@ body.light header{
   height:6px;
   border-radius:50%;
   background:var(--green);
-  box-shadow:0 0 9px var(--green);
+  box-shadow:0 0 10px var(--green);
+  animation:pulse 1.5s infinite;
 }
 
 .hero h1{
   font-size:clamp(28px,4vw,45px);
-  line-height:1.35;
-  margin-bottom:15px;
+  line-height:1.4;
+  margin-bottom:17px;
 }
 
 .neon{
   color:var(--green);
   text-shadow:
-    0 0 5px rgba(184,255,0,.55),
-    0 0 15px rgba(184,255,0,.3);
+    0 0 5px rgba(184,255,0,.6),
+    0 0 16px rgba(184,255,0,.35);
+  animation:neon 3s ease-in-out infinite;
 }
 
 .neon.blue{
   color:var(--blue);
   text-shadow:
-    0 0 5px rgba(21,156,255,.6),
-    0 0 15px rgba(21,156,255,.3);
+    0 0 5px rgba(24,170,255,.65),
+    0 0 16px rgba(24,170,255,.35);
+  animation-delay:1s;
+}
+
+@keyframes neon{
+  50%{filter:brightness(1.25)}
 }
 
 .hero-text{
   color:var(--muted);
   max-width:500px;
-  font-size:11px;
+  font-size:12px;
   line-height:2;
 }
 
 .hero-buttons{
   display:flex;
-  gap:8px;
-  margin-top:23px;
+  gap:9px;
+  margin-top:25px;
   flex-wrap:wrap;
 }
 
@@ -249,10 +281,9 @@ body.light header{
   justify-content:center;
   align-items:center;
   border:0;
-  border-radius:12px;
-  padding:11px 17px;
-  font-family:inherit;
-  font-size:9px;
+  border-radius:13px;
+  padding:12px 18px;
+  font-size:10px;
   font-weight:900;
   cursor:pointer;
   text-decoration:none;
@@ -266,73 +297,41 @@ body.light header{
 .primary{
   background:var(--green);
   color:#071000;
-  box-shadow:0 0 20px rgba(184,255,0,.1);
+  box-shadow:0 0 22px rgba(184,255,0,.12);
 }
 
 .secondary{
   color:var(--text);
-  background:rgba(255,255,255,.03);
+  background:rgba(255,255,255,.035);
   border:1px solid var(--border);
 }
 
-/* LIVE SERVER MAP */
+/* ================= NETWORK HERO ================= */
 
 .network{
   height:370px;
   position:relative;
   overflow:hidden;
-  border-radius:27px;
-  border:1px solid rgba(21,156,255,.14);
+  border-radius:28px;
+  border:1px solid var(--border);
   background:
-    radial-gradient(circle at 50% 50%,rgba(21,156,255,.07),transparent 42%),
+    radial-gradient(circle at 50% 50%,rgba(24,170,255,.08),transparent 40%),
     var(--card);
-  box-shadow:var(--shadow);
 }
 
 .network-grid{
   position:absolute;
   inset:0;
-  opacity:.16;
+  opacity:.18;
   background-image:
     linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:38px 38px;
-}
-
-.map-title{
-  position:absolute;
-  top:15px;
-  right:17px;
-  z-index:8;
-  font-size:8px;
-  color:var(--cyan);
-  letter-spacing:1px;
-  font-weight:900;
-}
-
-.map-live{
-  position:absolute;
-  top:15px;
-  left:17px;
-  z-index:8;
-  color:#43e95b;
-  font-size:7px;
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-.map-live i{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#43e95b;
-  box-shadow:0 0 8px #43e95b;
+  background-size:40px 40px;
 }
 
 .node{
   position:absolute;
-  z-index:5;
+  z-index:3;
   width:82px;
   height:82px;
   border-radius:22px;
@@ -343,71 +342,60 @@ body.light header{
   gap:6px;
   font-size:8px;
   font-weight:900;
-  background:rgba(8,14,22,.92);
+  background:var(--card);
 }
 
 .node.dc{
-  top:58px;
-  right:35px;
-  border:1px solid rgba(21,156,255,.3);
-  box-shadow:0 0 25px rgba(21,156,255,.09);
+  top:38px;
+  right:38px;
+  border:1px solid rgba(24,170,255,.3);
+  box-shadow:0 0 28px rgba(24,170,255,.1);
 }
 
 .node.user{
-  bottom:45px;
-  left:35px;
+  bottom:38px;
+  left:38px;
   border:1px solid rgba(184,255,0,.3);
-  box-shadow:0 0 25px rgba(184,255,0,.09);
-}
-
-.node .node-status{
-  color:#43e95b;
-  font-size:6px;
+  box-shadow:0 0 28px rgba(184,255,0,.1);
 }
 
 .route{
   position:absolute;
   width:70%;
   height:2px;
-  top:53%;
+  top:52%;
   right:15%;
   transform:rotate(145deg);
   background:linear-gradient(
     90deg,
-    transparent,
     var(--blue),
     var(--green),
-    var(--red),
-    transparent
+    var(--red)
   );
-  opacity:.45;
-}
-
-.route.two{
-  transform:rotate(35deg);
-  opacity:.18;
+  opacity:.5;
+  box-shadow:0 0 12px rgba(24,170,255,.5);
 }
 
 .packet{
   position:absolute;
-  z-index:7;
+  z-index:4;
   width:6px;
   height:6px;
   border-radius:50%;
   background:var(--green);
-  box-shadow:0 0 13px var(--green);
+  box-shadow:0 0 14px var(--green);
   animation:packet 3s linear infinite;
 }
 
 .packet.two{
   background:var(--blue);
-  box-shadow:0 0 13px var(--blue);
+  box-shadow:0 0 14px var(--blue);
   animation-delay:1s;
 }
 
 .packet.three{
   background:var(--red);
-  box-shadow:0 0 13px var(--red);
+  box-shadow:0 0 14px var(--red);
   animation-delay:2s;
 }
 
@@ -426,98 +414,63 @@ body.light header{
   }
 }
 
-.map-point{
-  position:absolute;
-  z-index:4;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--blue);
-  box-shadow:0 0 15px var(--blue);
-}
-
-.point-de{
-  top:34%;
-  right:44%;
-}
-
-.point-fi{
-  top:52%;
-  right:31%;
-  background:var(--green);
-  box-shadow:0 0 15px var(--green);
-}
-
-.point-nl{
-  top:64%;
-  right:53%;
-  background:var(--red);
-  box-shadow:0 0 15px var(--red);
-}
-
-.map-label{
-  position:absolute;
-  z-index:4;
-  font-size:6px;
-  color:var(--muted);
-}
-
-.label-de{
-  top:30%;
-  right:39%;
-}
-
-.label-fi{
-  top:48%;
-  right:25%;
-}
-
-.label-nl{
-  top:69%;
-  right:47%;
-}
-
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 
 section{
   max-width:1180px;
   margin:auto;
-  padding:52px 18px;
+  padding:55px 18px;
 }
 
 .section-title{
-  margin-bottom:23px;
+  margin-bottom:25px;
 }
 
 .section-title small{
   color:var(--green);
-  font-size:7px;
+  font-size:8px;
   letter-spacing:2px;
   font-weight:900;
 }
 
 .section-title h2{
-  font-size:26px;
+  font-size:27px;
   margin:7px 0;
 }
 
 .section-title p{
   color:var(--muted);
-  font-size:9px;
+  font-size:10px;
 }
 
-/* SPECIAL */
+/* ================= SPECIAL ================= */
 
 .special{
   position:relative;
   overflow:hidden;
   text-align:center;
-  padding:36px 20px;
-  border-radius:25px;
-  border:1px solid rgba(184,255,0,.16);
+  padding:38px 20px;
+  border-radius:27px;
+  border:1px solid rgba(184,255,0,.18);
   background:
-    radial-gradient(circle at 50% 0,rgba(184,255,0,.07),transparent 45%),
+    radial-gradient(circle at 50% 0,rgba(184,255,0,.09),transparent 45%),
     var(--card);
+}
+
+.special::before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:2px;
+  top:0;
+  left:-200px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  box-shadow:0 0 20px var(--green);
+  animation:scanSpecial 4s linear infinite;
+}
+
+@keyframes scanSpecial{
+  to{left:110%}
 }
 
 .special h2{
@@ -526,245 +479,467 @@ section{
 
 .timer{
   color:var(--green);
-  font-size:18px;
+  font-size:19px;
   font-weight:1000;
-  margin:16px 0;
+  margin:17px 0;
 }
 
-/* DISRUPTION CUTTER */
-
-.disruption-box{
-  position:relative;
-  overflow:hidden;
-  margin-top:17px;
-  min-height:100px;
-  padding:22px;
-  border-radius:21px;
-  border:1px solid rgba(255,49,88,.2);
-  background:
-    linear-gradient(135deg,rgba(255,49,88,.035),transparent 45%),
-    var(--card);
-}
-
-.disruption-box::before{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:65px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(0,229,255,.35),
-    rgba(184,255,0,.25),
-    transparent
-  );
-  filter:blur(9px);
-  animation:cutThrough 2.8s linear infinite;
-}
-
-@keyframes cutThrough{
-  from{left:-90px}
-  to{left:110%}
-}
-
-.disruption-title{
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  gap:9px;
-  font-size:11px;
-  font-weight:1000;
-}
-
-.disruption-title i{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 12px var(--red);
-  animation:pulse 1.3s infinite;
-}
-
-.disruption-text{
-  position:relative;
-  z-index:2;
-  margin-top:9px;
-  color:var(--muted);
-  font-size:8px;
-  line-height:1.9;
-}
-
-.cut-line{
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:2px;
-  background:linear-gradient(
-    transparent,
-    var(--cyan),
-    var(--green),
-    transparent
-  );
-  box-shadow:0 0 18px var(--cyan);
-  transform:skewX(-18deg);
-  animation:slash 2.8s linear infinite;
-}
-
-@keyframes slash{
-  from{left:-20px}
-  to{left:110%}
-}
-
-/* PRODUCT GROUP */
+/* ================= PRODUCTS ================= */
 
 .product-group{
-  margin-bottom:45px;
+  margin-bottom:48px;
 }
 
 .group-title{
   display:flex;
   align-items:center;
-  gap:9px;
-  margin-bottom:16px;
+  gap:10px;
+  margin-bottom:17px;
 }
 
 .group-title h3{
-  font-size:18px;
+  font-size:19px;
 }
 
 .group-title span{
   color:var(--muted);
-  font-size:8px;
+  font-size:9px;
 }
-
-/* PRODUCTS */
 
 .products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:13px;
+  gap:14px;
 }
 
 .product{
   position:relative;
   overflow:hidden;
-  min-height:205px;
-  padding:21px;
-  border-radius:21px;
+  min-height:210px;
+  padding:22px;
+  border-radius:22px;
   border:1px solid var(--border);
   background:var(--card);
   cursor:pointer;
-  transition:.22s;
+  transition:.25s;
 }
 
 .product:hover{
-  transform:translateY(-4px);
-  border-color:rgba(184,255,0,.2);
+  transform:translateY(-5px);
+  border-color:rgba(184,255,0,.24);
+}
+
+.product::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-100%;
+  width:70%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  box-shadow:0 0 14px var(--cyan);
+  animation:cardScan 5s linear infinite;
+}
+
+@keyframes cardScan{
+  0%{right:-100%}
+  100%{right:120%}
+}
+
+.product::after{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:var(--green);
+  filter:blur(55px);
+  opacity:.035;
+  top:-50px;
+  right:-40px;
+  animation:productGlow 6s ease-in-out infinite alternate;
+}
+
+.product:nth-child(3n)::after{
+  background:var(--blue);
+}
+
+.product:nth-child(4n)::after{
+  background:var(--red);
+}
+
+@keyframes productGlow{
+  to{
+    transform:translate(-45px,55px);
+  }
 }
 
 .product-icon{
-  font-size:26px;
-  margin-bottom:14px;
+  font-size:27px;
+  margin-bottom:15px;
 }
 
 .product h3{
-  font-size:14px;
-  margin-bottom:7px;
+  font-size:15px;
+  margin-bottom:8px;
 }
 
 .product p{
   color:var(--muted);
-  font-size:9px;
+  font-size:10px;
   line-height:1.9;
 }
 
 .price{
   color:var(--green);
-  font-size:13px;
+  font-size:14px;
   font-weight:1000;
-  margin-top:12px;
+  margin-top:13px;
 }
 
 .tags{
   display:flex;
   gap:5px;
   flex-wrap:wrap;
-  margin-top:9px;
+  margin-top:10px;
 }
 
 .tag{
   padding:5px 7px;
   border-radius:7px;
-  font-size:6px;
+  font-size:7px;
   color:var(--green);
-  background:rgba(184,255,0,.04);
-  border:1px solid rgba(184,255,0,.1);
+  background:rgba(184,255,0,.05);
+  border:1px solid rgba(184,255,0,.11);
 }
 
 .arrow{
   position:absolute;
-  left:17px;
-  bottom:15px;
+  left:19px;
+  bottom:17px;
   color:var(--green);
-  font-size:13px;
+  font-size:14px;
 }
 
-/* STATUS */
+/* ================= LIVE SERVER MAP ================= */
+
+.live-map{
+  position:relative;
+  min-height:430px;
+  overflow:hidden;
+  border:1px solid rgba(0,246,255,.12);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(0,246,255,.06),transparent 45%),
+    var(--card);
+}
+
+.map-grid{
+  position:absolute;
+  inset:0;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(0,246,255,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,246,255,.12) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+
+.map-line{
+  position:absolute;
+  height:1px;
+  transform-origin:left center;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--cyan),
+    var(--green),
+    transparent
+  );
+  box-shadow:0 0 10px rgba(0,246,255,.5);
+  opacity:.45;
+}
+
+.line1{
+  width:48%;
+  top:35%;
+  right:22%;
+  transform:rotate(12deg);
+}
+
+.line2{
+  width:42%;
+  top:51%;
+  right:20%;
+  transform:rotate(-17deg);
+}
+
+.line3{
+  width:45%;
+  top:65%;
+  right:32%;
+  transform:rotate(7deg);
+}
+
+.map-packet{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 16px var(--green);
+  animation:mapPacket 4s linear infinite;
+}
+
+.map-packet.p2{
+  background:var(--cyan);
+  box-shadow:0 0 16px var(--cyan);
+  animation-delay:1.4s;
+}
+
+.map-packet.p3{
+  background:var(--blue);
+  box-shadow:0 0 16px var(--blue);
+  animation-delay:2.7s;
+}
+
+@keyframes mapPacket{
+  0%{
+    right:27%;
+    top:34%;
+    opacity:0;
+  }
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{
+    right:67%;
+    top:67%;
+    opacity:0;
+  }
+}
+
+.server-node{
+  position:absolute;
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  background:rgba(8,14,21,.92);
+  border:1px solid rgba(0,246,255,.25);
+  box-shadow:0 0 25px rgba(0,246,255,.08);
+  z-index:4;
+}
+
+.server-node::before,
+.server-node::after{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  border:1px solid rgba(0,246,255,.12);
+  animation:serverPulse 2.5s ease-out infinite;
+}
+
+.server-node::after{
+  animation-delay:1.25s;
+}
+
+@keyframes serverPulse{
+  0%{
+    transform:scale(.8);
+    opacity:0;
+  }
+  30%{opacity:1}
+  100%{
+    transform:scale(1.35);
+    opacity:0;
+  }
+}
+
+.server-node strong{
+  font-size:11px;
+}
+
+.server-node small{
+  font-size:7px;
+  color:#43ed60;
+}
+
+.server-de{
+  top:45px;
+  right:11%;
+}
+
+.server-fi{
+  top:150px;
+  left:43%;
+}
+
+.server-nl{
+  bottom:40px;
+  left:10%;
+}
+
+.map-center{
+  position:absolute;
+  top:50%;
+  right:50%;
+  transform:translate(50%,-50%);
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  border:1px dashed rgba(184,255,0,.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  background:rgba(184,255,0,.025);
+  box-shadow:0 0 35px rgba(184,255,0,.08);
+}
+
+/* ================= LIVE TOOLS ================= */
+
+.cyber-tools{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.cyber-card{
+  position:relative;
+  overflow:hidden;
+  min-height:220px;
+  padding:24px;
+  border-radius:24px;
+  border:1px solid var(--border);
+  background:var(--card);
+}
+
+.cyber-card::before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:1px;
+  top:0;
+  right:-160px;
+  background:var(--cyan);
+  box-shadow:0 0 15px var(--cyan);
+  animation:cyberScan 3.5s linear infinite;
+}
+
+@keyframes cyberScan{
+  to{right:120%}
+}
+
+.tool-icon{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  margin-bottom:18px;
+  background:rgba(0,246,255,.04);
+  border:1px solid rgba(0,246,255,.15);
+  box-shadow:0 0 25px rgba(0,246,255,.06);
+}
+
+.cyber-card h3{
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+.cyber-card p{
+  color:var(--muted);
+  font-size:9px;
+  line-height:2;
+}
+
+.live-value{
+  margin-top:18px;
+  color:var(--cyan);
+  font-size:22px;
+  font-weight:1000;
+  text-shadow:0 0 14px rgba(0,246,255,.45);
+}
+
+.speed-bars{
+  display:flex;
+  align-items:flex-end;
+  height:65px;
+  gap:4px;
+  margin-top:15px;
+}
+
+.speed-bars i{
+  flex:1;
+  height:20%;
+  border-radius:4px 4px 0 0;
+  background:var(--green);
+  box-shadow:0 0 10px rgba(184,255,0,.25);
+  animation:speedBars 1s ease-in-out infinite alternate;
+}
+
+.speed-bars i:nth-child(2){animation-delay:.1s}
+.speed-bars i:nth-child(3){animation-delay:.2s}
+.speed-bars i:nth-child(4){animation-delay:.3s}
+.speed-bars i:nth-child(5){animation-delay:.4s}
+.speed-bars i:nth-child(6){animation-delay:.5s}
+.speed-bars i:nth-child(7){animation-delay:.6s}
+.speed-bars i:nth-child(8){animation-delay:.7s}
+
+@keyframes speedBars{
+  to{height:90%}
+}
+
+.scan-ring{
+  width:78px;
+  height:78px;
+  margin:8px auto 12px;
+  border-radius:50%;
+  border:2px solid rgba(0,246,255,.1);
+  border-top-color:var(--cyan);
+  border-right-color:var(--green);
+  animation:spin 1.5s linear infinite;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ================= SYSTEM STATUS ================= */
 
 .status-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:13px;
+  gap:14px;
 }
 
 .status-card{
-  position:relative;
-  overflow:hidden;
-  padding:19px;
+  padding:20px;
   border:1px solid var(--border);
   border-radius:20px;
   background:var(--card);
 }
 
-.status-card::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-80px;
-  width:70px;
-  height:100%;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(184,255,0,.12),
-    transparent
-  );
-  transform:skewX(-18deg);
-  animation:statusScan 3.5s linear infinite;
-}
-
-@keyframes statusScan{
-  from{left:-80px}
-  to{left:110%}
-}
-
 .status-card h3{
-  position:relative;
-  z-index:2;
-  font-size:13px;
+  font-size:14px;
 }
 
 .status-line{
-  position:relative;
-  z-index:2;
   margin-top:11px;
   display:flex;
   align-items:center;
   gap:7px;
   color:#43e95b;
-  font-size:8px;
+  font-size:9px;
 }
 
 .status-dot{
@@ -776,101 +951,304 @@ section{
   animation:pulse 1.5s infinite;
 }
 
-.status-meta{
+.status-value{
+  margin-top:15px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+.status-bar{
+  height:5px;
+  margin-top:9px;
+  border-radius:10px;
+  background:rgba(255,255,255,.05);
+  overflow:hidden;
+}
+
+.status-bar span{
+  display:block;
+  height:100%;
+  width:92%;
+  background:linear-gradient(90deg,var(--green),var(--cyan));
+  box-shadow:0 0 10px rgba(184,255,0,.3);
+  animation:statusLoad 3s ease-in-out infinite alternate;
+}
+
+@keyframes statusLoad{
+  to{width:98%}
+}
+
+@keyframes pulse{
+  50%{
+    opacity:.4;
+    transform:scale(.7);
+  }
+}
+
+/* ================= WORKING HOURS ================= */
+
+.work-hours-box{
   position:relative;
-  z-index:2;
+  overflow:hidden;
+  margin-top:18px;
+  padding:15px 17px;
+  border-radius:18px;
+  border:1px solid rgba(184,255,0,.16);
+  background:
+    radial-gradient(circle at 100% 50%,rgba(184,255,0,.07),transparent 45%),
+    var(--card);
+  box-shadow:0 10px 35px rgba(0,0,0,.18);
+}
+
+.work-hours-box::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-120px;
+  width:100px;
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--green),
+    var(--cyan),
+    transparent
+  );
+  box-shadow:0 0 15px var(--green);
+  animation:workScan 3s linear infinite;
+}
+
+@keyframes workScan{
+  0%{right:-120px}
+  100%{right:120%}
+}
+
+.work-hours-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.work-hours-icon{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(184,255,0,.06);
+  border:1px solid rgba(184,255,0,.15);
+  font-size:18px;
+  animation:clockPulse 2s ease-in-out infinite;
+}
+
+@keyframes clockPulse{
+  50%{
+    box-shadow:0 0 18px rgba(184,255,0,.18);
+  }
+}
+
+.work-hours-title{
+  font-size:10px;
+  font-weight:1000;
+}
+
+.work-hours-sub{
+  color:var(--muted);
+  font-size:7px;
+  margin-top:4px;
+}
+
+.work-hours-status{
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.work-live{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#43ed60;
+  font-size:8px;
+  font-weight:900;
+}
+
+.work-live-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#43ed60;
+  box-shadow:0 0 12px #43ed60;
+  animation:pulse 1.4s infinite;
+}
+
+.work-time{
+  color:var(--green);
+  font-size:10px;
+  font-weight:1000;
+}
+
+.work-next{
   margin-top:8px;
   color:var(--muted);
   font-size:7px;
 }
 
-/* LIVE TOOLS */
-
-.live-tools{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
+.work-hours-box.closed{
+  border-color:rgba(255,49,88,.18);
 }
 
-.live-card{
-  position:relative;
+.work-hours-box.closed .work-live{
+  color:var(--red);
+}
+
+.work-hours-box.closed .work-live-dot{
+  background:var(--red);
+  box-shadow:0 0 12px var(--red);
+}
+
+.work-hours-box.closed .work-time{
+  color:var(--red);
+}
+
+/* ================= DISRUPTION SPLITTER ================= */
+
+.disruption-box{
+  position:fixed;
+  left:16px;
+  bottom:88px;
+  z-index:450;
+  width:235px;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid rgba(255,49,88,.22);
+  background:rgba(8,12,18,.92);
+  backdrop-filter:blur(14px);
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
   overflow:hidden;
-  min-height:180px;
-  padding:22px;
-  border-radius:21px;
-  border:1px solid rgba(0,229,255,.13);
-  background:
-    radial-gradient(circle at 100% 0,rgba(0,229,255,.06),transparent 42%),
-    var(--card);
 }
 
-.live-card::before{
+body.light .disruption-box{
+  background:rgba(255,255,255,.94);
+}
+
+.disruption-box::before{
   content:"";
   position:absolute;
-  width:130px;
-  height:1px;
-  top:25%;
-  left:-150px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  box-shadow:0 0 15px var(--cyan);
-  animation:scanLine 3s linear infinite;
+  width:80px;
+  height:2px;
+  top:0;
+  left:-100px;
+  background:linear-gradient(90deg,transparent,var(--red),transparent);
+  box-shadow:0 0 16px var(--red);
+  animation:breakScan 2.4s linear infinite;
 }
 
-@keyframes scanLine{
-  from{left:-150px}
+@keyframes breakScan{
   to{left:110%}
 }
 
-.live-icon{
-  font-size:28px;
-  margin-bottom:13px;
+.disruption-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
 
-.live-card h3{
-  font-size:14px;
+.disruption-icon{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,49,88,.07);
+  border:1px solid rgba(255,49,88,.16);
+  animation:crack 1.8s ease-in-out infinite;
 }
 
-.live-card p{
+@keyframes crack{
+  50%{
+    transform:translateX(2px);
+    box-shadow:0 0 18px rgba(255,49,88,.2);
+  }
+}
+
+.disruption-head strong{
+  font-size:10px;
+}
+
+.disruption-head small{
+  display:block;
   color:var(--muted);
-  font-size:8px;
-  line-height:1.9;
-  margin-top:7px;
+  font-size:7px;
+  margin-top:4px;
 }
 
-.live-value{
-  margin-top:13px;
-  color:var(--cyan);
-  font-size:12px;
-  font-weight:1000;
+.crack-line{
+  position:relative;
+  height:30px;
+  margin-top:10px;
+  overflow:hidden;
 }
 
-.live-button{
-  margin-top:12px;
+.crack-line span{
+  position:absolute;
+  top:50%;
   width:100%;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--red),
+    var(--cyan),
+    transparent
+  );
+  box-shadow:0 0 12px rgba(255,49,88,.5);
+  animation:crackMove 1.5s linear infinite;
 }
 
-/* CHECK */
+.crack-line span::after{
+  content:"";
+  position:absolute;
+  left:40%;
+  top:-10px;
+  width:2px;
+  height:20px;
+  background:var(--red);
+  box-shadow:0 0 10px var(--red);
+  transform:rotate(35deg);
+}
+
+@keyframes crackMove{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(100%)}
+}
+
+/* ================= CHECK ================= */
 
 .check{
-  padding:38px 22px;
+  padding:40px 22px;
   text-align:center;
   border:1px solid var(--border);
-  border-radius:25px;
+  border-radius:27px;
   background:var(--card);
 }
 
 .check-icon{
-  font-size:35px;
+  font-size:37px;
 }
 
 .check h3{
-  font-size:21px;
+  font-size:22px;
   margin:9px 0;
 }
 
 .check p{
   color:var(--muted);
-  font-size:9px;
+  font-size:10px;
   line-height:2;
   max-width:600px;
   margin:auto;
@@ -878,98 +1256,54 @@ section{
 
 .coming{
   color:var(--green);
-  font-size:7px;
-  letter-spacing:2px;
-  margin-top:9px;
-}
-
-/* WORKING HOURS */
-
-.hours-box{
-  position:relative;
-  overflow:hidden;
-  padding:25px;
-  border-radius:22px;
-  border:1px solid var(--border);
-  background:var(--card);
-}
-
-.hours-status{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:11px;
-  font-weight:900;
-}
-
-.hours-status i{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#43e95b;
-  box-shadow:0 0 12px #43e95b;
-}
-
-.hours-status.closed i{
-  background:var(--red);
-  box-shadow:0 0 12px var(--red);
-}
-
-.hours-text{
-  color:var(--muted);
-  font-size:9px;
-  line-height:2;
-  margin-top:9px;
-}
-
-.bot-always{
-  margin-top:12px;
-  display:inline-flex;
-  padding:7px 10px;
-  border-radius:9px;
-  color:var(--green);
-  background:rgba(184,255,0,.04);
-  border:1px solid rgba(184,255,0,.1);
-  font-size:7px;
-}
-
-/* FOOTER */
-
-footer{
-  text-align:center;
-  padding:65px 18px 120px;
-  border-top:1px solid var(--border);
-  color:var(--muted);
   font-size:8px;
-  line-height:2;
+  letter-spacing:2px;
+  margin-top:10px;
 }
 
-footer strong{
-  color:var(--green);
-}
-
-/* BOTTOM MENU */
+/* ================= BOTTOM ================= */
 
 .bottom-menu{
   position:fixed;
   z-index:500;
-  bottom:11px;
+  bottom:12px;
   left:50%;
   transform:translateX(-50%);
-  width:min(850px,calc(100% - 18px));
+  width:min(900px,calc(100% - 18px));
   padding:6px;
   display:flex;
-  border-radius:19px;
+  border-radius:20px;
   border:1px solid var(--border);
-  background:rgba(8,12,18,.9);
+  background:rgba(8,12,18,.88);
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
   box-shadow:0 15px 40px rgba(0,0,0,.35);
   overflow:hidden;
 }
 
 body.light .bottom-menu{
-  background:rgba(255,255,255,.92);
+  background:rgba(255,255,255,.9);
+}
+
+.bottom-menu::before{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:90px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(184,255,0,.25),
+    rgba(24,170,255,.2),
+    transparent
+  );
+  filter:blur(14px);
+  animation:menuLight 4s linear infinite;
+}
+
+@keyframes menuLight{
+  from{left:-120px}
+  to{left:110%}
 }
 
 .bottom-menu a{
@@ -979,18 +1313,33 @@ body.light .bottom-menu{
   text-align:center;
   color:var(--muted);
   text-decoration:none;
-  font-size:7px;
+  font-size:8px;
   padding:10px 3px;
-  border-radius:12px;
+  border-radius:13px;
 }
 
 .bottom-menu a.active,
 .bottom-menu a:hover{
   color:var(--text);
-  background:rgba(184,255,0,.06);
+  background:rgba(184,255,0,.07);
 }
 
-/* MODAL */
+/* ================= FOOTER ================= */
+
+footer{
+  text-align:center;
+  padding:70px 18px 140px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:9px;
+  line-height:2;
+}
+
+footer strong{
+  color:var(--green);
+}
+
+/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
@@ -1001,8 +1350,7 @@ body.light .bottom-menu{
   justify-content:center;
   padding:18px;
   background:rgba(0,0,0,.72);
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
+  backdrop-filter:blur(8px);
 }
 
 .modal.show{
@@ -1014,18 +1362,18 @@ body.light .bottom-menu{
   width:min(520px,100%);
   max-height:90vh;
   overflow:auto;
-  padding:27px;
-  border-radius:25px;
+  padding:28px;
+  border-radius:26px;
   border:1px solid var(--border);
   background:var(--card);
   box-shadow:0 30px 80px rgba(0,0,0,.5);
-  animation:modalIn .2s ease;
+  animation:modalIn .22s ease;
 }
 
 @keyframes modalIn{
   from{
     opacity:0;
-    transform:translateY(12px) scale(.98);
+    transform:translateY(15px) scale(.98);
   }
   to{
     opacity:1;
@@ -1035,31 +1383,31 @@ body.light .bottom-menu{
 
 .close{
   position:absolute;
-  top:12px;
-  left:12px;
-  width:33px;
-  height:33px;
+  top:13px;
+  left:13px;
+  width:34px;
+  height:34px;
   border-radius:10px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.035);
+  background:rgba(255,255,255,.04);
   color:var(--text);
   cursor:pointer;
   font-size:18px;
 }
 
 .modal-icon{
-  font-size:35px;
-  margin-bottom:9px;
+  font-size:36px;
+  margin-bottom:10px;
 }
 
 .modal-box h2{
-  font-size:22px;
-  margin-bottom:7px;
+  font-size:23px;
+  margin-bottom:8px;
 }
 
 .modal-description{
   color:var(--muted);
-  font-size:9px;
+  font-size:10px;
   line-height:2;
 }
 
@@ -1067,12 +1415,12 @@ body.light .bottom-menu{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
-  margin:17px 0;
+  margin:18px 0;
 }
 
 .detail{
-  padding:11px;
-  border-radius:11px;
+  padding:12px;
+  border-radius:12px;
   background:var(--card2);
   border:1px solid var(--border);
 }
@@ -1080,12 +1428,12 @@ body.light .bottom-menu{
 .detail small{
   display:block;
   color:var(--muted);
-  font-size:6px;
+  font-size:7px;
   margin-bottom:5px;
 }
 
 .detail strong{
-  font-size:9px;
+  font-size:10px;
 }
 
 .modal-actions{
@@ -1097,13 +1445,7 @@ body.light .bottom-menu{
   flex:1;
 }
 
-.purchase-closed{
-  opacity:.45;
-  cursor:not-allowed!important;
-  pointer-events:none;
-}
-
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:850px){
 
@@ -1113,19 +1455,41 @@ body.light .bottom-menu{
 
   .hero{
     grid-template-columns:1fr;
-    padding-top:52px;
-    gap:32px;
+    padding-top:55px;
+    gap:35px;
   }
 
-  .products{
+  .products,
+  .cyber-tools{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .status-grid,
-  .live-tools{
+  .status-grid{
     grid-template-columns:1fr;
   }
 
+  .live-map{
+    min-height:390px;
+  }
+
+  .server-node{
+    width:82px;
+    height:82px;
+  }
+
+  .server-de{
+    right:7%;
+  }
+
+  .server-nl{
+    left:7%;
+  }
+
+  .disruption-box{
+    width:210px;
+    left:10px;
+    bottom:78px;
+  }
 }
 
 @media(max-width:520px){
@@ -1150,33 +1514,71 @@ body.light .bottom-menu{
   }
 
   .node.dc{
-    top:43px;
+    top:25px;
     right:22px;
   }
 
   .node.user{
-    bottom:30px;
+    bottom:25px;
     left:22px;
   }
 
-  .products{
+  .products,
+  .cyber-tools{
     grid-template-columns:1fr;
   }
 
   .product{
-    min-height:185px;
+    min-height:190px;
   }
 
   .bottom-menu a{
-    font-size:6px;
+    font-size:7px;
   }
 
   .details{
     grid-template-columns:1fr 1fr;
   }
 
-  .modal-actions{
+  .disruption-box{
+    width:190px;
+    padding:10px;
+    bottom:75px;
+    left:8px;
+  }
+
+  .disruption-head strong{
+    font-size:8px;
+  }
+
+  .disruption-head small{
+    font-size:6px;
+  }
+
+  .live-map{
+    min-height:350px;
+  }
+
+  .server-node{
+    width:70px;
+    height:70px;
+  }
+
+  .server-node strong{
+    font-size:8px;
+  }
+
+  .server-node small{
+    font-size:6px;
+  }
+
+  .work-hours-box{
+    padding:13px;
+  }
+
+  .work-hours-status{
     flex-direction:column;
+    align-items:flex-start;
   }
 
 }
@@ -1199,29 +1601,28 @@ body.light .bottom-menu{
 
 <div class="bg-light green-light"></div>
 <div class="bg-light blue-light"></div>
+<div class="bg-light red-light"></div>
 
 <header>
-  <nav class="nav">
+<nav class="nav">
 
-    <div class="logo">
-      V2<span class="brand">GURD</span>
-      <span class="verified">✓</span>
-    </div>
+<div class="logo">
+V2<span class="brand">GURD</span>
+<span class="verified">✓</span>
+</div>
 
-    <div class="nav-links">
-      <a href="#special">ویژه</a>
-      <a href="#servers">سرورها</a>
-      <a href="#gaming">گیمینگ</a>
-      <a href="#live">لایو</a>
-      <a href="#subscriptions">اشتراک</a>
-      <a href="#instagram">اینستا</a>
-    </div>
+<div class="nav-links">
+<a href="#special">پیشنهاد ویژه</a>
+<a href="#servers">سرورها</a>
+<a href="#live">وضعیت زنده</a>
+<a href="#gaming">گیمینگ</a>
+<a href="#subscriptions">اشتراک‌ها</a>
+<a href="#instagram">اینستاگرام</a>
+</div>
 
-    <button class="theme" id="themeButton" onclick="toggleTheme()">☾</button>
+<button class="theme" id="themeButton" onclick="toggleTheme()">☾</button>
 
-  </nav>
-
-  <div class="cyber-line"></div>
+</nav>
 </header>
 
 
@@ -1229,102 +1630,59 @@ body.light .bottom-menu{
 
 <section class="hero">
 
-  <div>
+<div>
 
-    <div class="badge">
-      <i></i>
-      V2GURD DIGITAL SERVICES
-    </div>
+<div class="badge">
+<i></i>
+V2GURD DIGITAL SERVICES
+</div>
 
-    <h1>
-      <span class="neon">سریع‌تر،</span>
-      <span class="neon blue">مطمئن‌تر.</span>
-    </h1>
+<h1>
+<span class="neon">سریع‌تر،</span>
+<span class="neon blue">مطمئن‌تر.</span>
+</h1>
 
-    <p class="hero-text">
-      سرویس‌های حرفه‌ای V2GURD برای اتصال،
-      گیمینگ و خدمات دیجیتال؛ سریع، ساده و حرفه‌ای.
-    </p>
+<p class="hero-text">
+سرویس‌های حرفه‌ای V2GURD برای اتصال،
+گیمینگ و خدمات دیجیتال؛ سریع، ساده و حرفه‌ای.
+</p>
 
-    <div class="hero-buttons">
+<div class="hero-buttons">
 
-      <a class="btn primary" href="#special">
-        🔥 پیشنهاد ویژه
-      </a>
+<a class="btn primary" href="#special">
+🔥 پیشنهاد ویژه
+</a>
 
-      <a class="btn secondary" href="#servers">
-        مشاهده سرویس‌ها
-      </a>
+<a class="btn secondary" href="#servers">
+مشاهده سرویس‌ها
+</a>
 
-    </div>
+</div>
 
-  </div>
-
-
-  <!-- LIVE SERVER MAP -->
-
-  <div class="network">
-
-    <div class="map-title">LIVE SERVER MAP</div>
-
-    <div class="map-live">
-      <i></i>
-      LIVE
-    </div>
-
-    <div class="network-grid"></div>
-
-    <div class="node dc">
-      🖥️
-      <span>DATA CENTER</span>
-      <span class="node-status">● ONLINE</span>
-    </div>
-
-    <div class="node user">
-      📱
-      <span>USER</span>
-      <span class="node-status">● CONNECTED</span>
-    </div>
-
-    <div class="route"></div>
-    <div class="route two"></div>
-
-    <div class="map-point point-de"></div>
-    <div class="map-point point-fi"></div>
-    <div class="map-point point-nl"></div>
-
-    <span class="map-label label-de">GERMANY</span>
-    <span class="map-label label-fi">FINLAND</span>
-    <span class="map-label label-nl">NETHERLANDS</span>
-
-    <div class="packet"></div>
-    <div class="packet two"></div>
-    <div class="packet three"></div>
-
-  </div>
-
-</section>
+</div>
 
 
-<!-- DISRUPTION -->
+<div class="network">
 
-<section>
+<div class="network-grid"></div>
 
-  <div class="disruption-box">
+<div class="node dc">
+🖥️
+<span>DATA CENTER</span>
+</div>
 
-    <div class="cut-line"></div>
+<div class="node user">
+📱
+<span>USER</span>
+</div>
 
-    <div class="disruption-title">
-      <i></i>
-      سیستم عبور از اختلالات
-    </div>
+<div class="route"></div>
 
-    <p class="disruption-text">
-      مسیرهای ارتباطی در حال پایش هستند؛
-      ترافیک به‌صورت هوشمند از مسیرهای فعال عبور می‌کند.
-    </p>
+<div class="packet"></div>
+<div class="packet two"></div>
+<div class="packet three"></div>
 
-  </div>
+</div>
 
 </section>
 
@@ -1333,44 +1691,42 @@ body.light .bottom-menu{
 
 <section id="special">
 
-  <div class="special">
+<div class="special">
 
-    <div style="font-size:34px">🔥</div>
+<div style="font-size:35px">🔥</div>
 
-    <div class="section-title">
-      <small>SPECIAL OFFER</small>
+<div class="section-title">
+<small>SPECIAL OFFER</small>
 
-      <h2>
-        ۵۰۰ گیگ — تخفیف ویژه
-      </h2>
+<h2>
+۵۰۰ گیگ — تخفیف ویژه
+</h2>
 
-      <p>
-        کاربر آزاد • ظرفیت محدود
-      </p>
-    </div>
+<p>
+کاربر آزاد • ظرفیت محدود
+</p>
+</div>
 
-    <div class="timer" id="timer">
-      در حال محاسبه...
-    </div>
+<div class="timer" id="timer">
+در حال محاسبه...
+</div>
 
-    <button
-      class="btn primary"
-      onclick="openProduct(
-      'پیشنهاد ویژه ۵۰۰ گیگ',
-      '🔥',
-      'پکیج ویژه ۵۰۰ گیگ با قیمت تخفیفی.',
-      '۵۰۰ گیگ',
-      'آزاد',
-      'طبق سرویس',
-      'ربات',
-      '۵۰۰,۰۰۰ تومان'
-      )">
+<button
+class="btn primary"
+onclick="openProduct(
+'پیشنهاد ویژه ۵۰۰ گیگ',
+'🔥',
+'پکیج ویژه ۵۰۰ گیگ با قیمت تخفیفی.',
+'۵۰۰ گیگ',
+'آزاد',
+'طبق سرویس',
+'ربات',
+'۵۰۰,۰۰۰ تومان'
+)">
+مشاهده جزئیات و خرید
+</button>
 
-      مشاهده جزئیات و خرید
-
-    </button>
-
-  </div>
+</div>
 
 </section>
 
@@ -1379,2572 +1735,1587 @@ body.light .bottom-menu{
 
 <section id="servers">
 
-  <div class="section-title">
-    <small>V2GURD SERVERS</small>
-    <h2>سرویس‌های سرور</h2>
-    <p>برای مشاهده جزئیات هر سرویس روی آن بزنید</p>
-  </div>
-
-
-  <!-- ECONOMIC -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>🟢 اقتصادی</h3>
-      <span>حجمی</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        '۱۰ گیگ اقتصادی',
-        '🟢',
-        'سرویس اقتصادی حجمی V2GURD.',
-        '۱۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۲۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🟢</div>
-        <h3>۱۰ گیگ</h3>
-        <p>پکیج اقتصادی حجمی</p>
-        <div class="price">۲۰,۰۰۰ تومان</div>
-
-        <div class="tags">
-          <span class="tag">۱۰GB</span>
-          <span class="tag">اقتصادی</span>
-        </div>
-
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۲۰ گیگ اقتصادی',
-        '🟢',
-        'سرویس اقتصادی حجمی V2GURD.',
-        '۲۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۴۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🟢</div>
-        <h3>۲۰ گیگ</h3>
-        <p>پکیج اقتصادی حجمی</p>
-        <div class="price">۴۰,۰۰۰ تومان</div>
-
-        <div class="tags">
-          <span class="tag">۲۰GB</span>
-          <span class="tag">اقتصادی</span>
-        </div>
-
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۳۰ گیگ اقتصادی',
-        '🟢',
-        'سرویس اقتصادی حجمی V2GURD.',
-        '۳۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۷۵,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🟢</div>
-        <h3>۳۰ گیگ</h3>
-        <p>پکیج اقتصادی حجمی</p>
-        <div class="price">۷۵,۰۰۰ تومان</div>
-
-        <div class="tags">
-          <span class="tag">۳۰GB</span>
-          <span class="tag">اقتصادی</span>
-        </div>
-
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- HIGH VOLUME -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>⚡ حجم بالا</h3>
-      <span>پکیج‌های حجمی</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        '۵۰ گیگ',
-        '⚡',
-        'سرویس حجمی V2GURD.',
-        '۵۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۱۲۵,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">⚡</div>
-        <h3>۵۰ گیگ</h3>
-        <p>حجم بالا برای مصرف بیشتر</p>
-        <div class="price">۱۲۵,۰۰۰ تومان</div>
-
-        <div class="tags">
-          <span class="tag">۵۰GB</span>
-        </div>
-
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۱۰۰ گیگ',
-        '⚡',
-        'سرویس حجمی V2GURD.',
-        '۱۰۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۲۵۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">⚡</div>
-        <h3>۱۰۰ گیگ</h3>
-        <p>حجم بالا برای مصرف بیشتر</p>
-        <div class="price">۲۵۰,۰۰۰ تومان</div>
-
-        <div class="tags">
-          <span class="tag">۱۰۰GB</span>
-        </div>
-
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۱۵۰ گیگ',
-        '⚡',
-        'سرویس حجمی V2GURD.',
-        '۱۵۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۳۷۵,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">⚡</div>
-        <h3>۱۵۰ گیگ</h3>
-        <p>حجم بالا برای مصرف بیشتر</p>
-        <div class="price">۳۷۵,۰۰۰ تومان</div>
-
-        <div class="tags">
-          <span class="tag">۱۵۰GB</span>
-        </div>
-
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۵۰۰ گیگ ویژه',
-        '🔥',
-        'پیشنهاد ویژه و محدود V2GURD.',
-        '۵۰۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۵۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🔥</div>
-        <h3>۵۰۰ گیگ</h3>
-        <p>تخفیف ویژه — ظرفیت محدود</p>
-        <div class="price">۵۰۰,۰۰۰ تومان</div>
-
-        <div class="tags">
-          <span class="tag">۵۰۰GB</span>
-          <span class="tag">پیشنهاد ویژه</span>
-        </div>
-
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- UNLIMITED -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>♾️ نامحدود</h3>
-      <span>یک ماهه</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        'نامحدود ۱ کاربر',
-        '♾️',
-        'سرویس نامحدود یک ماهه.',
-        'نامحدود',
-        '۱ کاربر',
-        'یک ماه',
-        'ربات',
-        '۹۹,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">♾️</div>
-        <h3>۱ کاربر</h3>
-        <p>نامحدود — یک ماه</p>
-        <div class="price">۹۹,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'نامحدود ۲ کاربر',
-        '♾️',
-        'سرویس نامحدود دو کاربره.',
-        'نامحدود',
-        '۲ کاربر',
-        'یک ماه',
-        'ربات',
-        '۱۶۹,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">♾️</div>
-        <h3>۲ کاربر</h3>
-        <p>نامحدود — یک ماه</p>
-        <div class="price">۱۶۹,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- PANELS -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>🖥️ پنل‌های مدیریتی</h3>
-      <span>مدیریت سرویس</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۱ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۱ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'پیوی',
-        '۸۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۱ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۸۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۲ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۲ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'پیوی',
-        '۱,۲۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۲ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۱,۲۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۳ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۳ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'پیوی',
-        '۱,۸۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۳ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۱,۸۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۴ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۴ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'پیوی',
-        '۲,۳۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۴ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۲,۳۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- LIVE SERVER MAP -->
-
-<section id="live-map">
-
-  <div class="section-title">
-    <small>LIVE SERVER NETWORK</small>
-    <h2>🌐 نقشه زنده سرورها</h2>
-    <p>نمایش لحظه‌ای وضعیت مسیر و دیتاسنترهای V2GURD</p>
-  </div>
-
-  <div class="network">
-
-    <div class="network-grid"></div>
-
-    <div class="network-line line-1"></div>
-    <div class="network-line line-2"></div>
-    <div class="network-line line-3"></div>
-
-    <div class="map-node node-iran">
-      🇮🇷
-      <span>IRAN</span>
-      <small>USER</small>
-    </div>
-
-    <div class="map-node node-de">
-      🇩🇪
-      <span>GERMANY</span>
-      <small>ONLINE</small>
-    </div>
-
-    <div class="map-node node-fi">
-      🇫🇮
-      <span>FINLAND</span>
-      <small>ONLINE</small>
-    </div>
-
-    <div class="map-node node-nl">
-      🇳🇱
-      <span>NETHERLANDS</span>
-      <small>ONLINE</small>
-    </div>
-
-    <div class="data-packet packet-a"></div>
-    <div class="data-packet packet-b"></div>
-    <div class="data-packet packet-c"></div>
-
-    <div class="map-center">
-      <div class="core-ring"></div>
-      <strong>V2GURD</strong>
-      <small>NETWORK CORE</small>
-    </div>
-
-  </div>
+<div class="section-title">
+<small>V2GURD SERVERS</small>
+<h2>سرویس‌های سرور</h2>
+<p>برای مشاهده جزئیات هر سرویس روی آن بزنید</p>
+</div>
+
+
+<div class="product-group">
+
+<div class="group-title">
+<h3>🟢 اقتصادی</h3>
+<span>حجمی</span>
+</div>
+
+<div class="products">
+
+<div class="product" onclick="openProduct('۱۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۱۰ گیگ','آزاد','طبق سرویس','ربات','۲۰,۰۰۰ تومان')">
+<div class="product-icon">🟢</div>
+<h3>۱۰ گیگ</h3>
+<p>پکیج اقتصادی حجمی</p>
+<div class="price">۲۰,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۱۰GB</span>
+<span class="tag">اقتصادی</span>
+</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('۲۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۲۰ گیگ','آزاد','طبق سرویس','ربات','۴۰,۰۰۰ تومان')">
+<div class="product-icon">🟢</div>
+<h3>۲۰ گیگ</h3>
+<p>پکیج اقتصادی حجمی</p>
+<div class="price">۴۰,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۲۰GB</span>
+<span class="tag">اقتصادی</span>
+</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('۳۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۳۰ گیگ','آزاد','طبق سرویس','ربات','۷۵,۰۰۰ تومان')">
+<div class="product-icon">🟢</div>
+<h3>۳۰ گیگ</h3>
+<p>پکیج اقتصادی حجمی</p>
+<div class="price">۷۵,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۳۰GB</span>
+<span class="tag">اقتصادی</span>
+</div>
+<span class="arrow">←</span>
+</div>
+
+</div>
+</div>
+
+
+<div class="product-group">
+
+<div class="group-title">
+<h3>⚡ حجم بالا</h3>
+<span>پکیج‌های حجمی</span>
+</div>
+
+<div class="products">
+
+<div class="product" onclick="openProduct('۵۰ گیگ','⚡','سرویس حجمی V2GURD.','۵۰ گیگ','آزاد','طبق سرویس','ربات','۱۲۵,۰۰۰ تومان')">
+<div class="product-icon">⚡</div>
+<h3>۵۰ گیگ</h3>
+<p>حجم بالا برای مصرف بیشتر</p>
+<div class="price">۱۲۵,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۵۰GB</span>
+</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('۱۰۰ گیگ','⚡','سرویس حجمی V2GURD.','۱۰۰ گیگ','آزاد','طبق سرویس','ربات','۲۵۰,۰۰۰ تومان')">
+<div class="product-icon">⚡</div>
+<h3>۱۰۰ گیگ</h3>
+<p>حجم بالا برای مصرف بیشتر</p>
+<div class="price">۲۵۰,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۱۰۰GB</span>
+</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('۱۵۰ گیگ','⚡','سرویس حجمی V2GURD.','۱۵۰ گیگ','آزاد','طبق سرویس','ربات','۳۷۵,۰۰۰ تومان')">
+<div class="product-icon">⚡</div>
+<h3>۱۵۰ گیگ</h3>
+<p>حجم بالا برای مصرف بیشتر</p>
+<div class="price">۳۷۵,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۱۵۰GB</span>
+</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('۵۰۰ گیگ ویژه','🔥','پیشنهاد ویژه و محدود V2GURD.','۵۰۰ گیگ','آزاد','طبق سرویس','ربات','۵۰۰,۰۰۰ تومان')">
+<div class="product-icon">🔥</div>
+<h3>۵۰۰ گیگ</h3>
+<p>تخفیف ویژه — ظرفیت محدود</p>
+<div class="price">۵۰۰,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۵۰۰GB</span>
+<span class="tag">پیشنهاد ویژه</span>
+</div>
+<span class="arrow">←</span>
+</div>
+
+</div>
+</div>
+
+
+<div class="product-group">
+
+<div class="group-title">
+<h3>♾️ نامحدود</h3>
+<span>یک ماهه</span>
+</div>
+
+<div class="products">
+
+<div class="product" onclick="openProduct('نامحدود ۱ کاربر','♾️','سرویس نامحدود یک ماهه.','نامحدود','۱ کاربر','یک ماه','ربات','۹۹,۰۰۰ تومان')">
+<div class="product-icon">♾️</div>
+<h3>۱ کاربر</h3>
+<p>نامحدود — یک ماه</p>
+<div class="price">۹۹,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('نامحدود ۲ کاربر','♾️','سرویس نامحدود دو کاربره.','نامحدود','۲ کاربر','یک ماه','ربات','۱۶۹,۰۰۰ تومان')">
+<div class="product-icon">♾️</div>
+<h3>۲ کاربر</h3>
+<p>نامحدود — یک ماه</p>
+<div class="price">۱۶۹,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+</div>
+
+</div>
+</div>
+
+
+<div class="product-group">
+
+<div class="group-title">
+<h3>🖥️ پنل‌های مدیریتی</h3>
+<span>مدیریت سرویس</span>
+</div>
+
+<div class="products">
+
+<div class="product" onclick="openProduct('پنل ۱ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۱ ترا','طبق پنل','طبق سرویس','ربات','۸۰۰,۰۰۰ تومان')">
+<div class="product-icon">🖥️</div>
+<h3>۱ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۸۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('پنل ۲ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۲ ترا','طبق پنل','طبق سرویس','ربات','۱,۲۰۰,۰۰۰ تومان')">
+<div class="product-icon">🖥️</div>
+<h3>۲ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۱,۲۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('پنل ۳ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۳ ترا','طبق پنل','طبق سرویس','ربات','۱,۸۰۰,۰۰۰ تومان')">
+<div class="product-icon">🖥️</div>
+<h3>۳ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۱,۸۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+</div>
+
+<div class="product" onclick="openProduct('پنل ۴ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۴ ترا','طبق پنل','طبق سرویس','ربات','۲,۳۰۰,۰۰۰ تومان')">
+<div class="product-icon">🖥️</div>
+<h3>۴ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۲,۳۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+</div>
+
+</div>
+</div>
 
 </section>
 
 
-<!-- INTERNET STATUS -->
+<!-- LIVE -->
 
-<section id="internet-status">
+<section id="live">
 
-  <div class="section-title">
-    <small>LIVE INTERNET MONITOR</small>
-    <h2>📡 وضعیت اینترنت</h2>
-    <p>نمایش وضعیت لحظه‌ای شبکه</p>
-  </div>
-
-  <div class="status-grid">
-
-    <div class="status-card live-card">
-
-      <div class="live-header">
-        <h3>🌐 اتصال شبکه</h3>
-        <span class="live-badge">LIVE</span>
-      </div>
-
-      <div class="live-value">
-        <span class="status-dot"></span>
-        پایدار
-      </div>
-
-      <div class="signal-bars">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-      </div>
-
-    </div>
+<div class="section-title">
+<small>V2GURD LIVE SYSTEM</small>
+<h2>🌐 مرکز وضعیت زنده</h2>
+<p>نمایش لحظه‌ای وضعیت شبکه، سرورها و سیستم</p>
+</div>
 
 
-    <div class="status-card live-card">
+<!-- WORKING HOURS LIVE BOX -->
 
-      <div class="live-header">
-        <h3>⚡ Latency</h3>
-        <span class="live-badge">LIVE</span>
-      </div>
+<div class="work-hours-box" id="workHoursBox">
 
-      <div class="live-number">
-        <strong id="pingValue">32</strong>
-        <span>ms</span>
-      </div>
+<div class="work-hours-head">
 
-      <div class="mini-wave"></div>
+<div class="work-hours-icon">
+🕐
+</div>
 
-    </div>
+<div>
+
+<div class="work-hours-title">
+ساعت کاری V2GURD
+</div>
+
+<div class="work-hours-sub">
+شنبه تا پنجشنبه • ۱۲:۰۰ تا ۲۴:۰۰
+</div>
+
+</div>
+
+</div>
+
+<div class="work-hours-status">
+
+<div class="work-live">
+
+<span class="work-live-dot"></span>
+
+<span id="workStatus">
+در حال بررسی...
+</span>
+
+</div>
+
+<div class="work-time" id="workTime">
+--
+</div>
+
+</div>
+
+<div class="work-next" id="workNext">
+در حال محاسبه وضعیت...
+</div>
+
+</div>
 
 
-    <div class="status-card live-card">
+<!-- MAP -->
 
-      <div class="live-header">
-        <h3>📶 Network</h3>
-        <span class="live-badge">LIVE</span>
-      </div>
+<div style="height:18px"></div>
 
-      <div class="live-value">
-        <span class="status-dot"></span>
-        Operational
-      </div>
+<div class="live-map">
 
-      <div class="network-progress">
-        <span></span>
-      </div>
+<div class="map-grid"></div>
 
-    </div>
+<div class="map-line line1"></div>
+<div class="map-line line2"></div>
+<div class="map-line line3"></div>
 
-  </div>
+<div class="map-packet"></div>
+<div class="map-packet p2"></div>
+<div class="map-packet p3"></div>
+
+<div class="server-node server-de">
+🌐
+<strong>GERMANY</strong>
+<small>● ONLINE</small>
+</div>
+
+<div class="server-node server-fi">
+🌐
+<strong>FINLAND</strong>
+<small>● ONLINE</small>
+</div>
+
+<div class="server-node server-nl">
+🌐
+<strong>NETHERLANDS</strong>
+<small>● ONLINE</small>
+</div>
+
+<div class="map-center">
+🛡️
+</div>
+
+</div>
+
+
+<!-- LIVE TOOLS -->
+
+<div style="height:18px"></div>
+
+<div class="cyber-tools">
+
+<div class="cyber-card">
+
+<div class="tool-icon">⚡</div>
+
+<h3>تست سرعت</h3>
+
+<p>
+تست ارتباط مرورگر با سرویس V2GURD
+با انیمیشن زنده.
+</p>
+
+<div class="speed-bars">
+<i></i><i></i><i></i><i></i>
+<i></i><i></i><i></i><i></i>
+</div>
+
+<div class="live-value" id="speedValue">
+در حال آماده‌سازی
+</div>
+
+</div>
+
+
+<div class="cyber-card">
+
+<div class="tool-icon">📡</div>
+
+<h3>وضعیت اینترنت</h3>
+
+<p>
+بررسی وضعیت اتصال فعلی دستگاه شما.
+</p>
+
+<div class="scan-ring">
+📡
+</div>
+
+<div class="live-value" id="internetStatus">
+در حال بررسی
+</div>
+
+</div>
+
+
+<div class="cyber-card">
+
+<div class="tool-icon">🛰️</div>
+
+<h3>وضعیت لحظه‌ای سیستم</h3>
+
+<p>
+مانیتورینگ نمایشی وضعیت سرویس‌ها و زیرساخت.
+</p>
+
+<div class="live-value">
+<span id="systemPercent">98</span>%
+</div>
+
+<div class="status-bar">
+<span></span>
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- SPEED TEST -->
+<!-- GAMING -->
 
-<section id="speed-test">
+<section id="gaming">
 
-  <div class="section-title">
-    <small>NETWORK SPEED TEST</small>
-    <h2>⚡ تست سرعت</h2>
-    <p>سرعت اتصال خود را بررسی کنید</p>
-  </div>
+<div class="section-title">
+<small>GAMING / WIREGUARD</small>
+<h2>🎮 سرویس گیمینگ</h2>
+<p>مخصوص Call of Duty</p>
+</div>
 
-  <div class="check speed-box">
+<div class="products">
 
-    <div class="speed-radar">
-      <div class="radar-ring"></div>
-      <div class="radar-ring ring-two"></div>
-      <div class="radar-dot"></div>
-    </div>
+<div class="product" onclick="openProduct('Call of Duty — 10GB','🎮','سرویس WireGuard مخصوص گیمینگ و Call of Duty.','۱۰ گیگ','طبق سرویس','طبق سرویس','ربات','۳۰۰,۰۰۰ تومان')">
 
-    <h3 id="speedTitle">
-      آماده تست
-    </h3>
+<div class="product-icon">🎮</div>
 
-    <p id="speedText">
-      برای شروع تست سرعت روی دکمه زیر بزنید
-    </p>
+<h3>۱۰ گیگ گیمینگ</h3>
 
-    <div class="speed-result">
+<p>
+WireGuard مخصوص Call of Duty
+</p>
 
-      <div>
-        <strong id="downloadSpeed">—</strong>
-        <small>Mbps Download</small>
-      </div>
+<div class="price">
+۳۰۰,۰۰۰ تومان
+</div>
 
-      <div>
-        <strong id="uploadSpeed">—</strong>
-        <small>Mbps Upload</small>
-      </div>
+<div class="tags">
+<span class="tag">WireGuard</span>
+<span class="tag">Gaming</span>
+</div>
 
-    </div>
+<span class="arrow">←</span>
 
-    <button
-      class="btn primary"
-      id="speedButton"
-      onclick="runSpeedTest()">
+</div>
 
-      شروع تست سرعت
 
-    </button>
+<div class="product" onclick="openProduct('Call of Duty — 20GB','🎯','سرویس WireGuard مخصوص گیمینگ و Call of Duty.','۲۰ گیگ','طبق سرویس','طبق سرویس','ربات','۴۰۰,۰۰۰ تومان')">
 
-  </div>
+<div class="product-icon">🎯</div>
+
+<h3>۲۰ گیگ گیمینگ</h3>
+
+<p>
+WireGuard مخصوص Call of Duty
+</p>
+
+<div class="price">
+۴۰۰,۰۰۰ تومان
+</div>
+
+<div class="tags">
+<span class="tag">WireGuard</span>
+<span class="tag">Gaming</span>
+</div>
+
+<span class="arrow">←</span>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- SYSTEM STATUS -->
 
-<section id="system-status">
+<section id="status">
 
-  <div class="section-title">
-    <small>SYSTEM MONITOR</small>
-    <h2>🛰️ وضعیت لحظه‌ای سیستم</h2>
-    <p>مانیتورینگ سرویس‌های V2GURD</p>
-  </div>
+<div class="section-title">
+<small>LIVE STATUS</small>
+<h2>وضعیت سیستم</h2>
+<p>نمایش لحظه‌ای وضعیت سرویس‌ها</p>
+</div>
 
-  <div class="status-grid">
+<div class="status-grid">
 
-    <div class="status-card system-card">
+<div class="status-card">
 
-      <div class="system-icon">🛡️</div>
+<h3>🇩🇪 Germany</h3>
 
-      <h3>VPN SERVICES</h3>
+<div class="status-line">
+<i class="status-dot"></i>
+فعال
+</div>
 
-      <div class="system-status">
-        <span class="status-dot"></span>
-        Operational
-      </div>
+<div class="status-value">
+Uptime
+</div>
 
-      <div class="system-bar">
-        <span style="width:97%"></span>
-      </div>
+<div class="status-bar">
+<span></span>
+</div>
 
-      <small>System availability: 97%</small>
-
-    </div>
-
-
-    <div class="status-card system-card">
-
-      <div class="system-icon">🖥️</div>
-
-      <h3>SERVER NETWORK</h3>
-
-      <div class="system-status">
-        <span class="status-dot"></span>
-        Operational
-      </div>
-
-      <div class="system-bar">
-        <span style="width:99%"></span>
-      </div>
-
-      <small>Network availability: 99%</small>
-
-    </div>
+</div>
 
 
-    <div class="status-card system-card">
+<div class="status-card">
 
-      <div class="system-icon">🤖</div>
+<h3>🇫🇮 Finland</h3>
 
-      <h3>BOT SERVICES</h3>
+<div class="status-line">
+<i class="status-dot"></i>
+فعال
+</div>
 
-      <div class="system-status">
-        <span class="status-dot"></span>
-        Online
-      </div>
+<div class="status-value">
+Network
+</div>
 
-      <div class="system-bar">
-        <span style="width:100%"></span>
-      </div>
+<div class="status-bar">
+<span></span>
+</div>
 
-      <small>Bot availability: 100%</small>
-
-    </div>
-
-  </div>
-
-</section>
+</div>
 
 
-<!-- DISRUPTION LIVE BOX -->
+<div class="status-card">
 
-<section id="disruptions">
+<h3>🇳🇱 Netherlands</h3>
 
-  <div class="section-title">
-    <small>NETWORK ALERT</small>
-    <h2>⚠️ اختلالات شبکه</h2>
-    <p>مانیتورینگ وضعیت مسیرهای ارتباطی</p>
-  </div>
+<div class="status-line">
+<i class="status-dot"></i>
+فعال
+</div>
 
-  <div class="disruption-box">
+<div class="status-value">
+Service
+</div>
 
-    <div class="disruption-bg"></div>
+<div class="status-bar">
+<span></span>
+</div>
 
-    <div class="disruption-arrow">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+</div>
 
-    <div class="disruption-content">
-
-      <div class="disruption-live">
-        <i></i>
-        LIVE MONITOR
-      </div>
-
-      <h3>
-        در حال بررسی مسیرهای ارتباطی
-      </h3>
-
-      <p>
-        سیستم به‌صورت لحظه‌ای وضعیت شبکه و مسیرهای
-        ارتباطی را بررسی می‌کند.
-      </p>
-
-      <div class="disruption-line">
-
-        <span>NETWORK</span>
-
-        <div>
-          <i></i>
-          <i></i>
-          <i></i>
-          <i></i>
-          <i></i>
-          <i></i>
-        </div>
-
-        <strong>STABLE</strong>
-
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- WORKING HOURS -->
+<!-- SUBSCRIPTIONS -->
 
-<section id="working-hours">
+<section id="subscriptions">
 
-  <div class="section-title">
-    <small>SUPPORT HOURS</small>
-    <h2>🕐 ساعت کاری</h2>
-    <p>زمان پاسخگویی و پشتیبانی</p>
-  </div>
+<div class="section-title">
+<small>DIGITAL SUBSCRIPTIONS</small>
+<h2>💎 اشتراک‌های دیجیتال</h2>
+<p>قیمت و خرید از داخل پیوی تلگرام</p>
+</div>
 
-  <div class="work-box">
+<div class="products">
 
-    <div class="work-live">
+<div class="product" onclick="openProduct('Telegram Premium','✈️','اشتراک Telegram Premium.','طبق پلن','طبق پلن','سه ماهه','پیوی','قیمت در پیوی')">
 
-      <span class="status-dot"></span>
+<div class="product-icon">✈️</div>
 
-      <span id="workStatus">
-        در حال بررسی...
-      </span>
+<h3>Telegram Premium</h3>
 
-    </div>
+<p>
+قیمت و خرید از داخل پیوی
+</p>
 
-    <div class="work-time">
+<div class="price">
+قیمت در پیوی
+</div>
 
-      <strong>
-        ۱۲:۰۰
-      </strong>
+<span class="arrow">←</span>
 
-      <span>
-        تا
-      </span>
-
-      <strong>
-        ۰۰:۰۰
-      </strong>
-
-    </div>
-
-    <p>
-      شنبه تا پنجشنبه
-    </p>
-
-    <small>
-      ربات خرید در تمام ساعات شبانه‌روز فعال است
-    </small>
-
-  </div>
-
-</section>
+</div>
 
 
-<!-- SUPPORT -->
+<div class="product" onclick="openProduct('CapCut Premium','✂️','اشتراک پریمیوم CapCut.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-<section id="support">
+<div class="product-icon">✂️</div>
 
-  <div class="section-title">
-    <small>V2GURD SUPPORT</small>
-    <h2>🎧 درخواست پشتیبانی</h2>
-    <p>در صورت نیاز مستقیماً با پشتیبانی در ارتباط باشید</p>
-  </div>
+<h3>CapCut Premium</h3>
 
-  <div class="check support-box">
+<p>
+خرید از داخل پیوی تلگرام
+</p>
 
-    <div class="check-icon">
-      🎧
-    </div>
+<div class="price">
+قیمت در پیوی
+</div>
 
-    <h3>
-      پشتیبانی V2GURD
-    </h3>
+<span class="arrow">←</span>
 
-    <p>
-      برای مشکلات سرویس، خرید، راه‌اندازی یا
-      سایر موارد می‌توانید از طریق پشتیبانی با ما در ارتباط باشید.
-    </p>
-
-    <br>
-
-    <a
-      class="btn primary"
-      href="https://t.me/Vtwoguard"
-      target="_blank">
-
-      ارتباط با پشتیبانی
-
-    </a>
-
-  </div>
-
-</section>
+</div>
 
 
-<!-- DEVELOPERS -->
+<div class="product" onclick="openProduct('Spotify Premium','🎵','اشتراک Spotify Premium.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-<section id="developers">
+<div class="product-icon">🎵</div>
 
-  <div class="section-title">
-    <small>DEVELOPER ZONE</small>
-    <h2>👨‍💻 بخش توسعه‌دهندگان</h2>
-    <p>خدمات فنی و توسعه اختصاصی V2GURD</p>
-  </div>
+<h3>Spotify Premium</h3>
 
-  <div class="products">
+<p>
+خرید از داخل پیوی تلگرام
+</p>
 
-    <div class="product"
-      onclick="openProduct(
-      'ساخت سایت',
-      '🌐',
-      'طراحی و توسعه سایت اختصاصی برای کسب‌وکار شما.',
-      'اختصاصی',
-      '—',
-      'طبق پروژه',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="price">
+قیمت در پیوی
+</div>
 
-      <div class="product-icon">🌐</div>
+<span class="arrow">←</span>
 
-      <h3>
-        ساخت سایت
-      </h3>
-
-      <p>
-        طراحی سایت اختصاصی و مدرن
-      </p>
-
-      <div class="price">
-        استعلام
-      </div>
-
-      <span class="arrow">
-        ←
-      </span>
-
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'ساخت ربات تلگرامی',
-      '🤖',
-      'ساخت ربات تلگرامی اختصاصی برای فروش، مدیریت و خدمات.',
-      'اختصاصی',
-      '—',
-      'طبق پروژه',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product" onclick="openProduct('YouTube Premium','▶️','اشتراک YouTube Premium.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">🤖</div>
+<div class="product-icon">▶️</div>
 
-      <h3>
-        ساخت ربات تلگرامی
-      </h3>
+<h3>YouTube Premium</h3>
 
-      <p>
-        ربات فروش، مدیریت و خدمات
-      </p>
+<p>
+خرید از داخل پیوی تلگرام
+</p>
 
-      <div class="price">
-        استعلام
-      </div>
+<div class="price">
+قیمت در پیوی
+</div>
 
-      <span class="arrow">
-        ←
-      </span>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'توسعه اختصاصی',
-      '⚙️',
-      'پیاده‌سازی سیستم‌ها و امکانات اختصاصی برای کسب‌وکار شما.',
-      'اختصاصی',
-      '—',
-      'طبق پروژه',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product" onclick="openProduct('Canva Pro','🎨','اشتراک حرفه‌ای Canva.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">⚙️</div>
+<div class="product-icon">🎨</div>
 
-      <h3>
-        توسعه اختصاصی
-      </h3>
+<h3>Canva Pro</h3>
 
-      <p>
-        طراحی سیستم و امکانات اختصاصی
-      </p>
+<p>
+خرید از داخل پیوی تلگرام
+</p>
 
-      <div class="price">
-        استعلام
-      </div>
+<div class="price">
+قیمت در پیوی
+</div>
 
-      <span class="arrow">
-        ←
-      </span>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
-  </div>
+
+<div class="product" onclick="openProduct('سایر اشتراک‌ها','💎','برای مشاهده اشتراک‌های بیشتر از طریق پیوی تلگرام استعلام بگیرید.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
+
+<div class="product-icon">💎</div>
+
+<h3>سایر اشتراک‌ها</h3>
+
+<p>
+استعلام و خرید از پیوی
+</p>
+
+<div class="price">
+قیمت در پیوی
+</div>
+
+<span class="arrow">←</span>
+
+</div>
+
+</div>
 
 </section>
 
 
-<style>
-
-/* LIVE MAP */
-
-.network{
-  position:relative;
-  height:430px;
-  overflow:hidden;
-}
-
-.network-line{
-  position:absolute;
-  height:2px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--blue),
-    var(--green),
-    transparent
-  );
-  transform-origin:left center;
-  opacity:.35;
-  animation:networkPulse 2.5s ease-in-out infinite;
-}
-
-.line-1{
-  width:58%;
-  top:45%;
-  left:22%;
-  transform:rotate(-20deg);
-}
-
-.line-2{
-  width:55%;
-  top:52%;
-  left:23%;
-  transform:rotate(25deg);
-  animation-delay:.7s;
-}
-
-.line-3{
-  width:48%;
-  top:52%;
-  left:25%;
-  transform:rotate(-55deg);
-  animation-delay:1.2s;
-}
-
-@keyframes networkPulse{
-  50%{
-    opacity:.9;
-    box-shadow:0 0 15px var(--green);
-  }
-}
-
-.map-node{
-  position:absolute;
-  z-index:5;
-  width:90px;
-  height:90px;
-  border-radius:24px;
-  background:var(--card);
-  border:1px solid var(--border);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:4px;
-  font-size:20px;
-  box-shadow:0 0 25px rgba(24,170,255,.08);
-}
-
-.map-node span{
-  font-size:8px;
-  font-weight:900;
-}
-
-.map-node small{
-  font-size:6px;
-  color:#43e95b;
-}
-
-.node-iran{
-  left:28px;
-  bottom:32px;
-  border-color:rgba(184,255,0,.3);
-}
-
-.node-de{
-  right:35px;
-  top:30px;
-}
-
-.node-fi{
-  right:42%;
-  top:25px;
-}
-
-.node-nl{
-  right:35px;
-  bottom:35px;
-}
-
-.map-center{
-  position:absolute;
-  z-index:4;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:115px;
-  height:115px;
-  border-radius:50%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:var(--card);
-  border:1px solid rgba(184,255,0,.25);
-  box-shadow:
-    0 0 35px rgba(184,255,0,.12),
-    inset 0 0 25px rgba(184,255,0,.04);
-}
-
-.map-center strong{
-  color:var(--green);
-  font-size:15px;
-}
-
-.map-center small{
-  color:var(--muted);
-  font-size:6px;
-  margin-top:4px;
-}
-
-.core-ring{
-  position:absolute;
-  inset:-12px;
-  border:1px solid rgba(184,255,0,.2);
-  border-radius:50%;
-  animation:coreRotate 5s linear infinite;
-  border-top-color:var(--green);
-}
-
-@keyframes coreRotate{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-.data-packet{
-  position:absolute;
-  z-index:8;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 18px var(--green);
-  animation:dataFlow 3s linear infinite;
-}
-
-.packet-a{
-  left:23%;
-  top:53%;
-}
-
-.packet-b{
-  left:26%;
-  top:47%;
-  background:var(--blue);
-  box-shadow:0 0 18px var(--blue);
-  animation-delay:1s;
-}
-
-.packet-c{
-  left:28%;
-  top:50%;
-  background:var(--red);
-  box-shadow:0 0 18px var(--red);
-  animation-delay:2s;
-}
-
-@keyframes dataFlow{
-  0%{
-    transform:translate(0,0);
-    opacity:0;
-  }
-  15%{
-    opacity:1;
-  }
-  50%{
-    transform:translate(170px,-55px);
-  }
-  85%{
-    opacity:1;
-  }
-  100%{
-    transform:translate(330px,-100px);
-    opacity:0;
-  }
-}
-
-
-/* LIVE CARDS */
-
-.live-card{
-  position:relative;
-  overflow:hidden;
-}
-
-.live-card::before{
-  content:"";
-  position:absolute;
-  left:-100%;
-  top:0;
-  width:70%;
-  height:1px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--green),
-    transparent
-  );
-  animation:scanLine 3s linear infinite;
-}
-
-@keyframes scanLine{
-  to{
-    left:130%;
-  }
-}
-
-.live-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.live-badge{
-  color:var(--green);
-  border:1px solid rgba(184,255,0,.2);
-  background:rgba(184,255,0,.05);
-  padding:4px 7px;
-  border-radius:6px;
-  font-size:6px;
-  font-weight:900;
-}
-
-.live-value{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin-top:15px;
-  font-size:12px;
-  font-weight:900;
-}
-
-.live-number{
-  margin-top:13px;
-  display:flex;
-  align-items:baseline;
-  gap:5px;
-}
-
-.live-number strong{
-  color:var(--green);
-  font-size:27px;
-}
-
-.live-number span{
-  color:var(--muted);
-  font-size:9px;
-}
-
-.signal-bars{
-  display:flex;
-  align-items:end;
-  gap:4px;
-  height:30px;
-  margin-top:12px;
-}
-
-.signal-bars i{
-  width:7px;
-  border-radius:3px;
-  background:var(--green);
-  box-shadow:0 0 8px rgba(184,255,0,.25);
-  animation:signal 1.2s ease-in-out infinite alternate;
-}
-
-.signal-bars i:nth-child(1){height:8px}
-.signal-bars i:nth-child(2){height:13px;animation-delay:.15s}
-.signal-bars i:nth-child(3){height:18px;animation-delay:.3s}
-.signal-bars i:nth-child(4){height:24px;animation-delay:.45s}
-.signal-bars i:nth-child(5){height:30px;animation-delay:.6s}
-
-@keyframes signal{
-  to{
-    opacity:.35;
-    transform:scaleY(.55);
-  }
-}
-
-.mini-wave{
-  height:25px;
-  margin-top:12px;
-  background:
-    linear-gradient(
-      135deg,
-      transparent 45%,
-      var(--blue) 46%,
-      transparent 48%
-    );
-  background-size:20px 20px;
-  animation:waveMove .8s linear infinite;
-  opacity:.5;
-}
-
-@keyframes waveMove{
-  to{
-    background-position:20px 0;
-  }
-}
-
-.network-progress,
-.system-bar{
-  height:4px;
-  border-radius:10px;
-  background:rgba(255,255,255,.06);
-  overflow:hidden;
-  margin-top:13px;
-}
-
-.network-progress span,
-.system-bar span{
-  display:block;
-  height:100%;
-  border-radius:10px;
-  background:linear-gradient(
-    90deg,
-    var(--blue),
-    var(--green)
-  );
-  box-shadow:0 0 10px rgba(184,255,0,.35);
-  animation:progressGlow 2s ease-in-out infinite alternate;
-}
-
-.network-progress span{
-  width:96%;
-}
-
-@keyframes progressGlow{
-  to{
-    filter:brightness(1.4);
-  }
-}
-
-
-/* SPEED TEST */
-
-.speed-box{
-  position:relative;
-  overflow:hidden;
-}
-
-.speed-radar{
-  position:relative;
-  width:120px;
-  height:120px;
-  margin:0 auto 20px;
-  border-radius:50%;
-  border:1px solid rgba(184,255,0,.2);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-  background:radial-gradient(
-    circle,
-    rgba(184,255,0,.07),
-    transparent 65%
-  );
-}
-
-.speed-radar::before{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:1px;
-  background:rgba(184,255,0,.18);
-}
-
-.speed-radar::after{
-  content:"";
-  position:absolute;
-  height:100%;
-  width:1px;
-  background:rgba(184,255,0,.18);
-}
-
-.radar-ring{
-  position:absolute;
-  inset:15px;
-  border:1px solid rgba(184,255,0,.15);
-  border-radius:50%;
-}
-
-.ring-two{
-  inset:35px;
-}
-
-.radar-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 20px var(--green);
-  animation:radarPulse 1.5s infinite;
-}
-
-@keyframes radarPulse{
-  50%{
-    transform:scale(2.5);
-    opacity:.35;
-  }
-}
-
-.speed-result{
-  display:flex;
-  justify-content:center;
-  gap:45px;
-  margin:20px 0;
-}
-
-.speed-result div{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.speed-result strong{
-  color:var(--green);
-  font-size:22px;
-}
-
-.speed-result small{
-  color:var(--muted);
-  font-size:7px;
-}
-
-
-/* SYSTEM */
-
-.system-card{
-  position:relative;
-}
-
-.system-icon{
-  font-size:25px;
-  margin-bottom:12px;
-}
-
-.system-status{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  color:#43e95b;
-  font-size:8px;
-  margin-top:9px;
-}
-
-.system-card small{
-  display:block;
-  color:var(--muted);
-  font-size:7px;
-  margin-top:8px;
-}
-
-
-/* DISRUPTION */
-
-.disruption-box{
-  position:relative;
-  overflow:hidden;
-  min-height:230px;
-  border-radius:27px;
-  border:1px solid rgba(255,49,88,.18);
-  background:
-    radial-gradient(
-      circle at 80% 50%,
-      rgba(255,49,88,.08),
-      transparent 35%
-    ),
-    var(--card);
-}
-
-.disruption-bg{
-  position:absolute;
-  inset:0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 8px,
-      rgba(255,255,255,.018) 9px
-    );
-  animation:scanBackground 4s linear infinite;
-}
-
-@keyframes scanBackground{
-  to{
-    background-position:0 80px;
-  }
-}
-
-.disruption-content{
-  position:relative;
-  z-index:3;
-  padding:30px;
-  max-width:650px;
-}
-
-.disruption-live{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  color:#ff5575;
-  font-size:7px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.disruption-live i{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 15px var(--red);
-  animation:pulse 1s infinite;
-}
-
-.disruption-content h3{
-  font-size:21px;
-  margin:13px 0 9px;
-}
-
-.disruption-content p{
-  color:var(--muted);
-  font-size:9px;
-  line-height:2;
-}
-
-.disruption-line{
-  margin-top:22px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  font-size:7px;
-  color:var(--muted);
-}
-
-.disruption-line div{
-  display:flex;
-  gap:4px;
-}
-
-.disruption-line i{
-  width:20px;
-  height:3px;
-  background:var(--red);
-  animation:disruptionBars 1s infinite alternate;
-}
-
-.disruption-line i:nth-child(2){animation-delay:.1s}
-.disruption-line i:nth-child(3){animation-delay:.2s}
-.disruption-line i:nth-child(4){animation-delay:.3s}
-.disruption-line i:nth-child(5){animation-delay:.4s}
-.disruption-line i:nth-child(6){animation-delay:.5s}
-
-@keyframes disruptionBars{
-  to{
-    transform:scaleY(2);
-    opacity:.35;
-  }
-}
-
-.disruption-line strong{
-  color:#43e95b;
-}
-
-
-/* BREAKING ARROW */
-
-.disruption-arrow{
-  position:absolute;
-  z-index:2;
-  right:15%;
-  top:50%;
-  width:270px;
-  height:100px;
-  transform:rotate(-8deg);
-}
-
-.disruption-arrow span{
-  position:absolute;
-  width:170px;
-  height:3px;
-  right:0;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--red),
-    #fff
-  );
-  box-shadow:0 0 15px var(--red);
-  animation:breakArrow 2s linear infinite;
-}
-
-.disruption-arrow span:nth-child(1){
-  top:20px;
-}
-
-.disruption-arrow span:nth-child(2){
-  top:50px;
-  animation-delay:.35s;
-}
-
-.disruption-arrow span:nth-child(3){
-  top:80px;
-  animation-delay:.7s;
-}
-
-@keyframes breakArrow{
-  0%{
-    transform:translateX(100px) scaleX(.2);
-    opacity:0;
-  }
-  20%{
-    opacity:1;
-  }
-  70%{
-    transform:translateX(-50px) scaleX(1);
-    opacity:1;
-  }
-  100%{
-    transform:translateX(-150px) scaleX(1.2);
-    opacity:0;
-  }
-}
-
-
-/* WORK HOURS */
-
-.work-box{
-  position:relative;
-  overflow:hidden;
-  text-align:center;
-  padding:35px 20px;
-  border-radius:27px;
-  border:1px solid var(--border);
-  background:
-    radial-gradient(
-      circle at 50% 0,
-      rgba(184,255,0,.08),
-      transparent 45%
-    ),
-    var(--card);
-}
-
-.work-live{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:7px;
-  color:var(--green);
-  font-size:8px;
-  font-weight:900;
-}
-
-.work-time{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:14px;
-  margin:18px 0 10px;
-}
-
-.work-time strong{
-  color:var(--text);
-  font-size:31px;
-  text-shadow:0 0 15px rgba(184,255,0,.15);
-}
-
-.work-time span{
-  color:var(--muted);
-  font-size:9px;
-}
-
-.work-box p{
-  color:var(--muted);
-  font-size:9px;
-}
-
-.work-box small{
-  display:block;
-  color:var(--green);
-  font-size:7px;
-  margin-top:12px;
-}
-
-
-/* SUPPORT */
-
-.support-box{
-  position:relative;
-  overflow:hidden;
-}
-
-.support-box::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  right:-80px;
-  bottom:-100px;
-  background:var(--green);
-  filter:blur(80px);
-  opacity:.06;
-}
-
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-  .map-node{
-    width:72px;
-    height:72px;
-    border-radius:19px;
-  }
-
-  .map-node span{
-    font-size:6px;
-  }
-
-  .map-center{
-    width:90px;
-    height:90px;
-  }
-
-  .map-center strong{
-    font-size:11px;
-  }
-
-  .disruption-arrow{
-    right:-5%;
-    opacity:.35;
-  }
-
-}
-
-@media(max-width:520px){
-
-  .network{
-    height:330px;
-  }
-
-  .node-iran{
-    left:15px;
-    bottom:20px;
-  }
-
-  .node-de{
-    right:15px;
-    top:20px;
-  }
-
-  .node-fi{
-    right:38%;
-    top:15px;
-  }
-
-  .node-nl{
-    right:15px;
-    bottom:20px;
-  }
-
-  .map-center{
-    width:80px;
-    height:80px;
-  }
-
-  .speed-result{
-    gap:25px;
-  }
-
-  .disruption-content{
-    padding:24px 20px;
-  }
-
-  .disruption-content h3{
-    font-size:17px;
-  }
-
-  .disruption-arrow{
-    display:none;
-  }
-
-}
-
-</style>
-
-
-<script>
-
-/* LIVE PING SIMULATION */
-
-const pingElement =
-  document.getElementById("pingValue");
-
-if(pingElement){
-
-  setInterval(()=>{
-
-    const ping =
-      Math.floor(
-        25 + Math.random()*25
-      );
-
-    pingElement.textContent =
-      ping;
-
-  },2500);
-
-}
-
-
-/* SPEED TEST */
-
-function runSpeedTest(){
-
-  const button =
-    document.getElementById("speedButton");
-
-  const title =
-    document.getElementById("speedTitle");
-
-  const text =
-    document.getElementById("speedText");
-
-  const download =
-    document.getElementById("downloadSpeed");
-
-  const upload =
-    document.getElementById("uploadSpeed");
-
-  button.disabled=true;
-  button.textContent="در حال تست...";
-
-  title.textContent="در حال بررسی شبکه";
-  text.textContent="لطفاً چند لحظه صبر کنید...";
-
-  download.textContent="...";
-  upload.textContent="...";
-
-  setTimeout(()=>{
-
-    const d =
-      Math.floor(
-        40 + Math.random()*80
-      );
-
-    const u =
-      Math.floor(
-        15 + Math.random()*35
-      );
-
-    download.textContent=d;
-    upload.textContent=u;
-
-    title.textContent="تست کامل شد";
-    text.textContent="نتیجه تقریبی اتصال شما آماده است";
-
-    button.disabled=false;
-    button.textContent="تست مجدد";
-
-  },2500);
-
-}
-
-
-/* WORKING HOURS */
-
-function updateWorkingHours(){
-
-  const status =
-    document.getElementById("workStatus");
-
-  if(!status) return;
-
-  const now =
-    new Date();
-
-  const day =
-    now.getDay();
-
-  const hour =
-    now.getHours();
-
-  /*
-    JavaScript:
-    0 = Sunday
-    1 = Monday
-    ...
-    6 = Saturday
-
-    Working:
-    Saturday -> Thursday
-    12:00 -> 00:00
-
-    Friday closed
-  */
-
-  const workingDay =
-    day !== 5;
-
-  const workingTime =
-    hour >= 12;
-
-  if(workingDay && workingTime){
-
-    status.textContent =
-      "پشتیبانی فعال است";
-
-    status.style.color =
-      "#43e95b";
-
-  }else{
-
-    status.textContent =
-      "پشتیبانی در حال حاضر بسته است";
-
-    status.style.color =
-      "#ff5575";
-
-  }
-
-}
-
-updateWorkingHours();
-
-setInterval(
-  updateWorkingHours,
-  30000
-);
-
-
-/* PURCHASE BUTTON HOURS */
-
-function isWorkingTime(){
-
-  const now =
-    new Date();
-
-  const day =
-    now.getDay();
-
-  const hour =
-    now.getHours();
-
-  return day !== 5 && hour >= 12;
-
-}
-
-
-/*
-  ربات همیشه فعال است.
-  فقط دکمه‌های خرید مستقیم
-  خارج از ساعت کاری غیرفعال می‌شوند.
-*/
-
-document.addEventListener(
-  "click",
-  function(e){
-
-    const button =
-      e.target.closest("#purchaseButton");
-
-    if(!button) return;
-
-    if(!isWorkingTime()){
-
-      e.preventDefault();
-
-      alert(
-        "⏰ در حال حاضر خارج از ساعت کاری هستیم\n\n" +
-        "ساعت کاری: شنبه تا پنجشنبه، ۱۲ ظهر تا ۱۲ شب\n\n" +
-        "🤖 ربات خرید در تمام ساعات فعال است."
-      );
-
-      button.blur();
-
-    }
-
-  }
-);
-
-</script>
-
-<!-- ============================= -->
-<!-- FINAL UPDATES / LIVE EFFECTS -->
-<!-- ============================= -->
-
-<script>
-
-/* LIVE CLOCK */
-
-function updateLiveClock(){
-
-  const now = new Date();
-
-  const hours =
-    String(now.getHours()).padStart(2,"0");
-
-  const minutes =
-    String(now.getMinutes()).padStart(2,"0");
-
-  const seconds =
-    String(now.getSeconds()).padStart(2,"0");
-
-  const clock =
-    document.getElementById("liveClock");
-
-  if(clock){
-    clock.textContent =
-      `${hours}:${minutes}:${seconds}`;
-  }
-
-}
-
-updateLiveClock();
-
-setInterval(updateLiveClock,1000);
-
-
-/* SERVER STATUS ANIMATION */
-
-const serverCards =
-  document.querySelectorAll(".status-card");
-
-serverCards.forEach(card=>{
-
-  card.addEventListener("mouseenter",()=>{
-
-    card.style.transform =
-      "translateY(-4px)";
-
-  });
-
-  card.addEventListener("mouseleave",()=>{
-
-    card.style.transform =
-      "";
-
-  });
-
-});
-
-
-/* RANDOM NETWORK ACTIVITY */
-
-function networkActivity(){
-
-  const packets =
-    document.querySelectorAll(".data-packet");
-
-  packets.forEach((packet,index)=>{
-
-    packet.style.animationDelay =
-      `${Math.random()*2}s`;
-
-  });
-
-}
-
-networkActivity();
-
-
-/* LIVE SYSTEM TEXT */
-
-const systemTexts = [
-
-  "Network operational",
-  "All systems operational",
-  "Server network stable",
-  "Connection stable",
-  "Monitoring active"
-];
-
-function updateSystemText(){
-
-  const elements =
-    document.querySelectorAll(
-      ".system-status"
-    );
-
-  if(!elements.length) return;
-
-  const text =
-    systemTexts[
-      Math.floor(
-        Math.random()*systemTexts.length
-      )
-    ];
-
-  elements.forEach(el=>{
-
-    const dot =
-      el.querySelector(".status-dot");
-
-    el.innerHTML = "";
-
-    if(dot){
-      el.appendChild(dot);
-    }
-
-    el.appendChild(
-      document.createTextNode(
-        " " + text
-      )
-    );
-
-  });
-
-}
-
-setInterval(
-  updateSystemText,
-  8000
-);
-
-
-/* DISRUPTION SCAN */
-
-const disruptionBox =
-  document.querySelector(
-    ".disruption-box"
-  );
-
-if(disruptionBox){
-
-  disruptionBox.addEventListener(
-    "mousemove",
-    e=>{
-
-      const rect =
-        disruptionBox.getBoundingClientRect();
-
-      const x =
-        ((e.clientX-rect.left) /
-        rect.width)*100;
-
-      const y =
-        ((e.clientY-rect.top) /
-        rect.height)*100;
-
-      disruptionBox.style.background =
-        `
-        radial-gradient(
-          circle at ${x}% ${y}%,
-          rgba(255,49,88,.12),
-          transparent 35%
-        ),
-        var(--card)
-        `;
-
-    }
-  );
-
-  disruptionBox.addEventListener(
-    "mouseleave",
-    ()=>{
-
-      disruptionBox.style.background =
-        `
-        radial-gradient(
-          circle at 80% 50%,
-          rgba(255,49,88,.08),
-          transparent 35%
-        ),
-        var(--card)
-        `;
-
-    }
-  );
-
-}
-
-
-/* SCROLL REVEAL */
-
-const revealElements =
-  document.querySelectorAll(
-    ".product, .status-card, .check, .special, .work-box, .disruption-box"
-  );
-
-const revealObserver =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          entry.target.classList.add(
-            "revealed"
-          );
-
-        }
-
-      });
-
-    },
-    {
-      threshold:.12
-    }
-  );
-
-revealElements.forEach(
-  element=>{
-    revealObserver.observe(element);
-  }
-);
-
-
-/* CLOSE MODAL AFTER PURCHASE */
-
-const purchaseButton =
-  document.getElementById(
-    "purchaseButton"
-  );
-
-if(purchaseButton){
-
-  purchaseButton.addEventListener(
-    "click",
-    ()=>{
-
-      setTimeout(()=>{
-
-        if(
-          typeof closeProduct ===
-          "function"
-        ){
-
-          closeProduct();
-
-        }
-
-      },300);
-
-    }
-  );
-
-}
-
-
-/* UPDATE CURRENT YEAR */
-
-const yearElements =
-  document.querySelectorAll(
-    ".current-year"
-  );
-
-yearElements.forEach(
-  element=>{
-    element.textContent =
-      new Date().getFullYear();
-  }
-);
-
-
-/* MOBILE TOUCH FEEDBACK */
-
-document.querySelectorAll(
-  ".product, .btn, .status-card"
-).forEach(element=>{
-
-  element.addEventListener(
-    "touchstart",
-    ()=>{
-      element.classList.add(
-        "touch-active"
-      );
-    },
-    {
-      passive:true
-    }
-  );
-
-  element.addEventListener(
-    "touchend",
-    ()=>{
-      setTimeout(()=>{
-        element.classList.remove(
-          "touch-active"
-        );
-      },180);
-    },
-    {
-      passive:true
-    }
-  );
-
-});
-
-</script>
-
-
-<style>
-
-/* REVEAL */
-
-.product,
-.status-card,
-.check,
-.special,
-.work-box,
-.disruption-box{
-  opacity:1;
-  transform:translateY(0);
-  transition:
-    opacity .55s ease,
-    transform .55s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
-}
-
-.product:hover,
-.status-card:hover{
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.18);
-}
-
-
-/* TOUCH */
-
-.touch-active{
-  transform:scale(.98)!important;
-}
-
-
-/* CYBER GRID EFFECT */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-2;
-  opacity:.025;
-
-  background-image:
-    linear-gradient(
-      rgba(184,255,0,.5) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(24,170,255,.5) 1px,
-      transparent 1px
-    );
-
-  background-size:
-    70px 70px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent 75%
-    );
-}
-
-
-/* CYBER SCAN */
-
-body::after{
-  content:"";
-  position:fixed;
-  left:0;
-  right:0;
-  height:1px;
-  top:-10px;
-  pointer-events:none;
-  z-index:9999;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(184,255,0,.5),
-      rgba(24,170,255,.5),
-      transparent
-    );
-
-  box-shadow:
-    0 0 15px rgba(184,255,0,.3);
-
-  animation:
-    cyberScan 8s linear infinite;
-}
-
-@keyframes cyberScan{
-
-  0%{
-    top:-10px;
-    opacity:0;
-  }
-
-  10%{
-    opacity:1;
-  }
-
-  90%{
-    opacity:1;
-  }
-
-  100%{
-    top:110vh;
-    opacity:0;
-  }
-
-}
-
-
-/* EXTRA CYBER GLOW */
-
-.section-title h2{
-  text-shadow:
-    0 0 18px rgba(255,255,255,.035);
-}
-
-.product{
-  backdrop-filter:
-    blur(5px);
-}
-
-.status-card{
-  backdrop-filter:
-    blur(5px);
-}
-
-
-/* LIVE INDICATOR */
-
-.live-badge{
-  animation:
-    liveBlink 1.8s ease-in-out infinite;
-}
-
-@keyframes liveBlink{
-
-  50%{
-    opacity:.45;
-  }
-
-}
-
-
-/* SERVER NODE PULSE */
-
-.map-node{
-  animation:
-    nodePulse 3s ease-in-out infinite;
-}
-
-.map-node:nth-of-type(2){
-  animation-delay:.5s;
-}
-
-.map-node:nth-of-type(3){
-  animation-delay:1s;
-}
-
-.map-node:nth-of-type(4){
-  animation-delay:1.5s;
-}
-
-@keyframes nodePulse{
-
-  50%{
-    box-shadow:
-      0 0 35px
-      rgba(24,170,255,.15);
-  }
-
-}
-
-
-/* SPECIAL OFFER GLOW */
-
-.special{
-  animation:
-    specialGlow 4s ease-in-out infinite;
-}
-
-@keyframes specialGlow{
-
-  50%{
-    box-shadow:
-      0 0 35px
-      rgba(184,255,0,.04);
-  }
-
-}
-
-
-/* WORKING HOURS LIVE */
-
-.work-live{
-  animation:
-    workPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes workPulse{
-
-  50%{
-    filter:
-      brightness(1.3);
-  }
-
-}
-
-
-/* MOBILE */
-
-@media(max-width:520px){
-
-  body::before{
-    background-size:
-      45px 45px;
-  }
-
-  .section-title h2{
-    font-size:23px;
-  }
-
-}
-
-
-/* REDUCE MOTION */
-
-@media(prefers-reduced-motion:reduce){
-
-  body::before,
-  body::after,
-  .special,
-  .map-node,
-  .work-live,
-  .live-badge{
-    animation:none!important;
-  }
-
-}
-
-</style>
-
-
-<!-- FINAL FOOTER -->
+<!-- INSTAGRAM -->
+
+<section id="instagram">
+
+<div class="section-title">
+<small>INSTAGRAM SERVICES</small>
+<h2>📸 خدمات اینستاگرام</h2>
+<p>قیمت و خرید از داخل پیوی تلگرام</p>
+</div>
+
+<div class="products">
+
+<div class="product" onclick="openProduct('خرید فالوور اینستاگرام','👥','خدمات افزایش فالوور اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
+
+<div class="product-icon">👥</div>
+
+<h3>خرید فالوور</h3>
+
+<p>
+افزایش فالوور اینستاگرام
+</p>
+
+<div class="price">
+قیمت در پیوی
+</div>
+
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product" onclick="openProduct('ویو ریلز اینستاگرام','👁️','خدمات افزایش بازدید ریلز اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
+
+<div class="product-icon">👁️</div>
+
+<h3>ویو ریلز</h3>
+
+<p>
+افزایش بازدید ریلز
+</p>
+
+<div class="price">
+قیمت در پیوی
+</div>
+
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product" onclick="openProduct('لایک اینستاگرام','❤️','خدمات افزایش لایک اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
+
+<div class="product-icon">❤️</div>
+
+<h3>لایک اینستاگرام</h3>
+
+<p>
+افزایش لایک و تعامل
+</p>
+
+<div class="price">
+قیمت در پیوی
+</div>
+
+<span class="arrow">←</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CHECK -->
+
+<section id="check">
+
+<div class="section-title">
+<small>SERVICE CHECK</small>
+<h2>🔎 استعلام سرویس</h2>
+<p>این بخش به‌زودی فعال می‌شود</p>
+</div>
+
+<div class="check">
+
+<div class="check-icon">🔎</div>
+
+<div class="coming">
+COMING SOON
+</div>
+
+<h3>
+استعلام آنلاین سرویس
+</h3>
+
+<p>
+به‌زودی با وارد کردن نام سرویس،
+وضعیت فعال بودن، حجم باقی‌مانده و
+تعداد روز باقی‌مانده نمایش داده می‌شود.
+</p>
+
+<br>
+
+<button class="btn secondary" disabled>
+به‌زودی فعال می‌شود
+</button>
+
+</div>
+
+</section>
+
+
+<!-- GUIDE -->
+
+<section id="guide">
+
+<div class="section-title">
+<small>CONNECTION GUIDE</small>
+<h2>📱 راهنمای اتصال</h2>
+<p>آموزش اتصال سرویس روی دستگاه‌های مختلف</p>
+</div>
+
+<div class="products">
+
+<div class="product" onclick="openProduct('راهنمای iPhone','🍎','آموزش اتصال سرویس روی iPhone و iOS.','iOS','—','—','راهنما','—')">
+
+<div class="product-icon">🍎</div>
+
+<h3>
+iPhone / iOS
+</h3>
+
+<p>
+راهنمای اتصال روی آیفون
+</p>
+
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product" onclick="openProduct('راهنمای Android','🤖','آموزش اتصال سرویس روی Android.','Android','—','—','راهنما','—')">
+
+<div class="product-icon">🤖</div>
+
+<h3>
+Android
+</h3>
+
+<p>
+راهنمای اتصال روی اندروید
+</p>
+
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product" onclick="openProduct('راهنمای V2Box','📱','آموزش اتصال سرویس با V2Box.','V2Box','—','—','راهنما','—')">
+
+<div class="product-icon">📱</div>
+
+<h3>
+V2Box
+</h3>
+
+<p>
+راهنمای اتصال با Subscription
+</p>
+
+<span class="arrow">←</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="section-title">
+<small>ABOUT V2GURD</small>
+<h2>
+درباره V2GURD
+</h2>
+</div>
+
+<div class="check">
+
+<p>
+V2GURD ارائه‌دهنده سرویس‌های دیجیتال،
+سرویس‌های اتصال، گیمینگ و اشتراک‌های دیجیتال است.
+هدف ما ارائه تجربه‌ای ساده، سریع و حرفه‌ای
+همراه با پشتیبانی مناسب است.
+</p>
+
+</div>
+
+</section>
+
 
 <footer>
 
-  <div
-    style="
-      font-size:23px;
-      font-weight:1000;
-      color:var(--text);
-    "
-  >
+<div style="font-size:21px;font-weight:1000;color:var(--text)">
 
-    V2<span
-      style="color:var(--green)"
-    >GURD</span>
+V2<span style="color:var(--green)">GURD</span>
 
-    <span class="verified">
-      ✓
-    </span>
+<span class="verified">
+✓
+</span>
 
-  </div>
+</div>
 
+<p style="margin-top:12px">
 
-  <p style="margin-top:14px">
+تمامی حقوق و مزایای سایت و ربات متعلق به
+<strong>V2GURD</strong>
+می‌باشد.
 
-    سرویس‌های دیجیتال،
-    سرور و گیمینگ
-    با پشتیبانی V2GURD
+</p>
 
-  </p>
-
-
-  <p>
-
-    🟢 سیستم‌ها:
-    <strong>
-      Operational
-    </strong>
-
-  </p>
-
-
-  <p>
-
-    🕐 شنبه تا پنجشنبه
-    ۱۲:۰۰ تا ۰۰:۰۰
-
-  </p>
-
-
-  <p>
-
-    🤖 ربات خرید:
-    <strong>
-      24/7
-    </strong>
-
-  </p>
-
-
-  <p style="margin-top:15px">
-
-    © <span class="current-year">2026</span>
-    V2GURD — All Rights Reserved
-
-  </p>
+<p>
+© 2026 V2GURD — All Rights Reserved
+</p>
 
 </footer>
 
 
-<!-- LIVE CLOCK -->
+<!-- DISRUPTION LIVE BOX -->
 
-<div
-  id="liveClock"
-  style="
-    position:fixed;
-    left:12px;
-    bottom:12px;
-    z-index:499;
-    padding:8px 11px;
-    border-radius:10px;
-    border:1px solid var(--border);
-    background:rgba(8,12,18,.82);
-    backdrop-filter:blur(10px);
-    color:var(--green);
-    font-size:8px;
-    font-family:monospace;
-    box-shadow:0 0 20px rgba(184,255,0,.05);
-  "
->
-  00:00:00
+<div class="disruption-box">
+
+<div class="disruption-head">
+
+<div class="disruption-icon">
+⚡
 </div>
+
+<div>
+
+<strong>
+اختلالات را می‌شکافیم
+</strong>
+
+<small>
+SECURE ROUTE • LIVE CONNECTION
+</small>
+
+</div>
+
+</div>
+
+<div class="crack-line">
+<span></span>
+</div>
+
+</div>
+
+
+<!-- BOTTOM MENU -->
+
+<nav class="bottom-menu">
+
+<a href="#special" class="active">
+🔥 ویژه
+</a>
+
+<a href="#servers">
+🛡️ سرورها
+</a>
+
+<a href="#live">
+🌐 زنده
+</a>
+
+<a href="#gaming">
+🎮 گیمینگ
+</a>
+
+<a href="#subscriptions">
+💎 اشتراک
+</a>
+
+<a href="#guide">
+📱 راهنما
+</a>
+
+</nav>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="productModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeProduct()">
+×
+</button>
+
+<div class="modal-icon" id="modalIcon">
+🛡️
+</div>
+
+<h2 id="modalTitle">
+محصول
+</h2>
+
+<p class="modal-description" id="modalDescription">
+توضیحات محصول
+</p>
+
+<div class="details">
+
+<div class="detail">
+<small>حجم</small>
+<strong id="modalVolume">—</strong>
+</div>
+
+<div class="detail">
+<small>کاربر</small>
+<strong id="modalUsers">—</strong>
+</div>
+
+<div class="detail">
+<small>اعتبار</small>
+<strong id="modalDuration">—</strong>
+</div>
+
+<div class="detail">
+<small>قیمت</small>
+<strong id="modalPrice">—</strong>
+</div>
+
+</div>
+
+<div class="modal-actions">
+
+<a
+id="purchaseButton"
+class="btn primary"
+href="#"
+target="_blank">
+خرید
+</a>
+
+<button
+class="btn secondary"
+onclick="closeProduct()">
+بازگشت
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const BOT_URL="https://t.me/echo_priime_bot";
+const PV_URL="https://t.me/Vtwoguard";
+
+
+/* ================= THEME ================= */
+
+function updateTheme(){
+
+const btn=
+document.getElementById("themeButton");
+
+btn.textContent=
+document.body.classList.contains("light")
+?"☀"
+:"☾";
+
+}
+
+
+function toggleTheme(){
+
+document.body.classList.toggle("light");
+
+localStorage.setItem(
+"v2gurd-theme",
+document.body.classList.contains("light")
+?"light"
+:"dark"
+);
+
+updateTheme();
+
+}
+
+
+if(
+localStorage.getItem("v2gurd-theme")==="light"
+){
+document.body.classList.add("light");
+}
+
+updateTheme();
+
+
+/* ================= WORKING HOURS ================= */
+
+/*
+  شنبه تا پنجشنبه:
+  12:00 تا 24:00
+
+  جمعه:
+  تعطیل
+
+  ربات:
+  همیشه فعال است.
+*/
+
+function isWorkingHours(){
+
+const now=new Date();
+
+const day=now.getDay();
+
+const hour=now.getHours();
+
+/*
+Sunday = 0
+Monday = 1
+Tuesday = 2
+Wednesday = 3
+Thursday = 4
+Friday = 5
+Saturday = 6
+*/
+
+const workingDay=
+day!==5;
+
+const workingTime=
+hour>=12 && hour<24;
+
+return workingDay && workingTime;
+
+}
+
+
+function updateWorkingHours(){
+
+const box=
+document.getElementById("workHoursBox");
+
+const status=
+document.getElementById("workStatus");
+
+const time=
+document.getElementById("workTime");
+
+const next=
+document.getElementById("workNext");
+
+if(
+!box ||
+!status ||
+!time ||
+!next
+){
+return;
+}
+
+
+const now=new Date();
+
+const hour=
+String(now.getHours())
+.padStart(2,"0");
+
+const minute=
+String(now.getMinutes())
+.padStart(2,"0");
+
+
+time.textContent=
+`ساعت فعلی ${hour}:${minute}`;
+
+
+if(isWorkingHours()){
+
+box.classList.remove("closed");
+
+status.textContent=
+"ساعت کاری فعال است";
+
+next.textContent=
+"پشتیبانی و پردازش خرید در حال انجام است";
+
+}else{
+
+box.classList.add("closed");
+
+status.textContent=
+"خارج از ساعت کاری";
+
+next.textContent=
+"ساعت کاری: شنبه تا پنجشنبه، ۱۲:۰۰ تا ۲۴:۰۰ • ربات همیشه فعال است";
+
+}
+
+}
+
+
+updateWorkingHours();
+
+setInterval(
+updateWorkingHours,
+30000
+);
+
+
+/* ================= PURCHASE CHECK ================= */
+
+function canPurchase(){
+
+if(isWorkingHours()){
+
+return true;
+
+}
+
+
+alert(
+"⏰ در حال حاضر خارج از ساعت کاری V2GURD هستید.\n\n"+
+"ساعت کاری:\n"+
+"شنبه تا پنجشنبه\n"+
+"۱۲:۰۰ تا ۲۴:۰۰\n\n"+
+"🤖 ربات V2GURD همیشه فعال است."
+);
+
+return false;
+
+}
+
+
+/* ================= PRODUCT MODAL ================= */
+
+function openProduct(
+title,
+icon,
+description,
+volume,
+users,
+duration,
+type,
+price
+){
+
+/*
+  فقط خریدهای واقعی که از ربات انجام می‌شوند
+  در ساعات کاری فعال هستند.
+*/
+
+if(
+type==="ربات" &&
+!canPurchase()
+){
+
+return;
+
+}
+
+
+document.getElementById(
+"modalTitle"
+).textContent=title;
+
+
+document.getElementById(
+"modalIcon"
+).textContent=icon;
+
+
+document.getElementById(
+"modalDescription"
+).textContent=description;
+
+
+document.getElementById(
+"modalVolume"
+).textContent=volume;
+
+
+document.getElementById(
+"modalUsers"
+).textContent=users;
+
+
+document.getElementById(
+"modalDuration"
+).textContent=duration;
+
+
+document.getElementById(
+"modalPrice"
+).textContent=price;
+
+
+const button=
+document.getElementById(
+"purchaseButton"
+);
+
+
+if(type==="پیوی"){
+
+button.textContent=
+"خرید از پیوی تلگرام";
+
+button.href=
+PV_URL;
+
+}else if(type==="ربات"){
+
+button.textContent=
+"خرید از ربات";
+
+button.href=
+BOT_URL;
+
+}else{
+
+button.textContent=
+type;
+
+button.href="#";
+
+}
+
+
+document
+.getElementById("productModal")
+.classList.add("show");
+
+document.body.style.overflow="hidden";
+
+}
+
+
+function closeProduct(){
+
+document
+.getElementById("productModal")
+.classList.remove("show");
+
+document.body.style.overflow="";
+
+}
+
+
+document
+.getElementById("productModal")
+.addEventListener(
+"click",
+function(e){
+
+if(e.target===this){
+
+closeProduct();
+
+}
+
+}
+);
+
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Escape"){
+
+closeProduct();
+
+}
+
+}
+);
+
+
+/* ================= OFFER TIMER ================= */
+
+let offerEnd=
+localStorage.getItem(
+"v2gurd-offer-end"
+);
+
+
+if(!offerEnd){
+
+offerEnd=
+Date.now()+
+10*24*60*60*1000;
+
+localStorage.setItem(
+"v2gurd-offer-end",
+offerEnd
+);
+
+}
+
+
+function updateTimer(){
+
+const remaining=
+Number(offerEnd)-
+Date.now();
+
+
+const timer=
+document.getElementById(
+"timer"
+);
+
+
+if(remaining<=0){
+
+timer.textContent=
+"پیشنهاد ویژه به پایان رسید";
+
+return;
+
+}
+
+
+const days=
+Math.floor(
+remaining/
+(1000*60*60*24)
+);
+
+
+const hours=
+Math.floor(
+(remaining/
+(1000*60*60))%24
+);
+
+
+const minutes=
+Math.floor(
+(remaining/
+(1000*60))%60
+);
+
+
+timer.textContent=
+`${days} روز ${hours} ساعت ${minutes} دقیقه`;
+
+}
+
+
+updateTimer();
+
+setInterval(
+updateTimer,
+60000
+);
+
+
+/* ================= INTERNET STATUS ================= */
+
+function checkInternet(){
+
+const el=
+document.getElementById(
+"internetStatus"
+);
+
+
+if(navigator.onLine){
+
+el.textContent=
+"● ONLINE";
+
+el.style.color=
+"#43ed60";
+
+}else{
+
+el.textContent=
+"● OFFLINE";
+
+el.style.color=
+"#ff3158";
+
+}
+
+}
+
+
+checkInternet();
+
+
+window.addEventListener(
+"online",
+checkInternet
+);
+
+
+window.addEventListener(
+"offline",
+checkInternet
+);
+
+
+/* ================= SPEED SIMULATION ================= */
+
+const speedEl=
+document.getElementById(
+"speedValue"
+);
+
+let speed=0;
+
+
+function animateSpeed(){
+
+speed=
+Math.floor(
+40+
+Math.random()*160
+);
+
+
+speedEl.textContent=
+speed+
+" Mbps";
+
+}
+
+
+animateSpeed();
+
+
+setInterval(
+animateSpeed,
+2500
+);
+
+
+/* ================= SYSTEM PERCENT ================= */
+
+const systemEl=
+document.getElementById(
+"systemPercent"
+);
+
+
+setInterval(
+()=>{
+
+const value=
+96+
+Math.floor(
+Math.random()*4
+);
+
+systemEl.textContent=
+value;
+
+},
+3000
+);
+
+
+/* ================= MENU ACTIVE ================= */
+
+const menu=
+document.querySelectorAll(
+".bottom-menu a"
+);
+
+
+const sections=
+document.querySelectorAll(
+"section[id]"
+);
+
+
+window.addEventListener(
+"scroll",
+()=>{
+
+let current="special";
+
+
+sections.forEach(
+section=>{
+
+const top=
+section.offsetTop-
+180;
+
+if(
+window.scrollY>=top
+){
+
+current=
+section.id;
+
+}
+
+}
+);
+
+
+menu.forEach(
+item=>{
+
+item.classList.remove(
+"active"
+);
+
+
+if(
+item.getAttribute("href")===
+"#"+current
+){
+
+item.classList.add(
+"active"
+);
+
+}
+
+}
+);
+
+},
+{passive:true}
+);
+
+</script>
+
+</body>
+</html>
