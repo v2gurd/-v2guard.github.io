@@ -2,1386 +2,1833 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b10">
-<title>V2GURD | سرویس‌های دیجیتال</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#05070b">
+<title>V2GURD | Digital Services</title>
 
 <style>
 :root{
-  --bg:#06080d;
-  --card:rgba(14,18,26,.72);
-  --card2:rgba(20,25,35,.8);
-  --text:#f5f7fa;
-  --muted:#8d96a5;
-  --green:#b7ff00;
-  --blue:#00b7ff;
-  --red:#ff3155;
-  --border:rgba(255,255,255,.08);
-  --shadow:0 20px 70px rgba(0,0,0,.35);
+ --bg:#05070b;
+ --card:#0b1018;
+ --card2:#101722;
+ --text:#f5f7fa;
+ --muted:#8993a3;
+ --green:#b7ff00;
+ --blue:#00b8ff;
+ --red:#ff3158;
+ --border:rgba(255,255,255,.08);
+ --shadow:0 25px 80px rgba(0,0,0,.4);
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  font-family:Tahoma,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
+ background:var(--bg);
+ color:var(--text);
+ font-family:Tahoma,Arial,sans-serif;
+ overflow-x:hidden;
+ transition:background-color .5s ease,color .5s ease;
 }
 
-/* ================= BACKGROUND ================= */
-
-body::before,
-body::after{
-  content:"";
-  position:fixed;
-  width:420px;
-  height:420px;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:.10;
-  pointer-events:none;
-  z-index:-2;
+body.light{
+ --bg:#f1f4f6;
+ --card:#fff;
+ --card2:#f8fafb;
+ --text:#10151b;
+ --muted:#596572;
+ --border:rgba(10,20,30,.12);
+ --shadow:0 20px 60px rgba(20,30,40,.1);
 }
 
-body::before{
-  background:var(--green);
-  top:-150px;
-  right:-120px;
-  animation:floatOne 12s ease-in-out infinite alternate;
+body.light header{background:rgba(243,246,248,.84)}
+body.light .hero h1{color:#10151b}
+body.light .hero h1 span{color:#6d9d00;text-shadow:none}
+body.light .hero-text,
+body.light .product p,
+body.light .section-title p,
+body.light .modal-description,
+body.light .check p{color:#596572}
+
+body.light .product,
+body.light .status-card,
+body.light .check,
+body.light .special,
+body.light .modal-box{
+ background:#fff;
+ box-shadow:0 15px 45px rgba(20,30,40,.08);
 }
 
-body::after{
-  background:var(--blue);
-  bottom:-180px;
-  left:-120px;
-  animation:floatTwo 14s ease-in-out infinite alternate;
+body.light .network{
+ background:
+ radial-gradient(circle at 50% 50%,rgba(0,184,255,.10),transparent 38%),
+ #f8fafb;
 }
 
-@keyframes floatOne{
-  to{transform:translate(-100px,140px)}
+body.light .bottom-menu{
+ background:rgba(255,255,255,.9);
+ border-color:rgba(10,20,30,.12);
+ box-shadow:0 15px 45px rgba(20,30,40,.15);
 }
 
-@keyframes floatTwo{
-  to{transform:translate(120px,-100px)}
+body.light .secondary{
+ color:#10151b;
+ background:rgba(0,0,0,.035);
+ border-color:rgba(10,20,30,.12);
 }
 
-/* moving particles */
+body.light .detail{background:#f7f9fa}
+body.light .theme{background:#fff;color:#10151b}
 
-.particles{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:-1;
+header,.bottom-menu,.network,.product,.status-card,
+.check,.special,.modal-box,.theme,.btn,.detail,footer{
+ transition:
+ background-color .45s ease,
+ color .45s ease,
+ border-color .45s ease,
+ box-shadow .45s ease,
+ opacity .45s ease;
 }
 
-.particle{
-  position:absolute;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 18px currentColor;
-  opacity:.55;
-  animation:particleMove linear infinite;
+/* BACKGROUND */
+
+.bg-glow{
+ position:fixed;
+ width:360px;
+ height:360px;
+ border-radius:50%;
+ filter:blur(120px);
+ opacity:.11;
+ pointer-events:none;
+ z-index:-2;
 }
 
-.particle:nth-child(2n){
-  background:var(--blue);
+.glow-green{
+ background:var(--green);
+ top:-150px;
+ right:-100px;
+ animation:glowGreen 11s ease-in-out infinite alternate;
 }
 
-.particle:nth-child(3n){
-  background:var(--red);
+.glow-blue{
+ background:var(--blue);
+ bottom:-150px;
+ left:-100px;
+ animation:glowBlue 13s ease-in-out infinite alternate;
 }
 
-@keyframes particleMove{
-  from{
-    transform:translate3d(0,110vh,0);
-  }
-  to{
-    transform:translate3d(120px,-120px,0);
-  }
+.glow-red{
+ background:var(--red);
+ top:40%;
+ left:40%;
+ opacity:.045;
+ animation:glowRed 15s ease-in-out infinite alternate;
 }
 
-/* ================= HEADER ================= */
+@keyframes glowGreen{to{transform:translate(-130px,170px)}}
+@keyframes glowBlue{to{transform:translate(140px,-120px)}}
+@keyframes glowRed{to{transform:translate(180px,100px)}}
+
+/* HEADER */
 
 header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  backdrop-filter:blur(22px);
-  background:rgba(6,8,13,.72);
-  border-bottom:1px solid var(--border);
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:rgba(5,7,11,.72);
+ backdrop-filter:blur(22px);
+ border-bottom:1px solid var(--border);
 }
 
 .nav{
-  max-width:1200px;
-  margin:auto;
-  padding:16px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+ max-width:1180px;
+ margin:auto;
+ padding:16px 20px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:1000;
-  letter-spacing:2px;
+ font-size:22px;
+ font-weight:1000;
+ letter-spacing:2px;
 }
 
 .logo span{
-  color:var(--green);
-  text-shadow:0 0 18px rgba(183,255,0,.6);
+ color:var(--green);
+ text-shadow:0 0 20px rgba(183,255,0,.5);
 }
 
 .nav-links{
-  display:flex;
-  gap:8px;
+ display:flex;
+ gap:5px;
 }
 
 .nav-links a{
-  color:var(--muted);
-  text-decoration:none;
-  padding:9px 13px;
-  border-radius:12px;
-  transition:.25s;
+ text-decoration:none;
+ color:var(--muted);
+ font-size:11px;
+ padding:9px 12px;
+ border-radius:12px;
 }
 
 .nav-links a:hover{
-  color:white;
-  background:rgba(255,255,255,.05);
+ color:var(--text);
+ background:rgba(255,255,255,.05);
 }
 
-.theme-btn{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  color:white;
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  cursor:pointer;
+.theme{
+ width:40px;
+ height:40px;
+ border-radius:13px;
+ border:1px solid var(--border);
+ background:rgba(255,255,255,.04);
+ color:var(--text);
+ cursor:pointer;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
-  max-width:1200px;
-  margin:auto;
-  min-height:650px;
-  padding:80px 20px 50px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:40px;
+ max-width:1180px;
+ min-height:600px;
+ margin:auto;
+ padding:90px 20px 65px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:65px;
+ align-items:center;
 }
 
-.hero-badge{
-  display:inline-flex;
-  padding:8px 13px;
-  border-radius:30px;
-  background:rgba(183,255,0,.07);
-  border:1px solid rgba(183,255,0,.18);
-  color:var(--green);
-  font-size:11px;
-  margin-bottom:20px;
+.badge{
+ display:inline-flex;
+ align-items:center;
+ gap:8px;
+ padding:8px 13px;
+ border-radius:30px;
+ border:1px solid rgba(183,255,0,.18);
+ background:rgba(183,255,0,.06);
+ color:var(--green);
+ font-size:10px;
+ font-weight:900;
+ margin-bottom:25px;
+}
+
+.badge i{
+ width:6px;
+ height:6px;
+ background:var(--green);
+ border-radius:50%;
+ box-shadow:0 0 12px var(--green);
 }
 
 .hero h1{
-  font-size:clamp(42px,6vw,78px);
-  line-height:1;
-  letter-spacing:-3px;
-  margin-bottom:25px;
+ font-size:clamp(44px,5.5vw,72px);
+ line-height:1.18;
+ letter-spacing:-2px;
+ margin-bottom:25px;
 }
 
 .hero h1 span{
-  color:var(--green);
-  text-shadow:0 0 35px rgba(183,255,0,.25);
+ display:block;
+ color:var(--green);
+ text-shadow:0 0 35px rgba(183,255,0,.22);
 }
 
-.hero p{
-  color:var(--muted);
-  line-height:2;
-  max-width:570px;
-  font-size:14px;
+.hero-text{
+ max-width:500px;
+ color:var(--muted);
+ line-height:2.1;
+ font-size:13px;
 }
 
 .hero-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:30px;
-  flex-wrap:wrap;
+ display:flex;
+ gap:12px;
+ flex-wrap:wrap;
+ margin-top:30px;
 }
 
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  border:0;
-  padding:14px 20px;
-  border-radius:15px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.25s;
+ border:0;
+ border-radius:14px;
+ padding:13px 20px;
+ font-family:inherit;
+ font-size:11px;
+ font-weight:900;
+ cursor:pointer;
+ text-decoration:none;
+ display:inline-flex;
+ justify-content:center;
+ align-items:center;
 }
 
-.btn-primary{
-  background:var(--green);
-  color:#071000;
-  box-shadow:0 0 35px rgba(183,255,0,.18);
+.primary{
+ background:var(--green);
+ color:#081000;
+ box-shadow:0 0 30px rgba(183,255,0,.13);
 }
 
-.btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 45px rgba(183,255,0,.35);
+.primary:hover{
+ transform:translateY(-3px);
+ box-shadow:0 0 40px rgba(183,255,0,.3);
 }
 
-.btn-secondary{
-  color:white;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
+.secondary{
+ color:var(--text);
+ background:rgba(255,255,255,.035);
+ border:1px solid var(--border);
 }
 
-/* ================= NETWORK ANIMATION ================= */
+/* NETWORK */
 
 .network{
-  height:450px;
-  position:relative;
-  border:1px solid var(--border);
-  border-radius:35px;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 50%,rgba(0,183,255,.09),transparent 35%),
-    rgba(10,14,21,.7);
-  box-shadow:var(--shadow);
+ height:410px;
+ border-radius:32px;
+ position:relative;
+ overflow:hidden;
+ border:1px solid var(--border);
+ background:
+ radial-gradient(circle at 50% 50%,rgba(0,184,255,.09),transparent 36%),
+ rgba(8,12,18,.8);
+ box-shadow:var(--shadow);
 }
 
-.network-grid{
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:40px 40px;
-  transform:perspective(400px) rotateX(55deg) scale(1.5);
-  transform-origin:center bottom;
+.network::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ background-image:
+ linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+ background-size:42px 42px;
+ transform:perspective(500px) rotateX(55deg) scale(1.5);
+ transform-origin:center bottom;
 }
 
 .node{
-  position:absolute;
-  width:85px;
-  height:85px;
-  border-radius:24px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  font-size:10px;
-  font-weight:900;
-  backdrop-filter:blur(15px);
-  border:1px solid var(--border);
-  z-index:3;
+ position:absolute;
+ z-index:4;
+ width:82px;
+ height:82px;
+ border-radius:23px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:6px;
+ font-size:9px;
+ font-weight:900;
+ background:rgba(10,15,22,.85);
+ backdrop-filter:blur(15px);
 }
 
-.node.dc{
-  top:45px;
-  right:45px;
-  background:rgba(0,183,255,.08);
-  border-color:rgba(0,183,255,.3);
-  box-shadow:0 0 40px rgba(0,183,255,.15);
+.dc{top:45px;right:45px}
+.user{bottom:45px;left:45px}
+
+.dc-node{
+ border:1px solid rgba(0,184,255,.3);
+ box-shadow:0 0 35px rgba(0,184,255,.13);
 }
 
-.node.user{
-  bottom:45px;
-  left:45px;
-  background:rgba(183,255,0,.08);
-  border-color:rgba(183,255,0,.3);
-  box-shadow:0 0 40px rgba(183,255,0,.15);
+.user-node{
+ border:1px solid rgba(183,255,0,.3);
+ box-shadow:0 0 35px rgba(183,255,0,.13);
 }
 
 .route{
-  position:absolute;
-  width:65%;
-  height:2px;
-  top:52%;
-  right:18%;
-  background:linear-gradient(90deg,var(--blue),var(--green),var(--red));
-  transform:rotate(145deg);
-  box-shadow:0 0 12px var(--green);
-  opacity:.45;
+ position:absolute;
+ width:70%;
+ height:2px;
+ right:16%;
+ top:52%;
+ transform:rotate(145deg);
+ background:linear-gradient(90deg,var(--blue),var(--green),var(--red));
+ opacity:.4;
+ box-shadow:0 0 15px var(--green);
 }
 
-.data{
-  position:absolute;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 20px var(--green);
-  animation:dataMove 3s linear infinite;
-  z-index:4;
+.packet{
+ position:absolute;
+ width:7px;
+ height:7px;
+ border-radius:50%;
+ background:var(--green);
+ box-shadow:0 0 20px var(--green);
+ z-index:5;
+ animation:packet 3.2s linear infinite;
 }
 
-.data.d2{
-  animation-delay:1s;
-  background:var(--blue);
-  box-shadow:0 0 20px var(--blue);
+.packet:nth-child(2){
+ background:var(--blue);
+ box-shadow:0 0 20px var(--blue);
+ animation-delay:1s;
 }
 
-.data.d3{
-  animation-delay:2s;
-  background:var(--red);
-  box-shadow:0 0 20px var(--red);
+.packet:nth-child(3){
+ background:var(--red);
+ box-shadow:0 0 20px var(--red);
+ animation-delay:2s;
 }
 
-@keyframes dataMove{
-  0%{right:25%;top:30%;opacity:0}
-  15%{opacity:1}
-  85%{opacity:1}
-  100%{right:70%;top:75%;opacity:0}
+@keyframes packet{
+ 0%{right:27%;top:30%;opacity:0}
+ 15%{opacity:1}
+ 85%{opacity:1}
+ 100%{right:68%;top:73%;opacity:0}
 }
 
-/* ================= SECTION ================= */
+/* SECTIONS */
 
 section{
-  max-width:1200px;
-  margin:auto;
-  padding:70px 20px;
+ max-width:1180px;
+ margin:auto;
+ padding:65px 20px;
 }
 
-.section-head{
-  margin-bottom:30px;
+.section-title{margin-bottom:28px}
+
+.section-title small{
+ color:var(--green);
+ font-size:9px;
+ font-weight:900;
+ letter-spacing:2px;
 }
 
-.section-head small{
-  color:var(--green);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:2px;
+.section-title h2{
+ font-size:30px;
+ margin:7px 0;
 }
 
-.section-head h2{
-  font-size:32px;
-  margin:7px 0;
+.section-title p{
+ color:var(--muted);
+ font-size:11px;
 }
 
-.section-head p{
-  color:var(--muted);
-  font-size:12px;
+/* SPECIAL */
+
+.special-top{
+ padding-top:20px;
+ padding-bottom:45px;
 }
 
-/* ================= CARDS ================= */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+.special{
+ position:relative;
+ overflow:hidden;
+ text-align:center;
+ padding:42px 25px;
+ border-radius:30px;
+ border:1px solid rgba(183,255,0,.18);
+ background:
+ radial-gradient(circle at 50% 0%,rgba(183,255,0,.09),transparent 45%),
+ var(--card);
+ box-shadow:var(--shadow);
 }
 
-.card{
-  position:relative;
-  overflow:hidden;
-  padding:25px;
-  border-radius:25px;
-  border:1px solid var(--border);
-  background:var(--card);
-  backdrop-filter:blur(18px);
-  transition:.3s;
+.special::before{
+ content:"";
+ position:absolute;
+ width:180px;
+ height:180px;
+ background:var(--green);
+ border-radius:50%;
+ filter:blur(100px);
+ opacity:.06;
+ top:-120px;
+ right:10%;
+ animation:specialGlow 5s ease-in-out infinite alternate;
 }
 
-.card::before{
-  content:"";
-  position:absolute;
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  background:var(--green);
-  filter:blur(70px);
-  opacity:.05;
-  top:-80px;
-  right:-70px;
-  animation:cardGlow 6s ease-in-out infinite alternate;
+@keyframes specialGlow{
+ to{transform:translateX(350px)}
 }
 
-.card:nth-child(3n)::before{
-  background:var(--blue);
+.timer{
+ color:var(--green);
+ font-size:23px;
+ font-weight:1000;
+ margin:20px 0;
 }
 
-.card:nth-child(4n)::before{
-  background:var(--red);
+/* PRODUCTS */
+
+.products{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:17px;
 }
 
-@keyframes cardGlow{
-  to{transform:translate(-60px,70px)}
+.product{
+ position:relative;
+ overflow:hidden;
+ min-height:245px;
+ padding:25px;
+ border-radius:24px;
+ border:1px solid var(--border);
+ background:linear-gradient(
+ 145deg,
+ rgba(255,255,255,.035),
+ rgba(255,255,255,.012)
+ );
+ backdrop-filter:blur(16px);
+ cursor:pointer;
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(183,255,0,.22);
+.product:hover{
+ transform:translateY(-6px);
+ border-color:rgba(183,255,0,.25);
 }
 
-.card-icon{
-  font-size:28px;
-  margin-bottom:18px;
+.product::before{
+ content:"";
+ position:absolute;
+ width:150px;
+ height:150px;
+ border-radius:50%;
+ background:var(--green);
+ filter:blur(70px);
+ opacity:.045;
+ top:-80px;
+ right:-80px;
+ animation:productLight 6s ease-in-out infinite alternate;
 }
 
-.card h3{
-  font-size:18px;
-  margin-bottom:10px;
+.product:nth-child(3n)::before{background:var(--blue)}
+.product:nth-child(4n)::before{background:var(--red)}
+
+@keyframes productLight{
+ to{transform:translate(-80px,80px)}
 }
 
-.card p{
-  color:var(--muted);
-  font-size:11px;
-  line-height:2;
+.product-icon{
+ font-size:29px;
+ margin-bottom:18px;
+}
+
+.product h3{
+ font-size:17px;
+ margin-bottom:9px;
+}
+
+.product p{
+ color:var(--muted);
+ font-size:11px;
+ line-height:2;
 }
 
 .tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:16px 0;
+ display:flex;
+ gap:6px;
+ flex-wrap:wrap;
+ margin-top:17px;
 }
 
 .tag{
-  padding:5px 9px;
-  border-radius:8px;
-  font-size:9px;
-  background:rgba(183,255,0,.06);
-  color:var(--green);
-  border:1px solid rgba(183,255,0,.12);
+ color:var(--green);
+ background:rgba(183,255,0,.06);
+ border:1px solid rgba(183,255,0,.12);
+ border-radius:8px;
+ padding:5px 8px;
+ font-size:8px;
 }
 
-.card .btn{
-  width:100%;
-  margin-top:10px;
+.product-arrow{
+ position:absolute;
+ bottom:20px;
+ left:22px;
+ color:var(--green);
+ font-size:16px;
 }
 
-/* ================= SERVER STATUS ================= */
+/* STATUS */
 
-.status{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  color:#b9ff85;
-  font-size:10px;
-  margin:12px 0;
+.status-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.status-card{
+ padding:22px;
+ border:1px solid var(--border);
+ border-radius:22px;
+ background:var(--card);
+}
+
+.status-card h3{font-size:15px}
+
+.status-line{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ color:#37d94d;
+ font-size:10px;
+ margin-top:13px;
 }
 
 .status-dot{
-  width:8px;
-  height:8px;
-  background:#55ff70;
-  border-radius:50%;
-  box-shadow:0 0 14px #55ff70;
-  animation:pulse 1.5s infinite;
+ width:7px;
+ height:7px;
+ border-radius:50%;
+ background:#55ff70;
+ box-shadow:0 0 15px #55ff70;
+ animation:pulse 1.5s infinite;
 }
 
 @keyframes pulse{
-  50%{opacity:.35;transform:scale(.7)}
+ 50%{transform:scale(.6);opacity:.45}
 }
 
-/* ================= SERVICE CHECK ================= */
+/* CHECK */
 
-.check-card{
-  max-width:850px;
-  margin:auto;
-  padding:40px;
-  border-radius:30px;
-  border:1px solid var(--border);
-  background:
-    radial-gradient(circle at 20% 30%,rgba(183,255,0,.08),transparent 30%),
-    radial-gradient(circle at 80% 70%,rgba(0,170,255,.08),transparent 30%),
-    var(--card);
-  box-shadow:var(--shadow);
-  text-align:center;
+.check{
+ max-width:850px;
+ margin:auto;
+ text-align:center;
+ padding:45px 25px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ background:
+ radial-gradient(circle at 20% 30%,rgba(183,255,0,.08),transparent 35%),
+ radial-gradient(circle at 80% 70%,rgba(0,184,255,.07),transparent 35%),
+ var(--card);
+ box-shadow:var(--shadow);
 }
 
 .check-icon{
-  font-size:42px;
-  margin-bottom:15px;
+ font-size:40px;
+ margin-bottom:15px;
 }
 
 .coming{
-  display:inline-block;
-  color:var(--green);
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:900;
-  margin-bottom:10px;
+ color:var(--green);
+ font-size:9px;
+ letter-spacing:2px;
+ font-weight:900;
 }
 
-.check-card h3{
-  font-size:24px;
-  margin-bottom:10px;
+.check h3{
+ font-size:24px;
+ margin:10px 0;
 }
 
-.check-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:2;
+.check p{
+ color:var(--muted);
+ line-height:2;
+ font-size:11px;
 }
 
-.check-features{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:20px 0;
+.check-items{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:8px;
+ margin:22px 0;
 }
 
-.check-features div{
-  padding:10px 13px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.025);
-  font-size:10px;
+.check-items span{
+ border:1px solid var(--border);
+ background:rgba(255,255,255,.03);
+ padding:9px 12px;
+ border-radius:11px;
+ font-size:9px;
 }
 
-/* ================= NAV MENU ================= */
+/* BOTTOM MENU */
 
 .bottom-menu{
-  position:fixed;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:200;
-  display:flex;
-  gap:4px;
-  padding:7px;
-  border-radius:22px;
-  background:rgba(10,13,19,.85);
-  border:1px solid rgba(255,255,255,.09);
-  backdrop-filter:blur(25px);
-  box-shadow:0 15px 50px rgba(0,0,0,.4);
-  overflow:hidden;
+ position:fixed;
+ z-index:500;
+ bottom:16px;
+ left:50%;
+ transform:translateX(-50%);
+ width:min(850px,calc(100% - 20px));
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ padding:7px;
+ border-radius:22px;
+ border:1px solid rgba(255,255,255,.09);
+ background:rgba(8,11,17,.82);
+ backdrop-filter:blur(28px);
+ box-shadow:
+ 0 20px 60px rgba(0,0,0,.45),
+ 0 0 40px rgba(183,255,0,.04);
+ overflow:hidden;
 }
 
 .bottom-menu::before{
-  content:"";
-  position:absolute;
-  width:80px;
-  height:200px;
-  background:var(--green);
-  filter:blur(55px);
-  opacity:.13;
-  animation:menuLight 5s linear infinite;
-  pointer-events:none;
+ content:"";
+ position:absolute;
+ width:130px;
+ height:260px;
+ top:-100px;
+ left:-150px;
+ background:linear-gradient(
+ 180deg,
+ transparent,
+ var(--green),
+ var(--blue),
+ transparent
+ );
+ filter:blur(35px);
+ opacity:.25;
+ transform:rotate(25deg);
+ animation:menuBeam 4.5s linear infinite;
 }
 
-@keyframes menuLight{
-  0%{left:-100px}
-  50%{left:70%}
-  100%{left:120%}
+.bottom-menu::after{
+ content:"";
+ position:absolute;
+ width:100%;
+ height:1px;
+ top:0;
+ left:0;
+ background:linear-gradient(
+ 90deg,
+ transparent,
+ var(--green),
+ var(--blue),
+ var(--red),
+ transparent
+ );
+ background-size:250% 100%;
+ animation:menuLine 5s linear infinite;
+}
+
+@keyframes menuBeam{
+ 0%{left:-170px}
+ 100%{left:110%}
+}
+
+@keyframes menuLine{
+ from{background-position:0%}
+ to{background-position:250%}
 }
 
 .bottom-menu a{
-  position:relative;
-  z-index:2;
-  color:var(--muted);
-  text-decoration:none;
-  padding:11px 13px;
-  border-radius:15px;
-  font-size:10px;
-  white-space:nowrap;
-  transition:.25s;
+ position:relative;
+ z-index:2;
+ flex:1;
+ text-align:center;
+ text-decoration:none;
+ color:var(--muted);
+ font-size:9px;
+ padding:11px 5px;
+ border-radius:15px;
 }
 
 .bottom-menu a:hover,
 .bottom-menu a.active{
-  color:white;
-  background:rgba(183,255,0,.08);
-  box-shadow:inset 0 0 20px rgba(183,255,0,.05);
+ color:var(--text);
+ background:rgba(183,255,0,.07);
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
-  text-align:center;
-  padding:80px 20px 130px;
-  color:var(--muted);
-  font-size:10px;
-  border-top:1px solid var(--border);
+ text-align:center;
+ padding:80px 20px 130px;
+ border-top:1px solid var(--border);
+ color:var(--muted);
+ font-size:10px;
+ line-height:2;
 }
 
-footer strong{
-  color:var(--green);
+footer strong{color:var(--green)}
+
+/* MODAL */
+
+.modal{
+ position:fixed;
+ inset:0;
+ z-index:1000;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ background:rgba(0,0,0,.72);
+ backdrop-filter:blur(12px);
 }
 
-/* ================= LIGHT MODE ================= */
+.modal.show{display:flex}
 
-body.light{
-  --bg:#f2f5f7;
-  --card:rgba(255,255,255,.72);
-  --text:#10141a;
-  --muted:#66717d;
-  --border:rgba(0,0,0,.08);
+.modal-box{
+ width:min(520px,100%);
+ max-height:90vh;
+ overflow:auto;
+ position:relative;
+ padding:30px;
+ border-radius:28px;
+ border:1px solid var(--border);
+ background:
+ radial-gradient(circle at 80% 10%,rgba(183,255,0,.07),transparent 35%),
+ var(--card);
+ box-shadow:0 30px 100px rgba(0,0,0,.6);
+ animation:modalIn .25s ease;
 }
 
-body.light header{
-  background:rgba(242,245,247,.78);
+@keyframes modalIn{
+ from{opacity:0;transform:translateY(20px) scale(.97)}
+ to{opacity:1;transform:none}
 }
 
-body.light .bottom-menu{
-  background:rgba(255,255,255,.85);
+.close{
+ position:absolute;
+ top:15px;
+ left:15px;
+ width:35px;
+ height:35px;
+ border-radius:11px;
+ border:1px solid var(--border);
+ background:rgba(255,255,255,.04);
+ color:var(--text);
+ cursor:pointer;
 }
 
-/* ================= MOBILE ================= */
+.modal-icon{
+ font-size:38px;
+ margin-bottom:12px;
+}
+
+.modal-box h2{
+ font-size:25px;
+ margin-bottom:10px;
+}
+
+.modal-description{
+ color:var(--muted);
+ font-size:11px;
+ line-height:2.2;
+}
+
+.details{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px;
+ margin:20px 0;
+}
+
+.detail{
+ padding:13px;
+ border-radius:13px;
+ border:1px solid var(--border);
+ background:rgba(255,255,255,.025);
+}
+
+.detail small{
+ display:block;
+ color:var(--muted);
+ font-size:8px;
+ margin-bottom:5px;
+}
+
+.detail strong{font-size:11px}
+
+.modal-actions{
+ display:flex;
+ gap:8px;
+}
+
+.modal-actions .btn{flex:1}
+
+/* MOBILE */
 
 @media(max-width:850px){
 
-  .nav-links{
-    display:none;
-  }
+ .nav-links{display:none}
 
-  .hero{
-    grid-template-columns:1fr;
-    padding-top:55px;
-  }
+ .hero{
+  grid-template-columns:1fr;
+  padding-top:60px;
+  gap:40px;
+ }
 
-  .hero h1{
-    font-size:48px;
-  }
+ .hero h1{font-size:48px}
 
-  .network{
-    height:350px;
-  }
+ .products{grid-template-columns:1fr}
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+ .status-grid{grid-template-columns:1fr}
 
-  .bottom-menu{
-    width:calc(100% - 20px);
-    justify-content:space-around;
-  }
-
-  .bottom-menu a{
-    padding:10px 7px;
-    font-size:9px;
-  }
+ .network{height:330px}
 }
 
 @media(max-width:480px){
 
-  .hero{
-    padding-left:16px;
-    padding-right:16px;
-  }
+ .hero{
+  padding-left:16px;
+  padding-right:16px;
+ }
 
-  section{
-    padding-left:16px;
-    padding-right:16px;
-  }
+ section{
+  padding-left:16px;
+  padding-right:16px;
+ }
 
-  .network{
-    height:310px;
-  }
+ .hero h1{font-size:43px}
 
-  .node{
-    width:70px;
-    height:70px;
-    font-size:8px;
-  }
+ .network{height:300px}
 
-  .node.dc{
-    right:25px;
-    top:30px;
-  }
+ .node{
+  width:70px;
+  height:70px;
+  font-size:8px;
+ }
 
-  .node.user{
-    left:25px;
-    bottom:30px;
-  }
+ .dc{
+  top:30px;
+  right:25px;
+ }
 
-  .check-card{
-    padding:30px 18px;
-  }
+ .user{
+  bottom:30px;
+  left:25px;
+ }
+
+ .modal-box{
+  padding:25px 18px;
+ }
+
+ .bottom-menu{
+  bottom:10px;
+ }
+
+ .bottom-menu a{
+  font-size:8px;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<!-- PARTICLES -->
-<div class="particles">
-  <i class="particle" style="left:8%;animation-duration:13s"></i>
-  <i class="particle" style="left:18%;animation-duration:17s"></i>
-  <i class="particle" style="left:29%;animation-duration:11s"></i>
-  <i class="particle" style="left:41%;animation-duration:19s"></i>
-  <i class="particle" style="left:54%;animation-duration:15s"></i>
-  <i class="particle" style="left:66%;animation-duration:12s"></i>
-  <i class="particle" style="left:77%;animation-duration:20s"></i>
-  <i class="particle" style="left:88%;animation-duration:14s"></i>
-</div>
+<div class="bg-glow glow-green"></div>
+<div class="bg-glow glow-blue"></div>
+<div class="bg-glow glow-red"></div>
 
-<!-- HEADER -->
 <header>
-  <nav class="nav">
+<nav class="nav">
 
-    <div class="logo">
-      V2<span>GURD</span>
-    </div>
+ <div class="logo">
+  V2<span>GURD</span>
+ </div>
 
-    <div class="nav-links">
-      <a href="#services">سرویس‌ها</a>
-      <a href="#gaming">گیمینگ</a>
-      <a href="#subscriptions">اشتراک‌ها</a>
-      <a href="#guide">راهنمای اتصال</a>
-      <a href="#about">درباره</a>
-    </div>
+ <div class="nav-links">
+  <a href="#special">پیشنهاد ویژه</a>
+  <a href="#services">سرویس‌ها</a>
+  <a href="#gaming">گیمینگ</a>
+  <a href="#subscriptions">اشتراک‌ها</a>
+  <a href="#instagram">اینستاگرام</a>
+ </div>
 
-    <button class="theme-btn" onclick="toggleTheme()">☾</button>
+ <button class="theme" id="themeButton" onclick="toggleTheme()">☾</button>
 
-  </nav>
+</nav>
 </header>
 
 <!-- HERO -->
-<main>
 
 <section class="hero">
 
-  <div>
+ <div class="hero-content">
 
-    <div class="hero-badge">
-      ● V2GURD DIGITAL SERVICES
-    </div>
-
-    <h1>
-      سریع‌تر،
-      <br>
-      <span>مطمئن‌تر.</span>
-    </h1>
-
-    <p>
-      سرویس‌های حرفه‌ای V2GURD برای اتصال،
-      گیمینگ و اشتراک‌های دیجیتال؛
-      با پشتیبانی و تحویل سریع.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#services" class="btn btn-primary">
-        مشاهده سرویس‌ها
-      </a>
-
-      <a href="#subscriptions" class="btn btn-secondary">
-        اشتراک‌های دیجیتال
-      </a>
-    </div>
-
+  <div class="badge">
+   <i></i>
+   V2GURD DIGITAL SERVICES
   </div>
 
-  <!-- NETWORK -->
-  <div class="network">
+  <h1>
+   سریع‌تر،
+   <span>مطمئن‌تر.</span>
+  </h1>
 
-    <div class="network-grid"></div>
+  <p class="hero-text">
+   سرویس‌های حرفه‌ای V2GURD برای اتصال،
+   گیمینگ و اشتراک‌های دیجیتال؛
+   با تجربه‌ای سریع، ساده و حرفه‌ای.
+  </p>
 
-    <div class="node dc">
-      🖥️<br>
-      DATA CENTER
-    </div>
-
-    <div class="node user">
-      📱<br>
-      USER
-    </div>
-
-    <div class="route"></div>
-
-    <div class="data"></div>
-    <div class="data d2"></div>
-    <div class="data d3"></div>
-
+  <div class="hero-buttons">
+   <a class="btn primary" href="#special">پیشنهاد ویژه</a>
+   <a class="btn secondary" href="#services">مشاهده سرویس‌ها</a>
   </div>
+
+ </div>
+
+ <div class="network">
+
+  <div class="node dc-node dc">
+   🖥️
+   <span>DATA CENTER</span>
+  </div>
+
+  <div class="node user-node user">
+   📱
+   <span>USER</span>
+  </div>
+
+  <div class="route"></div>
+
+  <div class="packet"></div>
+  <div class="packet"></div>
+  <div class="packet"></div>
+
+ </div>
 
 </section>
 
-<!-- SERVER STATUS -->
+<!-- SPECIAL OFFER -->
+
+<section id="special" class="special-top">
+
+ <div class="special">
+
+  <div style="font-size:38px">🔥</div>
+
+  <div class="section-title" style="margin-bottom:0">
+
+   <small>SPECIAL OFFER</small>
+
+   <h2>پیشنهاد ویژه ۵۰۰ گیگ</h2>
+
+   <p>ظرفیت محدود • کاربر نامحدود</p>
+
+  </div>
+
+  <div class="timer" id="timer">
+   در حال محاسبه...
+  </div>
+
+  <button
+   class="btn primary"
+   onclick="openProduct(
+   'پیشنهاد ویژه ۵۰۰ گیگ',
+   '🔥',
+   'پکیج ویژه ۵۰۰ گیگ با کاربر نامحدود.',
+   '۵۰۰ گیگ',
+   'نامحدود',
+   'طبق پلن',
+   'خرید از ربات',
+   '۵۰۰,۰۰۰ تومان'
+   )">
+
+   مشاهده جزئیات و خرید
+
+  </button>
+
+ </div>
+
+</section>
+
+<!-- STATUS -->
+
 <section id="status">
 
-  <div class="section-head">
-    <small>LIVE STATUS</small>
-    <h2>وضعیت سرویس‌ها</h2>
-    <p>وضعیت فعلی سرورها</p>
+ <div class="section-title">
+  <small>LIVE STATUS</small>
+  <h2>وضعیت سرورها</h2>
+  <p>وضعیت فعلی سرویس‌ها</p>
+ </div>
+
+ <div class="status-grid">
+
+  <div class="status-card">
+   <h3>🇩🇪 Germany</h3>
+   <div class="status-line">
+    <i class="status-dot"></i>
+    فعال
+   </div>
   </div>
 
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-icon">🇩🇪</div>
-      <h3>Germany</h3>
-      <div class="status">
-        <span class="status-dot"></span>
-        فعال
-      </div>
-      <p>سرورهای آلمان در دسترس هستند.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🇫🇮</div>
-      <h3>Finland</h3>
-      <div class="status">
-        <span class="status-dot"></span>
-        فعال
-      </div>
-      <p>سرورهای فنلاند در دسترس هستند.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🇳🇱</div>
-      <h3>Netherlands</h3>
-      <div class="status">
-        <span class="status-dot"></span>
-        فعال
-      </div>
-      <p>سرورهای هلند در دسترس هستند.</p>
-    </div>
-
+  <div class="status-card">
+   <h3>🇫🇮 Finland</h3>
+   <div class="status-line">
+    <i class="status-dot"></i>
+    فعال
+   </div>
   </div>
+
+  <div class="status-card">
+   <h3>🇳🇱 Netherlands</h3>
+   <div class="status-line">
+    <i class="status-dot"></i>
+    فعال
+   </div>
+  </div>
+
+ </div>
 
 </section>
 
 <!-- SERVICES -->
+
 <section id="services">
 
-  <div class="section-head">
-    <small>V2GURD SERVICES</small>
-    <h2>سرویس‌های ما</h2>
-    <p>انتخاب سرویس مورد نظر</p>
-  </div>
+ <div class="section-title">
+  <small>V2GURD SERVICES</small>
+  <h2>سرویس‌ها</h2>
+  <p>برای مشاهده جزئیات روی محصول بزنید</p>
+ </div>
 
-  <div class="grid">
+ <div class="products">
 
-    <div class="card">
-      <div class="card-icon">🛡️</div>
-      <h3>سرویس حجمی</h3>
-      <p>
-        سرویس حرفه‌ای با حجم مشخص و
-        تعداد کاربر نامحدود.
-      </p>
+  <article class="product"
+   onclick="openProduct(
+   'سرویس ۵۰۰ گیگ',
+   '🛡️',
+   'سرویس حجمی حرفه‌ای V2GURD با کاربر نامحدود.',
+   '۵۰۰ گیگ',
+   'نامحدود',
+   'طبق پلن',
+   'خرید از ربات',
+   '۱,۶۰۰,۰۰۰ تومان'
+   )">
 
-      <div class="tags">
-        <span class="tag">نامحدود کاربر</span>
-        <span class="tag">پشتیبانی</span>
-      </div>
+   <div class="product-icon">🛡️</div>
+   <h3>سرویس ۵۰۰ گیگ</h3>
+   <p>سرویس حجمی حرفه‌ای با کاربر نامحدود.</p>
 
-      <a href="#contact" class="btn btn-primary">
-        خرید از ربات
-      </a>
-    </div>
+   <div class="tags">
+    <span class="tag">۵۰۰GB</span>
+    <span class="tag">نامحدود کاربر</span>
+   </div>
 
-    <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>سرویس نامحدود</h3>
-      <p>
-        مناسب استفاده روزمره با حجم
-        نامحدود.
-      </p>
+   <span class="product-arrow">←</span>
 
-      <div class="tags">
-        <span class="tag">نامحدود</span>
-        <span class="tag">پایدار</span>
-      </div>
+  </article>
 
-      <a href="#contact" class="btn btn-primary">
-        خرید از ربات
-      </a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'سرویس ۱۰۰۰ گیگ',
+   '⚡',
+   'سرویس حجمی حرفه‌ای V2GURD.',
+   '۱۰۰۰ گیگ',
+   'نامحدود',
+   'طبق پلن',
+   'خرید از ربات',
+   '۲,۵۰۰,۰۰۰ تومان'
+   )">
 
-    <div class="card">
-      <div class="card-icon">💎</div>
-      <h3>سرویس VIP</h3>
-      <p>
-        سرویس ویژه برای کاربرانی که
-        کیفیت و پایداری بیشتری می‌خواهند.
-      </p>
+   <div class="product-icon">⚡</div>
+   <h3>سرویس ۱۰۰۰ گیگ</h3>
+   <p>پکیج حجمی بزرگ با کاربر نامحدود.</p>
 
-      <div class="tags">
-        <span class="tag">VIP</span>
-        <span class="tag">ویژه</span>
-      </div>
+   <div class="tags">
+    <span class="tag">۱۰۰۰GB</span>
+    <span class="tag">نامحدود</span>
+   </div>
 
-      <a href="#contact" class="btn btn-primary">
-        خرید از ربات
-      </a>
-    </div>
+   <span class="product-arrow">←</span>
 
-  </div>
+  </article>
+
+  <article class="product"
+   onclick="openProduct(
+   'سرویس VIP',
+   '💎',
+   'سرویس ویژه V2GURD برای استفاده حرفه‌ای.',
+   'طبق پلن',
+   'نامحدود',
+   'طبق پلن',
+   'خرید از ربات',
+   'استعلام'
+   )">
+
+   <div class="product-icon">💎</div>
+   <h3>سرویس VIP</h3>
+   <p>سرویس ویژه برای استفاده حرفه‌ای.</p>
+
+   <div class="tags">
+    <span class="tag">VIP</span>
+    <span class="tag">ویژه</span>
+   </div>
+
+   <span class="product-arrow">←</span>
+
+  </article>
+
+ </div>
 
 </section>
 
 <!-- GAMING -->
+
 <section id="gaming">
 
-  <div class="section-head">
-    <small>GAMING</small>
-    <h2>DNS و سرویس گیمینگ</h2>
-    <p>سرویس‌های WireGuard مخصوص گیمینگ</p>
-  </div>
+ <div class="section-title">
+  <small>GAMING</small>
+  <h2>گیمینگ</h2>
+  <p>سرویس‌های WireGuard مخصوص Call of Duty</p>
+ </div>
 
-  <div class="grid">
+ <div class="products">
 
-    <div class="card">
-      <div class="card-icon">🎮</div>
-      <h3>Call of Duty — 10GB</h3>
-      <div class="tags">
-        <span class="tag">WireGuard</span>
-        <span class="tag">۱۰ گیگ</span>
-      </div>
-      <p>مناسب اتصال و تجربه بهتر در بازی.</p>
-      <h3 style="margin-top:15px">۳۰۰,۰۰۰ تومان</h3>
-      <a href="#contact" class="btn btn-primary">خرید از ربات</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'Call of Duty — 10GB',
+   '🎮',
+   'سرویس WireGuard مخصوص گیمینگ و Call of Duty.',
+   '۱۰ گیگ',
+   'طبق سرویس',
+   'یک ماهه',
+   'خرید از ربات',
+   '۳۰۰,۰۰۰ تومان'
+   )">
 
-    <div class="card">
-      <div class="card-icon">🎯</div>
-      <h3>Call of Duty — 20GB</h3>
-      <div class="tags">
-        <span class="tag">WireGuard</span>
-        <span class="tag">۲۰ گیگ</span>
-      </div>
-      <p>پکیج حجمی بیشتر برای استفاده طولانی‌تر.</p>
-      <h3 style="margin-top:15px">۴۰۰,۰۰۰ تومان</h3>
-      <a href="#contact" class="btn btn-primary">خرید از ربات</a>
-    </div>
+   <div class="product-icon">🎮</div>
+   <h3>Call of Duty — 10GB</h3>
+   <p>سرویس WireGuard مخصوص گیمینگ.</p>
 
-  </div>
+   <div class="tags">
+    <span class="tag">۱۰GB</span>
+    <span class="tag">WireGuard</span>
+   </div>
+
+   <span class="product-arrow">←</span>
+
+  </article>
+
+  <article class="product"
+   onclick="openProduct(
+   'Call of Duty — 20GB',
+   '🎯',
+   'سرویس WireGuard مخصوص گیمینگ و Call of Duty.',
+   '۲۰ گیگ',
+   'طبق سرویس',
+   'یک ماهه',
+   'خرید از ربات',
+   '۴۰۰,۰۰۰ تومان'
+   )">
+
+   <div class="product-icon">🎯</div>
+   <h3>Call of Duty — 20GB</h3>
+   <p>پکیج حجمی بیشتر برای استفاده طولانی‌تر.</p>
+
+   <div class="tags">
+    <span class="tag">۲۰GB</span>
+    <span class="tag">WireGuard</span>
+   </div>
+
+   <span class="product-arrow">←</span>
+
+  </article>
+
+ </div>
 
 </section>
 
 <!-- SUBSCRIPTIONS -->
+
 <section id="subscriptions">
 
-  <div class="section-head">
-    <small>DIGITAL SUBSCRIPTIONS</small>
-    <h2>اشتراک‌های دیجیتال</h2>
-    <p>برای خرید، از طریق پیوی تلگرام اقدام کنید.</p>
-  </div>
+ <div class="section-title">
+  <small>DIGITAL SUBSCRIPTIONS</small>
+  <h2>اشتراک‌های دیجیتال</h2>
+  <p>قیمت و خرید از داخل پیوی تلگرام</p>
+ </div>
 
-  <div class="grid">
+ <div class="products">
 
-    <div class="card">
-      <div class="card-icon">✂️</div>
-      <h3>CapCut Premium</h3>
-      <p>اشتراک پریمیوم CapCut</p>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'CapCut Premium','✂️',
+   'اشتراک پریمیوم CapCut.',
+   'طبق پلن','طبق پلن','طبق پلن',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">✂️</div>
+   <h3>CapCut Premium</h3>
+   <p>اشتراک پریمیوم CapCut.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">🎵</div>
-      <h3>Spotify Premium</h3>
-      <p>اشتراک پریمیوم Spotify</p>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'Spotify Premium','🎵',
+   'اشتراک پریمیوم Spotify.',
+   'طبق پلن','طبق پلن','طبق پلن',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">🎵</div>
+   <h3>Spotify Premium</h3>
+   <p>اشتراک پریمیوم Spotify.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">▶️</div>
-      <h3>YouTube Premium</h3>
-      <p>اشتراک پریمیوم YouTube</p>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'YouTube Premium','▶️',
+   'اشتراک پریمیوم YouTube.',
+   'طبق پلن','طبق پلن','طبق پلن',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">▶️</div>
+   <h3>YouTube Premium</h3>
+   <p>اشتراک پریمیوم YouTube.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">✈️</div>
-      <h3>Telegram Premium</h3>
-      <p>اشتراک سه ماهه Telegram Premium</p>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'Telegram Premium','✈️',
+   'اشتراک Telegram Premium.',
+   'طبق پلن','طبق پلن','سه ماهه',
+   'خرید از پیوی تلگرام','۳,۸۰۰,۰۰۰ تومان'
+   )">
+   <div class="product-icon">✈️</div>
+   <h3>Telegram Premium</h3>
+   <p>اشتراک سه ماهه Telegram Premium.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">🎨</div>
-      <h3>Canva Pro</h3>
-      <p>اشتراک حرفه‌ای Canva</p>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'Canva Pro','🎨',
+   'اشتراک حرفه‌ای Canva.',
+   'طبق پلن','طبق پلن','طبق پلن',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">🎨</div>
+   <h3>Canva Pro</h3>
+   <p>اشتراک حرفه‌ای Canva.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>سرویس‌های بیشتر</h3>
-      <p>برای مشاهده سایر اشتراک‌ها از پیوی تلگرام استعلام بگیرید.</p>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'سایر اشتراک‌ها','💎',
+   'برای دریافت لیست کامل اشتراک‌های موجود از طریق پیوی تلگرام استعلام بگیرید.',
+   'استعلام','استعلام','استعلام',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">💎</div>
+   <h3>سایر اشتراک‌ها</h3>
+   <p>برای مشاهده سرویس‌های بیشتر استعلام بگیرید.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-  </div>
+ </div>
 
 </section>
 
 <!-- INSTAGRAM -->
+
 <section id="instagram">
 
-  <div class="section-head">
-    <small>INSTAGRAM SERVICES</small>
-    <h2>خدمات اینستاگرام</h2>
-    <p>برای قیمت و ثبت سفارش از طریق پیوی تلگرام اقدام کنید.</p>
-  </div>
+ <div class="section-title">
+  <small>INSTAGRAM</small>
+  <h2>خدمات اینستاگرام</h2>
+  <p>قیمت و سفارش از داخل پیوی تلگرام</p>
+ </div>
 
-  <div class="grid">
+ <div class="products">
 
-    <div class="card">
-      <div class="card-icon">👥</div>
-      <h3>خرید فالوور</h3>
-      <p>افزایش فالوور پیج اینستاگرام.</p>
-      <span class="tag">خرید از پیوی</span>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'خرید فالوور اینستاگرام','👥',
+   'خدمات افزایش فالوور اینستاگرام.',
+   'استعلام','استعلام','استعلام',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">👥</div>
+   <h3>خرید فالوور</h3>
+   <p>افزایش فالوور پیج اینستاگرام.</p>
+   <div class="tags">
+    <span class="tag">خرید از پیوی</span>
+   </div>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">👁️</div>
-      <h3>ویو ریلز</h3>
-      <p>افزایش بازدید ریلز اینستاگرام.</p>
-      <span class="tag">خرید از پیوی</span>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'ویو ریلز اینستاگرام','👁️',
+   'خدمات افزایش بازدید ریلز اینستاگرام.',
+   'استعلام','استعلام','استعلام',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">👁️</div>
+   <h3>ویو ریلز</h3>
+   <p>افزایش بازدید ریلز اینستاگرام.</p>
+   <div class="tags">
+    <span class="tag">خرید از پیوی</span>
+   </div>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">❤️</div>
-      <h3>لایک اینستاگرام</h3>
-      <p>خدمات افزایش لایک و تعامل.</p>
-      <span class="tag">خرید از پیوی</span>
-      <a href="#contact" class="btn btn-primary">خرید از پیوی تلگرام</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'لایک اینستاگرام','❤️',
+   'خدمات افزایش لایک و تعامل اینستاگرام.',
+   'استعلام','استعلام','استعلام',
+   'خرید از پیوی تلگرام','استعلام'
+   )">
+   <div class="product-icon">❤️</div>
+   <h3>لایک اینستاگرام</h3>
+   <p>خدمات افزایش لایک و تعامل.</p>
+   <div class="tags">
+    <span class="tag">خرید از پیوی</span>
+   </div>
+   <span class="product-arrow">←</span>
+  </article>
 
-  </div>
-
-</section>
-
-<!-- SPECIAL -->
-<section id="special">
-
-  <div class="section-head">
-    <small>SPECIAL OFFER</small>
-    <h2>پیشنهاد ویژه</h2>
-    <p>پیشنهاد محدود V2GURD</p>
-  </div>
-
-  <div class="card" style="text-align:center">
-
-    <div class="card-icon">🔥</div>
-
-    <h3>پکیج ویژه ۵۰۰ گیگ</h3>
-
-    <p>
-      بدون محدودیت کاربر
-      <br>
-      پیشنهاد ویژه با ظرفیت محدود
-    </p>
-
-    <div class="tags" style="justify-content:center">
-      <span class="tag">۵۰۰GB</span>
-      <span class="tag">نامحدود کاربر</span>
-      <span class="tag">محدود</span>
-    </div>
-
-    <div id="countdown"
-         style="font-size:28px;font-weight:1000;color:var(--green);margin:20px 0">
-      10 روز
-    </div>
-
-    <a href="#contact" class="btn btn-primary">
-      خرید از ربات
-    </a>
-
-  </div>
+ </div>
 
 </section>
 
-<!-- SERVICE CHECK -->
+<!-- CHECK -->
+
 <section id="check">
 
-  <div class="section-head">
-    <small>SERVICE CHECK</small>
-    <h2>استعلام سرویس</h2>
-    <p>بررسی وضعیت سرویس V2GURD</p>
+ <div class="section-title">
+  <small>SERVICE CHECK</small>
+  <h2>استعلام سرویس</h2>
+  <p>به‌زودی امکان استعلام سرویس فعال می‌شود.</p>
+ </div>
+
+ <div class="check">
+
+  <div class="check-icon">🔎</div>
+
+  <div class="coming">COMING SOON</div>
+
+  <h3>استعلام آنلاین سرویس</h3>
+
+  <p>
+   به‌زودی با وارد کردن نام سرویس،
+   وضعیت فعال بودن، حجم باقی‌مانده و
+   زمان باقی‌مانده سرویس نمایش داده می‌شود.
+  </p>
+
+  <div class="check-items">
+   <span>🟢 وضعیت</span>
+   <span>📦 حجم باقی‌مانده</span>
+   <span>⏳ زمان باقی‌مانده</span>
   </div>
 
-  <div class="check-card">
+  <button class="btn secondary" disabled>
+   به‌زودی فعال می‌شود
+  </button>
 
-    <div class="check-icon">🔎</div>
-
-    <span class="coming">COMING SOON</span>
-
-    <h3>استعلام آنلاین سرویس</h3>
-
-    <p>
-      به‌زودی می‌توانید نام سرویس خود را وارد کنید
-      و وضعیت فعال بودن، حجم باقی‌مانده و زمان
-      باقی‌مانده سرویس را مشاهده کنید.
-    </p>
-
-    <div class="check-features">
-      <div>🟢 وضعیت سرویس</div>
-      <div>📦 حجم باقی‌مانده</div>
-      <div>⏳ زمان باقی‌مانده</div>
-    </div>
-
-    <button class="btn btn-secondary" disabled>
-      به‌زودی فعال می‌شود
-    </button>
-
-  </div>
+ </div>
 
 </section>
 
 <!-- GUIDE -->
+
 <section id="guide">
 
-  <div class="section-head">
-    <small>CONNECTION GUIDE</small>
-    <h2>راهنمای اتصال</h2>
-    <p>راهنمای استفاده از سرویس روی دستگاه‌های مختلف</p>
-  </div>
+ <div class="section-title">
+  <small>CONNECTION GUIDE</small>
+  <h2>راهنمای اتصال</h2>
+  <p>راهنمای استفاده از سرویس روی دستگاه‌ها</p>
+ </div>
 
-  <div class="grid">
+ <div class="products">
 
-    <div class="card">
-      <div class="card-icon">🍎</div>
-      <h3>iPhone / iOS</h3>
-      <p>
-        برنامه مناسب را نصب کنید و لینک سرویس
-        دریافت‌شده را در برنامه وارد کنید.
-      </p>
-      <a href="#contact" class="btn btn-secondary">مشاهده راهنما</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'راهنمای iPhone','🍎',
+   'آموزش اتصال سرویس روی iPhone و iOS.',
+   'iOS','—','—',
+   'مشاهده راهنما','—'
+   )">
+   <div class="product-icon">🍎</div>
+   <h3>iPhone / iOS</h3>
+   <p>راهنمای اتصال روی آیفون.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>Android</h3>
-      <p>
-        برنامه مناسب را نصب کرده و Subscription
-        دریافت‌شده را وارد کنید.
-      </p>
-      <a href="#contact" class="btn btn-secondary">مشاهده راهنما</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'راهنمای Android','🤖',
+   'آموزش اتصال سرویس روی Android.',
+   'Android','—','—',
+   'مشاهده راهنما','—'
+   )">
+   <div class="product-icon">🤖</div>
+   <h3>Android</h3>
+   <p>راهنمای اتصال روی اندروید.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-    <div class="card">
-      <div class="card-icon">📱</div>
-      <h3>V2Box</h3>
-      <p>
-        آموزش اتصال سرویس و اضافه کردن لینک
-        Subscription.
-      </p>
-      <a href="#contact" class="btn btn-secondary">مشاهده راهنما</a>
-    </div>
+  <article class="product"
+   onclick="openProduct(
+   'راهنمای V2Box','📱',
+   'آموزش اضافه کردن Subscription به V2Box.',
+   'V2Box','—','—',
+   'مشاهده راهنما','—'
+   )">
+   <div class="product-icon">📱</div>
+   <h3>V2Box</h3>
+   <p>آموزش اتصال با لینک Subscription.</p>
+   <span class="product-arrow">←</span>
+  </article>
 
-  </div>
+ </div>
 
 </section>
 
 <!-- ABOUT -->
+
 <section id="about">
 
-  <div class="section-head">
-    <small>ABOUT V2GURD</small>
-    <h2>درباره V2GURD</h2>
-  </div>
+ <div class="section-title">
+  <small>ABOUT</small>
+  <h2>درباره V2GURD</h2>
+ </div>
 
-  <div class="card">
-
-    <p style="font-size:13px;line-height:2.4">
-
-      V2GURD ارائه‌دهنده سرویس‌های دیجیتال،
-      سرویس‌های اتصال، گیمینگ و اشتراک‌های دیجیتال است.
-      هدف ما ارائه سرویس ساده، سریع و همراه با پشتیبانی مناسب است.
-
-    </p>
-
-  </div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-
-  <div class="section-head">
-    <small>CONTACT</small>
-    <h2>ارتباط با ما</h2>
-    <p>برای خرید سرویس‌ها و اشتراک‌ها از طریق تلگرام اقدام کنید.</p>
-  </div>
-
-  <div class="card" style="text-align:center">
-
-    <div class="card-icon">💬</div>
-
-    <h3>خرید و پشتیبانی</h3>
-
-    <p>
-      برای دریافت قیمت، خرید سرویس و پشتیبانی
-      به پیوی تلگرام مراجعه کنید.
-    </p>
-
-    <!-- لینک تلگرام را بعداً اینجا قرار بده -->
-    <a href="#" class="btn btn-primary">
-      ورود به تلگرام
-    </a>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer>
-
-  <div style="font-size:22px;margin-bottom:15px">
-    V2<span style="color:var(--green)">GURD</span>
-  </div>
+ <div class="check" style="text-align:right">
 
   <p>
-    تمامی حقوق و مزایای این سایت و ربات
-    متعلق به <strong>V2GURD</strong> می‌باشد.
+   V2GURD ارائه‌دهنده سرویس‌های دیجیتال،
+   سرویس‌های اتصال، گیمینگ و اشتراک‌های دیجیتال است.
+   هدف ما ارائه تجربه‌ای ساده، سریع و حرفه‌ای
+   همراه با پشتیبانی مناسب است.
   </p>
 
-  <p style="margin-top:10px">
-    © 2026 V2GURD — All Rights Reserved
-  </p>
+ </div>
+
+</section>
+
+<footer>
+
+ <div style="font-size:22px;font-weight:1000;color:var(--text)">
+  V2<span style="color:var(--green)">GURD</span>
+ </div>
+
+ <p style="margin-top:12px">
+  تمامی حقوق و مزایای سایت و ربات متعلق به
+  <strong>V2GURD</strong> می‌باشد.
+ </p>
+
+ <p style="margin-top:7px">
+  © 2026 V2GURD — All Rights Reserved
+ </p>
 
 </footer>
 
 <!-- BOTTOM MENU -->
+
 <nav class="bottom-menu">
-
-  <a href="#services" class="active">
-    🛡️ سرویس‌ها
-  </a>
-
-  <a href="#gaming">
-    🎮 گیمینگ
-  </a>
-
-  <a href="#subscriptions">
-    💎 اشتراک
-  </a>
-
-  <a href="#instagram">
-    📸 اینستا
-  </a>
-
-  <a href="#check">
-    🔎 استعلام
-  </a>
-
-  <a href="#guide">
-    📱 راهنما
-  </a>
-
+ <a href="#special" class="active">🔥 ویژه</a>
+ <a href="#services">🛡️ سرویس‌ها</a>
+ <a href="#gaming">🎮 گیمینگ</a>
+ <a href="#subscriptions">💎 اشتراک</a>
+ <a href="#instagram">📸 اینستا</a>
+ <a href="#guide">📱 راهنما</a>
 </nav>
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="productModal">
+
+ <div class="modal-box">
+
+  <button class="close" onclick="closeProduct()">×</button>
+
+  <div class="modal-icon" id="modalIcon">🛡️</div>
+
+  <h2 id="modalTitle">محصول</h2>
+
+  <p class="modal-description" id="modalDescription">
+   توضیحات محصول
+  </p>
+
+  <div class="details">
+
+   <div class="detail">
+    <small>حجم</small>
+    <strong id="modalVolume">—</strong>
+   </div>
+
+   <div class="detail">
+    <small>کاربر</small>
+    <strong id="modalUsers">—</strong>
+   </div>
+
+   <div class="detail">
+    <small>اعتبار</small>
+    <strong id="modalDuration">—</strong>
+   </div>
+
+   <div class="detail">
+    <small>قیمت</small>
+    <strong id="modalPrice">استعلام</strong>
+   </div>
+
+  </div>
+
+  <div class="modal-actions">
+
+   <a id="purchaseButton"
+      class="btn primary"
+      href="#"
+      target="_blank">
+    خرید
+   </a>
+
+   <button class="btn secondary"
+           onclick="closeProduct()">
+    بازگشت
+   </button>
+
+  </div>
+
+ </div>
+
+</div>
 
 <script>
 
+/* ================= LINKS ================= */
+
+const TELEGRAM_URL =
+ "https://t.me/Vtwoguard";
+
+const BOT_URL =
+ "https://t.me/echo_priime_bot";
+
+
 /* ================= THEME ================= */
+
+function updateThemeButton(){
+
+ const button =
+  document.getElementById("themeButton");
+
+ if(document.body.classList.contains("light")){
+  button.innerText="☀";
+ }else{
+  button.innerText="☾";
+ }
+}
 
 function toggleTheme(){
 
-  document.body.classList.toggle("light");
+ document.body.classList.toggle("light");
 
-  const light =
-    document.body.classList.contains("light");
+ const mode =
+  document.body.classList.contains("light")
+   ? "light"
+   : "dark";
 
-  localStorage.setItem("v2gurd-theme",
-    light ? "light" : "dark");
+ localStorage.setItem(
+  "v2gurd-theme",
+  mode
+ );
 
+ updateThemeButton();
 }
 
-/* حفظ حالت انتخاب‌شده */
-
-if(localStorage.getItem("v2gurd-theme")==="light"){
-  document.body.classList.add("light");
+if(
+ localStorage.getItem("v2gurd-theme")
+ === "light"
+){
+ document.body.classList.add("light");
 }
+
+updateThemeButton();
+
+
+/* ================= PRODUCT MODAL ================= */
+
+function openProduct(
+ title,
+ icon,
+ description,
+ volume,
+ users,
+ duration,
+ purchaseType,
+ price="استعلام"
+){
+
+ document.getElementById("modalTitle")
+  .innerText=title;
+
+ document.getElementById("modalIcon")
+  .innerText=icon;
+
+ document.getElementById("modalDescription")
+  .innerText=description;
+
+ document.getElementById("modalVolume")
+  .innerText=volume;
+
+ document.getElementById("modalUsers")
+  .innerText=users;
+
+ document.getElementById("modalDuration")
+  .innerText=duration;
+
+ document.getElementById("modalPrice")
+  .innerText=price;
+
+ const button =
+  document.getElementById(
+   "purchaseButton"
+  );
+
+ if(purchaseType.includes("پیوی")){
+
+  button.innerText=
+   "خرید از پیوی تلگرام";
+
+  button.href=
+   TELEGRAM_URL;
+
+ }else if(
+  purchaseType.includes("ربات")
+ ){
+
+  button.innerText=
+   "خرید از ربات";
+
+  button.href=
+   BOT_URL;
+
+ }else{
+
+  button.innerText=
+   purchaseType;
+
+  button.href="#";
+ }
+
+ document
+  .getElementById("productModal")
+  .classList.add("show");
+
+ document.body.style.overflow="hidden";
+}
+
+function closeProduct(){
+
+ document
+  .getElementById("productModal")
+  .classList.remove("show");
+
+ document.body.style.overflow="";
+}
+
+document
+ .getElementById("productModal")
+ .addEventListener(
+  "click",
+  function(e){
+
+   if(e.target===this){
+    closeProduct();
+   }
+
+  }
+ );
+
 
 /* ================= COUNTDOWN ================= */
 
-/*
-  10 روز از اولین بازدید شروع می‌شود
-  و با رفرش صفحه از اول شروع نمی‌شود.
-*/
+let offerEnd =
+ localStorage.getItem(
+  "v2gurd-offer-end"
+ );
 
-const countdownElement =
-  document.getElementById("countdown");
+if(!offerEnd){
 
-let endTime =
-  localStorage.getItem("v2gurd-offer-end");
+ offerEnd =
+  Date.now()+
+  10*24*60*60*1000;
 
-if(!endTime){
+ localStorage.setItem(
+  "v2gurd-offer-end",
+  offerEnd
+ );
+}
 
-  endTime =
-    Date.now() + (10 * 24 * 60 * 60 * 1000);
+function updateTimer(){
 
-  localStorage.setItem(
-    "v2gurd-offer-end",
-    endTime
+ const remaining=
+  Number(offerEnd)-Date.now();
+
+ const timer=
+  document.getElementById("timer");
+
+ if(remaining<=0){
+
+  timer.innerText=
+   "پیشنهاد به پایان رسید";
+
+  return;
+ }
+
+ const days=
+  Math.floor(
+   remaining/
+   (1000*60*60*24)
   );
 
+ const hours=
+  Math.floor(
+   (remaining/
+   (1000*60*60))%24
+  );
+
+ const minutes=
+  Math.floor(
+   (remaining/
+   (1000*60))%60
+  );
+
+ timer.innerText=
+  `${days} روز ${hours} ساعت ${minutes} دقیقه`;
 }
 
-function updateCountdown(){
-
-  const remaining =
-    Number(endTime) - Date.now();
-
-  if(remaining <= 0){
-
-    countdownElement.innerText =
-      "پایان یافت";
-
-    return;
-
-  }
-
-  const days =
-    Math.floor(
-      remaining / (1000*60*60*24)
-    );
-
-  const hours =
-    Math.floor(
-      (remaining / (1000*60*60)) % 24
-    );
-
-  const minutes =
-    Math.floor(
-      (remaining / (1000*60)) % 60
-    );
-
-  countdownElement.innerText =
-    `${days} روز ${hours} ساعت ${minutes} دقیقه`;
-
-}
-
-updateCountdown();
+updateTimer();
 
 setInterval(
-  updateCountdown,
-  60000
+ updateTimer,
+ 60000
 );
 
-/* ================= ACTIVE MENU ================= */
 
-const menuLinks =
-  document.querySelectorAll(".bottom-menu a");
+/* ================= MENU ================= */
 
-menuLinks.forEach(link => {
+const menuItems=
+ document.querySelectorAll(
+  ".bottom-menu a"
+ );
 
-  link.addEventListener("click",function(){
+menuItems.forEach(item=>{
 
-    menuLinks.forEach(item =>
-      item.classList.remove("active")
-    );
+ item.addEventListener(
+  "click",
+  function(){
 
-    this.classList.add("active");
+   menuItems.forEach(
+    x=>x.classList.remove("active")
+   );
 
-  });
+   this.classList.add("active");
+
+  }
+ );
 
 });
+
+
+/* ================= ESC ================= */
+
+document.addEventListener(
+ "keydown",
+ function(e){
+
+  if(e.key==="Escape"){
+   closeProduct();
+  }
+
+ }
+);
 
 </script>
 
