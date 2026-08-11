@@ -1,1 +1,752 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>V2GURD | سرویس‌های حرفه‌ای</title>
+  <meta name="description" content="V2GURD - سرویس‌های سریع و پایدار">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(57,255,20,.12), transparent 28%),
+        radial-gradient(circle at 85% 35%, rgba(57,255,20,.08), transparent 30%),
+        #050705;
+      color: #f5fff5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+      background-size: 35px 35px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      width: min(1100px, 92%);
+      margin: 14px auto 0;
+      padding: 13px 16px;
+      border: 1px solid rgba(57,255,20,.16);
+      border-radius: 22px;
+      background: rgba(8,12,8,.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #39ff14;
+      text-shadow: 0 0 18px rgba(57,255,20,.45);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 7px;
+      font-size: .82rem;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      color: #b9c6b9;
+      border-radius: 12px;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: #39ff14;
+      background: rgba(57,255,20,.07);
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 90px 0 70px;
+    }
+
+    .hero-content {
+      animation: fadeUp .9s ease both;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 13px;
+      border: 1px solid rgba(57,255,20,.2);
+      border-radius: 999px;
+      background: rgba(57,255,20,.06);
+      color: #a9ffa0;
+      font-size: .78rem;
+      margin-bottom: 20px;
+      box-shadow: 0 0 30px rgba(57,255,20,.06);
+    }
+
+    .hero h1 {
+      font-size: clamp(3.1rem, 13vw, 7rem);
+      line-height: .95;
+      font-weight: 950;
+      color: #39ff14;
+      letter-spacing: -3px;
+      text-shadow:
+        0 0 18px rgba(57,255,20,.4),
+        0 0 60px rgba(57,255,20,.13);
+    }
+
+    .hero h2 {
+      margin-top: 22px;
+      font-size: clamp(1.25rem, 4vw, 2rem);
+      color: #eef8ee;
+    }
+
+    .hero p {
+      max-width: 560px;
+      margin: 17px auto 0;
+      color: #9eaa9e;
+      line-height: 1.9;
+      font-size: .96rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 155px;
+      padding: 13px 18px;
+      border-radius: 15px;
+      font-weight: 800;
+      transition: transform .25s, box-shadow .25s, background .25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      background: #39ff14;
+      color: #031003;
+      box-shadow: 0 0 30px rgba(57,255,20,.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      color: white;
+    }
+
+    section {
+      padding: 85px 0 20px;
+      scroll-margin-top: 90px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-title .mini {
+      color: #39ff14;
+      font-size: .78rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-title h3 {
+      font-size: clamp(1.6rem, 5vw, 2.3rem);
+    }
+
+    .section-title p {
+      margin-top: 9px;
+      color: #8f9a8f;
+      font-size: .9rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      position: relative;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.018)
+      );
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+      overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+      transition: .7s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(57,255,20,.28);
+      box-shadow: 0 15px 45px rgba(0,0,0,.3);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: -45px;
+      bottom: -45px;
+      background: rgba(57,255,20,.08);
+      filter: blur(30px);
+      border-radius: 50%;
+    }
+
+    .card .icon {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #39ff14;
+      font-size: 1.35rem;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+
+    .price small {
+      color: #7e897e;
+      font-size: .72rem;
+      font-weight: 500;
+    }
+
+    .card-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 11px;
+      border-radius: 13px;
+      background: rgba(57,255,20,.07);
+      color: #9dff91;
+      border: 1px solid rgba(57,255,20,.14);
+      font-size: .84rem;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .card-btn:hover {
+      background: #39ff14;
+      color: #031003;
+    }
+
+    .featured {
+      border-color: rgba(57,255,20,.42);
+      box-shadow: 0 0 45px rgba(57,255,20,.07);
+    }
+
+    .featured-label {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #39ff14;
+      color: #031003;
+      font-size: .66rem;
+      font-weight: 900;
+    }
+
+    .panel-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .panel-card {
+      text-align: center;
+    }
+
+    .panel-card h4 {
+      font-size: 1.3rem;
+    }
+
+    .cta {
+      margin: 90px auto 35px;
+      width: min(900px, 92%);
+      text-align: center;
+      padding: 45px 22px;
+      border-radius: 28px;
+      border: 1px solid rgba(57,255,20,.18);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(57,255,20,.12), transparent 50%),
+        rgba(255,255,255,.025);
+      backdrop-filter: blur(15px);
+    }
+
+    .cta h3 {
+      font-size: clamp(1.7rem, 5vw, 2.5rem);
+    }
+
+    .cta p {
+      color: #919d91;
+      margin: 12px auto 0;
+      line-height: 1.8;
+      max-width: 550px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 15px 45px;
+      color: #687268;
+      font-size: .78rem;
+    }
+
+    footer strong {
+      color: #39ff14;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 850px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .panel-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links a:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header {
+        top: 8px;
+      }
+
+      .nav-links a {
+        padding: 7px 7px;
+        font-size: .72rem;
+      }
+
+      .hero {
+        min-height: 78vh;
+        padding-top: 65px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .grid,
+      .panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding-top: 70px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand">V2GURD</a>
+
+    <div class="nav-links">
+      <a href="#services">سرویس‌ها</a>
+      <a href="#panels">پنل‌ها</a>
+      <a href="#contact">ارتباط</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="badge">⚡ سرویس‌های V2GURD</div>
+
+      <h1>V2GURD</h1>
+
+      <h2>سرویس‌های سریع، پایدار و مطمئن</h2>
+
+      <p>
+        سرویس مناسب خودت رو انتخاب کن و در چند مرحله
+        از طریق ربات خریدت رو انجام بده.
+      </p>
+
+      <div class="buttons">
+        <a class="btn btn-primary" href="#services">
+          مشاهده سرویس‌ها ↓
+        </a>
+
+        <a class="btn btn-secondary"
+           href="https://t.me/echo_priime_bot"
+           target="_blank">
+          🤖 ورود به ربات خرید
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="services">
+    <div class="container">
+
+      <div class="section-title">
+        <div class="mini">ECONOMIC</div>
+        <h3>حجم کم | اقتصادی 💚</h3>
+        <p>مناسب برای مصرف روزمره با قیمت اقتصادی</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">📦</div>
+          <h4>۱۰ گیگ</h4>
+          <div class="price">
+            ۲۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="icon">📦</div>
+          <h4>۲۰ گیگ</h4>
+          <div class="price">
+            ۴۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="icon">📦</div>
+          <h4>۳۰ گیگ</h4>
+          <div class="price">
+            ۷۵,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <div class="mini">HIGH VOLUME</div>
+        <h3>حجم بالا ⚡</h3>
+        <p>حجم بیشتر برای مصرف بیشتر</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">🚀</div>
+          <h4>۵۰ گیگ</h4>
+          <div class="price">
+            ۱۲۵,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="icon">🚀</div>
+          <h4>۱۰۰ گیگ</h4>
+          <div class="price">
+            ۲۵۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="icon">🚀</div>
+          <h4>۱۵۰ گیگ</h4>
+          <div class="price">
+            ۳۷۵,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+        <div class="card featured">
+          <div class="featured-label">تخفیف ویژه</div>
+          <div class="icon">🔥</div>
+          <h4>۵۰۰ گیگ</h4>
+          <div class="price">
+            ۵۰۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <div class="mini">UNLIMITED</div>
+        <h3>سرویس نامحدود ♾️</h3>
+        <p>برای استفاده بدون دغدغه حجم</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">♾️</div>
+          <h4>۱ کاربر | ۱ ماه</h4>
+          <div class="price">
+            ۹۹,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="icon">♾️</div>
+          <h4>۲ کاربر | ۱ ماه</h4>
+          <div class="price">
+            ۱۹۹,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/echo_priime_bot" target="_blank">
+            خرید سرویس
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="panels">
+    <div class="container">
+
+      <div class="section-title">
+        <div class="mini">WEB PANELS</div>
+        <h3>پنل‌های V2GURD 🖥️</h3>
+        <p>برای مدیریت حرفه‌ای سرویس‌ها</p>
+      </div>
+
+      <div class="grid panel-grid">
+
+        <div class="card panel-card">
+          <div class="icon">🖥️</div>
+          <h4>۱ ترا</h4>
+          <div class="price">
+            ۸۰۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
+            💬 خرید پنل
+          </a>
+        </div>
+
+        <div class="card panel-card">
+          <div class="icon">🖥️</div>
+          <h4>۲ ترا</h4>
+          <div class="price">
+            ۱,۲۰۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
+            💬 خرید پنل
+          </a>
+        </div>
+
+        <div class="card panel-card">
+          <div class="icon">🖥️</div>
+          <h4>۳ ترا</h4>
+          <div class="price">
+            ۱,۸۰۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
+            💬 خرید پنل
+          </a>
+        </div>
+
+        <div class="card panel-card">
+          <div class="icon">🖥️</div>
+          <h4>۴ ترا</h4>
+          <div class="price">
+            ۲,۳۰۰,۰۰۰ <small>تومان</small>
+          </div>
+          <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
+            💬 خرید پنل
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contact">
+    <div class="cta">
+
+      <h3>آماده‌ای شروع کنی؟ 🚀</h3>
+
+      <p>
+        سرویس موردنظرت رو انتخاب کن و برای تکمیل خرید
+        وارد ربات V2GURD شو.
+      </p>
+
+      <div class="buttons">
+
+        <a class="btn btn-primary"
+           href="https://t.me/echo_priime_bot"
+           target="_blank">
+          🤖 ورود به ربات خرید
+        </a>
+
+        <a class="btn btn-secondary"
+           href="https://t.me/Vtwoguard"
+           target="_blank">
+          💬 خرید پنل
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <strong>V2GURD</strong>
+  <br>
+  سرویس‌های سریع، پایدار و مطمئن
+  <br><br>
+  © 2026 V2GURD
+</footer>
+
+
+<script>
+  const cards = document.querySelectorAll(".card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+</script>
+
+</body>
+</html>
