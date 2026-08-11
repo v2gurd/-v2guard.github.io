@@ -3,11 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050608">
+<meta name="description" content="V2GURD — سرویس‌های پایدار، گیمینگ، پنل، اینستاگرام و خدمات دیجیتال">
 
-<title>V2GURD | سرویس‌های حرفه‌ای</title>
-<meta name="description" content="V2GURD - سرویس‌های سریع، پایدار و مطمئن">
+<title>V2GURD | Official</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --bg:#050608;
+  --bg2:#090d12;
+  --card:rgba(14,18,24,.72);
+  --card2:rgba(18,24,31,.9);
+  --text:#f4f7f8;
+  --muted:#89939d;
+  --green:#b7ff00;
+  --blue:#00aaff;
+  --red:#ff3154;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 20px 70px rgba(0,0,0,.45);
+}
+
+body.light{
+  --bg:#f2f5f7;
+  --bg2:#e7edf1;
+  --card:rgba(255,255,255,.78);
+  --card2:#fff;
+  --text:#10151a;
+  --muted:#59636c;
+  --border:rgba(0,0,0,.08);
+  --shadow:0 20px 60px rgba(0,0,0,.12);
+}
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -19,364 +47,196 @@ html{
 }
 
 body{
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Tahoma,
-    Arial,
-    sans-serif;
-  background:#030503;
-  color:#f4fff3;
-  overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
+  font-family:Vazirmatn,Tahoma,sans-serif;
   background:
-    radial-gradient(circle at 15% 10%,rgba(57,255,20,.12),transparent 25%),
-    radial-gradient(circle at 90% 35%,rgba(57,255,20,.08),transparent 28%),
-    radial-gradient(circle at 50% 100%,rgba(57,255,20,.06),transparent 30%);
-  z-index:-2;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.22;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:40px 40px;
-  mask-image:linear-gradient(to bottom,#000,transparent);
-  z-index:-1;
+    radial-gradient(circle at 15% 10%,rgba(183,255,0,.09),transparent 25%),
+    radial-gradient(circle at 85% 15%,rgba(0,170,255,.10),transparent 27%),
+    radial-gradient(circle at 50% 85%,rgba(255,49,84,.06),transparent 28%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:.35s;
 }
 
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
-button{
+button,input{
   font-family:inherit;
 }
 
 .container{
-  width:min(1100px,92%);
+  width:min(1150px,92%);
   margin:auto;
 }
 
-/* =========================
-   LOADING
-========================= */
+section{
+  padding:75px 0;
+  position:relative;
+}
 
-#loader{
+.glow{
   position:fixed;
-  inset:0;
-  background:#030503;
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.7s;
-}
-
-.loader-logo{
-  color:#39ff14;
-  font-size:3rem;
-  font-weight:1000;
-  letter-spacing:-2px;
-  text-shadow:
-    0 0 15px rgba(57,255,20,.6),
-    0 0 60px rgba(57,255,20,.25);
-  animation:pulse 1.3s infinite alternate;
-}
-
-@keyframes pulse{
-  from{transform:scale(.96);opacity:.7}
-  to{transform:scale(1.04);opacity:1}
-}
-
-/* =========================
-   RULES
-========================= */
-
-#rules{
-  position:fixed;
-  inset:0;
-  z-index:9000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at center,rgba(57,255,20,.08),transparent 45%),
-    rgba(0,0,0,.86);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
-
-.rules-box{
-  width:min(620px,100%);
-  max-height:88vh;
-  overflow:auto;
-  padding:28px;
-  border:1px solid rgba(57,255,20,.2);
-  border-radius:28px;
-  background:rgba(9,13,9,.88);
-  box-shadow:
-    0 0 80px rgba(57,255,20,.08),
-    0 20px 80px rgba(0,0,0,.5);
-}
-
-.rules-logo{
-  text-align:center;
-  color:#39ff14;
-  font-size:2rem;
-  font-weight:1000;
-  margin-bottom:8px;
-  text-shadow:0 0 25px rgba(57,255,20,.4);
-}
-
-.rules-title{
-  text-align:center;
-  font-size:1.25rem;
-  margin-bottom:20px;
-}
-
-.rules-box h4{
-  color:#39ff14;
-  margin:17px 0 7px;
-  font-size:.95rem;
-}
-
-.rules-box p{
-  color:#9da99d;
-  line-height:1.9;
-  font-size:.82rem;
-}
-
-.accept-row{
-  margin-top:22px;
-  padding:14px;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:16px;
-  background:rgba(255,255,255,.025);
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-}
-
-.accept-row input{
-  width:18px;
-  height:18px;
-  accent-color:#39ff14;
-  margin-top:3px;
-}
-
-.accept-row label{
-  color:#b8c2b8;
-  font-size:.8rem;
-  line-height:1.7;
-}
-
-.enter-btn{
-  width:100%;
-  border:0;
-  margin-top:15px;
-  padding:15px;
-  border-radius:15px;
-  font-weight:900;
-  background:#39ff14;
-  color:#031003;
-  cursor:pointer;
-  opacity:.35;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  filter:blur(110px);
+  opacity:.08;
   pointer-events:none;
-  transition:.25s;
+  z-index:-1;
 }
 
-.enter-btn.active{
-  opacity:1;
-  pointer-events:auto;
-  box-shadow:0 0 35px rgba(57,255,20,.2);
+.glow.g1{
+  background:var(--green);
+  top:10%;
+  right:-120px;
 }
 
-.rules-footer{
-  text-align:center;
-  color:#596359;
-  font-size:.68rem;
-  margin-top:14px;
+.glow.g2{
+  background:var(--blue);
+  bottom:15%;
+  left:-120px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
   position:sticky;
-  top:10px;
-  z-index:500;
-  width:min(1100px,92%);
-  margin:12px auto 0;
-  padding:12px 15px;
-  border:1px solid rgba(57,255,20,.14);
-  border-radius:22px;
-  background:rgba(7,11,7,.72);
+  top:0;
+  z-index:1000;
   backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  box-shadow:0 15px 50px rgba(0,0,0,.35);
+  background:rgba(5,6,8,.72);
+  border-bottom:1px solid var(--border);
+}
+
+body.light header{
+  background:rgba(255,255,255,.72);
 }
 
 .nav{
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
 }
 
-.brand{
-  color:#39ff14;
-  font-weight:1000;
-  letter-spacing:1px;
-  text-shadow:0 0 18px rgba(57,255,20,.4);
+.logo{
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:var(--green);
+  text-shadow:0 0 18px rgba(183,255,0,.55);
 }
 
 .nav-links{
   display:flex;
-  gap:4px;
+  gap:25px;
+  align-items:center;
 }
 
 .nav-links a{
-  padding:8px 9px;
-  color:#9ba69b;
-  border-radius:12px;
-  font-size:.75rem;
+  font-size:13px;
+  color:var(--muted);
   transition:.25s;
 }
 
 .nav-links a:hover{
-  color:#39ff14;
-  background:rgba(57,255,20,.06);
+  color:var(--green);
 }
 
-/* =========================
-   HERO
-========================= */
+.theme-btn{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  cursor:pointer;
+  font-size:18px;
+}
+
+/* HERO */
 
 .hero{
-  min-height:86vh;
+  min-height:620px;
   display:flex;
   align-items:center;
-  justify-content:center;
   text-align:center;
-  padding:80px 0;
-  position:relative;
-}
-
-.hero-glow{
-  position:absolute;
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  background:#39ff14;
-  opacity:.07;
-  filter:blur(90px);
-  animation:floatGlow 5s ease-in-out infinite alternate;
-}
-
-@keyframes floatGlow{
-  from{transform:translate(-70px,-20px)}
-  to{transform:translate(70px,30px)}
+  overflow:hidden;
 }
 
 .hero-content{
-  position:relative;
-  z-index:2;
-  animation:heroIn 1s ease both;
+  width:100%;
 }
 
-@keyframes heroIn{
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-.badge{
+.status-pill{
   display:inline-flex;
   align-items:center;
-  gap:7px;
-  padding:8px 13px;
-  border:1px solid rgba(57,255,20,.17);
-  border-radius:999px;
-  background:rgba(57,255,20,.05);
-  color:#a9ffa0;
-  font-size:.75rem;
+  gap:9px;
+  padding:9px 15px;
+  border:1px solid rgba(183,255,0,.25);
+  background:rgba(183,255,0,.06);
+  border-radius:50px;
+  color:var(--green);
+  font-size:12px;
+  margin-bottom:25px;
 }
 
-.live-dot{
-  width:7px;
-  height:7px;
+.dot{
+  width:8px;
+  height:8px;
   border-radius:50%;
-  background:#39ff14;
-  box-shadow:0 0 12px #39ff14;
-  animation:blink 1.3s infinite;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
+  animation:pulse 1.7s infinite;
 }
 
-@keyframes blink{
-  50%{opacity:.25}
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.5);opacity:.5}
 }
 
 .hero h1{
-  margin-top:20px;
-  font-size:clamp(4rem,18vw,9rem);
-  line-height:.85;
-  font-weight:1000;
-  letter-spacing:-6px;
-  color:#39ff14;
-  text-shadow:
-    0 0 18px rgba(57,255,20,.45),
-    0 0 80px rgba(57,255,20,.12);
+  font-size:clamp(50px,10vw,105px);
+  line-height:.95;
+  font-weight:900;
+  letter-spacing:-5px;
 }
 
-.hero h2{
-  margin-top:28px;
-  font-size:clamp(1.2rem,4vw,2rem);
+.hero h1 span{
+  color:var(--green);
+  text-shadow:
+    0 0 20px rgba(183,255,0,.35),
+    0 0 70px rgba(183,255,0,.15);
 }
 
 .hero p{
-  max-width:600px;
-  margin:15px auto;
-  color:#899589;
-  line-height:1.9;
-  font-size:.9rem;
+  max-width:650px;
+  margin:28px auto;
+  color:var(--muted);
+  line-height:2;
+  font-size:15px;
 }
 
-.buttons{
+.hero-buttons{
   display:flex;
   justify-content:center;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
-  margin-top:28px;
 }
 
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:160px;
-  padding:13px 18px;
-  border-radius:15px;
-  font-weight:900;
+  border:0;
+  border-radius:14px;
+  padding:14px 23px;
+  cursor:pointer;
+  font-weight:800;
   transition:.25s;
 }
 
@@ -384,1398 +244,1760 @@ header{
   transform:translateY(-3px);
 }
 
-.primary{
-  color:#031003;
-  background:#39ff14;
-  box-shadow:0 0 35px rgba(57,255,20,.18);
+.btn-primary{
+  background:var(--green);
+  color:#071000;
+  box-shadow:0 0 30px rgba(183,255,0,.18);
 }
 
-.secondary{
-  color:#eee;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.1);
+.btn-secondary{
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* TRUST */
 
-section{
-  padding:85px 0 20px;
-  scroll-margin-top:90px;
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
-.section-title{
+.trust-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
   text-align:center;
-  margin-bottom:30px;
+  backdrop-filter:blur(15px);
 }
 
-.mini{
-  color:#39ff14;
-  font-size:.7rem;
+.trust-card b{
+  display:block;
+  font-size:19px;
+  margin-bottom:5px;
+}
+
+.trust-card span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* SECTION TITLE */
+
+.section-head{
+  text-align:center;
+  margin-bottom:38px;
+}
+
+.section-head small{
+  color:var(--green);
+  font-weight:800;
+}
+
+.section-head h2{
+  font-size:34px;
+  margin:8px 0;
+}
+
+.section-head p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* SPECIAL */
+
+.special{
+  background:
+    linear-gradient(135deg,rgba(183,255,0,.08),rgba(0,170,255,.05)),
+    var(--card);
+  border:1px solid rgba(183,255,0,.22);
+  border-radius:30px;
+  padding:35px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.special:before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  background:var(--green);
+  filter:blur(120px);
+  opacity:.12;
+  left:-70px;
+  top:-80px;
+}
+
+.special-content{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+}
+
+.special h3{
+  font-size:27px;
+}
+
+.special .price{
+  color:var(--green);
+  font-size:31px;
   font-weight:900;
-  letter-spacing:2px;
-  margin-bottom:8px;
+  margin:10px 0;
 }
 
-.section-title h3{
-  font-size:clamp(1.6rem,5vw,2.3rem);
+.timer{
+  display:flex;
+  gap:8px;
+  margin-top:16px;
 }
 
-.section-title p{
-  color:#7e897e;
-  font-size:.85rem;
-  margin-top:8px;
+.time-box{
+  min-width:64px;
+  padding:10px;
+  background:rgba(0,0,0,.25);
+  border:1px solid var(--border);
+  border-radius:13px;
+  text-align:center;
 }
 
-.grid{
+.time-box b{
+  display:block;
+  font-size:20px;
+}
+
+.time-box span{
+  color:var(--muted);
+  font-size:9px;
+}
+
+/* SEARCH */
+
+.search{
+  margin:0 auto 28px;
+  max-width:600px;
+  position:relative;
+}
+
+.search input{
+  width:100%;
+  padding:17px 20px;
+  border-radius:17px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  outline:none;
+  backdrop-filter:blur(15px);
+}
+
+.search input:focus{
+  border-color:var(--green);
+  box-shadow:0 0 25px rgba(183,255,0,.08);
+}
+
+/* CATEGORIES */
+
+.categories{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:28px;
+}
+
+.cat{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--muted);
+  border-radius:50px;
+  padding:9px 15px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.cat.active,
+.cat:hover{
+  color:#071000;
+  background:var(--green);
+}
+
+/* PRODUCTS */
+
+.products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:15px;
 }
 
-.card{
-  position:relative;
-  padding:22px;
+.product{
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:23px;
-  border:1px solid rgba(255,255,255,.07);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.055),
-      rgba(255,255,255,.015)
-    );
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  overflow:hidden;
-  opacity:0;
-  transform:translateY(25px);
-  transition:.7s;
+  padding:23px;
+  position:relative;
+  transition:.3s;
+  backdrop-filter:blur(15px);
 }
 
-.card.show{
-  opacity:1;
-  transform:translateY(0);
+.product:hover{
+  transform:translateY(-7px);
+  border-color:rgba(183,255,0,.25);
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(57,255,20,.28);
-  box-shadow:0 20px 55px rgba(0,0,0,.3);
-}
-
-.card::before{
-  content:"";
+.badge{
   position:absolute;
-  width:120px;
-  height:120px;
-  left:-60px;
-  bottom:-60px;
-  background:#39ff14;
-  opacity:.07;
-  filter:blur(35px);
-  border-radius:50%;
+  top:16px;
+  left:16px;
+  padding:5px 9px;
+  border-radius:8px;
+  font-size:9px;
+  font-weight:900;
 }
 
-.icon{
-  font-size:1.5rem;
-  margin-bottom:15px;
+.badge.green{
+  background:rgba(183,255,0,.13);
+  color:var(--green);
 }
 
-.card h4{
-  font-size:1.05rem;
+.badge.blue{
+  background:rgba(0,170,255,.12);
+  color:var(--blue);
+}
+
+.badge.red{
+  background:rgba(255,49,84,.12);
+  color:var(--red);
+}
+
+.product-icon{
+  font-size:28px;
+  margin-bottom:17px;
+}
+
+.product h3{
+  font-size:18px;
+  margin-bottom:6px;
+}
+
+.product .desc{
+  color:var(--muted);
+  font-size:11px;
+  min-height:35px;
 }
 
 .price{
-  color:#39ff14;
-  font-size:1.35rem;
-  font-weight:1000;
-  margin:15px 0;
+  margin:18px 0;
+  font-size:21px;
+  font-weight:900;
 }
 
-.price small{
-  color:#6f796f;
-  font-size:.7rem;
-  font-weight:500;
+.price span{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:400;
 }
 
-.card-btn{
+.product button{
   width:100%;
-  display:block;
-  text-align:center;
-  padding:11px;
-  border-radius:13px;
-  background:rgba(57,255,20,.06);
-  border:1px solid rgba(57,255,20,.12);
-  color:#a7ff9c;
-  font-weight:800;
-  font-size:.8rem;
-  cursor:pointer;
-  transition:.25s;
 }
 
-.card-btn:hover{
-  background:#39ff14;
-  color:#031003;
-}
+/* STATUS */
 
-.featured{
-  border-color:rgba(57,255,20,.35);
-  box-shadow:0 0 45px rgba(57,255,20,.06);
-}
-
-.featured-label{
-  position:absolute;
-  left:14px;
-  top:14px;
-  padding:5px 8px;
-  border-radius:999px;
-  background:#39ff14;
-  color:#031003;
-  font-size:.6rem;
-  font-weight:1000;
-}
-
-/* =========================
-   CATEGORY BAR
-========================= */
-
-.category-bar{
-  width:min(800px,92%);
-  margin:0 auto 35px;
-  display:flex;
-  gap:7px;
-  overflow:auto;
-  padding:5px;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:17px;
-  background:rgba(255,255,255,.025);
-}
-
-.category-bar a{
-  flex:1;
-  min-width:110px;
-  text-align:center;
-  padding:10px;
-  border-radius:12px;
-  color:#879287;
-  font-size:.76rem;
-}
-
-.category-bar a:hover{
-  color:#39ff14;
-  background:rgba(57,255,20,.05);
-}
-
-/* =========================
-   PANELS
-========================= */
-
-.panel-grid{
-  grid-template-columns:repeat(4,1fr);
-}
-
-.panel-card{
-  text-align:center;
-}
-
-.panel-card h4{
-  font-size:1.3rem;
-}
-
-/* =========================
-   PREMIUM
-========================= */
-
-.premium{
-  border-color:rgba(180,120,255,.25);
-  background:
-    radial-gradient(circle at top,rgba(180,120,255,.09),transparent 55%),
-    rgba(255,255,255,.025);
-}
-
-.premium .price{
-  color:#d8b4ff;
-}
-
-/* =========================
-   GAMING
-========================= */
-
-.gaming{
-  border-color:rgba(57,255,20,.2);
-}
-
-.gaming-tag{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:999px;
-  background:rgba(57,255,20,.07);
-  color:#8dff82;
-  font-size:.62rem;
-  margin-bottom:12px;
-}
-
-/* =========================
-   APPS
-========================= */
-
-.app-grid{
+.status-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:12px;
 }
 
-.app-card{
-  padding:24px;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:23px;
-  background:rgba(255,255,255,.025);
-}
-
-.app-head{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.app-icon{
-  width:55px;
-  height:55px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:17px;
-  background:rgba(57,255,20,.07);
-  border:1px solid rgba(57,255,20,.13);
-  font-size:1.7rem;
-}
-
-.app-card h4{
-  font-size:1.1rem;
-}
-
-.app-card p{
-  color:#7e897e;
-  font-size:.78rem;
-  line-height:1.8;
-  margin:14px 0;
-}
-
-.app-buttons{
-  display:flex;
-  gap:8px;
-}
-
-.app-buttons a{
-  flex:1;
-  text-align:center;
-  padding:10px;
-  border-radius:12px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  font-size:.75rem;
-  font-weight:800;
-}
-
-.app-buttons a:hover{
-  background:#39ff14;
-  color:#031003;
-}
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-  width:min(900px,92%);
-  margin:90px auto 25px;
-  padding:45px 22px;
-  text-align:center;
-  border-radius:30px;
-  border:1px solid rgba(57,255,20,.15);
-  background:
-    radial-gradient(circle at 50% 0%,rgba(57,255,20,.11),transparent 50%),
-    rgba(255,255,255,.025);
-}
-
-.cta h3{
-  font-size:clamp(1.7rem,5vw,2.5rem);
-}
-
-.cta p{
-  color:#879187;
-  max-width:550px;
-  margin:12px auto;
-  line-height:1.8;
-}
-
-/* =========================
-   FLOAT BUY
-========================= */
-
-.float-buy{
-  position:fixed;
-  left:18px;
-  bottom:18px;
-  z-index:700;
-  padding:12px 17px;
-  border-radius:999px;
-  background:#39ff14;
-  color:#031003;
-  font-size:.75rem;
-  font-weight:1000;
-  box-shadow:0 8px 35px rgba(57,255,20,.2);
-  animation:floatButton 2.5s ease-in-out infinite;
-}
-
-@keyframes floatButton{
-  50%{transform:translateY(-5px)}
-}
-
-/* =========================
-   MODAL
-========================= */
-
-#modal{
-  position:fixed;
-  inset:0;
-  z-index:8000;
-  display:none;
-  align-items:center;
-  justify-content:center;
+.server{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
   padding:20px;
-  background:rgba(0,0,0,.75);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-}
-
-.modal-box{
-  width:min(520px,100%);
-  max-height:88vh;
-  overflow:auto;
-  padding:27px;
-  border-radius:27px;
-  border:1px solid rgba(57,255,20,.18);
-  background:#090d09;
-  box-shadow:0 25px 90px rgba(0,0,0,.55);
-  animation:modalIn .3s ease;
-}
-
-@keyframes modalIn{
-  from{
-    opacity:0;
-    transform:scale(.94) translateY(15px);
-  }
-  to{
-    opacity:1;
-    transform:scale(1) translateY(0);
-  }
-}
-
-.modal-close{
-  float:left;
-  width:35px;
-  height:35px;
-  border:0;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
-  color:#aaa;
-  cursor:pointer;
-}
-
-.modal-icon{
-  font-size:2.3rem;
-  margin-bottom:10px;
-}
-
-.modal-box h3{
-  font-size:1.7rem;
-}
-
-.modal-price{
-  color:#39ff14;
-  font-size:1.7rem;
-  font-weight:1000;
-  margin:10px 0 22px;
-}
-
-.info-list{
-  display:grid;
-  gap:8px;
-}
-
-.info-item{
   display:flex;
   justify-content:space-between;
-  gap:15px;
-  padding:12px;
-  border-radius:13px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.05);
-  font-size:.8rem;
+  align-items:center;
 }
 
-.info-item span:first-child{
-  color:#6f796f;
+.server-name{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.info-item span:last-child{
-  color:#ddd;
+.server-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 16px var(--green);
+}
+
+.server-status{
+  color:var(--green);
+  font-size:12px;
   font-weight:800;
 }
 
-.modal-description{
-  margin-top:20px;
-  padding:15px;
-  border-radius:15px;
-  background:rgba(57,255,20,.035);
-  border:1px solid rgba(57,255,20,.08);
-  color:#9ba69b;
-  line-height:1.9;
-  font-size:.78rem;
+/* GUIDES */
+
+.guide-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-.modal-buy{
-  display:block;
-  text-align:center;
-  margin-top:15px;
-  padding:14px;
-  border-radius:14px;
-  background:#39ff14;
-  color:#031003;
-  font-weight:1000;
+.guide{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:25px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.guide-number{
+  color:var(--green);
+  font-size:12px;
+  font-weight:900;
+}
 
-footer{
-  text-align:center;
-  padding:45px 15px 70px;
-  color:#596359;
-  font-size:.7rem;
+.guide h3{
+  margin:10px 0;
+}
+
+.guide p{
+  color:var(--muted);
+  font-size:12px;
   line-height:2;
 }
 
-footer strong{
-  color:#39ff14;
+/* TRUST BIG */
+
+.trust-big{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.trust-big .item{
+  padding:25px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+}
 
-@media(max-width:850px){
+.trust-big .item b{
+  display:block;
+  margin-bottom:9px;
+}
 
-  .grid{
+.trust-big .item p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:2;
+}
+
+/* ABOUT */
+
+.about{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+}
+
+.about p{
+  color:var(--muted);
+  line-height:2.2;
+  font-size:14px;
+}
+
+/* FAQ */
+
+.faq{
+  max-width:800px;
+  margin:auto;
+}
+
+details{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  margin-bottom:10px;
+  padding:18px;
+}
+
+summary{
+  cursor:pointer;
+  font-weight:700;
+}
+
+details p{
+  color:var(--muted);
+  line-height:2;
+  font-size:12px;
+  margin-top:13px;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--border);
+  padding:45px 0 100px;
+  text-align:center;
+}
+
+.footer-logo{
+  font-size:25px;
+  font-weight:900;
+}
+
+.footer-logo span{
+  color:var(--green);
+}
+
+footer p{
+  color:var(--muted);
+  font-size:11px;
+  margin:10px 0 20px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.footer-links a:hover{
+  color:var(--green);
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+  display:none;
+}
+
+@media(max-width:800px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .trust-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .panel-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .app-grid{
+  .products{
     grid-template-columns:1fr;
   }
-}
 
-@media(max-width:560px){
-
-  header{
-    top:7px;
+  .status-grid,
+  .guide-grid,
+  .trust-big{
+    grid-template-columns:1fr;
   }
 
-  .nav-links a{
-    font-size:.66rem;
-    padding:7px 6px;
+  .special-content{
+    flex-direction:column;
+    align-items:flex-start;
   }
 
   .hero{
-    min-height:80vh;
+    min-height:560px;
   }
 
   .hero h1{
-    letter-spacing:-4px;
+    letter-spacing:-3px;
   }
 
-  .grid,
-  .panel-grid{
-    grid-template-columns:1fr;
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    bottom:12px;
+    left:3%;
+    right:3%;
+    z-index:2000;
+    background:rgba(12,15,19,.88);
+    border:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    border-radius:22px;
+    padding:8px;
+    justify-content:space-around;
+    box-shadow:0 15px 50px rgba(0,0,0,.45);
   }
 
-  .buttons{
-    flex-direction:column;
+  body.light .mobile-nav{
+    background:rgba(255,255,255,.9);
   }
 
-  .btn{
-    width:100%;
+  .mobile-nav a{
+    color:var(--muted);
+    text-align:center;
+    font-size:9px;
+    padding:7px 10px;
   }
 
-  .app-buttons{
-    flex-direction:column;
+  .mobile-nav a:first-child{
+    color:var(--green);
+  }
+
+  .mobile-nav i{
+    display:block;
+    font-style:normal;
+    font-size:17px;
+    margin-bottom:3px;
   }
 
   section{
-    padding-top:70px;
+    padding:60px 0;
   }
+}
 
-  .float-buy{
-    left:12px;
-    bottom:12px;
-  }
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(500px,100%);
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:28px;
+  box-shadow:var(--shadow);
+  animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+  from{transform:translateY(20px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+
+.close{
+  float:left;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  font-size:22px;
+  cursor:pointer;
+}
+
+.modal-box h2{
+  margin-bottom:10px;
+}
+
+.modal-box p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:2;
+  margin-bottom:20px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+}
+
+.modal-actions a{
+  flex:1;
+  text-align:center;
+}
+
+/* RULES */
+
+.rules-overlay{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(183,255,0,.08),transparent 30%),
+    #040506;
+  z-index:5000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.rules-box{
+  width:min(650px,100%);
+  background:rgba(12,16,20,.9);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+
+.rules-logo{
+  text-align:center;
+  font-size:30px;
+  font-weight:900;
+  margin-bottom:20px;
+}
+
+.rules-logo span{
+  color:var(--green);
+}
+
+.rules-box h2{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.rules-text{
+  max-height:300px;
+  overflow:auto;
+  color:#9ba5ad;
+  font-size:12px;
+  line-height:2.2;
+  padding:10px;
+}
+
+.check{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin:20px 0;
+  font-size:12px;
+}
+
+.check input{
+  accent-color:var(--green);
+}
+
+.enter-btn{
+  width:100%;
+}
+
+.hidden{
+  display:none!important;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-logo">V2GURD</div>
-</div>
-
+<div class="glow g1"></div>
+<div class="glow g2"></div>
 
 <!-- RULES -->
-<div id="rules">
-
+<div class="rules-overlay" id="rules">
   <div class="rules-box">
 
-    <div class="rules-logo">V2GURD</div>
-    <div class="rules-title">قوانین و شرایط استفاده</div>
+    <div class="rules-logo">V2<span>GURD</span></div>
 
-    <h4>۱. خرید و پرداخت</h4>
-    <p>
-      پیش از پرداخت، نوع سرویس، حجم و مدت اعتبار را با دقت بررسی کنید.
-      سفارش‌ها مطابق اطلاعات ثبت‌شده هنگام خرید انجام می‌شوند.
-    </p>
+    <h2>قوانین استفاده</h2>
 
-    <h4>۲. عدم امکان استرداد</h4>
-    <p>
-      پس از فعال‌سازی یا تحویل سرویس، امکان لغو سفارش یا بازگشت وجه وجود ندارد.
-    </p>
+    <div class="rules-text">
+      <p>
+        قبل از ورود به سایت لطفاً قوانین را مطالعه کنید.
+        استفاده از خدمات V2GURD به معنی پذیرش قوانین و شرایط سرویس است.
+      </p>
 
-    <h4>۳. پشتیبانی</h4>
-    <p>
-      در صورت وجود مشکل در سرویس، پشتیبانی V2GURD موضوع را
-      در چارچوب شرایط سرویس خریداری‌شده بررسی خواهد کرد.
-    </p>
+      <br>
 
-    <h4>۴. اختلالات شبکه</h4>
-    <p>
-      عملکرد سرویس ممکن است تحت تأثیر اینترنت، اپراتور، دیتاسنتر،
-      مسیرهای ارتباطی و عوامل خارج از کنترل V2GURD قرار بگیرد.
-    </p>
+      <p>
+        مسئولیت حفظ اطلاعات حساب و اطلاعات دریافت‌شده پس از خرید بر عهده کاربر است.
+        سرویس‌ها مطابق مشخصات درج‌شده ارائه می‌شوند.
+      </p>
 
-    <h4>۵. نحوه استفاده</h4>
-    <p>
-      مسئولیت نحوه استفاده از سرویس و رعایت قوانین و مقررات مربوطه بر عهده کاربر است.
-    </p>
+      <br>
 
-    <h4>۶. پنل‌های مدیریتی</h4>
-    <p>
-      پنل‌ها مطابق مشخصات اعلام‌شده هنگام خرید تحویل می‌شوند.
-      اطلاعات ورود و دسترسی خود را نزد خود محفوظ نگه دارید.
-    </p>
+      <p>
+        در صورت وجود مشکل در سرویس، کاربر می‌تواند از طریق پشتیبانی با ما در ارتباط باشد.
+      </p>
 
-    <h4>۷. تغییر قیمت و خدمات</h4>
-    <p>
-      V2GURD می‌تواند قیمت و شرایط سرویس‌ها را در آینده تغییر دهد.
-    </p>
+      <br>
 
-    <div class="accept-row">
+      <p>
+        قیمت‌ها ممکن است با توجه به شرایط سرویس و تخفیف‌ها تغییر کنند.
+      </p>
+
+      <br>
+
+      <p>
+        استفاده از خدمات به معنی قبول این شرایط است.
+      </p>
+    </div>
+
+    <label class="check">
       <input type="checkbox" id="acceptRules">
-      <label for="acceptRules">
-        قوانین و شرایط استفاده از خدمات V2GURD را مطالعه کردم و می‌پذیرم.
-      </label>
-    </div>
+      قوانین را مطالعه کردم و می‌پذیرم
+    </label>
 
-    <button class="enter-btn" id="enterBtn">
-      ✓ تأیید و ورود به سایت
+    <button class="btn btn-primary enter-btn" onclick="enterSite()">
+      ورود به V2GURD
     </button>
-
-    <div class="rules-footer">
-      با ادامه ورود، موافقت خود را با شرایط فوق اعلام می‌کنید.
-    </div>
 
   </div>
 </div>
 
-
 <!-- HEADER -->
 <header>
+  <div class="container nav">
 
-  <nav class="nav">
+    <a href="#home" class="logo">V2<span>GURD</span></a>
 
-    <a href="#home" class="brand">V2GURD</a>
-
-    <div class="nav-links">
+    <nav class="nav-links">
       <a href="#services">سرویس‌ها</a>
-      <a href="#panels">پنل‌ها</a>
+      <a href="#status">وضعیت</a>
       <a href="#apps">برنامه‌ها</a>
-      <a href="#contact">پشتیبانی</a>
-    </div>
+      <a href="#guide">راهنمای اتصال</a>
+      <a href="#about">درباره ما</a>
+    </nav>
 
-  </nav>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☾</button>
 
+  </div>
 </header>
-
 
 <main id="home">
 
 <!-- HERO -->
 <section class="hero">
-
-  <div class="hero-glow"></div>
-
   <div class="container hero-content">
 
-    <div class="badge">
-      <span class="live-dot"></span>
-      سرویس‌های V2GURD
+    <div class="status-pill">
+      <span class="dot"></span>
+      تمامی سرویس‌ها فعال و پایدار هستند
     </div>
 
-    <h1>V2GURD</h1>
-
-    <h2>اتصال بدون مرز</h2>
+    <h1>
+      V2<span>GURD</span>
+    </h1>
 
     <p>
-      سرویس مناسب خودت رو انتخاب کن،
-      مشخصاتش رو ببین و برای خرید وارد ربات V2GURD شو.
+      تجربه‌ای سریع، پایدار و حرفه‌ای برای سرویس‌های دیجیتال،
+      گیمینگ، سرور، پنل و خدمات شبکه.
     </p>
 
-    <div class="buttons">
-
-      <a href="#services" class="btn primary">
-        مشاهده سرویس‌ها ↓
+    <div class="hero-buttons">
+      <a href="#services" class="btn btn-primary">
+        مشاهده سرویس‌ها
       </a>
 
       <a href="https://t.me/echo_priime_bot"
          target="_blank"
-         class="btn secondary">
-        🤖 ربات خرید
+         class="btn btn-secondary">
+        خرید از ربات ↗
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST MINI -->
+<section>
+<div class="container">
+  <div class="trust-grid">
+
+    <div class="trust-card">
+      <b>🟢 فعال</b>
+      <span>وضعیت سرویس‌ها</span>
+    </div>
+
+    <div class="trust-card">
+      <b>⚡ سریع</b>
+      <span>تحویل و پشتیبانی</span>
+    </div>
+
+    <div class="trust-card">
+      <b>🛡️ شفاف</b>
+      <span>قوانین مشخص</span>
+    </div>
+
+    <div class="trust-card">
+      <b>💬 پشتیبانی</b>
+      <span>ارتباط مستقیم</span>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- SPECIAL -->
+<section>
+<div class="container">
+
+  <div class="special">
+
+    <div class="special-content">
+
+      <div>
+        <small style="color:var(--green);font-weight:900">
+          🔥 پیشنهاد ویژه
+        </small>
+
+        <h3>۵۰۰ گیگ ویژه V2GURD</h3>
+
+        <div class="price">
+          ۵۰۰,۰۰۰ <span>تومان</span>
+        </div>
+
+        <p style="color:var(--muted);font-size:12px">
+          حجم بالا با قیمت ویژه — تعداد محدود
+        </p>
+
+        <div class="timer" id="timer">
+
+          <div class="time-box">
+            <b id="days">10</b>
+            <span>روز</span>
+          </div>
+
+          <div class="time-box">
+            <b id="hours">00</b>
+            <span>ساعت</span>
+          </div>
+
+          <div class="time-box">
+            <b id="minutes">00</b>
+            <span>دقیقه</span>
+          </div>
+
+          <div class="time-box">
+            <b id="seconds">00</b>
+            <span>ثانیه</span>
+          </div>
+
+        </div>
+      </div>
+
+      <a href="https://t.me/echo_priime_bot"
+         target="_blank"
+         class="btn btn-primary">
+        خرید از ربات
       </a>
 
     </div>
 
   </div>
 
+</div>
 </section>
 
-
-<!-- CATEGORY -->
-<div class="category-bar">
-
-  <a href="#services">💚 اقتصادی</a>
-  <a href="#highvolume">⚡ حجم بالا</a>
-  <a href="#unlimited">♾️ نامحدود</a>
-  <a href="#gaming">🎮 گیمینگ</a>
-  <a href="#premium">💎 پرمیوم</a>
-  <a href="#panels">🖥️ پنل‌ها</a>
-
-</div>
-
-
-<!-- ECONOMIC -->
+<!-- SERVICES -->
 <section id="services">
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
-      <div class="mini">ECONOMIC</div>
-      <h3>حجم کم | اقتصادی 💚</h3>
-      <p>مناسب برای مصرف روزمره</p>
+  <div class="section-head">
+    <small>V2GURD SERVICES</small>
+    <h2>سرویس مورد نظرت رو پیدا کن</h2>
+    <p>حجم، سرویس یا دسته مورد نظر را جستجو کنید.</p>
+  </div>
+
+  <div class="search">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="مثلاً ۵۰۰ گیگ، WireGuard، پنل..."
+      oninput="searchProducts()">
+  </div>
+
+  <div class="categories">
+
+    <button class="cat active" onclick="filterProducts('all',this)">
+      همه
+    </button>
+
+    <button class="cat" onclick="filterProducts('vpn',this)">
+      VPN
+    </button>
+
+    <button class="cat" onclick="filterProducts('gaming',this)">
+      🎮 Gaming
+    </button>
+
+    <button class="cat" onclick="filterProducts('panel',this)">
+      🖥️ پنل
+    </button>
+
+    <button class="cat" onclick="filterProducts('instagram',this)">
+      📸 Instagram
+    </button>
+
+    <button class="cat" onclick="filterProducts('premium',this)">
+      💎 Premium
+    </button>
+
+  </div>
+
+  <div class="products" id="products">
+
+    <!-- VPN -->
+    <article class="product" data-category="vpn" data-search="10 گیگ 20 گیگ 30 گیگ اقتصادی">
+      <span class="badge green">⚡ اقتصادی</span>
+      <div class="product-icon">🌐</div>
+      <h3>۱۰ گیگ</h3>
+      <p class="desc">سرویس اقتصادی V2GURD</p>
+      <div class="price">۲۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۱۰ گیگ','۲۰,۰۰۰','سرویس اقتصادی','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <article class="product" data-category="vpn" data-search="20 گیگ اقتصادی">
+      <span class="badge green">⚡ اقتصادی</span>
+      <div class="product-icon">🌐</div>
+      <h3>۲۰ گیگ</h3>
+      <p class="desc">سرویس اقتصادی V2GURD</p>
+      <div class="price">۴۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۲۰ گیگ','۴۰,۰۰۰','سرویس اقتصادی','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <article class="product" data-category="vpn" data-search="30 گیگ اقتصادی">
+      <span class="badge blue">⚡ محبوب</span>
+      <div class="product-icon">🌐</div>
+      <h3>۳۰ گیگ</h3>
+      <p class="desc">سرویس اقتصادی V2GURD</p>
+      <div class="price">۷۵,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۳۰ گیگ','۷۵,۰۰۰','سرویس اقتصادی','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <!-- HIGH VOLUME -->
+    <article class="product" data-category="vpn" data-search="50 گیگ حجم بالا">
+      <span class="badge blue">💎 حجم بالا</span>
+      <div class="product-icon">🚀</div>
+      <h3>۵۰ گیگ</h3>
+      <p class="desc">مناسب مصرف بالاتر</p>
+      <div class="price">۱۲۵,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۵۰ گیگ','۱۲۵,۰۰۰','حجم بالا','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <article class="product" data-category="vpn" data-search="100 گیگ حجم بالا">
+      <span class="badge blue">💎 حجم بالا</span>
+      <div class="product-icon">🚀</div>
+      <h3>۱۰۰ گیگ</h3>
+      <p class="desc">حجم بالا برای مصرف بیشتر</p>
+      <div class="price">۲۵۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۱۰۰ گیگ','۲۵۰,۰۰۰','حجم بالا','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <article class="product" data-category="vpn" data-search="150 گیگ حجم بالا">
+      <span class="badge blue">💎 حجم بالا</span>
+      <div class="product-icon">🚀</div>
+      <h3>۱۵۰ گیگ</h3>
+      <p class="desc">حجم بالا برای مصرف سنگین</p>
+      <div class="price">۳۷۵,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۱۵۰ گیگ','۳۷۵,۰۰۰','حجم بالا','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <article class="product" data-category="vpn" data-search="500 گیگ ویژه">
+      <span class="badge red">🔥 ویژه</span>
+      <div class="product-icon">🔥</div>
+      <h3>۵۰۰ گیگ</h3>
+      <p class="desc">پیشنهاد ویژه با حجم بالا</p>
+      <div class="price">۵۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۵۰۰ گیگ','۵۰۰,۰۰۰','پیشنهاد ویژه','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <!-- UNLIMITED -->
+    <article class="product" data-category="vpn" data-search="نامحدود تک کاربره">
+      <span class="badge green">♾️ نامحدود</span>
+      <div class="product-icon">♾️</div>
+      <h3>نامحدود تک کاربره</h3>
+      <p class="desc">یک کاربر — یک ماه</p>
+      <div class="price">۹۹,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('نامحدود تک کاربره','۹۹,۰۰۰','نامحدود','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <article class="product" data-category="vpn" data-search="نامحدود دو کاربره">
+      <span class="badge green">♾️ نامحدود</span>
+      <div class="product-icon">♾️</div>
+      <h3>نامحدود دو کاربره</h3>
+      <p class="desc">دو کاربر — یک ماه</p>
+      <div class="price">۱۹۹,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('نامحدود دو کاربره','۱۹۹,۰۰۰','نامحدود','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <!-- GAMING -->
+    <article class="product" data-category="gaming" data-search="WireGuard Gaming 10 گیگ">
+      <span class="badge red">🎮 Gaming</span>
+      <div class="product-icon">🎮</div>
+      <h3>WireGuard Gaming ۱۰ گیگ</h3>
+      <p class="desc">مناسب گیم و Call of Duty</p>
+      <div class="price">۳۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('WireGuard Gaming ۱۰ گیگ','۳۰۰,۰۰۰','Gaming / WireGuard','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <article class="product" data-category="gaming" data-search="WireGuard Gaming 20 گیگ">
+      <span class="badge red">🎮 Gaming</span>
+      <div class="product-icon">🎮</div>
+      <h3>WireGuard Gaming ۲۰ گیگ</h3>
+      <p class="desc">مناسب گیم و Call of Duty</p>
+      <div class="price">۴۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('WireGuard Gaming ۲۰ گیگ','۴۰۰,۰۰۰','Gaming / WireGuard','یک ماهه')">
+        جزئیات
+      </button>
+    </article>
+
+    <!-- PANELS -->
+    <article class="product" data-category="panel" data-search="پنل 1 ترا">
+      <span class="badge blue">🖥️ پنل</span>
+      <div class="product-icon">🖥️</div>
+      <h3>پنل ۱ ترا</h3>
+      <p class="desc">پنل وب حرفه‌ای</p>
+      <div class="price">۸۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('پنل ۱ ترا','۸۰۰,۰۰۰','پنل وب','خرید از پشتیبانی')">
+        اطلاعات خرید
+      </button>
+    </article>
+
+    <article class="product" data-category="panel" data-search="پنل 2 ترا">
+      <span class="badge blue">🖥️ پنل</span>
+      <div class="product-icon">🖥️</div>
+      <h3>پنل ۲ ترا</h3>
+      <p class="desc">پنل وب حرفه‌ای</p>
+      <div class="price">۱,۲۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('پنل ۲ ترا','۱,۲۰۰,۰۰۰','پنل وب','خرید از پشتیبانی')">
+        اطلاعات خرید
+      </button>
+    </article>
+
+    <article class="product" data-category="panel" data-search="پنل 3 ترا">
+      <span class="badge blue">🖥️ پنل</span>
+      <div class="product-icon">🖥️</div>
+      <h3>پنل ۳ ترا</h3>
+      <p class="desc">پنل وب حرفه‌ای</p>
+      <div class="price">۱,۸۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('پنل ۳ ترا','۱,۸۰۰,۰۰۰','پنل وب','خرید از پشتیبانی')">
+        اطلاعات خرید
+      </button>
+    </article>
+
+    <article class="product" data-category="panel" data-search="پنل 4 ترا">
+      <span class="badge blue">🖥️ پنل</span>
+      <div class="product-icon">🖥️</div>
+      <h3>پنل ۴ ترا</h3>
+      <p class="desc">پنل وب حرفه‌ای</p>
+      <div class="price">۲,۳۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('پنل ۴ ترا','۲,۳۰۰,۰۰۰','پنل وب','خرید از پشتیبانی')">
+        اطلاعات خرید
+      </button>
+    </article>
+
+    <!-- PREMIUM -->
+    <article class="product" data-category="premium" data-search="Telegram Premium سه ماهه">
+      <span class="badge red">💎 Premium</span>
+      <div class="product-icon">💎</div>
+      <h3>Telegram Premium</h3>
+      <p class="desc">اشتراک سه ماهه</p>
+      <div class="price">۳,۸۰۰,۰۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('Telegram Premium','۳,۸۰۰,۰۰۰','اشتراک پرمیوم','۳ ماهه')">
+        اطلاعات خرید
+      </button>
+    </article>
+
+    <!-- INSTAGRAM -->
+    <article class="product" data-category="instagram" data-search="Instagram ویو ریلز 500">
+      <span class="badge red">📸 Instagram</span>
+      <div class="product-icon">👁️</div>
+      <h3>۵۰۰ ویو ریلز</h3>
+      <p class="desc">بازدید ویدیو / ریلز</p>
+      <div class="price">۹,۹۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۵۰۰ ویو ریلز','۹,۹۰۰','Instagram','خدمات اینستاگرام')">
+        سفارش
+      </button>
+    </article>
+
+    <article class="product" data-category="instagram" data-search="Instagram ویو ریلز 1000">
+      <span class="badge red">📸 Instagram</span>
+      <div class="product-icon">👁️</div>
+      <h3>۱۰۰۰ ویو ریلز</h3>
+      <p class="desc">بازدید ویدیو / ریلز</p>
+      <div class="price">۱۴,۹۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۱۰۰۰ ویو ریلز','۱۴,۹۰۰','Instagram','خدمات اینستاگرام')">
+        سفارش
+      </button>
+    </article>
+
+    <article class="product" data-category="instagram" data-search="Instagram ویو ریلز 2000">
+      <span class="badge red">📸 Instagram</span>
+      <div class="product-icon">👁️</div>
+      <h3>۲۰۰۰ ویو ریلز</h3>
+      <p class="desc">بازدید ویدیو / ریلز</p>
+      <div class="price">۲۶,۹۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۲۰۰۰ ویو ریلز','۲۶,۹۰۰','Instagram','خدمات اینستاگرام')">
+        سفارش
+      </button>
+    </article>
+
+    <article class="product" data-category="instagram" data-search="Instagram ویو ریلز 5000">
+      <span class="badge red">📸 Instagram</span>
+      <div class="product-icon">👁️</div>
+      <h3>۵۰۰۰ ویو ریلز</h3>
+      <p class="desc">بازدید ویدیو / ریلز</p>
+      <div class="price">۵۹,۹۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۵۰۰۰ ویو ریلز','۵۹,۹۰۰','Instagram','خدمات اینستاگرام')">
+        سفارش
+      </button>
+    </article>
+
+    <article class="product" data-category="instagram" data-search="Instagram ویو ریلز 10000">
+      <span class="badge red">🔥 Instagram</span>
+      <div class="product-icon">👁️</div>
+      <h3>۱۰,۰۰۰ ویو ریلز</h3>
+      <p class="desc">بازدید ویدیو / ریلز</p>
+      <div class="price">۱۱۴,۹۰۰ <span>تومان</span></div>
+      <button class="btn btn-primary" onclick="showProduct('۱۰,۰۰۰ ویو ریلز','۱۱۴,۹۰۰','Instagram','خدمات اینستاگرام')">
+        سفارش
+      </button>
+    </article>
+
+  </div>
+
+</div>
+</section>
+
+<!-- STATUS -->
+<section id="status">
+
+<div class="container">
+
+  <div class="section-head">
+    <small>LIVE STATUS</small>
+    <h2>وضعیت سرویس‌ها</h2>
+    <p>وضعیت فعلی سرویس‌های V2GURD</p>
+  </div>
+
+  <div class="status-grid">
+
+    <div class="server">
+      <div class="server-name">
+        <span class="server-dot"></span>
+        سرورهای اصلی
+      </div>
+      <span class="server-status">فعال</span>
     </div>
 
-    <div class="grid">
-
-      <div class="card">
-        <div class="icon">📦</div>
-        <h4>۱۰ گیگ</h4>
-        <div class="price">۲۰,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('۱۰ گیگ','۲۰,۰۰۰','۳۰ روز','نامحدود','V2Ray / V2Box','📦')">
-          مشاهده جزئیات
-        </button>
+    <div class="server">
+      <div class="server-name">
+        <span class="server-dot"></span>
+        سرورهای اروپا
       </div>
+      <span class="server-status">فعال</span>
+    </div>
 
-      <div class="card">
-        <div class="icon">📦</div>
-        <h4>۲۰ گیگ</h4>
-        <div class="price">۴۰,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('۲۰ گیگ','۴۰,۰۰۰','۳۰ روز','نامحدود','V2Ray / V2Box','📦')">
-          مشاهده جزئیات
-        </button>
+    <div class="server">
+      <div class="server-name">
+        <span class="server-dot"></span>
+        سرورهای گیمینگ
       </div>
+      <span class="server-status">فعال</span>
+    </div>
 
-      <div class="card">
-        <div class="icon">📦</div>
-        <h4>۳۰ گیگ</h4>
-        <div class="price">۷۵,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('۳۰ گیگ','۷۵,۰۰۰','۳۰ روز','نامحدود','V2Ray / V2Box','📦')">
-          مشاهده جزئیات
-        </button>
+    <div class="server">
+      <div class="server-name">
+        <span class="server-dot"></span>
+        WireGuard Gaming
       </div>
+      <span class="server-status">فعال</span>
+    </div>
 
+    <div class="server">
+      <div class="server-name">
+        <span class="server-dot"></span>
+        سرویس‌های حجمی
+      </div>
+      <span class="server-status">فعال</span>
+    </div>
+
+    <div class="server">
+      <div class="server-name">
+        <span class="server-dot"></span>
+        خدمات دیجیتال
+      </div>
+      <span class="server-status">فعال</span>
     </div>
 
   </div>
 
+</div>
 </section>
-
-
-<!-- HIGH VOLUME -->
-<section id="highvolume">
-
-  <div class="container">
-
-    <div class="section-title">
-      <div class="mini">HIGH VOLUME</div>
-      <h3>حجم بالا ⚡</h3>
-      <p>برای مصرف بیشتر</p>
-    </div>
-
-    <div class="grid">
-
-      <div class="card">
-        <div class="icon">🚀</div>
-        <h4>۵۰ گیگ</h4>
-        <div class="price">۱۲۵,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('۵۰ گیگ','۱۲۵,۰۰۰','۳۰ روز','نامحدود','V2Ray / V2Box','🚀')">
-          مشاهده جزئیات
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="icon">🚀</div>
-        <h4>۱۰۰ گیگ</h4>
-        <div class="price">۲۵۰,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('۱۰۰ گیگ','۲۵۰,۰۰۰','۳۰ روز','نامحدود','V2Ray / V2Box','🚀')">
-          مشاهده جزئیات
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="icon">🚀</div>
-        <h4>۱۵۰ گیگ</h4>
-        <div class="price">۳۷۵,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('۱۵۰ گیگ','۳۷۵,۰۰۰','۳۰ روز','نامحدود','V2Ray / V2Box','🚀')">
-          مشاهده جزئیات
-        </button>
-      </div>
-
-      <div class="card featured">
-
-        <div class="featured-label">
-          SUPER OFFER
-        </div>
-
-        <div class="icon">🔥</div>
-
-        <h4>۵۰۰ گیگ</h4>
-
-        <div class="price">
-          ۵۰۰,۰۰۰ <small>تومان</small>
-        </div>
-
-        <button class="card-btn"
-          onclick="openProduct('۵۰۰ گیگ','۵۰۰,۰۰۰','۳۰ روز','نامحدود','V2Ray / V2Box','🔥')">
-          مشاهده جزئیات
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- UNLIMITED -->
-<section id="unlimited">
-
-  <div class="container">
-
-    <div class="section-title">
-      <div class="mini">UNLIMITED</div>
-      <h3>سرویس نامحدود ♾️</h3>
-      <p>برای استفاده بدون دغدغه حجم</p>
-    </div>
-
-    <div class="grid">
-
-      <div class="card">
-        <div class="icon">♾️</div>
-        <h4>۱ کاربر | ۱ ماه</h4>
-        <div class="price">۹۹,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('نامحدود تک کاربره','۹۹,۰۰۰','۱ ماه','۱ کاربر','V2Ray / V2Box','♾️')">
-          مشاهده جزئیات
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="icon">♾️</div>
-        <h4>۲ کاربر | ۱ ماه</h4>
-        <div class="price">۱۹۹,۰۰۰ <small>تومان</small></div>
-        <button class="card-btn"
-          onclick="openProduct('نامحدود دو کاربره','۱۹۹,۰۰۰','۱ ماه','۲ کاربر','V2Ray / V2Box','♾️')">
-          مشاهده جزئیات
-        </button>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- GAMING -->
-<section id="gaming">
-
-  <div class="container">
-
-    <div class="section-title">
-      <div class="mini">GAMING</div>
-      <h3>WireGuard Gaming 🎮</h3>
-      <p>مخصوص Call of Duty Mobile</p>
-    </div>
-
-    <div class="grid">
-
-      <div class="card gaming">
-
-        <span class="gaming-tag">
-          CALL OF DUTY MOBILE
-        </span>
-
-        <div class="icon">🎮</div>
-
-        <h4>۱۰ گیگ WireGuard</h4>
-
-        <div class="price">
-          ۳۰۰,۰۰۰ <small>تومان</small>
-        </div>
-
-        <button class="card-btn"
-          onclick="openProduct('WireGuard Gaming - ۱۰ گیگ','۳۰۰,۰۰۰','طبق شرایط سرویس','طبق سرویس','WireGuard / Call of Duty Mobile','🎮')">
-          مشاهده جزئیات
-        </button>
-
-      </div>
-
-
-      <div class="card gaming">
-
-        <span class="gaming-tag">
-          CALL OF DUTY MOBILE
-        </span>
-
-        <div class="icon">🎮</div>
-
-        <h4>۲۰ گیگ WireGuard</h4>
-
-        <div class="price">
-          ۴۰۰,۰۰۰ <small>تومان</small>
-        </div>
-
-        <button class="card-btn"
-          onclick="openProduct('WireGuard Gaming - ۲۰ گیگ','۴۰۰,۰۰۰','طبق شرایط سرویس','طبق سرویس','WireGuard / Call of Duty Mobile','🎮')">
-          مشاهده جزئیات
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PREMIUM -->
-<section id="premium">
-
-  <div class="container">
-
-    <div class="section-title">
-      <div class="mini">TELEGRAM</div>
-      <h3>Telegram Premium 💎</h3>
-      <p>فعال‌سازی تلگرام پرمیوم</p>
-    </div>
-
-    <div class="grid">
-
-      <div class="card premium">
-
-        <div class="icon">💎</div>
-
-        <h4>Telegram Premium</h4>
-
-        <div class="price">
-          ۳,۸۰۰,۰۰۰ <small>تومان</small>
-        </div>
-
-        <div style="color:#8e958e;font-size:.75rem;margin-bottom:15px;">
-          مدت: ۳ ماه
-        </div>
-
-        <a class="card-btn"
-           href="https://t.me/Vtwoguard"
-           target="_blank">
-          💬 استعلام و خرید
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PANELS -->
-<section id="panels">
-
-  <div class="container">
-
-    <div class="section-title">
-      <div class="mini">WEB PANELS</div>
-      <h3>پنل‌های مدیریتی 🖥️</h3>
-      <p>برای خرید و دریافت اطلاعات پنل از طریق پیوی اقدام کنید.</p>
-    </div>
-
-    <div class="grid panel-grid">
-
-      <div class="card panel-card">
-        <div class="icon">🖥️</div>
-        <h4>۱ ترا</h4>
-        <div class="price">۸۰۰,۰۰۰ <small>تومان</small></div>
-        <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
-          💬 خرید پنل
-        </a>
-      </div>
-
-      <div class="card panel-card">
-        <div class="icon">🖥️</div>
-        <h4>۲ ترا</h4>
-        <div class="price">۱,۲۰۰,۰۰۰ <small>تومان</small></div>
-        <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
-          💬 خرید پنل
-        </a>
-      </div>
-
-      <div class="card panel-card">
-        <div class="icon">🖥️</div>
-        <h4>۳ ترا</h4>
-        <div class="price">۱,۸۰۰,۰۰۰ <small>تومان</small></div>
-        <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
-          💬 خرید پنل
-        </a>
-      </div>
-
-      <div class="card panel-card">
-        <div class="icon">🖥️</div>
-        <h4>۴ ترا</h4>
-        <div class="price">۲,۳۰۰,۰۰۰ <small>تومان</small></div>
-        <a class="card-btn" href="https://t.me/Vtwoguard" target="_blank">
-          💬 خرید پنل
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
 
 <!-- APPS -->
 <section id="apps">
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
-      <div class="mini">APPLICATIONS</div>
-      <h3>برنامه‌های اتصال 📱</h3>
-      <p>برنامه مناسب دستگاهت رو انتخاب کن.</p>
+  <div class="section-head">
+    <small>APPLICATIONS</small>
+    <h2>برنامه‌های مورد نیاز</h2>
+    <p>برنامه مناسب دستگاهت رو انتخاب کن.</p>
+  </div>
+
+  <div class="guide-grid">
+
+    <div class="guide">
+      <div class="product-icon">🍎</div>
+      <h3>iPhone / iOS</h3>
+      <p>
+        برنامه مناسب آیفون را نصب کنید و پس از خرید،
+        اطلاعات اتصال را از ربات دریافت کنید.
+      </p>
+      <a href="#" class="btn btn-secondary" style="display:block;text-align:center">
+        لینک برنامه
+      </a>
     </div>
 
-    <div class="app-grid">
+    <div class="guide">
+      <div class="product-icon">🤖</div>
+      <h3>Android</h3>
+      <p>
+        برنامه مناسب اندروید را نصب کنید و اطلاعات سرویس
+        را پس از خرید از ربات دریافت کنید.
+      </p>
+      <a href="#" class="btn btn-secondary" style="display:block;text-align:center">
+        لینک برنامه
+      </a>
+    </div>
 
-      <div class="app-card">
-
-        <div class="app-head">
-
-          <div class="app-icon">
-            🍎
-          </div>
-
-          <div>
-            <h4>V2Box</h4>
-            <div style="color:#697369;font-size:.7rem;margin-top:4px;">
-              iPhone / iPad / Mac
-            </div>
-          </div>
-
-        </div>
-
-        <p>
-          V2Box از پروتکل‌های مختلف از جمله VLESS، VMess،
-          Trojan و WireGuard پشتیبانی می‌کند و قابلیت استفاده
-          از Subscription Link را دارد.
-        </p>
-
-        <div class="app-buttons">
-
-          <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690"
-             target="_blank">
-            🍎 App Store
-          </a>
-
-          <a href="https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box"
-             target="_blank">
-            🤖 Google Play
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="app-card">
-
-        <div class="app-head">
-
-          <div class="app-icon">
-            🤖
-          </div>
-
-          <div>
-            <h4>V2Box</h4>
-            <div style="color:#697369;font-size:.7rem;margin-top:4px;">
-              Android
-            </div>
-          </div>
-
-        </div>
-
-        <p>
-          نسخه اندروید V2Box برای اتصال به سرویس‌های سازگار
-          با V2Ray / Xray و Subscription Link.
-        </p>
-
-        <div class="app-buttons">
-
-          <a href="https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box"
-             target="_blank">
-            🤖 دانلود از Google Play
-          </a>
-
-        </div>
-
-      </div>
-
+    <div class="guide">
+      <div class="product-icon">🔗</div>
+      <h3>V2Box</h3>
+      <p>
+        برای مدیریت و اتصال سرویس‌های سازگار با V2Box.
+        Subscription و QR بعد از خرید توسط ربات تحویل می‌شود.
+      </p>
+      <a href="#" class="btn btn-secondary" style="display:block;text-align:center">
+        دریافت برنامه
+      </a>
     </div>
 
   </div>
 
+</div>
 </section>
 
+<!-- GUIDE -->
+<section id="guide">
 
-<!-- CTA -->
-<section id="contact">
+<div class="container">
 
-  <div class="cta">
+  <div class="section-head">
+    <small>HOW TO CONNECT</small>
+    <h2>راهنمای اتصال</h2>
+    <p>بعد از خرید، مراحل اتصال بسیار ساده است.</p>
+  </div>
 
-    <h3>آماده‌ای شروع کنی؟ 🚀</h3>
+  <div class="guide-grid">
 
-    <p>
-      سرویس موردنظرت رو انتخاب کن و برای تکمیل خرید
-      وارد ربات V2GURD شو.
-    </p>
+    <div class="guide">
+      <span class="guide-number">STEP 01</span>
+      <h3>خرید سرویس</h3>
+      <p>
+        سرویس مورد نظرت را انتخاب کن و از طریق ربات V2GURD
+        مراحل خرید را انجام بده.
+      </p>
+    </div>
 
-    <div class="buttons">
+    <div class="guide">
+      <span class="guide-number">STEP 02</span>
+      <h3>دریافت اطلاعات</h3>
+      <p>
+        بعد از تکمیل خرید، اطلاعات اتصال شامل Subscription
+        و QR Code از طریق ربات در اختیارت قرار می‌گیرد.
+      </p>
+    </div>
 
-      <a href="https://t.me/echo_priime_bot"
-         target="_blank"
-         class="btn primary">
-        🤖 ورود به ربات خرید
-      </a>
-
-      <a href="https://t.me/Vtwoguard"
-         target="_blank"
-         class="btn secondary">
-        💬 پشتیبانی و خرید پنل
-      </a>
-
+    <div class="guide">
+      <span class="guide-number">STEP 03</span>
+      <h3>اتصال</h3>
+      <p>
+        اطلاعات دریافت‌شده را داخل برنامه سازگار وارد کن
+        و اتصال را فعال کن.
+      </p>
     </div>
 
   </div>
 
+</div>
+</section>
+
+<!-- TRUST -->
+<section>
+
+<div class="container">
+
+  <div class="section-head">
+    <small>WHY V2GURD</small>
+    <h2>چرا V2GURD؟</h2>
+    <p>تمرکز ما روی تجربه ساده و شفاف مشتری است.</p>
+  </div>
+
+  <div class="trust-big">
+
+    <div class="item">
+      <b>🛡️ پشتیبانی مستقیم</b>
+      <p>
+        در صورت وجود مشکل یا سوال، مسیر ارتباطی مستقیم
+        برای پشتیبانی در دسترس شماست.
+      </p>
+    </div>
+
+    <div class="item">
+      <b>🤖 تحویل از طریق ربات</b>
+      <p>
+        فرایند خرید و تحویل سرویس‌ها تا حد امکان
+        ساده و سریع انجام می‌شود.
+      </p>
+    </div>
+
+    <div class="item">
+      <b>📋 قوانین شفاف</b>
+      <p>
+        شرایط استفاده و اطلاعات سرویس‌ها قبل از خرید
+        در اختیار کاربر قرار می‌گیرد.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+
+<div class="container">
+
+  <div class="section-head">
+    <small>ABOUT US</small>
+    <h2>درباره V2GURD</h2>
+  </div>
+
+  <div class="about">
+
+    <p>
+      V2GURD فقط به دنبال فروش نیست؛
+      هدف ما ساختن یک برند قابل اعتماد در حوزه خدمات دیجیتال،
+      سرویس‌های شبکه، گیمینگ و خدمات آنلاین است.
+    </p>
+
+    <br>
+
+    <p>
+      کیفیت بهتر، پشتیبانی مسئولانه و احترام به مشتری،
+      پایه‌های اصلی V2GURD هستند.
+    </p>
+
+  </div>
+
+</div>
+</section>
+
+<!-- FAQ -->
+<section>
+
+<div class="container">
+
+  <div class="section-head">
+    <small>FAQ</small>
+    <h2>سوالات متداول</h2>
+  </div>
+
+  <div class="faq">
+
+    <details>
+      <summary>سرویس بعد از خرید چطور تحویل می‌شود؟</summary>
+      <p>
+        اطلاعات سرویس از طریق ربات خرید در اختیار شما قرار می‌گیرد.
+      </p>
+    </details>
+
+    <details>
+      <summary>Subscription و QR Code را از کجا دریافت کنم؟</summary>
+      <p>
+        پس از تکمیل خرید، اطلاعات اتصال از طریق ربات برای شما ارسال می‌شود.
+      </p>
+    </details>
+
+    <details>
+      <summary>اگر سرویس مشکل داشت چه کار کنم؟</summary>
+      <p>
+        از طریق پشتیبانی V2GURD با ما در ارتباط باشید تا موضوع بررسی شود.
+      </p>
+    </details>
+
+    <details>
+      <summary>پنل‌های وب را چطور خریداری کنم؟</summary>
+      <p>
+        خرید پنل‌های وب از طریق ارتباط با پشتیبانی انجام می‌شود.
+      </p>
+    </details>
+
+  </div>
+
+</div>
 </section>
 
 </main>
 
+<!-- FOOTER -->
+<footer>
 
-<!-- FLOAT BUY -->
-<a href="https://t.me/echo_priime_bot"
-   target="_blank"
-   class="float-buy">
-  🤖 خرید از ربات
-</a>
+<div class="container">
 
+  <div class="footer-logo">
+    V2<span>GURD</span>
+  </div>
+
+  <p>
+    تمامی حقوق و مزایای این سایت و ربات متعلق به V2GURD می‌باشد.
+  </p>
+
+  <div class="footer-links">
+
+    <a href="https://t.me/echo_priime_bot" target="_blank">
+      🤖 ربات خرید
+    </a>
+
+    <a href="https://t.me/Vtwoguard" target="_blank">
+      💬 پشتیبانی
+    </a>
+
+    <a href="#about">
+      درباره ما
+    </a>
+
+    <a href="#guide">
+      راهنمای اتصال
+    </a>
+
+  </div>
+
+  <p style="margin-top:25px">
+    © 2026 V2GURD — تمامی حقوق محفوظ است.
+  </p>
+
+</div>
+
+</footer>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+
+  <a href="#home">
+    <i>⌂</i>
+    خانه
+  </a>
+
+  <a href="#services">
+    <i>◈</i>
+    سرویس‌ها
+  </a>
+
+  <a href="#services">
+    <i>⌕</i>
+    جستجو
+  </a>
+
+  <a href="#guide">
+    <i>?</i>
+    راهنما
+  </a>
+
+  <a href="https://t.me/Vtwoguard" target="_blank">
+    <i>♧</i>
+    پشتیبانی
+  </a>
+
+</nav>
 
 <!-- PRODUCT MODAL -->
-<div id="modal">
+<div class="modal" id="productModal">
 
   <div class="modal-box">
 
-    <button class="modal-close" onclick="closeProduct()">
-      ✕
-    </button>
+    <button class="close" onclick="closeModal()">×</button>
 
-    <div id="modalIcon" class="modal-icon">📦</div>
+    <div style="font-size:30px;margin-bottom:12px">⚡</div>
 
-    <h3 id="modalTitle">۲۰ گیگ</h3>
+    <h2 id="modalTitle">سرویس</h2>
 
-    <div class="modal-price" id="modalPrice">
-      ۴۰,۰۰۰ تومان
-    </div>
+    <p id="modalDescription"></p>
 
-    <div class="info-list">
+    <div class="modal-actions">
 
-      <div class="info-item">
-        <span>اعتبار</span>
-        <span id="modalTime">۳۰ روز</span>
-      </div>
+      <a
+        href="https://t.me/echo_priime_bot"
+        target="_blank"
+        class="btn btn-primary">
+        خرید از ربات
+      </a>
 
-      <div class="info-item">
-        <span>کاربر</span>
-        <span id="modalUsers">نامحدود</span>
-      </div>
-
-      <div class="info-item">
-        <span>سازگار با</span>
-        <span id="modalApp">V2Ray / V2Box</span>
-      </div>
+      <a
+        href="https://t.me/Vtwoguard"
+        target="_blank"
+        class="btn btn-secondary">
+        پشتیبانی
+      </a>
 
     </div>
-
-    <div class="modal-description">
-
-      <strong style="color:#39ff14;">
-        🔗 نحوه تحویل سرویس
-      </strong>
-
-      <br><br>
-
-      پس از تکمیل خرید، اطلاعات اتصال اختصاصی شما
-      از طریق ربات ارسال می‌شود.
-
-      <br><br>
-
-      اطلاعات تحویل می‌تواند شامل
-      <strong>Subscription Link</strong>
-      و
-      <strong>QR Code</strong>
-      باشد.
-
-      <br><br>
-
-      برای اتصال، Subscription Link را در برنامه
-      سازگار وارد کنید یا QR Code را اسکن نمایید.
-
-    </div>
-
-    <a href="https://t.me/echo_priime_bot"
-       target="_blank"
-       class="modal-buy">
-      🤖 خرید این سرویس از ربات
-    </a>
 
   </div>
 
 </div>
 
-
-<!-- FOOTER -->
-<footer>
-
-  <strong>V2GURD</strong>
-
-  <br>
-
-  سرویس‌های سریع، پایدار و مطمئن
-
-  <br><br>
-
-  <a href="#home">خانه</a>
-  &nbsp; • &nbsp;
-  <a href="#services">سرویس‌ها</a>
-  &nbsp; • &nbsp;
-  <a href="#apps">برنامه‌ها</a>
-  &nbsp; • &nbsp;
-  <a href="https://t.me/Vtwoguard" target="_blank">پشتیبانی</a>
-
-  <br><br>
-
-  © ۱۴۰۵ V2GURD
-
-  <br>
-
-  تمامی حقوق و مزایای این وب‌سایت، ربات و خدمات ارائه‌شده
-  متعلق به V2GURD می‌باشد.
-
-</footer>
-
-
 <script>
 
-/* =========================
-   LOADER
-========================= */
+/* RULES */
 
-window.addEventListener("load",function(){
+function enterSite(){
 
-  setTimeout(function(){
+  const accepted =
+    document.getElementById("acceptRules").checked;
 
-    document.getElementById("loader").style.opacity="0";
-
-    setTimeout(function(){
-      document.getElementById("loader").style.display="none";
-    },700);
-
-  },700);
-
-});
-
-
-/* =========================
-   RULES
-========================= */
-
-const rules=document.getElementById("rules");
-const acceptRules=document.getElementById("acceptRules");
-const enterBtn=document.getElementById("enterBtn");
-
-if(localStorage.getItem("v2gurd_rules_accepted")==="yes"){
-  rules.style.display="none";
-}
-
-acceptRules.addEventListener("change",function(){
-
-  if(this.checked){
-    enterBtn.classList.add("active");
-  }else{
-    enterBtn.classList.remove("active");
+  if(!accepted){
+    alert("لطفاً ابتدا قوانین را مطالعه و تأیید کنید.");
+    return;
   }
 
-});
+  localStorage.setItem("v2gurd_rules","accepted");
 
-enterBtn.addEventListener("click",function(){
-
-  localStorage.setItem("v2gurd_rules_accepted","yes");
-
-  rules.style.opacity="0";
-
-  setTimeout(function(){
-    rules.style.display="none";
-  },500);
-
-});
-
-
-/* =========================
-   PRODUCT MODAL
-========================= */
-
-const modal=document.getElementById("modal");
-
-function openProduct(title,price,time,users,app,icon){
-
-  document.getElementById("modalTitle").innerText=title;
-
-  document.getElementById("modalPrice").innerText=
-    price+" تومان";
-
-  document.getElementById("modalTime").innerText=time;
-
-  document.getElementById("modalUsers").innerText=users;
-
-  document.getElementById("modalApp").innerText=app;
-
-  document.getElementById("modalIcon").innerText=icon;
-
-  modal.style.display="flex";
-
-  document.body.style.overflow="hidden";
+  document.getElementById("rules").classList.add("hidden");
 }
 
-function closeProduct(){
-
-  modal.style.display="none";
-
-  document.body.style.overflow="";
-
+if(localStorage.getItem("v2gurd_rules")==="accepted"){
+  document.getElementById("rules").classList.add("hidden");
 }
 
-modal.addEventListener("click",function(e){
 
-  if(e.target===modal){
-    closeProduct();
+/* THEME */
+
+function toggleTheme(){
+
+  document.body.classList.toggle("light");
+
+  const isLight =
+    document.body.classList.contains("light");
+
+  localStorage.setItem(
+    "v2gurd_theme",
+    isLight ? "light" : "dark"
+  );
+
+  document.getElementById("themeBtn").textContent =
+    isLight ? "☀" : "☾";
+}
+
+if(localStorage.getItem("v2gurd_theme")==="light"){
+  document.body.classList.add("light");
+  document.getElementById("themeBtn").textContent="☀";
+}
+
+
+/* COUNTDOWN */
+
+const TIMER_KEY = "v2gurd_special_end";
+
+let endTime =
+  localStorage.getItem(TIMER_KEY);
+
+if(!endTime){
+
+  endTime =
+    Date.now() + (10 * 24 * 60 * 60 * 1000);
+
+  localStorage.setItem(
+    TIMER_KEY,
+    endTime
+  );
+}
+
+function updateTimer(){
+
+  const now = Date.now();
+  let distance = Number(endTime) - now;
+
+  if(distance <= 0){
+
+    document.getElementById("timer").innerHTML =
+      '<div style="color:var(--red);font-weight:900">پیشنهاد ویژه به پایان رسید</div>';
+
+    return;
   }
 
-});
+  const days =
+    Math.floor(distance / (1000*60*60*24));
 
-document.addEventListener("keydown",function(e){
+  distance %= (1000*60*60*24);
 
-  if(e.key==="Escape"){
-    closeProduct();
-  }
+  const hours =
+    Math.floor(distance / (1000*60*60));
 
-});
+  distance %= (1000*60*60);
+
+  const minutes =
+    Math.floor(distance / (1000*60));
+
+  const seconds =
+    Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2,"0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2,"0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2,"0");
+}
+
+updateTimer();
+
+setInterval(updateTimer,1000);
 
 
-/* =========================
-   CARD ANIMATION
-========================= */
+/* PRODUCT MODAL */
 
-const cards=document.querySelectorAll(".card");
+function showProduct(
+  title,
+  price,
+  type,
+  duration
+){
 
-const observer=new IntersectionObserver(
-  function(entries){
+  document.getElementById("modalTitle").textContent =
+    title;
 
-    entries.forEach(function(entry){
+  document.getElementById("modalDescription").innerHTML =
+    "💰 قیمت: <b>"+price+" تومان</b><br><br>"+
+    "📦 نوع سرویس: "+type+"<br>"+
+    "⏱️ اعتبار: "+duration+"<br><br>"+
+    "پس از خرید، اطلاعات اتصال و موارد مورد نیاز از طریق ربات در اختیار شما قرار می‌گیرد.";
 
-      if(entry.isIntersecting){
+  document
+    .getElementById("productModal")
+    .classList.add("show");
+}
 
-        entry.target.classList.add("show");
+function closeModal(){
 
-        observer.unobserve(entry.target);
+  document
+    .getElementById("productModal")
+    .classList.remove("show");
+}
 
+document
+  .getElementById("productModal")
+  .addEventListener("click",function(e){
+
+    if(e.target===this){
+      closeModal();
+    }
+
+  });
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+  const value =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+  document
+    .querySelectorAll(".product")
+    .forEach(product=>{
+
+      const text =
+        product.dataset.search.toLowerCase();
+
+      product.style.display =
+        text.includes(value)
+        ? ""
+        : "none";
+
+    });
+}
+
+
+/* FILTER */
+
+function filterProducts(category,button){
+
+  document
+    .querySelectorAll(".cat")
+    .forEach(x=>x.classList.remove("active"));
+
+  button.classList.add("active");
+
+  document
+    .querySelectorAll(".product")
+    .forEach(product=>{
+
+      if(
+        category==="all" ||
+        product.dataset.category===category
+      ){
+        product.style.display="";
+      }else{
+        product.style.display="none";
       }
 
     });
 
-  },
-  {
-    threshold:.12
-  }
-);
+  document.getElementById("searchInput").value="";
+}
 
-cards.forEach(function(card){
-  observer.observe(card);
+
+/* ESC MODAL */
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key==="Escape"){
+    closeModal();
+  }
+
 });
 
 </script>
