@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#05080d">
+<meta name="description" content="V2GURD Digital Services">
 <title>V2GURD | Digital Services</title>
 
 <style>
 :root{
-  --bg:#05080d;
-  --card:#0b1119;
-  --card2:#101923;
-  --text:#f5f7fa;
-  --muted:#8994a3;
+  --bg:#04070b;
+  --card:#091018;
+  --card2:#0d151e;
+  --text:#f4f7fa;
+  --muted:#8793a1;
   --green:#b8ff00;
   --blue:#18aaff;
   --red:#ff3158;
-  --cyan:#00f6ff;
+  --cyan:#00f5ff;
   --border:rgba(255,255,255,.08);
 }
 
@@ -32,56 +33,50 @@ html{
 
 body{
   background:
-    radial-gradient(circle at 15% 20%,rgba(0,246,255,.025),transparent 25%),
-    radial-gradient(circle at 85% 70%,rgba(184,255,0,.025),transparent 25%),
+    radial-gradient(circle at 20% 10%,rgba(0,245,255,.025),transparent 25%),
+    radial-gradient(circle at 80% 30%,rgba(184,255,0,.025),transparent 25%),
     var(--bg);
   color:var(--text);
   font-family:Tahoma,Arial,sans-serif;
   overflow-x:hidden;
-  transition:.35s ease;
+  transition:
+    background .45s ease,
+    color .45s ease;
 }
 
 body.light{
-  --bg:#f3f6f8;
-  --card:#fff;
-  --card2:#f7f9fa;
+  --bg:#f1f5f7;
+  --card:#ffffff;
+  --card2:#f5f8fa;
   --text:#11161c;
-  --muted:#5c6875;
+  --muted:#5d6874;
   --border:rgba(0,0,0,.1);
 }
 
-a{
-  -webkit-tap-highlight-color:transparent;
-}
-
-button{
-  font-family:inherit;
-}
-
-/* ================= LIGHTS ================= */
+/* BACKGROUND */
 
 .bg-light{
   position:fixed;
-  width:260px;
-  height:260px;
+  width:220px;
+  height:220px;
   border-radius:50%;
-  filter:blur(90px);
-  opacity:.07;
+  filter:blur(85px);
+  opacity:.055;
   pointer-events:none;
   z-index:-1;
-  animation:floatLight 12s ease-in-out infinite alternate;
+  animation:floatLight 14s ease-in-out infinite alternate;
 }
 
 .green-light{
   background:var(--green);
-  top:-120px;
-  right:-100px;
+  top:-100px;
+  right:-80px;
 }
 
 .blue-light{
   background:var(--blue);
-  bottom:-120px;
-  left:-100px;
+  bottom:-100px;
+  left:-80px;
   animation-delay:3s;
 }
 
@@ -89,51 +84,36 @@ button{
   background:var(--red);
   top:45%;
   left:45%;
-  opacity:.035;
+  opacity:.025;
   animation-delay:6s;
 }
 
 @keyframes floatLight{
   to{
-    transform:translate(80px,100px);
+    transform:translate(55px,70px);
   }
 }
 
-/* ================= CYBER GRID ================= */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-2;
-  opacity:.025;
-  background-image:
-    linear-gradient(rgba(0,246,255,.5) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,246,255,.5) 1px,transparent 1px);
-  background-size:70px 70px;
-  mask-image:linear-gradient(to bottom,black,transparent 85%);
-}
-
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(5,8,13,.78);
+  background:rgba(4,7,11,.82);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
+  transition:.35s;
 }
 
 body.light header{
-  background:rgba(243,246,248,.9);
+  background:rgba(241,245,247,.88);
 }
 
 .nav{
   max-width:1180px;
   margin:auto;
-  padding:14px 18px;
+  padding:13px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -145,12 +125,12 @@ body.light header{
   gap:5px;
   font-size:21px;
   font-weight:1000;
-  letter-spacing:1.5px;
+  letter-spacing:1.4px;
 }
 
-.logo span.brand{
+.logo .brand{
   color:var(--green);
-  text-shadow:0 0 14px rgba(184,255,0,.4);
+  text-shadow:0 0 14px rgba(184,255,0,.35);
 }
 
 .verified{
@@ -158,18 +138,19 @@ body.light header{
   height:17px;
   border-radius:50%;
   background:#159cff;
-  color:#fff;
+  color:white;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   font-size:10px;
-  box-shadow:0 0 12px rgba(21,156,255,.65);
-  animation:verified 2s ease-in-out infinite;
+  font-weight:900;
+  box-shadow:0 0 12px rgba(21,156,255,.55);
+  animation:verifyPulse 2.5s ease-in-out infinite;
 }
 
-@keyframes verified{
+@keyframes verifyPulse{
   50%{
-    box-shadow:0 0 22px rgba(21,156,255,.9);
+    box-shadow:0 0 22px rgba(21,156,255,.85);
   }
 }
 
@@ -181,9 +162,10 @@ body.light header{
 .nav-links a{
   color:var(--muted);
   text-decoration:none;
-  font-size:10px;
+  font-size:9px;
   padding:8px 10px;
   border-radius:10px;
+  transition:.2s;
 }
 
 .nav-links a:hover{
@@ -201,15 +183,15 @@ body.light header{
   cursor:pointer;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
   max-width:1180px;
   margin:auto;
-  padding:75px 18px 55px;
+  padding:68px 18px 45px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:55px;
+  gap:45px;
   align-items:center;
 }
 
@@ -221,10 +203,10 @@ body.light header{
   font-size:9px;
   font-weight:900;
   padding:7px 12px;
-  border:1px solid rgba(184,255,0,.16);
-  background:rgba(184,255,0,.05);
+  border:1px solid rgba(184,255,0,.15);
+  background:rgba(184,255,0,.04);
   border-radius:30px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .badge i{
@@ -238,15 +220,15 @@ body.light header{
 
 .hero h1{
   font-size:clamp(28px,4vw,45px);
-  line-height:1.4;
-  margin-bottom:17px;
+  line-height:1.35;
+  margin-bottom:15px;
 }
 
 .neon{
   color:var(--green);
   text-shadow:
     0 0 5px rgba(184,255,0,.6),
-    0 0 16px rgba(184,255,0,.35);
+    0 0 16px rgba(184,255,0,.3);
   animation:neon 3s ease-in-out infinite;
 }
 
@@ -254,12 +236,14 @@ body.light header{
   color:var(--blue);
   text-shadow:
     0 0 5px rgba(24,170,255,.65),
-    0 0 16px rgba(24,170,255,.35);
+    0 0 16px rgba(24,170,255,.3);
   animation-delay:1s;
 }
 
 @keyframes neon{
-  50%{filter:brightness(1.25)}
+  50%{
+    filter:brightness(1.2);
+  }
 }
 
 .hero-text{
@@ -272,7 +256,7 @@ body.light header{
 .hero-buttons{
   display:flex;
   gap:9px;
-  margin-top:25px;
+  margin-top:23px;
   flex-wrap:wrap;
 }
 
@@ -283,6 +267,7 @@ body.light header{
   border:0;
   border-radius:13px;
   padding:12px 18px;
+  font-family:inherit;
   font-size:10px;
   font-weight:900;
   cursor:pointer;
@@ -297,7 +282,7 @@ body.light header{
 .primary{
   background:var(--green);
   color:#071000;
-  box-shadow:0 0 22px rgba(184,255,0,.12);
+  box-shadow:0 0 20px rgba(184,255,0,.1);
 }
 
 .secondary{
@@ -306,27 +291,47 @@ body.light header{
   border:1px solid var(--border);
 }
 
-/* ================= NETWORK HERO ================= */
+/* LIVE NETWORK */
 
 .network{
-  height:370px;
+  height:350px;
   position:relative;
   overflow:hidden;
   border-radius:28px;
   border:1px solid var(--border);
   background:
-    radial-gradient(circle at 50% 50%,rgba(24,170,255,.08),transparent 40%),
+    radial-gradient(circle at 50% 50%,rgba(24,170,255,.07),transparent 42%),
     var(--card);
 }
 
 .network-grid{
   position:absolute;
   inset:0;
-  opacity:.18;
+  opacity:.16;
   background-image:
     linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:40px 40px;
+  background-size:38px 38px;
+}
+
+.network-scan{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:linear-gradient(
+    transparent,
+    var(--cyan),
+    transparent
+  );
+  box-shadow:0 0 18px var(--cyan);
+  opacity:.4;
+  animation:scan 4s linear infinite;
+}
+
+@keyframes scan{
+  from{right:-5%}
+  to{right:105%}
 }
 
 .node{
@@ -346,15 +351,15 @@ body.light header{
 }
 
 .node.dc{
-  top:38px;
-  right:38px;
+  top:35px;
+  right:35px;
   border:1px solid rgba(24,170,255,.3);
   box-shadow:0 0 28px rgba(24,170,255,.1);
 }
 
 .node.user{
-  bottom:38px;
-  left:38px;
+  bottom:35px;
+  left:35px;
   border:1px solid rgba(184,255,0,.3);
   box-shadow:0 0 28px rgba(184,255,0,.1);
 }
@@ -372,8 +377,7 @@ body.light header{
     var(--green),
     var(--red)
   );
-  opacity:.5;
-  box-shadow:0 0 12px rgba(24,170,255,.5);
+  opacity:.45;
 }
 
 .packet{
@@ -414,16 +418,29 @@ body.light header{
   }
 }
 
-/* ================= SECTIONS ================= */
+.network-live{
+  position:absolute;
+  left:18px;
+  bottom:17px;
+  z-index:5;
+  padding:7px 10px;
+  border-radius:10px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(0,245,255,.15);
+  color:var(--cyan);
+  font-size:8px;
+}
+
+/* SECTIONS */
 
 section{
   max-width:1180px;
   margin:auto;
-  padding:55px 18px;
+  padding:52px 18px;
 }
 
 .section-title{
-  margin-bottom:25px;
+  margin-bottom:24px;
 }
 
 .section-title small{
@@ -443,7 +460,7 @@ section{
   font-size:10px;
 }
 
-/* ================= SPECIAL ================= */
+/* SPECIAL */
 
 .special{
   position:relative;
@@ -460,17 +477,23 @@ section{
 .special::before{
   content:"";
   position:absolute;
-  width:180px;
-  height:2px;
   top:0;
-  left:-200px;
-  background:linear-gradient(90deg,transparent,var(--green),transparent);
-  box-shadow:0 0 20px var(--green);
-  animation:scanSpecial 4s linear infinite;
+  left:-120px;
+  width:100px;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(184,255,0,.15),
+    transparent
+  );
+  transform:skewX(-18deg);
+  animation:specialScan 4s linear infinite;
 }
 
-@keyframes scanSpecial{
-  to{left:110%}
+@keyframes specialScan{
+  from{left:-140px}
+  to{left:120%}
 }
 
 .special h2{
@@ -479,15 +502,15 @@ section{
 
 .timer{
   color:var(--green);
-  font-size:19px;
+  font-size:18px;
   font-weight:1000;
-  margin:17px 0;
+  margin:16px 0;
 }
 
-/* ================= PRODUCTS ================= */
+/* PRODUCTS */
 
 .product-group{
-  margin-bottom:48px;
+  margin-bottom:45px;
 }
 
 .group-title{
@@ -515,7 +538,7 @@ section{
 .product{
   position:relative;
   overflow:hidden;
-  min-height:210px;
+  min-height:205px;
   padding:22px;
   border-radius:22px;
   border:1px solid var(--border);
@@ -525,58 +548,33 @@ section{
 }
 
 .product:hover{
-  transform:translateY(-5px);
-  border-color:rgba(184,255,0,.24);
+  transform:translateY(-4px);
+  border-color:rgba(184,255,0,.25);
 }
 
 .product::before{
   content:"";
   position:absolute;
-  top:0;
-  right:-100%;
-  width:70%;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  box-shadow:0 0 14px var(--cyan);
-  animation:cardScan 5s linear infinite;
-}
-
-@keyframes cardScan{
-  0%{right:-100%}
-  100%{right:120%}
-}
-
-.product::after{
-  content:"";
-  position:absolute;
-  width:100px;
-  height:100px;
+  top:-100px;
+  right:-100px;
+  width:180px;
+  height:180px;
   border-radius:50%;
   background:var(--green);
-  filter:blur(55px);
-  opacity:.035;
-  top:-50px;
-  right:-40px;
+  filter:blur(65px);
+  opacity:.025;
   animation:productGlow 6s ease-in-out infinite alternate;
-}
-
-.product:nth-child(3n)::after{
-  background:var(--blue);
-}
-
-.product:nth-child(4n)::after{
-  background:var(--red);
 }
 
 @keyframes productGlow{
   to{
-    transform:translate(-45px,55px);
+    transform:translate(-30px,40px);
   }
 }
 
 .product-icon{
   font-size:27px;
-  margin-bottom:15px;
+  margin-bottom:14px;
 }
 
 .product h3{
@@ -601,7 +599,7 @@ section{
   display:flex;
   gap:5px;
   flex-wrap:wrap;
-  margin-top:10px;
+  margin-top:9px;
 }
 
 .tag{
@@ -610,7 +608,7 @@ section{
   font-size:7px;
   color:var(--green);
   background:rgba(184,255,0,.05);
-  border:1px solid rgba(184,255,0,.11);
+  border:1px solid rgba(184,255,0,.1);
 }
 
 .arrow{
@@ -621,300 +619,266 @@ section{
   font-size:14px;
 }
 
-/* ================= LIVE SERVER MAP ================= */
+/* LIVE BOXES */
 
-.live-map{
-  position:relative;
-  min-height:430px;
-  overflow:hidden;
-  border:1px solid rgba(0,246,255,.12);
-  border-radius:28px;
-  background:
-    radial-gradient(circle at 50% 50%,rgba(0,246,255,.06),transparent 45%),
-    var(--card);
-}
-
-.map-grid{
-  position:absolute;
-  inset:0;
-  opacity:.16;
-  background-image:
-    linear-gradient(rgba(0,246,255,.12) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,246,255,.12) 1px,transparent 1px);
-  background-size:42px 42px;
-}
-
-.map-line{
-  position:absolute;
-  height:1px;
-  transform-origin:left center;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--cyan),
-    var(--green),
-    transparent
-  );
-  box-shadow:0 0 10px rgba(0,246,255,.5);
-  opacity:.45;
-}
-
-.line1{
-  width:48%;
-  top:35%;
-  right:22%;
-  transform:rotate(12deg);
-}
-
-.line2{
-  width:42%;
-  top:51%;
-  right:20%;
-  transform:rotate(-17deg);
-}
-
-.line3{
-  width:45%;
-  top:65%;
-  right:32%;
-  transform:rotate(7deg);
-}
-
-.map-packet{
-  position:absolute;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 16px var(--green);
-  animation:mapPacket 4s linear infinite;
-}
-
-.map-packet.p2{
-  background:var(--cyan);
-  box-shadow:0 0 16px var(--cyan);
-  animation-delay:1.4s;
-}
-
-.map-packet.p3{
-  background:var(--blue);
-  box-shadow:0 0 16px var(--blue);
-  animation-delay:2.7s;
-}
-
-@keyframes mapPacket{
-  0%{
-    right:27%;
-    top:34%;
-    opacity:0;
-  }
-  10%{opacity:1}
-  90%{opacity:1}
-  100%{
-    right:67%;
-    top:67%;
-    opacity:0;
-  }
-}
-
-.server-node{
-  position:absolute;
-  width:105px;
-  height:105px;
-  border-radius:50%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
-  background:rgba(8,14,21,.92);
-  border:1px solid rgba(0,246,255,.25);
-  box-shadow:0 0 25px rgba(0,246,255,.08);
-  z-index:4;
-}
-
-.server-node::before,
-.server-node::after{
-  content:"";
-  position:absolute;
-  inset:-8px;
-  border-radius:50%;
-  border:1px solid rgba(0,246,255,.12);
-  animation:serverPulse 2.5s ease-out infinite;
-}
-
-.server-node::after{
-  animation-delay:1.25s;
-}
-
-@keyframes serverPulse{
-  0%{
-    transform:scale(.8);
-    opacity:0;
-  }
-  30%{opacity:1}
-  100%{
-    transform:scale(1.35);
-    opacity:0;
-  }
-}
-
-.server-node strong{
-  font-size:11px;
-}
-
-.server-node small{
-  font-size:7px;
-  color:#43ed60;
-}
-
-.server-de{
-  top:45px;
-  right:11%;
-}
-
-.server-fi{
-  top:150px;
-  left:43%;
-}
-
-.server-nl{
-  bottom:40px;
-  left:10%;
-}
-
-.map-center{
-  position:absolute;
-  top:50%;
-  right:50%;
-  transform:translate(50%,-50%);
-  width:85px;
-  height:85px;
-  border-radius:50%;
-  border:1px dashed rgba(184,255,0,.3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
-  background:rgba(184,255,0,.025);
-  box-shadow:0 0 35px rgba(184,255,0,.08);
-}
-
-/* ================= LIVE TOOLS ================= */
-
-.cyber-tools{
+.live-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
 }
 
-.cyber-card{
+.live-box{
   position:relative;
   overflow:hidden;
-  min-height:220px;
-  padding:24px;
-  border-radius:24px;
-  border:1px solid var(--border);
+  min-height:175px;
+  padding:22px;
+  border-radius:23px;
   background:var(--card);
+  border:1px solid var(--border);
 }
 
-.cyber-card::before{
+.live-box::before{
   content:"";
   position:absolute;
-  width:160px;
-  height:1px;
   top:0;
-  right:-160px;
-  background:var(--cyan);
-  box-shadow:0 0 15px var(--cyan);
-  animation:cyberScan 3.5s linear infinite;
+  bottom:0;
+  width:70px;
+  right:-90px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(184,255,0,.14),
+    transparent
+  );
+  filter:blur(8px);
+  transform:skewX(-15deg);
+  animation:liveBeam 3.5s linear infinite;
 }
 
-@keyframes cyberScan{
+@keyframes liveBeam{
+  from{right:-100px}
   to{right:120%}
 }
 
-.tool-icon{
-  width:54px;
-  height:54px;
-  border-radius:16px;
+.live-box.blue-box::before{
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(24,170,255,.18),
+    transparent
+  );
+}
+
+.live-box.red-box::before{
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,49,88,.16),
+    transparent
+  );
+}
+
+.live-head{
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+  position:relative;
+  z-index:2;
+}
+
+.live-icon{
   font-size:25px;
-  margin-bottom:18px;
-  background:rgba(0,246,255,.04);
-  border:1px solid rgba(0,246,255,.15);
-  box-shadow:0 0 25px rgba(0,246,255,.06);
 }
 
-.cyber-card h3{
-  font-size:16px;
-  margin-bottom:8px;
+.live-state{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:8px;
+  color:#4df16a;
 }
 
-.cyber-card p{
+.live-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#4df16a;
+  box-shadow:0 0 12px #4df16a;
+  animation:pulse 1.4s infinite;
+}
+
+.live-box h3{
+  position:relative;
+  z-index:2;
+  font-size:14px;
+  margin:15px 0 7px;
+}
+
+.live-box p{
+  position:relative;
+  z-index:2;
   color:var(--muted);
   font-size:9px;
   line-height:2;
 }
 
 .live-value{
-  margin-top:18px;
-  color:var(--cyan);
-  font-size:22px;
+  position:relative;
+  z-index:2;
+  color:var(--green);
+  font-size:14px;
   font-weight:1000;
-  text-shadow:0 0 14px rgba(0,246,255,.45);
+  margin-top:9px;
 }
 
-.speed-bars{
-  display:flex;
-  align-items:flex-end;
-  height:65px;
-  gap:4px;
-  margin-top:15px;
+.live-bar{
+  position:relative;
+  z-index:2;
+  height:4px;
+  margin-top:14px;
+  border-radius:20px;
+  overflow:hidden;
+  background:rgba(255,255,255,.06);
 }
 
-.speed-bars i{
-  flex:1;
-  height:20%;
-  border-radius:4px 4px 0 0;
-  background:var(--green);
-  box-shadow:0 0 10px rgba(184,255,0,.25);
-  animation:speedBars 1s ease-in-out infinite alternate;
+.live-bar span{
+  display:block;
+  height:100%;
+  width:76%;
+  border-radius:20px;
+  background:linear-gradient(
+    90deg,
+    var(--green),
+    var(--cyan)
+  );
+  box-shadow:0 0 10px rgba(184,255,0,.35);
+  animation:barMove 2.5s ease-in-out infinite alternate;
 }
 
-.speed-bars i:nth-child(2){animation-delay:.1s}
-.speed-bars i:nth-child(3){animation-delay:.2s}
-.speed-bars i:nth-child(4){animation-delay:.3s}
-.speed-bars i:nth-child(5){animation-delay:.4s}
-.speed-bars i:nth-child(6){animation-delay:.5s}
-.speed-bars i:nth-child(7){animation-delay:.6s}
-.speed-bars i:nth-child(8){animation-delay:.7s}
-
-@keyframes speedBars{
-  to{height:90%}
+@keyframes barMove{
+  from{width:65%}
+  to{width:88%}
 }
 
-.scan-ring{
-  width:78px;
-  height:78px;
-  margin:8px auto 12px;
-  border-radius:50%;
-  border:2px solid rgba(0,246,255,.1);
-  border-top-color:var(--cyan);
-  border-right-color:var(--green);
-  animation:spin 1.5s linear infinite;
+/* WORKING HOURS */
+
+.hours-box{
+  margin-top:14px;
+  min-height:190px;
+}
+
+.hours-status{
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:7px;
+  margin-top:12px;
+  font-size:10px;
+  font-weight:900;
 }
 
-@keyframes spin{
-  to{transform:rotate(360deg)}
+.hours-status.open{
+  color:#4df16a;
 }
 
-/* ================= SYSTEM STATUS ================= */
+.hours-status.closed{
+  color:var(--red);
+}
+
+.hours-time{
+  color:var(--text);
+  font-size:18px;
+  font-weight:1000;
+  margin-top:12px;
+}
+
+.bot-online{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:12px;
+  padding:6px 8px;
+  border-radius:8px;
+  color:#4df16a;
+  background:rgba(77,241,106,.05);
+  border:1px solid rgba(77,241,106,.12);
+  font-size:7px;
+}
+
+/* CRACK BOX */
+
+.crack-box{
+  position:relative;
+  overflow:hidden;
+  min-height:150px;
+  margin-top:14px;
+  padding:25px;
+  border-radius:25px;
+  border:1px solid rgba(255,49,88,.14);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,49,88,.06),transparent 50%),
+    var(--card);
+}
+
+.crack-box::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:linear-gradient(
+    transparent,
+    var(--red),
+    white,
+    var(--red),
+    transparent
+  );
+  box-shadow:
+    0 0 12px var(--red),
+    0 0 25px var(--red);
+  transform:skewX(-20deg);
+  animation:crack 2.8s linear infinite;
+}
+
+@keyframes crack{
+  from{left:-20px}
+  to{left:105%}
+}
+
+.crack-lines{
+  position:absolute;
+  inset:0;
+  opacity:.2;
+  background:
+    linear-gradient(
+      110deg,
+      transparent 30%,
+      var(--red) 31%,
+      transparent 32%
+    ),
+    linear-gradient(
+      70deg,
+      transparent 50%,
+      var(--blue) 51%,
+      transparent 52%
+    );
+}
+
+.crack-content{
+  position:relative;
+  z-index:2;
+}
+
+.crack-content h3{
+  font-size:18px;
+}
+
+.crack-content p{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:8px;
+}
+
+/* STATUS */
 
 .status-grid{
   display:grid;
@@ -923,17 +887,45 @@ section{
 }
 
 .status-card{
+  position:relative;
+  overflow:hidden;
   padding:20px;
   border:1px solid var(--border);
   border-radius:20px;
   background:var(--card);
 }
 
+.status-card::before{
+  content:"";
+  position:absolute;
+  left:-100px;
+  top:0;
+  bottom:0;
+  width:60px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(184,255,0,.12),
+    transparent
+  );
+  transform:skewX(-15deg);
+  animation:statusScan 4s linear infinite;
+}
+
+@keyframes statusScan{
+  from{left:-100px}
+  to{left:120%}
+}
+
 .status-card h3{
+  position:relative;
+  z-index:2;
   font-size:14px;
 }
 
 .status-line{
+  position:relative;
+  z-index:2;
   margin-top:11px;
   display:flex;
   align-items:center;
@@ -951,33 +943,6 @@ section{
   animation:pulse 1.5s infinite;
 }
 
-.status-value{
-  margin-top:15px;
-  font-size:10px;
-  color:var(--muted);
-}
-
-.status-bar{
-  height:5px;
-  margin-top:9px;
-  border-radius:10px;
-  background:rgba(255,255,255,.05);
-  overflow:hidden;
-}
-
-.status-bar span{
-  display:block;
-  height:100%;
-  width:92%;
-  background:linear-gradient(90deg,var(--green),var(--cyan));
-  box-shadow:0 0 10px rgba(184,255,0,.3);
-  animation:statusLoad 3s ease-in-out infinite alternate;
-}
-
-@keyframes statusLoad{
-  to{width:98%}
-}
-
 @keyframes pulse{
   50%{
     opacity:.4;
@@ -985,123 +950,75 @@ section{
   }
 }
 
-/* ================= DISRUPTION SPLITTER ================= */
+/* TOOLS */
 
-.disruption-box{
-  position:fixed;
-  left:16px;
-  bottom:88px;
-  z-index:450;
-  width:235px;
-  padding:14px;
-  border-radius:18px;
-  border:1px solid rgba(255,49,88,.22);
-  background:rgba(8,12,18,.92);
-  backdrop-filter:blur(14px);
-  box-shadow:0 15px 45px rgba(0,0,0,.35);
+.tool-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.tool{
+  position:relative;
   overflow:hidden;
+  padding:25px;
+  min-height:190px;
+  border-radius:23px;
+  border:1px solid var(--border);
+  background:var(--card);
 }
 
-body.light .disruption-box{
-  background:rgba(255,255,255,.94);
-}
-
-.disruption-box::before{
+.tool::after{
   content:"";
   position:absolute;
-  width:80px;
-  height:2px;
-  top:0;
-  left:-100px;
-  background:linear-gradient(90deg,transparent,var(--red),transparent);
-  box-shadow:0 0 16px var(--red);
-  animation:breakScan 2.4s linear infinite;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:var(--blue);
+  filter:blur(55px);
+  opacity:.035;
+  top:-50px;
+  right:-45px;
+  animation:floatTool 5s ease-in-out infinite alternate;
 }
 
-@keyframes breakScan{
-  to{left:110%}
-}
-
-.disruption-head{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
-.disruption-icon{
-  width:34px;
-  height:34px;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(255,49,88,.07);
-  border:1px solid rgba(255,49,88,.16);
-  animation:crack 1.8s ease-in-out infinite;
-}
-
-@keyframes crack{
-  50%{
-    transform:translateX(2px);
-    box-shadow:0 0 18px rgba(255,49,88,.2);
+@keyframes floatTool{
+  to{
+    transform:translate(-30px,45px);
   }
 }
 
-.disruption-head strong{
-  font-size:10px;
+.tool-icon{
+  font-size:29px;
 }
 
-.disruption-head small{
-  display:block;
+.tool h3{
+  font-size:15px;
+  margin-top:13px;
+}
+
+.tool p{
   color:var(--muted);
+  font-size:9px;
+  line-height:2;
+  margin-top:7px;
+}
+
+.tool-status{
+  display:inline-flex;
+  margin-top:13px;
+  padding:6px 8px;
+  border-radius:8px;
+  color:var(--cyan);
+  background:rgba(0,245,255,.04);
+  border:1px solid rgba(0,245,255,.1);
   font-size:7px;
-  margin-top:4px;
 }
 
-.crack-line{
-  position:relative;
-  height:30px;
-  margin-top:10px;
-  overflow:hidden;
-}
-
-.crack-line span{
-  position:absolute;
-  top:50%;
-  width:100%;
-  height:1px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--red),
-    var(--cyan),
-    transparent
-  );
-  box-shadow:0 0 12px rgba(255,49,88,.5);
-  animation:crackMove 1.5s linear infinite;
-}
-
-.crack-line span::after{
-  content:"";
-  position:absolute;
-  left:40%;
-  top:-10px;
-  width:2px;
-  height:20px;
-  background:var(--red);
-  box-shadow:0 0 10px var(--red);
-  transform:rotate(35deg);
-}
-
-@keyframes crackMove{
-  from{transform:translateX(-100%)}
-  to{transform:translateX(100%)}
-}
-
-/* ================= CHECK ================= */
+/* CHECK */
 
 .check{
-  padding:40px 22px;
+  padding:38px 22px;
   text-align:center;
   border:1px solid var(--border);
   border-radius:27px;
@@ -1132,7 +1049,22 @@ body.light .disruption-box{
   margin-top:10px;
 }
 
-/* ================= BOTTOM ================= */
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:70px 18px 120px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:9px;
+  line-height:2;
+}
+
+footer strong{
+  color:var(--green);
+}
+
+/* BOTTOM */
 
 .bottom-menu{
   position:fixed;
@@ -1140,12 +1072,12 @@ body.light .disruption-box{
   bottom:12px;
   left:50%;
   transform:translateX(-50%);
-  width:min(900px,calc(100% - 18px));
+  width:min(850px,calc(100% - 18px));
   padding:6px;
   display:flex;
   border-radius:20px;
   border:1px solid var(--border);
-  background:rgba(8,12,18,.88);
+  background:rgba(8,12,18,.9);
   backdrop-filter:blur(12px);
   box-shadow:0 15px 40px rgba(0,0,0,.35);
   overflow:hidden;
@@ -1164,8 +1096,8 @@ body.light .bottom-menu{
   background:linear-gradient(
     90deg,
     transparent,
-    rgba(184,255,0,.25),
-    rgba(24,170,255,.2),
+    rgba(184,255,0,.2),
+    rgba(24,170,255,.18),
     transparent
   );
   filter:blur(14px);
@@ -1195,22 +1127,7 @@ body.light .bottom-menu{
   background:rgba(184,255,0,.07);
 }
 
-/* ================= FOOTER ================= */
-
-footer{
-  text-align:center;
-  padding:70px 18px 140px;
-  border-top:1px solid var(--border);
-  color:var(--muted);
-  font-size:9px;
-  line-height:2;
-}
-
-footer strong{
-  color:var(--green);
-}
-
-/* ================= MODAL ================= */
+/* MODAL */
 
 .modal{
   position:fixed;
@@ -1316,7 +1233,15 @@ footer strong{
   flex:1;
 }
 
-/* ================= MOBILE ================= */
+.purchase-disabled{
+  background:rgba(255,49,88,.12)!important;
+  color:var(--red)!important;
+  border:1px solid rgba(255,49,88,.2)!important;
+  box-shadow:none!important;
+  cursor:not-allowed!important;
+}
+
+/* MOBILE */
 
 @media(max-width:850px){
 
@@ -1326,40 +1251,18 @@ footer strong{
 
   .hero{
     grid-template-columns:1fr;
-    padding-top:55px;
-    gap:35px;
+    padding-top:50px;
+    gap:30px;
   }
 
-  .products,
-  .cyber-tools{
+  .products{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .status-grid{
+  .status-grid,
+  .live-grid,
+  .tool-grid{
     grid-template-columns:1fr;
-  }
-
-  .live-map{
-    min-height:390px;
-  }
-
-  .server-node{
-    width:82px;
-    height:82px;
-  }
-
-  .server-de{
-    right:7%;
-  }
-
-  .server-nl{
-    left:7%;
-  }
-
-  .disruption-box{
-    width:210px;
-    left:10px;
-    bottom:78px;
   }
 }
 
@@ -1385,17 +1288,16 @@ footer strong{
   }
 
   .node.dc{
-    top:25px;
-    right:22px;
+    top:23px;
+    right:20px;
   }
 
   .node.user{
-    bottom:25px;
-    left:22px;
+    bottom:23px;
+    left:20px;
   }
 
-  .products,
-  .cyber-tools{
+  .products{
     grid-template-columns:1fr;
   }
 
@@ -1411,36 +1313,8 @@ footer strong{
     grid-template-columns:1fr 1fr;
   }
 
-  .disruption-box{
-    width:190px;
-    padding:10px;
-    bottom:75px;
-    left:8px;
-  }
-
-  .disruption-head strong{
-    font-size:8px;
-  }
-
-  .disruption-head small{
-    font-size:6px;
-  }
-
-  .live-map{
-    min-height:350px;
-  }
-
-  .server-node{
-    width:70px;
-    height:70px;
-  }
-
-  .server-node strong{
-    font-size:8px;
-  }
-
-  .server-node small{
-    font-size:6px;
+  .modal-actions{
+    flex-direction:column;
   }
 }
 
@@ -1453,7 +1327,6 @@ footer strong{
     animation-iteration-count:1!important;
     scroll-behavior:auto!important;
   }
-
 }
 </style>
 </head>
@@ -1467,21 +1340,20 @@ footer strong{
 <header>
 <nav class="nav">
 
-<div class="logo">
-V2<span class="brand">GURD</span>
-<span class="verified">✓</span>
-</div>
+  <div class="logo">
+    V2<span class="brand">GURD</span>
+    <span class="verified">✓</span>
+  </div>
 
-<div class="nav-links">
-<a href="#special">پیشنهاد ویژه</a>
-<a href="#servers">سرورها</a>
-<a href="#live">وضعیت زنده</a>
-<a href="#gaming">گیمینگ</a>
-<a href="#subscriptions">اشتراک‌ها</a>
-<a href="#instagram">اینستاگرام</a>
-</div>
+  <div class="nav-links">
+    <a href="#special">پیشنهاد ویژه</a>
+    <a href="#servers">سرورها</a>
+    <a href="#gaming">گیمینگ</a>
+    <a href="#live">لایو</a>
+    <a href="#subscriptions">اشتراک</a>
+  </div>
 
-<button class="theme" id="themeButton" onclick="toggleTheme()">☾</button>
+  <button class="theme" id="themeButton" onclick="toggleTheme()">☾</button>
 
 </nav>
 </header>
@@ -1491,59 +1363,64 @@ V2<span class="brand">GURD</span>
 
 <section class="hero">
 
-<div>
+  <div>
 
-<div class="badge">
-<i></i>
-V2GURD DIGITAL SERVICES
-</div>
+    <div class="badge">
+      <i></i>
+      V2GURD DIGITAL SERVICES
+    </div>
 
-<h1>
-<span class="neon">سریع‌تر،</span>
-<span class="neon blue">مطمئن‌تر.</span>
-</h1>
+    <h1>
+      <span class="neon">سریع‌تر،</span>
+      <span class="neon blue">مطمئن‌تر.</span>
+    </h1>
 
-<p class="hero-text">
-سرویس‌های حرفه‌ای V2GURD برای اتصال،
-گیمینگ و خدمات دیجیتال؛ سریع، ساده و حرفه‌ای.
-</p>
+    <p class="hero-text">
+      سرویس‌های حرفه‌ای V2GURD برای اتصال،
+      گیمینگ و خدمات دیجیتال؛ سریع، ساده و حرفه‌ای.
+    </p>
 
-<div class="hero-buttons">
+    <div class="hero-buttons">
 
-<a class="btn primary" href="#special">
-🔥 پیشنهاد ویژه
-</a>
+      <a class="btn primary" href="#special">
+        🔥 پیشنهاد ویژه
+      </a>
 
-<a class="btn secondary" href="#servers">
-مشاهده سرویس‌ها
-</a>
+      <a class="btn secondary" href="#servers">
+        مشاهده سرویس‌ها
+      </a>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 
-<div class="network">
+  <div class="network">
 
-<div class="network-grid"></div>
+    <div class="network-grid"></div>
+    <div class="network-scan"></div>
 
-<div class="node dc">
-🖥️
-<span>DATA CENTER</span>
-</div>
+    <div class="node dc">
+      🖥️
+      <span>DATA CENTER</span>
+    </div>
 
-<div class="node user">
-📱
-<span>USER</span>
-</div>
+    <div class="node user">
+      📱
+      <span>USER</span>
+    </div>
 
-<div class="route"></div>
+    <div class="route"></div>
 
-<div class="packet"></div>
-<div class="packet two"></div>
-<div class="packet three"></div>
+    <div class="packet"></div>
+    <div class="packet two"></div>
+    <div class="packet three"></div>
 
-</div>
+    <div class="network-live">
+      ● LIVE NETWORK
+    </div>
+
+  </div>
 
 </section>
 
@@ -1552,218 +1429,44 @@ V2GURD DIGITAL SERVICES
 
 <section id="special">
 
-<div class="special">
+  <div class="special">
 
-<div style="font-size:35px">🔥</div>
+    <div style="font-size:35px">🔥</div>
 
-<div class="section-title">
-<small>SPECIAL OFFER</small>
+    <div class="section-title">
+      <small>SPECIAL OFFER</small>
 
-<h2>
-۵۰۰ گیگ — تخفیف ویژه
-</h2>
+      <h2>
+        ۵۰۰ گیگ — تخفیف ویژه
+      </h2>
 
-<p>
-کاربر آزاد • ظرفیت محدود
-</p>
-</div>
+      <p>
+        حجم ۵۰۰ گیگ • ظرفیت محدود
+      </p>
+    </div>
 
-<div class="timer" id="timer">
-در حال محاسبه...
-</div>
+    <div class="timer" id="timer">
+      در حال محاسبه...
+    </div>
 
-<button
-class="btn primary"
-onclick="openProduct(
-'پیشنهاد ویژه ۵۰۰ گیگ',
-'🔥',
-'پکیج ویژه ۵۰۰ گیگ با قیمت تخفیفی.',
-'۵۰۰ گیگ',
-'آزاد',
-'طبق سرویس',
-'ربات',
-'۵۰۰,۰۰۰ تومان'
-)">
-مشاهده جزئیات و خرید
-</button>
+    <button
+      class="btn primary"
+      onclick="openProduct(
+      'پیشنهاد ویژه ۵۰۰ گیگ',
+      '🔥',
+      'پکیج ویژه ۵۰۰ گیگ با قیمت تخفیفی V2GURD.',
+      '۵۰۰ گیگ',
+      'آزاد',
+      'طبق سرویس',
+      'ربات',
+      '۵۰۰,۰۰۰ تومان'
+      )">
 
-</div>
+      مشاهده جزئیات و خرید
 
-</section>
+    </button>
 
-
-<!-- SERVERS -->
-
-<section id="servers">
-
-<div class="section-title">
-<small>V2GURD SERVERS</small>
-<h2>سرویس‌های سرور</h2>
-<p>برای مشاهده جزئیات هر سرویس روی آن بزنید</p>
-</div>
-
-
-<div class="product-group">
-
-<div class="group-title">
-<h3>🟢 اقتصادی</h3>
-<span>حجمی</span>
-</div>
-
-<div class="products">
-
-<div class="product" onclick="openProduct('۱۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۱۰ گیگ','آزاد','طبق سرویس','ربات','۲۰,۰۰۰ تومان')">
-<div class="product-icon">🟢</div>
-<h3>۱۰ گیگ</h3>
-<p>پکیج اقتصادی حجمی</p>
-<div class="price">۲۰,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">۱۰GB</span><span class="tag">اقتصادی</span></div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('۲۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۲۰ گیگ','آزاد','طبق سرویس','ربات','۴۰,۰۰۰ تومان')">
-<div class="product-icon">🟢</div>
-<h3>۲۰ گیگ</h3>
-<p>پکیج اقتصادی حجمی</p>
-<div class="price">۴۰,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">۲۰GB</span><span class="tag">اقتصادی</span></div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('۳۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۳۰ گیگ','آزاد','طبق سرویس','ربات','۷۵,۰۰۰ تومان')">
-<div class="product-icon">🟢</div>
-<h3>۳۰ گیگ</h3>
-<p>پکیج اقتصادی حجمی</p>
-<div class="price">۷۵,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">۳۰GB</span><span class="tag">اقتصادی</span></div>
-<span class="arrow">←</span>
-</div>
-
-</div>
-</div>
-
-
-<div class="product-group">
-
-<div class="group-title">
-<h3>⚡ حجم بالا</h3>
-<span>پکیج‌های حجمی</span>
-</div>
-
-<div class="products">
-
-<div class="product" onclick="openProduct('۵۰ گیگ','⚡','سرویس حجمی V2GURD.','۵۰ گیگ','آزاد','طبق سرویس','ربات','۱۲۵,۰۰۰ تومان')">
-<div class="product-icon">⚡</div>
-<h3>۵۰ گیگ</h3>
-<p>حجم بالا برای مصرف بیشتر</p>
-<div class="price">۱۲۵,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">۵۰GB</span></div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('۱۰۰ گیگ','⚡','سرویس حجمی V2GURD.','۱۰۰ گیگ','آزاد','طبق سرویس','ربات','۲۵۰,۰۰۰ تومان')">
-<div class="product-icon">⚡</div>
-<h3>۱۰۰ گیگ</h3>
-<p>حجم بالا برای مصرف بیشتر</p>
-<div class="price">۲۵۰,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">۱۰۰GB</span></div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('۱۵۰ گیگ','⚡','سرویس حجمی V2GURD.','۱۵۰ گیگ','آزاد','طبق سرویس','ربات','۳۷۵,۰۰۰ تومان')">
-<div class="product-icon">⚡</div>
-<h3>۱۵۰ گیگ</h3>
-<p>حجم بالا برای مصرف بیشتر</p>
-<div class="price">۳۷۵,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">۱۵۰GB</span></div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('۵۰۰ گیگ ویژه','🔥','پیشنهاد ویژه و محدود V2GURD.','۵۰۰ گیگ','آزاد','طبق سرویس','ربات','۵۰۰,۰۰۰ تومان')">
-<div class="product-icon">🔥</div>
-<h3>۵۰۰ گیگ</h3>
-<p>تخفیف ویژه — ظرفیت محدود</p>
-<div class="price">۵۰۰,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">۵۰۰GB</span><span class="tag">پیشنهاد ویژه</span></div>
-<span class="arrow">←</span>
-</div>
-
-</div>
-</div>
-
-
-<div class="product-group">
-
-<div class="group-title">
-<h3>♾️ نامحدود</h3>
-<span>یک ماهه</span>
-</div>
-
-<div class="products">
-
-<div class="product" onclick="openProduct('نامحدود ۱ کاربر','♾️','سرویس نامحدود یک ماهه.','نامحدود','۱ کاربر','یک ماه','ربات','۹۹,۰۰۰ تومان')">
-<div class="product-icon">♾️</div>
-<h3>۱ کاربر</h3>
-<p>نامحدود — یک ماه</p>
-<div class="price">۹۹,۰۰۰ تومان</div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('نامحدود ۲ کاربر','♾️','سرویس نامحدود دو کاربره.','نامحدود','۲ کاربر','یک ماه','ربات','۱۶۹,۰۰۰ تومان')">
-<div class="product-icon">♾️</div>
-<h3>۲ کاربر</h3>
-<p>نامحدود — یک ماه</p>
-<div class="price">۱۶۹,۰۰۰ تومان</div>
-<span class="arrow">←</span>
-</div>
-
-</div>
-</div>
-
-
-<div class="product-group">
-
-<div class="group-title">
-<h3>🖥️ پنل‌های مدیریتی</h3>
-<span>مدیریت سرویس</span>
-</div>
-
-<div class="products">
-
-<div class="product" onclick="openProduct('پنل ۱ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۱ ترا','طبق پنل','طبق سرویس','ربات','۸۰۰,۰۰۰ تومان')">
-<div class="product-icon">🖥️</div>
-<h3>۱ ترا</h3>
-<p>پنل مدیریتی</p>
-<div class="price">۸۰۰,۰۰۰ تومان</div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('پنل ۲ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۲ ترا','طبق پنل','طبق سرویس','ربات','۱,۲۰۰,۰۰۰ تومان')">
-<div class="product-icon">🖥️</div>
-<h3>۲ ترا</h3>
-<p>پنل مدیریتی</p>
-<div class="price">۱,۲۰۰,۰۰۰ تومان</div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('پنل ۳ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۳ ترا','طبق پنل','طبق سرویس','ربات','۱,۸۰۰,۰۰۰ تومان')">
-<div class="product-icon">🖥️</div>
-<h3>۳ ترا</h3>
-<p>پنل مدیریتی</p>
-<div class="price">۱,۸۰۰,۰۰۰ تومان</div>
-<span class="arrow">←</span>
-</div>
-
-<div class="product" onclick="openProduct('پنل ۴ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۴ ترا','طبق پنل','طبق سرویس','ربات','۲,۳۰۰,۰۰۰ تومان')">
-<div class="product-icon">🖥️</div>
-<h3>۴ ترا</h3>
-<p>پنل مدیریتی</p>
-<div class="price">۲,۳۰۰,۰۰۰ تومان</div>
-<span class="arrow">←</span>
-</div>
-
-</div>
-</div>
+  </div>
 
 </section>
 
@@ -1772,123 +1475,583 @@ onclick="openProduct(
 
 <section id="live">
 
-<div class="section-title">
-<small>V2GURD LIVE SYSTEM</small>
-<h2>🌐 مرکز وضعیت زنده</h2>
-<p>نمایش لحظه‌ای وضعیت شبکه، سرورها و سیستم</p>
-</div>
+  <div class="section-title">
+    <small>LIVE SYSTEM</small>
+    <h2>⚡ سیستم‌های زنده V2GURD</h2>
+    <p>نمایش وضعیت لحظه‌ای سرویس‌ها و زیرساخت</p>
+  </div>
 
 
-<!-- MAP -->
+  <div class="live-grid">
 
-<div class="live-map">
+    <div class="live-box blue-box">
 
-<div class="map-grid"></div>
+      <div class="live-head">
+        <div class="live-icon">🌐</div>
 
-<div class="map-line line1"></div>
-<div class="map-line line2"></div>
-<div class="map-line line3"></div>
+        <div class="live-state">
+          <i class="live-dot"></i>
+          ONLINE
+        </div>
+      </div>
 
-<div class="map-packet"></div>
-<div class="map-packet p2"></div>
-<div class="map-packet p3"></div>
+      <h3>وضعیت اینترنت</h3>
 
-<div class="server-node server-de">
-🌐
-<strong>GERMANY</strong>
-<small>● ONLINE</small>
-</div>
+      <p>
+        مانیتور نمایشی وضعیت ارتباط و شبکه
+      </p>
 
-<div class="server-node server-fi">
-🌐
-<strong>FINLAND</strong>
-<small>● ONLINE</small>
-</div>
+      <div class="live-value">
+        اتصال پایدار
+      </div>
 
-<div class="server-node server-nl">
-🌐
-<strong>NETHERLANDS</strong>
-<small>● ONLINE</small>
-</div>
+      <div class="live-bar">
+        <span></span>
+      </div>
 
-<div class="map-center">
-🛡️
-</div>
-
-</div>
+    </div>
 
 
-<!-- LIVE TOOLS -->
+    <div class="live-box">
 
-<div style="height:18px"></div>
+      <div class="live-head">
+        <div class="live-icon">🖥️</div>
 
-<div class="cyber-tools">
+        <div class="live-state">
+          <i class="live-dot"></i>
+          ONLINE
+        </div>
+      </div>
 
-<div class="cyber-card">
+      <h3>وضعیت لحظه‌ای سیستم</h3>
 
-<div class="tool-icon">⚡</div>
+      <p>
+        سرویس‌های اصلی V2GURD در حال فعالیت هستند
+      </p>
 
-<h3>تست سرعت</h3>
+      <div class="live-value">
+        ALL SYSTEMS GO
+      </div>
 
-<p>
-تست ارتباط مرورگر با سرویس V2GURD
-با انیمیشن زنده.
-</p>
+      <div class="live-bar">
+        <span></span>
+      </div>
 
-<div class="speed-bars">
-<i></i><i></i><i></i><i></i>
-<i></i><i></i><i></i><i></i>
-</div>
-
-<div class="live-value" id="speedValue">
-در حال آماده‌سازی
-</div>
-
-</div>
-
-
-<div class="cyber-card">
-
-<div class="tool-icon">📡</div>
-
-<h3>وضعیت اینترنت</h3>
-
-<p>
-بررسی وضعیت اتصال فعلی دستگاه شما.
-</p>
-
-<div class="scan-ring">
-📡
-</div>
-
-<div class="live-value" id="internetStatus">
-در حال بررسی
-</div>
-
-</div>
+    </div>
 
 
-<div class="cyber-card">
+    <div class="live-box blue-box">
 
-<div class="tool-icon">🛰️</div>
+      <div class="live-head">
+        <div class="live-icon">🚀</div>
 
-<h3>وضعیت لحظه‌ای سیستم</h3>
+        <div class="live-state">
+          <i class="live-dot"></i>
+          LIVE
+        </div>
+      </div>
 
-<p>
-مانیتورینگ نمایشی وضعیت سرویس‌ها و زیرساخت.
-</p>
+      <h3>تست سرعت</h3>
 
-<div class="live-value">
-<span id="systemPercent">98</span>%
-</div>
+      <p>
+        تست سرعت نمایشی و وضعیت اتصال شما
+      </p>
 
-<div class="status-bar">
-<span></span>
-</div>
+      <div class="live-value" id="speedValue">
+        آماده تست
+      </div>
 
-</div>
+      <button
+        class="btn secondary"
+        style="margin-top:10px;padding:8px 12px"
+        onclick="runSpeedTest()">
 
-</div>
+        شروع تست
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- WORKING HOURS -->
+
+  <div class="live-box hours-box">
+
+    <div class="live-head">
+
+      <div class="live-icon">🕐</div>
+
+      <div
+        class="live-state"
+        id="hoursLiveState">
+
+        <i class="live-dot"></i>
+        بررسی وضعیت...
+
+      </div>
+
+    </div>
+
+    <h3>ساعت کاری پشتیبانی</h3>
+
+    <p>
+      پشتیبانی از طریق پیوی تلگرام
+    </p>
+
+    <div class="hours-time">
+      شنبه تا پنجشنبه | ۱۲:۰۰ تا ۰۰:۰۰
+    </div>
+
+    <div id="hoursStatus" class="hours-status">
+      در حال بررسی...
+    </div>
+
+    <div class="bot-online">
+      🤖 ربات فروش — ۲۴ ساعته فعال
+    </div>
+
+  </div>
+
+
+  <!-- CRACKING INTERRUPTION -->
+
+  <div class="crack-box">
+
+    <div class="crack-lines"></div>
+
+    <div class="crack-content">
+
+      <div style="font-size:30px">
+        ⚡
+      </div>
+
+      <h3>
+        V2GURD اختلالات را می‌شکافد
+      </h3>
+
+      <p>
+        مسیر ارتباطی در حال عبور از لایه‌های اختلال...
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SERVERS -->
+
+<section id="servers">
+
+  <div class="section-title">
+    <small>V2GURD SERVERS</small>
+    <h2>🛡️ سرویس‌های سرور</h2>
+    <p>برای مشاهده جزئیات هر سرویس روی آن بزنید</p>
+  </div>
+
+
+  <!-- ECONOMIC -->
+
+  <div class="product-group">
+
+    <div class="group-title">
+      <h3>🟢 حجم کم اقتصادی</h3>
+      <span>پکیج حجمی</span>
+    </div>
+
+    <div class="products">
+
+      <div class="product"
+        onclick="openProduct(
+        '۱۰ گیگ اقتصادی',
+        '🟢',
+        'سرویس اقتصادی حجمی V2GURD.',
+        '۱۰ گیگ',
+        'آزاد',
+        'طبق سرویس',
+        'ربات',
+        '۲۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🟢</div>
+        <h3>۱۰ گیگ</h3>
+        <p>پکیج اقتصادی حجمی</p>
+        <div class="price">۲۰,۰۰۰ تومان</div>
+
+        <div class="tags">
+          <span class="tag">10GB</span>
+          <span class="tag">اقتصادی</span>
+        </div>
+
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        '۲۰ گیگ اقتصادی',
+        '🟢',
+        'سرویس اقتصادی حجمی V2GURD.',
+        '۲۰ گیگ',
+        'آزاد',
+        'طبق سرویس',
+        'ربات',
+        '۴۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🟢</div>
+        <h3>۲۰ گیگ</h3>
+        <p>پکیج اقتصادی حجمی</p>
+        <div class="price">۴۰,۰۰۰ تومان</div>
+
+        <div class="tags">
+          <span class="tag">20GB</span>
+          <span class="tag">اقتصادی</span>
+        </div>
+
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        '۳۰ گیگ اقتصادی',
+        '🟢',
+        'سرویس اقتصادی حجمی V2GURD.',
+        '۳۰ گیگ',
+        'آزاد',
+        'طبق سرویس',
+        'ربات',
+        '۷۵,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🟢</div>
+        <h3>۳۰ گیگ</h3>
+        <p>پکیج اقتصادی حجمی</p>
+        <div class="price">۷۵,۰۰۰ تومان</div>
+
+        <div class="tags">
+          <span class="tag">30GB</span>
+          <span class="tag">اقتصادی</span>
+        </div>
+
+        <span class="arrow">←</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- HIGH VOLUME -->
+
+  <div class="product-group">
+
+    <div class="group-title">
+      <h3>⚡ حجم بالا</h3>
+      <span>پکیج‌های حجمی</span>
+    </div>
+
+    <div class="products">
+
+      <div class="product"
+        onclick="openProduct(
+        '۵۰ گیگ',
+        '⚡',
+        'سرویس حجمی V2GURD.',
+        '۵۰ گیگ',
+        'آزاد',
+        'طبق سرویس',
+        'ربات',
+        '۱۲۵,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">⚡</div>
+        <h3>۵۰ گیگ</h3>
+        <p>حجم بالا برای مصرف بیشتر</p>
+        <div class="price">۱۲۵,۰۰۰ تومان</div>
+
+        <div class="tags">
+          <span class="tag">50GB</span>
+        </div>
+
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        '۱۰۰ گیگ',
+        '⚡',
+        'سرویس حجمی V2GURD.',
+        '۱۰۰ گیگ',
+        'آزاد',
+        'طبق سرویس',
+        'ربات',
+        '۲۵۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">⚡</div>
+        <h3>۱۰۰ گیگ</h3>
+        <p>حجم بالا برای مصرف بیشتر</p>
+        <div class="price">۲۵۰,۰۰۰ تومان</div>
+
+        <div class="tags">
+          <span class="tag">100GB</span>
+        </div>
+
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        '۱۵۰ گیگ',
+        '⚡',
+        'سرویس حجمی V2GURD.',
+        '۱۵۰ گیگ',
+        'آزاد',
+        'طبق سرویس',
+        'ربات',
+        '۳۷۵,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">⚡</div>
+        <h3>۱۵۰ گیگ</h3>
+        <p>حجم بالا برای مصرف بیشتر</p>
+        <div class="price">۳۷۵,۰۰۰ تومان</div>
+
+        <div class="tags">
+          <span class="tag">150GB</span>
+        </div>
+
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        '۵۰۰ گیگ ویژه',
+        '🔥',
+        'پیشنهاد ویژه و محدود V2GURD.',
+        '۵۰۰ گیگ',
+        'آزاد',
+        'طبق سرویس',
+        'ربات',
+        '۵۰۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🔥</div>
+        <h3>۵۰۰ گیگ</h3>
+        <p>تخفیف ویژه — ظرفیت محدود</p>
+        <div class="price">۵۰۰,۰۰۰ تومان</div>
+
+        <div class="tags">
+          <span class="tag">500GB</span>
+          <span class="tag">پیشنهاد ویژه</span>
+        </div>
+
+        <span class="arrow">←</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- UNLIMITED -->
+
+  <div class="product-group">
+
+    <div class="group-title">
+      <h3>♾️ نامحدود</h3>
+      <span>یک ماهه</span>
+    </div>
+
+    <div class="products">
+
+      <div class="product"
+        onclick="openProduct(
+        'نامحدود ۱ کاربر',
+        '♾️',
+        'سرویس نامحدود یک ماهه.',
+        'نامحدود',
+        '۱ کاربر',
+        'یک ماه',
+        'ربات',
+        '۹۹,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">♾️</div>
+        <h3>۱ کاربر</h3>
+        <p>نامحدود — یک ماه</p>
+        <div class="price">۹۹,۰۰۰ تومان</div>
+
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        'نامحدود ۲ کاربر',
+        '♾️',
+        'سرویس نامحدود دو کاربره.',
+        'نامحدود',
+        '۲ کاربر',
+        'یک ماه',
+        'ربات',
+        '۱۶۹,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">♾️</div>
+        <h3>۲ کاربر</h3>
+        <p>نامحدود — یک ماه</p>
+        <div class="price">۱۶۹,۰۰۰ تومان</div>
+
+        <span class="arrow">←</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- PANELS -->
+
+  <div class="product-group">
+
+    <div class="group-title">
+      <h3>🖥️ پنل‌های مدیریتی</h3>
+      <span>مدیریت سرویس</span>
+    </div>
+
+    <div class="products">
+
+      <div class="product"
+        onclick="openProduct(
+        'پنل ۱ ترا',
+        '🖥️',
+        'پنل مدیریتی برای مدیریت سرویس‌ها.',
+        '۱ ترا',
+        'طبق پنل',
+        'طبق سرویس',
+        'ربات',
+        '۸۰۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🖥️</div>
+        <h3>۱ ترا</h3>
+        <p>پنل مدیریتی</p>
+        <div class="price">۸۰۰,۰۰۰ تومان</div>
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        'پنل ۲ ترا',
+        '🖥️',
+        'پنل مدیریتی برای مدیریت سرویس‌ها.',
+        '۲ ترا',
+        'طبق پنل',
+        'طبق سرویس',
+        'ربات',
+        '۱,۲۰۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🖥️</div>
+        <h3>۲ ترا</h3>
+        <p>پنل مدیریتی</p>
+        <div class="price">۱,۲۰۰,۰۰۰ تومان</div>
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        'پنل ۳ ترا',
+        '🖥️',
+        'پنل مدیریتی برای مدیریت سرویس‌ها.',
+        '۳ ترا',
+        'طبق پنل',
+        'طبق سرویس',
+        'ربات',
+        '۱,۸۰۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🖥️</div>
+        <h3>۳ ترا</h3>
+        <p>پنل مدیریتی</p>
+        <div class="price">۱,۸۰۰,۰۰۰ تومان</div>
+        <span class="arrow">←</span>
+      </div>
+
+
+      <div class="product"
+        onclick="openProduct(
+        'پنل ۴ ترا',
+        '🖥️',
+        'پنل مدیریتی برای مدیریت سرویس‌ها.',
+        '۴ ترا',
+        'طبق پنل',
+        'طبق سرویس',
+        'ربات',
+        '۲,۳۰۰,۰۰۰ تومان'
+        )">
+
+        <div class="product-icon">🖥️</div>
+        <h3>۴ ترا</h3>
+        <p>پنل مدیریتی</p>
+        <div class="price">۲,۳۰۰,۰۰۰ تومان</div>
+        <span class="arrow">←</span>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- LIVE SERVER MAP -->
+
+<section id="map">
+
+  <div class="section-title">
+    <small>LIVE SERVER MAP</small>
+    <h2>🌐 نقشه زنده سرورها</h2>
+    <p>نمایش متحرک مسیر ارتباطی سرورها</p>
+  </div>
+
+  <div class="network">
+
+    <div class="network-grid"></div>
+    <div class="network-scan"></div>
+
+    <div class="node dc">
+      🇩🇪
+      <span>GERMANY</span>
+    </div>
+
+    <div class="node user">
+      🇳🇱
+      <span>NETHERLANDS</span>
+    </div>
+
+    <div class="route"></div>
+
+    <div class="packet"></div>
+    <div class="packet two"></div>
+    <div class="packet three"></div>
+
+    <div
+      class="network-live"
+      id="mapStatus">
+
+      ● LIVE SERVERS
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1897,80 +2060,112 @@ onclick="openProduct(
 
 <section id="gaming">
 
-<div class="section-title">
-<small>GAMING / WIREGUARD</small>
-<h2>🎮 سرویس گیمینگ</h2>
-<p>مخصوص Call of Duty</p>
-</div>
+  <div class="section-title">
+    <small>GAMING / WIREGUARD</small>
+    <h2>🎮 سرویس گیمینگ</h2>
+    <p>مخصوص Call of Duty</p>
+  </div>
 
-<div class="products">
+  <div class="products">
 
-<div class="product" onclick="openProduct('Call of Duty — 10GB','🎮','سرویس WireGuard مخصوص گیمینگ و Call of Duty.','۱۰ گیگ','طبق سرویس','طبق سرویس','ربات','۳۰۰,۰۰۰ تومان')">
-<div class="product-icon">🎮</div>
-<h3>۱۰ گیگ گیمینگ</h3>
-<p>WireGuard مخصوص Call of Duty</p>
-<div class="price">۳۰۰,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">WireGuard</span><span class="tag">Gaming</span></div>
-<span class="arrow">←</span>
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'Call of Duty — 10GB',
+      '🎮',
+      'سرویس WireGuard مخصوص گیمینگ و Call of Duty.',
+      '۱۰ گیگ',
+      'طبق سرویس',
+      'طبق سرویس',
+      'ربات',
+      '۳۰۰,۰۰۰ تومان'
+      )">
 
-<div class="product" onclick="openProduct('Call of Duty — 20GB','🎯','سرویس WireGuard مخصوص گیمینگ و Call of Duty.','۲۰ گیگ','طبق سرویس','طبق سرویس','ربات','۴۰۰,۰۰۰ تومان')">
-<div class="product-icon">🎯</div>
-<h3>۲۰ گیگ گیمینگ</h3>
-<p>WireGuard مخصوص Call of Duty</p>
-<div class="price">۴۰۰,۰۰۰ تومان</div>
-<div class="tags"><span class="tag">WireGuard</span><span class="tag">Gaming</span></div>
-<span class="arrow">←</span>
-</div>
+      <div class="product-icon">🎮</div>
+      <h3>۱۰ گیگ گیمینگ</h3>
+      <p>WireGuard مخصوص Call of Duty</p>
+      <div class="price">۳۰۰,۰۰۰ تومان</div>
 
-</div>
+      <div class="tags">
+        <span class="tag">WireGuard</span>
+        <span class="tag">Gaming</span>
+      </div>
+
+      <span class="arrow">←</span>
+    </div>
+
+
+    <div class="product"
+      onclick="openProduct(
+      'Call of Duty — 20GB',
+      '🎯',
+      'سرویس WireGuard مخصوص گیمینگ و Call of Duty.',
+      '۲۰ گیگ',
+      'طبق سرویس',
+      'طبق سرویس',
+      'ربات',
+      '۴۰۰,۰۰۰ تومان'
+      )">
+
+      <div class="product-icon">🎯</div>
+      <h3>۲۰ گیگ گیمینگ</h3>
+      <p>WireGuard مخصوص Call of Duty</p>
+      <div class="price">۴۰۰,۰۰۰ تومان</div>
+
+      <div class="tags">
+        <span class="tag">WireGuard</span>
+        <span class="tag">Gaming</span>
+      </div>
+
+      <span class="arrow">←</span>
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- SYSTEM STATUS -->
+<!-- STATUS -->
 
 <section id="status">
 
-<div class="section-title">
-<small>LIVE STATUS</small>
-<h2>وضعیت سیستم</h2>
-<p>نمایش لحظه‌ای وضعیت سرویس‌ها</p>
-</div>
+  <div class="section-title">
+    <small>LIVE STATUS</small>
+    <h2>🟢 وضعیت سرورها</h2>
+    <p>وضعیت سرویس‌های زیرساختی</p>
+  </div>
 
-<div class="status-grid">
+  <div class="status-grid">
 
-<div class="status-card">
-<h3>🇩🇪 Germany</h3>
-<div class="status-line">
-<i class="status-dot"></i>
-فعال
-</div>
-<div class="status-value">Uptime</div>
-<div class="status-bar"><span></span></div>
-</div>
+    <div class="status-card">
+      <h3>🇩🇪 Germany</h3>
 
-<div class="status-card">
-<h3>🇫🇮 Finland</h3>
-<div class="status-line">
-<i class="status-dot"></i>
-فعال
-</div>
-<div class="status-value">Network</div>
-<div class="status-bar"><span></span></div>
-</div>
+      <div class="status-line">
+        <i class="status-dot"></i>
+        فعال
+      </div>
+    </div>
 
-<div class="status-card">
-<h3>🇳🇱 Netherlands</h3>
-<div class="status-line">
-<i class="status-dot"></i>
-فعال
-</div>
-<div class="status-value">Service</div>
-<div class="status-bar"><span></span></div>
-</div>
 
-</div>
+    <div class="status-card">
+      <h3>🇫🇮 Finland</h3>
+
+      <div class="status-line">
+        <i class="status-dot"></i>
+        فعال
+      </div>
+    </div>
+
+
+    <div class="status-card">
+      <h3>🇳🇱 Netherlands</h3>
+
+      <div class="status-line">
+        <i class="status-dot"></i>
+        فعال
+      </div>
+    </div>
+
+  </div>
 
 </section>
 
@@ -1979,63 +2174,134 @@ onclick="openProduct(
 
 <section id="subscriptions">
 
-<div class="section-title">
-<small>DIGITAL SUBSCRIPTIONS</small>
-<h2>💎 اشتراک‌های دیجیتال</h2>
-<p>قیمت و خرید از داخل پیوی تلگرام</p>
-</div>
+  <div class="section-title">
+    <small>DIGITAL SUBSCRIPTIONS</small>
+    <h2>💎 اشتراک‌های دیجیتال</h2>
+    <p>قیمت و خرید از داخل پیوی تلگرام</p>
+  </div>
 
-<div class="products">
+  <div class="products">
 
-<div class="product" onclick="openProduct('Telegram Premium','✈️','اشتراک Telegram Premium.','طبق پلن','طبق پلن','سه ماهه','پیوی','قیمت در پیوی')">
-<div class="product-icon">✈️</div>
-<h3>Telegram Premium</h3>
-<p>قیمت و خرید از داخل پیوی</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'Telegram Premium',
+      '✈️',
+      'اشتراک Telegram Premium.',
+      'طبق پلن',
+      'طبق پلن',
+      'سه ماهه',
+      'پیوی',
+      '۳,۸۰۰,۰۰۰ تومان'
+      )">
 
-<div class="product" onclick="openProduct('CapCut Premium','✂️','اشتراک پریمیوم CapCut.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
-<div class="product-icon">✂️</div>
-<h3>CapCut Premium</h3>
-<p>خرید از داخل پیوی تلگرام</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
+      <div class="product-icon">✈️</div>
+      <h3>Telegram Premium</h3>
+      <p>اشتراک سه ماهه</p>
+      <div class="price">۳,۸۰۰,۰۰۰ تومان</div>
+      <span class="arrow">←</span>
+    </div>
 
-<div class="product" onclick="openProduct('Spotify Premium','🎵','اشتراک Spotify Premium.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
-<div class="product-icon">🎵</div>
-<h3>Spotify Premium</h3>
-<p>خرید از داخل پیوی تلگرام</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
 
-<div class="product" onclick="openProduct('YouTube Premium','▶️','اشتراک YouTube Premium.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
-<div class="product-icon">▶️</div>
-<h3>YouTube Premium</h3>
-<p>خرید از داخل پیوی تلگرام</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'CapCut Premium',
+      '✂️',
+      'اشتراک پریمیوم CapCut.',
+      'طبق پلن',
+      'طبق پلن',
+      'طبق پلن',
+      'پیوی',
+      'استعلام'
+      )">
 
-<div class="product" onclick="openProduct('Canva Pro','🎨','اشتراک حرفه‌ای Canva.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
-<div class="product-icon">🎨</div>
-<h3>Canva Pro</h3>
-<p>خرید از داخل پیوی تلگرام</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
+      <div class="product-icon">✂️</div>
+      <h3>CapCut Premium</h3>
+      <p>خرید از داخل پیوی تلگرام</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
 
-<div class="product" onclick="openProduct('سایر اشتراک‌ها','💎','برای مشاهده اشتراک‌های بیشتر از طریق پیوی تلگرام استعلام بگیرید.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
-<div class="product-icon">💎</div>
-<h3>سایر اشتراک‌ها</h3>
-<p>استعلام و خرید از پیوی</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
 
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'Spotify Premium',
+      '🎵',
+      'اشتراک Spotify Premium.',
+      'طبق پلن',
+      'طبق پلن',
+      'طبق پلن',
+      'پیوی',
+      'استعلام'
+      )">
+
+      <div class="product-icon">🎵</div>
+      <h3>Spotify Premium</h3>
+      <p>خرید از داخل پیوی تلگرام</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
+
+
+    <div class="product"
+      onclick="openProduct(
+      'YouTube Premium',
+      '▶️',
+      'اشتراک YouTube Premium.',
+      'طبق پلن',
+      'طبق پلن',
+      'طبق پلن',
+      'پیوی',
+      'استعلام'
+      )">
+
+      <div class="product-icon">▶️</div>
+      <h3>YouTube Premium</h3>
+      <p>خرید از داخل پیوی تلگرام</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
+
+
+    <div class="product"
+      onclick="openProduct(
+      'Canva Pro',
+      '🎨',
+      'اشتراک حرفه‌ای Canva.',
+      'طبق پلن',
+      'طبق پلن',
+      'طبق پلن',
+      'پیوی',
+      'استعلام'
+      )">
+
+      <div class="product-icon">🎨</div>
+      <h3>Canva Pro</h3>
+      <p>خرید از داخل پیوی تلگرام</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
+
+
+    <div class="product"
+      onclick="openProduct(
+      'سایر اشتراک‌ها',
+      '💎',
+      'برای مشاهده اشتراک‌های بیشتر از طریق پیوی تلگرام استعلام بگیرید.',
+      'استعلام',
+      'استعلام',
+      'استعلام',
+      'پیوی',
+      'استعلام'
+      )">
+
+      <div class="product-icon">💎</div>
+      <h3>سایر اشتراک‌ها</h3>
+      <p>استعلام و خرید از پیوی</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
+
+  </div>
 
 </section>
 
@@ -2044,39 +2310,147 @@ onclick="openProduct(
 
 <section id="instagram">
 
-<div class="section-title">
-<small>INSTAGRAM SERVICES</small>
-<h2>📸 خدمات اینستاگرام</h2>
-<p>قیمت و خرید از داخل پیوی تلگرام</p>
-</div>
+  <div class="section-title">
+    <small>INSTAGRAM SERVICES</small>
+    <h2>📸 خدمات اینستاگرام</h2>
+    <p>قیمت و خرید از داخل پیوی تلگرام</p>
+  </div>
 
-<div class="products">
+  <div class="products">
 
-<div class="product" onclick="openProduct('خرید فالوور اینستاگرام','👥','خدمات افزایش فالوور اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
-<div class="product-icon">👥</div>
-<h3>خرید فالوور</h3>
-<p>افزایش فالوور اینستاگرام</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'خرید فالوور اینستاگرام',
+      '👥',
+      'خدمات افزایش فالوور اینستاگرام.',
+      'استعلام',
+      'استعلام',
+      'استعلام',
+      'پیوی',
+      'استعلام'
+      )">
 
-<div class="product" onclick="openProduct('ویو ریلز اینستاگرام','👁️','خدمات افزایش بازدید ریلز اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
-<div class="product-icon">👁️</div>
-<h3>ویو ریلز</h3>
-<p>افزایش بازدید ریلز</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
+      <div class="product-icon">👥</div>
+      <h3>خرید فالوور</h3>
+      <p>افزایش فالوور اینستاگرام</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
 
-<div class="product" onclick="openProduct('لایک اینستاگرام','❤️','خدمات افزایش لایک اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
-<div class="product-icon">❤️</div>
-<h3>لایک اینستاگرام</h3>
-<p>افزایش لایک و تعامل</p>
-<div class="price">قیمت در پیوی</div>
-<span class="arrow">←</span>
-</div>
 
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'ویو ریلز اینستاگرام',
+      '👁️',
+      'خدمات افزایش بازدید ریلز اینستاگرام.',
+      'استعلام',
+      'استعلام',
+      'استعلام',
+      'پیوی',
+      'استعلام'
+      )">
+
+      <div class="product-icon">👁️</div>
+      <h3>ویو ریلز</h3>
+      <p>افزایش بازدید ریلز</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
+
+
+    <div class="product"
+      onclick="openProduct(
+      'لایک اینستاگرام',
+      '❤️',
+      'خدمات افزایش لایک اینستاگرام.',
+      'استعلام',
+      'استعلام',
+      'استعلام',
+      'پیوی',
+      'استعلام'
+      )">
+
+      <div class="product-icon">❤️</div>
+      <h3>لایک اینستاگرام</h3>
+      <p>افزایش لایک و تعامل</p>
+      <div class="price">استعلام</div>
+      <span class="arrow">←</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TOOLS -->
+
+<section id="tools">
+
+  <div class="section-title">
+    <small>TOOLS</small>
+    <h2>🧪 ابزارهای V2GURD</h2>
+    <p>ابزارهای آنلاین در حال توسعه</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <div class="tool">
+
+      <div class="tool-icon">⚡</div>
+
+      <h3>تست سرعت</h3>
+
+      <p>
+        بررسی سرعت اتصال و نمایش نتیجه تست.
+      </p>
+
+      <div class="tool-status">
+        LIVE TOOL
+      </div>
+
+    </div>
+
+
+    <div class="tool">
+
+      <div class="tool-icon">🌐</div>
+
+      <h3>بررسی وضعیت اینترنت</h3>
+
+      <p>
+        بررسی وضعیت عمومی اتصال شبکه.
+      </p>
+
+      <div class="tool-status">
+        MONITORING
+      </div>
+
+    </div>
+
+
+    <div class="tool">
+
+      <div class="tool-icon">🛠️</div>
+
+      <h3>درخواست پشتیبانی</h3>
+
+      <p>
+        برای دریافت پشتیبانی از طریق تلگرام اقدام کنید.
+      </p>
+
+      <a
+        class="btn secondary"
+        href="https://t.me/Vtwoguard"
+        target="_blank"
+        style="margin-top:12px">
+
+        ورود به پشتیبانی
+
+      </a>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -2085,32 +2459,36 @@ onclick="openProduct(
 
 <section id="check">
 
-<div class="section-title">
-<small>SERVICE CHECK</small>
-<h2>🔎 استعلام سرویس</h2>
-<p>این بخش به‌زودی فعال می‌شود</p>
-</div>
+  <div class="section-title">
+    <small>SERVICE CHECK</small>
+    <h2>🔎 استعلام سرویس</h2>
+    <p>این بخش به‌زودی فعال می‌شود</p>
+  </div>
 
-<div class="check">
+  <div class="check">
 
-<div class="check-icon">🔎</div>
-<div class="coming">COMING SOON</div>
+    <div class="check-icon">🔎</div>
 
-<h3>استعلام آنلاین سرویس</h3>
+    <div class="coming">
+      COMING SOON
+    </div>
 
-<p>
-به‌زودی با وارد کردن نام سرویس،
-وضعیت فعال بودن، حجم باقی‌مانده و
-تعداد روز باقی‌مانده نمایش داده می‌شود.
-</p>
+    <h3>
+      استعلام آنلاین سرویس
+    </h3>
 
-<br>
+    <p>
+      به‌زودی با وارد کردن اطلاعات سرویس،
+      وضعیت سرویس و جزئیات آن نمایش داده می‌شود.
+    </p>
 
-<button class="btn secondary" disabled>
-به‌زودی فعال می‌شود
-</button>
+    <br>
 
-</div>
+    <button class="btn secondary" disabled>
+      به‌زودی فعال می‌شود
+    </button>
+
+  </div>
 
 </section>
 
@@ -2119,36 +2497,71 @@ onclick="openProduct(
 
 <section id="guide">
 
-<div class="section-title">
-<small>CONNECTION GUIDE</small>
-<h2>📱 راهنمای اتصال</h2>
-<p>آموزش اتصال سرویس روی دستگاه‌های مختلف</p>
-</div>
+  <div class="section-title">
+    <small>CONNECTION GUIDE</small>
+    <h2>📱 راهنمای اتصال</h2>
+    <p>آموزش اتصال سرویس روی دستگاه‌های مختلف</p>
+  </div>
 
-<div class="products">
+  <div class="products">
 
-<div class="product" onclick="openProduct('راهنمای iPhone','🍎','آموزش اتصال سرویس روی iPhone و iOS.','iOS','—','—','راهنما','—')">
-<div class="product-icon">🍎</div>
-<h3>iPhone / iOS</h3>
-<p>راهنمای اتصال روی آیفون</p>
-<span class="arrow">←</span>
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'راهنمای iPhone',
+      '🍎',
+      'آموزش اتصال سرویس روی iPhone و iOS.',
+      'iOS',
+      '—',
+      '—',
+      'راهنما',
+      '—'
+      )">
 
-<div class="product" onclick="openProduct('راهنمای Android','🤖','آموزش اتصال سرویس روی Android.','Android','—','—','راهنما','—')">
-<div class="product-icon">🤖</div>
-<h3>Android</h3>
-<p>راهنمای اتصال روی اندروید</p>
-<span class="arrow">←</span>
-</div>
+      <div class="product-icon">🍎</div>
+      <h3>iPhone / iOS</h3>
+      <p>راهنمای اتصال روی آیفون</p>
+      <span class="arrow">←</span>
+    </div>
 
-<div class="product" onclick="openProduct('راهنمای V2Box','📱','آموزش اتصال سرویس با V2Box.','V2Box','—','—','راهنما','—')">
-<div class="product-icon">📱</div>
-<h3>V2Box</h3>
-<p>راهنمای اتصال با Subscription</p>
-<span class="arrow">←</span>
-</div>
 
-</div>
+    <div class="product"
+      onclick="openProduct(
+      'راهنمای Android',
+      '🤖',
+      'آموزش اتصال سرویس روی Android.',
+      'Android',
+      '—',
+      '—',
+      'راهنما',
+      '—'
+      )">
+
+      <div class="product-icon">🤖</div>
+      <h3>Android</h3>
+      <p>راهنمای اتصال روی اندروید</p>
+      <span class="arrow">←</span>
+    </div>
+
+
+    <div class="product"
+      onclick="openProduct(
+      'راهنمای V2Box',
+      '📱',
+      'آموزش اتصال سرویس با V2Box.',
+      'V2Box',
+      '—',
+      '—',
+      'راهنما',
+      '—'
+      )">
+
+      <div class="product-icon">📱</div>
+      <h3>V2Box</h3>
+      <p>راهنمای اتصال با Subscription</p>
+      <span class="arrow">←</span>
+    </div>
+
+  </div>
 
 </section>
 
@@ -2157,79 +2570,74 @@ onclick="openProduct(
 
 <section id="about">
 
-<div class="section-title">
-<small>ABOUT V2GURD</small>
-<h2>درباره V2GURD</h2>
-</div>
+  <div class="section-title">
+    <small>ABOUT V2GURD</small>
+    <h2>درباره V2GURD</h2>
+  </div>
 
-<div class="check">
+  <div class="check">
 
-<p>
-V2GURD ارائه‌دهنده سرویس‌های دیجیتال،
-سرویس‌های اتصال، گیمینگ و اشتراک‌های دیجیتال است.
-هدف ما ارائه تجربه‌ای ساده، سریع و حرفه‌ای
-همراه با پشتیبانی مناسب است.
-</p>
+    <p>
+      V2GURD ارائه‌دهنده سرویس‌های دیجیتال،
+      سرویس‌های اتصال، گیمینگ و اشتراک‌های دیجیتال است.
+      هدف ما ارائه تجربه‌ای ساده، سریع و حرفه‌ای
+      همراه با پشتیبانی مناسب است.
+    </p>
 
-</div>
+  </div>
 
 </section>
 
 
+<!-- FOOTER -->
+
 <footer>
 
-<div style="font-size:21px;font-weight:1000;color:var(--text)">
-V2<span style="color:var(--green)">GURD</span>
-<span class="verified">✓</span>
-</div>
+  <div style="font-size:21px;font-weight:1000;color:var(--text)">
+    V2<span style="color:var(--green)">GURD</span>
+    <span class="verified">✓</span>
+  </div>
 
-<p style="margin-top:12px">
-تمامی حقوق و مزایای سایت و ربات متعلق به
-<strong>V2GURD</strong>
-می‌باشد.
-</p>
+  <p style="margin-top:12px">
+    تمامی حقوق و مزایای سایت و ربات متعلق به
+    <strong>V2GURD</strong>
+    می‌باشد.
+  </p>
 
-<p>
-© 2026 V2GURD — All Rights Reserved
-</p>
+  <p>
+    © 2026 V2GURD — All Rights Reserved
+  </p>
 
 </footer>
-
-
-<!-- دائمی: اختلالات را می‌شکافیم -->
-
-<div class="disruption-box">
-
-<div class="disruption-head">
-
-<div class="disruption-icon">
-⚡
-</div>
-
-<div>
-<strong>اختلالات را می‌شکافیم</strong>
-<small>SECURE ROUTE • LIVE CONNECTION</small>
-</div>
-
-</div>
-
-<div class="crack-line">
-<span></span>
-</div>
-
-</div>
 
 
 <!-- BOTTOM MENU -->
 
 <nav class="bottom-menu">
 
-<a href="#special" class="active">🔥 ویژه</a>
-<a href="#servers">🛡️ سرورها</a>
-<a href="#live">🌐 زنده</a>
-<a href="#gaming">🎮 گیمینگ</a>
-<a href="#subscriptions">💎 اشتراک</a>
-<a href="#guide">📱 راهنما</a>
+  <a href="#special" class="active">
+    🔥 ویژه
+  </a>
+
+  <a href="#servers">
+    🛡️ سرورها
+  </a>
+
+  <a href="#gaming">
+    🎮 گیمینگ
+  </a>
+
+  <a href="#live">
+    ⚡ لایو
+  </a>
+
+  <a href="#subscriptions">
+    💎 اشتراک
+  </a>
+
+  <a href="#guide">
+    📱 راهنما
+  </a>
 
 </nav>
 
@@ -2238,358 +2646,634 @@ V2<span style="color:var(--green)">GURD</span>
 
 <div class="modal" id="productModal">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<button class="close" onclick="closeProduct()">×</button>
+    <button class="close" onclick="closeProduct()">
+      ×
+    </button>
 
-<div class="modal-icon" id="modalIcon">🛡️</div>
+    <div
+      class="modal-icon"
+      id="modalIcon">
+      🛡️
+    </div>
 
-<h2 id="modalTitle">محصول</h2>
+    <h2 id="modalTitle">
+      محصول
+    </h2>
 
-<p class="modal-description" id="modalDescription">
-توضیحات محصول
-</p>
+    <p
+      class="modal-description"
+      id="modalDescription">
 
-<div class="details">
+      توضیحات محصول
 
-<div class="detail">
-<small>حجم</small>
-<strong id="modalVolume">—</strong>
-</div>
+    </p>
 
-<div class="detail">
-<small>کاربر</small>
-<strong id="modalUsers">—</strong>
-</div>
 
-<div class="detail">
-<small>اعتبار</small>
-<strong id="modalDuration">—</strong>
-</div>
+    <div class="details">
 
-<div class="detail">
-<small>قیمت</small>
-<strong id="modalPrice">—</strong>
-</div>
+      <div class="detail">
+        <small>حجم</small>
+        <strong id="modalVolume">—</strong>
+      </div>
 
-</div>
+      <div class="detail">
+        <small>کاربر</small>
+        <strong id="modalUsers">—</strong>
+      </div>
 
-<div class="modal-actions">
+      <div class="detail">
+        <small>اعتبار</small>
+        <strong id="modalDuration">—</strong>
+      </div>
 
-<a id="purchaseButton"
-class="btn primary"
-href="#"
-target="_blank">
-خرید
-</a>
+      <div class="detail">
+        <small>قیمت</small>
+        <strong id="modalPrice">—</strong>
+      </div>
 
-<button
-class="btn secondary"
-onclick="closeProduct()">
-بازگشت
-</button>
+    </div>
 
-</div>
 
-</div>
+    <div class="modal-actions">
+
+      <a
+        id="purchaseButton"
+        class="btn primary"
+        href="#"
+        target="_blank">
+
+        خرید
+
+      </a>
+
+      <button
+        class="btn secondary"
+        onclick="closeProduct()">
+
+        بازگشت
+
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
 
 <script>
 
-const BOT_URL="https://t.me/echo_priime_bot";
-const PV_URL="https://t.me/Vtwoguard";
+/* LINKS */
+
+const BOT_URL =
+  "https://t.me/echo_priime_bot";
+
+const PV_URL =
+  "https://t.me/Vtwoguard";
 
 
 /* THEME */
 
 function updateTheme(){
 
-const btn=document.getElementById("themeButton");
+  const btn =
+    document.getElementById("themeButton");
 
-btn.textContent=
-document.body.classList.contains("light")
-?"☀"
-:"☾";
+  if(
+    document.body.classList.contains("light")
+  ){
+
+    btn.textContent="☀";
+
+  }else{
+
+    btn.textContent="☾";
+
+  }
 
 }
 
 function toggleTheme(){
 
-document.body.classList.toggle("light");
+  document.body.classList.toggle("light");
 
-localStorage.setItem(
-"v2gurd-theme",
-document.body.classList.contains("light")
-?"light"
-:"dark"
-);
+  localStorage.setItem(
+    "v2gurd-theme",
+    document.body.classList.contains("light")
+      ? "light"
+      : "dark"
+  );
 
-updateTheme();
+  updateTheme();
 
 }
 
-if(localStorage.getItem("v2gurd-theme")==="light"){
-document.body.classList.add("light");
-}
-
-updateTheme();
-
-
-/* PRODUCT MODAL */
-
-function openProduct(
-title,
-icon,
-description,
-volume,
-users,
-duration,
-type,
-price
+if(
+  localStorage.getItem("v2gurd-theme")==="light"
 ){
 
-document.getElementById("modalTitle").textContent=title;
-document.getElementById("modalIcon").textContent=icon;
-document.getElementById("modalDescription").textContent=description;
-document.getElementById("modalVolume").textContent=volume;
-document.getElementById("modalUsers").textContent=users;
-document.getElementById("modalDuration").textContent=duration;
-document.getElementById("modalPrice").textContent=price;
-
-const button=document.getElementById("purchaseButton");
-
-if(type==="پیوی"){
-
-button.textContent="خرید از پیوی تلگرام";
-button.href=PV_URL;
-
-}else if(type==="ربات"){
-
-button.textContent="خرید از ربات";
-button.href=BOT_URL;
-
-}else{
-
-button.textContent=type;
-button.href="#";
+  document.body.classList.add("light");
 
 }
 
-document
-.getElementById("productModal")
-.classList.add("show");
+updateTheme();
 
-document.body.style.overflow="hidden";
+
+/* WORKING HOURS */
+
+function isPVWorking(){
+
+  /*
+    Iran time:
+    Saturday = 6
+    Sunday = 0
+    Monday = 1
+    Tuesday = 2
+    Wednesday = 3
+    Thursday = 4
+    Friday = 5
+  */
+
+  const now =
+    new Date();
+
+  const iranTime =
+    new Date(
+      now.toLocaleString(
+        "en-US",
+        {
+          timeZone:"Asia/Tehran"
+        }
+      )
+    );
+
+  const day =
+    iranTime.getDay();
+
+  const hour =
+    iranTime.getHours();
+
+  const minute =
+    iranTime.getMinutes();
+
+  const totalMinutes =
+    hour*60+minute;
+
+  const start =
+    12*60;
+
+  const end =
+    24*60;
+
+  if(day===5){
+
+    return false;
+
+  }
+
+  return (
+    totalMinutes>=start &&
+    totalMinutes<end
+  );
 
 }
+
+
+function updateWorkingHours(){
+
+  const status =
+    document.getElementById("hoursStatus");
+
+  const live =
+    document.getElementById("hoursLiveState");
+
+  if(!status || !live) return;
+
+
+  if(isPVWorking()){
+
+    live.innerHTML =
+      '<i class="live-dot"></i> ONLINE';
+
+    status.className =
+      "hours-status open";
+
+    status.textContent =
+      "● پشتیبانی پیوی فعال است";
+
+  }else{
+
+    live.innerHTML =
+      '<i class="live-dot" style="background:var(--red);box-shadow:0 0 12px var(--red)"></i> OFFLINE';
+
+    status.className =
+      "hours-status closed";
+
+    status.textContent =
+      "● پشتیبانی پیوی در حال حاضر فعال نیست";
+
+  }
+
+}
+
+updateWorkingHours();
+
+setInterval(
+  updateWorkingHours,
+  30000
+);
+
+
+/* PRODUCT */
+
+function openProduct(
+  title,
+  icon,
+  description,
+  volume,
+  users,
+  duration,
+  type,
+  price
+){
+
+  document.getElementById(
+    "modalTitle"
+  ).textContent=title;
+
+  document.getElementById(
+    "modalIcon"
+  ).textContent=icon;
+
+  document.getElementById(
+    "modalDescription"
+  ).textContent=description;
+
+  document.getElementById(
+    "modalVolume"
+  ).textContent=volume;
+
+  document.getElementById(
+    "modalUsers"
+  ).textContent=users;
+
+  document.getElementById(
+    "modalDuration"
+  ).textContent=duration;
+
+  document.getElementById(
+    "modalPrice"
+  ).textContent=price;
+
+
+  const button =
+    document.getElementById(
+      "purchaseButton"
+    );
+
+
+  /*
+    BOT = 24/7
+    PV = Saturday-Thursday
+    12:00-24:00
+  */
+
+  if(type==="پیوی"){
+
+    if(isPVWorking()){
+
+      button.textContent =
+        "خرید از پیوی تلگرام";
+
+      button.href =
+        PV_URL;
+
+      button.classList.remove(
+        "purchase-disabled"
+      );
+
+      button.onclick=null;
+
+    }else{
+
+      button.textContent =
+        "خرید از پیوی در ساعات کاری";
+
+      button.href="#";
+
+      button.classList.add(
+        "purchase-disabled"
+      );
+
+      button.onclick=function(e){
+
+        e.preventDefault();
+
+      };
+
+    }
+
+  }
+
+  else if(type==="ربات"){
+
+    button.textContent =
+      "خرید از ربات";
+
+    button.href =
+      BOT_URL;
+
+    button.classList.remove(
+      "purchase-disabled"
+    );
+
+    button.onclick=null;
+
+  }
+
+  else{
+
+    button.textContent =
+      type;
+
+    button.href="#";
+
+    button.classList.remove(
+      "purchase-disabled"
+    );
+
+  }
+
+
+  document
+    .getElementById("productModal")
+    .classList.add("show");
+
+  document.body.style.overflow="hidden";
+
+}
+
 
 function closeProduct(){
 
+  document
+    .getElementById("productModal")
+    .classList.remove("show");
+
+  document.body.style.overflow="";
+
+}
+
+
 document
-.getElementById("productModal")
-.classList.remove("show");
+  .getElementById("productModal")
+  .addEventListener(
+    "click",
+    function(e){
 
-document.body.style.overflow="";
+      if(e.target===this){
+        closeProduct();
+      }
 
-}
-
-document
-.getElementById("productModal")
-.addEventListener("click",function(e){
-
-if(e.target===this){
-closeProduct();
-}
-
-});
-
-document.addEventListener("keydown",function(e){
-
-if(e.key==="Escape"){
-closeProduct();
-}
-
-});
+    }
+  );
 
 
-/* OFFER TIMER */
+document.addEventListener(
+  "keydown",
+  function(e){
 
-let offerEnd=
-localStorage.getItem("v2gurd-offer-end");
+    if(e.key==="Escape"){
+      closeProduct();
+    }
+
+  }
+);
+
+
+/* SPECIAL COUNTDOWN */
+
+let offerEnd =
+  localStorage.getItem(
+    "v2gurd-offer-end"
+  );
 
 if(!offerEnd){
 
-offerEnd=
-Date.now()+
-10*24*60*60*1000;
+  offerEnd =
+    Date.now()+
+    10*24*60*60*1000;
 
-localStorage.setItem(
-"v2gurd-offer-end",
-offerEnd
-);
+  localStorage.setItem(
+    "v2gurd-offer-end",
+    offerEnd
+  );
 
 }
+
 
 function updateTimer(){
 
-const remaining=
-Number(offerEnd)-Date.now();
+  const remaining =
+    Number(offerEnd)-Date.now();
 
-const timer=
-document.getElementById("timer");
+  const timer =
+    document.getElementById("timer");
 
-if(remaining<=0){
+  if(!timer) return;
 
-timer.textContent="پیشنهاد ویژه به پایان رسید";
-return;
 
-}
+  if(remaining<=0){
 
-const days=
-Math.floor(
-remaining/(1000*60*60*24)
-);
+    timer.textContent =
+      "پیشنهاد ویژه به پایان رسید";
 
-const hours=
-Math.floor(
-(remaining/(1000*60*60))%24
-);
+    return;
 
-const minutes=
-Math.floor(
-(remaining/(1000*60))%60
-);
+  }
 
-timer.textContent=
-`${days} روز ${hours} ساعت ${minutes} دقیقه`;
+
+  const days =
+    Math.floor(
+      remaining/
+      (1000*60*60*24)
+    );
+
+  const hours =
+    Math.floor(
+      (remaining/
+      (1000*60*60))%24
+    );
+
+  const minutes =
+    Math.floor(
+      (remaining/
+      (1000*60))%60
+    );
+
+
+  timer.textContent =
+    `${days} روز ${hours} ساعت ${minutes} دقیقه`;
 
 }
 
 updateTimer();
-setInterval(updateTimer,60000);
-
-
-/* INTERNET STATUS */
-
-function checkInternet(){
-
-const el=
-document.getElementById("internetStatus");
-
-if(navigator.onLine){
-
-el.textContent="● ONLINE";
-
-el.style.color="#43ed60";
-
-}else{
-
-el.textContent="● OFFLINE";
-
-el.style.color="#ff3158";
-
-}
-
-}
-
-checkInternet();
-
-window.addEventListener(
-"online",
-checkInternet
-);
-
-window.addEventListener(
-"offline",
-checkInternet
-);
-
-
-/* SPEED SIMULATION */
-
-const speedEl=
-document.getElementById("speedValue");
-
-let speed=0;
-
-function animateSpeed(){
-
-speed=
-Math.floor(
-40+
-Math.random()*160
-);
-
-speedEl.textContent=
-speed+" Mbps";
-
-}
-
-animateSpeed();
 
 setInterval(
-animateSpeed,
-2500
+  updateTimer,
+  60000
 );
 
 
-/* SYSTEM PERCENT */
+/* SPEED TEST VISUAL */
 
-const systemEl=
-document.getElementById("systemPercent");
+function runSpeedTest(){
 
-setInterval(()=>{
+  const output =
+    document.getElementById(
+      "speedValue"
+    );
 
-const value=
-96+
-Math.floor(
-Math.random()*4
+  if(!output) return;
+
+  output.textContent =
+    "در حال تست...";
+
+  let value=0;
+
+  const interval =
+    setInterval(
+      ()=>{
+
+        value+=Math.floor(
+          Math.random()*14
+        )+5;
+
+        if(value>=100){
+
+          value=100;
+
+          clearInterval(interval);
+
+          const speed =
+            Math.floor(
+              Math.random()*80
+            )+30;
+
+          output.textContent =
+            speed+" Mbps";
+
+        }else{
+
+          output.textContent =
+            value+"%";
+
+        }
+
+      },
+      120
+    );
+
+}
+
+
+/* SERVER LIVE STATUS */
+
+function updateLiveNetwork(){
+
+  const status =
+    document.getElementById(
+      "mapStatus"
+    );
+
+  if(!status) return;
+
+  const states=[
+    "● LIVE SERVERS",
+    "● NETWORK ONLINE",
+    "● ROUTING ACTIVE",
+    "● CONNECTION STABLE"
+  ];
+
+  status.textContent =
+    states[
+      Math.floor(
+        Math.random()*states.length
+      )
+    ];
+
+}
+
+setInterval(
+  updateLiveNetwork,
+  4000
 );
-
-systemEl.textContent=value;
-
-},3000);
 
 
 /* MENU ACTIVE */
 
-const menu=
-document.querySelectorAll(".bottom-menu a");
+const menu =
+  document.querySelectorAll(
+    ".bottom-menu a"
+  );
 
-const sections=
-document.querySelectorAll("section[id]");
+const sections =
+  document.querySelectorAll(
+    "section[id]"
+  );
 
-window.addEventListener("scroll",()=>{
+window.addEventListener(
+  "scroll",
+  ()=>{
 
-let current="special";
+    let current="special";
 
-sections.forEach(section=>{
+    sections.forEach(
+      section=>{
 
-const top=
-section.offsetTop-180;
+        const top =
+          section.offsetTop-180;
 
-if(window.scrollY>=top){
-current=section.id;
-}
+        if(
+          window.scrollY>=top
+        ){
 
-});
+          current =
+            section.id;
 
-menu.forEach(item=>{
+        }
 
-item.classList.remove("active");
+      }
+    );
 
-if(
-item.getAttribute("href")===
-"#"+current
-){
-item.classList.add("active");
-}
 
-});
+    menu.forEach(
+      item=>{
 
-},{passive:true});
+        item.classList.remove(
+          "active"
+        );
+
+        if(
+          item.getAttribute(
+            "href"
+          )==="#"+current
+        ){
+
+          item.classList.add(
+            "active"
+          );
+
+        }
+
+      }
+    );
+
+  },
+  {passive:true}
+);
 
 </script>
 
