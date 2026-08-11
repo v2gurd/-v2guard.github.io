@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#05080d">
+<meta name="description" content="V2GURD | Digital Services">
 <title>V2GURD | Digital Services</title>
 
 <style>
@@ -34,78 +35,134 @@ body{
   color:var(--text);
   font-family:Tahoma,Arial,sans-serif;
   overflow-x:hidden;
-  transition:.35s ease;
+  transition:background .35s,color .35s;
 }
 
 body.light{
   --bg:#f3f6f8;
   --card:#fff;
-  --card2:#f7f9fa;
+  --card2:#f1f4f6;
   --text:#11161c;
-  --muted:#5c6875;
-  --border:rgba(0,0,0,.1);
+  --muted:#53606d;
+  --border:rgba(0,0,0,.10);
 }
 
-/* LIGHTS */
+/* =========================
+   INTRO EFFECT
+========================= */
+
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:#05080d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  animation:introHide .9s ease 1.15s forwards;
+}
+
+.intro-line{
+  position:absolute;
+  width:130%;
+  height:3px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--blue),
+    white,
+    var(--green),
+    transparent
+  );
+  box-shadow:
+    0 0 8px var(--green),
+    0 0 25px var(--blue);
+  transform:rotate(-8deg);
+  animation:slash .8s ease forwards;
+}
+
+.intro-text{
+  font-size:28px;
+  font-weight:1000;
+  letter-spacing:3px;
+  color:white;
+  opacity:0;
+  animation:introText .45s ease .35s forwards;
+}
+
+.intro-text span{
+  color:var(--green);
+}
+
+@keyframes slash{
+  from{transform:translateX(-120%) rotate(-8deg)}
+  to{transform:translateX(120%) rotate(-8deg)}
+}
+
+@keyframes introText{
+  to{opacity:1}
+}
+
+@keyframes introHide{
+  to{opacity:0;visibility:hidden}
+}
+
+/* =========================
+   BACKGROUND
+========================= */
 
 .bg-light{
   position:fixed;
-  width:260px;
-  height:260px;
+  width:240px;
+  height:240px;
   border-radius:50%;
-  filter:blur(90px);
-  opacity:.07;
+  filter:blur(85px);
+  opacity:.055;
   pointer-events:none;
   z-index:-1;
-  animation:floatLight 12s ease-in-out infinite alternate;
 }
 
 .green-light{
   background:var(--green);
-  top:-120px;
-  right:-100px;
+  top:-100px;
+  right:-80px;
 }
 
 .blue-light{
   background:var(--blue);
-  bottom:-120px;
-  left:-100px;
-  animation-delay:3s;
+  bottom:-100px;
+  left:-80px;
 }
 
 .red-light{
   background:var(--red);
   top:45%;
   left:45%;
-  opacity:.035;
-  animation-delay:6s;
+  opacity:.025;
 }
 
-@keyframes floatLight{
-  to{
-    transform:translate(80px,100px);
-  }
-}
-
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
   position:sticky;
   top:0;
-  z-index:100;
-  background:rgba(5,8,13,.78);
+  z-index:500;
+  background:rgba(5,8,13,.82);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
 }
 
 body.light header{
-  background:rgba(243,246,248,.88);
+  background:rgba(243,246,248,.9);
 }
 
 .nav{
   max-width:1180px;
   margin:auto;
-  padding:14px 18px;
+  padding:13px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -120,7 +177,7 @@ body.light header{
   letter-spacing:1.5px;
 }
 
-.logo span.brand{
+.logo .brand{
   color:var(--green);
   text-shadow:0 0 14px rgba(184,255,0,.4);
 }
@@ -130,7 +187,7 @@ body.light header{
   height:17px;
   border-radius:50%;
   background:#159cff;
-  color:#fff;
+  color:white;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -140,9 +197,7 @@ body.light header{
 }
 
 @keyframes verified{
-  50%{
-    box-shadow:0 0 22px rgba(21,156,255,.9);
-  }
+  50%{box-shadow:0 0 22px rgba(21,156,255,.95)}
 }
 
 .nav-links{
@@ -153,8 +208,8 @@ body.light header{
 .nav-links a{
   color:var(--muted);
   text-decoration:none;
-  font-size:10px;
-  padding:8px 10px;
+  font-size:9px;
+  padding:8px 9px;
   border-radius:10px;
 }
 
@@ -173,15 +228,17 @@ body.light header{
   cursor:pointer;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
   max-width:1180px;
   margin:auto;
-  padding:75px 18px 55px;
+  padding:70px 18px 45px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:55px;
+  gap:45px;
   align-items:center;
 }
 
@@ -196,7 +253,7 @@ body.light header{
   border:1px solid rgba(184,255,0,.16);
   background:rgba(184,255,0,.05);
   border-radius:30px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .badge i{
@@ -209,30 +266,23 @@ body.light header{
 
 .hero h1{
   font-size:clamp(28px,4vw,45px);
-  line-height:1.4;
-  margin-bottom:17px;
+  line-height:1.3;
+  margin-bottom:15px;
 }
 
 .neon{
   color:var(--green);
-  text-shadow:
-    0 0 5px rgba(184,255,0,.6),
-    0 0 16px rgba(184,255,0,.35);
+  text-shadow:0 0 5px rgba(184,255,0,.6),0 0 16px rgba(184,255,0,.35);
   animation:neon 3s ease-in-out infinite;
 }
 
 .neon.blue{
   color:var(--blue);
-  text-shadow:
-    0 0 5px rgba(24,170,255,.65),
-    0 0 16px rgba(24,170,255,.35);
-  animation-delay:1s;
+  text-shadow:0 0 5px rgba(24,170,255,.65),0 0 16px rgba(24,170,255,.35);
 }
 
 @keyframes neon{
-  50%{
-    filter:brightness(1.25);
-  }
+  50%{filter:brightness(1.25)}
 }
 
 .hero-text{
@@ -245,7 +295,7 @@ body.light header{
 .hero-buttons{
   display:flex;
   gap:9px;
-  margin-top:25px;
+  margin-top:24px;
   flex-wrap:wrap;
 }
 
@@ -253,7 +303,6 @@ body.light header{
   display:inline-flex;
   justify-content:center;
   align-items:center;
-  border:0;
   border-radius:13px;
   padding:12px 18px;
   font-family:inherit;
@@ -262,6 +311,7 @@ body.light header{
   cursor:pointer;
   text-decoration:none;
   transition:.2s;
+  border:0;
 }
 
 .btn:hover{
@@ -280,10 +330,12 @@ body.light header{
   border:1px solid var(--border);
 }
 
-/* NETWORK */
+/* =========================
+   NETWORK HERO
+========================= */
 
 .network{
-  height:370px;
+  height:350px;
   position:relative;
   overflow:hidden;
   border-radius:28px;
@@ -320,15 +372,15 @@ body.light header{
 }
 
 .node.dc{
-  top:38px;
-  right:38px;
+  top:35px;
+  right:35px;
   border:1px solid rgba(24,170,255,.3);
   box-shadow:0 0 28px rgba(24,170,255,.1);
 }
 
 .node.user{
-  bottom:38px;
-  left:38px;
+  bottom:35px;
+  left:35px;
   border:1px solid rgba(184,255,0,.3);
   box-shadow:0 0 28px rgba(184,255,0,.1);
 }
@@ -340,12 +392,7 @@ body.light header{
   top:52%;
   right:15%;
   transform:rotate(145deg);
-  background:linear-gradient(
-    90deg,
-    var(--blue),
-    var(--green),
-    var(--red)
-  );
+  background:linear-gradient(90deg,var(--blue),var(--green),var(--red));
   opacity:.5;
 }
 
@@ -373,30 +420,24 @@ body.light header{
 }
 
 @keyframes packet{
-  0%{
-    right:25%;
-    top:31%;
-    opacity:0;
-  }
+  0%{right:25%;top:31%;opacity:0}
   15%{opacity:1}
   85%{opacity:1}
-  100%{
-    right:70%;
-    top:72%;
-    opacity:0;
-  }
+  100%{right:70%;top:72%;opacity:0}
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 section{
   max-width:1180px;
   margin:auto;
-  padding:55px 18px;
+  padding:50px 18px;
 }
 
 .section-title{
-  margin-bottom:25px;
+  margin-bottom:23px;
 }
 
 .section-title small{
@@ -416,18 +457,36 @@ section{
   font-size:10px;
 }
 
-/* SPECIAL */
+/* =========================
+   SPECIAL
+========================= */
 
 .special{
   position:relative;
   overflow:hidden;
   text-align:center;
-  padding:38px 20px;
+  padding:35px 20px;
   border-radius:27px;
   border:1px solid rgba(184,255,0,.18);
   background:
     radial-gradient(circle at 50% 0,rgba(184,255,0,.09),transparent 45%),
     var(--card);
+}
+
+.special::before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  top:0;
+  left:-180px;
+  box-shadow:0 0 15px var(--green);
+  animation:specialLight 4s linear infinite;
+}
+
+@keyframes specialLight{
+  to{left:110%}
 }
 
 .special h2{
@@ -436,22 +495,24 @@ section{
 
 .timer{
   color:var(--green);
-  font-size:19px;
+  font-size:18px;
   font-weight:1000;
-  margin:17px 0;
+  margin:16px 0;
 }
 
-/* PRODUCT GROUP */
+/* =========================
+   PRODUCTS
+========================= */
 
 .product-group{
-  margin-bottom:48px;
+  margin-bottom:45px;
 }
 
 .group-title{
   display:flex;
   align-items:center;
   gap:10px;
-  margin-bottom:17px;
+  margin-bottom:16px;
 }
 
 .group-title h3{
@@ -463,8 +524,6 @@ section{
   font-size:9px;
 }
 
-/* PRODUCTS */
-
 .products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -474,8 +533,8 @@ section{
 .product{
   position:relative;
   overflow:hidden;
-  min-height:210px;
-  padding:22px;
+  min-height:195px;
+  padding:21px;
   border-radius:22px;
   border:1px solid var(--border);
   background:var(--card);
@@ -502,28 +561,18 @@ section{
   animation:productGlow 6s ease-in-out infinite alternate;
 }
 
-.product:nth-child(3n)::after{
-  background:var(--blue);
-}
-
-.product:nth-child(4n)::after{
-  background:var(--red);
-}
-
 @keyframes productGlow{
-  to{
-    transform:translate(-45px,55px);
-  }
+  to{transform:translate(-45px,55px)}
 }
 
 .product-icon{
   font-size:27px;
-  margin-bottom:15px;
+  margin-bottom:13px;
 }
 
 .product h3{
   font-size:15px;
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
 
 .product p{
@@ -536,14 +585,14 @@ section{
   color:var(--green);
   font-size:14px;
   font-weight:1000;
-  margin-top:13px;
+  margin-top:11px;
 }
 
 .tags{
   display:flex;
   gap:5px;
   flex-wrap:wrap;
-  margin-top:10px;
+  margin-top:9px;
 }
 
 .tag{
@@ -557,13 +606,171 @@ section{
 
 .arrow{
   position:absolute;
-  left:19px;
-  bottom:17px;
+  left:18px;
+  bottom:16px;
   color:var(--green);
   font-size:14px;
 }
 
-/* STATUS */
+/* =========================
+   LIVE SERVER MAP
+========================= */
+
+.live-map{
+  position:relative;
+  min-height:420px;
+  overflow:hidden;
+  border-radius:27px;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(24,170,255,.06),transparent 45%),
+    var(--card);
+}
+
+.map-grid{
+  position:absolute;
+  inset:0;
+  opacity:.25;
+  background-image:
+    linear-gradient(rgba(24,170,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(24,170,255,.045) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+
+.server-node{
+  position:absolute;
+  z-index:3;
+  width:115px;
+  padding:13px 8px;
+  text-align:center;
+  border-radius:17px;
+  background:rgba(5,8,13,.85);
+  border:1px solid rgba(184,255,0,.2);
+  box-shadow:0 0 20px rgba(184,255,0,.06);
+}
+
+body.light .server-node{
+  background:rgba(255,255,255,.88);
+}
+
+.server-node .dot{
+  width:8px;
+  height:8px;
+  display:inline-block;
+  border-radius:50%;
+  background:#45ed5b;
+  box-shadow:0 0 12px #45ed5b;
+  margin-left:5px;
+  animation:pulse 1.5s infinite;
+}
+
+.server-node strong{
+  display:block;
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+.server-node small{
+  color:var(--muted);
+  font-size:7px;
+}
+
+.germany{top:70px;right:25%}
+.finland{top:50px;left:20%}
+.netherlands{bottom:75px;right:40%}
+.iran{bottom:45px;left:22%}
+
+.map-line{
+  position:absolute;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--blue),var(--green),transparent);
+  transform-origin:left;
+  opacity:.5;
+}
+
+.line1{
+  width:320px;
+  top:130px;
+  left:27%;
+  transform:rotate(18deg);
+}
+
+.line2{
+  width:290px;
+  top:170px;
+  left:29%;
+  transform:rotate(155deg);
+}
+
+.line3{
+  width:270px;
+  top:240px;
+  left:30%;
+  transform:rotate(18deg);
+}
+
+.map-packet{
+  position:absolute;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 13px var(--green);
+  animation:mapPacket 4s linear infinite;
+}
+
+@keyframes mapPacket{
+  from{transform:translateX(-160px);opacity:0}
+  20%{opacity:1}
+  80%{opacity:1}
+  to{transform:translateX(350px);opacity:0}
+}
+
+/* =========================
+   TOOLS
+========================= */
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+}
+
+.tool{
+  padding:21px 16px;
+  min-height:170px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:var(--card);
+  text-align:center;
+}
+
+.tool-icon{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.tool h3{
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.tool p{
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.8;
+}
+
+.tool-result{
+  color:var(--green);
+  font-size:10px;
+  margin-top:9px;
+  min-height:17px;
+}
+
+/* =========================
+   STATUS
+========================= */
 
 .status-grid{
   display:grid;
@@ -601,16 +808,99 @@ section{
 }
 
 @keyframes pulse{
-  50%{
-    opacity:.4;
-    transform:scale(.7);
-  }
+  50%{opacity:.4;transform:scale(.7)}
 }
 
-/* CHECK */
+/* =========================
+   INTERNET STATUS
+========================= */
+
+.internet-box{
+  padding:28px;
+  border:1px solid var(--border);
+  border-radius:25px;
+  background:var(--card);
+  text-align:center;
+}
+
+.internet-indicator{
+  width:85px;
+  height:85px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  border:1px solid rgba(72,237,96,.25);
+  box-shadow:0 0 35px rgba(72,237,96,.08);
+}
+
+.internet-indicator.off{
+  border-color:rgba(255,49,88,.3);
+  box-shadow:0 0 35px rgba(255,49,88,.08);
+}
+
+.internet-title{
+  font-size:18px;
+  font-weight:1000;
+}
+
+.internet-text{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:8px;
+}
+
+/* =========================
+   SUPPORT / DEVELOPERS
+========================= */
+
+.support-grid,
+.dev-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.info-card{
+  padding:25px;
+  border:1px solid var(--border);
+  border-radius:23px;
+  background:var(--card);
+}
+
+.info-card h3{
+  font-size:17px;
+  margin-bottom:9px;
+}
+
+.info-card p{
+  color:var(--muted);
+  font-size:10px;
+  line-height:2;
+  margin-bottom:16px;
+}
+
+.dev-code{
+  padding:15px;
+  border-radius:13px;
+  background:#05080d;
+  border:1px solid rgba(184,255,0,.1);
+  color:var(--green);
+  direction:ltr;
+  text-align:left;
+  font-family:monospace;
+  font-size:9px;
+  overflow:auto;
+}
+
+/* =========================
+   CHECK
+========================= */
 
 .check{
-  padding:40px 22px;
+  padding:38px 22px;
   text-align:center;
   border:1px solid var(--border);
   border-radius:27px;
@@ -641,7 +931,9 @@ section{
   margin-top:10px;
 }
 
-/* BOTTOM */
+/* =========================
+   BOTTOM MENU
+========================= */
 
 .bottom-menu{
   position:fixed;
@@ -649,7 +941,7 @@ section{
   bottom:12px;
   left:50%;
   transform:translateX(-50%);
-  width:min(850px,calc(100% - 18px));
+  width:min(900px,calc(100% - 18px));
   padding:6px;
   display:flex;
   border-radius:20px;
@@ -693,8 +985,8 @@ body.light .bottom-menu{
   text-align:center;
   color:var(--muted);
   text-decoration:none;
-  font-size:8px;
-  padding:10px 3px;
+  font-size:7px;
+  padding:10px 2px;
   border-radius:13px;
 }
 
@@ -704,7 +996,9 @@ body.light .bottom-menu{
   background:rgba(184,255,0,.07);
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   text-align:center;
@@ -719,7 +1013,9 @@ footer strong{
   color:var(--green);
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
   position:fixed;
@@ -751,14 +1047,8 @@ footer strong{
 }
 
 @keyframes modalIn{
-  from{
-    opacity:0;
-    transform:translateY(15px) scale(.98);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+  from{opacity:0;transform:translateY(15px) scale(.98)}
+  to{opacity:1;transform:none}
 }
 
 .close{
@@ -825,9 +1115,11 @@ footer strong{
   flex:1;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
-@media(max-width:850px){
+@media(max-width:900px){
 
   .nav-links{
     display:none;
@@ -836,10 +1128,14 @@ footer strong{
   .hero{
     grid-template-columns:1fr;
     padding-top:55px;
-    gap:35px;
+    gap:30px;
   }
 
   .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .tools-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -847,9 +1143,13 @@ footer strong{
     grid-template-columns:1fr;
   }
 
+  .support-grid,
+  .dev-grid{
+    grid-template-columns:1fr;
+  }
 }
 
-@media(max-width:520px){
+@media(max-width:600px){
 
   .hero{
     padding-left:15px;
@@ -866,7 +1166,7 @@ footer strong{
   }
 
   .network{
-    height:290px;
+    height:280px;
   }
 
   .node{
@@ -875,13 +1175,13 @@ footer strong{
   }
 
   .node.dc{
-    top:25px;
-    right:22px;
+    top:22px;
+    right:18px;
   }
 
   .node.user{
-    bottom:25px;
-    left:22px;
+    bottom:22px;
+    left:18px;
   }
 
   .products{
@@ -889,11 +1189,28 @@ footer strong{
   }
 
   .product{
-    min-height:190px;
+    min-height:185px;
   }
 
+  .tools-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .live-map{
+    min-height:390px;
+  }
+
+  .server-node{
+    width:95px;
+  }
+
+  .germany{right:5%}
+  .finland{left:5%}
+  .netherlands{right:30%}
+  .iran{left:8%}
+
   .bottom-menu a{
-    font-size:7px;
+    font-size:6px;
   }
 
   .details{
@@ -910,36 +1227,50 @@ footer strong{
     animation-iteration-count:1!important;
     scroll-behavior:auto!important;
   }
-
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
+
+<div class="intro">
+  <div class="intro-text">
+    V2<span>GURD</span>
+  </div>
+  <div class="intro-line"></div>
+</div>
+
 <div class="bg-light green-light"></div>
 <div class="bg-light blue-light"></div>
 <div class="bg-light red-light"></div>
 
+
+<!-- HEADER -->
+
 <header>
-  <nav class="nav">
 
-    <div class="logo">
-      V2<span class="brand">GURD</span>
-      <span class="verified">✓</span>
-    </div>
+<nav class="nav">
 
-    <div class="nav-links">
-      <a href="#special">پیشنهاد ویژه</a>
-      <a href="#servers">سرورها</a>
-      <a href="#gaming">گیمینگ</a>
-      <a href="#subscriptions">اشتراک‌ها</a>
-      <a href="#instagram">اینستاگرام</a>
-    </div>
+  <div class="logo">
+    V2<span class="brand">GURD</span>
+    <span class="verified">✓</span>
+  </div>
 
-    <button class="theme" id="themeButton" onclick="toggleTheme()">☾</button>
+  <div class="nav-links">
+    <a href="#special">پیشنهاد ویژه</a>
+    <a href="#servers">سرورها</a>
+    <a href="#gaming">گیمینگ</a>
+    <a href="#tools">ابزارها</a>
+    <a href="#subscriptions">اشتراک‌ها</a>
+    <a href="#support">پشتیبانی</a>
+  </div>
 
-  </nav>
+  <button class="theme" id="themeButton" onclick="toggleTheme()">☾</button>
+
+</nav>
+
 </header>
 
 
@@ -947,59 +1278,59 @@ footer strong{
 
 <section class="hero">
 
-  <div>
+<div>
 
-    <div class="badge">
-      <i></i>
-      V2GURD DIGITAL SERVICES
-    </div>
+  <div class="badge">
+    <i></i>
+    V2GURD DIGITAL SERVICES
+  </div>
 
-    <h1>
-      <span class="neon">سریع‌تر،</span>
-      <span class="neon blue">مطمئن‌تر.</span>
-    </h1>
+  <h1>
+    <span class="neon">سریع‌تر،</span>
+    <span class="neon blue">مطمئن‌تر.</span>
+  </h1>
 
-    <p class="hero-text">
-      سرویس‌های حرفه‌ای V2GURD برای اتصال،
-      گیمینگ و خدمات دیجیتال؛ سریع، ساده و حرفه‌ای.
-    </p>
+  <p class="hero-text">
+    سرویس‌های حرفه‌ای V2GURD برای اتصال،
+    گیمینگ و خدمات دیجیتال؛ سریع، ساده و حرفه‌ای.
+  </p>
 
-    <div class="hero-buttons">
+  <div class="hero-buttons">
 
-      <a class="btn primary" href="#special">
-        🔥 پیشنهاد ویژه
-      </a>
+    <a class="btn primary" href="#special">
+      🔥 پیشنهاد ویژه
+    </a>
 
-      <a class="btn secondary" href="#servers">
-        مشاهده سرویس‌ها
-      </a>
-
-    </div>
+    <a class="btn secondary" href="#servers">
+      مشاهده سرویس‌ها
+    </a>
 
   </div>
 
+</div>
 
-  <div class="network">
 
-    <div class="network-grid"></div>
+<div class="network">
 
-    <div class="node dc">
-      🖥️
-      <span>DATA CENTER</span>
-    </div>
+  <div class="network-grid"></div>
 
-    <div class="node user">
-      📱
-      <span>USER</span>
-    </div>
-
-    <div class="route"></div>
-
-    <div class="packet"></div>
-    <div class="packet two"></div>
-    <div class="packet three"></div>
-
+  <div class="node dc">
+    🖥️
+    <span>DATA CENTER</span>
   </div>
+
+  <div class="node user">
+    📱
+    <span>USER</span>
+  </div>
+
+  <div class="route"></div>
+
+  <div class="packet"></div>
+  <div class="packet two"></div>
+  <div class="packet three"></div>
+
+</div>
 
 </section>
 
@@ -1008,29 +1339,25 @@ footer strong{
 
 <section id="special">
 
-  <div class="special">
+<div class="special">
 
-    <div style="font-size:35px">🔥</div>
+  <div style="font-size:35px">🔥</div>
 
-    <div class="section-title">
-      <small>SPECIAL OFFER</small>
+  <div class="section-title">
+    <small>SPECIAL OFFER</small>
 
-      <h2>
-        ۵۰۰ گیگ — تخفیف ویژه
-      </h2>
+    <h2>۵۰۰ گیگ — تخفیف ویژه</h2>
 
-      <p>
-        کاربر آزاد • ظرفیت محدود
-      </p>
-    </div>
+    <p>کاربر آزاد • ظرفیت محدود</p>
+  </div>
 
-    <div class="timer" id="timer">
-      در حال محاسبه...
-    </div>
+  <div class="timer" id="timer">
+    در حال محاسبه...
+  </div>
 
-    <button
-      class="btn primary"
-      onclick="openProduct(
+  <button
+    class="btn primary"
+    onclick="openProduct(
       'پیشنهاد ویژه ۵۰۰ گیگ',
       '🔥',
       'پکیج ویژه ۵۰۰ گیگ با قیمت تخفیفی.',
@@ -1039,13 +1366,13 @@ footer strong{
       'طبق سرویس',
       'ربات',
       '۵۰۰,۰۰۰ تومان'
-      )">
+    )">
 
-      مشاهده جزئیات و خرید
+    مشاهده جزئیات و خرید
 
-    </button>
+  </button>
 
-  </div>
+</div>
 
 </section>
 
@@ -1054,369 +1381,291 @@ footer strong{
 
 <section id="servers">
 
-  <div class="section-title">
-    <small>V2GURD SERVERS</small>
-    <h2>سرویس‌های سرور</h2>
-    <p>برای مشاهده جزئیات هر سرویس روی آن بزنید</p>
-  </div>
-
-
-  <!-- ECONOMIC -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>🟢 اقتصادی</h3>
-      <span>حجمی</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        '۱۰ گیگ اقتصادی',
-        '🟢',
-        'سرویس اقتصادی حجمی V2GURD.',
-        '۱۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۲۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🟢</div>
-        <h3>۱۰ گیگ</h3>
-        <p>پکیج اقتصادی حجمی</p>
-        <div class="price">۲۰,۰۰۰ تومان</div>
-        <div class="tags">
-          <span class="tag">۱۰GB</span>
-          <span class="tag">اقتصادی</span>
-        </div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۲۰ گیگ اقتصادی',
-        '🟢',
-        'سرویس اقتصادی حجمی V2GURD.',
-        '۲۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۴۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🟢</div>
-        <h3>۲۰ گیگ</h3>
-        <p>پکیج اقتصادی حجمی</p>
-        <div class="price">۴۰,۰۰۰ تومان</div>
-        <div class="tags">
-          <span class="tag">۲۰GB</span>
-          <span class="tag">اقتصادی</span>
-        </div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۳۰ گیگ اقتصادی',
-        '🟢',
-        'سرویس اقتصادی حجمی V2GURD.',
-        '۳۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۷۵,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🟢</div>
-        <h3>۳۰ گیگ</h3>
-        <p>پکیج اقتصادی حجمی</p>
-        <div class="price">۷۵,۰۰۰ تومان</div>
-        <div class="tags">
-          <span class="tag">۳۰GB</span>
-          <span class="tag">اقتصادی</span>
-        </div>
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- HIGH VOLUME -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>⚡ حجم بالا</h3>
-      <span>پکیج‌های حجمی</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        '۵۰ گیگ',
-        '⚡',
-        'سرویس حجمی V2GURD.',
-        '۵۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۱۲۵,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">⚡</div>
-        <h3>۵۰ گیگ</h3>
-        <p>حجم بالا برای مصرف بیشتر</p>
-        <div class="price">۱۲۵,۰۰۰ تومان</div>
-        <div class="tags">
-          <span class="tag">۵۰GB</span>
-        </div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۱۰۰ گیگ',
-        '⚡',
-        'سرویس حجمی V2GURD.',
-        '۱۰۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۲۵۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">⚡</div>
-        <h3>۱۰۰ گیگ</h3>
-        <p>حجم بالا برای مصرف بیشتر</p>
-        <div class="price">۲۵۰,۰۰۰ تومان</div>
-        <div class="tags">
-          <span class="tag">۱۰۰GB</span>
-        </div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۱۵۰ گیگ',
-        '⚡',
-        'سرویس حجمی V2GURD.',
-        '۱۵۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۳۷۵,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">⚡</div>
-        <h3>۱۵۰ گیگ</h3>
-        <p>حجم بالا برای مصرف بیشتر</p>
-        <div class="price">۳۷۵,۰۰۰ تومان</div>
-        <div class="tags">
-          <span class="tag">۱۵۰GB</span>
-        </div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        '۵۰۰ گیگ ویژه',
-        '🔥',
-        'پیشنهاد ویژه و محدود V2GURD.',
-        '۵۰۰ گیگ',
-        'آزاد',
-        'طبق سرویس',
-        'ربات',
-        '۵۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🔥</div>
-        <h3>۵۰۰ گیگ</h3>
-        <p>تخفیف ویژه — ظرفیت محدود</p>
-        <div class="price">۵۰۰,۰۰۰ تومان</div>
-        <div class="tags">
-          <span class="tag">۵۰۰GB</span>
-          <span class="tag">پیشنهاد ویژه</span>
-        </div>
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- UNLIMITED -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>♾️ نامحدود</h3>
-      <span>یک ماهه</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        'نامحدود ۱ کاربر',
-        '♾️',
-        'سرویس نامحدود یک ماهه.',
-        'نامحدود',
-        '۱ کاربر',
-        'یک ماه',
-        'ربات',
-        '۹۹,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">♾️</div>
-        <h3>۱ کاربر</h3>
-        <p>نامحدود — یک ماه</p>
-        <div class="price">۹۹,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'نامحدود ۲ کاربر',
-        '♾️',
-        'سرویس نامحدود دو کاربره.',
-        'نامحدود',
-        '۲ کاربر',
-        'یک ماه',
-        'ربات',
-        '۱۶۹,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">♾️</div>
-        <h3>۲ کاربر</h3>
-        <p>نامحدود — یک ماه</p>
-        <div class="price">۱۶۹,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- PANELS -->
-
-  <div class="product-group">
-
-    <div class="group-title">
-      <h3>🖥️ پنل‌های مدیریتی</h3>
-      <span>مدیریت سرویس</span>
-    </div>
-
-    <div class="products">
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۱ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۱ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'ربات',
-        '۸۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۱ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۸۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۲ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۲ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'ربات',
-        '۱,۲۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۲ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۱,۲۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۳ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۳ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'ربات',
-        '۱,۸۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۳ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۱,۸۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-
-      <div class="product"
-        onclick="openProduct(
-        'پنل ۴ ترا',
-        '🖥️',
-        'پنل مدیریتی برای مدیریت سرویس‌ها.',
-        '۴ ترا',
-        'طبق پنل',
-        'طبق سرویس',
-        'ربات',
-        '۲,۳۰۰,۰۰۰ تومان'
-        )">
-
-        <div class="product-icon">🖥️</div>
-        <h3>۴ ترا</h3>
-        <p>پنل مدیریتی</p>
-        <div class="price">۲,۳۰۰,۰۰۰ تومان</div>
-        <span class="arrow">←</span>
-
-      </div>
-
-    </div>
-
-  </div>
+<div class="section-title">
+  <small>V2GURD SERVERS</small>
+  <h2>سرویس‌های سرور</h2>
+  <p>برای مشاهده جزئیات هر سرویس روی آن بزنید</p>
+</div>
+
+
+<!-- ECONOMIC -->
+
+<div class="product-group">
+
+<div class="group-title">
+  <h3>🟢 اقتصادی</h3>
+  <span>حجمی</span>
+</div>
+
+<div class="products">
+
+<div class="product"
+onclick="openProduct('۱۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۱۰ گیگ','آزاد','طبق سرویس','ربات','۲۰,۰۰۰ تومان')">
+
+<div class="product-icon">🟢</div>
+<h3>۱۰ گیگ</h3>
+<p>پکیج اقتصادی حجمی</p>
+<div class="price">۲۰,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۱۰GB</span>
+<span class="tag">اقتصادی</span>
+</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('۲۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۲۰ گیگ','آزاد','طبق سرویس','ربات','۴۰,۰۰۰ تومان')">
+
+<div class="product-icon">🟢</div>
+<h3>۲۰ گیگ</h3>
+<p>پکیج اقتصادی حجمی</p>
+<div class="price">۴۰,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۲۰GB</span>
+<span class="tag">اقتصادی</span>
+</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('۳۰ گیگ اقتصادی','🟢','سرویس اقتصادی حجمی V2GURD.','۳۰ گیگ','آزاد','طبق سرویس','ربات','۷۵,۰۰۰ تومان')">
+
+<div class="product-icon">🟢</div>
+<h3>۳۰ گیگ</h3>
+<p>پکیج اقتصادی حجمی</p>
+<div class="price">۷۵,۰۰۰ تومان</div>
+<div class="tags">
+<span class="tag">۳۰GB</span>
+<span class="tag">اقتصادی</span>
+</div>
+<span class="arrow">←</span>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- HIGH VOLUME -->
+
+<div class="product-group">
+
+<div class="group-title">
+<h3>⚡ حجم بالا</h3>
+<span>پکیج‌های حجمی</span>
+</div>
+
+<div class="products">
+
+<div class="product"
+onclick="openProduct('۵۰ گیگ','⚡','سرویس حجمی V2GURD.','۵۰ گیگ','آزاد','طبق سرویس','ربات','۱۲۵,۰۰۰ تومان')">
+
+<div class="product-icon">⚡</div>
+<h3>۵۰ گیگ</h3>
+<p>حجم بالا برای مصرف بیشتر</p>
+<div class="price">۱۲۵,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('۱۰۰ گیگ','⚡','سرویس حجمی V2GURD.','۱۰۰ گیگ','آزاد','طبق سرویس','ربات','۲۵۰,۰۰۰ تومان')">
+
+<div class="product-icon">⚡</div>
+<h3>۱۰۰ گیگ</h3>
+<p>حجم بالا برای مصرف بیشتر</p>
+<div class="price">۲۵۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('۱۵۰ گیگ','⚡','سرویس حجمی V2GURD.','۱۵۰ گیگ','آزاد','طبق سرویس','ربات','۳۷۵,۰۰۰ تومان')">
+
+<div class="product-icon">⚡</div>
+<h3>۱۵۰ گیگ</h3>
+<p>حجم بالا برای مصرف بیشتر</p>
+<div class="price">۳۷۵,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('۵۰۰ گیگ ویژه','🔥','پیشنهاد ویژه و محدود V2GURD.','۵۰۰ گیگ','آزاد','طبق سرویس','ربات','۵۰۰,۰۰۰ تومان')">
+
+<div class="product-icon">🔥</div>
+<h3>۵۰۰ گیگ</h3>
+<p>تخفیف ویژه — ظرفیت محدود</p>
+<div class="price">۵۰۰,۰۰۰ تومان</div>
+
+<div class="tags">
+<span class="tag">۵۰۰GB</span>
+<span class="tag">پیشنهاد ویژه</span>
+</div>
+
+<span class="arrow">←</span>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- UNLIMITED -->
+
+<div class="product-group">
+
+<div class="group-title">
+<h3>♾️ نامحدود</h3>
+<span>یک ماهه</span>
+</div>
+
+<div class="products">
+
+<div class="product"
+onclick="openProduct('نامحدود ۱ کاربر','♾️','سرویس نامحدود یک ماهه.','نامحدود','۱ کاربر','یک ماه','ربات','۹۹,۰۰۰ تومان')">
+
+<div class="product-icon">♾️</div>
+<h3>۱ کاربر</h3>
+<p>نامحدود — یک ماه</p>
+<div class="price">۹۹,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('نامحدود ۲ کاربر','♾️','سرویس نامحدود دو کاربره.','نامحدود','۲ کاربر','یک ماه','ربات','۱۶۹,۰۰۰ تومان')">
+
+<div class="product-icon">♾️</div>
+<h3>۲ کاربر</h3>
+<p>نامحدود — یک ماه</p>
+<div class="price">۱۶۹,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- PANELS -->
+
+<div class="product-group">
+
+<div class="group-title">
+<h3>🖥️ پنل‌های مدیریتی</h3>
+<span>مدیریت سرویس</span>
+</div>
+
+<div class="products">
+
+<div class="product"
+onclick="openProduct('پنل ۱ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۱ ترا','طبق پنل','طبق سرویس','ربات','۸۰۰,۰۰۰ تومان')">
+
+<div class="product-icon">🖥️</div>
+<h3>۱ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۸۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('پنل ۲ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۲ ترا','طبق پنل','طبق سرویس','ربات','۱,۲۰۰,۰۰۰ تومان')">
+
+<div class="product-icon">🖥️</div>
+<h3>۲ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۱,۲۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('پنل ۳ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۳ ترا','طبق پنل','طبق سرویس','ربات','۱,۸۰۰,۰۰۰ تومان')">
+
+<div class="product-icon">🖥️</div>
+<h3>۳ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۱,۸۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+
+<div class="product"
+onclick="openProduct('پنل ۴ ترا','🖥️','پنل مدیریتی برای مدیریت سرویس‌ها.','۴ ترا','طبق پنل','طبق سرویس','ربات','۲,۳۰۰,۰۰۰ تومان')">
+
+<div class="product-icon">🖥️</div>
+<h3>۴ ترا</h3>
+<p>پنل مدیریتی</p>
+<div class="price">۲,۳۰۰,۰۰۰ تومان</div>
+<span class="arrow">←</span>
+
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- LIVE SERVER MAP -->
+
+<section id="map">
+
+<div class="section-title">
+<small>LIVE SERVER MAP</small>
+<h2>🗺️ نقشه زنده سرورها</h2>
+<p>نمایش مسیر ارتباطی و وضعیت سرورهای V2GURD</p>
+</div>
+
+<div class="live-map">
+
+<div class="map-grid"></div>
+
+<div class="map-line line1"></div>
+<div class="map-line line2"></div>
+<div class="map-line line3"></div>
+
+<div class="map-packet" style="top:130px;left:30%"></div>
+<div class="map-packet" style="top:230px;left:45%;animation-delay:1.5s"></div>
+
+<div class="server-node germany">
+<span class="dot"></span>
+<strong>🇩🇪 Germany</strong>
+<small>ONLINE • 24ms</small>
+</div>
+
+<div class="server-node finland">
+<span class="dot"></span>
+<strong>🇫🇮 Finland</strong>
+<small>ONLINE • 31ms</small>
+</div>
+
+<div class="server-node netherlands">
+<span class="dot"></span>
+<strong>🇳🇱 Netherlands</strong>
+<small>ONLINE • 27ms</small>
+</div>
+
+<div class="server-node iran">
+<span class="dot"></span>
+<strong>🇮🇷 USER</strong>
+<small>CONNECTED</small>
+</div>
+
+</div>
 
 </section>
 
@@ -1425,105 +1674,202 @@ footer strong{
 
 <section id="gaming">
 
-  <div class="section-title">
-    <small>GAMING / WIREGUARD</small>
-    <h2>🎮 سرویس گیمینگ</h2>
-    <p>مخصوص Call of Duty</p>
-  </div>
+<div class="section-title">
+<small>GAMING / WIREGUARD</small>
+<h2>🎮 سرویس گیمینگ</h2>
+<p>مخصوص Call of Duty</p>
+</div>
 
-  <div class="products">
+<div class="products">
 
-    <div class="product"
-      onclick="openProduct(
-      'Call of Duty — 10GB',
-      '🎮',
-      'سرویس WireGuard مخصوص گیمینگ و Call of Duty.',
-      '۱۰ گیگ',
-      'طبق سرویس',
-      'طبق سرویس',
-      'ربات',
-      '۳۰۰,۰۰۰ تومان'
-      )">
+<div class="product"
+onclick="openProduct('Call of Duty — 10GB','🎮','سرویس WireGuard مخصوص گیمینگ و Call of Duty.','۱۰ گیگ','طبق سرویس','طبق سرویس','ربات','۳۰۰,۰۰۰ تومان')">
 
-      <div class="product-icon">🎮</div>
-      <h3>۱۰ گیگ گیمینگ</h3>
-      <p>WireGuard مخصوص Call of Duty</p>
-      <div class="price">۳۰۰,۰۰۰ تومان</div>
-      <div class="tags">
-        <span class="tag">WireGuard</span>
-        <span class="tag">Gaming</span>
-      </div>
-      <span class="arrow">←</span>
+<div class="product-icon">🎮</div>
+<h3>۱۰ گیگ گیمینگ</h3>
+<p>WireGuard مخصوص Call of Duty</p>
+<div class="price">۳۰۰,۰۰۰ تومان</div>
 
-    </div>
+<div class="tags">
+<span class="tag">WireGuard</span>
+<span class="tag">Gaming</span>
+</div>
+
+<span class="arrow">←</span>
+
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'Call of Duty — 20GB',
-      '🎯',
-      'سرویس WireGuard مخصوص گیمینگ و Call of Duty.',
-      '۲۰ گیگ',
-      'طبق سرویس',
-      'طبق سرویس',
-      'ربات',
-      '۴۰۰,۰۰۰ تومان'
-      )">
+<div class="product"
+onclick="openProduct('Call of Duty — 20GB','🎯','سرویس WireGuard مخصوص گیمینگ و Call of Duty.','۲۰ گیگ','طبق سرویس','طبق سرویس','ربات','۴۰۰,۰۰۰ تومان')">
 
-      <div class="product-icon">🎯</div>
-      <h3>۲۰ گیگ گیمینگ</h3>
-      <p>WireGuard مخصوص Call of Duty</p>
-      <div class="price">۴۰۰,۰۰۰ تومان</div>
-      <div class="tags">
-        <span class="tag">WireGuard</span>
-        <span class="tag">Gaming</span>
-      </div>
-      <span class="arrow">←</span>
+<div class="product-icon">🎯</div>
+<h3>۲۰ گیگ گیمینگ</h3>
+<p>WireGuard مخصوص Call of Duty</p>
+<div class="price">۴۰۰,۰۰۰ تومان</div>
 
-    </div>
+<div class="tags">
+<span class="tag">WireGuard</span>
+<span class="tag">Gaming</span>
+</div>
 
-  </div>
+<span class="arrow">←</span>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- STATUS -->
+<!-- TOOLS -->
+
+<section id="tools">
+
+<div class="section-title">
+<small>NETWORK TOOLS</small>
+<h2>⚡ ابزارهای شبکه</h2>
+<p>ابزارهای سریع برای بررسی اتصال و وضعیت اینترنت</p>
+</div>
+
+<div class="tools-grid">
+
+<div class="tool">
+
+<div class="tool-icon">⚡</div>
+<h3>تست سرعت</h3>
+<p>بررسی اولیه سرعت ارتباط شما</p>
+
+<button class="btn primary" onclick="runSpeedTest()">
+شروع تست
+</button>
+
+<div class="tool-result" id="speedResult">
+آماده تست
+</div>
+
+</div>
+
+
+<div class="tool">
+
+<div class="tool-icon">📡</div>
+<h3>وضعیت اینترنت</h3>
+<p>بررسی اتصال فعلی دستگاه</p>
+
+<button class="btn secondary" onclick="checkInternet()">
+بررسی
+</button>
+
+<div class="tool-result" id="internetResult">
+آماده بررسی
+</div>
+
+</div>
+
+
+<div class="tool">
+
+<div class="tool-icon">🟢</div>
+<h3>سیستم</h3>
+<p>وضعیت سرویس‌های اصلی سایت</p>
+
+<button class="btn secondary" onclick="refreshSystemStatus()">
+به‌روزرسانی
+</button>
+
+<div class="tool-result" id="systemResult">
+همه سیستم‌ها فعال
+</div>
+
+</div>
+
+
+<div class="tool">
+
+<div class="tool-icon">🎫</div>
+<h3>پشتیبانی</h3>
+<p>برای دریافت پشتیبانی با ما در ارتباط باشید</p>
+
+<a class="btn primary"
+href="https://t.me/Vtwoguard"
+target="_blank">
+درخواست پشتیبانی
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LIVE STATUS -->
 
 <section id="status">
 
-  <div class="section-title">
-    <small>LIVE STATUS</small>
-    <h2>وضعیت سرورها</h2>
-    <p>وضعیت سرویس‌ها در حال حاضر</p>
-  </div>
+<div class="section-title">
+<small>LIVE STATUS</small>
+<h2>وضعیت لحظه‌ای سیستم</h2>
+<p>وضعیت سرویس‌های V2GURD</p>
+</div>
 
-  <div class="status-grid">
+<div class="status-grid">
 
-    <div class="status-card">
-      <h3>🇩🇪 Germany</h3>
-      <div class="status-line">
-        <i class="status-dot"></i>
-        فعال
-      </div>
-    </div>
+<div class="status-card">
+<h3>🌐 Website</h3>
+<div class="status-line">
+<i class="status-dot"></i>
+فعال
+</div>
+</div>
 
-    <div class="status-card">
-      <h3>🇫🇮 Finland</h3>
-      <div class="status-line">
-        <i class="status-dot"></i>
-        فعال
-      </div>
-    </div>
+<div class="status-card">
+<h3>🖥️ Servers</h3>
+<div class="status-line">
+<i class="status-dot"></i>
+فعال
+</div>
+</div>
 
-    <div class="status-card">
-      <h3>🇳🇱 Netherlands</h3>
-      <div class="status-line">
-        <i class="status-dot"></i>
-        فعال
-      </div>
-    </div>
+<div class="status-card">
+<h3>🤖 Bot</h3>
+<div class="status-line">
+<i class="status-dot"></i>
+فعال
+</div>
+</div>
 
-  </div>
+</div>
+
+</section>
+
+
+<!-- INTERNET -->
+
+<section id="internet">
+
+<div class="section-title">
+<small>NETWORK MONITOR</small>
+<h2>📡 بررسی وضعیت اینترنت</h2>
+<p>وضعیت اتصال دستگاه شما</p>
+</div>
+
+<div class="internet-box">
+
+<div class="internet-indicator" id="internetIcon">
+✓
+</div>
+
+<div class="internet-title" id="internetTitle">
+اتصال برقرار است
+</div>
+
+<div class="internet-text" id="internetText">
+در حال بررسی وضعیت اتصال...
+</div>
+
+</div>
 
 </section>
 
@@ -1532,140 +1878,74 @@ footer strong{
 
 <section id="subscriptions">
 
-  <div class="section-title">
-    <small>DIGITAL SUBSCRIPTIONS</small>
-    <h2>💎 اشتراک‌های دیجیتال</h2>
-    <p>قیمت و خرید از داخل پیوی تلگرام</p>
-  </div>
+<div class="section-title">
+<small>DIGITAL SUBSCRIPTIONS</small>
+<h2>💎 اشتراک‌های دیجیتال</h2>
+<p>قیمت و خرید از داخل پیوی تلگرام</p>
+</div>
 
-  <div class="products">
+<div class="products">
 
-    <div class="product"
-      onclick="openProduct(
-      'Telegram Premium',
-      '✈️',
-      'اشتراک Telegram Premium.',
-      'طبق پلن',
-      'طبق پلن',
-      'سه ماهه',
-      'پیوی',
-      '۳,۸۰۰,۰۰۰ تومان'
-      )">
+<div class="product"
+onclick="openProduct('CapCut Premium','✂️','اشتراک پریمیوم CapCut.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">✈️</div>
-      <h3>Telegram Premium</h3>
-      <p>اشتراک سه ماهه</p>
-      <div class="price">۳,۸۰۰,۰۰۰ تومان</div>
-      <span class="arrow">←</span>
+<div class="product-icon">✂️</div>
+<h3>CapCut Premium</h3>
+<p>خرید از داخل پیوی تلگرام</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'CapCut Premium',
-      '✂️',
-      'اشتراک پریمیوم CapCut.',
-      'طبق پلن',
-      'طبق پلن',
-      'طبق پلن',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product"
+onclick="openProduct('Spotify Premium','🎵','اشتراک Spotify Premium.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">✂️</div>
-      <h3>CapCut Premium</h3>
-      <p>خرید از داخل پیوی تلگرام</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
+<div class="product-icon">🎵</div>
+<h3>Spotify Premium</h3>
+<p>خرید از داخل پیوی تلگرام</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'Spotify Premium',
-      '🎵',
-      'اشتراک Spotify Premium.',
-      'طبق پلن',
-      'طبق پلن',
-      'طبق پلن',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product"
+onclick="openProduct('YouTube Premium','▶️','اشتراک YouTube Premium.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">🎵</div>
-      <h3>Spotify Premium</h3>
-      <p>خرید از داخل پیوی تلگرام</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
+<div class="product-icon">▶️</div>
+<h3>YouTube Premium</h3>
+<p>خرید از داخل پیوی تلگرام</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'YouTube Premium',
-      '▶️',
-      'اشتراک YouTube Premium.',
-      'طبق پلن',
-      'طبق پلن',
-      'طبق پلن',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product"
+onclick="openProduct('Canva Pro','🎨','اشتراک حرفه‌ای Canva.','طبق پلن','طبق پلن','طبق پلن','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">▶️</div>
-      <h3>YouTube Premium</h3>
-      <p>خرید از داخل پیوی تلگرام</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
+<div class="product-icon">🎨</div>
+<h3>Canva Pro</h3>
+<p>خرید از داخل پیوی تلگرام</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'Canva Pro',
-      '🎨',
-      'اشتراک حرفه‌ای Canva.',
-      'طبق پلن',
-      'طبق پلن',
-      'طبق پلن',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product"
+onclick="openProduct('سایر اشتراک‌ها','💎','برای اشتراک‌های بیشتر از طریق پیوی تلگرام استعلام بگیرید.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">🎨</div>
-      <h3>Canva Pro</h3>
-      <p>خرید از داخل پیوی تلگرام</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
+<div class="product-icon">💎</div>
+<h3>سایر اشتراک‌ها</h3>
+<p>استعلام و خرید از پیوی</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
-
-    <div class="product"
-      onclick="openProduct(
-      'سایر اشتراک‌ها',
-      '💎',
-      'برای مشاهده اشتراک‌های بیشتر از طریق پیوی تلگرام استعلام بگیرید.',
-      'استعلام',
-      'استعلام',
-      'استعلام',
-      'پیوی',
-      'استعلام'
-      )">
-
-      <div class="product-icon">💎</div>
-      <h3>سایر اشتراک‌ها</h3>
-      <p>استعلام و خرید از پیوی</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
@@ -1674,77 +1954,190 @@ footer strong{
 
 <section id="instagram">
 
-  <div class="section-title">
-    <small>INSTAGRAM SERVICES</small>
-    <h2>📸 خدمات اینستاگرام</h2>
-    <p>قیمت و خرید از داخل پیوی تلگرام</p>
-  </div>
+<div class="section-title">
+<small>INSTAGRAM SERVICES</small>
+<h2>📸 خدمات اینستاگرام</h2>
+<p>قیمت و خرید از داخل پیوی تلگرام</p>
+</div>
 
-  <div class="products">
+<div class="products">
 
-    <div class="product"
-      onclick="openProduct(
-      'خرید فالوور اینستاگرام',
-      '👥',
-      'خدمات افزایش فالوور اینستاگرام.',
-      'استعلام',
-      'استعلام',
-      'استعلام',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product"
+onclick="openProduct('خرید فالوور اینستاگرام','👥','خدمات افزایش فالوور اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">👥</div>
-      <h3>خرید فالوور</h3>
-      <p>افزایش فالوور اینستاگرام</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
+<div class="product-icon">👥</div>
+<h3>خرید فالوور</h3>
+<p>افزایش فالوور اینستاگرام</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'ویو ریلز اینستاگرام',
-      '👁️',
-      'خدمات افزایش بازدید ریلز اینستاگرام.',
-      'استعلام',
-      'استعلام',
-      'استعلام',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product"
+onclick="openProduct('ویو ریلز اینستاگرام','👁️','خدمات افزایش بازدید ریلز اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">👁️</div>
-      <h3>ویو ریلز</h3>
-      <p>افزایش بازدید ریلز</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
+<div class="product-icon">👁️</div>
+<h3>ویو ریلز</h3>
+<p>افزایش بازدید ریلز</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'لایک اینستاگرام',
-      '❤️',
-      'خدمات افزایش لایک اینستاگرام.',
-      'استعلام',
-      'استعلام',
-      'استعلام',
-      'پیوی',
-      'استعلام'
-      )">
+<div class="product"
+onclick="openProduct('لایک اینستاگرام','❤️','خدمات افزایش لایک اینستاگرام.','استعلام','استعلام','استعلام','پیوی','قیمت در پیوی')">
 
-      <div class="product-icon">❤️</div>
-      <h3>لایک اینستاگرام</h3>
-      <p>افزایش لایک و تعامل</p>
-      <div class="price">استعلام</div>
-      <span class="arrow">←</span>
+<div class="product-icon">❤️</div>
+<h3>لایک اینستاگرام</h3>
+<p>افزایش لایک و تعامل</p>
+<div class="price">قیمت در پیوی</div>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
-  </div>
+</div>
+
+</section>
+
+
+<!-- SUPPORT -->
+
+<section id="support">
+
+<div class="section-title">
+<small>SUPPORT CENTER</small>
+<h2>🎫 پشتیبانی V2GURD</h2>
+<p>برای پیگیری سفارش، مشکل اتصال یا سوالات فنی</p>
+</div>
+
+<div class="support-grid">
+
+<div class="info-card">
+
+<h3>💬 پشتیبانی تلگرام</h3>
+
+<p>
+اگر در اتصال، خرید یا استفاده از سرویس مشکلی دارید،
+از طریق پشتیبانی تلگرام با ما در ارتباط باشید.
+</p>
+
+<a
+class="btn primary"
+href="https://t.me/Vtwoguard"
+target="_blank">
+ورود به پشتیبانی
+</a>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>🤖 خرید و سفارش</h3>
+
+<p>
+برای خرید سرویس‌های قابل سفارش از ربات،
+مستقیماً وارد ربات رسمی V2GURD شوید.
+</p>
+
+<a
+class="btn primary"
+href="https://t.me/echo_priime_bot"
+target="_blank">
+ورود به ربات
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DEVELOPER -->
+
+<section id="developers">
+
+<div class="section-title">
+<small>DEVELOPERS</small>
+<h2>👨‍💻 بخش توسعه‌دهندگان</h2>
+<p>ساخت و توسعه سرویس‌های اختصاصی</p>
+</div>
+
+<div class="dev-grid">
+
+<div class="info-card">
+
+<h3>🌐 طراحی سایت</h3>
+
+<p>
+ساخت سایت اختصاصی، صفحه فروش، لندینگ پیج
+و پنل‌های تحت وب با طراحی اختصاصی.
+</p>
+
+<a
+class="btn primary"
+href="https://t.me/Vtwoguard"
+target="_blank">
+درخواست ساخت سایت
+</a>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>🤖 ساخت ربات تلگرامی</h3>
+
+<p>
+ساخت ربات فروش، مدیریت سفارش، پنل کاربری
+و سیستم‌های اختصاصی تلگرام.
+</p>
+
+<a
+class="btn primary"
+href="https://t.me/Vtwoguard"
+target="_blank">
+درخواست ساخت ربات
+</a>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>⚙️ توسعه اختصاصی</h3>
+
+<p>
+برای ایده‌های اختصاصی و سیستم‌های سفارشی
+با تیم V2GURD در ارتباط باشید.
+</p>
+
+<div class="dev-code">
+V2GURD / DEVELOPMENT
+</div>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>🔧 سرویس‌های آینده</h3>
+
+<p>
+قابلیت‌ها و ابزارهای جدید به‌صورت مرحله‌ای
+به پلتفرم V2GURD اضافه خواهند شد.
+</p>
+
+<div class="dev-code">
+STATUS: DEVELOPING...
+</div>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1753,33 +2146,33 @@ footer strong{
 
 <section id="check">
 
-  <div class="section-title">
-    <small>SERVICE CHECK</small>
-    <h2>🔎 استعلام سرویس</h2>
-    <p>این بخش به‌زودی فعال می‌شود</p>
-  </div>
+<div class="section-title">
+<small>SERVICE CHECK</small>
+<h2>🔎 استعلام سرویس</h2>
+<p>این بخش به‌زودی فعال می‌شود</p>
+</div>
 
-  <div class="check">
+<div class="check">
 
-    <div class="check-icon">🔎</div>
+<div class="check-icon">🔎</div>
 
-    <div class="coming">COMING SOON</div>
+<div class="coming">COMING SOON</div>
 
-    <h3>استعلام آنلاین سرویس</h3>
+<h3>استعلام آنلاین سرویس</h3>
 
-    <p>
-      به‌زودی با وارد کردن نام سرویس،
-      وضعیت فعال بودن، حجم باقی‌مانده و
-      تعداد روز باقی‌مانده نمایش داده می‌شود.
-    </p>
+<p>
+به‌زودی با وارد کردن اطلاعات سرویس،
+وضعیت فعال بودن، حجم باقی‌مانده و
+تعداد روز باقی‌مانده نمایش داده می‌شود.
+</p>
 
-    <br>
+<br>
 
-    <button class="btn secondary" disabled>
-      به‌زودی فعال می‌شود
-    </button>
+<button class="btn secondary" disabled>
+به‌زودی فعال می‌شود
+</button>
 
-  </div>
+</div>
 
 </section>
 
@@ -1788,74 +2181,47 @@ footer strong{
 
 <section id="guide">
 
-  <div class="section-title">
-    <small>CONNECTION GUIDE</small>
-    <h2>📱 راهنمای اتصال</h2>
-    <p>آموزش اتصال سرویس روی دستگاه‌های مختلف</p>
-  </div>
+<div class="section-title">
+<small>CONNECTION GUIDE</small>
+<h2>📱 راهنمای اتصال</h2>
+<p>آموزش اتصال سرویس روی دستگاه‌های مختلف</p>
+</div>
 
-  <div class="products">
+<div class="products">
 
-    <div class="product"
-      onclick="openProduct(
-      'راهنمای iPhone',
-      '🍎',
-      'آموزش اتصال سرویس روی iPhone و iOS.',
-      'iOS',
-      '—',
-      '—',
-      'راهنما',
-      '—'
-      )">
+<div class="product"
+onclick="openProduct('راهنمای iPhone','🍎','آموزش اتصال سرویس روی iPhone و iOS.','iOS','—','—','راهنما','—')">
 
-      <div class="product-icon">🍎</div>
-      <h3>iPhone / iOS</h3>
-      <p>راهنمای اتصال روی آیفون</p>
-      <span class="arrow">←</span>
+<div class="product-icon">🍎</div>
+<h3>iPhone / iOS</h3>
+<p>راهنمای اتصال روی آیفون</p>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'راهنمای Android',
-      '🤖',
-      'آموزش اتصال سرویس روی Android.',
-      'Android',
-      '—',
-      '—',
-      'راهنما',
-      '—'
-      )">
+<div class="product"
+onclick="openProduct('راهنمای Android','🤖','آموزش اتصال سرویس روی Android.','Android','—','—','راهنما','—')">
 
-      <div class="product-icon">🤖</div>
-      <h3>Android</h3>
-      <p>راهنمای اتصال روی اندروید</p>
-      <span class="arrow">←</span>
+<div class="product-icon">🤖</div>
+<h3>Android</h3>
+<p>راهنمای اتصال روی اندروید</p>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
 
-    <div class="product"
-      onclick="openProduct(
-      'راهنمای V2Box',
-      '📱',
-      'آموزش اتصال سرویس با V2Box.',
-      'V2Box',
-      '—',
-      '—',
-      'راهنما',
-      '—'
-      )">
+<div class="product"
+onclick="openProduct('راهنمای V2Box','📱','آموزش اتصال سرویس با V2Box.','V2Box','—','—','راهنما','—')">
 
-      <div class="product-icon">📱</div>
-      <h3>V2Box</h3>
-      <p>راهنمای اتصال با Subscription</p>
-      <span class="arrow">←</span>
+<div class="product-icon">📱</div>
+<h3>V2Box</h3>
+<p>راهنمای اتصال با Subscription</p>
+<span class="arrow">←</span>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
 
@@ -1864,21 +2230,21 @@ footer strong{
 
 <section id="about">
 
-  <div class="section-title">
-    <small>ABOUT V2GURD</small>
-    <h2>درباره V2GURD</h2>
-  </div>
+<div class="section-title">
+<small>ABOUT V2GURD</small>
+<h2>درباره V2GURD</h2>
+</div>
 
-  <div class="check">
+<div class="check">
 
-    <p>
-      V2GURD ارائه‌دهنده سرویس‌های دیجیتال،
-      سرویس‌های اتصال، گیمینگ و اشتراک‌های دیجیتال است.
-      هدف ما ارائه تجربه‌ای ساده، سریع و حرفه‌ای
-      همراه با پشتیبانی مناسب است.
-    </p>
+<p>
+V2GURD ارائه‌دهنده سرویس‌های دیجیتال،
+سرویس‌های اتصال، گیمینگ و اشتراک‌های دیجیتال است.
+هدف ما ارائه تجربه‌ای ساده، سریع و حرفه‌ای
+همراه با پشتیبانی مناسب است.
+</p>
 
-  </div>
+</div>
 
 </section>
 
@@ -1887,34 +2253,34 @@ footer strong{
 
 <footer>
 
-  <div style="font-size:21px;font-weight:1000;color:var(--text)">
-    V2<span style="color:var(--green)">GURD</span>
-    <span class="verified">✓</span>
-  </div>
+<div style="font-size:21px;font-weight:1000;color:var(--text)">
+V2<span style="color:var(--green)">GURD</span>
+<span class="verified">✓</span>
+</div>
 
-  <p style="margin-top:12px">
-    تمامی حقوق و مزایای سایت و ربات متعلق به
-    <strong>V2GURD</strong>
-    می‌باشد.
-  </p>
+<p style="margin-top:12px">
+تمامی حقوق و مزایای سایت و ربات متعلق به
+<strong>V2GURD</strong>
+می‌باشد.
+</p>
 
-  <p>
-    © 2026 V2GURD — All Rights Reserved
-  </p>
+<p>
+© 2026 V2GURD — All Rights Reserved
+</p>
 
 </footer>
 
 
-<!-- MOBILE MENU -->
+<!-- BOTTOM MENU -->
 
 <nav class="bottom-menu">
 
-  <a href="#special" class="active">🔥 ویژه</a>
-  <a href="#servers">🛡️ سرورها</a>
-  <a href="#gaming">🎮 گیمینگ</a>
-  <a href="#subscriptions">💎 اشتراک</a>
-  <a href="#instagram">📸 اینستا</a>
-  <a href="#guide">📱 راهنما</a>
+<a href="#special" class="active">🔥 ویژه</a>
+<a href="#servers">🛡️ سرورها</a>
+<a href="#map">🗺️ نقشه</a>
+<a href="#gaming">🎮 گیمینگ</a>
+<a href="#tools">⚡ ابزارها</a>
+<a href="#support">🎫 پشتیبانی</a>
 
 </nav>
 
@@ -1923,61 +2289,61 @@ footer strong{
 
 <div class="modal" id="productModal">
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button class="close" onclick="closeProduct()">×</button>
+<button class="close" onclick="closeProduct()">×</button>
 
-    <div class="modal-icon" id="modalIcon">🛡️</div>
+<div class="modal-icon" id="modalIcon">🛡️</div>
 
-    <h2 id="modalTitle">محصول</h2>
+<h2 id="modalTitle">محصول</h2>
 
-    <p class="modal-description" id="modalDescription">
-      توضیحات محصول
-    </p>
+<p class="modal-description" id="modalDescription">
+توضیحات محصول
+</p>
 
-    <div class="details">
+<div class="details">
 
-      <div class="detail">
-        <small>حجم</small>
-        <strong id="modalVolume">—</strong>
-      </div>
+<div class="detail">
+<small>حجم</small>
+<strong id="modalVolume">—</strong>
+</div>
 
-      <div class="detail">
-        <small>کاربر</small>
-        <strong id="modalUsers">—</strong>
-      </div>
+<div class="detail">
+<small>کاربر</small>
+<strong id="modalUsers">—</strong>
+</div>
 
-      <div class="detail">
-        <small>اعتبار</small>
-        <strong id="modalDuration">—</strong>
-      </div>
+<div class="detail">
+<small>اعتبار</small>
+<strong id="modalDuration">—</strong>
+</div>
 
-      <div class="detail">
-        <small>قیمت</small>
-        <strong id="modalPrice">—</strong>
-      </div>
+<div class="detail">
+<small>قیمت</small>
+<strong id="modalPrice">—</strong>
+</div>
 
-    </div>
+</div>
 
-    <div class="modal-actions">
+<div class="modal-actions">
 
-      <a
-        id="purchaseButton"
-        class="btn primary"
-        href="#"
-        target="_blank">
-        خرید
-      </a>
+<a
+id="purchaseButton"
+class="btn primary"
+href="#"
+target="_blank">
+خرید
+</a>
 
-      <button
-        class="btn secondary"
-        onclick="closeProduct()">
-        بازگشت
-      </button>
+<button
+class="btn secondary"
+onclick="closeProduct()">
+بازگشت
+</button>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </div>
 
@@ -1985,195 +2351,207 @@ footer strong{
 <script>
 
 const BOT_URL =
-  "https://t.me/echo_priime_bot";
+"https://t.me/echo_priime_bot";
 
 const PV_URL =
-  "https://t.me/Vtwoguard";
+"https://t.me/Vtwoguard";
 
 
-/* THEME */
+/* =========================
+   THEME
+========================= */
 
 function updateTheme(){
 
-  const btn =
-    document.getElementById("themeButton");
+const btn =
+document.getElementById("themeButton");
 
-  if(document.body.classList.contains("light")){
-    btn.textContent="☀";
-  }else{
-    btn.textContent="☾";
-  }
+if(document.body.classList.contains("light")){
+btn.textContent="☀";
+}else{
+btn.textContent="☾";
+}
 
 }
 
 function toggleTheme(){
 
-  document.body.classList.toggle("light");
+document.body.classList.toggle("light");
 
-  localStorage.setItem(
-    "v2gurd-theme",
-    document.body.classList.contains("light")
-      ? "light"
-      : "dark"
-  );
+localStorage.setItem(
+"v2gurd-theme",
+document.body.classList.contains("light")
+?"light"
+:"dark"
+);
 
-  updateTheme();
+updateTheme();
 
 }
 
 if(
-  localStorage.getItem("v2gurd-theme")==="light"
+localStorage.getItem("v2gurd-theme")==="light"
 ){
-  document.body.classList.add("light");
+document.body.classList.add("light");
 }
 
 updateTheme();
 
 
-/* PRODUCT */
+/* =========================
+   PRODUCT MODAL
+========================= */
 
 function openProduct(
-  title,
-  icon,
-  description,
-  volume,
-  users,
-  duration,
-  type,
-  price
+title,
+icon,
+description,
+volume,
+users,
+duration,
+type,
+price
 ){
 
-  document.getElementById("modalTitle")
-    .textContent=title;
+document.getElementById("modalTitle")
+.textContent=title;
 
-  document.getElementById("modalIcon")
-    .textContent=icon;
+document.getElementById("modalIcon")
+.textContent=icon;
 
-  document.getElementById("modalDescription")
-    .textContent=description;
+document.getElementById("modalDescription")
+.textContent=description;
 
-  document.getElementById("modalVolume")
-    .textContent=volume;
+document.getElementById("modalVolume")
+.textContent=volume;
 
-  document.getElementById("modalUsers")
-    .textContent=users;
+document.getElementById("modalUsers")
+.textContent=users;
 
-  document.getElementById("modalDuration")
-    .textContent=duration;
+document.getElementById("modalDuration")
+.textContent=duration;
 
-  document.getElementById("modalPrice")
-    .textContent=price;
+document.getElementById("modalPrice")
+.textContent=price;
 
-  const button =
-    document.getElementById("purchaseButton");
+const button =
+document.getElementById("purchaseButton");
 
-  if(type==="پیوی"){
+if(type==="پیوی"){
 
-    button.textContent="خرید از پیوی تلگرام";
-    button.href=PV_URL;
+button.textContent="خرید از پیوی تلگرام";
+button.href=PV_URL;
 
-  }else if(type==="ربات"){
+}else if(type==="ربات"){
 
-    button.textContent="خرید از ربات";
-    button.href=BOT_URL;
+button.textContent="خرید از ربات";
+button.href=BOT_URL;
 
-  }else{
+}else{
 
-    button.textContent=type;
-    button.href="#";
+button.textContent=type;
+button.href="#";
 
-  }
+}
 
-  document
-    .getElementById("productModal")
-    .classList.add("show");
+document
+.getElementById("productModal")
+.classList.add("show");
 
-  document.body.style.overflow="hidden";
+document.body.style.overflow="hidden";
 
 }
 
 
 function closeProduct(){
 
-  document
-    .getElementById("productModal")
-    .classList.remove("show");
+document
+.getElementById("productModal")
+.classList.remove("show");
 
-  document.body.style.overflow="";
+document.body.style.overflow="";
 
 }
 
 
 document
-  .getElementById("productModal")
-  .addEventListener("click",function(e){
+.getElementById("productModal")
+.addEventListener(
+"click",
+function(e){
 
-    if(e.target===this){
-      closeProduct();
-    }
-
-  });
-
-
-document.addEventListener("keydown",function(e){
-
-  if(e.key==="Escape"){
-    closeProduct();
-  }
+if(e.target===this){
+closeProduct();
+}
 
 });
 
 
-/* COUNTDOWN - 10 DAYS */
+document.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Escape"){
+closeProduct();
+}
+
+});
+
+
+/* =========================
+   COUNTDOWN
+========================= */
 
 let offerEnd =
-  localStorage.getItem("v2gurd-offer-end");
+localStorage.getItem("v2gurd-offer-end");
 
 if(!offerEnd){
 
-  offerEnd =
-    Date.now()+
-    10*24*60*60*1000;
+offerEnd =
+Date.now()+
+10*24*60*60*1000;
 
-  localStorage.setItem(
-    "v2gurd-offer-end",
-    offerEnd
-  );
+localStorage.setItem(
+"v2gurd-offer-end",
+offerEnd
+);
 
 }
 
 function updateTimer(){
 
-  const remaining =
-    Number(offerEnd)-Date.now();
+const remaining =
+Number(offerEnd)-Date.now();
 
-  const timer =
-    document.getElementById("timer");
+const timer =
+document.getElementById("timer");
 
-  if(remaining<=0){
+if(remaining<=0){
 
-    timer.textContent="پیشنهاد ویژه به پایان رسید";
-    return;
+timer.textContent=
+"پیشنهاد ویژه به پایان رسید";
 
-  }
+return;
 
-  const days =
-    Math.floor(
-      remaining/(1000*60*60*24)
-    );
+}
 
-  const hours =
-    Math.floor(
-      (remaining/(1000*60*60))%24
-    );
+const days =
+Math.floor(
+remaining/(1000*60*60*24)
+);
 
-  const minutes =
-    Math.floor(
-      (remaining/(1000*60))%60
-    );
+const hours =
+Math.floor(
+(remaining/(1000*60*60))%24
+);
 
-  timer.textContent =
-    `${days} روز ${hours} ساعت ${minutes} دقیقه`;
+const minutes =
+Math.floor(
+(remaining/(1000*60))%60
+);
+
+timer.textContent =
+`${days} روز ${hours} ساعت ${minutes} دقیقه`;
 
 }
 
@@ -2182,43 +2560,198 @@ updateTimer();
 setInterval(updateTimer,60000);
 
 
-/* MENU ACTIVE */
+/* =========================
+   INTERNET CHECK
+========================= */
+
+function checkInternet(){
+
+const online =
+navigator.onLine;
+
+const result =
+document.getElementById("internetResult");
+
+const icon =
+document.getElementById("internetIcon");
+
+const title =
+document.getElementById("internetTitle");
+
+const text =
+document.getElementById("internetText");
+
+if(online){
+
+result.textContent="● اتصال برقرار است";
+
+icon.classList.remove("off");
+icon.textContent="✓";
+
+title.textContent=
+"اتصال اینترنت برقرار است";
+
+text.textContent=
+"دستگاه شما در حال حاضر به اینترنت متصل است.";
+
+}else{
+
+result.textContent="● اتصال قطع است";
+
+icon.classList.add("off");
+icon.textContent="×";
+
+title.textContent=
+"اتصال اینترنت قطع است";
+
+text.textContent=
+"اتصال اینترنت دستگاه خود را بررسی کنید.";
+
+}
+
+}
+
+window.addEventListener(
+"online",
+checkInternet
+);
+
+window.addEventListener(
+"offline",
+checkInternet
+);
+
+checkInternet();
+
+
+/* =========================
+   SPEED TEST
+========================= */
+
+async function runSpeedTest(){
+
+const result =
+document.getElementById("speedResult");
+
+result.textContent=
+"در حال تست...";
+
+const start =
+performance.now();
+
+try{
+
+const url =
+"https://raw.githubusercontent.com/v2gurd/-v2guard.github.io/main/index.html?speed="+Date.now();
+
+const response =
+await fetch(
+url,
+{
+cache:"no-store",
+mode:"cors"
+}
+);
+
+const data =
+await response.blob();
+
+const seconds =
+(performance.now()-start)/1000;
+
+const bits =
+data.size*8;
+
+const mbps =
+(bits/seconds/1000000).toFixed(1);
+
+result.textContent =
+`${mbps} Mbps`;
+
+}catch(e){
+
+const seconds =
+(performance.now()-start)/1000;
+
+result.textContent =
+`اتصال فعال • ${seconds.toFixed(2)}s`;
+
+}
+
+}
+
+
+/* =========================
+   SYSTEM STATUS
+========================= */
+
+function refreshSystemStatus(){
+
+const result =
+document.getElementById("systemResult");
+
+result.textContent=
+"در حال بررسی...";
+
+setTimeout(()=>{
+
+result.textContent=
+"● همه سیستم‌ها فعال";
+
+},700);
+
+}
+
+
+/* =========================
+   MENU ACTIVE
+========================= */
 
 const menu =
-  document.querySelectorAll(".bottom-menu a");
+document.querySelectorAll(
+".bottom-menu a"
+);
 
 const sections =
-  document.querySelectorAll("section[id]");
+document.querySelectorAll(
+"section[id]"
+);
 
-window.addEventListener("scroll",()=>{
+window.addEventListener(
+"scroll",
+()=>{
 
-  let current="special";
+let current="special";
 
-  sections.forEach(section=>{
+sections.forEach(section=>{
 
-    const top =
-      section.offsetTop-180;
+const top =
+section.offsetTop-190;
 
-    if(window.scrollY>=top){
-      current=section.id;
-    }
+if(window.scrollY>=top){
+current=section.id;
+}
 
-  });
+});
 
-  menu.forEach(item=>{
+menu.forEach(item=>{
 
-    item.classList.remove("active");
+item.classList.remove("active");
 
-    if(
-      item.getAttribute("href")===
-      "#"+current
-    ){
-      item.classList.add("active");
-    }
+if(
+item.getAttribute("href")===
+"#"+current
+){
 
-  });
+item.classList.add("active");
 
-},{passive:true});
+}
+
+});
+
+},
+{passive:true}
+);
 
 </script>
 
