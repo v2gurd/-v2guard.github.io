@@ -42,6 +42,12 @@ body{
     overflow-x:hidden;
 }
 
+.hidden{
+    display:none!important;
+}
+
+/* ================= INTRO ================= */
+
 #intro{
     position:fixed;
     inset:0;
@@ -168,6 +174,8 @@ body{
     }
 }
 
+/* ================= HEADER ================= */
+
 header{
     position:sticky;
     top:0;
@@ -212,14 +220,12 @@ header{
     box-shadow:0 0 35px rgba(22,140,255,.5);
 }
 
+/* ================= MAIN ================= */
+
 main{
     max-width:1150px;
     margin:auto;
     padding:65px 18px 90px;
-}
-
-.hidden{
-    display:none!important;
 }
 
 .hero{
@@ -272,6 +278,8 @@ main{
     color:var(--muted);
     font-size:11px;
 }
+
+/* ================= CATEGORIES ================= */
 
 .categories{
     display:grid;
@@ -327,6 +335,8 @@ main{
     font-size:11px;
 }
 
+/* ================= PRODUCTS ================= */
+
 .products{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
@@ -369,6 +379,7 @@ main{
     color:var(--muted);
     font-size:11px;
     margin-top:8px;
+    line-height:1.9;
 }
 
 .buy{
@@ -390,25 +401,30 @@ main{
     box-shadow:0 0 30px rgba(22,140,255,.4);
 }
 
-.special-product{
+/* ================= SPECIAL PRODUCT ================= */
+
+.special{
     border-color:rgba(0,200,255,.45);
     background:
-        radial-gradient(circle at top right,rgba(0,200,255,.12),transparent 40%),
-        linear-gradient(145deg,rgba(8,35,65,.95),rgba(5,12,23,.95));
-    box-shadow:0 0 35px rgba(0,140,255,.08);
+        radial-gradient(circle at top right,rgba(0,200,255,.12),transparent 35%),
+        linear-gradient(145deg,rgba(8,34,62,.95),rgba(5,12,23,.95));
+    box-shadow:
+        0 0 30px rgba(0,150,255,.08),
+        inset 0 1px rgba(255,255,255,.04);
 }
 
 .special-badge{
     display:inline-block;
+    margin-bottom:13px;
     padding:6px 10px;
     border-radius:20px;
-    background:linear-gradient(135deg,#168cff,#00c8ff);
-    color:white;
     font-size:9px;
-    font-weight:bold;
-    margin-bottom:13px;
-    box-shadow:0 0 20px rgba(0,160,255,.3);
+    color:#fff;
+    background:linear-gradient(135deg,#168cff,#00c8ff);
+    box-shadow:0 0 20px rgba(0,180,255,.3);
 }
+
+/* ================= BACK ================= */
 
 .back{
     border:1px solid var(--border);
@@ -423,6 +439,8 @@ main{
 .back:hover{
     border-color:rgba(22,140,255,.5);
 }
+
+/* ================= MODAL ================= */
 
 .modal{
     position:fixed;
@@ -439,6 +457,8 @@ main{
 .modal-box{
     width:100%;
     max-width:440px;
+    max-height:90vh;
+    overflow-y:auto;
     padding:27px;
     border-radius:25px;
     border:1px solid var(--border);
@@ -509,6 +529,8 @@ main{
     color:white;
     background:#1a2534;
 }
+
+/* ================= BLUE BANK ================= */
 
 .bank-card{
     margin-top:20px;
@@ -606,6 +628,8 @@ main{
     box-shadow:0 0 35px rgba(22,140,255,.5);
 }
 
+/* ================= FOOTER ================= */
+
 footer{
     text-align:center;
     padding:28px 15px;
@@ -613,6 +637,8 @@ footer{
     color:#53647b;
     font-size:10px;
 }
+
+/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
@@ -677,7 +703,10 @@ footer{
 
 <body>
 
+<!-- INTRO -->
+
 <div id="intro">
+
     <div class="intro-grid"></div>
     <div class="intro-glow"></div>
 
@@ -689,7 +718,11 @@ footer{
     <div class="intro-text">
         SECURE • FAST • PREMIUM
     </div>
+
 </div>
+
+
+<!-- HEADER -->
 
 <header>
 
@@ -707,7 +740,12 @@ footer{
 
 </header>
 
+
+<!-- MAIN -->
+
 <main>
+
+<!-- HOME -->
 
 <section id="home">
 
@@ -729,26 +767,46 @@ footer{
 
     </div>
 
+
     <div class="section-title">
-        <h2>خدمات V2GURD</h2>
-        <p>دسته‌بندی موردنظر خود را انتخاب کنید</p>
+
+        <h2>
+            خدمات V2GURD
+        </h2>
+
+        <p>
+            دسته‌بندی موردنظر خود را انتخاب کنید
+        </p>
+
     </div>
+
 
     <div class="categories">
 
-        <div class="category" onclick="showPage('vpn')">
+        <div
+            class="category"
+            onclick="showPage('vpn')"
+        >
             <div class="icon">🛡️</div>
             <h3>VPN</h3>
             <p>سرویس‌های VPN</p>
         </div>
 
-        <div class="category" onclick="showPage('panels')">
+
+        <div
+            class="category"
+            onclick="showPage('panels')"
+        >
             <div class="icon">⚡</div>
             <h3>پنل‌ها</h3>
             <p>پنل‌های فروش</p>
         </div>
 
-        <div class="category" onclick="showPage('servers')">
+
+        <div
+            class="category"
+            onclick="showPage('servers')"
+        >
             <div class="icon">🌐</div>
             <h3>سرورها</h3>
             <p>سرورهای حجمی</p>
@@ -758,11 +816,15 @@ footer{
 
 </section>
 
+
 <!-- VPN -->
 
 <section id="vpn" class="hidden">
 
-    <button class="back" onclick="showPage('home')">
+    <button
+        class="back"
+        onclick="showPage('home')"
+    >
         ← بازگشت
     </button>
 
@@ -771,51 +833,13 @@ footer{
         <h2>🛡️ سرویس‌های VPN</h2>
 
         <p>
-            سرویس موردنظر خود را انتخاب کنید
+            سرویس‌های ویژه V2GURD
         </p>
 
     </div>
 
+
     <div class="products">
-
-        <!-- SPECIAL PRODUCT -->
-
-        <div class="product special-product">
-
-            <div class="special-badge">
-                ⭐ محصول ویژه
-            </div>
-
-            <h3>
-                مولتی لوکیشن آلمان VIP
-            </h3>
-
-            <div class="price">
-                از ۸۰,۰۰۰
-                <small>
-                    تومان
-                </small>
-            </div>
-
-            <div class="product-info">
-                🇩🇪 مولتی لوکیشن آلمان
-                <br>
-                ⚡ VIP تضمینی
-                <br>
-                💎 سرویس ویژه V2GURD
-            </div>
-
-            <button
-                class="buy"
-                onclick="germanyVIP()"
-            >
-                انتخاب حجم
-            </button>
-
-        </div>
-
-
-        <!-- OLD VPN VIP -->
 
         <div class="product">
 
@@ -840,8 +864,6 @@ footer{
 
         </div>
 
-
-        <!-- OLD VPN SPECIAL -->
 
         <div class="product">
 
@@ -875,13 +897,18 @@ footer{
 
 <section id="panels" class="hidden">
 
-    <button class="back" onclick="showPage('home')">
+    <button
+        class="back"
+        onclick="showPage('home')"
+    >
         ← بازگشت
     </button>
 
     <div class="section-title">
 
-        <h2>⚡ پنل‌های V2GURD</h2>
+        <h2>
+            ⚡ پنل‌های V2GURD
+        </h2>
 
         <p>
             پنل‌های حجمی و یوزری
@@ -889,7 +916,10 @@ footer{
 
     </div>
 
+
     <div class="products">
+
+        <!-- VOLUME -->
 
         <div class="product">
 
@@ -916,6 +946,9 @@ footer{
             </button>
 
         </div>
+
+
+        <!-- 25 USER -->
 
         <div class="product">
 
@@ -945,6 +978,9 @@ footer{
             </button>
 
         </div>
+
+
+        <!-- 50 USER -->
 
         <div class="product">
 
@@ -984,19 +1020,25 @@ footer{
 
 <section id="servers" class="hidden">
 
-    <button class="back" onclick="showPage('home')">
+    <button
+        class="back"
+        onclick="showPage('home')"
+    >
         ← بازگشت
     </button>
 
     <div class="section-title">
 
-        <h2>🌐 سرورهای V2GURD</h2>
+        <h2>
+            🌐 سرورهای V2GURD
+        </h2>
 
         <p>
             نوع سرور را انتخاب کنید
         </p>
 
     </div>
+
 
     <div class="categories">
 
@@ -1013,6 +1055,7 @@ footer{
             </p>
         </div>
 
+
         <div
             class="category"
             onclick="showServerVolumes('معمولی',1500)"
@@ -1025,6 +1068,7 @@ footer{
                 گیگی ۱,۵۰۰ تومان
             </p>
         </div>
+
 
         <div
             class="category"
@@ -1039,6 +1083,7 @@ footer{
             </p>
         </div>
 
+
         <div
             class="category"
             onclick="showServerVolumes('تانل',2500)"
@@ -1052,6 +1097,7 @@ footer{
             </p>
         </div>
 
+
         <div
             class="category"
             onclick="showServerVolumes('حرفه‌ای',3000)"
@@ -1063,6 +1109,63 @@ footer{
             <p>
                 گیگی ۳,۰۰۰ تومان
             </p>
+        </div>
+
+    </div>
+
+
+    <!-- SPECIAL PRODUCT -->
+
+    <div class="section-title">
+
+        <h2>
+            ⭐ محصول ویژه
+        </h2>
+
+        <p>
+            سرویس اختصاصی V2GURD
+        </p>
+
+    </div>
+
+
+    <div class="products">
+
+        <div class="product special">
+
+            <div class="special-badge">
+                ⭐ ویژه V2GURD
+            </div>
+
+            <h3>
+                مولتی لوکیشن آلمان VIP
+            </h3>
+
+            <div class="price">
+                تضمینی
+            </div>
+
+            <div class="product-info">
+
+                🇩🇪 مولتی لوکیشن آلمان
+
+                <br>
+
+                ⭐ VIP تضمینی
+
+                <br>
+
+                انتخاب حجم از ۱۰ تا ۵۰ گیگ
+
+            </div>
+
+            <button
+                class="buy"
+                onclick="specialGermany()"
+            >
+                انتخاب حجم
+            </button>
+
         </div>
 
     </div>
@@ -1100,14 +1203,19 @@ footer{
 
 </main>
 
+
 <footer>
 
     V2GURD © 2026
+
     <br><br>
+
     SECURE • FAST • PREMIUM
 
 </footer>
 
+
+<!-- MODAL -->
 
 <div
     id="modal"
@@ -1124,9 +1232,7 @@ footer{
 
 <script>
 
-/* ===================================
-   INTRO
-=================================== */
+/* ================= INTRO ================= */
 
 setTimeout(function(){
 
@@ -1138,9 +1244,7 @@ setTimeout(function(){
 },3500);
 
 
-/* ===================================
-   PAGE SYSTEM
-=================================== */
+/* ================= PAGE SYSTEM ================= */
 
 function showPage(page){
 
@@ -1170,13 +1274,10 @@ function showPage(page){
         top:0,
         behavior:"smooth"
     });
-
 }
 
 
-/* ===================================
-   NUMBER FORMAT
-=================================== */
+/* ================= NUMBER ================= */
 
 function formatNumber(number){
 
@@ -1186,189 +1287,7 @@ function formatNumber(number){
 }
 
 
-/* ===================================
-   GERMANY VIP
-=================================== */
-
-function germanyVIP(){
-
-    const plans = [
-        {
-            volume:10,
-            price:80000
-        },
-        {
-            volume:20,
-            price:160000
-        },
-        {
-            volume:30,
-            price:240000
-        },
-        {
-            volume:40,
-            price:320000
-        },
-        {
-            volume:50,
-            price:400000
-        }
-    ];
-
-    let content = `
-
-        <h2>
-            🇩🇪 آلمان VIP
-        </h2>
-
-        <p>
-            حجم سرویس موردنظر را انتخاب کنید.
-        </p>
-
-        <div
-            class="products"
-            style="
-                margin-top:20px;
-                grid-template-columns:repeat(2,1fr);
-            "
-        >
-    `;
-
-    plans.forEach(function(plan){
-
-        content += `
-
-            <button
-                class="buy"
-                onclick="confirmGermanyPurchase(
-                    ${plan.volume},
-                    ${plan.price}
-                )"
-            >
-
-                ${formatNumber(plan.volume)}
-                گیگ
-
-                <br>
-
-                <small>
-                    ${formatNumber(plan.price)}
-                    تومان
-                </small>
-
-            </button>
-
-        `;
-
-    });
-
-    content += `
-
-        </div>
-
-        <button
-            class="back"
-            style="
-                width:100%;
-                margin-top:15px;
-            "
-            onclick="closeModal()"
-        >
-            بستن
-        </button>
-
-    `;
-
-    openModal(content);
-
-}
-
-
-/* ===================================
-   GERMANY VIP CONFIRM
-=================================== */
-
-function confirmGermanyPurchase(
-    volume,
-    total
-){
-
-    const product =
-        "مولتی لوکیشن آلمان VIP تضمینی";
-
-    const content = `
-
-        <h2>
-            تأیید خرید
-        </h2>
-
-        <p>
-            لطفاً اطلاعات سفارش را بررسی کنید.
-        </p>
-
-        <div class="order-box">
-
-            <div>
-                محصول:
-                <strong>
-                    ${product}
-                </strong>
-            </div>
-
-            <div>
-                حجم:
-                <strong>
-                    ${formatNumber(volume)}
-                    گیگ
-                </strong>
-            </div>
-
-            <div>
-                مبلغ:
-                <strong style="color:#00e676">
-                    ${formatNumber(total)}
-                    تومان
-                </strong>
-            </div>
-
-        </div>
-
-        <p style="margin-top:15px">
-            از خرید خود مطمئن هستید؟
-        </p>
-
-        <div class="modal-actions">
-
-            <button
-                class="yes"
-                onclick="paymentPage(
-                    '${product}',
-                    ${volume},
-                    ${total}
-                )"
-            >
-                بله، ادامه خرید
-            </button>
-
-            <button
-                class="no"
-                onclick="closeModal()"
-            >
-                خیر
-            </button>
-
-        </div>
-
-    `;
-
-    openModal(content);
-
-}
-
-
-/* ===================================
-   SERVER VOLUMES
-=================================== */
+/* ================= SERVER VOLUMES ================= */
 
 function showServerVolumes(type,price){
 
@@ -1444,17 +1363,13 @@ function showServerVolumes(type,price){
         `;
 
         list.appendChild(card);
-
     }
 
     showPage("serverVolumes");
-
 }
 
 
-/* ===================================
-   SERVER PURCHASE CONFIRM
-=================================== */
+/* ================= SERVER PURCHASE ================= */
 
 function confirmServerPurchase(
     type,
@@ -1477,32 +1392,27 @@ function confirmServerPurchase(
 
             <div>
                 نوع سرور:
-                <strong>
-                    ${type}
-                </strong>
+                <strong>${type}</strong>
             </div>
 
             <div>
                 حجم:
                 <strong>
-                    ${formatNumber(volume)}
-                    گیگ
+                    ${formatNumber(volume)} گیگ
                 </strong>
             </div>
 
             <div>
                 قیمت هر گیگ:
                 <strong>
-                    ${formatNumber(price)}
-                    تومان
+                    ${formatNumber(price)} تومان
                 </strong>
             </div>
 
             <div>
                 مبلغ نهایی:
                 <strong style="color:#00e676">
-                    ${formatNumber(total)}
-                    تومان
+                    ${formatNumber(total)} تومان
                 </strong>
             </div>
 
@@ -1517,7 +1427,7 @@ function confirmServerPurchase(
             <button
                 class="yes"
                 onclick="paymentPage(
-                    '${type}',
+                    '${type} - سرور',
                     ${volume},
                     ${total}
                 )"
@@ -1533,17 +1443,13 @@ function confirmServerPurchase(
             </button>
 
         </div>
-
     `;
 
     openModal(content);
-
 }
 
 
-/* ===================================
-   NORMAL PURCHASE CONFIRM
-=================================== */
+/* ================= NORMAL PURCHASE ================= */
 
 function confirmPurchase(
     product,
@@ -1603,17 +1509,13 @@ function confirmPurchase(
             </button>
 
         </div>
-
     `;
 
     openModal(content);
-
 }
 
 
-/* ===================================
-   VOLUME PANEL
-=================================== */
+/* ================= VOLUME PANEL ================= */
 
 function volumePanel(){
 
@@ -1668,7 +1570,6 @@ function volumePanel(){
             </button>
 
         `;
-
     }
 
     content += `
@@ -1685,23 +1586,197 @@ function volumePanel(){
         >
             بستن
         </button>
-
     `;
 
     openModal(content);
-
 }
 
 
-/* ===================================
-   PAYMENT PAGE
-=================================== */
+/* ================= SPECIAL GERMANY ================= */
+
+function specialGermany(){
+
+    const products = [
+
+        {
+            volume:10,
+            price:80000
+        },
+
+        {
+            volume:20,
+            price:160000
+        },
+
+        {
+            volume:30,
+            price:240000
+        },
+
+        {
+            volume:40,
+            price:320000
+        },
+
+        {
+            volume:50,
+            price:400000
+        }
+
+    ];
+
+    let content = `
+
+        <h2>
+            🇩🇪 مولتی لوکیشن آلمان VIP
+        </h2>
+
+        <p>
+            ⭐ سرویس ویژه و تضمینی V2GURD
+        </p>
+
+        <div
+            class="products"
+            style="
+                margin-top:20px;
+                grid-template-columns:repeat(2,1fr);
+            "
+        >
+    `;
+
+    products.forEach(function(item){
+
+        content += `
+
+            <button
+                class="buy"
+                onclick="confirmSpecialGermany(
+                    ${item.volume},
+                    ${item.price}
+                )"
+            >
+
+                ${formatNumber(item.volume)}
+                گیگ
+
+                <br>
+
+                <small>
+                    ${formatNumber(item.price)}
+                    تومان
+                </small>
+
+            </button>
+
+        `;
+
+    });
+
+    content += `
+
+        </div>
+
+        <button
+            class="back"
+            style="
+                width:100%;
+                margin-top:15px;
+            "
+            onclick="closeModal()"
+        >
+            بستن
+        </button>
+    `;
+
+    openModal(content);
+}
+
+
+/* ================= SPECIAL CONFIRM ================= */
+
+function confirmSpecialGermany(
+    volume,
+    total
+){
+
+    const content = `
+
+        <h2>
+            ⭐ تأیید خرید
+        </h2>
+
+        <p>
+            محصول ویژه خود را بررسی کنید.
+        </p>
+
+        <div class="order-box">
+
+            <div>
+                محصول:
+                <strong>
+                    مولتی لوکیشن آلمان VIP تضمینی
+                </strong>
+            </div>
+
+            <div>
+                حجم:
+                <strong>
+                    ${formatNumber(volume)} گیگ
+                </strong>
+            </div>
+
+            <div>
+                مبلغ:
+                <strong style="color:#00e676">
+                    ${formatNumber(total)} تومان
+                </strong>
+            </div>
+
+        </div>
+
+        <p style="margin-top:15px">
+            از خرید خود مطمئن هستید؟
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                class="yes"
+                onclick="paymentPage(
+                    'مولتی لوکیشن آلمان VIP تضمینی',
+                    ${volume},
+                    ${total}
+                )"
+            >
+                بله، ادامه خرید
+            </button>
+
+            <button
+                class="no"
+                onclick="closeModal()"
+            >
+                خیر
+            </button>
+
+        </div>
+    `;
+
+    openModal(content);
+}
+
+
+/* ================= PAYMENT ================= */
 
 function paymentPage(
     product,
     volume,
     total
 ){
+
+    let numericTotal =
+        typeof total === "number"
+        ? total
+        : total;
 
     let orderText =
 `سلام، برای خرید محصول زیر رسید پرداخت را ارسال می‌کنم.
@@ -1713,24 +1788,21 @@ function paymentPage(
         orderText +=
 `
 حجم: ${formatNumber(volume)} گیگ`;
-
     }
 
     orderText +=
 `
 مبلغ: ${
-    typeof total === "number"
-    ? formatNumber(total)
-    : total
+    typeof numericTotal === "number"
+    ? formatNumber(numericTotal)
+    : numericTotal
 }
 
 رسید پرداخت:`;
 
-
     const telegramURL =
         "https://t.me/Vtwoguard?text=" +
         encodeURIComponent(orderText);
-
 
     const content = `
 
@@ -1776,11 +1848,12 @@ function paymentPage(
         <div class="payment-text">
 
             مبلغ
+
             <strong style="color:white">
                 ${
-                    typeof total==="number"
-                    ? formatNumber(total)
-                    : total
+                    typeof numericTotal==="number"
+                    ? formatNumber(numericTotal)
+                    : numericTotal
                 }
             </strong>
 
@@ -1816,13 +1889,10 @@ function paymentPage(
     `;
 
     openModal(content);
-
 }
 
 
-/* ===================================
-   COPY CARD
-=================================== */
+/* ================= COPY CARD ================= */
 
 function copyCard(){
 
@@ -1838,13 +1908,10 @@ function copyCard(){
             alert("شماره کارت: 6219861841635526");
 
         });
-
 }
 
 
-/* ===================================
-   TELEGRAM CONTACT
-=================================== */
+/* ================= CONTACT ================= */
 
 function contact(product){
 
@@ -1858,13 +1925,10 @@ function contact(product){
         encodeURIComponent(text),
         "_blank"
     );
-
 }
 
 
-/* ===================================
-   MODAL
-=================================== */
+/* ================= MODAL ================= */
 
 function openModal(content){
 
@@ -1876,7 +1940,6 @@ function openModal(content){
         .getElementById("modal")
         .classList
         .remove("hidden");
-
 }
 
 
@@ -1886,13 +1949,10 @@ function closeModal(){
         .getElementById("modal")
         .classList
         .add("hidden");
-
 }
 
 
-/* ===================================
-   CLOSE MODAL OUTSIDE
-=================================== */
+/* ================= CLOSE OUTSIDE ================= */
 
 document
     .getElementById("modal")
