@@ -2,8 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#05080d">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05070a">
 
 <title>V2GURD | Digital Services</title>
 
@@ -12,170 +12,214 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Tahoma,Arial,sans-serif;
 }
 
-:root{
-    --bg:#05080d;
-    --card:#0b1119;
-    --card2:#101923;
-    --text:#f5f7fa;
-    --muted:#8995a5;
-    --blue:#229ed9;
-    --blue2:#168ac1;
-    --green:#00e676;
-    --border:rgba(255,255,255,.08);
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:
-        radial-gradient(circle at 50% -10%,rgba(34,158,217,.18),transparent 35%),
-        var(--bg);
-    color:var(--text);
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+    background:#05070a;
+    color:#fff;
     min-height:100vh;
     overflow-x:hidden;
 }
 
 /* =========================
-   INTRO
+   LOADER
 ========================= */
 
-#intro{
+#loader{
     position:fixed;
     inset:0;
-    background:#05080d;
     z-index:99999;
+    background:#030405;
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:opacity .8s ease,visibility .8s ease;
+    overflow:hidden;
 }
 
-#intro.hide{
-    opacity:0;
-    visibility:hidden;
+.loader-bg{
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle,
+        rgba(0,255,180,.18) 0%,
+        rgba(0,255,180,.06) 30%,
+        transparent 70%);
+    filter:blur(10px);
+    animation:pulse 2s infinite alternate;
 }
 
-.intro-logo{
-    font-size:clamp(42px,12vw,100px);
-    font-weight:900;
+.loader-grid{
+    position:absolute;
+    inset:0;
+    opacity:.13;
+    background-image:
+        linear-gradient(rgba(0,255,180,.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,180,.25) 1px, transparent 1px);
+    background-size:45px 45px;
+    transform:perspective(500px) rotateX(65deg) scale(2);
+    transform-origin:center bottom;
+    animation:gridMove 5s linear infinite;
+}
+
+.loader-content{
+    position:relative;
+    text-align:center;
+}
+
+.loader-logo{
+    font-size:clamp(50px,13vw,120px);
+    font-weight:1000;
     letter-spacing:8px;
-    color:white;
+    color:#fff;
+    text-shadow:
+        0 0 10px #00ffb3,
+        0 0 30px #00ffb3,
+        0 0 70px rgba(0,255,179,.7);
+
     animation:
-        logoIn 1.2s cubic-bezier(.16,1,.3,1) forwards,
-        logoGlow 2s 1.1s infinite alternate;
-    text-shadow:0 0 0 transparent;
+        logoIn 1.5s cubic-bezier(.16,1,.3,1),
+        glitch 1.8s infinite;
+}
+
+.loader-line{
+    width:0;
+    height:2px;
+    margin:25px auto 0;
+    background:#00ffb3;
+    box-shadow:0 0 15px #00ffb3;
+    animation:lineIn 1.5s .5s forwards;
+}
+
+.loader-text{
+    margin-top:18px;
+    font-size:11px;
+    letter-spacing:5px;
+    color:#7affd5;
+    opacity:0;
+    animation:fadeIn 1s 1s forwards;
 }
 
 @keyframes logoIn{
-    0%{
+    from{
         opacity:0;
-        transform:scale(.5);
-        filter:blur(20px);
-        letter-spacing:25px;
+        transform:scale(1.7);
+        filter:blur(25px);
     }
-    60%{
+    to{
         opacity:1;
-        transform:scale(1.08);
-        filter:blur(0);
-    }
-    100%{
         transform:scale(1);
-        letter-spacing:8px;
+        filter:blur(0);
     }
 }
 
-@keyframes logoGlow{
-    from{
-        text-shadow:0 0 15px rgba(34,158,217,.25);
-    }
-    to{
-        text-shadow:
-            0 0 20px rgba(34,158,217,.7),
-            0 0 60px rgba(34,158,217,.25);
-    }
+@keyframes glitch{
+    0%,90%,100%{transform:translate(0)}
+    92%{transform:translate(-3px,2px)}
+    94%{transform:translate(3px,-2px)}
+    96%{transform:translate(-2px,-1px)}
+}
+
+@keyframes lineIn{
+    to{width:240px}
+}
+
+@keyframes fadeIn{
+    to{opacity:1}
+}
+
+@keyframes pulse{
+    from{transform:scale(.85);opacity:.5}
+    to{transform:scale(1.2);opacity:1}
+}
+
+@keyframes gridMove{
+    from{transform:perspective(500px) rotateX(65deg) scale(2) translateY(0)}
+    to{transform:perspective(500px) rotateX(65deg) scale(2) translateY(45px)}
 }
 
 /* =========================
-   HEADER
+   NAVBAR
 ========================= */
 
-header{
-    position:sticky;
-    top:0;
+nav{
+    position:fixed;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(94%,1100px);
     z-index:1000;
-    backdrop-filter:blur(18px);
-    background:rgba(5,8,13,.75);
-    border-bottom:1px solid var(--border);
-}
 
-.nav{
-    max-width:1150px;
-    margin:auto;
-    padding:16px 20px;
+    background:rgba(8,12,17,.72);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+
+    padding:13px 18px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:20px;
+
+    box-shadow:
+        0 10px 50px rgba(0,0,0,.4),
+        inset 0 1px rgba(255,255,255,.05);
 }
 
-.logo{
-    font-size:23px;
-    font-weight:900;
+.nav-logo{
+    font-size:20px;
+    font-weight:1000;
     letter-spacing:2px;
-}
-
-.logo span{
-    color:var(--blue);
+    color:#00ffb3;
+    text-shadow:0 0 15px rgba(0,255,179,.5);
 }
 
 .nav-links{
     display:flex;
     gap:8px;
-    list-style:none;
 }
 
 .nav-links button{
-    border:0;
     background:transparent;
-    color:#aeb8c4;
-    padding:10px 13px;
+    color:#aaa;
+    border:0;
+    padding:9px 13px;
     border-radius:10px;
     cursor:pointer;
+    font-size:13px;
     transition:.25s;
 }
 
 .nav-links button:hover,
 .nav-links button.active{
-    color:white;
-    background:rgba(34,158,217,.12);
-}
-
-.menu-btn{
-    display:none;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:white;
-    width:43px;
-    height:43px;
-    border-radius:12px;
-    font-size:20px;
-    cursor:pointer;
+    color:#fff;
+    background:rgba(255,255,255,.06);
 }
 
 /* =========================
    PAGES
 ========================= */
 
-main{
-    max-width:1150px;
-    margin:auto;
-    padding:35px 20px 70px;
-}
-
 .page{
     display:none;
-    animation:pageIn .45s ease;
+    min-height:100vh;
+    padding:120px 20px 60px;
+    animation:pageIn .5s ease;
 }
 
 .page.active{
@@ -189,85 +233,118 @@ main{
     }
     to{
         opacity:1;
-        transform:none;
+        transform:translateY(0);
     }
 }
 
+/* =========================
+   HOME
+========================= */
+
 .hero{
-    min-height:65vh;
+    min-height:75vh;
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     text-align:center;
+    position:relative;
+}
+
+.hero-glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,rgba(0,255,179,.12),transparent 70%);
+    filter:blur(20px);
+    pointer-events:none;
 }
 
 .hero h1{
-    font-size:clamp(40px,8vw,78px);
-    font-weight:900;
-    letter-spacing:3px;
-    margin-bottom:20px;
+    position:relative;
+    font-size:clamp(45px,11vw,100px);
+    font-weight:1000;
+    letter-spacing:5px;
+
+    background:linear-gradient(
+        120deg,
+        #fff,
+        #8affdc,
+        #00ffb3,
+        #fff
+    );
+
+    background-size:300%;
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:shine 5s linear infinite;
 }
 
-.hero h1 span{
-    color:var(--blue);
+@keyframes shine{
+    0%{background-position:0}
+    100%{background-position:300%}
 }
 
 .hero p{
-    max-width:650px;
-    color:var(--muted);
-    line-height:2;
-    font-size:16px;
+    position:relative;
+    color:#777;
+    margin-top:18px;
+    max-width:600px;
+    line-height:1.9;
+}
+
+.hero-buttons{
+    position:relative;
+    display:flex;
+    gap:12px;
+    margin-top:35px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
 .btn{
     border:0;
     cursor:pointer;
+    padding:14px 24px;
     border-radius:13px;
-    padding:13px 22px;
-    font-size:14px;
-    font-weight:bold;
+    font-weight:800;
     transition:.25s;
 }
 
 .btn-primary{
-    background:var(--blue);
-    color:white;
-    box-shadow:0 8px 30px rgba(34,158,217,.2);
+    background:#00ffb3;
+    color:#00140d;
+    box-shadow:0 0 30px rgba(0,255,179,.2);
 }
 
 .btn-primary:hover{
-    background:#35abe3;
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+    box-shadow:0 10px 35px rgba(0,255,179,.3);
 }
 
 .btn-dark{
-    background:var(--card2);
-    color:white;
-    border:1px solid var(--border);
+    background:#11171d;
+    color:#fff;
+    border:1px solid #202a32;
 }
 
-.btn-danger{
-    background:#171014;
-    color:#ff6b81;
-    border:1px solid rgba(255,107,129,.15);
-}
-
-.hero-buttons{
-    display:flex;
-    gap:12px;
-    margin-top:28px;
-    flex-wrap:wrap;
-    justify-content:center;
+.btn-dark:hover{
+    background:#182128;
 }
 
 /* =========================
-   SECTION TITLE
+   SECTION
 ========================= */
+
+.container{
+    width:min(1100px,100%);
+    margin:auto;
+}
 
 .section-title{
     text-align:center;
-    margin:20px 0 35px;
+    margin-bottom:35px;
 }
 
 .section-title h2{
@@ -276,249 +353,176 @@ main{
 }
 
 .section-title p{
-    color:var(--muted);
+    color:#666;
 }
 
 /* =========================
    CARDS
 ========================= */
 
-.grid{
+.cards{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
 }
 
 .card{
-    background:
-        linear-gradient(145deg,rgba(255,255,255,.035),transparent),
-        var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:25px;
     position:relative;
+    padding:25px;
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.05),
+            rgba(255,255,255,.015)
+        );
+
+    border:1px solid rgba(255,255,255,.07);
+
     overflow:hidden;
     transition:.3s;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    background:rgba(0,255,179,.08);
+    border-radius:50%;
+    filter:blur(40px);
+    top:-70px;
+    right:-70px;
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(34,158,217,.3);
-    box-shadow:0 15px 45px rgba(0,0,0,.25);
+    transform:translateY(-7px);
+    border-color:rgba(0,255,179,.25);
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
-.card-icon{
-    width:50px;
-    height:50px;
+.icon{
+    width:48px;
+    height:48px;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:15px;
-    background:rgba(34,158,217,.1);
-    color:var(--blue);
-    font-size:24px;
-    margin-bottom:20px;
+
+    border-radius:14px;
+    background:rgba(0,255,179,.08);
+    color:#00ffb3;
+
+    font-size:23px;
+    margin-bottom:18px;
 }
 
 .card h3{
-    margin-bottom:10px;
-    font-size:19px;
+    margin-bottom:8px;
 }
 
 .card p{
-    color:var(--muted);
-    line-height:1.9;
+    color:#777;
+    line-height:1.8;
     font-size:13px;
 }
 
 /* =========================
-   PRODUCTS
+   PRODUCT CARDS
 ========================= */
 
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+.product-card{
+    display:flex;
+    flex-direction:column;
 }
 
-.product{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:24px;
-    position:relative;
+.product-card .price{
+    margin-top:auto;
+    padding-top:20px;
+}
+
+.price-number{
+    font-size:25px;
+    font-weight:900;
+    color:#00ffb3;
+}
+
+.price-label{
+    color:#666;
+    font-size:12px;
+}
+
+.buy-btn{
+    margin-top:18px;
+    width:100%;
+    background:#00ffb3;
+    color:#00130d;
+    border:0;
+    border-radius:12px;
+    padding:12px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.buy-btn:hover{
+    transform:scale(1.02);
+}
+
+/* =========================
+   SERVER
+========================= */
+
+.server-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
+}
+
+.server-card{
+    background:#0a0f14;
+    border:1px solid #182129;
+    border-radius:18px;
+    padding:22px;
     transition:.3s;
 }
 
-.product:hover{
+.server-card:hover{
+    border-color:#00ffb3;
     transform:translateY(-5px);
-    border-color:rgba(34,158,217,.35);
 }
 
-.product.featured{
-    border-color:rgba(34,158,217,.45);
-}
-
-.badge{
-    position:absolute;
-    top:15px;
-    left:15px;
-    font-size:10px;
-    background:rgba(0,230,118,.1);
-    color:var(--green);
-    border:1px solid rgba(0,230,118,.15);
-    padding:5px 9px;
-    border-radius:20px;
-}
-
-.product h3{
-    font-size:20px;
-    margin-bottom:9px;
-}
-
-.product-desc{
-    color:var(--muted);
-    font-size:13px;
-    margin-bottom:20px;
-}
-
-.price{
-    font-size:25px;
+.server-type{
+    color:#00ffb3;
     font-weight:900;
-    margin-bottom:18px;
+    font-size:19px;
 }
 
-.price small{
+.server-price{
+    font-size:28px;
+    font-weight:1000;
+    margin:15px 0;
+}
+
+.server-price span{
     font-size:12px;
-    color:var(--muted);
-    font-weight:normal;
+    color:#666;
 }
 
-/* =========================
-   PAYMENT
-========================= */
-
-.payment-box{
-    max-width:600px;
-    margin:30px auto;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:25px;
-    padding:30px;
+.volume-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
 }
 
-.order-summary{
-    background:var(--card2);
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:18px;
-    margin-bottom:20px;
-}
-
-.order-row{
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    padding:9px 0;
-    color:#aeb8c4;
-}
-
-.order-row strong{
-    color:white;
-}
-
-.bank-card{
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 90% 10%,rgba(255,255,255,.3),transparent 25%),
-        linear-gradient(135deg,#1288d0,#0870b1);
-    border-radius:22px;
-    padding:25px;
-    margin:20px 0;
-    box-shadow:0 15px 45px rgba(0,120,200,.18);
-}
-
-.bank-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-.bank-logo{
-    font-weight:900;
-    font-size:18px;
-}
-
-.bank-logo span{
-    display:block;
-    font-size:10px;
-    opacity:.75;
-    margin-top:3px;
-}
-
-.bank-chip{
-    width:44px;
-    height:32px;
-    border-radius:7px;
-    background:linear-gradient(135deg,#ddd,#aaa);
-    opacity:.9;
-}
-
-.card-number{
-    direction:ltr;
-    text-align:center;
-    font-size:22px;
-    letter-spacing:2px;
-    font-weight:bold;
-    margin:25px 0;
-}
-
-.bank-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-}
-
-.bank-name{
-    font-size:12px;
-    opacity:.8;
-}
-
-.owner{
-    font-weight:bold;
-    font-size:14px;
-}
-
-.copy-btn{
-    margin-top:12px;
-    width:100%;
-    background:rgba(255,255,255,.14);
-    border:1px solid rgba(255,255,255,.2);
-    color:white;
-    padding:11px;
+.volume{
+    padding:10px;
+    background:#11181e;
+    border:1px solid #202a32;
     border-radius:10px;
-    cursor:pointer;
-}
-
-.notice{
-    color:var(--muted);
+    color:#bbb;
     font-size:12px;
-    line-height:2;
-    background:rgba(255,255,255,.025);
-    padding:14px;
-    border-radius:12px;
-    margin-bottom:18px;
-}
-
-.payment-buttons{
-    display:flex;
-    gap:10px;
-}
-
-.payment-buttons button{
-    flex:1;
+    text-align:center;
 }
 
 /* =========================
@@ -526,26 +530,23 @@ main{
 ========================= */
 
 .telegram-box{
-    max-width:600px;
-    margin:50px auto;
-    background:linear-gradient(145deg,#0b1822,#091018);
-    border:1px solid rgba(34,158,217,.2);
-    border-radius:25px;
-    padding:35px;
+    max-width:550px;
+    margin:70px auto 0;
+    padding:40px 25px;
     text-align:center;
+    border-radius:25px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,255,179,.08),
+            rgba(255,255,255,.02)
+        );
+    border:1px solid rgba(0,255,179,.15);
 }
 
 .telegram-icon{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:var(--blue);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 20px;
-    font-size:34px;
-    box-shadow:0 10px 35px rgba(34,158,217,.25);
+    font-size:55px;
+    margin-bottom:15px;
 }
 
 .telegram-box h2{
@@ -553,19 +554,8 @@ main{
 }
 
 .telegram-box p{
-    color:var(--muted);
-    line-height:2;
-    margin-bottom:22px;
-}
-
-.telegram-id{
-    direction:ltr;
-    display:inline-block;
-    color:#58b9e8;
-    background:rgba(34,158,217,.08);
-    padding:9px 15px;
-    border-radius:10px;
-    margin-bottom:22px;
+    color:#777;
+    margin-bottom:25px;
 }
 
 /* =========================
@@ -575,12 +565,14 @@ main{
 .modal{
     position:fixed;
     inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(12px);
     z-index:5000;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(8px);
+
     display:none;
     align-items:center;
     justify-content:center;
+
     padding:20px;
 }
 
@@ -589,45 +581,116 @@ main{
 }
 
 .modal-box{
-    width:min(430px,100%);
-    background:#0b1119;
-    border:1px solid var(--border);
+    width:min(450px,100%);
+    background:#0b1015;
+    border:1px solid #202a32;
     border-radius:22px;
     padding:28px;
-    text-align:center;
     animation:modalIn .3s ease;
+    box-shadow:0 30px 100px rgba(0,0,0,.7);
 }
 
 @keyframes modalIn{
     from{
         opacity:0;
-        transform:scale(.9) translateY(15px);
+        transform:scale(.9) translateY(20px);
     }
     to{
         opacity:1;
-        transform:none;
+        transform:scale(1);
     }
 }
 
-.modal-box h3{
-    font-size:21px;
-    margin-bottom:12px;
+.modal-title{
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:10px;
 }
 
-.modal-box p{
-    color:var(--muted);
-    font-size:13px;
-    line-height:2;
-    margin-bottom:22px;
+.modal-text{
+    color:#888;
+    line-height:1.8;
+    font-size:14px;
 }
 
 .modal-actions{
     display:flex;
     gap:10px;
+    margin-top:25px;
 }
 
 .modal-actions button{
     flex:1;
+}
+
+/* =========================
+   PAYMENT
+========================= */
+
+.payment-card{
+    max-width:520px;
+    margin:30px auto;
+    background:#0b1015;
+    border:1px solid #202a32;
+    border-radius:25px;
+    padding:25px;
+}
+
+.bank-header{
+    background:
+        linear-gradient(
+            135deg,
+            #111,
+            #242424
+        );
+
+    border-radius:18px;
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    margin-bottom:20px;
+}
+
+.bank-name{
+    font-size:24px;
+    font-weight:1000;
+    margin-bottom:25px;
+}
+
+.bank-logo{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#111,#777);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.card-number{
+    direction:ltr;
+    text-align:center;
+    font-size:21px;
+    letter-spacing:2px;
+    font-weight:900;
+    margin:15px 0;
+}
+
+.owner{
+    color:#aaa;
+    font-size:13px;
+}
+
+.payment-info{
+    padding:18px;
+    background:#10171d;
+    border-radius:15px;
+    line-height:2;
+    color:#aaa;
+    font-size:13px;
 }
 
 /* =========================
@@ -636,52 +699,34 @@ main{
 
 footer{
     text-align:center;
-    color:#5f6b79;
-    font-size:11px;
-    padding:25px 20px;
-    border-top:1px solid var(--border);
+    padding:30px;
+    border-top:1px solid #10161c;
+    color:#555;
+    font-size:12px;
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
 
-@media(max-width:800px){
+@media(max-width:600px){
 
-    .nav-links{
-        display:none;
-        position:absolute;
-        top:75px;
-        right:15px;
-        left:15px;
-        background:#090e15;
-        border:1px solid var(--border);
-        border-radius:16px;
-        padding:10px;
-        flex-direction:column;
-    }
-
-    .nav-links.open{
-        display:flex;
+    nav{
+        top:8px;
+        padding:10px 12px;
     }
 
     .nav-links button{
-        width:100%;
-        text-align:right;
-        padding:13px;
+        padding:8px;
+        font-size:11px;
     }
 
-    .menu-btn{
-        display:block;
+    .nav-logo{
+        font-size:16px;
     }
 
-    .grid,
-    .product-grid{
-        grid-template-columns:1fr;
-    }
-
-    main{
-        padding:25px 15px 50px;
+    .page{
+        padding-top:100px;
     }
 
     .hero{
@@ -689,23 +734,20 @@ footer{
     }
 
     .hero h1{
-        font-size:48px;
+        font-size:50px;
+    }
+
+    .cards,
+    .server-grid{
+        grid-template-columns:1fr;
+    }
+
+    .modal-actions{
+        flex-direction:column;
     }
 
     .card-number{
         font-size:17px;
-        letter-spacing:1px;
-    }
-
-    .payment-buttons{
-        flex-direction:column;
-    }
-}
-
-@media(min-width:801px) and (max-width:1050px){
-    .grid,
-    .product-grid{
-        grid-template-columns:repeat(2,1fr);
     }
 }
 </style>
@@ -714,87 +756,96 @@ footer{
 <body>
 
 <!-- =========================
-     INTRO
+     LOADER
 ========================= -->
 
-<div id="intro">
-    <div class="intro-logo">V2GURD</div>
-</div>
+<div id="loader">
 
-<!-- =========================
-     HEADER
-========================= -->
+    <div class="loader-bg"></div>
+    <div class="loader-grid"></div>
 
-<header>
-    <nav class="nav">
+    <div class="loader-content">
 
-        <div class="logo">
-            V2<span>GURD</span>
+        <div class="loader-logo">
+            V2GURD
         </div>
 
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="loader-line"></div>
 
-        <ul class="nav-links" id="navLinks">
+        <div class="loader-text">
+            DIGITAL SERVICES
+        </div>
 
-            <li>
-                <button class="active" onclick="showPage('home',this)">
-                    خانه
-                </button>
-            </li>
+    </div>
 
-            <li>
-                <button onclick="showPage('vpn',this)">
-                    VPN
-                </button>
-            </li>
+</div>
 
-            <li>
-                <button onclick="showPage('panels',this)">
-                    پنل‌ها
-                </button>
-            </li>
-
-            <li>
-                <button onclick="showPage('contact',this)">
-                    ارتباط با ما
-                </button>
-            </li>
-
-        </ul>
-
-    </nav>
-</header>
 
 <!-- =========================
-     MAIN
+     NAVBAR
 ========================= -->
 
-<main>
+<nav>
 
-<!-- HOME -->
+    <div class="nav-logo">
+        V2GURD
+    </div>
+
+    <div class="nav-links">
+
+        <button class="active" onclick="showPage('home',this)">
+            خانه
+        </button>
+
+        <button onclick="showPage('vpn',this)">
+            VPN
+        </button>
+
+        <button onclick="showPage('panels',this)">
+            پنل‌ها
+        </button>
+
+        <button onclick="showPage('servers',this)">
+            سرورها
+        </button>
+
+        <button onclick="showPage('contact',this)">
+            ارتباط
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HOME
+========================= -->
 
 <section id="home" class="page active">
 
     <div class="hero">
 
-        <h1>
-            <span>V2</span>GURD
-        </h1>
+        <div class="hero-glow"></div>
+
+        <h1>V2GURD</h1>
 
         <p>
-            سرویس‌های دیجیتال، VPN و پنل‌های حرفه‌ای
-            با کیفیت پایدار و پشتیبانی مستقیم.
+            سرویس‌های دیجیتال، سرورهای قدرتمند و پنل‌های حرفه‌ای
+            با تجربه‌ای متفاوت و سریع.
         </p>
 
         <div class="hero-buttons">
 
-            <button class="btn btn-primary"
-                    onclick="showPage('vpn')">
-                مشاهده سرویس‌ها
+            <button
+                class="btn btn-primary"
+                onclick="showPage('servers')">
+                مشاهده سرورها
             </button>
 
-            <button class="btn btn-dark"
-                    onclick="showPage('panels')">
+            <button
+                class="btn btn-dark"
+                onclick="showPage('panels')">
                 مشاهده پنل‌ها
             </button>
 
@@ -802,61 +853,127 @@ footer{
 
     </div>
 
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>خدمات V2GURD</h2>
+            <p>هر سرویس در صفحه اختصاصی خودش</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">⚡</div>
+                <h3>VPN</h3>
+                <p>
+                    سرویس‌های پایدار و پرسرعت برای استفاده روزمره.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🖥</div>
+                <h3>پنل‌ها</h3>
+                <p>
+                    پنل‌های حجمی و یوزری برای مدیریت سرویس‌ها.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🚀</div>
+                <h3>سرورها</h3>
+                <p>
+                    سرورهای اقتصادی تا حرفه‌ای با حجم‌های مختلف.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 
-<!-- VPN -->
+<!-- =========================
+     VPN
+========================= -->
 
 <section id="vpn" class="page">
 
-    <div class="section-title">
+    <div class="container">
 
-        <h2>سرویس‌های VPN</h2>
+        <div class="section-title">
 
-        <p>
-            سرویس مناسب خودت رو انتخاب کن.
-        </p>
-
-    </div>
-
-    <div class="grid">
-
-        <div class="card">
-
-            <div class="card-icon">⚡</div>
-
-            <h3>VPN پرسرعت</h3>
+            <h2>VPN</h2>
 
             <p>
-                مناسب استفاده روزمره، شبکه‌های اجتماعی
-                و وب‌گردی با اتصال پایدار.
+                سرویس‌های VPN موجود در V2GURD
             </p>
 
         </div>
 
-        <div class="card">
+        <div class="cards">
 
-            <div class="card-icon">♾️</div>
+            <div class="card product-card">
 
-            <h3>سرویس نامحدود</h3>
+                <div class="icon">⚡</div>
 
-            <p>
-                بدون نگرانی بابت حجم مصرفی و مناسب
-                استفاده طولانی‌مدت.
-            </p>
+                <h3>VPN VIP</h3>
 
-        </div>
+                <p>
+                    سرویس ویژه با سرعت و پایداری بالا.
+                </p>
 
-        <div class="card">
+                <div class="price">
 
-            <div class="card-icon">🛡️</div>
+                    <div class="price-number">
+                        تماس
+                    </div>
 
-            <h3>اتصال پایدار</h3>
+                    <div class="price-label">
+                        برای دریافت قیمت و تست
+                    </div>
 
-            <p>
-                سرورهای متنوع برای شرایط و شبکه‌های
-                مختلف.
-            </p>
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="openTelegram()">
+                    دریافت سرویس
+                </button>
+
+            </div>
+
+
+            <div class="card product-card">
+
+                <div class="icon">🔥</div>
+
+                <h3>VPN Normal</h3>
+
+                <p>
+                    گزینه اقتصادی برای استفاده روزمره.
+                </p>
+
+                <div class="price">
+
+                    <div class="price-number">
+                        تماس
+                    </div>
+
+                    <div class="price-label">
+                        برای دریافت قیمت و تست
+                    </div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="openTelegram()">
+                    دریافت سرویس
+                </button>
+
+            </div>
 
         </div>
 
@@ -865,215 +982,134 @@ footer{
 </section>
 
 
-<!-- PANELS -->
+<!-- =========================
+     PANELS
+========================= -->
 
 <section id="panels" class="page">
 
-    <div class="section-title">
+    <div class="container">
 
-        <h2>پنل‌های V2GURD</h2>
+        <div class="section-title">
 
-        <p>
-            پنل‌های حجمی و یوزری
-        </p>
+            <h2>پنل‌های V2GURD</h2>
 
-    </div>
-
-
-    <!-- VOLUMETRIC -->
-
-    <h3 style="margin:30px 0 18px;">
-        📦 پنل‌های حجمی
-    </h3>
-
-    <div class="product-grid">
-
-        <div class="product">
-
-            <h3>۱۵۰ گیگ</h3>
-
-            <p class="product-desc">
-                پنل حجمی
+            <p>
+                انتخاب پنل موردنظر و خرید مستقیم
             </p>
-
-            <div class="price">
-                ۳۷۵,۰۰۰
-                <small>تومان</small>
-            </div>
-
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل حجمی ۱۵۰ گیگ',375000)">
-                خرید
-            </button>
 
         </div>
 
 
-        <div class="product">
+        <div class="cards">
 
-            <h3>۲۵۰ گیگ</h3>
+            <!-- VOLUME -->
 
-            <p class="product-desc">
-                پنل حجمی
-            </p>
+            <div class="card product-card">
 
-            <div class="price">
-                ۶۲۵,۰۰۰
-                <small>تومان</small>
+                <div class="icon">📦</div>
+
+                <h3>پنل حجمی</h3>
+
+                <p>
+                    پنل حجمی با قیمت
+                    <b>۲۵۰۰ تومان</b>
+                    به ازای هر گیگ.
+                    حداقل خرید ۱۵۰ گیگ.
+                </p>
+
+                <div class="price">
+
+                    <div class="price-number">
+                        ۲,۵۰۰
+                    </div>
+
+                    <div class="price-label">
+                        تومان / هر گیگ
+                    </div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyProduct(
+                    'پنل حجمی',
+                    '۲۵۰۰ تومان به ازای هر گیگ'
+                    )">
+                    خرید پنل
+                </button>
+
             </div>
 
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل حجمی ۲۵۰ گیگ',625000)">
-                خرید
-            </button>
 
-        </div>
+            <!-- USER -->
 
+            <div class="card product-card">
 
-        <div class="product featured">
+                <div class="icon">👥</div>
 
-            <span class="badge">محبوب</span>
+                <h3>پنل یوزری</h3>
 
-            <h3>۵۰۰ گیگ</h3>
+                <p>
+                    مدیریت کاربران با حجم نامحدود.
+                </p>
 
-            <p class="product-desc">
-                پنل حجمی
-            </p>
+                <div class="price">
 
-            <div class="price">
-                ۱,۲۵۰,۰۰۰
-                <small>تومان</small>
+                    <div class="price-number">
+                        از ۸۹۰,۰۰۰
+                    </div>
+
+                    <div class="price-label">
+                        تومان
+                    </div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyProduct(
+                    'پنل یوزری ۲۵ یوزر',
+                    '۸۹۰,۰۰۰ تومان'
+                    )">
+                    خرید پنل
+                </button>
+
             </div>
 
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل حجمی ۵۰۰ گیگ',1250000)">
-                خرید
-            </button>
 
-        </div>
+            <div class="card product-card">
 
+                <div class="icon">👑</div>
 
-        <div class="product">
+                <h3>پنل یوزری ۵۰</h3>
 
-            <h3>۱۰۰۰ گیگ</h3>
+                <p>
+                    پنل نامحدود برای ۵۰ کاربر.
+                </p>
 
-            <p class="product-desc">
-                پنل حجمی
-            </p>
+                <div class="price">
 
-            <div class="price">
-                ۲,۵۰۰,۰۰۰
-                <small>تومان</small>
+                    <div class="price-number">
+                        ۱,۳۰۰,۰۰۰
+                    </div>
+
+                    <div class="price-label">
+                        تومان
+                    </div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyProduct(
+                    'پنل یوزری ۵۰ یوزر',
+                    '۱,۳۰۰,۰۰۰ تومان'
+                    )">
+                    خرید پنل
+                </button>
+
             </div>
-
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل حجمی ۱۰۰۰ گیگ',2500000)">
-                خرید
-            </button>
-
-        </div>
-
-
-        <div class="product">
-
-            <h3>۲۰۰۰ گیگ</h3>
-
-            <p class="product-desc">
-                پنل حجمی
-            </p>
-
-            <div class="price">
-                ۵,۰۰۰,۰۰۰
-                <small>تومان</small>
-            </div>
-
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل حجمی ۲۰۰۰ گیگ',5000000)">
-                خرید
-            </button>
-
-        </div>
-
-
-        <div class="product">
-
-            <h3>۳۰۰۰ گیگ</h3>
-
-            <p class="product-desc">
-                پنل حجمی
-            </p>
-
-            <div class="price">
-                ۷,۵۰۰,۰۰۰
-                <small>تومان</small>
-            </div>
-
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل حجمی ۳۰۰۰ گیگ',7500000)">
-                خرید
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- USER PANELS -->
-
-    <h3 style="margin:45px 0 18px;">
-        ♾️ پنل‌های یوزری
-    </h3>
-
-    <div class="product-grid">
-
-        <div class="product featured">
-
-            <span class="badge">پیشنهادی</span>
-
-            <h3>۲۵ یوزر</h3>
-
-            <p class="product-desc">
-                حجم نامحدود
-            </p>
-
-            <div class="price">
-                ۸۹۰,۰۰۰
-                <small>تومان</small>
-            </div>
-
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل یوزری ۲۵ یوزر نامحدود',890000)">
-                خرید
-            </button>
-
-        </div>
-
-
-        <div class="product">
-
-            <h3>۵۰ یوزر</h3>
-
-            <p class="product-desc">
-                حجم نامحدود
-            </p>
-
-            <div class="price">
-                ۱,۳۰۰,۰۰۰
-                <small>تومان</small>
-            </div>
-
-            <button class="btn btn-primary"
-                    style="width:100%"
-                    onclick="buyProduct('پنل یوزری ۵۰ یوزر نامحدود',1300000)">
-                خرید
-            </button>
 
         </div>
 
@@ -1082,113 +1118,211 @@ footer{
 </section>
 
 
-<!-- PAYMENT -->
+<!-- =========================
+     SERVERS
+========================= -->
 
-<section id="payment" class="page">
+<section id="servers" class="page">
 
-    <div class="section-title">
+    <div class="container">
 
-        <h2>پرداخت سفارش</h2>
+        <div class="section-title">
 
-        <p>
-            اطلاعات سفارش و پرداخت
-        </p>
+            <h2>سرورهای V2GURD</h2>
 
-    </div>
-
-    <div class="payment-box">
-
-        <div class="order-summary">
-
-            <div class="order-row">
-
-                <span>محصول</span>
-
-                <strong id="orderProduct">
-                    -
-                </strong>
-
-            </div>
-
-            <div class="order-row">
-
-                <span>مبلغ</span>
-
-                <strong id="orderPrice">
-                    -
-                </strong>
-
-            </div>
+            <p>
+                انتخاب نوع سرور و حجم موردنظر
+            </p>
 
         </div>
 
 
-        <div class="bank-card">
+        <div class="server-grid">
 
-            <div class="bank-top">
 
-                <div class="bank-logo">
-                    بلو
-                    <span>بلوبانک سامان</span>
+            <!-- ECONOMIC -->
+
+            <div class="server-card">
+
+                <div class="server-type">
+                    اقتصادی
                 </div>
 
-                <div class="bank-chip"></div>
+                <div class="server-price">
+                    ۱,۲۰۰
+                    <span>تومان / گیگ</span>
+                </div>
+
+                <div class="volume-list">
+
+                    <div class="volume">۵۰ GB</div>
+                    <div class="volume">۱۰۰ GB</div>
+                    <div class="volume">۱۵۰ GB</div>
+                    <div class="volume">۲۰۰ GB</div>
+                    <div class="volume">۲۵۰ GB</div>
+                    <div class="volume">۳۰۰ GB</div>
+                    <div class="volume">۳۵۰ GB</div>
+                    <div class="volume">۴۰۰ GB</div>
+                    <div class="volume">۴۵۰ GB</div>
+                    <div class="volume">۵۰۰ GB</div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyServer('اقتصادی',1200)">
+                    انتخاب
+                </button>
 
             </div>
 
 
-            <div class="card-number">
-                6219 8618 4163 5526
+            <!-- NORMAL -->
+
+            <div class="server-card">
+
+                <div class="server-type">
+                    معمولی
+                </div>
+
+                <div class="server-price">
+                    ۱,۵۰۰
+                    <span>تومان / گیگ</span>
+                </div>
+
+                <div class="volume-list">
+
+                    <div class="volume">۵۰ GB</div>
+                    <div class="volume">۱۰۰ GB</div>
+                    <div class="volume">۱۵۰ GB</div>
+                    <div class="volume">۲۰۰ GB</div>
+                    <div class="volume">۲۵۰ GB</div>
+                    <div class="volume">۳۰۰ GB</div>
+                    <div class="volume">۳۵۰ GB</div>
+                    <div class="volume">۴۰۰ GB</div>
+                    <div class="volume">۴۵۰ GB</div>
+                    <div class="volume">۵۰۰ GB</div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyServer('معمولی',1500)">
+                    انتخاب
+                </button>
+
             </div>
 
 
-            <div class="bank-bottom">
+            <!-- CDN -->
 
-                <div>
-                    <div class="bank-name">
-                        به نام
-                    </div>
+            <div class="server-card">
 
-                    <div class="owner">
-                        نامی
-                    </div>
+                <div class="server-type">
+                    CDN
                 </div>
 
-                <div class="bank-name">
-                    BLUE BANK
+                <div class="server-price">
+                    ۱,۵۰۰
+                    <span>تومان / گیگ</span>
                 </div>
+
+                <div class="volume-list">
+
+                    <div class="volume">۵۰ GB</div>
+                    <div class="volume">۱۰۰ GB</div>
+                    <div class="volume">۱۵۰ GB</div>
+                    <div class="volume">۲۰۰ GB</div>
+                    <div class="volume">۲۵۰ GB</div>
+                    <div class="volume">۳۰۰ GB</div>
+                    <div class="volume">۳۵۰ GB</div>
+                    <div class="volume">۴۰۰ GB</div>
+                    <div class="volume">۴۵۰ GB</div>
+                    <div class="volume">۵۰۰ GB</div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyServer('CDN',1500)">
+                    انتخاب
+                </button>
 
             </div>
 
 
-            <button class="copy-btn"
-                    onclick="copyCard()">
-                📋 کپی شماره کارت
-            </button>
+            <!-- TUNNEL -->
 
-        </div>
+            <div class="server-card">
+
+                <div class="server-type">
+                    تانل
+                </div>
+
+                <div class="server-price">
+                    ۲,۵۰۰
+                    <span>تومان / گیگ</span>
+                </div>
+
+                <div class="volume-list">
+
+                    <div class="volume">۵۰ GB</div>
+                    <div class="volume">۱۰۰ GB</div>
+                    <div class="volume">۱۵۰ GB</div>
+                    <div class="volume">۲۰۰ GB</div>
+                    <div class="volume">۲۵۰ GB</div>
+                    <div class="volume">۳۰۰ GB</div>
+                    <div class="volume">۳۵۰ GB</div>
+                    <div class="volume">۴۰۰ GB</div>
+                    <div class="volume">۴۵۰ GB</div>
+                    <div class="volume">۵۰۰ GB</div>
+
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyServer('تانل',2500)">
+                    انتخاب
+                </button>
+
+            </div>
 
 
-        <div class="notice">
+            <!-- PRO -->
 
-            مبلغ دقیق سفارش را به کارت بالا واریز کنید.
-            سپس روی گزینه «واریز کردم، ارسال رسید» بزنید
-            و رسید پرداخت را در تلگرام ارسال کنید.
+            <div class="server-card">
 
-        </div>
+                <div class="server-type">
+                    حرفه‌ای
+                </div>
 
+                <div class="server-price">
+                    ۳,۰۰۰
+                    <span>تومان / گیگ</span>
+                </div>
 
-        <div class="payment-buttons">
+                <div class="volume-list">
 
-            <button class="btn btn-primary"
-                    onclick="sendReceipt()">
-                ✓ واریز کردم، ارسال رسید
-            </button>
+                    <div class="volume">۵۰ GB</div>
+                    <div class="volume">۱۰۰ GB</div>
+                    <div class="volume">۱۵۰ GB</div>
+                    <div class="volume">۲۰۰ GB</div>
+                    <div class="volume">۲۵۰ GB</div>
+                    <div class="volume">۳۰۰ GB</div>
+                    <div class="volume">۳۵۰ GB</div>
+                    <div class="volume">۴۰۰ GB</div>
+                    <div class="volume">۴۵۰ GB</div>
+                    <div class="volume">۵۰۰ GB</div>
 
-            <button class="btn btn-dark"
-                    onclick="showPage('panels')">
-                بازگشت
-            </button>
+                </div>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyServer('حرفه‌ای',3000)">
+                    انتخاب
+                </button>
+
+            </div>
 
         </div>
 
@@ -1197,52 +1331,51 @@ footer{
 </section>
 
 
-<!-- CONTACT -->
+<!-- =========================
+     CONTACT
+========================= -->
 
 <section id="contact" class="page">
 
-    <div class="section-title">
+    <div class="container">
 
-        <h2>ارتباط با ما</h2>
+        <div class="section-title">
 
-        <p>
-            برای خرید، پشتیبانی و ارسال رسید
-        </p>
+            <h2>ارتباط با ما</h2>
 
-    </div>
+            <p>
+                برای پشتیبانی، خرید یا دریافت اطلاعات بیشتر
+            </p>
 
-
-    <div class="telegram-box">
-
-        <div class="telegram-icon">
-            ➤
         </div>
 
-        <h2>
-            پشتیبانی تلگرام
-        </h2>
+        <div class="telegram-box">
 
-        <p>
-            برای ارتباط مستقیم با V2GURD
-            از طریق تلگرام پیام دهید.
-        </p>
+            <div class="telegram-icon">
+                ✈️
+            </div>
 
-        <div class="telegram-id">
-            @Vtwoguard
-        </div>
+            <h2>
+                تلگرام V2GURD
+            </h2>
 
-        <br>
+            <p>
+                برای ارتباط مستقیم روی دکمه زیر بزنید.
+            </p>
 
-        <button class="btn btn-primary"
+            <button
+                class="btn btn-primary"
                 onclick="openTelegram()">
-            💬 ورود به تلگرام
-        </button>
+
+                ورود به تلگرام
+
+            </button>
+
+        </div>
 
     </div>
 
 </section>
-
-</main>
 
 
 <footer>
@@ -1254,30 +1387,93 @@ footer{
      CONFIRM MODAL
 ========================= -->
 
-<div class="modal" id="confirmModal">
+<div id="confirmModal" class="modal">
 
     <div class="modal-box">
 
-        <h3>
+        <div class="modal-title">
             تأیید خرید
-        </h3>
+        </div>
 
-        <p>
-            آیا از خرید این محصول مطمئن هستید؟
-            <br>
-            پس از تأیید، اطلاعات پرداخت نمایش داده می‌شود.
-        </p>
+        <div class="modal-text" id="confirmText">
+            آیا از خرید خود مطمئن هستید؟
+        </div>
 
         <div class="modal-actions">
 
-            <button class="btn btn-primary"
-                    onclick="confirmPurchase()">
-                بله، ادامه می‌دهم
+            <button
+                class="btn btn-primary"
+                onclick="confirmPurchase()">
+                بله، ادامه می‌دم
             </button>
 
-            <button class="btn btn-danger"
-                    onclick="closeModal()">
+            <button
+                class="btn btn-dark"
+                onclick="closeModal('confirmModal')">
                 خیر
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAYMENT MODAL
+========================= -->
+
+<div id="paymentModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-title">
+            پرداخت سفارش
+        </div>
+
+        <div class="modal-text">
+            مبلغ سفارش را به کارت زیر واریز کنید.
+        </div>
+
+
+        <div class="payment-card">
+
+            <div class="bank-header">
+
+                <div class="bank-logo">
+                    بلو
+                </div>
+
+                <div class="bank-name">
+                    بلو بانک
+                </div>
+
+                <div class="card-number">
+                    6219 8618 4163 5526
+                </div>
+
+                <div class="owner">
+                    به نام نامی
+                </div>
+
+            </div>
+
+
+            <div class="payment-info">
+
+                پس از واریز، روی دکمه
+                <b>«واریز کردم / ارسال رسید»</b>
+                بزنید تا وارد تلگرام شوید و رسید پرداخت را ارسال کنید.
+
+            </div>
+
+            <button
+                class="buy-btn"
+                onclick="sendReceipt()">
+
+                واریز کردم / ارسال رسید
+
             </button>
 
         </div>
@@ -1290,53 +1486,41 @@ footer{
 <script>
 
 /* =========================
-   INTRO
+   CONFIG
 ========================= */
 
-window.addEventListener("load",()=>{
+const TELEGRAM_USERNAME = "Vtwoguard";
 
-    setTimeout(()=>{
 
-        document
-            .getElementById("intro")
-            .classList.add("hide");
-
-    },2200);
-
-});
+let selectedProduct = "";
+let selectedPrice = "";
 
 
 /* =========================
    PAGE SYSTEM
 ========================= */
 
-function showPage(pageId,button=null){
+function showPage(pageId, button){
 
-    document
-        .querySelectorAll(".page")
-        .forEach(page=>{
+    document.querySelectorAll(".page")
+        .forEach(page => {
             page.classList.remove("active");
         });
 
-    const page=document.getElementById(pageId);
+    const page = document.getElementById(pageId);
 
     if(page){
         page.classList.add("active");
     }
 
-    document
-        .querySelectorAll(".nav-links button")
-        .forEach(btn=>{
+    document.querySelectorAll(".nav-links button")
+        .forEach(btn => {
             btn.classList.remove("active");
         });
 
     if(button){
         button.classList.add("active");
     }
-
-    document
-        .getElementById("navLinks")
-        .classList.remove("open");
 
     window.scrollTo({
         top:0,
@@ -1346,148 +1530,174 @@ function showPage(pageId,button=null){
 
 
 /* =========================
-   MOBILE MENU
-========================= */
-
-function toggleMenu(){
-
-    document
-        .getElementById("navLinks")
-        .classList.toggle("open");
-
-}
-
-
-/* =========================
-   PURCHASE
-========================= */
-
-let selectedProduct="";
-let selectedPrice=0;
-
-function buyProduct(product,price){
-
-    selectedProduct=product;
-    selectedPrice=price;
-
-    document
-        .getElementById("confirmModal")
-        .classList.add("show");
-
-}
-
-
-function closeModal(){
-
-    document
-        .getElementById("confirmModal")
-        .classList.remove("show");
-
-}
-
-
-function confirmPurchase(){
-
-    closeModal();
-
-    document
-        .getElementById("orderProduct")
-        .textContent=selectedProduct;
-
-    document
-        .getElementById("orderPrice")
-        .textContent=
-            selectedPrice.toLocaleString("fa-IR")
-            +" تومان";
-
-    showPage("payment");
-
-}
-
-
-/* =========================
-   COPY CARD
-========================= */
-
-function copyCard(){
-
-    const card="6219861841635526";
-
-    navigator.clipboard
-        .writeText(card)
-        .then(()=>{
-
-            const buttons=
-                document.querySelectorAll(".copy-btn");
-
-            const btn=buttons[0];
-
-            const old=btn.textContent;
-
-            btn.textContent="✓ شماره کارت کپی شد";
-
-            setTimeout(()=>{
-
-                btn.textContent=old;
-
-            },1800);
-
-        })
-        .catch(()=>{
-
-            alert("کپی شماره کارت انجام نشد؛ شماره را دستی کپی کنید.");
-
-        });
-
-}
-
-
-/* =========================
    TELEGRAM
 ========================= */
 
 function openTelegram(){
 
-    window.location.href=
-        "https://t.me/Vtwoguard";
+    window.open(
+        "https://t.me/" + TELEGRAM_USERNAME,
+        "_blank"
+    );
 
 }
 
 
 /* =========================
-   SEND RECEIPT
+   PRODUCT PURCHASE
+========================= */
+
+function buyProduct(product, price){
+
+    selectedProduct = product;
+    selectedPrice = price;
+
+    document.getElementById("confirmText").innerHTML =
+        `
+        شما در حال خرید
+        <b>${product}</b>
+        هستید.<br><br>
+        مبلغ:
+        <b>${price}</b>
+        <br><br>
+        از خرید خود مطمئن هستید؟
+        `;
+
+    document
+        .getElementById("confirmModal")
+        .classList.add("show");
+}
+
+
+/* =========================
+   SERVER PURCHASE
+========================= */
+
+function buyServer(type, pricePerGig){
+
+    selectedProduct = "سرور " + type;
+
+    selectedPrice = pricePerGig + " تومان / هر گیگ";
+
+    document.getElementById("confirmText").innerHTML =
+        `
+        شما سرور
+        <b>${type}</b>
+        را انتخاب کرده‌اید.<br><br>
+
+        قیمت:
+        <b>${pricePerGig.toLocaleString("fa-IR")}</b>
+        تومان به ازای هر گیگ.<br><br>
+
+        حجم موردنظر هنگام هماهنگی در تلگرام مشخص می‌شود.
+        <br><br>
+
+        از انتخاب خود مطمئن هستید؟
+        `;
+
+    document
+        .getElementById("confirmModal")
+        .classList.add("show");
+}
+
+
+/* =========================
+   CONFIRM
+========================= */
+
+function confirmPurchase(){
+
+    closeModal("confirmModal");
+
+    document
+        .getElementById("paymentModal")
+        .classList.add("show");
+
+}
+
+
+/* =========================
+   RECEIPT
 ========================= */
 
 function sendReceipt(){
 
-    const message=
-        "سلام، برای خرید "+selectedProduct+
-        " به مبلغ "+
-        selectedPrice.toLocaleString("fa-IR")+
-        " تومان پرداخت کردم. رسید پرداخت را ارسال می‌کنم.";
+    const message =
+        `سلام، برای خرید ${selectedProduct} پیام دادم.
+        
+مبلغ / قیمت:
+${selectedPrice}
 
-    const url=
-        "https://t.me/Vtwoguard?text="+
+رسید پرداخت را ارسال می‌کنم.`;
+
+    const url =
+        "https://t.me/" +
+        TELEGRAM_USERNAME +
+        "?text=" +
         encodeURIComponent(message);
 
-    window.location.href=url;
+    window.open(url,"_blank");
 
 }
 
 
 /* =========================
-   CLOSE MODAL OUTSIDE
+   MODAL
 ========================= */
 
-document
-    .getElementById("confirmModal")
-    .addEventListener("click",function(e){
+function closeModal(id){
 
-        if(e.target===this){
-            closeModal();
+    document
+        .getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   CLICK OUTSIDE MODAL
+========================= */
+
+document.querySelectorAll(".modal")
+.forEach(modal => {
+
+    modal.addEventListener("click", function(e){
+
+        if(e.target === modal){
+            modal.classList.remove("show");
         }
 
     });
+
+});
+
+
+/* =========================
+   LOADER
+========================= */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        const loader =
+            document.getElementById("loader");
+
+        loader.style.transition =
+            "opacity .8s ease, transform .8s ease";
+
+        loader.style.opacity = "0";
+        loader.style.transform = "scale(1.08)";
+
+        setTimeout(() => {
+
+            loader.style.display = "none";
+
+        },800);
+
+    },2600);
+
+});
 
 </script>
 
