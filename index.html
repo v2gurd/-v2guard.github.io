@@ -8,695 +8,766 @@
 
 <style>
 :root{
-    --bg:#030712;
-    --bg2:#071224;
-    --card:rgba(10,23,43,.72);
-    --card2:#0b1930;
-    --blue:#168cff;
-    --blue2:#0066ff;
-    --cyan:#00c8ff;
-    --text:#f5f9ff;
-    --muted:#8b9ab0;
-    --border:rgba(45,145,255,.18);
-    --green:#00e676;
+  --bg:#030712;
+  --bg2:#071224;
+  --card:rgba(10,23,43,.72);
+  --card2:#0b1930;
+  --blue:#168cff;
+  --blue2:#0066ff;
+  --cyan:#00c8ff;
+  --text:#f5f9ff;
+  --muted:#8b9ab0;
+  --border:rgba(45,145,255,.18);
+  --green:#00e676;
+  --red:#ff4d67;
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Tahoma,Arial,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Tahoma,Arial,sans-serif
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-    min-height:100vh;
-    color:var(--text);
-    background:
-        radial-gradient(circle at 50% -10%,rgba(0,119,255,.25),transparent 32%),
-        radial-gradient(circle at 90% 70%,rgba(0,200,255,.08),transparent 28%),
-        linear-gradient(180deg,#030712,#050b16 55%,#02050b);
-    overflow-x:hidden;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 50% -10%,rgba(0,119,255,.25),transparent 32%),
+    radial-gradient(circle at 90% 70%,rgba(0,200,255,.08),transparent 28%),
+    linear-gradient(180deg,#030712,#050b16 55%,#02050b);
+  overflow-x:hidden;
 }
 
-.hidden{
-    display:none!important;
-}
-
-/* ================= INTRO ================= */
-
+/* INTRO */
 #intro{
-    position:fixed;
-    inset:0;
-    z-index:99999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#02050b;
-    overflow:hidden;
-}
-
-.intro-grid{
-    position:absolute;
-    inset:-50%;
-    background-image:
-        linear-gradient(rgba(22,140,255,.08) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(22,140,255,.08) 1px,transparent 1px);
-    background-size:45px 45px;
-    transform:perspective(500px) rotateX(62deg);
-    animation:gridMove 3s linear infinite;
-}
-
-@keyframes gridMove{
-    from{
-        transform:perspective(500px) rotateX(62deg) translateY(0);
-    }
-    to{
-        transform:perspective(500px) rotateX(62deg) translateY(45px);
-    }
-}
-
-.intro-glow{
-    position:absolute;
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    background:#006cff;
-    filter:blur(120px);
-    opacity:.22;
-}
-
-.intro-logo{
-    position:relative;
-    font-size:clamp(55px,14vw,130px);
-    font-weight:1000;
-    letter-spacing:9px;
-    color:white;
-    text-shadow:
-        0 0 10px #168cff,
-        0 0 30px #168cff,
-        0 0 80px rgba(0,119,255,.8);
-    animation:logoReveal 2.2s cubic-bezier(.16,1,.3,1);
-}
-
-.intro-logo span{
-    color:#168cff;
-}
-
-.intro-line{
-    position:absolute;
-    left:-20%;
-    width:140%;
-    height:2px;
-    background:#168cff;
-    box-shadow:
-        0 0 10px #168cff,
-        0 0 25px #168cff;
-    animation:scan 1.7s ease-in-out infinite;
-}
-
-@keyframes scan{
-    0%{
-        top:0;
-        opacity:0;
-    }
-    25%{
-        opacity:1;
-    }
-    100%{
-        top:100%;
-        opacity:0;
-    }
-}
-
-@keyframes logoReveal{
-    0%{
-        opacity:0;
-        transform:scale(.35);
-        filter:blur(30px);
-    }
-    55%{
-        opacity:1;
-        transform:scale(1.08);
-        filter:blur(0);
-    }
-    100%{
-        transform:scale(1);
-    }
-}
-
-.intro-text{
-    position:absolute;
-    bottom:17%;
-    color:#60738e;
-    font-size:10px;
-    letter-spacing:6px;
-    animation:fade 2s ease;
-}
-
-@keyframes fade{
-    from{opacity:0}
-    to{opacity:1}
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:#020611;
+  overflow:hidden;
+  transition:opacity .8s,visibility .8s;
 }
 
 #intro.hide{
-    animation:introHide .8s ease forwards;
+  opacity:0;
+  visibility:hidden;
 }
 
-@keyframes introHide{
-    to{
-        opacity:0;
-        visibility:hidden;
-        transform:scale(1.06);
-    }
+.intro-grid{
+  position:absolute;
+  inset:-50%;
+  background-image:
+    linear-gradient(rgba(22,140,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(22,140,255,.08) 1px,transparent 1px);
+  background-size:45px 45px;
+  transform:perspective(500px) rotateX(60deg);
+  animation:gridMove 5s linear infinite;
 }
 
-/* ================= HEADER ================= */
+@keyframes gridMove{
+  from{transform:perspective(500px) rotateX(60deg) translateY(0)}
+  to{transform:perspective(500px) rotateX(60deg) translateY(45px)}
+}
 
+.intro-glow{
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:rgba(0,120,255,.16);
+  filter:blur(80px);
+  border-radius:50%;
+}
+
+.intro-logo{
+  position:relative;
+  font-size:60px;
+  font-weight:900;
+  letter-spacing:4px;
+  color:white;
+  text-shadow:0 0 25px rgba(0,153,255,.8);
+  animation:introLogo 1.5s ease;
+}
+
+.intro-logo span{color:var(--blue)}
+
+.intro-line{
+  width:100%;
+  height:2px;
+  margin-top:10px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  box-shadow:0 0 15px var(--cyan);
+}
+
+.intro-text{
+  position:relative;
+  margin-top:18px;
+  font-size:11px;
+  letter-spacing:5px;
+  color:#8ebeff;
+  animation:introText 2s ease;
+}
+
+@keyframes introLogo{
+  from{opacity:0;transform:scale(.7);filter:blur(10px)}
+  to{opacity:1;transform:scale(1);filter:blur(0)}
+}
+
+@keyframes introText{
+  from{opacity:0;letter-spacing:15px}
+  to{opacity:1;letter-spacing:5px}
+}
+
+/* HEADER */
 header{
-    position:sticky;
-    top:0;
-    z-index:500;
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 6%;
-    background:rgba(3,7,18,.72);
-    backdrop-filter:blur(22px);
-    border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:72px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(3,7,18,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(45,145,255,.12);
 }
 
 .logo{
-    font-size:24px;
-    font-weight:1000;
-    letter-spacing:2px;
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
-.logo span{
-    color:var(--blue);
-    text-shadow:0 0 18px rgba(22,140,255,.7);
-}
+.logo span{color:var(--blue)}
 
 .telegram{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:11px 17px;
-    border-radius:13px;
-    color:white;
-    text-decoration:none;
-    background:linear-gradient(135deg,#168cff,#0066ff);
-    box-shadow:0 0 25px rgba(22,140,255,.2);
-    transition:.25s;
-    font-size:12px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:11px 17px;
+  border-radius:12px;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+  background:linear-gradient(135deg,#168cff,#0066ff);
+  box-shadow:0 0 20px rgba(0,119,255,.22);
+  transition:.25s;
 }
 
 .telegram:hover{
-    transform:translateY(-2px);
-    box-shadow:0 0 35px rgba(22,140,255,.5);
+  transform:translateY(-2px);
+  box-shadow:0 0 30px rgba(0,119,255,.4);
 }
 
-/* ================= MAIN ================= */
-
+/* MAIN */
 main{
-    max-width:1150px;
-    margin:auto;
-    padding:65px 18px 90px;
+  width:min(1100px,92%);
+  margin:auto;
+  padding:50px 0 80px;
 }
 
+.hidden{display:none!important}
+
+/* HERO */
 .hero{
-    text-align:center;
-    margin-bottom:60px;
+  text-align:center;
+  padding:35px 10px 55px;
 }
 
 .hero-badge{
-    display:inline-block;
-    padding:8px 15px;
-    border:1px solid var(--border);
-    border-radius:30px;
-    color:#75baff;
-    background:rgba(22,140,255,.06);
-    font-size:11px;
-    margin-bottom:20px;
+  display:inline-block;
+  padding:8px 15px;
+  margin-bottom:20px;
+  border:1px solid rgba(0,200,255,.2);
+  border-radius:30px;
+  background:rgba(0,119,255,.08);
+  color:#74c8ff;
+  font-size:11px;
+  letter-spacing:1px;
 }
 
 .hero h1{
-    font-size:clamp(40px,8vw,78px);
-    font-weight:1000;
-    line-height:1.15;
+  font-size:clamp(32px,6vw,58px);
+  margin-bottom:18px;
 }
 
 .hero h1 span{
-    color:var(--blue);
-    text-shadow:
-        0 0 20px rgba(22,140,255,.7),
-        0 0 50px rgba(22,140,255,.25);
+  color:var(--blue);
+  text-shadow:0 0 25px rgba(0,119,255,.4);
 }
 
 .hero p{
-    color:var(--muted);
-    margin-top:18px;
-    line-height:2.1;
-    font-size:13px;
+  color:var(--muted);
+  line-height:2;
+  font-size:14px;
 }
 
+/* SECTION */
 .section-title{
-    text-align:center;
-    margin:45px 0 25px;
+  text-align:center;
+  margin-bottom:28px;
 }
 
 .section-title h2{
-    font-size:25px;
+  font-size:25px;
+  margin-bottom:9px;
 }
 
 .section-title p{
-    margin-top:8px;
-    color:var(--muted);
-    font-size:11px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-/* ================= CATEGORIES ================= */
-
+/* CATEGORIES */
 .categories{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-    gap:16px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
 .category{
-    position:relative;
-    overflow:hidden;
-    padding:30px 20px;
-    border-radius:22px;
-    border:1px solid var(--border);
-    background:
-        linear-gradient(145deg,rgba(12,30,55,.85),rgba(5,13,25,.85));
-    text-align:center;
-    cursor:pointer;
-    transition:.35s;
+  position:relative;
+  padding:30px 20px;
+  min-height:170px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  cursor:pointer;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(12,29,53,.78),rgba(5,14,28,.85));
+  transition:.3s;
 }
 
-.category::before{
-    content:"";
-    position:absolute;
-    width:130px;
-    height:130px;
-    background:#168cff;
-    filter:blur(80px);
-    opacity:.08;
-    top:-60px;
-    right:-50px;
+.category:before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:20px;
+  background:linear-gradient(120deg,transparent,rgba(0,153,255,.14),transparent);
+  opacity:0;
+  transition:.3s;
 }
 
 .category:hover{
-    transform:translateY(-7px);
-    border-color:rgba(22,140,255,.55);
-    box-shadow:
-        0 15px 50px rgba(0,0,0,.4),
-        0 0 35px rgba(22,140,255,.1);
+  transform:translateY(-6px);
+  border-color:rgba(22,140,255,.5);
+  box-shadow:0 15px 45px rgba(0,60,150,.2);
 }
 
-.category .icon{
-    font-size:38px;
-    margin-bottom:15px;
+.category:hover:before{opacity:1}
+
+.icon{
+  font-size:38px;
+  margin-bottom:14px;
+  position:relative;
 }
 
 .category h3{
-    font-size:16px;
+  position:relative;
+  font-size:19px;
+  margin-bottom:8px;
 }
 
 .category p{
-    color:var(--muted);
-    margin-top:8px;
-    font-size:11px;
+  position:relative;
+  color:var(--muted);
+  font-size:12px;
 }
 
-/* ================= PRODUCTS ================= */
-
+/* PRODUCTS */
 .products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-    gap:15px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
 .product{
-    position:relative;
-    overflow:hidden;
-    padding:22px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:
-        linear-gradient(145deg,rgba(12,28,50,.9),rgba(5,12,23,.9));
-    transition:.3s;
+  padding:24px 20px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(10,25,46,.8),rgba(4,11,23,.9));
+  text-align:center;
+  transition:.3s;
 }
 
 .product:hover{
-    transform:translateY(-5px);
-    border-color:rgba(22,140,255,.5);
+  transform:translateY(-4px);
+  border-color:rgba(22,140,255,.45);
+  box-shadow:0 12px 35px rgba(0,70,160,.18);
 }
 
 .product h3{
-    font-size:16px;
-    margin-bottom:14px;
+  font-size:17px;
+  margin-bottom:16px;
 }
 
 .price{
-    font-size:22px;
-    font-weight:900;
+  color:var(--blue);
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:13px;
 }
 
 .price small{
-    color:var(--muted);
-    font-size:10px;
-    font-weight:normal;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:normal;
 }
 
 .product-info{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:8px;
-    line-height:1.9;
+  min-height:42px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+  margin-bottom:17px;
+}
+
+.buy,
+.yes,
+.no,
+.copy-card,
+.send{
+  border:0;
+  cursor:pointer;
+  border-radius:11px;
+  font-weight:bold;
+  transition:.25s;
 }
 
 .buy{
-    width:100%;
-    margin-top:18px;
-    padding:12px;
-    border:0;
-    border-radius:12px;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    background:linear-gradient(135deg,#168cff,#0066ff);
-    box-shadow:0 5px 20px rgba(0,102,255,.12);
-    transition:.25s;
+  width:100%;
+  padding:12px;
+  color:white;
+  background:linear-gradient(135deg,#168cff,#0066ff);
+  box-shadow:0 5px 20px rgba(0,100,255,.15);
 }
 
 .buy:hover{
-    transform:translateY(-2px);
-    box-shadow:0 0 30px rgba(22,140,255,.4);
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(0,119,255,.3);
 }
 
-/* ================= SPECIAL PRODUCT ================= */
-
-.special{
-    border-color:rgba(0,200,255,.45);
-    background:
-        radial-gradient(circle at top right,rgba(0,200,255,.12),transparent 35%),
-        linear-gradient(145deg,rgba(8,34,62,.95),rgba(5,12,23,.95));
-    box-shadow:
-        0 0 30px rgba(0,150,255,.08),
-        inset 0 1px rgba(255,255,255,.04);
-}
-
-.special-badge{
-    display:inline-block;
-    margin-bottom:13px;
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:9px;
-    color:#fff;
-    background:linear-gradient(135deg,#168cff,#00c8ff);
-    box-shadow:0 0 20px rgba(0,180,255,.3);
-}
-
-/* ================= BACK ================= */
-
+/* BACK */
 .back{
-    border:1px solid var(--border);
-    background:rgba(8,19,34,.8);
-    color:white;
-    padding:10px 16px;
-    border-radius:11px;
-    cursor:pointer;
-    transition:.25s;
+  border:1px solid rgba(45,145,255,.2);
+  background:rgba(10,25,45,.65);
+  color:#a9cfff;
+  padding:10px 17px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-bottom:30px;
+  transition:.2s;
 }
 
 .back:hover{
-    border-color:rgba(22,140,255,.5);
+  border-color:var(--blue);
+  color:white;
 }
 
-/* ================= MODAL ================= */
-
+/* MODAL */
 .modal{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(15px);
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
 }
 
 .modal-box{
-    width:100%;
-    max-width:440px;
-    max-height:90vh;
-    overflow-y:auto;
-    padding:27px;
-    border-radius:25px;
-    border:1px solid var(--border);
-    background:
-        linear-gradient(145deg,#0a172a,#050c17);
-    box-shadow:0 30px 100px rgba(0,0,0,.7);
-    animation:modalIn .3s ease;
-}
-
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:translateY(20px) scale(.92);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
+  width:min(520px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  padding:27px;
+  border:1px solid rgba(45,145,255,.25);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at top right,rgba(0,119,255,.13),transparent 35%),
+    #071224;
+  box-shadow:0 25px 80px rgba(0,0,0,.55);
 }
 
 .modal-box h2{
-    text-align:center;
-    margin-bottom:12px;
+  text-align:center;
+  margin-bottom:13px;
 }
 
 .modal-box>p{
-    color:var(--muted);
-    text-align:center;
-    font-size:12px;
-    line-height:2;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
 }
 
 .order-box{
-    margin-top:18px;
-    padding:17px;
-    border-radius:15px;
-    background:#091525;
-    border:1px solid rgba(22,140,255,.1);
-    line-height:2.1;
-    font-size:12px;
+  margin-top:18px;
+  padding:16px;
+  border:1px solid rgba(45,145,255,.15);
+  border-radius:13px;
+  background:rgba(0,0,0,.18);
 }
 
-.order-box strong{
-    color:#62b3ff;
+.order-box div{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:13px;
 }
+
+.order-box div:last-child{border-bottom:0}
+
+.order-box strong{color:#bcdcff}
 
 .modal-actions{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
-}
-
-.modal-actions button{
-    flex:1;
-    border:0;
-    padding:13px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:18px;
 }
 
 .yes{
-    color:white;
-    background:#00b95a;
+  padding:13px;
+  color:#00180b;
+  background:var(--green);
 }
 
 .no{
-    color:white;
-    background:#1a2534;
+  padding:13px;
+  color:white;
+  background:#182333;
 }
 
-/* ================= BLUE BANK ================= */
-
+/* BANK CARD */
 .bank-card{
-    margin-top:20px;
-    padding:23px;
-    border-radius:21px;
-    background:
-        linear-gradient(135deg,#003b92 0%,#0066d9 48%,#00255d 100%);
-    border:1px solid rgba(255,255,255,.18);
-    box-shadow:
-        0 15px 45px rgba(0,80,190,.25),
-        inset 0 1px rgba(255,255,255,.15);
-    position:relative;
-    overflow:hidden;
-}
-
-.bank-card::after{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.08);
-    right:-80px;
-    bottom:-100px;
+  margin:20px 0 13px;
+  padding:22px;
+  border-radius:19px;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(255,255,255,.16),transparent 25%),
+    linear-gradient(135deg,#168cff,#0754c9 55%,#032b70);
+  box-shadow:0 15px 35px rgba(0,70,180,.25);
+  direction:ltr;
+  text-align:left;
 }
 
 .bank-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:27px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .bank-name{
-    font-weight:bold;
-    font-size:15px;
+  font-size:22px;
+  font-weight:900;
 }
 
 .bank-label{
-    font-size:9px;
-    opacity:.7;
+  font-size:10px;
+  letter-spacing:2px;
+  opacity:.75;
 }
 
 .card-number{
-    direction:ltr;
-    text-align:center;
-    font-size:19px;
-    letter-spacing:2px;
-    font-weight:bold;
-    margin-bottom:18px;
+  margin:35px 0 18px;
+  font-size:21px;
+  letter-spacing:2px;
+  font-weight:bold;
+  direction:ltr;
+  text-align:center;
 }
 
 .owner{
-    font-size:11px;
-    opacity:.85;
-}
-
-.payment-text{
-    margin-top:15px;
-    padding:13px;
-    border-radius:13px;
-    background:#091525;
-    color:#aebdd0;
-    font-size:11px;
-    line-height:2;
+  font-size:12px;
+  direction:rtl;
+  text-align:right;
 }
 
 .copy-card{
-    width:100%;
-    margin-top:10px;
-    padding:10px;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.08);
-    color:white;
-    border-radius:10px;
-    cursor:pointer;
+  width:100%;
+  padding:11px;
+  color:#b8dcff;
+  background:rgba(22,140,255,.08);
+  border:1px solid rgba(22,140,255,.2);
+}
+
+.copy-card:hover{
+  background:rgba(22,140,255,.16);
+}
+
+.payment-text{
+  text-align:center;
+  color:var(--muted);
+  line-height:2;
+  font-size:12px;
+  margin:17px 0;
 }
 
 .send{
-    display:block;
-    width:100%;
-    margin-top:12px;
-    padding:14px;
-    border-radius:13px;
-    background:#168cff;
-    color:white;
-    text-align:center;
-    text-decoration:none;
-    font-weight:bold;
-    box-shadow:0 0 25px rgba(22,140,255,.25);
-    transition:.25s;
+  display:block;
+  width:100%;
+  padding:14px;
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  background:linear-gradient(135deg,#168cff,#0066ff);
 }
 
-.send:hover{
-    box-shadow:0 0 35px rgba(22,140,255,.5);
+/* FORM */
+.jump-form{
+  margin-top:20px;
+  display:grid;
+  gap:13px;
 }
 
-/* ================= FOOTER ================= */
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
 
+.field label{
+  font-size:12px;
+  color:#a8bad2;
+}
+
+.field input{
+  width:100%;
+  padding:13px 14px;
+  border-radius:11px;
+  outline:none;
+  border:1px solid rgba(45,145,255,.18);
+  background:#030b18;
+  color:white;
+  direction:ltr;
+  text-align:left;
+  font-size:14px;
+  transition:.2s;
+}
+
+.field input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(22,140,255,.08);
+}
+
+.field small{
+  color:#71839b;
+  font-size:10px;
+}
+
+/* JUMPJUMP */
+.jump-hero{
+  text-align:center;
+  padding:15px 0 30px;
+}
+
+.jump-logo{
+  display:inline-flex;
+  width:75px;
+  height:75px;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  margin-bottom:16px;
+  font-size:36px;
+  background:linear-gradient(135deg,#168cff,#0066ff);
+  box-shadow:0 0 35px rgba(0,119,255,.3);
+}
+
+.jump-hero h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.jump-hero h1 span{color:var(--blue)}
+
+.jump-hero p{
+  color:var(--muted);
+  line-height:2;
+  font-size:13px;
+}
+
+.platforms{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:18px 0 30px;
+}
+
+.platform{
+  padding:8px 12px;
+  border:1px solid rgba(45,145,255,.18);
+  border-radius:9px;
+  background:rgba(10,25,45,.65);
+  color:#a9cfff;
+  font-size:11px;
+}
+
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.benefit{
+  padding:17px 13px;
+  text-align:center;
+  border:1px solid rgba(45,145,255,.13);
+  border-radius:14px;
+  background:rgba(8,21,40,.65);
+}
+
+.benefit .bicon{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.benefit p{
+  color:#a6b5c9;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.jump-products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.jump-product{
+  position:relative;
+  padding:25px 20px;
+  text-align:center;
+  border:1px solid rgba(45,145,255,.2);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(10,28,53,.85),rgba(3,11,23,.92));
+  transition:.3s;
+}
+
+.jump-product:hover{
+  transform:translateY(-4px);
+  border-color:rgba(22,140,255,.5);
+}
+
+.jump-product.featured{
+  border-color:rgba(0,200,255,.35);
+  box-shadow:0 0 30px rgba(0,119,255,.08);
+}
+
+.featured-label{
+  display:inline-block;
+  padding:5px 10px;
+  margin-bottom:12px;
+  border-radius:20px;
+  background:rgba(0,200,255,.1);
+  color:#61d8ff;
+  font-size:10px;
+}
+
+.jump-product h3{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+.jump-price{
+  color:var(--blue);
+  font-size:27px;
+  font-weight:900;
+  margin:12px 0 18px;
+}
+
+.jump-price small{
+  color:var(--muted);
+  font-size:11px;
+  font-weight:normal;
+}
+
+/* FOOTER */
 footer{
-    text-align:center;
-    padding:28px 15px;
-    border-top:1px solid var(--border);
-    color:#53647b;
-    font-size:10px;
+  text-align:center;
+  padding:30px 15px 45px;
+  color:#53647b;
+  font-size:11px;
+  line-height:1.5;
+  border-top:1px solid rgba(45,145,255,.08);
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
+@media(max-width:800px){
+  .categories,
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-@media(max-width:600px){
+  .benefits{
+    grid-template-columns:1fr;
+  }
 
-    header{
-        padding:16px 18px;
-    }
+  .jump-products{
+    grid-template-columns:1fr;
+  }
+}
 
-    .logo{
-        font-size:20px;
-    }
+@media(max-width:550px){
+  header{
+    padding:0 4%;
+    height:65px;
+  }
 
-    .telegram{
-        padding:9px 13px;
-    }
+  .logo{font-size:21px}
 
-    main{
-        padding:45px 14px 70px;
-    }
+  .telegram{
+    padding:9px 12px;
+    font-size:11px;
+  }
 
-    .categories{
-        grid-template-columns:repeat(2,1fr);
-        gap:11px;
-    }
+  main{
+    width:92%;
+    padding-top:35px;
+  }
 
-    .category{
-        padding:22px 10px;
-    }
+  .categories,
+  .products{
+    grid-template-columns:1fr;
+  }
 
-    .category .icon{
-        font-size:30px;
-    }
+  .hero{
+    padding-top:15px;
+  }
 
-    .products{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
-    }
+  .hero h1{
+    font-size:35px;
+  }
 
-    .product{
-        padding:16px 13px;
-    }
+  .intro-logo{
+    font-size:45px;
+  }
 
-    .product h3{
-        font-size:14px;
-    }
+  .card-number{
+    font-size:17px;
+  }
 
-    .price{
-        font-size:18px;
-    }
-
-    .buy{
-        font-size:11px;
-        padding:11px 5px;
-    }
-
-    .card-number{
-        font-size:14px;
-        letter-spacing:1px;
-    }
+  .modal-box{
+    padding:21px;
+  }
 }
 </style>
 </head>
@@ -704,500 +775,417 @@ footer{
 <body>
 
 <!-- INTRO -->
-
 <div id="intro">
+  <div class="intro-grid"></div>
+  <div class="intro-glow"></div>
 
-    <div class="intro-grid"></div>
-    <div class="intro-glow"></div>
+  <div class="intro-logo">
+    V2<span>GURD</span>
+    <div class="intro-line"></div>
+  </div>
 
-    <div class="intro-logo">
-        V2<span>GURD</span>
-        <div class="intro-line"></div>
-    </div>
-
-    <div class="intro-text">
-        SECURE • FAST • PREMIUM
-    </div>
-
+  <div class="intro-text">
+    SECURE • FAST • PREMIUM
+  </div>
 </div>
 
-
 <!-- HEADER -->
-
 <header>
+  <div class="logo">V2<span>GURD</span></div>
 
-    <div class="logo">
-        V2<span>GURD</span>
-    </div>
-
-    <a
-        href="https://t.me/Vtwoguard"
-        target="_blank"
-        class="telegram"
-    >
-        ✈️ ارتباط با ما
-    </a>
-
+  <a href="https://t.me/Vtwoguard"
+     target="_blank"
+     class="telegram">
+    ✈️ ارتباط با ما
+  </a>
 </header>
-
-
-<!-- MAIN -->
 
 <main>
 
 <!-- HOME -->
-
 <section id="home">
 
-    <div class="hero">
-
-        <div class="hero-badge">
-            ⚡ PREMIUM DIGITAL SERVICES
-        </div>
-
-        <h1>
-            Welcome to
-            <span>V2GURD</span>
-        </h1>
-
-        <p>
-            سرویس‌های حرفه‌ای و پایدار<br>
-            انتخاب کن، سفارش بده و سریع دریافت کن.
-        </p>
-
+  <div class="hero">
+    <div class="hero-badge">
+      ⚡ PREMIUM DIGITAL SERVICES
     </div>
 
+    <h1>
+      Welcome to <span>V2GURD</span>
+    </h1>
 
-    <div class="section-title">
+    <p>
+      سرویس‌های حرفه‌ای و پایدار<br>
+      انتخاب کن، سفارش بده و سریع دریافت کن.
+    </p>
+  </div>
 
-        <h2>
-            خدمات V2GURD
-        </h2>
+  <div class="section-title">
+    <h2>خدمات V2GURD</h2>
+    <p>دسته‌بندی موردنظر خود را انتخاب کنید</p>
+  </div>
 
-        <p>
-            دسته‌بندی موردنظر خود را انتخاب کنید
-        </p>
+  <div class="categories">
 
+    <div class="category" onclick="showPage('vpn')">
+      <div class="icon">🛡️</div>
+      <h3>VPN</h3>
+      <p>سرویس‌های VPN</p>
     </div>
 
-
-    <div class="categories">
-
-        <div
-            class="category"
-            onclick="showPage('vpn')"
-        >
-            <div class="icon">🛡️</div>
-            <h3>VPN</h3>
-            <p>سرویس‌های VPN</p>
-        </div>
-
-
-        <div
-            class="category"
-            onclick="showPage('panels')"
-        >
-            <div class="icon">⚡</div>
-            <h3>پنل‌ها</h3>
-            <p>پنل‌های فروش</p>
-        </div>
-
-
-        <div
-            class="category"
-            onclick="showPage('servers')"
-        >
-            <div class="icon">🌐</div>
-            <h3>سرورها</h3>
-            <p>سرورهای حجمی</p>
-        </div>
-
+    <div class="category" onclick="showPage('panels')">
+      <div class="icon">⚡</div>
+      <h3>پنل‌ها</h3>
+      <p>پنل‌های فروش</p>
     </div>
 
+    <div class="category" onclick="showPage('servers')">
+      <div class="icon">🌐</div>
+      <h3>سرورها</h3>
+      <p>سرورهای حجمی</p>
+    </div>
+
+    <!-- JUMPJUMP -->
+    <div class="category" onclick="showPage('jumpjump')">
+      <div class="icon">🚀</div>
+      <h3>JumpJump VIP</h3>
+      <p>اکانت VIP جمپ‌جمپ</p>
+    </div>
+
+  </div>
 </section>
 
 
 <!-- VPN -->
-
 <section id="vpn" class="hidden">
 
-    <button
-        class="back"
-        onclick="showPage('home')"
-    >
-        ← بازگشت
-    </button>
+  <button class="back" onclick="showPage('home')">
+    ← بازگشت
+  </button>
 
-    <div class="section-title">
+  <div class="section-title">
+    <h2>🛡️ سرویس‌های VPN</h2>
+    <p>برای سفارش سرویس با ما در ارتباط باشید</p>
+  </div>
 
-        <h2>🛡️ سرویس‌های VPN</h2>
+  <div class="products">
 
-        <p>
-            سرویس‌های ویژه V2GURD
-        </p>
+    <div class="product">
+      <h3>VPN VIP</h3>
+      <div class="price">تماس</div>
 
+      <div class="product-info">
+        برای دریافت قیمت روز
+      </div>
+
+      <button class="buy"
+              onclick="contact('VPN VIP')">
+        سفارش
+      </button>
     </div>
 
+    <div class="product">
+      <h3>VPN ویژه</h3>
+      <div class="price">تماس</div>
 
-    <div class="products">
+      <div class="product-info">
+        سرویس ویژه V2GURD
+      </div>
 
-        <div class="product">
-
-            <h3>
-                VPN VIP
-            </h3>
-
-            <div class="price">
-                تماس
-            </div>
-
-            <div class="product-info">
-                برای دریافت قیمت روز
-            </div>
-
-            <button
-                class="buy"
-                onclick="contact('VPN VIP')"
-            >
-                سفارش
-            </button>
-
-        </div>
-
-
-        <div class="product">
-
-            <h3>
-                VPN ویژه
-            </h3>
-
-            <div class="price">
-                تماس
-            </div>
-
-            <div class="product-info">
-                سرویس ویژه V2GURD
-            </div>
-
-            <button
-                class="buy"
-                onclick="contact('VPN ویژه')"
-            >
-                سفارش
-            </button>
-
-        </div>
-
+      <button class="buy"
+              onclick="contact('VPN ویژه')">
+        سفارش
+      </button>
     </div>
 
+  </div>
 </section>
 
 
 <!-- PANELS -->
-
 <section id="panels" class="hidden">
 
-    <button
-        class="back"
-        onclick="showPage('home')"
-    >
-        ← بازگشت
-    </button>
+  <button class="back" onclick="showPage('home')">
+    ← بازگشت
+  </button>
 
-    <div class="section-title">
+  <div class="section-title">
+    <h2>⚡ پنل‌های V2GURD</h2>
+    <p>پنل‌های حجمی و یوزری</p>
+  </div>
 
-        <h2>
-            ⚡ پنل‌های V2GURD
-        </h2>
+  <div class="products">
 
-        <p>
-            پنل‌های حجمی و یوزری
-        </p>
+    <div class="product">
+      <h3>پنل حجمی</h3>
 
+      <div class="price">
+        ۲,۵۰۰
+        <small>تومان / گیگ</small>
+      </div>
+
+      <div class="product-info">
+        حداقل خرید ۱۵۰ گیگ
+      </div>
+
+      <button class="buy" onclick="volumePanel()">
+        انتخاب حجم
+      </button>
     </div>
 
 
-    <div class="products">
+    <div class="product">
+      <h3>۲۵ یوزری نامحدود</h3>
 
-        <!-- VOLUME -->
+      <div class="price">
+        ۸۹۰,۰۰۰
+        <small>تومان</small>
+      </div>
 
-        <div class="product">
+      <div class="product-info">
+        حجم نامحدود
+      </div>
 
-            <h3>
-                پنل حجمی
-            </h3>
-
-            <div class="price">
-                ۲,۵۰۰
-                <small>
-                    تومان / گیگ
-                </small>
-            </div>
-
-            <div class="product-info">
-                حداقل خرید ۱۵۰ گیگ
-            </div>
-
-            <button
-                class="buy"
-                onclick="volumePanel()"
-            >
-                انتخاب حجم
-            </button>
-
-        </div>
-
-
-        <!-- 25 USER -->
-
-        <div class="product">
-
-            <h3>
-                ۲۵ یوزری نامحدود
-            </h3>
-
-            <div class="price">
-                ۸۹۰,۰۰۰
-                <small>
-                    تومان
-                </small>
-            </div>
-
-            <div class="product-info">
-                حجم نامحدود
-            </div>
-
-            <button
-                class="buy"
-                onclick="confirmPurchase(
-                    'پنل ۲۵ یوزری نامحدود',
-                    '۸۹۰,۰۰۰ تومان'
-                )"
-            >
-                خرید
-            </button>
-
-        </div>
-
-
-        <!-- 50 USER -->
-
-        <div class="product">
-
-            <h3>
-                ۵۰ یوزری نامحدود
-            </h3>
-
-            <div class="price">
-                ۱,۳۰۰,۰۰۰
-                <small>
-                    تومان
-                </small>
-            </div>
-
-            <div class="product-info">
-                حجم نامحدود
-            </div>
-
-            <button
-                class="buy"
-                onclick="confirmPurchase(
-                    'پنل ۵۰ یوزری نامحدود',
-                    '۱,۳۰۰,۰۰۰ تومان'
-                )"
-            >
-                خرید
-            </button>
-
-        </div>
-
+      <button class="buy"
+              onclick="confirmPurchase('پنل ۲۵ یوزری نامحدود','۸۹۰,۰۰۰ تومان')">
+        خرید
+      </button>
     </div>
 
+
+    <div class="product">
+      <h3>۵۰ یوزری نامحدود</h3>
+
+      <div class="price">
+        ۱,۳۰۰,۰۰۰
+        <small>تومان</small>
+      </div>
+
+      <div class="product-info">
+        حجم نامحدود
+      </div>
+
+      <button class="buy"
+              onclick="confirmPurchase('پنل ۵۰ یوزری نامحدود','۱,۳۰۰,۰۰۰ تومان')">
+        خرید
+      </button>
+    </div>
+
+  </div>
 </section>
 
 
 <!-- SERVERS -->
-
 <section id="servers" class="hidden">
 
-    <button
-        class="back"
-        onclick="showPage('home')"
-    >
-        ← بازگشت
-    </button>
+  <button class="back" onclick="showPage('home')">
+    ← بازگشت
+  </button>
 
-    <div class="section-title">
+  <div class="section-title">
+    <h2>🌐 سرورهای V2GURD</h2>
+    <p>نوع سرور را انتخاب کنید</p>
+  </div>
 
-        <h2>
-            🌐 سرورهای V2GURD
-        </h2>
+  <div class="categories">
 
-        <p>
-            نوع سرور را انتخاب کنید
-        </p>
-
+    <div class="category"
+         onclick="showServerVolumes('اقتصادی',1200)">
+      <div class="icon">💰</div>
+      <h3>اقتصادی</h3>
+      <p>گیگی ۱,۲۰۰ تومان</p>
     </div>
 
-
-    <div class="categories">
-
-        <div
-            class="category"
-            onclick="showServerVolumes('اقتصادی',1200)"
-        >
-            <div class="icon">💰</div>
-
-            <h3>اقتصادی</h3>
-
-            <p>
-                گیگی ۱,۲۰۰ تومان
-            </p>
-        </div>
-
-
-        <div
-            class="category"
-            onclick="showServerVolumes('معمولی',1500)"
-        >
-            <div class="icon">⚡</div>
-
-            <h3>معمولی</h3>
-
-            <p>
-                گیگی ۱,۵۰۰ تومان
-            </p>
-        </div>
-
-
-        <div
-            class="category"
-            onclick="showServerVolumes('CDN',1500)"
-        >
-            <div class="icon">☁️</div>
-
-            <h3>CDN</h3>
-
-            <p>
-                گیگی ۱,۵۰۰ تومان
-            </p>
-        </div>
-
-
-        <div
-            class="category"
-            onclick="showServerVolumes('تانل',2500)"
-        >
-            <div class="icon">🔗</div>
-
-            <h3>تانل</h3>
-
-            <p>
-                گیگی ۲,۵۰۰ تومان
-            </p>
-        </div>
-
-
-        <div
-            class="category"
-            onclick="showServerVolumes('حرفه‌ای',3000)"
-        >
-            <div class="icon">👑</div>
-
-            <h3>حرفه‌ای</h3>
-
-            <p>
-                گیگی ۳,۰۰۰ تومان
-            </p>
-        </div>
-
+    <div class="category"
+         onclick="showServerVolumes('معمولی',1500)">
+      <div class="icon">⚡</div>
+      <h3>معمولی</h3>
+      <p>گیگی ۱,۵۰۰ تومان</p>
     </div>
 
-
-    <!-- SPECIAL PRODUCT -->
-
-    <div class="section-title">
-
-        <h2>
-            ⭐ محصول ویژه
-        </h2>
-
-        <p>
-            سرویس اختصاصی V2GURD
-        </p>
-
+    <div class="category"
+         onclick="showServerVolumes('CDN',1500)">
+      <div class="icon">☁️</div>
+      <h3>CDN</h3>
+      <p>گیگی ۱,۵۰۰ تومان</p>
     </div>
 
-
-    <div class="products">
-
-        <div class="product special">
-
-            <div class="special-badge">
-                ⭐ ویژه V2GURD
-            </div>
-
-            <h3>
-                مولتی لوکیشن آلمان VIP
-            </h3>
-
-            <div class="price">
-                تضمینی
-            </div>
-
-            <div class="product-info">
-
-                🇩🇪 مولتی لوکیشن آلمان
-
-                <br>
-
-                ⭐ VIP تضمینی
-
-                <br>
-
-                انتخاب حجم از ۱۰ تا ۵۰ گیگ
-
-            </div>
-
-            <button
-                class="buy"
-                onclick="specialGermany()"
-            >
-                انتخاب حجم
-            </button>
-
-        </div>
-
+    <div class="category"
+         onclick="showServerVolumes('تانل',2500)">
+      <div class="icon">🔗</div>
+      <h3>تانل</h3>
+      <p>گیگی ۲,۵۰۰ تومان</p>
     </div>
 
+    <div class="category"
+         onclick="showServerVolumes('حرفه‌ای',3000)">
+      <div class="icon">👑</div>
+      <h3>حرفه‌ای</h3>
+      <p>گیگی ۳,۰۰۰ تومان</p>
+    </div>
+
+  </div>
 </section>
 
 
 <!-- SERVER VOLUMES -->
-
 <section id="serverVolumes" class="hidden">
 
-    <button
-        class="back"
-        onclick="showPage('servers')"
-    >
-        ← بازگشت
-    </button>
+  <button class="back" onclick="showPage('servers')">
+    ← بازگشت
+  </button>
 
-    <div class="section-title">
+  <div class="section-title">
+    <h2 id="serverTitle">سرور</h2>
+    <p id="serverSubtitle"></p>
+  </div>
 
-        <h2 id="serverTitle">
-            سرور
-        </h2>
+  <div id="volumeList" class="products"></div>
 
-        <p id="serverSubtitle"></p>
+</section>
+
+
+<!-- JUMPJUMP -->
+<section id="jumpjump" class="hidden">
+
+  <button class="back" onclick="showPage('home')">
+    ← بازگشت
+  </button>
+
+  <div class="jump-hero">
+
+    <div class="jump-logo">
+      🚀
+    </div>
+
+    <h1>
+      Jump<span>Jump VIP</span>
+    </h1>
+
+    <p>
+      سرویس VIP جمپ‌جمپ با اتصال سریع‌تر و پایدارتر
+      <br>
+      مناسب کاربران حرفه‌ای
+    </p>
+
+    <div class="platforms">
+      <div class="platform">🪟 Windows</div>
+      <div class="platform">🍎 Mac OS</div>
+      <div class="platform">▶️ Google Play</div>
+      <div class="platform"> App Store</div>
+    </div>
+
+  </div>
+
+
+  <div class="benefits">
+
+    <div class="benefit">
+      <div class="bicon">⚡</div>
+      <p>
+        اتصال با سرعت بهتر و پایدارتر
+        به هر سرور VIP
+      </p>
+    </div>
+
+    <div class="benefit">
+      <div class="bicon">🚫</div>
+      <p>
+        بدون تبلیغات و بدون محدودیت زمانی
+      </p>
+    </div>
+
+    <div class="benefit">
+      <div class="bicon">👥</div>
+      <p>
+        امکان استفاده همزمان یک حساب
+        توسط ۲ کاربر
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="section-title">
+    <h2>پلن‌های JumpJump VIP</h2>
+    <p>پلن موردنظر خود را انتخاب کنید</p>
+  </div>
+
+
+  <div class="jump-products">
+
+    <div class="jump-product">
+
+      <h3>۱ دستگاه / ۱ ماه</h3>
+
+      <div class="jump-price">
+        ۷۰۰,۰۰۰
+        <small>تومان</small>
+      </div>
+
+      <button class="buy"
+              onclick="jumpPurchase('۱ دستگاه / ۱ ماه','۷۰۰,۰۰۰ تومان')">
+        خرید پلن
+      </button>
 
     </div>
 
-    <div
-        id="volumeList"
-        class="products"
-    ></div>
+
+    <div class="jump-product featured">
+
+      <div class="featured-label">
+        ⭐ محبوب
+      </div>
+
+      <h3>۲ دستگاه / ۱ ماه</h3>
+
+      <div class="jump-price">
+        ۹۹۹,۰۰۰
+        <small>تومان</small>
+      </div>
+
+      <button class="buy"
+              onclick="jumpPurchase('۲ دستگاه / ۱ ماه','۹۹۹,۰۰۰ تومان')">
+        خرید پلن
+      </button>
+
+    </div>
+
+
+    <div class="jump-product">
+
+      <h3>۲ دستگاه / ۶ ماه</h3>
+
+      <div class="jump-price">
+        ۴,۶۰۰,۰۰۰
+        <small>تومان</small>
+      </div>
+
+      <button class="buy"
+              onclick="jumpPurchase('۲ دستگاه / ۶ ماه','۴,۶۰۰,۰۰۰ تومان')">
+        خرید پلن
+      </button>
+
+    </div>
+
+
+    <div class="jump-product">
+
+      <h3>۲ دستگاه / ۱۲ ماه</h3>
+
+      <div class="jump-price">
+        ۵,۵۰۰,۰۰۰
+        <small>تومان</small>
+      </div>
+
+      <button class="buy"
+              onclick="jumpPurchase('۲ دستگاه / ۱۲ ماه','۵,۵۰۰,۰۰۰ تومان')">
+        خرید پلن
+      </button>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1205,772 +1193,807 @@ footer{
 
 
 <footer>
-
-    V2GURD © 2026
-
-    <br><br>
-
-    SECURE • FAST • PREMIUM
-
+  V2GURD © 2026
+  <br><br>
+  SECURE • FAST • PREMIUM
 </footer>
 
 
 <!-- MODAL -->
-
-<div
-    id="modal"
-    class="modal hidden"
->
-
-    <div
-        id="modalContent"
-        class="modal-box"
-    ></div>
-
+<div id="modal" class="modal hidden">
+  <div id="modalContent" class="modal-box"></div>
 </div>
 
 
 <script>
 
-/* ================= INTRO ================= */
-
-setTimeout(function(){
-
-    document
-        .getElementById("intro")
-        .classList
-        .add("hide");
-
+/* INTRO */
+setTimeout(()=>{
+  document.getElementById("intro").classList.add("hide");
 },3500);
 
 
-/* ================= PAGE SYSTEM ================= */
-
+/* PAGE SYSTEM */
 function showPage(page){
 
-    const pages = [
-        "home",
-        "vpn",
-        "panels",
-        "servers",
-        "serverVolumes"
-    ];
+  [
+    "home",
+    "vpn",
+    "panels",
+    "servers",
+    "serverVolumes",
+    "jumpjump"
+  ].forEach(id=>{
+    document.getElementById(id).classList.add("hidden");
+  });
 
-    pages.forEach(function(id){
+  document.getElementById(page).classList.remove("hidden");
 
-        document
-            .getElementById(id)
-            .classList
-            .add("hidden");
-
-    });
-
-    document
-        .getElementById(page)
-        .classList
-        .remove("hidden");
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 
-/* ================= NUMBER ================= */
-
+/* NUMBER FORMAT */
 function formatNumber(number){
-
-    return Number(number)
-        .toLocaleString("fa-IR");
-
+  return Number(number).toLocaleString("fa-IR");
 }
 
 
-/* ================= SERVER VOLUMES ================= */
-
+/* SERVER VOLUMES */
 function showServerVolumes(type,price){
 
-    const list =
-        document.getElementById("volumeList");
+  const list=document.getElementById("volumeList");
 
-    document
-        .getElementById("serverTitle")
-        .innerText =
-        "سرور " + type;
+  document.getElementById("serverTitle").innerText=
+    "سرور "+type;
 
-    document
-        .getElementById("serverSubtitle")
-        .innerText =
-        "قیمت هر گیگ: " +
-        formatNumber(price) +
-        " تومان";
+  document.getElementById("serverSubtitle").innerText=
+    "قیمت هر گیگ: "+
+    formatNumber(price)+
+    " تومان";
 
-    list.innerHTML="";
+  list.innerHTML="";
 
-    for(
-        let volume=50;
-        volume<=500;
-        volume+=50
-    ){
+  for(let volume=50;volume<=500;volume+=50){
 
-        const total =
-            volume * price;
+    const total=volume*price;
 
-        const card =
-            document.createElement("div");
+    const card=document.createElement("div");
 
-        card.className="product";
+    card.className="product";
 
-        card.innerHTML = `
+    card.innerHTML=`
 
-            <h3>
-                ${formatNumber(volume)} گیگ
-            </h3>
+      <h3>
+        ${formatNumber(volume)} گیگ
+      </h3>
 
-            <div class="price">
+      <div class="price">
+        ${formatNumber(total)}
+        <small>تومان</small>
+      </div>
 
-                ${formatNumber(total)}
+      <div class="product-info">
+        سرور ${type}
+        <br>
+        ${formatNumber(volume)}GB
+      </div>
 
-                <small>
-                    تومان
-                </small>
-
-            </div>
-
-            <div class="product-info">
-
-                سرور ${type}
-
-                <br>
-
-                ${formatNumber(volume)}GB
-
-            </div>
-
-            <button
-                class="buy"
-                onclick="confirmServerPurchase(
-                    '${type}',
-                    ${volume},
-                    ${price},
-                    ${total}
-                )"
-            >
-                خرید این حجم
-            </button>
-
-        `;
-
-        list.appendChild(card);
-    }
-
-    showPage("serverVolumes");
-}
-
-
-/* ================= SERVER PURCHASE ================= */
-
-function confirmServerPurchase(
-    type,
-    volume,
-    price,
-    total
-){
-
-    const content = `
-
-        <h2>
-            تأیید خرید
-        </h2>
-
-        <p>
-            لطفاً اطلاعات سفارش را بررسی کنید.
-        </p>
-
-        <div class="order-box">
-
-            <div>
-                نوع سرور:
-                <strong>${type}</strong>
-            </div>
-
-            <div>
-                حجم:
-                <strong>
-                    ${formatNumber(volume)} گیگ
-                </strong>
-            </div>
-
-            <div>
-                قیمت هر گیگ:
-                <strong>
-                    ${formatNumber(price)} تومان
-                </strong>
-            </div>
-
-            <div>
-                مبلغ نهایی:
-                <strong style="color:#00e676">
-                    ${formatNumber(total)} تومان
-                </strong>
-            </div>
-
-        </div>
-
-        <p style="margin-top:15px">
-            از خرید خود مطمئن هستید؟
-        </p>
-
-        <div class="modal-actions">
-
-            <button
-                class="yes"
-                onclick="paymentPage(
-                    '${type} - سرور',
-                    ${volume},
-                    ${total}
-                )"
-            >
-                بله، ادامه خرید
-            </button>
-
-            <button
-                class="no"
-                onclick="closeModal()"
-            >
-                خیر
-            </button>
-
-        </div>
+      <button class="buy"
+        onclick="confirmServerPurchase(
+          '${type}',
+          ${volume},
+          ${price},
+          ${total}
+        )">
+        خرید این حجم
+      </button>
     `;
 
-    openModal(content);
+    list.appendChild(card);
+  }
+
+  showPage("serverVolumes");
 }
 
 
-/* ================= NORMAL PURCHASE ================= */
+/* SERVER PURCHASE */
+function confirmServerPurchase(type,volume,price,total){
 
-function confirmPurchase(
-    product,
-    price
-){
+  openModal(`
 
-    const content = `
+    <h2>تأیید خرید</h2>
 
-        <h2>
-            تأیید خرید
-        </h2>
+    <p>
+      لطفاً اطلاعات سفارش را بررسی کنید.
+    </p>
 
-        <p>
-            سفارش خود را بررسی کنید.
-        </p>
+    <div class="order-box">
 
-        <div class="order-box">
+      <div>
+        نوع سرور:
+        <strong>${type}</strong>
+      </div>
 
-            <div>
-                محصول:
-                <strong>
-                    ${product}
-                </strong>
-            </div>
+      <div>
+        حجم:
+        <strong>${formatNumber(volume)} گیگ</strong>
+      </div>
 
-            <div>
-                مبلغ:
-                <strong style="color:#00e676">
-                    ${price}
-                </strong>
-            </div>
+      <div>
+        قیمت هر گیگ:
+        <strong>${formatNumber(price)} تومان</strong>
+      </div>
 
-        </div>
+      <div>
+        مبلغ نهایی:
+        <strong style="color:#00e676">
+          ${formatNumber(total)} تومان
+        </strong>
+      </div>
 
-        <p style="margin-top:15px">
-            از خرید خود مطمئن هستید؟
-        </p>
+    </div>
 
-        <div class="modal-actions">
+    <p style="margin-top:15px">
+      از خرید خود مطمئن هستید؟
+    </p>
 
-            <button
-                class="yes"
-                onclick="paymentPage(
-                    '${product}',
-                    null,
-                    '${price}'
-                )"
-            >
-                بله، ادامه خرید
-            </button>
+    <div class="modal-actions">
 
-            <button
-                class="no"
-                onclick="closeModal()"
-            >
-                خیر
-            </button>
+      <button class="yes"
+        onclick="paymentPage(
+          'سرور ${type}',
+          '${formatNumber(volume)} گیگ',
+          '${formatNumber(total)} تومان'
+        )">
+        بله، ادامه خرید
+      </button>
 
-        </div>
-    `;
+      <button class="no"
+        onclick="closeModal()">
+        خیر
+      </button>
 
-    openModal(content);
+    </div>
+
+  `);
 }
 
 
-/* ================= VOLUME PANEL ================= */
+/* NORMAL PURCHASE */
+function confirmPurchase(product,price){
 
+  openModal(`
+
+    <h2>تأیید خرید</h2>
+
+    <p>
+      سفارش خود را بررسی کنید.
+    </p>
+
+    <div class="order-box">
+
+      <div>
+        محصول:
+        <strong>${product}</strong>
+      </div>
+
+      <div>
+        مبلغ:
+        <strong style="color:#00e676">
+          ${price}
+        </strong>
+      </div>
+
+    </div>
+
+    <p style="margin-top:15px">
+      از خرید خود مطمئن هستید؟
+    </p>
+
+    <div class="modal-actions">
+
+      <button class="yes"
+        onclick="paymentPage(
+          '${product}',
+          null,
+          '${price}'
+        )">
+        بله، ادامه خرید
+      </button>
+
+      <button class="no"
+        onclick="closeModal()">
+        خیر
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* VOLUME PANEL */
 function volumePanel(){
 
-    let content = `
+  let content=`
 
-        <h2>
-            پنل حجمی
-        </h2>
+    <h2>پنل حجمی</h2>
 
-        <p>
-            حجم موردنظر خود را انتخاب کنید.
-        </p>
+    <p>
+      حجم موردنظر خود را انتخاب کنید.
+    </p>
 
-        <div
-            class="products"
-            style="
-                margin-top:20px;
-                grid-template-columns:repeat(2,1fr);
-            "
-        >
+    <div
+      class="products"
+      style="
+        margin-top:20px;
+        grid-template-columns:repeat(2,1fr);
+      "
+    >
+  `;
+
+  for(let volume=150;volume<=1000;volume+=50){
+
+    const total=volume*2500;
+
+    content+=`
+
+      <button
+        class="buy"
+        onclick="confirmPurchase(
+          'پنل حجمی ${formatNumber(volume)} گیگ',
+          '${formatNumber(total)} تومان'
+        )">
+
+        ${formatNumber(volume)} گیگ
+
+        <br>
+
+        <small>
+          ${formatNumber(total)} تومان
+        </small>
+
+      </button>
     `;
+  }
 
-    for(
-        let volume=150;
-        volume<=1000;
-        volume+=50
-    ){
+  content+=`
 
-        const total =
-            volume * 2500;
+    </div>
 
-        content += `
+    <button
+      class="back"
+      style="
+        width:100%;
+        margin-top:15px;
+      "
+      onclick="closeModal()">
+      بستن
+    </button>
+  `;
 
-            <button
-                class="buy"
-                onclick="confirmPurchase(
-                    'پنل حجمی ${formatNumber(volume)} گیگ',
-                    '${formatNumber(total)} تومان'
-                )"
-            >
-
-                ${formatNumber(volume)}
-                گیگ
-
-                <br>
-
-                <small>
-                    ${formatNumber(total)}
-                    تومان
-                </small>
-
-            </button>
-
-        `;
-    }
-
-    content += `
-
-        </div>
-
-        <button
-            class="back"
-            style="
-                width:100%;
-                margin-top:15px;
-            "
-            onclick="closeModal()"
-        >
-            بستن
-        </button>
-    `;
-
-    openModal(content);
+  openModal(content);
 }
 
 
-/* ================= SPECIAL GERMANY ================= */
+/* PAYMENT */
+function paymentPage(product,volume,total){
 
-function specialGermany(){
-
-    const products = [
-
-        {
-            volume:10,
-            price:80000
-        },
-
-        {
-            volume:20,
-            price:160000
-        },
-
-        {
-            volume:30,
-            price:240000
-        },
-
-        {
-            volume:40,
-            price:320000
-        },
-
-        {
-            volume:50,
-            price:400000
-        }
-
-    ];
-
-    let content = `
-
-        <h2>
-            🇩🇪 مولتی لوکیشن آلمان VIP
-        </h2>
-
-        <p>
-            ⭐ سرویس ویژه و تضمینی V2GURD
-        </p>
-
-        <div
-            class="products"
-            style="
-                margin-top:20px;
-                grid-template-columns:repeat(2,1fr);
-            "
-        >
-    `;
-
-    products.forEach(function(item){
-
-        content += `
-
-            <button
-                class="buy"
-                onclick="confirmSpecialGermany(
-                    ${item.volume},
-                    ${item.price}
-                )"
-            >
-
-                ${formatNumber(item.volume)}
-                گیگ
-
-                <br>
-
-                <small>
-                    ${formatNumber(item.price)}
-                    تومان
-                </small>
-
-            </button>
-
-        `;
-
-    });
-
-    content += `
-
-        </div>
-
-        <button
-            class="back"
-            style="
-                width:100%;
-                margin-top:15px;
-            "
-            onclick="closeModal()"
-        >
-            بستن
-        </button>
-    `;
-
-    openModal(content);
-}
-
-
-/* ================= SPECIAL CONFIRM ================= */
-
-function confirmSpecialGermany(
-    volume,
-    total
-){
-
-    const content = `
-
-        <h2>
-            ⭐ تأیید خرید
-        </h2>
-
-        <p>
-            محصول ویژه خود را بررسی کنید.
-        </p>
-
-        <div class="order-box">
-
-            <div>
-                محصول:
-                <strong>
-                    مولتی لوکیشن آلمان VIP تضمینی
-                </strong>
-            </div>
-
-            <div>
-                حجم:
-                <strong>
-                    ${formatNumber(volume)} گیگ
-                </strong>
-            </div>
-
-            <div>
-                مبلغ:
-                <strong style="color:#00e676">
-                    ${formatNumber(total)} تومان
-                </strong>
-            </div>
-
-        </div>
-
-        <p style="margin-top:15px">
-            از خرید خود مطمئن هستید؟
-        </p>
-
-        <div class="modal-actions">
-
-            <button
-                class="yes"
-                onclick="paymentPage(
-                    'مولتی لوکیشن آلمان VIP تضمینی',
-                    ${volume},
-                    ${total}
-                )"
-            >
-                بله، ادامه خرید
-            </button>
-
-            <button
-                class="no"
-                onclick="closeModal()"
-            >
-                خیر
-            </button>
-
-        </div>
-    `;
-
-    openModal(content);
-}
-
-
-/* ================= PAYMENT ================= */
-
-function paymentPage(
-    product,
-    volume,
-    total
-){
-
-    let numericTotal =
-        typeof total === "number"
-        ? total
-        : total;
-
-    let orderText =
+  let orderText=
 `سلام، برای خرید محصول زیر رسید پرداخت را ارسال می‌کنم.
 
 محصول: ${product}`;
 
-    if(volume){
+  if(volume){
+    orderText+=`
+حجم: ${volume}`;
+  }
 
-        orderText +=
-`
-حجم: ${formatNumber(volume)} گیگ`;
-    }
-
-    orderText +=
-`
-مبلغ: ${
-    typeof numericTotal === "number"
-    ? formatNumber(numericTotal)
-    : numericTotal
-}
+  orderText+=`
+مبلغ: ${total}
 
 رسید پرداخت:`;
 
-    const telegramURL =
-        "https://t.me/Vtwoguard?text=" +
-        encodeURIComponent(orderText);
+  const telegramURL=
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(orderText);
 
-    const content = `
+  openModal(`
 
-        <h2>
-            💳 پرداخت سفارش
-        </h2>
+    <h2>💳 پرداخت سفارش</h2>
 
-        <p>
-            مبلغ سفارش را به کارت زیر واریز کنید.
-        </p>
+    <p>
+      مبلغ سفارش را به کارت زیر واریز کنید.
+    </p>
 
-        <div class="bank-card">
+    <div class="bank-card">
 
-            <div class="bank-top">
+      <div class="bank-top">
 
-                <div class="bank-name">
-                    🔵 BLU
-                </div>
-
-                <div class="bank-label">
-                    BLUBANK
-                </div>
-
-            </div>
-
-            <div class="card-number">
-                6219&nbsp;8618&nbsp;4163&nbsp;5526
-            </div>
-
-            <div class="owner">
-                به نام: نامی
-            </div>
-
+        <div class="bank-name">
+          🔵 BLU
         </div>
 
-        <button
-            class="copy-card"
-            onclick="copyCard()"
-        >
-            📋 کپی شماره کارت
-        </button>
-
-        <div class="payment-text">
-
-            مبلغ
-
-            <strong style="color:white">
-                ${
-                    typeof numericTotal==="number"
-                    ? formatNumber(numericTotal)
-                    : numericTotal
-                }
-            </strong>
-
-            تومان را واریز کنید.
-
-            <br>
-
-            بعد از پرداخت، روی
-            «واریز کردم، ارسال رسید»
-            بزنید.
-
+        <div class="bank-label">
+          BLUBANK
         </div>
 
-        <a
-            href="${telegramURL}"
-            target="_blank"
-            class="send"
-        >
-            ✈️ واریز کردم، ارسال رسید
-        </a>
+      </div>
 
-        <button
-            class="back"
-            style="
-                width:100%;
-                margin-top:10px;
-            "
-            onclick="closeModal()"
-        >
-            بستن
-        </button>
+      <div class="card-number">
+        6219&nbsp;8618&nbsp;4163&nbsp;5526
+      </div>
 
-    `;
+      <div class="owner">
+        به نام: نامی
+      </div>
 
-    openModal(content);
+    </div>
+
+    <button
+      class="copy-card"
+      onclick="copyCard()">
+      📋 کپی شماره کارت
+    </button>
+
+    <div class="payment-text">
+
+      مبلغ
+      <strong style="color:white">
+        ${total}
+      </strong>
+      تومان را واریز کنید.
+
+      <br>
+
+      بعد از پرداخت،
+      روی «واریز کردم، ارسال رسید» بزنید.
+
+    </div>
+
+    <a
+      href="${telegramURL}"
+      target="_blank"
+      class="send">
+      ✈️ واریز کردم، ارسال رسید
+    </a>
+
+    <button
+      class="back"
+      style="
+        width:100%;
+        margin-top:10px;
+      "
+      onclick="closeModal()">
+      بستن
+    </button>
+
+  `);
 }
 
 
-/* ================= COPY CARD ================= */
-
+/* COPY CARD */
 function copyCard(){
 
-    navigator.clipboard
-        .writeText("6219861841635526")
-        .then(function(){
-
-            alert("شماره کارت کپی شد ✅");
-
-        })
-        .catch(function(){
-
-            alert("شماره کارت: 6219861841635526");
-
-        });
+  navigator.clipboard
+    .writeText("6219861841635526")
+    .then(()=>{
+      alert("شماره کارت کپی شد ✅");
+    })
+    .catch(()=>{
+      alert("شماره کارت: 6219861841635526");
+    });
 }
 
 
-/* ================= CONTACT ================= */
-
+/* CONTACT */
 function contact(product){
 
-    const text =
-        "سلام، درباره " +
-        product +
-        " می‌خواستم سفارش بدم.";
+  const text=
+    "سلام، درباره "+
+    product+
+    " می‌خواستم سفارش بدم.";
 
-    window.open(
-        "https://t.me/Vtwoguard?text=" +
-        encodeURIComponent(text),
-        "_blank"
-    );
+  window.open(
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(text),
+    "_blank"
+  );
 }
 
 
-/* ================= MODAL ================= */
+/* =========================
+   JUMPJUMP VIP
+========================= */
 
+function jumpPurchase(plan,price){
+
+  openModal(`
+
+    <h2>🚀 خرید JumpJump VIP</h2>
+
+    <p>
+      پلن انتخابی خود را بررسی کنید.
+    </p>
+
+    <div class="order-box">
+
+      <div>
+        محصول:
+        <strong>JumpJump VIP</strong>
+      </div>
+
+      <div>
+        پلن:
+        <strong>${plan}</strong>
+      </div>
+
+      <div>
+        مبلغ:
+        <strong style="color:#00e676">
+          ${price}
+        </strong>
+      </div>
+
+    </div>
+
+    <p style="margin-top:16px">
+      از خرید این پلن مطمئن هستید؟
+    </p>
+
+    <div class="modal-actions">
+
+      <button
+        class="yes"
+        onclick="jumpAccountForm(
+          '${plan}',
+          '${price}'
+        )">
+        بله، ادامه خرید
+      </button>
+
+      <button
+        class="no"
+        onclick="closeModal()">
+        خیر
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* JUMPJUMP ACCOUNT FORM */
+function jumpAccountForm(plan,price){
+
+  openModal(`
+
+    <h2>🚀 اطلاعات حساب JumpJump</h2>
+
+    <p>
+      اطلاعات حساب JumpJump خود را وارد کنید.
+    </p>
+
+    <div class="jump-form">
+
+      <div class="field">
+
+        <label>
+          ایمیل / نام کاربری JumpJump
+        </label>
+
+        <input
+          id="jumpEmail"
+          type="text"
+          autocomplete="off"
+          placeholder="example@email.com">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          رمز عبور حساب JumpJump
+        </label>
+
+        <input
+          id="jumpPassword"
+          type="password"
+          autocomplete="off"
+          placeholder="رمز حساب JumpJump">
+
+        <small>
+          این اطلاعات فقط برای تکمیل سفارش شما استفاده می‌شود.
+        </small>
+
+      </div>
+
+      <button
+        class="buy"
+        onclick="jumpConfirm(
+          '${plan}',
+          '${price}'
+        )">
+        ادامه و پرداخت
+      </button>
+
+      <button
+        class="back"
+        style="width:100%;margin:0"
+        onclick="closeModal()">
+        انصراف
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* JUMPJUMP CONFIRM */
+function jumpConfirm(plan,price){
+
+  const email=
+    document.getElementById("jumpEmail").value.trim();
+
+  const password=
+    document.getElementById("jumpPassword").value;
+
+  if(!email){
+
+    alert("لطفاً ایمیل یا نام کاربری JumpJump را وارد کنید.");
+    return;
+  }
+
+  if(!password){
+
+    alert("لطفاً رمز حساب JumpJump را وارد کنید.");
+    return;
+  }
+
+  openModal(`
+
+    <h2>تأیید اطلاعات</h2>
+
+    <p>
+      اطلاعات سفارش را بررسی کنید.
+    </p>
+
+    <div class="order-box">
+
+      <div>
+        محصول:
+        <strong>JumpJump VIP</strong>
+      </div>
+
+      <div>
+        پلن:
+        <strong>${plan}</strong>
+      </div>
+
+      <div>
+        ایمیل / نام کاربری:
+        <strong dir="ltr">
+          ${escapeHTML(email)}
+        </strong>
+      </div>
+
+      <div>
+        رمز:
+        <strong>
+          ••••••••
+        </strong>
+      </div>
+
+      <div>
+        مبلغ:
+        <strong style="color:#00e676">
+          ${price}
+        </strong>
+      </div>
+
+    </div>
+
+    <p style="margin-top:15px">
+      اطلاعات درست است؟
+    </p>
+
+    <div class="modal-actions">
+
+      <button
+        class="yes"
+        onclick="jumpPayment(
+          '${escapeJS(plan)}',
+          '${escapeJS(price)}',
+          '${escapeJS(email)}',
+          '${escapeJS(password)}'
+        )">
+        بله، پرداخت
+      </button>
+
+      <button
+        class="no"
+        onclick="jumpAccountForm(
+          '${escapeJS(plan)}',
+          '${escapeJS(price)}'
+        )">
+        ویرایش
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* JUMPJUMP PAYMENT */
+function jumpPayment(plan,price,email,password){
+
+  const orderText=
+`سلام، برای فعال‌سازی JumpJump VIP رسید پرداخت را ارسال می‌کنم.
+
+محصول: JumpJump VIP
+پلن: ${plan}
+مبلغ: ${price}
+ایمیل / نام کاربری JumpJump: ${email}
+رمز حساب JumpJump: ${password}
+
+رسید پرداخت:`;
+
+  const telegramURL=
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(orderText);
+
+  openModal(`
+
+    <h2>💳 پرداخت JumpJump VIP</h2>
+
+    <p>
+      ابتدا مبلغ سفارش را به کارت زیر واریز کنید.
+    </p>
+
+    <div class="order-box">
+
+      <div>
+        پلن:
+        <strong>${plan}</strong>
+      </div>
+
+      <div>
+        مبلغ:
+        <strong style="color:#00e676">
+          ${price}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div class="bank-card">
+
+      <div class="bank-top">
+
+        <div class="bank-name">
+          🔵 BLU
+        </div>
+
+        <div class="bank-label">
+          BLUBANK
+        </div>
+
+      </div>
+
+      <div class="card-number">
+        6219&nbsp;8618&nbsp;4163&nbsp;5526
+      </div>
+
+      <div class="owner">
+        به نام: نامی
+      </div>
+
+    </div>
+
+
+    <button
+      class="copy-card"
+      onclick="copyCard()">
+      📋 کپی شماره کارت
+    </button>
+
+
+    <div class="payment-text">
+
+      مبلغ
+      <strong style="color:white">
+        ${price}
+      </strong>
+      تومان را واریز کنید.
+
+      <br>
+
+      سپس روی دکمه زیر بزنید
+      و رسید پرداخت را ارسال کنید.
+
+    </div>
+
+
+    <a
+      href="${telegramURL}"
+      target="_blank"
+      class="send">
+      ✈️ واریز کردم، ارسال اطلاعات و رسید
+    </a>
+
+
+    <button
+      class="back"
+      style="width:100%;margin-top:10px"
+      onclick="closeModal()">
+      بستن
+    </button>
+
+  `);
+}
+
+
+/* ESCAPE HELPERS */
+function escapeHTML(str){
+
+  return String(str)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function escapeJS(str){
+
+  return String(str)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/\n/g,"\\n")
+    .replace(/\r/g,"\\r");
+}
+
+
+/* MODAL */
 function openModal(content){
 
-    document
-        .getElementById("modalContent")
-        .innerHTML = content;
+  document.getElementById("modalContent").innerHTML=content;
 
-    document
-        .getElementById("modal")
-        .classList
-        .remove("hidden");
+  document
+    .getElementById("modal")
+    .classList.remove("hidden");
 }
 
 
 function closeModal(){
 
-    document
-        .getElementById("modal")
-        .classList
-        .add("hidden");
+  document
+    .getElementById("modal")
+    .classList.add("hidden");
 }
 
 
-/* ================= CLOSE OUTSIDE ================= */
-
 document
-    .getElementById("modal")
-    .addEventListener(
-        "click",
-        function(e){
+  .getElementById("modal")
+  .addEventListener("click",e=>{
 
-            if(
-                e.target ===
-                document.getElementById("modal")
-            ){
+    if(
+      e.target===
+      document.getElementById("modal")
+    ){
+      closeModal();
+    }
 
-                closeModal();
-
-            }
-
-        }
-    );
+  });
 
 </script>
 
