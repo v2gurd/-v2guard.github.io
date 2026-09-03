@@ -4,26 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#020611">
+<meta name="description" content="V2GURD | سرویس‌های VIP، سرور، پنل و JumpJump">
 <title>V2GURD | Secure • Fast • Premium</title>
 
 <style>
-:root{
-  --bg:#020611;
-  --bg2:#071426;
-  --card:rgba(9,24,45,.78);
-  --card2:rgba(5,16,32,.92);
-  --blue:#168cff;
-  --blue2:#0066ff;
-  --cyan:#00c8ff;
-  --text:#f5f9ff;
-  --muted:#8b9ab0;
-  --border:rgba(45,145,255,.18);
-  --green:#00e676;
-  --yellow:#ffc107;
-  --red:#ff4f68;
-  --shadow:0 20px 70px rgba(0,0,0,.35);
-}
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -35,19 +19,35 @@ html{
 }
 
 body{
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
   background:
-    radial-gradient(circle at 15% 10%,rgba(0,110,255,.13),transparent 30%),
-    radial-gradient(circle at 90% 20%,rgba(0,200,255,.08),transparent 25%),
-    var(--bg);
-  color:var(--text);
-  font-family:Tahoma,Arial,sans-serif;
+    radial-gradient(circle at 15% 10%,rgba(0,119,255,.12),transparent 30%),
+    radial-gradient(circle at 85% 20%,rgba(0,200,255,.08),transparent 25%),
+    #020611;
+  color:#f5f9ff;
   min-height:100vh;
   overflow-x:hidden;
 }
 
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:45px 45px;
+}
+
 button,
 input,
-textarea{
+textarea,
+select{
   font-family:inherit;
 }
 
@@ -60,7 +60,11 @@ a{
   text-decoration:none;
 }
 
-/* INTRO */
+.hidden{
+  display:none!important;
+}
+
+/* ================= INTRO ================= */
 
 #intro{
   position:fixed;
@@ -70,124 +74,174 @@ a{
   align-items:center;
   justify-content:center;
   background:#020611;
-  transition:.7s ease;
+  transition:opacity .8s,visibility .8s;
 }
 
 #intro.hide{
   opacity:0;
   visibility:hidden;
-  pointer-events:none;
 }
 
-.introBox{
+.intro-box{
   text-align:center;
-  animation:introScale 1.3s ease;
+  animation:introIn 1s ease;
 }
 
-.introLogo{
-  font-size:52px;
+.intro-logo{
+  font-size:clamp(42px,10vw,85px);
   font-weight:1000;
-  letter-spacing:5px;
-  background:linear-gradient(90deg,#fff,#168cff,#00c8ff);
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:0 0 30px rgba(0,140,255,.4);
+  letter-spacing:7px;
+  color:#fff;
+  text-shadow:
+    0 0 20px rgba(22,140,255,.8),
+    0 0 70px rgba(0,102,255,.45);
 }
 
-.introLine{
+.intro-logo span{
+  color:#168cff;
+}
+
+.intro-line{
   height:2px;
-  width:220px;
-  margin:18px auto;
+  width:260px;
+  max-width:80vw;
+  margin:20px auto;
   background:linear-gradient(90deg,transparent,#168cff,transparent);
-  animation:scan 1.4s infinite;
+  animation:scan 1.5s infinite;
 }
 
-.introText{
+.intro-text{
   color:#8b9ab0;
   font-size:12px;
   letter-spacing:3px;
 }
 
-@keyframes introScale{
-  from{opacity:0;transform:scale(.85)}
-  to{opacity:1;transform:scale(1)}
+@keyframes introIn{
+  from{opacity:0;transform:translateY(20px) scale(.95)}
+  to{opacity:1;transform:none}
 }
 
 @keyframes scan{
-  0%{transform:scaleX(.3);opacity:.2}
-  50%{transform:scaleX(1);opacity:1}
-  100%{transform:scaleX(.3);opacity:.2}
+  0%,100%{opacity:.3;transform:scaleX(.5)}
+  50%{opacity:1;transform:scaleX(1)}
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header{
   position:sticky;
   top:0;
-  z-index:1000;
-  backdrop-filter:blur(18px);
-  background:rgba(2,6,17,.82);
-  border-bottom:1px solid rgba(255,255,255,.05);
+  z-index:5000;
+  backdrop-filter:blur(20px);
+  background:rgba(2,6,17,.78);
+  border-bottom:1px solid rgba(45,145,255,.12);
 }
 
 .nav{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
-  min-height:72px;
-  padding:0 18px;
+  min-height:75px;
+  padding:0 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  gap:20px;
 }
 
 .logo{
   font-weight:1000;
-  font-size:22px;
-  letter-spacing:2px;
-  cursor:pointer;
-  background:linear-gradient(90deg,#fff,#168cff,#00c8ff);
-  -webkit-background-clip:text;
-  color:transparent;
+  font-size:24px;
+  letter-spacing:3px;
 }
 
-.telegramBtn{
-  padding:11px 16px;
-  border-radius:13px;
-  background:rgba(22,140,255,.12);
-  border:1px solid rgba(22,140,255,.3);
-  color:#dcebff;
+.logo span{
+  color:#168cff;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.nav-links button,
+.mobile-menu button{
+  border:0;
+  background:transparent;
+  color:#9bacbf;
+  padding:10px 13px;
+  border-radius:12px;
   transition:.25s;
+  font-size:13px;
 }
 
-.telegramBtn:hover{
-  transform:translateY(-2px);
-  background:rgba(22,140,255,.2);
+.nav-links button:hover,
+.mobile-menu button:hover{
+  color:#fff;
+  background:rgba(22,140,255,.1);
 }
 
-/* NOTICE */
+.telegram-btn{
+  background:linear-gradient(135deg,#168cff,#0066ff)!important;
+  color:#fff!important;
+  box-shadow:0 8px 30px rgba(0,102,255,.22);
+}
+
+.menu-btn{
+  display:none;
+  border:1px solid rgba(22,140,255,.2);
+  background:rgba(9,24,45,.8);
+  color:white;
+  border-radius:12px;
+  width:44px;
+  height:44px;
+  font-size:20px;
+}
+
+.mobile-menu{
+  display:none;
+  padding:10px 20px 20px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+.mobile-menu.open{
+  display:grid;
+  gap:5px;
+}
+
+.mobile-menu button{
+  text-align:right;
+  width:100%;
+}
+
+/* ================= NOTICE ================= */
 
 .notice{
-  max-width:1200px;
+  max-width:1250px;
   margin:15px auto 0;
-  padding:0 18px;
+  padding:0 20px;
 }
 
-.noticeInner{
-  border:1px solid var(--border);
-  background:linear-gradient(90deg,rgba(0,100,255,.1),rgba(0,200,255,.04));
-  border-radius:15px;
-  padding:12px 15px;
-  text-align:center;
-  font-size:13px;
-  color:#c8dcf5;
+.notice-inner{
+  border:1px solid rgba(22,140,255,.16);
+  background:rgba(7,20,38,.65);
+  border-radius:14px;
+  padding:11px 15px;
+  color:#9fb0c4;
+  font-size:12px;
 }
 
-/* PAGES */
+/* ================= GENERAL ================= */
+
+main{
+  max-width:1250px;
+  margin:auto;
+  padding:0 20px 70px;
+}
 
 .page{
   display:none;
-  animation:pageIn .35s ease;
+  animation:pageIn .45s ease;
 }
 
 .page.active{
@@ -197,600 +251,515 @@ header{
 @keyframes pageIn{
   from{
     opacity:0;
-    transform:translateY(10px);
+    transform:translateY(15px);
   }
   to{
     opacity:1;
-    transform:translateY(0);
+    transform:none;
   }
 }
 
-.container{
-  width:min(1200px,calc(100% - 30px));
-  margin:auto;
+.hero{
+  min-height:650px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
 }
 
-/* HERO */
+.hero::before{
+  content:"";
+  position:absolute;
+  width:450px;
+  height:450px;
+  border-radius:50%;
+  background:rgba(0,119,255,.12);
+  filter:blur(100px);
+  pointer-events:none;
+}
 
-.hero{
-  padding:80px 0 55px;
-  text-align:center;
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:850px;
 }
 
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:7px;
+  gap:8px;
   padding:8px 13px;
+  border:1px solid rgba(22,140,255,.22);
   border-radius:999px;
-  background:rgba(22,140,255,.1);
-  border:1px solid rgba(22,140,255,.25);
-  color:#9ed0ff;
+  color:#8fbfff;
+  background:rgba(22,140,255,.06);
   font-size:12px;
   margin-bottom:20px;
 }
 
 .hero h1{
-  font-size:clamp(42px,8vw,78px);
+  font-size:clamp(40px,8vw,85px);
   line-height:1;
   font-weight:1000;
-  letter-spacing:3px;
-  background:linear-gradient(90deg,#fff 10%,#168cff 55%,#00c8ff);
-  -webkit-background-clip:text;
-  color:transparent;
+  letter-spacing:-3px;
 }
 
-.hero h2{
-  margin-top:17px;
-  font-size:clamp(17px,3vw,25px);
-  color:#c4d7ed;
+.hero h1 span{
+  color:#168cff;
+  text-shadow:0 0 40px rgba(22,140,255,.45);
 }
 
 .hero p{
-  max-width:700px;
-  margin:18px auto 0;
+  color:#8b9ab0;
+  max-width:650px;
+  margin:25px auto;
   line-height:2;
-  color:var(--muted);
+  font-size:14px;
 }
 
-.heroBtns{
-  margin-top:30px;
+.hero-buttons{
   display:flex;
   justify-content:center;
-  flex-wrap:wrap;
   gap:12px;
+  flex-wrap:wrap;
 }
 
 .btn{
   border:0;
-  padding:14px 21px;
-  border-radius:14px;
-  color:#fff;
-  font-weight:800;
+  padding:13px 20px;
+  border-radius:13px;
+  font-weight:bold;
+  font-size:13px;
   transition:.25s;
 }
 
 .btn:hover{
-  transform:translateY(-3px);
+  transform:translateY(-2px);
 }
 
-.btnPrimary{
+.btn-primary{
+  color:#fff;
   background:linear-gradient(135deg,#168cff,#0066ff);
-  box-shadow:0 10px 30px rgba(0,102,255,.2);
+  box-shadow:0 15px 40px rgba(0,102,255,.22);
 }
 
-.btnDark{
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
+.btn-secondary{
+  color:#dbe9ff;
+  background:rgba(9,24,45,.8);
+  border:1px solid rgba(45,145,255,.18);
 }
-
-/* SECTION */
 
 .section{
-  padding:35px 0;
+  margin-top:50px;
 }
 
-.sectionTitle{
+.section-title{
   margin-bottom:22px;
 }
 
-.sectionTitle h2{
+.section-title h2{
   font-size:25px;
-}
-
-.sectionTitle p{
-  color:var(--muted);
-  margin-top:8px;
-  font-size:13px;
-}
-
-/* OFFER */
-
-.offer{
-  margin:20px 0 40px;
-  padding:22px;
-  border-radius:22px;
-  border:1px solid rgba(0,200,255,.2);
-  background:
-    radial-gradient(circle at 90% 20%,rgba(0,200,255,.12),transparent 30%),
-    var(--card);
-  box-shadow:var(--shadow);
-}
-
-.offer h3{
-  font-size:20px;
   margin-bottom:8px;
 }
 
-.offer p{
-  color:var(--muted);
-  line-height:1.9;
+.section-title p{
+  color:#73849b;
+  font-size:12px;
 }
 
-/* CATEGORY */
+/* ================= SPECIAL ================= */
 
-.categories{
+.special{
+  border:1px solid rgba(0,200,255,.2);
+  background:
+    radial-gradient(circle at 100% 0,rgba(0,200,255,.08),transparent 35%),
+    rgba(7,20,38,.8);
+  border-radius:22px;
+  padding:25px;
+  position:relative;
+  overflow:hidden;
+}
+
+.special::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  background:rgba(0,119,255,.1);
+  filter:blur(60px);
+  left:-50px;
+  bottom:-70px;
+}
+
+.special h3{
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.special p{
+  color:#8798ae;
+  font-size:13px;
+  line-height:2;
+}
+
+/* ================= CATEGORY ================= */
+
+.category-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  gap:14px;
 }
 
 .category{
+  min-height:150px;
+  padding:20px;
+  border:1px solid rgba(45,145,255,.13);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(9,24,45,.85),rgba(4,13,27,.85));
+  transition:.3s;
   position:relative;
   overflow:hidden;
-  min-height:170px;
-  padding:22px;
-  border-radius:21px;
-  background:var(--card);
-  border:1px solid var(--border);
-  transition:.3s;
   cursor:pointer;
 }
 
 .category::before{
   content:"";
   position:absolute;
-  width:130px;
-  height:130px;
-  border-radius:50%;
-  background:rgba(0,140,255,.09);
-  top:-55px;
-  left:-45px;
-  filter:blur(4px);
+  inset:0;
+  background:linear-gradient(135deg,rgba(22,140,255,.1),transparent 50%);
+  opacity:0;
+  transition:.3s;
 }
 
 .category:hover{
-  transform:translateY(-7px);
-  border-color:rgba(22,140,255,.55);
-  box-shadow:0 18px 45px rgba(0,100,255,.12);
+  transform:translateY(-5px);
+  border-color:rgba(22,140,255,.4);
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
 }
 
-.category .icon{
-  font-size:34px;
-  margin-bottom:17px;
+.category:hover::before{
+  opacity:1;
+}
+
+.category-icon{
+  font-size:30px;
+  margin-bottom:15px;
 }
 
 .category h3{
-  font-size:17px;
+  font-size:16px;
+  margin-bottom:7px;
 }
 
 .category p{
-  margin-top:8px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.8;
+  color:#73849b;
+  font-size:11px;
 }
 
-.category .arrow{
-  position:absolute;
-  left:18px;
-  bottom:17px;
-  color:#65b6ff;
+/* ================= SEARCH ================= */
+
+.search-box{
+  display:flex;
+  gap:10px;
+  max-width:650px;
 }
 
-/* SEARCH */
-
-.searchBox{
-  position:relative;
-  margin:25px 0;
-}
-
-.searchBox input{
-  width:100%;
-  padding:17px 18px;
-  background:rgba(255,255,255,.035);
-  border:1px solid var(--border);
-  border-radius:15px;
+.search-box input{
+  flex:1;
+  min-width:0;
+  border:1px solid rgba(45,145,255,.16);
+  background:rgba(5,16,32,.9);
   color:#fff;
   outline:none;
+  padding:14px 16px;
+  border-radius:14px;
 }
 
-.searchBox input:focus{
-  border-color:#168cff;
-  box-shadow:0 0 0 3px rgba(22,140,255,.08);
-}
-
-/* CARDS */
-
-.cards{
+.search-results{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+  gap:8px;
+  margin-top:15px;
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-  box-shadow:var(--shadow);
-  transition:.25s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(22,140,255,.38);
-}
-
-.cardTop{
+.search-result{
+  border:1px solid rgba(45,145,255,.12);
+  background:rgba(7,20,38,.65);
+  padding:13px 15px;
+  border-radius:13px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
 }
 
-.card h3{
-  font-size:18px;
+.search-result small{
+  color:#72849a;
 }
 
-.cardDesc{
-  color:var(--muted);
-  font-size:13px;
+/* ================= CARDS ================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.card{
+  background:linear-gradient(145deg,rgba(9,24,45,.9),rgba(4,13,27,.9));
+  border:1px solid rgba(45,145,255,.13);
+  border-radius:20px;
+  padding:22px;
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(22,140,255,.35);
+}
+
+.card h3{
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.card .desc{
+  color:#73849b;
+  font-size:12px;
   line-height:1.9;
-  margin:14px 0;
+  min-height:45px;
 }
 
 .price{
-  color:#62bdff;
-  font-size:20px;
-  font-weight:900;
-  margin:15px 0;
+  font-size:21px;
+  font-weight:1000;
+  margin:20px 0;
 }
 
-.tag{
-  display:inline-block;
+.price small{
   font-size:11px;
-  padding:5px 8px;
+  color:#71849b;
+  font-weight:normal;
+}
+
+.status{
+  display:inline-flex;
+  padding:5px 9px;
   border-radius:8px;
+  font-size:10px;
+  margin-bottom:12px;
+}
+
+.available{
   background:rgba(0,230,118,.08);
-  color:#55ef9c;
-  border:1px solid rgba(0,230,118,.15);
+  color:#00e676;
 }
 
-.tag.yellow{
-  background:rgba(255,193,7,.08);
-  color:#ffd45c;
-  border-color:rgba(255,193,7,.15);
+.unavailable{
+  background:rgba(255,79,104,.08);
+  color:#ff4f68;
 }
 
-/* VOLUMES */
-
-.volumeGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:15px;
+.card-actions{
+  display:flex;
+  gap:8px;
 }
 
-.volumeBtn{
-  padding:14px;
-  border-radius:13px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.03);
-  color:#fff;
-  transition:.2s;
+.card-actions .btn{
+  flex:1;
 }
 
-.volumeBtn:hover{
-  border-color:#168cff;
-  background:rgba(22,140,255,.08);
-}
-
-/* STATS */
+/* ================= STATS ================= */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
+  gap:14px;
 }
 
 .stat{
   text-align:center;
-  padding:28px 15px;
-  border-radius:20px;
-  border:1px solid var(--border);
-  background:var(--card);
+  padding:25px;
+  border:1px solid rgba(45,145,255,.12);
+  background:rgba(7,20,38,.6);
+  border-radius:18px;
 }
 
 .stat strong{
   display:block;
-  font-size:30px;
-  color:#68bdff;
-  margin-bottom:8px;
+  font-size:28px;
+  color:#168cff;
+  margin-bottom:7px;
 }
 
 .stat span{
-  color:var(--muted);
-  font-size:13px;
+  color:#71849b;
+  font-size:11px;
 }
 
-/* STATUS */
-
-.statusBox{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.status{
-  padding:20px;
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.statusDot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 14px rgba(0,230,118,.6);
-  display:inline-block;
-  margin-left:8px;
-}
-
-/* TABLE */
-
-.tableWrap{
-  overflow:auto;
-  border:1px solid var(--border);
-  border-radius:18px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:600px;
-}
-
-th,td{
-  padding:15px;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  text-align:center;
-}
-
-th{
-  color:#8fcaff;
-  background:rgba(22,140,255,.06);
-}
-
-td{
-  color:#c4d2e2;
-}
-
-/* FAQ */
+/* ================= FAQ ================= */
 
 .faq{
-  border:1px solid var(--border);
-  border-radius:16px;
+  border:1px solid rgba(45,145,255,.12);
+  background:rgba(7,20,38,.65);
+  border-radius:15px;
+  margin-bottom:9px;
   overflow:hidden;
-  background:var(--card);
 }
 
-.faqItem + .faqItem{
-  border-top:1px solid rgba(255,255,255,.05);
-}
-
-.faqQ{
+.faq button{
   width:100%;
-  padding:17px;
   border:0;
-  background:none;
+  background:transparent;
   color:#fff;
+  text-align:right;
+  padding:17px;
+  font-size:13px;
   display:flex;
   justify-content:space-between;
-  text-align:right;
-  font-weight:700;
 }
 
-.faqA{
+.faq-content{
   max-height:0;
   overflow:hidden;
-  color:var(--muted);
+  transition:max-height .35s ease;
+  color:#788ba1;
+  font-size:12px;
   line-height:2;
-  font-size:13px;
   padding:0 17px;
-  transition:.3s;
 }
 
-.faqItem.open .faqA{
-  max-height:180px;
-  padding:0 17px 17px;
+.faq.open .faq-content{
+  max-height:200px;
+  padding-bottom:17px;
 }
 
-/* GUIDE */
+/* ================= GUIDE ================= */
 
-.guideTabs{
+.tabs{
   display:flex;
   flex-wrap:wrap;
-  gap:9px;
+  gap:8px;
   margin-bottom:18px;
 }
 
-.guideTabs button{
+.tab{
+  border:1px solid rgba(45,145,255,.14);
+  background:rgba(7,20,38,.7);
+  color:#8295aa;
   padding:10px 14px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.03);
-  color:#bcd0e5;
+  border-radius:11px;
 }
 
-.guideContent{
-  display:none;
-  padding:24px;
+.tab.active{
+  color:#fff;
+  background:#0b56a4;
+  border-color:#168cff;
+}
+
+.guide-box{
+  border:1px solid rgba(45,145,255,.13);
+  background:rgba(7,20,38,.65);
   border-radius:20px;
-  background:var(--card);
-  border:1px solid var(--border);
-  line-height:2;
-  color:#bdcce0;
-}
-
-.guideContent.active{
-  display:block;
-}
-
-.guideContent ol{
-  padding-right:22px;
-}
-
-/* BOT */
-
-.botBox{
-  max-width:650px;
-  margin:50px auto;
-  border-radius:25px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  background:var(--card2);
-  box-shadow:var(--shadow);
-}
-
-.botHead{
-  padding:20px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  border-bottom:1px solid var(--border);
-  background:rgba(22,140,255,.07);
-}
-
-.botAvatar{
-  width:48px;
-  height:48px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:linear-gradient(135deg,#168cff,#0066ff);
-  font-size:22px;
-}
-
-.botMessages{
-  padding:22px;
-}
-
-.message{
-  width:fit-content;
-  max-width:90%;
-  padding:14px;
-  border-radius:15px;
-  background:rgba(255,255,255,.05);
-  margin-bottom:12px;
-  color:#c7d5e6;
-  line-height:1.9;
+  padding:25px;
+  line-height:2.2;
+  color:#9aabbe;
   font-size:13px;
 }
 
-.message.me{
-  margin-right:auto;
-  background:rgba(22,140,255,.12);
+.guide-box strong{
+  color:#fff;
 }
 
-/* SUPPORT */
+/* ================= RULES ================= */
 
-.supportForm{
-  max-width:700px;
-  margin:auto;
+.rules-box{
+  border:1px solid rgba(255,79,104,.17);
+  background:
+    radial-gradient(circle at top right,rgba(255,79,104,.06),transparent 30%),
+    rgba(7,20,38,.75);
+  border-radius:20px;
+  padding:25px;
 }
 
-.input,
+.rules-box h3{
+  margin-bottom:15px;
+}
+
+.rules-box ul{
+  padding-right:20px;
+}
+
+.rules-box li{
+  color:#a0afc0;
+  margin:12px 0;
+  line-height:1.9;
+}
+
+.rules-box li::marker{
+  color:#ff4f68;
+}
+
+/* ================= SUPPORT ================= */
+
 textarea{
   width:100%;
-  background:rgba(255,255,255,.035);
-  border:1px solid var(--border);
-  color:#fff;
-  outline:none;
-  border-radius:15px;
-  padding:15px;
-}
-
-textarea{
   min-height:180px;
   resize:vertical;
-}
-
-/* FOOTER */
-
-footer{
-  margin-top:70px;
-  border-top:1px solid rgba(255,255,255,.06);
-  background:#01040b;
-}
-
-.footerGrid{
-  padding:40px 0;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:25px;
-}
-
-.footerTitle{
-  font-weight:900;
-  font-size:20px;
-  margin-bottom:12px;
-}
-
-footer p,
-footer a{
-  color:var(--muted);
-  font-size:13px;
+  border:1px solid rgba(45,145,255,.14);
+  background:rgba(5,16,32,.9);
+  color:#fff;
+  border-radius:16px;
+  outline:none;
+  padding:15px;
   line-height:2;
 }
 
-.footerLinks{
+.support-box{
+  max-width:800px;
+}
+
+/* ================= CART FLOAT ================= */
+
+.cart-float{
+  position:fixed;
+  left:22px;
+  bottom:22px;
+  z-index:4000;
+  border:1px solid rgba(22,140,255,.35);
+  background:linear-gradient(135deg,#0b4e93,#0066ff);
+  color:#fff;
+  min-width:58px;
+  height:58px;
+  border-radius:18px;
+  box-shadow:0 15px 50px rgba(0,102,255,.35);
+  font-size:20px;
+  transition:.25s;
+}
+
+.cart-float:hover{
+  transform:translateY(-3px);
+}
+
+.cart-count{
+  position:absolute;
+  top:-7px;
+  right:-7px;
+  width:23px;
+  height:23px;
+  border-radius:50%;
+  background:#ff3154;
+  color:#fff;
+  font-size:11px;
   display:flex;
-  flex-direction:column;
-  gap:7px;
-}
-
-.footerLinks a{
-  cursor:pointer;
-}
-
-.footerBottom{
-  padding:17px;
-  border-top:1px solid rgba(255,255,255,.05);
-  text-align:center;
-  color:#64748b;
-  font-size:11px;
-}
-
-.badgeUnion{
-  display:inline-flex;
-  margin-top:15px;
   align-items:center;
-  gap:9px;
-  padding:9px 12px;
-  border-radius:12px;
-  border:1px solid rgba(22,140,255,.2);
-  color:#8dbbe3;
-  font-size:11px;
-  background:rgba(22,140,255,.05);
+  justify-content:center;
+  font-weight:bold;
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
@@ -799,7 +768,7 @@ footer a{
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:18px;
   background:rgba(0,0,0,.72);
   backdrop-filter:blur(8px);
 }
@@ -808,16 +777,18 @@ footer a{
   display:flex;
 }
 
-.modalBox{
-  width:min(520px,100%);
+.modal-box{
+  width:min(620px,100%);
   max-height:90vh;
   overflow:auto;
-  background:#071426;
-  border:1px solid var(--border);
+  background:
+    radial-gradient(circle at top right,rgba(22,140,255,.08),transparent 35%),
+    #061120;
+  border:1px solid rgba(45,145,255,.2);
   border-radius:22px;
-  padding:23px;
-  box-shadow:0 30px 100px rgba(0,0,0,.6);
-  animation:modalIn .25s ease;
+  padding:24px;
+  box-shadow:0 30px 100px rgba(0,0,0,.5);
+  animation:modalIn .3s ease;
 }
 
 @keyframes modalIn{
@@ -831,105 +802,267 @@ footer a{
   }
 }
 
-.modalHead{
+.modal-head{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
+  gap:10px;
   margin-bottom:20px;
 }
 
+.modal-head h3{
+  font-size:19px;
+}
+
 .close{
-  border:0;
-  background:rgba(255,255,255,.05);
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
   color:#fff;
-  width:36px;
-  height:36px;
-  border-radius:10px;
   font-size:18px;
 }
 
+.modal-note{
+  color:#7e90a6;
+  font-size:11px;
+  line-height:2;
+  margin-bottom:15px;
+}
+
+.checkbox{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  border:1px solid rgba(255,79,104,.15);
+  background:rgba(255,79,104,.04);
+  border-radius:13px;
+  padding:13px;
+  margin:15px 0;
+  cursor:pointer;
+}
+
+.checkbox input{
+  margin-top:4px;
+  accent-color:#168cff;
+}
+
+.checkbox span{
+  color:#a9b7c7;
+  font-size:12px;
+  line-height:1.8;
+}
+
 .invoice{
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.06);
+  border:1px solid rgba(45,145,255,.12);
+  background:rgba(2,10,21,.7);
   border-radius:15px;
   padding:15px;
-  line-height:2;
 }
 
-.invoiceRow{
+.invoice-row{
   display:flex;
   justify-content:space-between;
+  gap:15px;
+  padding:10px 0;
   border-bottom:1px solid rgba(255,255,255,.05);
-  padding:8px 0;
+  font-size:12px;
 }
 
-.invoiceRow:last-child{
+.invoice-row:last-child{
   border-bottom:0;
 }
 
-.bank{
-  margin-top:15px;
-  padding:15px;
-  border-radius:15px;
-  border:1px dashed rgba(0,200,255,.3);
-  background:rgba(0,200,255,.04);
-  line-height:2;
+.invoice-row span:first-child{
+  color:#7d8ea3;
 }
 
-.cardNumber{
-  direction:ltr;
-  text-align:center;
-  font-size:19px;
-  letter-spacing:2px;
-  color:#65bdff;
-  font-weight:900;
-  margin:7px 0;
+.invoice-total{
+  font-size:20px;
+  font-weight:1000;
+  color:#168cff;
 }
 
-.modalBtns{
+.modal-actions{
   display:flex;
-  gap:10px;
-  margin-top:18px;
+  gap:9px;
+  margin-top:17px;
 }
 
-.modalBtns .btn{
+.modal-actions .btn{
   flex:1;
 }
 
-/* LOADER */
-
-.loader{
-  position:fixed;
-  inset:0;
-  z-index:20000;
-  background:rgba(2,6,17,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  backdrop-filter:blur(5px);
+.cart-items{
+  display:grid;
+  gap:10px;
+  margin-bottom:15px;
 }
 
-.loader.show{
+.cart-item{
   display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border:1px solid rgba(45,145,255,.1);
+  background:rgba(2,10,21,.65);
+  border-radius:14px;
+  padding:13px;
 }
 
-.spinner{
-  width:42px;
-  height:42px;
-  border:3px solid rgba(255,255,255,.1);
-  border-top-color:#168cff;
-  border-radius:50%;
-  animation:spin .7s linear infinite;
+.cart-item-info strong{
+  display:block;
+  font-size:13px;
+  margin-bottom:5px;
 }
 
-@keyframes spin{
-  to{transform:rotate(360deg)}
+.cart-item-info small{
+  color:#71849b;
 }
 
-/* RESPONSIVE */
+.qty{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
 
-@media(max-width:900px){
-  .categories{
+.qty button{
+  width:28px;
+  height:28px;
+  border:1px solid rgba(45,145,255,.15);
+  background:#081a30;
+  color:#fff;
+  border-radius:8px;
+}
+
+.empty-cart{
+  text-align:center;
+  color:#71849b;
+  padding:35px 10px;
+}
+
+.copy-row{
+  display:flex;
+  gap:8px;
+}
+
+.copy-row input{
+  flex:1;
+  min-width:0;
+  border:1px solid rgba(45,145,255,.14);
+  background:#020a15;
+  color:#fff;
+  padding:12px;
+  border-radius:11px;
+  direction:ltr;
+}
+
+.coupon-row{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.coupon-row input{
+  flex:1;
+  min-width:0;
+  border:1px solid rgba(45,145,255,.14);
+  background:#020a15;
+  color:#fff;
+  padding:12px;
+  border-radius:11px;
+  outline:none;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:30000;
+  padding:13px 16px;
+  border:1px solid rgba(45,145,255,.22);
+  background:#071426;
+  color:#fff;
+  border-radius:13px;
+  box-shadow:0 15px 50px rgba(0,0,0,.4);
+  transform:translateY(20px);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  font-size:12px;
+}
+
+.toast.show{
+  opacity:1;
+  transform:none;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  border-top:1px solid rgba(45,145,255,.1);
+  background:rgba(2,6,17,.8);
+  padding:35px 20px;
+}
+
+.footer-inner{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:30px;
+}
+
+.footer-col h3{
+  margin-bottom:13px;
+  font-size:14px;
+}
+
+.footer-col p,
+.footer-col button,
+.footer-col a{
+  color:#71849b;
+  font-size:11px;
+  line-height:2.2;
+}
+
+.footer-col button{
+  display:block;
+  border:0;
+  background:none;
+  padding:0;
+}
+
+.footer-col button:hover,
+.footer-col a:hover{
+  color:#168cff;
+}
+
+.copyright{
+  max-width:1250px;
+  margin:25px auto 0;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.04);
+  text-align:center;
+  color:#526379;
+  font-size:10px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:950px){
+  .nav-links{
+    display:none;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .category-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -937,47 +1070,61 @@ footer a{
     grid-template-columns:repeat(2,1fr);
   }
 
+  .footer-inner{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  main{
+    padding:0 14px 50px;
+  }
+
+  .nav{
+    padding:0 14px;
+  }
+
+  .notice{
+    padding:0 14px;
+  }
+
+  .hero{
+    min-height:560px;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .category-grid,
+  .cards,
   .stats{
     grid-template-columns:1fr;
   }
 
-  .footerGrid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:600px){
-  .nav{
-    min-height:64px;
-  }
-
-  .telegramBtn{
-    padding:9px 11px;
-    font-size:12px;
-  }
-
-  .hero{
-    padding:55px 0 40px;
-  }
-
-  .categories,
-  .cards,
-  .volumeGrid,
-  .statusBox,
-  .footerGrid{
+  .footer-inner{
     grid-template-columns:1fr;
   }
 
-  .category{
-    min-height:145px;
-  }
-
-  .hero h1{
-    font-size:47px;
-  }
-
-  .modalBtns{
+  .search-box{
     flex-direction:column;
+  }
+
+  .search-box .btn{
+    width:100%;
+  }
+
+  .modal-box{
+    padding:18px;
+  }
+
+  .modal-actions{
+    flex-direction:column;
+  }
+
+  .cart-float{
+    left:15px;
+    bottom:15px;
   }
 }
 </style>
@@ -987,495 +1134,349 @@ footer a{
 
 <!-- INTRO -->
 <div id="intro">
-  <div class="introBox">
-    <div class="introLogo">V2GURD</div>
-    <div class="introLine"></div>
-    <div class="introText">SECURE • FAST • PREMIUM</div>
+  <div class="intro-box">
+    <div class="intro-logo">V2<span>GURD</span></div>
+    <div class="intro-line"></div>
+    <div class="intro-text">SECURE • FAST • PREMIUM</div>
   </div>
 </div>
 
 <!-- HEADER -->
 <header>
-  <div class="nav">
-    <div class="logo" onclick="showPage('home')">V2GURD</div>
+  <nav class="nav">
 
-    <a class="telegramBtn"
-       href="https://t.me/Vtwoguard"
-       target="_blank">
-      ✈️ ارتباط با ما
+    <button class="menu-btn" onclick="toggleMobileMenu()" aria-label="منو">
+      ☰
+    </button>
+
+    <div class="logo">
+      V2<span>GURD</span>
+    </div>
+
+    <div class="nav-links">
+      <button onclick="showPage('home')">خانه</button>
+      <button onclick="showPage('vpn')">VPN</button>
+      <button onclick="showPage('panels')">پنل</button>
+      <button onclick="showPage('servers')">سرور</button>
+      <button onclick="showPage('jumpjump')">JumpJump</button>
+      <button onclick="showPage('guide')">آموزش</button>
+      <button onclick="showPage('rules')">قوانین</button>
+      <button onclick="openBotPage()">ربات</button>
+      <button onclick="openSupport()">پشتیبانی</button>
+    </div>
+
+    <a class="btn telegram-btn" href="https://t.me/Vtwoguard" target="_blank">
+      ارتباط با ما
     </a>
+
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button onclick="mobileGo('home')">⌂ خانه</button>
+    <button onclick="mobileGo('vpn')">◉ VPN</button>
+    <button onclick="mobileGo('panels')">▣ پنل</button>
+    <button onclick="mobileGo('servers')">◈ سرور</button>
+    <button onclick="mobileGo('jumpjump')">⚡ JumpJump</button>
+    <button onclick="mobileGo('guide')">؟ آموزش</button>
+    <button onclick="mobileGo('rules')">⚠ قوانین</button>
+    <button onclick="mobileGo('bot')">🤖 ربات</button>
+    <button onclick="mobileGo('support')">🎫 پشتیبانی</button>
   </div>
 </header>
 
 <div class="notice">
-  <div class="noticeInner">
+  <div class="notice-inner">
     ⚡ V2GURD — سرویس‌های VIP، سرور، پنل و JumpJump
   </div>
 </div>
 
+<main>
 
 <!-- ================= HOME ================= -->
+<section class="page active" id="home">
 
-<main id="home" class="page active">
-
-  <section class="hero">
-    <div class="container">
+  <div class="hero">
+    <div class="hero-content">
 
       <div class="badge">
-        🛡️ زیرساخت سریع و حرفه‌ای
+        ● سیستم فعال و آماده سرویس‌دهی
       </div>
 
-      <h1>V2GURD</h1>
-
-      <h2>
-        Secure • Fast • Premium
-      </h2>
+      <h1>
+        V2<span>GURD</span>
+      </h1>
 
       <p>
-        سرویس‌های حرفه‌ای VPN، سرور، پنل فروشندگی و JumpJump
-        با تمرکز روی سرعت، پایداری و تجربه بهتر.
+        سرویس‌های حرفه‌ای، پایدار و سریع برای کاربران حرفه‌ای.
+        VPN، سرور، پنل و JumpJump با پشتیبانی مستقیم.
       </p>
 
-      <div class="heroBtns">
-        <button class="btn btnPrimary"
-                onclick="scrollToCategories()">
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="scrollToCategories()">
           مشاهده سرویس‌ها
         </button>
 
-        <button class="btn btnDark"
-                onclick="openBotPage()">
-          🤖 خرید از ربات
+        <button class="btn btn-secondary" onclick="openBotPage()">
+          ورود به ربات
         </button>
       </div>
 
     </div>
-  </section>
+  </div>
 
-
-  <div class="container">
-
-    <!-- OFFER -->
-    <div class="offer">
+  <div class="section">
+    <div class="special">
       <h3>🔥 پیشنهاد ویژه V2GURD</h3>
       <p>
-        برای مشاهده قیمت‌ها و سرویس‌های موجود،
-        از دسته‌بندی‌های زیر استفاده کنید.
+        برای مشاهده قیمت‌ها و سرویس‌های موجود از دسته‌بندی‌ها استفاده کنید.
+        سفارش‌ها پس از ثبت، با شماره سفارش اختصاصی پیگیری می‌شوند.
       </p>
     </div>
+  </div>
 
+  <div class="section" id="categories">
 
-    <!-- CATEGORIES -->
-    <section class="section" id="categories">
+    <div class="section-title">
+      <h2>دسته‌بندی سرویس‌ها</h2>
+      <p>سرویس موردنظر خود را انتخاب کنید.</p>
+    </div>
 
-      <div class="sectionTitle">
-        <h2>دسته‌بندی محصولات</h2>
-        <p>
-          برای ورود به هر بخش روی کارت موردنظر بزنید.
-        </p>
+    <div class="category-grid">
+
+      <div class="category" role="button" tabindex="0"
+           onclick="showPage('vpn')"
+           onkeydown="categoryKey(event,'vpn')">
+        <div class="category-icon">🛡️</div>
+        <h3>VPN</h3>
+        <p>سرویس‌های VIP و ویژه</p>
       </div>
 
-      <div class="categories">
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="showPage('vpn')">
-          <div class="icon">🛡️</div>
-          <h3>VPN</h3>
-          <p>
-            سرویس‌های VIP و ویژه V2GURD
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="showPage('panels')">
-          <div class="icon">🎛️</div>
-          <h3>پنل فروشندگی</h3>
-          <p>
-            پنل‌های حجمی و نامحدود
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="showPage('servers')">
-          <div class="icon">🌐</div>
-          <h3>سرور</h3>
-          <p>
-            سرورهای اقتصادی، CDN، تانل و حرفه‌ای
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="showPage('jumpjump')">
-          <div class="icon">🚀</div>
-          <h3>JumpJump VIP</h3>
-          <p>
-            اتصال بهتر و پایدارتر به سرورهای VIP
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="showPage('guide')">
-          <div class="icon">📖</div>
-          <h3>آموزش اتصال</h3>
-          <p>
-            راهنمای Android، iPhone، Windows و Mac
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="showPage('rules')">
-          <div class="icon">📜</div>
-          <h3>قوانین</h3>
-          <p>
-            قوانین استفاده از سرویس‌ها
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="openSupport()">
-          <div class="icon">🎫</div>
-          <h3>پشتیبانی</h3>
-          <p>
-            ارسال تیکت و ارتباط با پشتیبانی
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-
-        <div class="category"
-             role="button"
-             tabindex="0"
-             onclick="openBotPage()">
-          <div class="icon">🤖</div>
-          <h3>ربات تلگرامی</h3>
-          <p>
-            خرید سریع سرویس از ربات
-          </p>
-          <div class="arrow">←</div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- SEARCH -->
-    <section class="section">
-
-      <div class="sectionTitle">
-        <h2>🔎 جستجوی سرویس</h2>
-        <p>نام سرویس موردنظر را جستجو کنید.</p>
+      <div class="category" role="button" tabindex="0"
+           onclick="showPage('panels')"
+           onkeydown="categoryKey(event,'panels')">
+        <div class="category-icon">▣</div>
+        <h3>پنل</h3>
+        <p>پنل‌های حجمی و نامحدود</p>
       </div>
 
-      <div class="searchBox">
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="مثلاً پنل، سرور، JumpJump..."
-          oninput="searchProducts()">
+      <div class="category" role="button" tabindex="0"
+           onclick="showPage('servers')"
+           onkeydown="categoryKey(event,'servers')">
+        <div class="category-icon">◈</div>
+        <h3>سرور</h3>
+        <p>سرورهای اقتصادی تا حرفه‌ای</p>
       </div>
 
-      <div id="searchResults" class="cards"></div>
-
-    </section>
-
-
-    <!-- WHY -->
-    <section class="section">
-
-      <div class="sectionTitle">
-        <h2>چرا V2GURD؟</h2>
+      <div class="category" role="button" tabindex="0"
+           onclick="showPage('jumpjump')"
+           onkeydown="categoryKey(event,'jumpjump')">
+        <div class="category-icon">⚡</div>
+        <h3>JumpJump</h3>
+        <p>اشتراک‌های VIP</p>
       </div>
 
-      <div class="cards">
-
-        <div class="card">
-          <div class="icon">⚡</div>
-          <h3>سرعت بالا</h3>
-          <p class="cardDesc">
-            انتخاب سرویس‌های متناسب با نیاز کاربران.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🛡️</div>
-          <h3>تمرکز روی پایداری</h3>
-          <p class="cardDesc">
-            سرویس‌ها با تمرکز روی اتصال پایدار ارائه می‌شوند.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🎧</div>
-          <h3>پشتیبانی</h3>
-          <p class="cardDesc">
-            در صورت بروز مشکل می‌توانید با پشتیبانی ارتباط بگیرید.
-          </p>
-        </div>
-
+      <div class="category" role="button" tabindex="0"
+           onclick="showPage('guide')"
+           onkeydown="categoryKey(event,'guide')">
+        <div class="category-icon">📖</div>
+        <h3>آموزش</h3>
+        <p>راهنمای اتصال و استفاده</p>
       </div>
 
-    </section>
-
-
-    <!-- USERS -->
-    <section class="section">
-
-      <div class="stats">
-
-        <div class="stat">
-          <strong>۹۷K+</strong>
-          <span>کاربر در کنار V2GURD</span>
-        </div>
-
-        <div class="stat">
-          <strong>24/7</strong>
-          <span>دسترسی به سرویس‌ها</span>
-        </div>
-
-        <div class="stat">
-          <strong>VIP</strong>
-          <span>سرویس‌های حرفه‌ای</span>
-        </div>
-
+      <div class="category" role="button" tabindex="0"
+           onclick="showPage('rules')"
+           onkeydown="categoryKey(event,'rules')">
+        <div class="category-icon">⚠️</div>
+        <h3>قوانین</h3>
+        <p>قوانین استفاده از سرویس</p>
       </div>
 
-    </section>
-
-
-    <!-- STATUS -->
-    <section class="section">
-
-      <div class="sectionTitle">
-        <h2>وضعیت سرویس</h2>
+      <div class="category" role="button" tabindex="0"
+           onclick="openSupport()"
+           onkeydown="categoryActionKey(event,openSupport)">
+        <div class="category-icon">🎫</div>
+        <h3>پشتیبانی</h3>
+        <p>ارسال تیکت و پیگیری</p>
       </div>
 
-      <div class="statusBox">
-
-        <div class="status">
-          <span>
-            <span class="statusDot"></span>
-            سرویس‌ها
-          </span>
-
-          <strong style="color:#00e676">
-            فعال
-          </strong>
-        </div>
-
-        <div class="status">
-          <span>
-            <span class="statusDot"></span>
-            پشتیبانی
-          </span>
-
-          <strong style="color:#00e676">
-            آنلاین
-          </strong>
-        </div>
-
+      <div class="category" role="button" tabindex="0"
+           onclick="openBotPage()"
+           onkeydown="categoryActionKey(event,openBotPage)">
+        <div class="category-icon">🤖</div>
+        <h3>ربات</h3>
+        <p>خرید و مشاهده سرویس‌ها</p>
       </div>
 
-    </section>
+    </div>
+  </div>
 
+  <div class="section">
 
-    <!-- COMPARE -->
-    <section class="section">
+    <div class="section-title">
+      <h2>جستجوی سرویس</h2>
+      <p>نام سرویس را وارد کنید.</p>
+    </div>
 
-      <div class="sectionTitle">
-        <h2>مقایسه سرویس‌ها</h2>
-      </div>
+    <div class="search-box">
+      <input id="searchInput"
+             type="text"
+             placeholder="مثلاً پنل، سرور، JumpJump..."
+             oninput="searchProducts()">
 
-      <div class="tableWrap">
+      <button class="btn btn-primary" onclick="searchProducts()">
+        جستجو
+      </button>
+    </div>
 
-        <table>
-
-          <thead>
-            <tr>
-              <th>سرویس</th>
-              <th>سرعت</th>
-              <th>پایداری</th>
-              <th>مناسب برای</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <tr>
-              <td>VPN VIP</td>
-              <td>★★★★★</td>
-              <td>★★★★★</td>
-              <td>مصرف روزانه</td>
-            </tr>
-
-            <tr>
-              <td>سرور حرفه‌ای</td>
-              <td>★★★★★</td>
-              <td>★★★★★</td>
-              <td>مصرف بالا</td>
-            </tr>
-
-            <tr>
-              <td>CDN</td>
-              <td>★★★★☆</td>
-              <td>★★★★☆</td>
-              <td>اتصال سریع</td>
-            </tr>
-
-            <tr>
-              <td>JumpJump VIP</td>
-              <td>★★★★★</td>
-              <td>★★★★★</td>
-              <td>اتصال VIP</td>
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </section>
-
-
-    <!-- FAQ -->
-    <section class="section">
-
-      <div class="sectionTitle">
-        <h2>سوالات متداول</h2>
-      </div>
-
-      <div class="faq">
-
-        <div class="faqItem">
-          <button class="faqQ" onclick="toggleFaq(this)">
-            چطور خرید کنم؟
-            <span>＋</span>
-          </button>
-          <div class="faqA">
-            سرویس موردنظر را انتخاب کنید، مشخصات سفارش را بررسی کنید
-            و سپس مراحل پرداخت و ارسال رسید را انجام دهید.
-          </div>
-        </div>
-
-        <div class="faqItem">
-          <button class="faqQ" onclick="toggleFaq(this)">
-            پرداخت به چه صورت است؟
-            <span>＋</span>
-          </button>
-          <div class="faqA">
-            پرداخت به صورت کارت‌به‌کارت انجام می‌شود و بعد از پرداخت
-            باید رسید را برای پشتیبانی ارسال کنید.
-          </div>
-        </div>
-
-        <div class="faqItem">
-          <button class="faqQ" onclick="toggleFaq(this)">
-            اگر در خرید مشکل داشتم چه کنم؟
-            <span>＋</span>
-          </button>
-          <div class="faqA">
-            از بخش پشتیبانی تیکت ارسال کنید یا مستقیماً با پشتیبانی
-            تلگرام ارتباط بگیرید.
-          </div>
-        </div>
-
-      </div>
-
-    </section>
+    <div class="search-results" id="searchResults"></div>
 
   </div>
 
-</main>
+  <div class="section">
 
+    <div class="section-title">
+      <h2>V2GURD در یک نگاه</h2>
+    </div>
 
-<!-- ================= VPN ================= -->
+    <div class="stats">
 
-<section id="vpn" class="page">
+      <div class="stat">
+        <strong>۹۷K+</strong>
+        <span>کاربر در کنار V2GURD</span>
+      </div>
 
-  <div class="container">
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>پشتیبانی و دسترسی</span>
+      </div>
 
-    <section class="hero">
-      <div class="badge">🛡️ V2GURD VPN</div>
-      <h1>VPN</h1>
-      <p>
-        سرویس‌های VPN حرفه‌ای برای استفاده روزمره و اتصال VIP.
-      </p>
-    </section>
+      <div class="stat">
+        <strong>⚡</strong>
+        <span>سرویس سریع و پایدار</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="section">
+
+    <div class="section-title">
+      <h2>وضعیت سرویس</h2>
+    </div>
 
     <div class="cards">
 
       <div class="card">
-        <div class="cardTop">
-          <h3>VPN VIP</h3>
-          <span class="tag">VIP</span>
-        </div>
-
-        <p class="cardDesc">
-          سرویس ویژه با تمرکز روی سرعت و پایداری.
-        </p>
-
-        <div class="price">
-          تماس برای قیمت
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="contact('VPN VIP')">
-          استعلام و خرید
-        </button>
+        <span class="status available">● فعال</span>
+        <h3>سرویس‌ها</h3>
+        <p class="desc">سرویس‌های V2GURD در دسترس هستند.</p>
       </div>
 
+      <div class="card">
+        <span class="status available">● آنلاین</span>
+        <h3>پشتیبانی</h3>
+        <p class="desc">برای دریافت پشتیبانی از تلگرام استفاده کنید.</p>
+      </div>
 
       <div class="card">
-        <div class="cardTop">
-          <h3>VPN ویژه</h3>
-          <span class="tag yellow">SPECIAL</span>
-        </div>
-
-        <p class="cardDesc">
-          گزینه مناسب برای مصرف روزانه.
-        </p>
-
-        <div class="price">
-          تماس برای قیمت
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="contact('VPN ویژه')">
-          استعلام و خرید
-        </button>
+        <span class="status available">● فعال</span>
+        <h3>ربات</h3>
+        <p class="desc">ربات فروش و مشاهده سرویس‌ها فعال است.</p>
       </div>
 
     </div>
 
-    <div class="section">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
+  </div>
+
+  <div class="section">
+
+    <div class="section-title">
+      <h2>سوالات متداول</h2>
+    </div>
+
+    <div class="faq">
+      <button onclick="toggleFaq(this)">
+        آیا قبل از خرید می‌توانم قوانین را ببینم؟
+        <span>＋</span>
       </button>
+      <div class="faq-content">
+        بله. قوانین کامل در بخش قوانین سایت قرار دارد و قبل از پرداخت نیز
+        تأیید قوانین الزامی است.
+      </div>
+    </div>
+
+    <div class="faq">
+      <button onclick="toggleFaq(this)">
+        شماره سفارش برای چه کاری است؟
+        <span>＋</span>
+      </button>
+      <div class="faq-content">
+        هر سفارش یک شماره اختصاصی دریافت می‌کند تا بتوانید سفارش خود را
+        راحت‌تر از طریق پشتیبانی پیگیری کنید.
+      </div>
+    </div>
+
+    <div class="faq">
+      <button onclick="toggleFaq(this)">
+        چطور رسید پرداخت را ارسال کنم؟
+        <span>＋</span>
+      </button>
+      <div class="faq-content">
+        پس از پرداخت روی ارسال رسید بزنید تا اطلاعات سفارش به صورت آماده
+        در تلگرام برای پشتیبانی باز شود.
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= VPN ================= -->
+<section class="page" id="vpn">
+
+  <div class="section-title">
+    <h2>🛡️ سرویس VPN</h2>
+    <p>سرویس‌های ویژه V2GURD</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>VPN VIP</h3>
+      <p class="desc">
+        سرویس VIP با کیفیت بالا و مناسب استفاده روزمره.
+      </p>
+
+      <div class="price">
+        تماس جهت قیمت
+      </div>
+
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="contact('VPN VIP')">
+          سفارش
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>VPN ویژه</h3>
+      <p class="desc">
+        سرویس ویژه V2GURD برای کاربران حرفه‌ای.
+      </p>
+
+      <div class="price">
+        تماس جهت قیمت
+      </div>
+
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="contact('VPN ویژه')">
+          سفارش
+        </button>
+      </div>
     </div>
 
   </div>
@@ -1484,98 +1485,101 @@ footer a{
 
 
 <!-- ================= PANELS ================= -->
+<section class="page" id="panels">
 
-<section id="panels" class="page">
+  <div class="section-title">
+    <h2>▣ پنل‌های V2GURD</h2>
+    <p>پنل‌های حجمی و نامحدود</p>
+  </div>
 
-  <div class="container">
+  <div class="cards">
 
-    <section class="hero">
-      <div class="badge">🎛️ پنل فروشندگی</div>
-      <h1>PANEL</h1>
-      <p>
-        پنل‌های حجمی و نامحدود مخصوص فروشندگان.
+    <div class="card">
+
+      <span class="status available">موجود</span>
+
+      <h3>پنل حجمی</h3>
+
+      <p class="desc">
+        پنل حجمی مناسب فروشندگان و مدیریت کاربران.
       </p>
-    </section>
 
-
-    <div class="cards">
-
-      <div class="card">
-
-        <div class="cardTop">
-          <h3>پنل حجمی</h3>
-          <span class="tag">VOLUME</span>
-        </div>
-
-        <p class="cardDesc">
-          هر گیگابایت ۲,۵۰۰ تومان
-          <br>
-          حداقل خرید: ۱۵۰ گیگابایت
-        </p>
-
-        <div class="volumeGrid">
-          <button class="volumeBtn" onclick="buyPanelVolume(150)">150 GB</button>
-          <button class="volumeBtn" onclick="buyPanelVolume(250)">250 GB</button>
-          <button class="volumeBtn" onclick="buyPanelVolume(500)">500 GB</button>
-          <button class="volumeBtn" onclick="buyPanelVolume(750)">750 GB</button>
-          <button class="volumeBtn" onclick="buyPanelVolume(1000)">1000 GB</button>
-        </div>
-
+      <div class="price">
+        ۲,۵۰۰ تومان
+        <small>/ هر GB</small>
       </div>
 
+      <label style="display:block;color:#788ba1;font-size:11px;margin-bottom:7px">
+        حجم پنل
+      </label>
 
-      <div class="card">
+      <select id="panelVolume"
+              style="width:100%;padding:13px;border-radius:12px;background:#020a15;color:#fff;border:1px solid rgba(45,145,255,.15);outline:none">
 
-        <div class="cardTop">
-          <h3>نامحدود 25 یوزری</h3>
-          <span class="tag">UNLIMITED</span>
-        </div>
+        <option value="150">150 GB</option>
+        <option value="250">250 GB</option>
+        <option value="500">500 GB</option>
+        <option value="750">750 GB</option>
+        <option value="1000">1000 GB</option>
 
-        <p class="cardDesc">
-          پنل نامحدود ویژه فروشندگان با ظرفیت ۲۵ کاربر.
-        </p>
+      </select>
 
-        <div class="price">
-          ۸۹۰,۰۰۰ تومان
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="invoiceModal('پنل نامحدود 25 یوزری','890000')">
-          خرید پنل
-        </button>
-
+      <div class="price" id="panelVolumePrice">
+        ۳۷۵,۰۰۰ تومان
       </div>
 
-
-      <div class="card">
-
-        <div class="cardTop">
-          <h3>نامحدود 50 یوزری</h3>
-          <span class="tag">UNLIMITED</span>
-        </div>
-
-        <p class="cardDesc">
-          پنل نامحدود ویژه فروشندگان با ظرفیت ۵۰ کاربر.
-        </p>
-
-        <div class="price">
-          ۱,۳۰۰,۰۰۰ تومان
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="invoiceModal('پنل نامحدود 50 یوزری','1300000')">
-          خرید پنل
-        </button>
-
-      </div>
+      <button class="btn btn-primary"
+              style="width:100%"
+              onclick="buyPanelVolume()">
+        افزودن به سبد
+      </button>
 
     </div>
 
 
-    <div class="section">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
+    <div class="card">
+
+      <span class="status available">موجود</span>
+
+      <h3>نامحدود 25 یوزری</h3>
+
+      <p class="desc">
+        پنل نامحدود با ظرفیت 25 کاربر.
+      </p>
+
+      <div class="price">
+        ۸۹۰,۰۰۰ تومان
+      </div>
+
+      <button class="btn btn-primary"
+              style="width:100%"
+              onclick="addProduct('panel25',1)">
+        افزودن به سبد
       </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <span class="status available">موجود</span>
+
+      <h3>نامحدود 50 یوزری</h3>
+
+      <p class="desc">
+        پنل نامحدود با ظرفیت 50 کاربر.
+      </p>
+
+      <div class="price">
+        ۱,۳۰۰,۰۰۰ تومان
+      </div>
+
+      <button class="btn btn-primary"
+              style="width:100%"
+              onclick="addProduct('panel50',1)">
+        افزودن به سبد
+      </button>
+
     </div>
 
   </div>
@@ -1584,78 +1588,67 @@ footer a{
 
 
 <!-- ================= SERVERS ================= -->
+<section class="page" id="servers">
 
-<section id="servers" class="page">
+  <div class="section-title">
+    <h2>◈ سرور</h2>
+    <p>سرور موردنظر را انتخاب کنید.</p>
+  </div>
 
-  <div class="container">
+  <div class="cards">
 
-    <section class="hero">
-      <div class="badge">🌐 SERVER</div>
-      <h1>SERVERS</h1>
-      <p>
-        انتخاب حجم و نوع سرور موردنظر.
-      </p>
-    </section>
-
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>سرور اقتصادی</h3>
-        <p class="cardDesc">مناسب مصرف معمولی</p>
-        <div class="price">۱,۲۰۰ تومان / GB</div>
-        <button class="btn btnPrimary"
-                onclick="serverBuy('سرور اقتصادی',1200)">
-          انتخاب
-        </button>
-      </div>
-
-      <div class="card">
-        <h3>سرور معمولی</h3>
-        <p class="cardDesc">تعادل بین قیمت و عملکرد</p>
-        <div class="price">۱,۵۰۰ تومان / GB</div>
-        <button class="btn btnPrimary"
-                onclick="serverBuy('سرور معمولی',1500)">
-          انتخاب
-        </button>
-      </div>
-
-      <div class="card">
-        <h3>CDN</h3>
-        <p class="cardDesc">مناسب اتصال سریع</p>
-        <div class="price">۱,۵۰۰ تومان / GB</div>
-        <button class="btn btnPrimary"
-                onclick="serverBuy('CDN',1500)">
-          انتخاب
-        </button>
-      </div>
-
-      <div class="card">
-        <h3>تانل</h3>
-        <p class="cardDesc">برای استفاده‌های تخصصی</p>
-        <div class="price">۲,۵۰۰ تومان / GB</div>
-        <button class="btn btnPrimary"
-                onclick="serverBuy('تانل',2500)">
-          انتخاب
-        </button>
-      </div>
-
-      <div class="card">
-        <h3>سرور حرفه‌ای</h3>
-        <p class="cardDesc">برای مصرف بالا و حرفه‌ای</p>
-        <div class="price">۳,۰۰۰ تومان / GB</div>
-        <button class="btn btnPrimary"
-                onclick="serverBuy('سرور حرفه‌ای',3000)">
-          انتخاب
-        </button>
-      </div>
-
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>سرور اقتصادی</h3>
+      <p class="desc">مناسب استفاده اقتصادی و سبک.</p>
+      <div class="price">۱,۲۰۰ <small>تومان / GB</small></div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="serverBuy('سرور اقتصادی',1200)">
+        افزودن به سبد
+      </button>
     </div>
 
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>سرور معمولی</h3>
+      <p class="desc">تعادل مناسب بین قیمت و کیفیت.</p>
+      <div class="price">۱,۵۰۰ <small>تومان / GB</small></div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="serverBuy('سرور معمولی',1500)">
+        افزودن به سبد
+      </button>
+    </div>
 
-    <div class="section">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>سرور CDN</h3>
+      <p class="desc">مناسب سرویس‌های مبتنی بر CDN.</p>
+      <div class="price">۱,۵۰۰ <small>تومان / GB</small></div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="serverBuy('سرور CDN',1500)">
+        افزودن به سبد
+      </button>
+    </div>
+
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>سرور تانل</h3>
+      <p class="desc">مناسب استفاده‌های تخصصی‌تر.</p>
+      <div class="price">۲,۵۰۰ <small>تومان / GB</small></div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="serverBuy('سرور تانل',2500)">
+        افزودن به سبد
+      </button>
+    </div>
+
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>سرور حرفه‌ای</h3>
+      <p class="desc">برای کاربران حرفه‌ای و مصرف بالاتر.</p>
+      <div class="price">۳,۰۰۰ <small>تومان / GB</small></div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="serverBuy('سرور حرفه‌ای',3000)">
+        افزودن به سبد
       </button>
     </div>
 
@@ -1665,130 +1658,88 @@ footer a{
 
 
 <!-- ================= JUMPJUMP ================= -->
+<section class="page" id="jumpjump">
 
-<section id="jumpjump" class="page">
+  <div class="section-title">
+    <h2>⚡ JumpJump VIP</h2>
+    <p>اشتراک‌های VIP</p>
+  </div>
 
-  <div class="container">
+  <div class="cards">
 
-    <section class="hero">
-      <div class="badge">🚀 JUMPJUMP VIP</div>
-      <h1>JUMPJUMP</h1>
-      <p>
-        سرویس JumpJump VIP برای اتصال بهتر و پایدارتر به سرورهای VIP.
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>1 دستگاه — 1 ماه</h3>
+      <p class="desc">
+        اتصال بهتر و پایدارتر به سرور VIP.
       </p>
-    </section>
-
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>1 دستگاه / 1 ماه</h3>
-
-        <p class="cardDesc">
-          مناسب استفاده شخصی روی یک دستگاه.
-        </p>
-
-        <div class="price">
-          ۷۰۰,۰۰۰ تومان
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="jumpPurchase('1 دستگاه / 1 ماه',700000)">
-          خرید
-        </button>
-      </div>
-
-
-      <div class="card">
-        <h3>2 دستگاه / 1 ماه</h3>
-
-        <p class="cardDesc">
-          استفاده همزمان روی دو دستگاه.
-        </p>
-
-        <div class="price">
-          ۹۹۹,۰۰۰ تومان
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="jumpPurchase('2 دستگاه / 1 ماه',999000)">
-          خرید
-        </button>
-      </div>
-
-
-      <div class="card">
-        <h3>2 دستگاه / 6 ماه</h3>
-
-        <p class="cardDesc">
-          اشتراک شش‌ماهه روی دو دستگاه.
-        </p>
-
-        <div class="price">
-          ۴,۶۰۰,۰۰۰ تومان
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="jumpPurchase('2 دستگاه / 6 ماه',4600000)">
-          خرید
-        </button>
-      </div>
-
-
-      <div class="card">
-        <h3>2 دستگاه / 12 ماه</h3>
-
-        <p class="cardDesc">
-          اشتراک یک‌ساله روی دو دستگاه.
-        </p>
-
-        <div class="price">
-          ۵,۵۰۰,۰۰۰ تومان
-        </div>
-
-        <button class="btn btnPrimary"
-                onclick="jumpPurchase('2 دستگاه / 12 ماه',5500000)">
-          خرید
-        </button>
-      </div>
-
+      <div class="price">۷۰۰,۰۰۰ تومان</div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="addProduct('jump1',1)">
+        افزودن به سبد
+      </button>
     </div>
 
-
-    <section class="section">
-
-      <div class="cards">
-
-        <div class="card">
-          <h3>⚡ اتصال بهتر</h3>
-          <p class="cardDesc">
-            اتصال بهتر و پایدارتر به هر سرور VIP.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>🚫 بدون تبلیغات</h3>
-          <p class="cardDesc">
-            بدون تبلیغات و بدون محدودیت زمانی.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>📱 دو دستگاه</h3>
-          <p class="cardDesc">
-            امکان استفاده همزمان یک حساب روی دو دستگاه.
-          </p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <div class="section">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>2 دستگاه — 1 ماه</h3>
+      <p class="desc">
+        استفاده همزمان روی دو دستگاه.
+      </p>
+      <div class="price">۹۹۹,۰۰۰ تومان</div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="addProduct('jump2',1)">
+        افزودن به سبد
       </button>
+    </div>
+
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>2 دستگاه — 6 ماه</h3>
+      <p class="desc">
+        اشتراک شش ماهه برای دو دستگاه.
+      </p>
+      <div class="price">۴,۶۰۰,۰۰۰ تومان</div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="addProduct('jump6',1)">
+        افزودن به سبد
+      </button>
+    </div>
+
+    <div class="card">
+      <span class="status available">موجود</span>
+      <h3>2 دستگاه — 12 ماه</h3>
+      <p class="desc">
+        اشتراک یک ساله برای دو دستگاه.
+      </p>
+      <div class="price">۵,۵۰۰,۰۰۰ تومان</div>
+      <button class="btn btn-primary" style="width:100%"
+              onclick="addProduct('jump12',1)">
+        افزودن به سبد
+      </button>
+    </div>
+
+  </div>
+
+  <div class="section">
+
+    <div class="guide-box">
+
+      <strong>مزایای JumpJump VIP</strong>
+
+      <br><br>
+
+      • اتصال بهتر و پایدارتر به هر سرور VIP<br>
+      • بدون تبلیغات<br>
+      • بدون محدودیت زمانی<br>
+      • امکان استفاده همزمان از یک حساب روی دو دستگاه
+
+      <br><br>
+
+      <strong>نکته امنیتی:</strong>
+      رمز عبور JumpJump را داخل سایت وارد نکنید.
+      اطلاعات لازم پس از تأیید سفارش از طریق پشتیبانی دریافت می‌شود.
+
     </div>
 
   </div>
@@ -1797,98 +1748,47 @@ footer a{
 
 
 <!-- ================= GUIDE ================= -->
+<section class="page" id="guide">
 
-<section id="guide" class="page">
+  <div class="section-title">
+    <h2>📖 آموزش</h2>
+    <p>راهنمای اتصال سرویس‌ها</p>
+  </div>
 
-  <div class="container">
+  <div class="tabs">
 
-    <section class="hero">
-      <div class="badge">📖 GUIDE</div>
-      <h1>GUIDE</h1>
-      <p>
-        راهنمای اتصال سرویس‌ها.
-      </p>
-    </section>
+    <button class="tab active"
+            onclick="guide(this,'android')">
+      Android
+    </button>
 
+    <button class="tab"
+            onclick="guide(this,'iphone')">
+      iPhone
+    </button>
 
-    <div class="guideTabs">
+    <button class="tab"
+            onclick="guide(this,'windows')">
+      Windows
+    </button>
 
-      <button onclick="guide('android')">
-        Android
-      </button>
+    <button class="tab"
+            onclick="guide(this,'mac')">
+      Mac OS
+    </button>
 
-      <button onclick="guide('iphone')">
-        iPhone
-      </button>
+  </div>
 
-      <button onclick="guide('windows')">
-        Windows
-      </button>
+  <div class="guide-box" id="guideContent">
 
-      <button onclick="guide('mac')">
-        Mac OS
-      </button>
+    <strong>Android</strong>
 
-    </div>
+    <br><br>
 
-
-    <div id="android" class="guideContent active">
-      <h3>📱 اتصال در Android</h3>
-      <br>
-
-      <ol>
-        <li>برنامه مناسب سرویس را نصب کنید.</li>
-        <li>کانفیگ دریافت‌شده را وارد کنید.</li>
-        <li>کانفیگ را انتخاب کنید.</li>
-        <li>دکمه اتصال را بزنید.</li>
-      </ol>
-    </div>
-
-
-    <div id="iphone" class="guideContent">
-      <h3>🍎 اتصال در iPhone</h3>
-      <br>
-
-      <ol>
-        <li>برنامه سازگار را از App Store نصب کنید.</li>
-        <li>کانفیگ خود را وارد کنید.</li>
-        <li>پروفایل را انتخاب کنید.</li>
-        <li>اتصال را فعال کنید.</li>
-      </ol>
-    </div>
-
-
-    <div id="windows" class="guideContent">
-      <h3>💻 اتصال در Windows</h3>
-      <br>
-
-      <ol>
-        <li>برنامه مربوط به سرویس را نصب کنید.</li>
-        <li>کانفیگ را وارد کنید.</li>
-        <li>سرور موردنظر را انتخاب کنید.</li>
-        <li>Connect را بزنید.</li>
-      </ol>
-    </div>
-
-
-    <div id="mac" class="guideContent">
-      <h3>🖥️ اتصال در Mac OS</h3>
-      <br>
-
-      <ol>
-        <li>برنامه سازگار را نصب کنید.</li>
-        <li>کانفیگ را وارد کنید.</li>
-        <li>سرور را انتخاب کنید.</li>
-        <li>اتصال را فعال کنید.</li>
-      </ol>
-    </div>
-
-
-    <div class="section">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
-      </button>
-    </div>
+    1. برنامه مناسب سرویس خود را نصب کنید.<br>
+    2. کانفیگ دریافت‌شده را وارد برنامه کنید.<br>
+    3. سرویس را فعال کنید.<br>
+    4. در صورت مشکل با پشتیبانی تماس بگیرید.
 
   </div>
 
@@ -1896,52 +1796,62 @@ footer a{
 
 
 <!-- ================= RULES ================= -->
+<section class="page" id="rules">
 
-<section id="rules" class="page">
+  <div class="section-title">
+    <h2>⚠️ قوانین استفاده</h2>
+    <p>قبل از خرید حتماً قوانین را مطالعه کنید.</p>
+  </div>
 
-  <div class="container">
+  <div class="rules-box">
 
-    <section class="hero">
-      <div class="badge">📜 RULES</div>
-      <h1>RULES</h1>
-      <p>
-        قوانین استفاده از سرویس‌های V2GURD.
-      </p>
-    </section>
+    <h3>🔒 قوانین سرور و پنل V2GURD</h3>
 
+    <ul>
 
-    <div class="card">
+      <li>
+        <strong>انتشار عمومی سرویس، کانفیگ، لینک اتصال، اطلاعات سرور یا پنل
+        به هر شکل ممنوع است.</strong>
+      </li>
 
-      <h3>قوانین استفاده</h3>
+      <li>
+        قرار دادن کانفیگ یا اطلاعات سرویس در کانال‌ها، گروه‌ها،
+        سایت‌ها، شبکه‌های اجتماعی و سایر فضاهای عمومی ممنوع است.
+      </li>
 
-      <p class="cardDesc">
+      <li>
+        <strong>ارسال یا استفاده از سرویس از طریق اپلیکیشن‌های ایرانی ممنوع است.</strong>
+      </li>
 
-        ۱. مسئولیت استفاده صحیح از سرویس بر عهده خریدار است.
-        <br><br>
+      <li>
+        در صورت مشاهده هرگونه انتشار عمومی یا استفاده از اپلیکیشن‌های ایرانی،
+        سرویس <strong>بدون اخطار قبلی و بدون امکان اعتراض</strong>
+        بلافاصله مسدود خواهد شد.
+      </li>
 
-        ۲. قبل از خرید، مشخصات سرویس را به دقت بررسی کنید.
-        <br><br>
+      <li>
+        مبلغ پرداختی در صورت مسدود شدن سرویس به دلیل تخلف از قوانین
+        قابل استرداد نیست.
+      </li>
 
-        ۳. بعد از پرداخت، رسید معتبر برای پشتیبانی ارسال شود.
-        <br><br>
+      <li>
+        مسئولیت نگهداری اطلاعات سرویس و نحوه استفاده از آن بر عهده خریدار است.
+      </li>
 
-        ۴. از ارسال اطلاعات حساس مانند رمز عبور در سایت خودداری کنید.
-        <br><br>
+    </ul>
 
-        ۵. در صورت بروز مشکل، ابتدا با پشتیبانی ارتباط بگیرید.
-        <br><br>
-
-        ۶. سرویس‌ها مطابق شرایط اعلام‌شده هنگام خرید ارائه می‌شوند.
-
-      </p>
-
-    </div>
-
-
-    <div class="section">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
-      </button>
+    <div style="
+      margin-top:20px;
+      padding:15px;
+      border-radius:13px;
+      background:rgba(255,79,104,.07);
+      border:1px solid rgba(255,79,104,.14);
+      color:#ff8fa0;
+      font-size:12px;
+      line-height:2;
+    ">
+      🚫 در صورت مشاهده تخلف از قوانین،
+      سرویس درجا و بدون چون‌وچرا بسته خواهد شد.
     </div>
 
   </div>
@@ -1950,64 +1860,31 @@ footer a{
 
 
 <!-- ================= BOT ================= -->
+<section class="page" id="bot">
 
-<section id="bot" class="page">
+  <div class="section-title">
+    <h2>🤖 ربات V2GURD</h2>
+    <p>مشاهده سرویس‌ها و ثبت سفارش</p>
+  </div>
 
-  <div class="container">
+  <div class="guide-box">
 
-    <div class="botBox">
+    <strong>ربات فروش V2GURD</strong>
 
-      <div class="botHead">
+    <br><br>
 
-        <div class="botAvatar">
-          🤖
-        </div>
+    از طریق ربات می‌توانید سرویس‌ها را مشاهده کنید،
+    سفارش ثبت کنید و وضعیت سفارش خود را پیگیری کنید.
 
-        <div>
-          <strong>V2GURD Bot</strong>
-          <div style="color:#00e676;font-size:11px;margin-top:4px">
-            آنلاین
-          </div>
-        </div>
+    <br><br>
 
-      </div>
-
-
-      <div class="botMessages">
-
-        <div class="message">
-          سلام 👋
-          <br>
-          به ربات خرید V2GURD خوش آمدید.
-        </div>
-
-        <div class="message">
-          از طریق ربات می‌توانید سرویس‌های موجود را مشاهده
-          و سفارش خود را ثبت کنید.
-        </div>
-
-        <div class="message me">
-          برای ورود به ربات روی دکمه زیر بزنید.
-        </div>
-
-        <a
-          href="https://t.me/echo_priime_bot"
-          target="_blank"
-          class="btn btnPrimary"
-          style="display:block;text-align:center;margin-top:18px">
-          🤖 ورود به ربات تلگرامی
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div style="text-align:center">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
-      </button>
-    </div>
+    <a
+      class="btn btn-primary"
+      href="https://t.me/echo_priime_bot"
+      target="_blank"
+      style="display:inline-block">
+      ورود به ربات
+    </a>
 
   </div>
 
@@ -2015,227 +1892,520 @@ footer a{
 
 
 <!-- ================= SUPPORT ================= -->
+<section class="page" id="support">
 
-<section id="support" class="page">
+  <div class="section-title">
+    <h2>🎫 پشتیبانی</h2>
+    <p>برای دریافت پشتیبانی تیکت خود را ثبت کنید.</p>
+  </div>
 
-  <div class="container">
+  <div class="support-box">
 
-    <section class="hero">
-      <div class="badge">🎫 SUPPORT</div>
-      <h1>SUPPORT</h1>
-      <p>
-        متن مشکل یا درخواست خود را بنویسید.
-      </p>
-    </section>
+    <textarea
+      id="supportText"
+      placeholder="مشکل یا درخواست خود را بنویسید..."></textarea>
 
+    <br><br>
 
-    <div class="supportForm">
-
-      <textarea
-        id="supportText"
-        placeholder="متن تیکت خود را بنویسید..."></textarea>
-
-      <button
-        class="btn btnPrimary"
-        style="width:100%;margin-top:12px"
-        onclick="sendSupportTicket()">
-        🎫 ارسال تیکت
-      </button>
-
-      <p style="
-        color:#77879b;
-        font-size:11px;
-        line-height:1.9;
-        margin-top:12px;
-        text-align:center">
-        با زدن دکمه، تلگرام باز می‌شود و متن تیکت به صورت آماده
-        برای پشتیبانی قرار می‌گیرد.
-      </p>
-
-    </div>
-
-
-    <div class="section" style="text-align:center">
-      <button class="btn btnDark" onclick="showPage('home')">
-        ← بازگشت
-      </button>
-    </div>
+    <button class="btn btn-primary"
+            onclick="sendSupportTicket()">
+      ارسال تیکت
+    </button>
 
   </div>
 
 </section>
 
-
-<!-- FOOTER -->
-
-<footer>
-
-  <div class="container">
-
-    <div class="footerGrid">
-
-      <div>
-
-        <div class="footerTitle">
-          V2GURD
-        </div>
-
-        <p>
-          Secure • Fast • Premium
-          <br>
-          سرویس‌های VPN، سرور، پنل و JumpJump.
-        </p>
-
-        <div class="badgeUnion">
-          🛡️ نشان اختصاصی مجموعه V2GURD
-        </div>
-
-      </div>
+</main>
 
 
-      <div>
+<!-- CART BUTTON -->
+<button class="cart-float"
+        onclick="openCart()"
+        aria-label="سبد خرید">
 
-        <div class="footerTitle">
-          دسترسی سریع
-        </div>
+  🛒
 
-        <div class="footerLinks">
+  <span class="cart-count"
+        id="cartCount">
+    0
+  </span>
 
-          <a onclick="showPage('home')">
-            خانه
-          </a>
-
-          <a onclick="showPage('vpn')">
-            VPN
-          </a>
-
-          <a onclick="showPage('panels')">
-            پنل
-          </a>
-
-          <a onclick="showPage('servers')">
-            سرور
-          </a>
-
-        </div>
-
-      </div>
+</button>
 
 
-      <div>
+<!-- ================= CART MODAL ================= -->
+<div class="modal" id="cartModal">
 
-        <div class="footerTitle">
-          ارتباط
-        </div>
+  <div class="modal-box">
 
-        <div class="footerLinks">
+    <div class="modal-head">
 
-          <a onclick="openSupport()">
-            پشتیبانی
-          </a>
+      <h3>🛒 سبد خرید</h3>
 
-          <a
-            href="https://t.me/Vtwoguard"
-            target="_blank">
-            Telegram
-          </a>
+      <button class="close"
+              onclick="closeModal('cartModal')">
+        ×
+      </button>
 
-          <a onclick="openBotPage()">
-            ربات خرید
-          </a>
+    </div>
 
-        </div>
+    <div id="cartItems"
+         class="cart-items">
+    </div>
 
-      </div>
+    <div id="cartSummary"></div>
+
+    <div class="modal-actions">
+
+      <button class="btn btn-secondary"
+              onclick="closeModal('cartModal')">
+        ادامه خرید
+      </button>
+
+      <button class="btn btn-primary"
+              onclick="startCheckout()">
+        ادامه و ثبت سفارش
+      </button>
 
     </div>
 
   </div>
 
+</div>
 
-  <div class="footerBottom">
+
+<!-- ================= RULES MODAL ================= -->
+<div class="modal" id="rulesModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h3>⚠️ تأیید قوانین خرید</h3>
+
+      <button class="close"
+              onclick="closeModal('rulesModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-note">
+
+      قبل از ادامه خرید، قوانین V2GURD را با دقت مطالعه کنید.
+      ثبت سفارش به منزله پذیرش کامل قوانین است.
+
+    </div>
+
+    <div class="rules-box">
+
+      <ul>
+
+        <li>
+          انتشار عمومی سرور، پنل، کانفیگ یا لینک اتصال ممنوع است.
+        </li>
+
+        <li>
+          ارسال یا استفاده از سرویس از طریق اپلیکیشن‌های ایرانی ممنوع است.
+        </li>
+
+        <li>
+          در صورت مشاهده تخلف، سرویس بدون اخطار قبلی و بدون امکان اعتراض
+          بلافاصله مسدود خواهد شد.
+        </li>
+
+        <li>
+          مبلغ سرویس در صورت تخلف قابل استرداد نیست.
+        </li>
+
+      </ul>
+
+    </div>
+
+    <label class="checkbox">
+
+      <input type="checkbox"
+             id="rulesAccept">
+
+      <span>
+        قوانین را مطالعه کردم و با تمام شرایط استفاده از سرویس موافقم.
+      </span>
+
+    </label>
+
+    <div class="modal-actions">
+
+      <button class="btn btn-secondary"
+              onclick="closeModal('rulesModal')">
+        انصراف
+      </button>
+
+      <button class="btn btn-primary"
+              onclick="acceptRulesAndCheckout()">
+        تأیید قوانین و ادامه خرید
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= INVOICE MODAL ================= -->
+<div class="modal" id="invoiceModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h3>🧾 پیش‌فاکتور سفارش</h3>
+
+      <button class="close"
+              onclick="closeModal('invoiceModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="invoice">
+
+      <div id="invoiceItems"></div>
+
+      <div class="invoice-row">
+        <span>تخفیف</span>
+        <strong id="invoiceDiscount">۰ تومان</strong>
+      </div>
+
+      <div class="invoice-row">
+        <span>مبلغ نهایی</span>
+        <strong class="invoice-total"
+                id="invoiceTotal">
+          ۰ تومان
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="coupon-row">
+
+      <input
+        id="couponInput"
+        placeholder="کد تخفیف">
+
+      <button class="btn btn-secondary"
+              onclick="applyCoupon()">
+        اعمال
+      </button>
+
+    </div>
+
+    <div class="modal-note" style="margin-top:14px">
+      کد تخفیف فعال نمونه:
+      <strong style="color:#168cff">V2G10</strong>
+    </div>
+
+    <div class="modal-actions">
+
+      <button class="btn btn-secondary"
+              onclick="closeModal('invoiceModal')">
+        بازگشت
+      </button>
+
+      <button class="btn btn-primary"
+              onclick="confirmPurchase()">
+        تأیید سفارش
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= PAYMENT MODAL ================= -->
+<div class="modal" id="paymentModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h3>💳 پرداخت سفارش</h3>
+
+      <button class="close"
+              onclick="closeModal('paymentModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="invoice">
+
+      <div class="invoice-row">
+
+        <span>شماره سفارش</span>
+
+        <strong id="paymentOrderId">
+          -
+        </strong>
+
+      </div>
+
+      <div class="invoice-row">
+
+        <span>مبلغ قابل پرداخت</span>
+
+        <strong class="invoice-total"
+                id="paymentAmount">
+          -
+        </strong>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="modal-note">
+
+      لطفاً مبلغ دقیق سفارش را به کارت زیر واریز کنید.
+
+    </div>
+
+    <div class="copy-row">
+
+      <input
+        id="cardNumber"
+        value="6219861841635526"
+        readonly>
+
+      <button class="btn btn-secondary"
+              onclick="copyCard()">
+        کپی
+      </button>
+
+    </div>
+
+    <div style="
+      margin-top:12px;
+      color:#8fa0b5;
+      font-size:12px;
+      line-height:2;
+    ">
+
+      👤 صاحب حساب:
+      <strong style="color:#fff">نامی</strong>
+
+      <br>
+
+      🏦 بانک:
+      <strong style="color:#fff">BLU / بلو بانک</strong>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button class="btn btn-secondary"
+              onclick="closeModal('paymentModal')">
+        بعداً پرداخت می‌کنم
+      </button>
+
+      <button class="btn btn-primary"
+              onclick="sendReceipt()">
+        واریز کردم، ارسال رسید
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-inner">
+
+    <div class="footer-col">
+
+      <div class="logo">
+        V2<span>GURD</span>
+      </div>
+
+      <p>
+        Secure • Fast • Premium
+      </p>
+
+      <p>
+        سرویس‌های حرفه‌ای V2GURD
+      </p>
+
+    </div>
+
+    <div class="footer-col">
+
+      <h3>دسترسی سریع</h3>
+
+      <button onclick="showPage('home')">خانه</button>
+      <button onclick="showPage('panels')">پنل</button>
+      <button onclick="showPage('servers')">سرور</button>
+      <button onclick="showPage('rules')">قوانین</button>
+
+    </div>
+
+    <div class="footer-col">
+
+      <h3>سرویس‌ها</h3>
+
+      <button onclick="showPage('vpn')">VPN</button>
+      <button onclick="showPage('jumpjump')">JumpJump</button>
+      <button onclick="openBotPage()">ربات</button>
+      <button onclick="openSupport()">پشتیبانی</button>
+
+    </div>
+
+    <div class="footer-col">
+
+      <h3>ارتباط</h3>
+
+      <a href="https://t.me/Vtwoguard"
+         target="_blank">
+        Telegram
+      </a>
+
+      <a href="https://t.me/echo_priime_bot"
+         target="_blank">
+        ربات فروش
+      </a>
+
+      <p>
+        🛡️ نشان اختصاصی مجموعه V2GURD
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="copyright">
     © 2026 V2GURD — All Rights Reserved
   </div>
 
 </footer>
 
 
-<!-- MODAL -->
-
-<div id="modal" class="modal">
-
-  <div class="modalBox">
-
-    <div class="modalHead">
-
-      <strong id="modalTitle">
-        سفارش
-      </strong>
-
-      <button
-        class="close"
-        onclick="closeModal()">
-        ×
-      </button>
-
-    </div>
-
-    <div id="modalBody"></div>
-
-  </div>
-
-</div>
-
-
-<!-- LOADER -->
-
-<div id="loader" class="loader">
-  <div class="spinner"></div>
-</div>
-
-
 <script>
 
-/* ================= CONFIG ================= */
+/* =========================================================
+   PRODUCT DATABASE
+   قیمت‌ها در یک آبجکت مرکزی نگهداری می‌شوند.
+   برای امنیت واقعی مبلغ، اعتبارسنجی نهایی باید سمت سرور انجام شود.
+========================================================= */
 
-const TELEGRAM = "https://t.me/Vtwoguard";
+const PRODUCTS = {
 
-const CARD_NUMBER = "6219861841635526";
+  panel25:{
+    id:"panel25",
+    name:"پنل نامحدود 25 یوزری",
+    price:890000,
+    type:"panel"
+  },
 
-const CARD_OWNER = "نامی";
+  panel50:{
+    id:"panel50",
+    name:"پنل نامحدود 50 یوزری",
+    price:1300000,
+    type:"panel"
+  },
 
-const CARD_BANK = "BLU / بلو بانک";
+  jump1:{
+    id:"jump1",
+    name:"JumpJump VIP — 1 دستگاه / 1 ماه",
+    price:700000,
+    type:"jumpjump"
+  },
 
-const COUPON = "V2G10";
+  jump2:{
+    id:"jump2",
+    name:"JumpJump VIP — 2 دستگاه / 1 ماه",
+    price:999000,
+    type:"jumpjump"
+  },
 
-let currentOrder = {};
+  jump6:{
+    id:"jump6",
+    name:"JumpJump VIP — 2 دستگاه / 6 ماه",
+    price:4600000,
+    type:"jumpjump"
+  },
+
+  jump12:{
+    id:"jump12",
+    name:"JumpJump VIP — 2 دستگاه / 12 ماه",
+    price:5500000,
+    type:"jumpjump"
+  }
+
+};
 
 
-/* ================= INTRO ================= */
+/* =========================================================
+   STATE
+========================================================= */
+
+let cart = [];
+
+let discountPercent = 0;
+
+let currentOrder = null;
+
+let orderCounter = Number(
+  localStorage.getItem("v2gurd_order_counter") || 0
+);
+
+
+/* =========================================================
+   INTRO
+========================================================= */
 
 window.addEventListener("load",()=>{
 
   setTimeout(()=>{
-    document.getElementById("intro").classList.add("hide");
+
+    document.getElementById("intro")
+      .classList.add("hide");
+
   },3100);
 
+  updatePanelVolumePrice();
 });
 
 
-/* ================= PAGE ================= */
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
 
 function showPage(id){
 
-  document.querySelectorAll(".page")
+  document
+    .querySelectorAll(".page")
     .forEach(page=>{
       page.classList.remove("active");
     });
 
-  const target = document.getElementById(id);
+  const target=document.getElementById(id);
 
   if(!target){
+
     console.error("Page not found:",id);
     return;
+
   }
 
   target.classList.add("active");
@@ -2248,28 +2418,950 @@ function showPage(id){
 }
 
 
-/* ================= CATEGORY SCROLL ================= */
+function categoryKey(event,id){
 
-function scrollToCategories(){
+  if(event.key==="Enter" || event.key===" "){
 
-  const home = document.getElementById("home");
+    event.preventDefault();
 
-  if(!home.classList.contains("active")){
-    showPage("home");
+    showPage(id);
+
   }
-
-  setTimeout(()=>{
-    document.getElementById("categories")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-  },100);
 
 }
 
 
-/* ================= BOT ================= */
+function categoryActionKey(event,fn){
+
+  if(event.key==="Enter" || event.key===" "){
+
+    event.preventDefault();
+
+    fn();
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMobileMenu(){
+
+  document
+    .getElementById("mobileMenu")
+    .classList.toggle("open");
+
+}
+
+
+function mobileGo(id){
+
+  document
+    .getElementById("mobileMenu")
+    .classList.remove("open");
+
+  if(id==="bot"){
+
+    openBotPage();
+
+    return;
+
+  }
+
+  if(id==="support"){
+
+    openSupport();
+
+    return;
+
+  }
+
+  showPage(id);
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function formatNumber(number){
+
+  return Number(number).toLocaleString("fa-IR");
+
+}
+
+
+function escapeHTML(str){
+
+  return String(str)
+    .replace(/[&<>"']/g,m=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[m]));
+
+}
+
+
+function toast(message){
+
+  const el=document.getElementById("toast");
+
+  el.textContent=message;
+
+  el.classList.add("show");
+
+  clearTimeout(window.__toastTimer);
+
+  window.__toastTimer=setTimeout(()=>{
+
+    el.classList.remove("show");
+
+  },2600);
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(id){
+
+  document
+    .getElementById(id)
+    .classList.add("show");
+
+}
+
+
+function closeModal(id){
+
+  document
+    .getElementById(id)
+    .classList.remove("show");
+
+}
+
+
+document
+  .querySelectorAll(".modal")
+  .forEach(modal=>{
+
+    modal.addEventListener("click",event=>{
+
+      if(event.target===modal){
+
+        modal.classList.remove("show");
+
+      }
+
+    });
+
+  });
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function addProduct(productId,quantity=1){
+
+  const product=PRODUCTS[productId];
+
+  if(!product){
+
+    toast("محصول پیدا نشد.");
+
+    return;
+
+  }
+
+  const existing=cart.find(
+    item=>item.id===productId
+  );
+
+  if(existing){
+
+    existing.qty+=quantity;
+
+  }else{
+
+    cart.push({
+      id:productId,
+      qty:quantity
+    });
+
+  }
+
+  saveCart();
+
+  updateCartUI();
+
+  toast("محصول به سبد خرید اضافه شد.");
+
+}
+
+
+function removeProduct(id){
+
+  cart=cart.filter(
+    item=>item.id!==id
+  );
+
+  saveCart();
+
+  updateCartUI();
+
+}
+
+
+function changeQty(id,delta){
+
+  const item=cart.find(
+    item=>item.id===id
+  );
+
+  if(!item)return;
+
+  item.qty+=delta;
+
+  if(item.qty<=0){
+
+    removeProduct(id);
+
+    return;
+
+  }
+
+  saveCart();
+
+  updateCartUI();
+
+}
+
+
+function getCartSubtotal(){
+
+  return cart.reduce((sum,item)=>{
+
+    const product=PRODUCTS[item.id];
+
+    if(!product)return sum;
+
+    return sum+(product.price*item.qty);
+
+  },0);
+
+}
+
+
+function getDiscount(){
+
+  const subtotal=getCartSubtotal();
+
+  return Math.floor(
+    subtotal*(discountPercent/100)
+  );
+
+}
+
+
+function getFinalTotal(){
+
+  return getCartSubtotal()-getDiscount();
+
+}
+
+
+function saveCart(){
+
+  localStorage.setItem(
+    "v2gurd_cart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+function loadCart(){
+
+  try{
+
+    const saved=JSON.parse(
+      localStorage.getItem("v2gurd_cart") || "[]"
+    );
+
+    if(Array.isArray(saved)){
+
+      cart=saved;
+
+    }
+
+  }catch{
+
+    cart=[];
+
+  }
+
+  updateCartUI();
+
+}
+
+
+function updateCartUI(){
+
+  const count=cart.reduce(
+    (sum,item)=>sum+item.qty,
+    0
+  );
+
+  document.getElementById("cartCount")
+    .textContent=formatNumber(count);
+
+
+  const container=
+    document.getElementById("cartItems");
+
+  if(!container)return;
+
+  if(cart.length===0){
+
+    container.innerHTML=`
+      <div class="empty-cart">
+        🛒 سبد خرید شما خالی است.
+      </div>
+    `;
+
+    document.getElementById("cartSummary")
+      .innerHTML="";
+
+    return;
+
+  }
+
+
+  container.innerHTML=cart.map(item=>{
+
+    const product=PRODUCTS[item.id];
+
+    return `
+      <div class="cart-item">
+
+        <div class="cart-item-info">
+
+          <strong>
+            ${escapeHTML(product.name)}
+          </strong>
+
+          <small>
+            ${formatNumber(product.price)} تومان
+          </small>
+
+        </div>
+
+        <div class="qty">
+
+          <button
+            onclick="changeQty('${item.id}',1)">
+            +
+          </button>
+
+          <strong>
+            ${formatNumber(item.qty)}
+          </strong>
+
+          <button
+            onclick="changeQty('${item.id}',-1)">
+            −
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+
+  document.getElementById("cartSummary")
+    .innerHTML=`
+
+      <div class="invoice">
+
+        <div class="invoice-row">
+
+          <span>جمع سبد</span>
+
+          <strong>
+            ${formatNumber(getCartSubtotal())}
+            تومان
+          </strong>
+
+        </div>
+
+        <div class="invoice-row">
+
+          <span>تخفیف</span>
+
+          <strong>
+            ${formatNumber(getDiscount())}
+            تومان
+          </strong>
+
+        </div>
+
+        <div class="invoice-row">
+
+          <span>مبلغ نهایی</span>
+
+          <strong class="invoice-total">
+            ${formatNumber(getFinalTotal())}
+            تومان
+          </strong>
+
+        </div>
+
+      </div>
+
+    `;
+
+}
+
+
+function openCart(){
+
+  updateCartUI();
+
+  openModal("cartModal");
+
+}
+
+
+/* =========================================================
+   PANEL VOLUME
+========================================================= */
+
+document
+  .getElementById("panelVolume")
+  .addEventListener("change",updatePanelVolumePrice);
+
+
+function updatePanelVolumePrice(){
+
+  const select=document.getElementById("panelVolume");
+
+  if(!select)return;
+
+  const volume=Number(select.value);
+
+  const price=volume*2500;
+
+  document.getElementById("panelVolumePrice")
+    .textContent=
+      formatNumber(price)+" تومان";
+
+}
+
+
+function buyPanelVolume(){
+
+  const volume=Number(
+    document.getElementById("panelVolume").value
+  );
+
+  const price=volume*2500;
+
+  const id="panelVolume_"+volume;
+
+  PRODUCTS[id]={
+    id,
+    name:`پنل حجمی — ${volume} GB`,
+    price,
+    type:"panel"
+  };
+
+  addProduct(id,1);
+
+}
+
+
+/* =========================================================
+   SERVER PURCHASE
+========================================================= */
+
+function serverBuy(name,pricePerGB){
+
+  const volumes=[
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    400,
+    500
+  ];
+
+  const selected=prompt(
+    "حجم سرور را وارد کنید:\n\n"+
+    volumes.join(" / ")+" GB"
+  );
+
+  if(selected===null)return;
+
+  const volume=Number(selected);
+
+  if(!volumes.includes(volume)){
+
+    toast("حجم انتخابی معتبر نیست.");
+
+    return;
+
+  }
+
+  const total=volume*pricePerGB;
+
+  const id=
+    "server_"+
+    name.replace(/\s/g,"_")+
+    "_"+
+    volume;
+
+  PRODUCTS[id]={
+    id,
+    name:`${name} — ${volume} GB`,
+    price:total,
+    type:"server"
+  };
+
+  addProduct(id,1);
+
+}
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+function startCheckout(){
+
+  if(cart.length===0){
+
+    toast("سبد خرید خالی است.");
+
+    return;
+
+  }
+
+  closeModal("cartModal");
+
+  document.getElementById("rulesAccept").checked=false;
+
+  openModal("rulesModal");
+
+}
+
+
+function acceptRulesAndCheckout(){
+
+  const accepted=
+    document.getElementById("rulesAccept").checked;
+
+  if(!accepted){
+
+    toast("برای ادامه باید قوانین را تأیید کنید.");
+
+    return;
+
+  }
+
+  closeModal("rulesModal");
+
+  invoiceModal();
+
+}
+
+
+/* =========================================================
+   INVOICE
+========================================================= */
+
+function invoiceModal(){
+
+  const invoiceItems=
+    document.getElementById("invoiceItems");
+
+  invoiceItems.innerHTML=cart.map(item=>{
+
+    const product=PRODUCTS[item.id];
+
+    return `
+      <div class="invoice-row">
+
+        <span>
+          ${escapeHTML(product.name)}
+          × ${formatNumber(item.qty)}
+        </span>
+
+        <strong>
+          ${formatNumber(
+            product.price*item.qty
+          )}
+          تومان
+        </strong>
+
+      </div>
+    `;
+
+  }).join("");
+
+
+  document.getElementById("invoiceDiscount")
+    .textContent=
+      formatNumber(getDiscount())+" تومان";
+
+
+  document.getElementById("invoiceTotal")
+    .textContent=
+      formatNumber(getFinalTotal())+" تومان";
+
+
+  openModal("invoiceModal");
+
+}
+
+
+/* =========================================================
+   COUPON
+========================================================= */
+
+function applyCoupon(){
+
+  const input=
+    document.getElementById("couponInput");
+
+  const code=
+    input.value.trim().toUpperCase();
+
+  if(code==="V2G10"){
+
+    discountPercent=10;
+
+    toast("کد تخفیف ۱۰٪ اعمال شد.");
+
+    invoiceModal();
+
+  }else{
+
+    discountPercent=0;
+
+    toast("کد تخفیف معتبر نیست.");
+
+    invoiceModal();
+
+  }
+
+}
+
+
+/* =========================================================
+   ORDER ID
+========================================================= */
+
+function generateOrderId(){
+
+  orderCounter++;
+
+  localStorage.setItem(
+    "v2gurd_order_counter",
+    orderCounter
+  );
+
+  const date=new Date();
+
+  const dateString=
+    date.getFullYear()+
+    String(date.getMonth()+1).padStart(2,"0")+
+    String(date.getDate()).padStart(2,"0");
+
+  const random=
+    Math.floor(
+      1000+
+      Math.random()*9000
+    );
+
+  return `V2G-${dateString}-${random}`;
+
+}
+
+
+/* =========================================================
+   PURCHASE CONFIRM
+========================================================= */
+
+function confirmPurchase(){
+
+  if(cart.length===0){
+
+    toast("سبد خرید خالی است.");
+
+    closeModal("invoiceModal");
+
+    return;
+
+  }
+
+  const orderId=generateOrderId();
+
+  currentOrder={
+    id:orderId,
+    items:JSON.parse(
+      JSON.stringify(cart)
+    ),
+    subtotal:getCartSubtotal(),
+    discount:getDiscount(),
+    total:getFinalTotal(),
+    createdAt:new Date().toISOString()
+  };
+
+
+  localStorage.setItem(
+    "v2gurd_last_order",
+    JSON.stringify(currentOrder)
+  );
+
+
+  document.getElementById("paymentOrderId")
+    .textContent=orderId;
+
+  document.getElementById("paymentAmount")
+    .textContent=
+      formatNumber(currentOrder.total)+" تومان";
+
+
+  closeModal("invoiceModal");
+
+  openModal("paymentModal");
+
+}
+
+
+/* =========================================================
+   PAYMENT / TELEGRAM
+========================================================= */
+
+function copyCard(){
+
+  const card=
+    document.getElementById("cardNumber").value;
+
+  navigator.clipboard
+    .writeText(card)
+    .then(()=>{
+
+      toast("شماره کارت کپی شد.");
+
+    })
+    .catch(()=>{
+
+      toast("کپی خودکار انجام نشد.");
+
+    });
+
+}
+
+
+function buildOrderMessage(){
+
+  if(!currentOrder)return "";
+
+  let message=
+`🧾 سفارش جدید V2GURD
+
+📌 شماره سفارش:
+${currentOrder.id}
+
+🛒 محصولات:
+`;
+
+  currentOrder.items.forEach(item=>{
+
+    const product=PRODUCTS[item.id];
+
+    message+=
+`\n• ${product.name}
+تعداد: ${item.qty}
+مبلغ: ${formatNumber(product.price*item.qty)} تومان
+`;
+
+  });
+
+
+  message+=
+`
+💰 مبلغ کل:
+${formatNumber(currentOrder.subtotal)} تومان
+
+🎁 تخفیف:
+${formatNumber(currentOrder.discount)} تومان
+
+💳 مبلغ نهایی:
+${formatNumber(currentOrder.total)} تومان
+
+✅ قوانین سایت تأیید شده است.
+
+📎 رسید پرداخت را در همین چت ارسال می‌کنم.
+`;
+
+  return message;
+
+}
+
+
+function sendReceipt(){
+
+  if(!currentOrder){
+
+    toast("سفارش پیدا نشد.");
+
+    return;
+
+  }
+
+  const message=
+    buildOrderMessage();
+
+  const url=
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(message);
+
+  window.open(
+    url,
+    "_blank"
+  );
+
+
+  toast(
+    "اطلاعات سفارش آماده ارسال شد."
+  );
+
+}
+
+
+/* =========================================================
+   SUPPORT TICKET
+========================================================= */
+
+function generateTicketId(){
+
+  const random=
+    Math.floor(
+      100000+
+      Math.random()*900000
+    );
+
+  const date=new Date();
+
+  const dateString=
+    date.getFullYear()+
+    String(date.getMonth()+1).padStart(2,"0")+
+    String(date.getDate()).padStart(2,"0");
+
+  return `TKT-${dateString}-${random}`;
+
+}
+
+
+function sendSupportTicket(){
+
+  const text=
+    document.getElementById("supportText")
+      .value.trim();
+
+  if(!text){
+
+    toast("لطفاً متن تیکت را وارد کنید.");
+
+    return;
+
+  }
+
+  const ticketId=
+    generateTicketId();
+
+  localStorage.setItem(
+    "v2gurd_last_ticket",
+    ticketId
+  );
+
+
+  const message=
+`🎫 تیکت پشتیبانی V2GURD
+
+📌 شماره پیگیری:
+${ticketId}
+
+📝 متن کاربر:
+${text}
+
+لطفاً این شماره پیگیری را برای پیگیری‌های بعدی نگه دارید.
+`;
+
+
+  const url=
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(message);
+
+  window.open(
+    url,
+    "_blank"
+  );
+
+
+  document.getElementById("supportText")
+    .value="";
+
+
+  toast(
+    `تیکت ${ticketId} ایجاد شد.`
+  );
+
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+function contact(service){
+
+  const message=
+`سلام، برای خرید سرویس زیر پیام دادم:
+
+🛡️ ${service}
+
+لطفاً راهنمایی بفرمایید.
+`;
+
+  window.open(
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(message),
+    "_blank"
+  );
+
+}
+
+
+/* =========================================================
+   BOT
+========================================================= */
 
 function openBotPage(){
 
@@ -2278,7 +3370,9 @@ function openBotPage(){
 }
 
 
-/* ================= SUPPORT ================= */
+/* =========================================================
+   SUPPORT
+========================================================= */
 
 function openSupport(){
 
@@ -2287,109 +3381,94 @@ function openSupport(){
 }
 
 
-/* ================= FORMAT ================= */
+/* =========================================================
+   SEARCH
+========================================================= */
 
-function formatNumber(num){
-
-  return Number(num)
-    .toLocaleString("en-US");
-
-}
-
-
-/* ================= MODAL ================= */
-
-function openModal(title,body){
-
-  document.getElementById("modalTitle").innerText = title;
-
-  document.getElementById("modalBody").innerHTML = body;
-
-  document.getElementById("modal").classList.add("show");
-
-}
-
-
-function closeModal(){
-
-  document.getElementById("modal")
-    .classList.remove("show");
-
-}
-
-
-document.getElementById("modal")
-  .addEventListener("click",(e)=>{
-
-    if(e.target.id==="modal"){
-      closeModal();
-    }
-
-  });
-
-
-/* ================= SEARCH ================= */
-
-const products = [
+const searchProductsList=[
 
   {
     name:"VPN VIP",
-    type:"VPN",
-    text:"VPN VIP سرویس حرفه‌ای"
+    type:"vpn",
+    page:"vpn"
+  },
+
+  {
+    name:"VPN ویژه",
+    type:"vpn",
+    page:"vpn"
   },
 
   {
     name:"پنل حجمی",
-    type:"پنل",
-    text:"پنل حجمی فروشندگی"
+    type:"panel",
+    page:"panels"
   },
 
   {
     name:"پنل نامحدود 25 یوزری",
-    type:"پنل",
-    text:"پنل نامحدود 25 کاربر"
+    type:"panel",
+    page:"panels"
   },
 
   {
     name:"پنل نامحدود 50 یوزری",
-    type:"پنل",
-    text:"پنل نامحدود 50 کاربر"
+    type:"panel",
+    page:"panels"
   },
 
   {
     name:"سرور اقتصادی",
-    type:"سرور",
-    text:"سرور اقتصادی"
+    type:"server",
+    page:"servers"
   },
 
   {
     name:"سرور معمولی",
-    type:"سرور",
-    text:"سرور معمولی"
+    type:"server",
+    page:"servers"
   },
 
   {
-    name:"CDN",
-    type:"سرور",
-    text:"سرور CDN"
+    name:"سرور CDN",
+    type:"server",
+    page:"servers"
   },
 
   {
-    name:"تانل",
-    type:"سرور",
-    text:"سرور تانل"
+    name:"سرور تانل",
+    type:"server",
+    page:"servers"
   },
 
   {
     name:"سرور حرفه‌ای",
-    type:"سرور",
-    text:"سرور حرفه‌ای"
+    type:"server",
+    page:"servers"
   },
 
   {
     name:"JumpJump VIP",
-    type:"JumpJump",
-    text:"JumpJump VIP"
+    type:"jumpjump",
+    page:"jumpjump"
+  },
+
+  {
+    name:"آموزش",
+    type:"guide",
+    page:"guide"
+  },
+
+  {
+    name:"قوانین",
+    type:"rules",
+    page:"rules"
+  },
+
+  {
+    name:"پشتیبانی",
+    type:"support",
+    page:"support"
   }
 
 ];
@@ -2397,63 +3476,62 @@ const products = [
 
 function searchProducts(){
 
-  const input =
-    document.getElementById("searchInput");
+  const query=
+    document.getElementById("searchInput")
+      .value.trim()
+      .toLowerCase();
 
-  const results =
+  const result=
     document.getElementById("searchResults");
 
-  const q =
-    input.value.trim().toLowerCase();
+  if(!query){
 
-  if(!q){
-
-    results.innerHTML = "";
+    result.innerHTML="";
 
     return;
+
   }
 
-  const found =
-    products.filter(p=>
-      (p.name+" "+p.type+" "+p.text)
-      .toLowerCase()
-      .includes(q)
+  const matches=
+    searchProductsList.filter(item=>
+      item.name.toLowerCase()
+        .includes(query)
     );
 
-  if(!found.length){
 
-    results.innerHTML = `
-      <div class="card">
-        <h3>نتیجه‌ای پیدا نشد</h3>
-        <p class="cardDesc">
-          محصول موردنظر در نتایج جستجو پیدا نشد.
-        </p>
+  if(matches.length===0){
+
+    result.innerHTML=`
+      <div class="search-result">
+        <span>موردی پیدا نشد.</span>
       </div>
     `;
 
     return;
+
   }
 
-  results.innerHTML =
-    found.map(p=>`
 
-      <div class="card">
+  result.innerHTML=
+    matches.map(item=>`
 
-        <span class="tag">
-          ${escapeHTML(p.type)}
-        </span>
+      <div class="search-result">
 
-        <h3 style="margin-top:12px">
-          ${escapeHTML(p.name)}
-        </h3>
+        <div>
+          <strong>
+            ${escapeHTML(item.name)}
+          </strong>
 
-        <p class="cardDesc">
-          ${escapeHTML(p.text)}
-        </p>
+          <br>
+
+          <small>
+            برای مشاهده وارد بخش مربوطه شوید.
+          </small>
+        </div>
 
         <button
-          class="btn btnPrimary"
-          onclick="searchOpen('${escapeJS(p.type)}')">
+          class="btn btn-secondary"
+          onclick="showPage('${item.page}')">
           مشاهده
         </button>
 
@@ -2464,543 +3542,144 @@ function searchProducts(){
 }
 
 
-function searchOpen(type){
+/* =========================================================
+   FAQ
+========================================================= */
 
-  if(type==="VPN"){
-    showPage("vpn");
-  }
+function toggleFaq(button){
 
-  else if(type==="پنل"){
-    showPage("panels");
-  }
+  const faq=
+    button.parentElement;
 
-  else if(type==="سرور"){
-    showPage("servers");
-  }
+  faq.classList.toggle("open");
 
-  else if(type==="JumpJump"){
-    showPage("jumpjump");
-  }
+  const icon=
+    button.querySelector("span");
 
-}
+  if(faq.classList.contains("open")){
 
+    icon.textContent="−";
 
-/* ================= FAQ ================= */
+  }else{
 
-function toggleFaq(btn){
+    icon.textContent="＋";
 
-  const item = btn.parentElement;
-
-  item.classList.toggle("open");
-
-}
-
-
-/* ================= GUIDE ================= */
-
-function guide(id){
-
-  document.querySelectorAll(".guideContent")
-    .forEach(x=>{
-      x.classList.remove("active");
-    });
-
-  const target = document.getElementById(id);
-
-  if(target){
-    target.classList.add("active");
   }
 
 }
 
 
-/* ================= COPY CARD ================= */
+/* =========================================================
+   GUIDE
+========================================================= */
 
-function copyCard(){
+function guide(button,type){
 
-  navigator.clipboard.writeText(CARD_NUMBER)
-    .then(()=>{
-      alert("شماره کارت کپی شد.");
-    })
-    .catch(()=>{
-      alert("کپی خودکار انجام نشد.");
-    });
+  document
+    .querySelectorAll(".tab")
+    .forEach(tab=>
+      tab.classList.remove("active")
+    );
 
-}
+  button.classList.add("active");
 
 
-/* ================= INVOICE ================= */
+  const content=
+    document.getElementById("guideContent");
 
-function invoiceModal(name,price){
 
-  currentOrder = {
-    name:name,
-    price:Number(price)
+  const guides={
+
+    android:`
+      <strong>Android</strong>
+      <br><br>
+      1. برنامه مناسب سرویس را نصب کنید.<br>
+      2. کانفیگ دریافت‌شده را وارد برنامه کنید.<br>
+      3. پروفایل را فعال کنید.<br>
+      4. در صورت مشکل با پشتیبانی تماس بگیرید.
+    `,
+
+    iphone:`
+      <strong>iPhone</strong>
+      <br><br>
+      1. برنامه سازگار با سرویس را نصب کنید.<br>
+      2. لینک یا کانفیگ را وارد برنامه کنید.<br>
+      3. اتصال را فعال کنید.<br>
+      4. در صورت مشکل با پشتیبانی تماس بگیرید.
+    `,
+
+    windows:`
+      <strong>Windows</strong>
+      <br><br>
+      1. کلاینت مناسب ویندوز را نصب کنید.<br>
+      2. کانفیگ را وارد برنامه کنید.<br>
+      3. پروفایل موردنظر را انتخاب کنید.<br>
+      4. اتصال را فعال کنید.
+    `,
+
+    mac:`
+      <strong>Mac OS</strong>
+      <br><br>
+      1. کلاینت مناسب Mac OS را نصب کنید.<br>
+      2. کانفیگ را وارد کنید.<br>
+      3. سرور موردنظر را انتخاب کنید.<br>
+      4. اتصال را فعال کنید.
+    `
+
   };
 
-  updateInvoice();
+
+  content.innerHTML=
+    guides[type] || guides.android;
 
 }
 
 
-function updateInvoice(){
+/* =========================================================
+   SCROLL
+========================================================= */
 
-  const name = currentOrder.name;
+function scrollToCategories(){
 
-  const price = currentOrder.price;
+  showPage("home");
 
-  openModal(
-    "فاکتور سفارش",
-    `
+  setTimeout(()=>{
 
-    <div class="invoice">
-
-      <div class="invoiceRow">
-        <span>محصول</span>
-        <strong>${escapeHTML(name)}</strong>
-      </div>
-
-      <div class="invoiceRow">
-        <span>قیمت</span>
-        <strong>${formatNumber(price)} تومان</strong>
-      </div>
-
-    </div>
-
-    <div style="margin-top:15px">
-
-      <input
-        id="couponCode"
-        class="input"
-        placeholder="کد تخفیف">
-
-      <button
-        class="btn btnDark"
-        style="width:100%;margin-top:9px"
-        onclick="applyCoupon()">
-        اعمال کد تخفیف
-      </button>
-
-      <div
-        id="couponMsg"
-        style="
-          font-size:12px;
-          margin-top:8px;
-          color:#8b9ab0">
-      </div>
-
-    </div>
-
-    <div class="modalBtns">
-
-      <button
-        class="btn btnPrimary"
-        onclick="confirmPurchase()">
-        ادامه پرداخت
-      </button>
-
-      <button
-        class="btn btnDark"
-        onclick="closeModal()">
-        انصراف
-      </button>
-
-    </div>
-
-    `
-  );
-
-}
-
-
-/* ================= COUPON ================= */
-
-function applyCoupon(){
-
-  const input =
-    document.getElementById("couponCode");
-
-  const msg =
-    document.getElementById("couponMsg");
-
-  if(!input || !msg){
-    return;
-  }
-
-  if(input.value.trim().toUpperCase()===COUPON){
-
-    currentOrder.discount =
-      Math.round(currentOrder.price*.10);
-
-    msg.innerHTML =
-      "✅ کد تخفیف ۱۰٪ اعمال شد.";
-
-    msg.style.color="#00e676";
-
-  }
-
-  else{
-
-    currentOrder.discount = 0;
-
-    msg.innerHTML =
-      "❌ کد تخفیف معتبر نیست.";
-
-    msg.style.color="#ff4f68";
-
-  }
-
-}
-
-
-/* ================= PAYMENT ================= */
-
-function confirmPurchase(){
-
-  let discount =
-    currentOrder.discount || 0;
-
-  let total =
-    currentOrder.price - discount;
-
-  paymentPage(total);
-
-}
-
-
-function paymentPage(total){
-
-  openModal(
-    "پرداخت سفارش",
-    `
-
-    <div class="invoice">
-
-      <div class="invoiceRow">
-        <span>محصول</span>
-        <strong>
-          ${escapeHTML(currentOrder.name)}
-        </strong>
-      </div>
-
-      <div class="invoiceRow">
-        <span>مبلغ قابل پرداخت</span>
-        <strong style="color:#65bdff">
-          ${formatNumber(total)} تومان
-        </strong>
-      </div>
-
-    </div>
-
-
-    <div class="bank">
-
-      <div>
-        بانک: ${CARD_BANK}
-      </div>
-
-      <div>
-        به نام: ${CARD_OWNER}
-      </div>
-
-      <div class="cardNumber">
-        ${CARD_NUMBER}
-      </div>
-
-      <button
-        class="btn btnDark"
-        style="width:100%"
-        onclick="copyCard()">
-        📋 کپی شماره کارت
-      </button>
-
-    </div>
-
-
-    <div class="modalBtns">
-
-      <button
-        class="btn btnPrimary"
-        onclick="sendReceipt(${total})">
-        واریز کردم، ارسال رسید
-      </button>
-
-      <button
-        class="btn btnDark"
-        onclick="closeModal()">
-        بستن
-      </button>
-
-    </div>
-
-    `
-  );
-
-}
-
-
-/* ================= SEND RECEIPT ================= */
-
-function sendReceipt(total){
-
-  const message =
-`🛒 سفارش جدید V2GURD
-
-📦 محصول:
-${currentOrder.name}
-
-💰 مبلغ:
-${formatNumber(total)} تومان
-
-💳 پرداخت به کارت:
-${CARD_NUMBER}
-
-👤 صاحب کارت:
-${CARD_OWNER}
-
-🧾 رسید پرداخت را در همین چت ارسال می‌کنم.`;
-
-  const url =
-    TELEGRAM +
-    "?text=" +
-    encodeURIComponent(message);
-
-  window.open(url,"_blank");
-
-}
-
-
-/* ================= PANEL VOLUME ================= */
-
-function buyPanelVolume(volume){
-
-  const price =
-    volume * 2500;
-
-  invoiceModal(
-    `پنل حجمی ${volume} گیگابایت`,
-    price
-  );
-
-}
-
-
-/* ================= SERVER ================= */
-
-function serverBuy(name,pricePerGB){
-
-  openModal(
-    "انتخاب حجم سرور",
-    `
-
-    <div class="volumeGrid">
-
-      ${[50,100,150,200,250,300,400,500]
-        .map(v=>`
-
-          <button
-            class="volumeBtn"
-            onclick="
-              invoiceModal(
-                '${escapeJS(name)} ${v}GB',
-                ${v*pricePerGB}
-              )
-            ">
-
-            ${v} GB
-
-            <br>
-
-            <small>
-              ${formatNumber(v*pricePerGB)}
-              تومان
-            </small>
-
-          </button>
-
-        `).join("")}
-
-    </div>
-
-    `
-  );
-
-}
-
-
-/* ================= CONTACT ================= */
-
-function contact(product){
-
-  const message =
-`سلام، برای خرید ${product} V2GURD راهنمایی می‌خواستم.`;
-
-  window.open(
-    TELEGRAM+
-    "?text="+
-    encodeURIComponent(message),
-    "_blank"
-  );
-
-}
-
-
-/* ================= JUMPJUMP ================= */
-
-function jumpPurchase(name,price){
-
-  currentOrder = {
-    name:name,
-    price:price
-  };
-
-  openModal(
-    "خرید JumpJump VIP",
-    `
-
-    <div class="invoice">
-
-      <div class="invoiceRow">
-        <span>پلن</span>
-        <strong>${escapeHTML(name)}</strong>
-      </div>
-
-      <div class="invoiceRow">
-        <span>قیمت</span>
-        <strong>
-          ${formatNumber(price)} تومان
-        </strong>
-      </div>
-
-    </div>
-
-    <div style="
-      margin-top:15px;
-      padding:13px;
-      border-radius:14px;
-      background:rgba(255,193,7,.05);
-      border:1px solid rgba(255,193,7,.15);
-      color:#d6c78e;
-      font-size:12px;
-      line-height:1.9">
-
-      ⚠️ برای امنیت حساب،
-      رمز عبور JumpJump خود را در سایت وارد نکنید.
-      اطلاعات لازم بعد از ثبت سفارش از طریق پشتیبانی دریافت می‌شود.
-
-    </div>
-
-    <div class="modalBtns">
-
-      <button
-        class="btn btnPrimary"
-        onclick="jumpConfirm()">
-        ادامه پرداخت
-      </button>
-
-      <button
-        class="btn btnDark"
-        onclick="closeModal()">
-        انصراف
-      </button>
-
-    </div>
-
-    `
-  );
-
-}
-
-
-function jumpConfirm(){
-
-  paymentPage(currentOrder.price);
-
-}
-
-
-/* ================= SUPPORT TICKET ================= */
-
-function sendSupportTicket(){
-
-  const text =
     document
-      .getElementById("supportText")
-      .value
-      .trim();
+      .getElementById("categories")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
 
-  if(!text){
+  },100);
 
-    alert("لطفاً متن تیکت را وارد کنید.");
+}
 
-    return;
+
+/* =========================================================
+   LOAD
+========================================================= */
+
+loadCart();
+
+
+/* =========================================================
+   KEYBOARD ESC
+========================================================= */
+
+document.addEventListener("keydown",event=>{
+
+  if(event.key==="Escape"){
+
+    document
+      .querySelectorAll(".modal.show")
+      .forEach(modal=>
+        modal.classList.remove("show")
+      );
+
   }
 
-  const message =
-`🎫 تیکت پشتیبانی V2GURD
-
-متن کاربر:
-${text}`;
-
-  window.open(
-    TELEGRAM+
-    "?text="+
-    encodeURIComponent(message),
-    "_blank"
-  );
-
-}
-
-
-/* ================= ESCAPE ================= */
-
-function escapeHTML(str){
-
-  return String(str)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function escapeJS(str){
-
-  return String(str)
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
-    .replace(/"/g,'\\"')
-    .replace(/\n/g,"\\n")
-    .replace(/\r/g,"");
-
-}
-
-
-/* ================= KEYBOARD CATEGORY SUPPORT ================= */
-
-document.querySelectorAll(".category")
-  .forEach(card=>{
-
-    card.addEventListener("keydown",(e)=>{
-
-      if(e.key==="Enter" || e.key===" "){
-
-        e.preventDefault();
-
-        card.click();
-
-      }
-
-    });
-
-  });
-
-
-/* ================= INITIAL ================= */
-
-showPage("home");
+});
 
 </script>
 
