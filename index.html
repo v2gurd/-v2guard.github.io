@@ -9,4164 +9,1794 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#050914;
-  --bg2:#08101f;
-  --card:#0b1425;
-  --blue:#168cff;
-  --blue2:#00b7ff;
-  --purple:#8b5cf6;
-  --text:#f5f9ff;
-  --muted:#91a2bb;
-  --border:rgba(80,150,255,.18);
-  --green:#19d98b;
-  --red:#ff5577;
+--bg:#050914;--bg2:#08101f;--card:#0b1425;--blue:#168cff;
+--blue2:#00b7ff;--purple:#8b5cf6;--text:#f5f9ff;--muted:#91a2bb;
+--border:rgba(80,150,255,.18);--green:#19d98b;--red:#ff5577
 }
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  font-family:'Vazirmatn',sans-serif;
-  background:
-    radial-gradient(circle at 15% 10%,rgba(22,140,255,.12),transparent 30%),
-    radial-gradient(circle at 85% 20%,rgba(139,92,246,.10),transparent 28%),
-    var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
+font-family:'Vazirmatn',sans-serif;
+background:
+radial-gradient(circle at 15% 10%,rgba(22,140,255,.12),transparent 30%),
+radial-gradient(circle at 85% 20%,rgba(139,92,246,.10),transparent 28%),
+var(--bg);
+color:var(--text);min-height:100vh;overflow-x:hidden
 }
 
-button,input,select{
-  font-family:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
 /* INTRO */
-
 #intro{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  background:#030711;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.8s ease;
+position:fixed;inset:0;z-index:99999;background:#030711;
+display:flex;align-items:center;justify-content:center;transition:.8s ease
 }
-
-.intro-box{
-  text-align:center;
-}
-
+.intro-box{text-align:center}
 .intro-logo{
-  font-size:clamp(42px,12vw,90px);
-  font-weight:900;
-  letter-spacing:8px;
-  background:linear-gradient(90deg,#fff,#168cff,#8b5cf6);
-  -webkit-background-clip:text;
-  color:transparent;
-  animation:logoGlow 2s infinite alternate;
+font-size:clamp(42px,12vw,90px);font-weight:900;letter-spacing:8px;
+background:linear-gradient(90deg,#fff,#168cff,#8b5cf6);
+-webkit-background-clip:text;color:transparent;
+animation:logoGlow 2s infinite alternate
 }
-
-.intro-sub{
-  color:#8094b3;
-  font-size:12px;
-  letter-spacing:5px;
-  margin-top:10px;
-}
-
+.intro-sub{color:#8094b3;font-size:12px;letter-spacing:5px;margin-top:10px}
 @keyframes logoGlow{
-  from{
-    filter:drop-shadow(0 0 5px rgba(22,140,255,.2))
-  }
-  to{
-    filter:drop-shadow(0 0 28px rgba(22,140,255,.65))
-  }
+from{filter:drop-shadow(0 0 5px rgba(22,140,255,.2))}
+to{filter:drop-shadow(0 0 28px rgba(22,140,255,.65))}
 }
 
 /* HEADER */
-
 header{
-  position:sticky;
-  top:0;
-  z-index:500;
-  background:rgba(5,9,20,.78);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
+position:sticky;top:0;z-index:500;background:rgba(5,9,20,.78);
+backdrop-filter:blur(18px);border-bottom:1px solid var(--border)
 }
-
 .nav{
-  max-width:1200px;
-  margin:auto;
-  min-height:70px;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
+max-width:1200px;margin:auto;min-height:70px;padding:0 18px;
+display:flex;align-items:center;justify-content:space-between;gap:20px
 }
-
-.logo{
-  font-size:23px;
-  font-weight:900;
-  letter-spacing:2px;
-  color:white;
-  cursor:pointer;
-}
-
-.logo span{
-  color:var(--blue);
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
+.logo{font-size:23px;font-weight:900;letter-spacing:2px;color:white;cursor:pointer}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:5px}
 .nav-links button{
-  border:0;
-  background:transparent;
-  color:#aebbd0;
-  padding:10px 11px;
-  border-radius:10px;
-  transition:.25s;
+border:0;background:transparent;color:#aebbd0;padding:10px 11px;
+border-radius:10px;transition:.25s
 }
-
-.nav-links button:hover,
-.nav-links button.active{
-  color:white;
-  background:rgba(22,140,255,.12);
+.nav-links button:hover,.nav-links button.active{
+color:white;background:rgba(22,140,255,.12)
 }
-
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.menu-btn{
-  display:none;
-  font-size:23px;
-  background:none;
-  border:0;
-  color:white;
-}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.menu-btn{display:none;font-size:23px;background:none;border:0;color:white}
 
 /* GENERAL */
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:0 18px;
-}
-
-.page{
-  display:none;
-  animation:pageIn .35s ease;
-}
-
-.page.active{
-  display:block;
-}
-
+.container{max-width:1200px;margin:auto;padding:0 18px}
+.page{display:none;animation:pageIn .35s ease}
+.page.active{display:block}
 @keyframes pageIn{
-  from{
-    opacity:0;
-    transform:translateY(8px)
-  }
-  to{
-    opacity:1;
-    transform:none
-  }
+from{opacity:0;transform:translateY(8px)}
+to{opacity:1;transform:none}
 }
+.section{padding:70px 0}
+.section-title{text-align:center;margin-bottom:35px}
+.section-title h2{font-size:clamp(25px,5vw,38px);font-weight:900}
+.section-title p{color:var(--muted);margin-top:8px}
 
-.section{
-  padding:70px 0;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:35px;
-}
-
-.section-title h2{
-  font-size:clamp(25px,5vw,38px);
-  font-weight:900;
-}
-
-.section-title p{
-  color:var(--muted);
-  margin-top:8px;
-}
-
-.hero{
-  min-height:610px;
-  display:flex;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero-content{
-  max-width:760px;
-  margin:auto;
-  text-align:center;
-}
-
+.hero{min-height:610px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-content{max-width:760px;margin:auto;text-align:center}
 .badge{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:8px 13px;
-  border-radius:999px;
-  background:rgba(22,140,255,.09);
-  border:1px solid rgba(22,140,255,.25);
-  color:#7bc8ff;
-  font-size:12px;
-  margin-bottom:18px;
+display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;
+background:rgba(22,140,255,.09);border:1px solid rgba(22,140,255,.25);
+color:#7bc8ff;font-size:12px;margin-bottom:18px
 }
-
-.hero h1{
-  font-size:clamp(38px,8vw,75px);
-  font-weight:900;
-  line-height:1.1;
-}
-
+.hero h1{font-size:clamp(38px,8vw,75px);font-weight:900;line-height:1.1}
 .hero h1 span{
-  background:linear-gradient(90deg,#168cff,#8b5cf6);
-  -webkit-background-clip:text;
-  color:transparent;
+background:linear-gradient(90deg,#168cff,#8b5cf6);
+-webkit-background-clip:text;color:transparent
 }
-
-.hero p{
-  color:var(--muted);
-  max-width:680px;
-  margin:20px auto;
-  line-height:2;
-}
-
-.hero-buttons{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
+.hero p{color:var(--muted);max-width:680px;margin:20px auto;line-height:2}
+.hero-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
 /* BUTTONS */
-
 .btn{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  color:white;
-  border-radius:12px;
-  padding:11px 16px;
-  transition:.25s;
+border:1px solid var(--border);background:rgba(255,255,255,.04);
+color:white;border-radius:12px;padding:11px 16px;transition:.25s
 }
-
-.btn:hover{
-  transform:translateY(-2px);
-  border-color:rgba(22,140,255,.5);
-}
-
+.btn:hover{transform:translateY(-2px);border-color:rgba(22,140,255,.5)}
 .btn-primary{
-  background:linear-gradient(135deg,#087df5,#12b6ff);
-  border:0;
-  box-shadow:0 8px 30px rgba(22,140,255,.2);
+background:linear-gradient(135deg,#087df5,#12b6ff);
+border:0;box-shadow:0 8px 30px rgba(22,140,255,.2)
 }
+.btn-purple{background:linear-gradient(135deg,#6d3df0,#a66cff);border:0}
 
-.btn-purple{
-  background:linear-gradient(135deg,#6d3df0,#a66cff);
-  border:0;
-}
-
-/* CATEGORY CARDS */
-
-.categories{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
+/* CATEGORY */
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .category{
-  position:relative;
-  overflow:hidden;
-  min-height:245px;
-  border-radius:22px;
-  border:1px solid var(--border);
-  background:#08111f;
-  cursor:pointer;
-  transition:.3s;
+position:relative;overflow:hidden;min-height:245px;border-radius:22px;
+border:1px solid var(--border);background:#08111f;cursor:pointer;transition:.3s
 }
-
 .category:hover{
-  transform:translateY(-7px);
-  border-color:rgba(22,140,255,.45);
-  box-shadow:0 20px 55px rgba(0,0,0,.3);
+transform:translateY(-7px);border-color:rgba(22,140,255,.45);
+box-shadow:0 20px 55px rgba(0,0,0,.3)
 }
-
-.category-img{
-  width:100%;
-  height:145px;
-  object-fit:cover;
-  display:block;
-  background:#050505;
-}
-
+.category-img{width:100%;height:145px;object-fit:cover;display:block;background:#050505}
 .category-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(5,9,20,1) 0%,
-    rgba(5,9,20,.75) 35%,
-    transparent 75%
-  );
+position:absolute;inset:0;
+background:linear-gradient(to top,rgba(5,9,20,1) 0%,rgba(5,9,20,.75) 35%,transparent 75%)
 }
+.category-content{position:absolute;right:18px;left:18px;bottom:16px}
+.category-content h3{font-size:20px;font-weight:900}
+.category-content p{color:#9aaac0;font-size:12px;margin-top:4px}
 
-.category-content{
-  position:absolute;
-  right:18px;
-  left:18px;
-  bottom:16px;
-}
-
-.category-content h3{
-  font-size:20px;
-  font-weight:900;
-}
-
-.category-content p{
-  color:#9aaac0;
-  font-size:12px;
-  margin-top:4px;
-}
-
-/* CATEGORY PAGE HERO */
-
+/* CATEGORY HERO */
 .category-hero{
-  position:relative;
-  overflow:hidden;
-  min-height:300px;
-  display:flex;
-  align-items:end;
-  border-bottom:1px solid var(--border);
+position:relative;overflow:hidden;min-height:300px;display:flex;align-items:end;
+border-bottom:1px solid var(--border)
 }
-
 .category-hero-img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.2;
-  filter:blur(1px);
+position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+opacity:.2;filter:blur(1px)
 }
-
 .category-hero-overlay{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      to top,
-      #050914 0%,
-      rgba(5,9,20,.82) 45%,
-      rgba(5,9,20,.25) 100%
-    );
+position:absolute;inset:0;
+background:linear-gradient(to top,#050914 0%,rgba(5,9,20,.82) 45%,rgba(5,9,20,.25) 100%)
 }
-
-.category-hero-content{
-  position:relative;
-  z-index:2;
-  width:100%;
-  padding:70px 0 45px;
-}
-
-.category-hero-content h1{
-  font-size:clamp(32px,7vw,55px);
-  font-weight:900;
-}
-
-.category-hero-content p{
-  max-width:700px;
-  color:#9cacbf;
-  margin-top:10px;
-  line-height:2;
-}
-
+.category-hero-content{position:relative;z-index:2;width:100%;padding:70px 0 45px}
+.category-hero-content h1{font-size:clamp(32px,7vw,55px);font-weight:900}
+.category-hero-content p{max-width:700px;color:#9cacbf;margin-top:10px;line-height:2}
 .category-icon{
-  width:70px;
-  height:70px;
-  object-fit:cover;
-  border-radius:17px;
-  margin-bottom:15px;
-  border:1px solid rgba(255,255,255,.15);
+width:70px;height:70px;object-fit:cover;border-radius:17px;margin-bottom:15px;
+border:1px solid rgba(255,255,255,.15)
 }
 
-/* FEATURED WIREGUARD */
-
+/* FEATURED */
 .wg-featured{
-  position:relative;
-  padding:2px;
-  border-radius:24px;
-  overflow:hidden;
-  margin:0 auto 35px;
-  max-width:1100px;
-  background:linear-gradient(
-    120deg,
-    #168cff,
-    #8b5cf6,
-    #00c6ff,
-    #168cff
-  );
-  background-size:300% 300%;
-  animation:borderMove 5s ease infinite;
-  box-shadow:
-    0 0 50px rgba(22,140,255,.12),
-    0 0 50px rgba(139,92,246,.08);
+position:relative;padding:2px;border-radius:24px;overflow:hidden;margin:0 auto 35px;
+max-width:1100px;background:linear-gradient(120deg,#168cff,#8b5cf6,#00c6ff,#168cff);
+background-size:300% 300%;animation:borderMove 5s ease infinite;
+box-shadow:0 0 50px rgba(22,140,255,.12),0 0 50px rgba(139,92,246,.08)
 }
-
 @keyframes borderMove{
-  0%{
-    background-position:0% 50%
-  }
-  50%{
-    background-position:100% 50%
-  }
-  100%{
-    background-position:0% 50%
-  }
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
-
 .wg-inner{
-  background:
-    radial-gradient(circle at 90% 10%,rgba(139,92,246,.16),transparent 35%),
-    radial-gradient(circle at 10% 90%,rgba(22,140,255,.12),transparent 35%),
-    #07101f;
-  border-radius:22px;
-  padding:30px;
+background:
+radial-gradient(circle at 90% 10%,rgba(139,92,246,.16),transparent 35%),
+radial-gradient(circle at 10% 90%,rgba(22,140,255,.12),transparent 35%),#07101f;
+border-radius:22px;padding:30px
 }
-
 .feature-badge{
-  display:inline-block;
-  background:rgba(139,92,246,.15);
-  border:1px solid rgba(139,92,246,.4);
-  color:#cbb8ff;
-  border-radius:999px;
-  padding:7px 13px;
-  font-size:12px;
-  margin-bottom:15px;
+display:inline-block;background:rgba(139,92,246,.15);
+border:1px solid rgba(139,92,246,.4);color:#cbb8ff;border-radius:999px;
+padding:7px 13px;font-size:12px;margin-bottom:15px
 }
-
-.wg-inner h2{
-  font-size:clamp(24px,5vw,36px);
-}
-
-.wg-inner h2 span{
-  color:#a98aff;
-}
-
-.wg-inner p{
-  color:#9eafc7;
-  line-height:2;
-  margin:12px 0 20px;
-}
-
-.wg-points{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:22px;
-}
-
+.wg-inner h2{font-size:clamp(24px,5vw,36px)}
+.wg-inner h2 span{color:#a98aff}
+.wg-inner p{color:#9eafc7;line-height:2;margin:12px 0 20px}
+.wg-points{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .wg-point{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  padding:8px 12px;
-  border-radius:10px;
-  font-size:12px;
-  color:#b8c7da;
+background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+padding:8px 12px;border-radius:10px;font-size:12px;color:#b8c7da
 }
 
 /* SEARCH */
-
-.search-box{
-  max-width:650px;
-  margin:0 auto 28px;
-}
-
+.search-box{max-width:650px;margin:0 auto 28px}
 .search-box input{
-  width:100%;
-  padding:16px 18px;
-  border-radius:15px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.035);
-  color:white;
-  outline:none;
+width:100%;padding:16px 18px;border-radius:15px;border:1px solid var(--border);
+background:rgba(255,255,255,.035);color:white;outline:none
 }
-
-.search-box input:focus{
-  border-color:rgba(22,140,255,.6);
-}
+.search-box input:focus{border-color:rgba(22,140,255,.6)}
 
 /* CARDS */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),
-    var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-  transition:.25s;
-  position:relative;
-  overflow:hidden;
+background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),var(--card);
+border:1px solid var(--border);border-radius:18px;padding:22px;transition:.25s;
+position:relative;overflow:hidden
 }
-
 .card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(22,140,255,.4);
-  box-shadow:0 15px 45px rgba(0,0,0,.25);
+transform:translateY(-5px);border-color:rgba(22,140,255,.4);
+box-shadow:0 15px 45px rgba(0,0,0,.25)
 }
-
-.card h3{
-  font-size:19px;
-  margin-bottom:8px;
-}
-
-.card .subtitle{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.9;
-  min-height:55px;
-}
-
-.price{
-  font-size:21px;
-  font-weight:900;
-  margin:17px 0;
-}
-
-.price small{
-  font-size:11px;
-  color:var(--muted);
-  font-weight:400;
-}
-
-.special-card{
-  border-color:rgba(139,92,246,.4);
-  box-shadow:0 0 30px rgba(139,92,246,.07);
-}
-
-.status{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  font-size:11px;
-  color:var(--green);
-  margin-bottom:13px;
-}
-
+.card h3{font-size:19px;margin-bottom:8px}
+.card .subtitle{color:var(--muted);font-size:13px;line-height:1.9;min-height:55px}
+.price{font-size:21px;font-weight:900;margin:17px 0}
+.price small{font-size:11px;color:var(--muted);font-weight:400}
+.special-card{border-color:rgba(139,92,246,.4);box-shadow:0 0 30px rgba(139,92,246,.07)}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:var(--green);margin-bottom:13px}
 .status i{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 10px var(--green);
+width:7px;height:7px;border-radius:50%;background:var(--green);
+box-shadow:0 0 10px var(--green)
 }
-
-/* SELECT */
-
 .select{
-  width:100%;
-  padding:12px;
-  border-radius:11px;
-  background:#081222;
-  color:white;
-  border:1px solid var(--border);
-  outline:none;
-  margin:10px 0;
+width:100%;padding:12px;border-radius:11px;background:#081222;color:white;
+border:1px solid var(--border);outline:none;margin:10px 0
 }
 
 /* STATS */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
 .stat{
-  text-align:center;
-  padding:24px;
-  background:rgba(255,255,255,.025);
-  border:1px solid var(--border);
-  border-radius:16px;
+text-align:center;padding:24px;background:rgba(255,255,255,.025);
+border:1px solid var(--border);border-radius:16px
 }
-
-.stat strong{
-  display:block;
-  font-size:27px;
-  color:#6bc4ff;
-}
-
-.stat span{
-  color:var(--muted);
-  font-size:12px;
-}
+.stat strong{display:block;font-size:27px;color:#6bc4ff}
+.stat span{color:var(--muted);font-size:12px}
 
 /* INFO */
-
 .info-box{
-  max-width:900px;
-  margin:auto;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:30px;
+max-width:900px;margin:auto;background:var(--card);border:1px solid var(--border);
+border-radius:20px;padding:30px
 }
-
-.info-box h2{
-  margin-bottom:18px;
-}
-
-.info-box p,
-.info-box li{
-  color:#a8b6ca;
-  line-height:2.1;
-  font-size:14px;
-}
-
-.info-box ul{
-  padding-right:22px;
-}
+.info-box h2{margin-bottom:18px}
+.info-box p,.info-box li{color:#a8b6ca;line-height:2.1;font-size:14px}
+.info-box ul{padding-right:22px}
 
 /* STEPS */
-
-.step{
-  display:flex;
-  gap:15px;
-  padding:16px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.step:last-child{
-  border-bottom:0;
-}
-
+.step{display:flex;gap:15px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.step:last-child{border-bottom:0}
 .step-num{
-  min-width:36px;
-  height:36px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:rgba(22,140,255,.12);
-  color:#66c2ff;
-  font-weight:900;
+min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+border-radius:50%;background:rgba(22,140,255,.12);color:#66c2ff;font-weight:900
 }
 
 /* FAQ */
-
-.faq{
-  max-width:850px;
-  margin:auto;
-}
-
+.faq{max-width:850px;margin:auto}
 .faq-item{
-  border:1px solid var(--border);
-  border-radius:13px;
-  margin-bottom:10px;
-  overflow:hidden;
-  background:rgba(255,255,255,.025);
+border:1px solid var(--border);border-radius:13px;margin-bottom:10px;
+overflow:hidden;background:rgba(255,255,255,.025)
 }
-
 .faq-q{
-  width:100%;
-  padding:17px;
-  border:0;
-  background:none;
-  color:white;
-  text-align:right;
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
+width:100%;padding:17px;border:0;background:none;color:white;text-align:right;
+display:flex;justify-content:space-between;font-size:14px
 }
-
-.faq-a{
-  display:none;
-  padding:0 17px 17px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:2;
-}
-
-.faq-item.open .faq-a{
-  display:block;
-}
+.faq-a{display:none;padding:0 17px 17px;color:var(--muted);font-size:13px;line-height:2}
+.faq-item.open .faq-a{display:block}
 
 /* CART */
-
 .cart-float{
-  position:fixed;
-  left:18px;
-  bottom:18px;
-  z-index:400;
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  border:1px solid rgba(22,140,255,.45);
-  background:linear-gradient(135deg,#087df5,#0baaff);
-  color:white;
-  box-shadow:0 12px 35px rgba(0,0,0,.4);
-  font-size:21px;
+position:fixed;left:18px;bottom:18px;z-index:400;width:58px;height:58px;
+border-radius:50%;border:1px solid rgba(22,140,255,.45);
+background:linear-gradient(135deg,#087df5,#0baaff);color:white;
+box-shadow:0 12px 35px rgba(0,0,0,.4);font-size:21px
 }
-
 .cart-count{
-  position:absolute;
-  top:-4px;
-  right:-4px;
-  min-width:20px;
-  height:20px;
-  padding:0 5px;
-  border-radius:20px;
-  background:#ff3e65;
-  font-size:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;
+border-radius:20px;background:#ff3e65;font-size:10px;display:flex;
+align-items:center;justify-content:center
 }
-
 .cart-panel{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(7px);
-  z-index:1000;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
+position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(7px);
+z-index:1000;display:none;align-items:flex-end;justify-content:center
 }
-
-.cart-panel.show{
-  display:flex;
-}
-
+.cart-panel.show{display:flex}
 .cart-box{
-  width:min(650px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#07101e;
-  border:1px solid var(--border);
-  border-radius:22px 22px 0 0;
-  padding:22px;
+width:min(650px,100%);max-height:90vh;overflow:auto;background:#07101e;
+border:1px solid var(--border);border-radius:22px 22px 0 0;padding:22px
 }
-
-.cart-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:18px;
-}
-
+.cart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .close{
-  width:38px;
-  height:38px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  color:white;
+width:38px;height:38px;border-radius:10px;border:1px solid var(--border);
+background:rgba(255,255,255,.04);color:white
 }
-
 .cart-item{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:14px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
+display:flex;justify-content:space-between;gap:10px;padding:14px 0;
+border-bottom:1px solid rgba(255,255,255,.06)
 }
-
-.cart-item small{
-  color:var(--muted);
-}
-
-.cart-actions{
-  display:flex;
-  gap:7px;
-  align-items:center;
-}
-
-.qty{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
+.cart-item small{color:var(--muted)}
+.cart-actions{display:flex;gap:7px;align-items:center}
+.qty{display:flex;align-items:center;gap:8px}
 .qty button{
-  width:28px;
-  height:28px;
-  border-radius:7px;
-  border:1px solid var(--border);
-  background:#0d192b;
-  color:white;
+width:28px;height:28px;border-radius:7px;border:1px solid var(--border);
+background:#0d192b;color:white
 }
-
-.summary{
-  margin-top:18px;
-  padding-top:15px;
-  border-top:1px solid var(--border);
-}
-
-.sum-row{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  color:#aab8cc;
-}
-
-.sum-final{
-  color:white;
-  font-size:19px;
-  font-weight:900;
-}
+.summary{margin-top:18px;padding-top:15px;border-top:1px solid var(--border)}
+.sum-row{display:flex;justify-content:space-between;padding:7px 0;color:#aab8cc}
+.sum-final{color:white;font-size:19px;font-weight:900}
 
 /* MODAL */
-
 .modal{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  background:rgba(0,0,0,.75);
-  backdrop-filter:blur(8px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
+position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.75);
+backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:15px
 }
-
-.modal.show{
-  display:flex;
-}
-
+.modal.show{display:flex}
 .modal-box{
-  width:min(560px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#07101e;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:25px;
+width:min(560px,100%);max-height:90vh;overflow:auto;background:#07101e;
+border:1px solid var(--border);border-radius:20px;padding:25px
 }
-
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
-
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .card-number{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-align:center;
-  padding:20px 5px;
-  background:rgba(22,140,255,.07);
-  border:1px solid rgba(22,140,255,.2);
-  border-radius:14px;
-  margin:15px 0;
-  direction:ltr;
+font-size:25px;font-weight:900;letter-spacing:2px;text-align:center;padding:20px 5px;
+background:rgba(22,140,255,.07);border:1px solid rgba(22,140,255,.2);
+border-radius:14px;margin:15px 0;direction:ltr
 }
-
-.copy-row{
-  display:flex;
-  gap:8px;
-}
-
+.copy-row{display:flex;gap:8px}
 .copy-row input{
-  flex:1;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:#091424;
-  color:white;
-  text-align:center;
+flex:1;padding:12px;border-radius:10px;border:1px solid var(--border);
+background:#091424;color:white;text-align:center
+}
+.form-input{
+width:100%;padding:13px;border-radius:11px;border:1px solid var(--border);
+background:#091424;color:white;outline:none;margin:7px 0
 }
 
-.form-input{
-  width:100%;
-  padding:13px;
-  border-radius:11px;
-  border:1px solid var(--border);
-  background:#091424;
-  color:white;
-  outline:none;
-  margin:7px 0;
+/* GAME */
+.game-box{
+max-width:700px;text-align:center;position:relative;overflow:hidden
+}
+.game-icon{font-size:60px;margin-bottom:10px}
+.game-box h2{margin-bottom:8px}
+.game-box p{color:var(--muted);line-height:2}
+.game-user{
+display:flex;align-items:center;justify-content:space-between;gap:10px;
+padding:10px;margin-bottom:18px;border:1px solid var(--border);
+border-radius:12px;background:rgba(255,255,255,.025);color:#aebbd0
+}
+.game-user .btn{padding:7px 12px;font-size:11px}
+.game-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:15px}
+.game-stat{
+padding:15px 8px;border:1px solid var(--border);border-radius:13px;
+background:rgba(255,255,255,.025)
+}
+.game-stat strong{display:block;font-size:25px;color:#69c4ff}
+.game-stat span{display:block;margin-top:4px;color:var(--muted);font-size:11px}
+.game-progress{
+width:100%;height:8px;border-radius:20px;background:#111d30;overflow:hidden;margin-bottom:15px
+}
+#gameProgress{
+width:0%;height:100%;background:linear-gradient(90deg,#168cff,#8b5cf6);transition:.25s
+}
+.game-message{min-height:28px;color:#aebbd0;margin-bottom:10px}
+.game-stage{
+position:relative;width:100%;height:350px;border-radius:20px;
+border:1px solid rgba(22,140,255,.25);
+background:radial-gradient(circle at center,rgba(22,140,255,.09),transparent 45%),#040a14;
+overflow:hidden
+}
+.game-stage:before{
+content:"";position:absolute;inset:0;
+background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+background-size:35px 35px;pointer-events:none
+}
+.game-target{
+position:absolute;width:62px;height:62px;border-radius:50%;
+border:1px solid rgba(255,255,255,.3);
+background:linear-gradient(135deg,#168cff,#8b5cf6);color:white;font-size:25px;
+box-shadow:0 0 20px rgba(22,140,255,.5),0 0 45px rgba(139,92,246,.25);
+transform:translate(-50%,-50%);display:none;z-index:2
+}
+.game-target.active{display:block}
+.game-cooldown{
+margin-top:15px;padding:15px;border-radius:13px;
+border:1px solid rgba(255,85,119,.25);background:rgba(255,85,119,.06);
+color:#ff9bb1;line-height:2
+}
+.game-reward{
+margin-top:20px;padding:25px;border-radius:18px;
+border:1px solid rgba(25,217,139,.3);background:rgba(25,217,139,.06)
+}
+.game-reward h2{color:#6ff0b7;margin:8px 0}
+.reward-number{
+margin:18px 0;padding:14px;border-radius:12px;
+background:rgba(25,217,139,.08);color:#6ff0b7;font-weight:900
 }
 
 /* TOAST */
-
 #toast{
-  position:fixed;
-  top:85px;
-  left:50%;
-  transform:translate(-50%,-20px);
-  z-index:9999;
-  background:#0d1a2c;
-  border:1px solid rgba(22,140,255,.35);
-  color:white;
-  padding:12px 18px;
-  border-radius:12px;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
+position:fixed;top:85px;left:50%;transform:translate(-50%,-20px);z-index:9999;
+background:#0d1a2c;border:1px solid rgba(22,140,255,.35);color:white;
+padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;
+transition:.3s;box-shadow:0 12px 30px rgba(0,0,0,.35)
 }
-
-#toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
+#toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* FOOTER */
-
 footer{
-  margin-top:50px;
-  padding:35px 18px;
-  border-top:1px solid var(--border);
-  text-align:center;
-  color:#73849e;
-  font-size:12px;
+margin-top:50px;padding:35px 18px;border-top:1px solid var(--border);
+text-align:center;color:#73849e;font-size:12px
 }
-
-.footer-logo{
-  color:white;
-  font-size:22px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-
-.footer-logo span{
-  color:var(--blue);
-}
-
-
-/* =========================================================
-   V2GURD GAME
-   ========================================================= */
-
-.game-wrap{
-  max-width:850px;
-  margin:auto;
-}
-
-.game-login{
-  max-width:500px;
-  margin:60px auto;
-  text-align:center;
-  padding:30px;
-  border-radius:24px;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(22,140,255,.12),transparent 45%),
-    #07101e;
-  border:1px solid rgba(22,140,255,.2);
-  box-shadow:0 20px 70px rgba(0,0,0,.25);
-}
-
-.game-login-icon{
-  font-size:55px;
-  margin-bottom:12px;
-  filter:drop-shadow(0 0 18px rgba(22,140,255,.45));
-}
-
-.game-login h2{
-  font-size:28px;
-  font-weight:900;
-}
-
-.game-login p{
-  color:#91a2bb;
-  font-size:13px;
-  line-height:2;
-  margin:10px 0 20px;
-}
-
-.game-step{
-  display:none;
-}
-
-.game-step.active{
-  display:block;
-}
-
-.game-note{
-  margin-top:12px;
-  color:#71839e;
-  font-size:11px;
-  line-height:1.9;
-}
-
-.telegram-request{
-  background:rgba(22,140,255,.07);
-  border:1px solid rgba(22,140,255,.16);
-  padding:12px;
-  border-radius:12px;
-  margin:12px 0;
-  color:#a8bad1;
-  font-size:12px;
-  line-height:2;
-}
-
-.game-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:18px;
-  flex-wrap:wrap;
-}
-
-.game-user{
-  color:#91a2bb;
-  font-size:12px;
-}
-
-.game-user strong{
-  color:white;
-}
-
-.game-stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-bottom:15px;
-}
-
-.game-stat{
-  background:#07101e;
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:13px;
-  text-align:center;
-}
-
-.game-stat strong{
-  display:block;
-  color:#66c4ff;
-  font-size:23px;
-  font-weight:900;
-}
-
-.game-stat span{
-  color:#71839e;
-  font-size:10px;
-}
-
-.game-progress{
-  width:100%;
-  height:8px;
-  background:#0c1728;
-  border-radius:20px;
-  overflow:hidden;
-  margin-bottom:16px;
-  border:1px solid rgba(255,255,255,.05);
-}
-
-.game-progress-bar{
-  width:0%;
-  height:100%;
-  background:linear-gradient(90deg,#168cff,#8b5cf6);
-  border-radius:20px;
-  transition:.25s;
-  box-shadow:0 0 15px rgba(22,140,255,.5);
-}
-
-.game-board{
-  position:relative;
-  width:100%;
-  height:min(600px,72vh);
-  min-height:430px;
-  overflow:hidden;
-  border-radius:25px;
-  border:1px solid rgba(22,140,255,.28);
-  background:
-    radial-gradient(circle at 50% 25%,rgba(22,140,255,.08),transparent 35%),
-    radial-gradient(circle at 20% 90%,rgba(139,92,246,.06),transparent 35%),
-    #030914;
-  box-shadow:
-    inset 0 0 60px rgba(0,0,0,.55),
-    0 20px 70px rgba(0,0,0,.25);
-  touch-action:none;
-  user-select:none;
-}
-
-.game-board::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:35px 35px;
-  opacity:.25;
-}
-
-.game-board::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  box-shadow:inset 0 0 90px rgba(0,0,0,.65);
-}
-
-.game-ball{
-  position:absolute;
-  width:24px;
-  height:24px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 35% 30%,#fff 0 8%,#8be1ff 18%,#168cff 48%,#6d3df0 75%,#35117c 100%);
-  box-shadow:
-    0 0 10px rgba(22,140,255,.95),
-    0 0 28px rgba(22,140,255,.65),
-    0 0 55px rgba(139,92,246,.35);
-  z-index:5;
-  pointer-events:none;
-  transform:translate3d(0,0,0);
-}
-
-.game-paddle{
-  position:absolute;
-  bottom:18px;
-  left:50%;
-  width:130px;
-  height:15px;
-  transform:translateX(-50%);
-  border-radius:999px;
-  background:linear-gradient(90deg,#087df5,#00c6ff,#8b5cf6);
-  box-shadow:
-    0 0 13px rgba(22,140,255,.9),
-    0 0 30px rgba(22,140,255,.45);
-  z-index:6;
-  pointer-events:none;
-}
-
-.game-overlay{
-  position:absolute;
-  inset:0;
-  z-index:20;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(3,8,18,.68);
-  backdrop-filter:blur(5px);
-}
-
-.game-overlay.hidden{
-  display:none;
-}
-
-.game-overlay-box{
-  width:min(430px,100%);
-  text-align:center;
-  padding:28px;
-  border-radius:22px;
-  background:rgba(7,16,30,.92);
-  border:1px solid rgba(22,140,255,.25);
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
-}
-
-.game-overlay-box h2{
-  font-size:27px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-
-.game-overlay-box p{
-  color:#94a6bf;
-  line-height:2;
-  font-size:13px;
-}
-
-.game-controls{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-top:16px;
-}
-
-.game-hint{
-  text-align:center;
-  color:#71839e;
-  font-size:11px;
-  margin-top:13px;
-  line-height:2;
-}
-
-.game-reward{
-  max-width:600px;
-  margin:55px auto;
-  text-align:center;
-  padding:40px 25px;
-  border-radius:25px;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(139,92,246,.16),transparent 45%),
-    #07101e;
-  border:1px solid rgba(139,92,246,.35);
-  box-shadow:
-    0 0 70px rgba(139,92,246,.1),
-    0 20px 70px rgba(0,0,0,.35);
-}
-
-.reward-icon{
-  font-size:70px;
-  animation:rewardFloat 2s ease-in-out infinite;
-}
-
-@keyframes rewardFloat{
-  0%,100%{
-    transform:translateY(0) scale(1)
-  }
-  50%{
-    transform:translateY(-8px) scale(1.05)
-  }
-}
-
-.game-reward h2{
-  font-size:32px;
-  font-weight:900;
-  margin:10px 0;
-}
-
-.game-reward h2 span{
-  color:#a98aff;
-}
-
-.game-reward p{
-  color:#9eafc7;
-  line-height:2;
-  font-size:14px;
-}
-
-.reward-box{
-  margin:20px 0;
-  padding:18px;
-  border-radius:16px;
-  background:rgba(25,217,139,.06);
-  border:1px solid rgba(25,217,139,.2);
-}
-
-.reward-box strong{
-  display:block;
-  font-size:27px;
-  color:#19d98b;
-}
-
-.reward-box span{
-  color:#90a2ba;
-  font-size:11px;
-}
-
-.game-logout{
-  color:#71839e;
-  border:0;
-  background:none;
-  font-size:11px;
-  margin-top:14px;
-}
-
-.game-logout:hover{
-  color:#ff5577;
-}
-
-
-/* MOBILE */
+.footer-logo{color:white;font-size:22px;font-weight:900;margin-bottom:8px}
+.footer-logo span{color:var(--blue)}
 
 @media(max-width:900px){
-
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .categories{
-    grid-template-columns:1fr;
-  }
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .nav-links{
-    display:none;
-    position:absolute;
-    top:70px;
-    right:12px;
-    left:12px;
-    padding:10px;
-    flex-direction:column;
-    align-items:stretch;
-    background:#07101e;
-    border:1px solid var(--border);
-    border-radius:15px;
-  }
-
-  .nav-links.show{
-    display:flex;
-  }
-
-  .menu-btn{
-    display:block;
-  }
-
+.grid{grid-template-columns:repeat(2,1fr)}
+.categories{grid-template-columns:1fr}
+.stats{grid-template-columns:repeat(2,1fr)}
+.nav-links{
+display:none;position:absolute;top:70px;right:12px;left:12px;padding:10px;
+flex-direction:column;align-items:stretch;background:#07101e;
+border:1px solid var(--border);border-radius:15px
+}
+.nav-links.show{display:flex}
+.menu-btn{display:block}
 }
 
 @media(max-width:600px){
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .hero{
-    min-height:530px;
-  }
-
-  .wg-inner{
-    padding:22px;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .section{
-    padding:55px 0;
-  }
-
-  .category{
-    min-height:230px;
-  }
-
-  .category-img{
-    height:140px;
-  }
-
-  .category-hero{
-    min-height:270px;
-  }
-
-  .game-board{
-    height:65vh;
-    min-height:420px;
-    border-radius:20px;
-  }
-
-  .game-paddle{
-    width:115px;
-    height:14px;
-    bottom:15px;
-  }
-
-  .game-ball{
-    width:22px;
-    height:22px;
-  }
-
-  .game-stats{
-    gap:7px;
-  }
-
-  .game-stat{
-    padding:10px 5px;
-  }
-
-  .game-stat strong{
-    font-size:20px;
-  }
-
-  .game-login{
-    margin:35px auto;
-    padding:25px 18px;
-  }
-
+.grid{grid-template-columns:1fr}
+.hero{min-height:530px}
+.wg-inner{padding:22px}
+.stats{grid-template-columns:1fr 1fr}
+.section{padding:55px 0}
+.category{min-height:230px}
+.category-img{height:140px}
+.category-hero{min-height:270px}
+.game-stage{height:300px}
+.game-target{width:55px;height:55px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-
 <div id="intro">
-  <div class="intro-box">
-    <div class="intro-logo">V2GURD</div>
-    <div class="intro-sub">SECURE • FAST • PREMIUM</div>
-  </div>
+<div class="intro-box">
+<div class="intro-logo">V2GURD</div>
+<div class="intro-sub">SECURE • FAST • PREMIUM</div>
 </div>
-
-<!-- HEADER -->
+</div>
 
 <header>
 <nav class="nav">
 
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-  <div class="logo" onclick="showPage('home')">
-    V2<span>GURD</span>
-  </div>
+<div class="logo" onclick="showPage('home')">
+V2<span>GURD</span>
+</div>
 
-  <div class="nav-links" id="navLinks">
+<div class="nav-links" id="navLinks">
+<button onclick="showPage('home')">خانه</button>
+<button onclick="showPage('wireguard')">WireGuard</button>
+<button onclick="showPage('v2box')">V2Box</button>
+<button onclick="showPage('jumpjump')">JumpJump</button>
+<button onclick="showPage('game')">🎮 بازی V2GURD</button>
+<button onclick="showPage('guide')">آموزش</button>
+<button onclick="showPage('rules')">قوانین</button>
+<button onclick="showPage('bot')">ربات</button>
+<button onclick="showPage('support')">پشتیبانی</button>
+</div>
 
-    <button onclick="showPage('home')">
-      خانه
-    </button>
-
-    <button onclick="showPage('wireguard')">
-      WireGuard
-    </button>
-
-    <button onclick="showPage('v2box')">
-      V2Box
-    </button>
-
-    <button onclick="showPage('jumpjump')">
-      JumpJump
-    </button>
-
-    <button onclick="showPage('game')">
-      🎮 بازی
-    </button>
-
-    <button onclick="showPage('guide')">
-      آموزش
-    </button>
-
-    <button onclick="showPage('rules')">
-      قوانین
-    </button>
-
-    <button onclick="showPage('bot')">
-      ربات
-    </button>
-
-    <button onclick="showPage('support')">
-      پشتیبانی
-    </button>
-
-  </div>
-
-  <div class="nav-actions">
-    <a
-      class="btn btn-primary"
-      href="https://t.me/Vtwoguard"
-      target="_blank"
-    >
-      تلگرام
-    </a>
-  </div>
+<div class="nav-actions">
+<a class="btn btn-primary" href="https://t.me/Vtwoguard" target="_blank">تلگرام</a>
+</div>
 
 </nav>
 </header>
 
-
 <main>
 
-<!-- ================= HOME ================= -->
-
+<!-- HOME -->
 <section id="home" class="page active">
 
-  <div class="hero">
-    <div class="container">
-
-      <div class="hero-content">
-
-        <div class="badge">
-          🛡️ V2GURD • SECURE NETWORK
-        </div>
-
-        <h1>
-          اینترنت سریع،
-          <span>پایدار و امن</span>
-        </h1>
-
-        <p>
-          سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت،
-          پایداری، امنیت و اتصال مطمئن.
-        </p>
-
-        <div class="hero-buttons">
-
-          <button
-            class="btn btn-primary"
-            onclick="showPage('wireguard')"
-          >
-            مشاهده سرویس‌ها
-          </button>
-
-          <button
-            class="btn"
-            onclick="openCart()"
-          >
-            🛒 سبد خرید
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="container">
-
-    <div class="wg-featured">
-
-      <div class="wg-inner">
-
-        <div class="feature-badge">
-          ⭐ ویژه • پرفروش • پیشنهادی
-        </div>
-
-        <h2>
-          🟣 وایرگارد
-          <span>| تک‌کاربره</span>
-        </h2>
-
-        <p>
-          🚀 سرعت فضایی، اتصال پایدار و IP ثابت.
-          یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD
-          برای اتصال سریع و مطمئن.
-        </p>
-
-        <div class="wg-points">
-
-          <div class="wg-point">
-            🚀 سرعت فضایی
-          </div>
-
-          <div class="wg-point">
-            ⚡ بدون قطعی
-          </div>
-
-          <div class="wg-point">
-            🌐 IP ثابت
-          </div>
-
-          <div class="wg-point">
-            🔒 تک‌کاربره
-          </div>
-
-          <div class="wg-point">
-            📱 آیفون و اندروید
-          </div>
-
-          <div class="wg-point">
-            ● یکی از بهترین سرورهای ما
-          </div>
-
-        </div>
-
-        <button
-          class="btn btn-primary"
-          onclick="showPage('wireguard')"
-        >
-          ⭐ مشاهده پلن‌های وایرگارد
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="section">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <h2>
-          دسته‌بندی خدمات
-        </h2>
-
-        <p>
-          هر دسته سرویس‌های مخصوص خودش را دارد
-        </p>
-
-      </div>
-
-
-      <div class="categories">
-
-
-        <div
-          class="category"
-          onclick="showPage('wireguard')"
-        >
-
-          <img
-            class="category-img"
-            src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd"
-            alt="WireGuard"
-          >
-
-          <div class="category-overlay"></div>
-
-          <div class="category-content">
-
-            <h3>
-              🟣 WireGuard
-            </h3>
-
-            <p>
-              تک‌کاربره • IP ثابت • سرعت بالا
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="category"
-          onclick="showPage('v2box')"
-        >
-
-          <img
-            class="category-img"
-            src="https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA"
-            alt="V2Box"
-          >
-
-          <div class="category-overlay"></div>
-
-          <div class="category-content">
-
-            <h3>
-              📦 V2Box
-            </h3>
-
-            <p>
-              CDN • حرفه‌ای • اقتصادی • Tunnel
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="category"
-          onclick="showPage('jumpjump')"
-        >
-
-          <img
-            class="category-img"
-            src="https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA"
-            alt="JumpJump"
-          >
-
-          <div class="category-overlay"></div>
-
-          <div class="category-content">
-
-            <h3>
-              🚀 JumpJump
-            </h3>
-
-            <p>
-              سرویس چند دستگاه
-            </p>
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="section">
-
-    <div class="container">
-
-      <div class="stats">
-
-        <div class="stat">
-          <strong>99%</strong>
-          <span>پایداری سرویس</span>
-        </div>
-
-        <div class="stat">
-          <strong>24/7</strong>
-          <span>پشتیبانی</span>
-        </div>
-
-        <div class="stat">
-          <strong>IP</strong>
-          <span>ثابت</span>
-        </div>
-
-        <div class="stat">
-          <strong>⚡</strong>
-          <span>سرعت بالا</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="section">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>
-          سوالات متداول
-        </h2>
-      </div>
-
-      <div class="faq">
-
-        <div class="faq-item">
-
-          <button
-            class="faq-q"
-            onclick="toggleFaq(this)"
-          >
-            سرویس‌ها IP ثابت دارند؟
-            <span>＋</span>
-          </button>
-
-          <div class="faq-a">
-            سرویس وایرگارد تک‌کاربره دارای IP ثابت است.
-          </div>
-
-        </div>
-
-
-        <div class="faq-item">
-
-          <button
-            class="faq-q"
-            onclick="toggleFaq(this)"
-          >
-            سرویس روی آیفون و اندروید کار می‌کند؟
-            <span>＋</span>
-          </button>
-
-          <div class="faq-a">
-            بله، سرویس‌های مناسب موبایل روی آیفون و اندروید قابل استفاده هستند.
-          </div>
-
-        </div>
-
-
-        <div class="faq-item">
-
-          <button
-            class="faq-q"
-            onclick="toggleFaq(this)"
-          >
-            بعد از خرید چطور سرویس را دریافت کنم؟
-            <span>＋</span>
-          </button>
-
-          <div class="faq-a">
-            بعد از پرداخت، رسید خود را از طریق تلگرام ارسال کنید تا اطلاعات سرویس برای شما ارسال شود.
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
+<div class="hero">
+<div class="container">
+<div class="hero-content">
+
+<div class="badge">🛡️ V2GURD • SECURE NETWORK</div>
+
+<h1>اینترنت سریع، <span>پایدار و امن</span></h1>
+
+<p>
+سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت،
+پایداری، امنیت و اتصال مطمئن.
+</p>
+
+<div class="hero-buttons">
+<button class="btn btn-primary" onclick="showPage('wireguard')">مشاهده سرویس‌ها</button>
+<button class="btn" onclick="openCart()">🛒 سبد خرید</button>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="wg-featured">
+<div class="wg-inner">
+
+<div class="feature-badge">⭐ ویژه • پرفروش • پیشنهادی</div>
+
+<h2>🟣 وایرگارد <span>| تک‌کاربره</span></h2>
+
+<p>
+🚀 سرعت فضایی، اتصال پایدار و IP ثابت.
+یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD
+برای اتصال سریع و مطمئن.
+</p>
+
+<div class="wg-points">
+<div class="wg-point">🚀 سرعت فضایی</div>
+<div class="wg-point">⚡ بدون قطعی</div>
+<div class="wg-point">🌐 IP ثابت</div>
+<div class="wg-point">🔒 تک‌کاربره</div>
+<div class="wg-point">📱 آیفون و اندروید</div>
+<div class="wg-point">● یکی از بهترین سرورهای ما</div>
+</div>
+
+<button class="btn btn-primary" onclick="showPage('wireguard')">
+⭐ مشاهده پلن‌های وایرگارد
+</button>
+
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="container">
+
+<div class="section-title">
+<h2>دسته‌بندی خدمات</h2>
+<p>هر دسته سرویس‌های مخصوص خودش را دارد</p>
+</div>
+
+<div class="categories">
+
+<div class="category" onclick="showPage('wireguard')">
+<img class="category-img" src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd" alt="WireGuard">
+<div class="category-overlay"></div>
+<div class="category-content">
+<h3>🟣 WireGuard</h3>
+<p>تک‌کاربره • IP ثابت • سرعت بالا</p>
+</div>
+</div>
+
+<div class="category" onclick="showPage('v2box')">
+<img class="category-img" src="https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA" alt="V2Box">
+<div class="category-overlay"></div>
+<div class="category-content">
+<h3>📦 V2Box</h3>
+<p>CDN • حرفه‌ای • اقتصادی • Tunnel</p>
+</div>
+</div>
+
+<div class="category" onclick="showPage('jumpjump')">
+<img class="category-img" src="https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA" alt="JumpJump">
+<div class="category-overlay"></div>
+<div class="category-content">
+<h3>🚀 JumpJump</h3>
+<p>سرویس چند دستگاه</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="container">
+<div class="stats">
+
+<div class="stat"><strong>99%</strong><span>پایداری سرویس</span></div>
+<div class="stat"><strong>24/7</strong><span>پشتیبانی</span></div>
+<div class="stat"><strong>IP</strong><span>ثابت</span></div>
+<div class="stat"><strong>⚡</strong><span>سرعت بالا</span></div>
+
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="container">
+
+<div class="section-title">
+<h2>سوالات متداول</h2>
+</div>
+
+<div class="faq">
+
+<div class="faq-item">
+<button class="faq-q" onclick="toggleFaq(this)">
+سرویس‌ها IP ثابت دارند؟ <span>＋</span>
+</button>
+<div class="faq-a">سرویس وایرگارد تک‌کاربره دارای IP ثابت است.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-q" onclick="toggleFaq(this)">
+سرویس روی آیفون و اندروید کار می‌کند؟ <span>＋</span>
+</button>
+<div class="faq-a">بله، سرویس‌های مناسب موبایل روی آیفون و اندروید قابل استفاده هستند.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-q" onclick="toggleFaq(this)">
+بعد از خرید چطور سرویس را دریافت کنم؟ <span>＋</span>
+</button>
+<div class="faq-a">بعد از پرداخت، رسید خود را از طریق تلگرام ارسال کنید تا اطلاعات سرویس برای شما ارسال شود.</div>
+</div>
+
+</div>
+</div>
+</div>
 
 </section>
 
-
-<!-- ================= WIREGUARD ================= -->
-
+<!-- WIREGUARD -->
 <section id="wireguard" class="page">
 
-  <div class="category-hero">
+<div class="category-hero">
+<img class="category-hero-img" src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd" alt="WireGuard">
+<div class="category-hero-overlay"></div>
+<div class="container">
+<div class="category-hero-content">
+<img class="category-icon" src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd" alt="WireGuard">
+<h1>🟣 وایرگارد</h1>
+<p>سرویس تک‌کاربره ویژه V2GURD با سرعت بالا، اتصال پایدار و IP ثابت.</p>
+</div>
+</div>
+</div>
 
-    <img
-      class="category-hero-img"
-      src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd"
-      alt="WireGuard"
-    >
+<div class="section">
+<div class="container">
 
-    <div class="category-hero-overlay"></div>
+<div class="section-title">
+<h2>⭐ پلن‌های وایرگارد</h2>
+<p>یکی از بهترین و پرفروش‌ترین سرویس‌های ما</p>
+</div>
 
-    <div class="container">
+<div class="grid">
 
-      <div class="category-hero-content">
+<div class="card special-card">
+<div class="status"><i></i>موجود و فعال</div>
+<h3>🟣 وایرگارد — ۱۰ گیگ</h3>
+<div class="subtitle">تک‌کاربره<br>۳۰ روز اعتبار<br>IP ثابت</div>
+<div class="price">۱۴۹,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-primary" onclick="addToCart('wg10')">افزودن به سبد</button>
+</div>
 
-        <img
-          class="category-icon"
-          src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd"
-          alt="WireGuard"
-        >
+<div class="card">
+<div class="status"><i></i>موجود و فعال</div>
+<h3>🟣 وایرگارد — ۲۰ گیگ</h3>
+<div class="subtitle">تک‌کاربره<br>۳۰ روز اعتبار<br>IP ثابت</div>
+<div class="price">۲۷۹,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-primary" onclick="addToCart('wg20')">افزودن به سبد</button>
+</div>
 
-        <h1>
-          🟣 وایرگارد
-        </h1>
+<div class="card">
+<div class="status"><i></i>موجود و فعال</div>
+<h3>🟣 وایرگارد — ۴۰ گیگ</h3>
+<div class="subtitle">تک‌کاربره<br>۳۰ روز اعتبار<br>IP ثابت</div>
+<div class="price">۴۹۹,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-primary" onclick="addToCart('wg40')">افزودن به سبد</button>
+</div>
 
-        <p>
-          سرویس تک‌کاربره ویژه V2GURD با سرعت بالا،
-          اتصال پایدار و IP ثابت.
-        </p>
+<div class="card">
+<div class="status"><i></i>موجود و فعال</div>
+<h3>🟣 وایرگارد — ۶۰ گیگ</h3>
+<div class="subtitle">تک‌کاربره<br>۳۰ روز اعتبار<br>IP ثابت</div>
+<div class="price">۶۹۹,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-primary" onclick="addToCart('wg60')">افزودن به سبد</button>
+</div>
 
-      </div>
+<div class="card">
+<div class="status"><i></i>موجود و فعال</div>
+<h3>🟣 وایرگارد — ۱۰۰ گیگ</h3>
+<div class="subtitle">تک‌کاربره<br>۳۰ روز اعتبار<br>IP ثابت</div>
+<div class="price">۹۹۹,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-primary" onclick="addToCart('wg100')">افزودن به سبد</button>
+</div>
 
-    </div>
-
-  </div>
-
-
-  <div class="section">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <h2>
-          ⭐ پلن‌های وایرگارد
-        </h2>
-
-        <p>
-          یکی از بهترین و پرفروش‌ترین سرویس‌های ما
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-
-        <div class="card special-card">
-
-          <div class="status">
-            <i></i>
-            موجود و فعال
-          </div>
-
-          <h3>
-            🟣 وایرگارد — ۱۰ گیگ
-          </h3>
-
-          <div class="subtitle">
-            تک‌کاربره<br>
-            ۳۰ روز اعتبار<br>
-            IP ثابت
-          </div>
-
-          <div class="price">
-            ۱۴۹,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            onclick="addToCart('wg10')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود و فعال
-          </div>
-
-          <h3>
-            🟣 وایرگارد — ۲۰ گیگ
-          </h3>
-
-          <div class="subtitle">
-            تک‌کاربره<br>
-            ۳۰ روز اعتبار<br>
-            IP ثابت
-          </div>
-
-          <div class="price">
-            ۲۷۹,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            onclick="addToCart('wg20')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود و فعال
-          </div>
-
-          <h3>
-            🟣 وایرگارد — ۴۰ گیگ
-          </h3>
-
-          <div class="subtitle">
-            تک‌کاربره<br>
-            ۳۰ روز اعتبار<br>
-            IP ثابت
-          </div>
-
-          <div class="price">
-            ۴۹۹,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            onclick="addToCart('wg40')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود و فعال
-          </div>
-
-          <h3>
-            🟣 وایرگارد — ۶۰ گیگ
-          </h3>
-
-          <div class="subtitle">
-            تک‌کاربره<br>
-            ۳۰ روز اعتبار<br>
-            IP ثابت
-          </div>
-
-          <div class="price">
-            ۶۹۹,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            onclick="addToCart('wg60')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود و فعال
-          </div>
-
-          <h3>
-            🟣 وایرگارد — ۱۰۰ گیگ
-          </h3>
-
-          <div class="subtitle">
-            تک‌کاربره<br>
-            ۳۰ روز اعتبار<br>
-            IP ثابت
-          </div>
-
-          <div class="price">
-            ۹۹۹,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            onclick="addToCart('wg100')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </div>
+</div>
+</div>
+</div>
 
 </section>
 
-
-<!-- ================= V2BOX ================= -->
-
+<!-- V2BOX -->
 <section id="v2box" class="page">
 
-  <div class="category-hero">
+<div class="category-hero">
+<img class="category-hero-img" src="https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA" alt="V2Box">
+<div class="category-hero-overlay"></div>
+<div class="container">
+<div class="category-hero-content">
+<img class="category-icon" src="https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA" alt="V2Box">
+<h1>📦 V2Box</h1>
+<p>سرویس‌های سروری V2GURD شامل CDN، حرفه‌ای، اقتصادی، معمولی و Tunnel.</p>
+</div>
+</div>
+</div>
 
-    <img
-      class="category-hero-img"
-      src="https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA"
-      alt="V2Box"
-    >
+<div class="section">
+<div class="container">
 
-    <div class="category-hero-overlay"></div>
+<div class="section-title">
+<h2>🌐 سرویس‌های V2Box</h2>
+<p>پلن مناسب خودت رو انتخاب کن</p>
+</div>
 
-    <div class="container">
+<div class="grid">
 
-      <div class="category-hero-content">
+<div class="card">
+<div class="status"><i></i>موجود</div>
+<h3>💠 سرور اقتصادی</h3>
+<div class="subtitle">مناسب مصرف روزمره<br>قیمت اقتصادی<br>حجم قابل انتخاب</div>
+<select class="select" id="economicPlan">
+<option value="50">۵۰ گیگ — ۱۰۰,۰۰۰ تومان</option>
+<option value="100">۱۰۰ گیگ — ۲۰۰,۰۰۰ تومان</option>
+<option value="150">۱۵۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
+<option value="200">۲۰۰ گیگ — ۴۰۰,۰۰۰ تومان</option>
+<option value="250">۲۵۰ گیگ — ۵۰۰,۰۰۰ تومان</option>
+<option value="300">۳۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
+<option value="400">۴۰۰ گیگ — ۸۰۰,۰۰۰ تومان</option>
+<option value="500">۵۰۰ گیگ — ۱,۰۰۰,۰۰۰ تومان</option>
+</select>
+<button class="btn btn-primary" onclick="buyServer('اقتصادی','economicPlan',2000)">افزودن به سبد</button>
+</div>
 
-        <img
-          class="category-icon"
-          src="https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA"
-          alt="V2Box"
-        >
+<div class="card">
+<div class="status"><i></i>موجود</div>
+<h3>⚡ سرور معمولی</h3>
+<div class="subtitle">سرعت مناسب<br>اتصال پایدار<br>مناسب استفاده روزمره</div>
+<select class="select" id="normalPlan">
+<option value="50">۵۰ گیگ — ۷۵,۰۰۰ تومان</option>
+<option value="100">۱۰۰ گیگ — ۱۵۰,۰۰۰ تومان</option>
+<option value="150">۱۵۰ گیگ — ۲۲۵,۰۰۰ تومان</option>
+<option value="200">۲۰۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
+<option value="250">۲۵۰ گیگ — ۳۷۵,۰۰۰ تومان</option>
+<option value="300">۳۰۰ گیگ — ۴۵۰,۰۰۰ تومان</option>
+<option value="400">۴۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
+<option value="500">۵۰۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
+</select>
+<button class="btn btn-primary" onclick="buyServer('معمولی','normalPlan',1500)">افزودن به سبد</button>
+</div>
 
-        <h1>
-          📦 V2Box
-        </h1>
+<div class="card special-card">
+<div class="status"><i></i>ویژه</div>
+<h3>🚀 CDN</h3>
+<div class="subtitle">اتصال سریع<br>مناسب مصرف بالا<br>مسیر بهینه</div>
+<select class="select" id="cdnPlan">
+<option value="50">۵۰ گیگ — ۷۵,۰۰۰ تومان</option>
+<option value="100">۱۰۰ گیگ — ۱۵۰,۰۰۰ تومان</option>
+<option value="150">۱۵۰ گیگ — ۲۲۵,۰۰۰ تومان</option>
+<option value="200">۲۰۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
+<option value="250">۲۵۰ گیگ — ۳۷۵,۰۰۰ تومان</option>
+<option value="300">۳۰۰ گیگ — ۴۵۰,۰۰۰ تومان</option>
+<option value="400">۴۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
+<option value="500">۵۰۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
+</select>
+<button class="btn btn-primary" onclick="buyServer('CDN','cdnPlan',1500)">افزودن به سبد</button>
+</div>
 
-        <p>
-          سرویس‌های سروری V2GURD شامل CDN،
-          حرفه‌ای، اقتصادی، معمولی و Tunnel.
-        </p>
+<div class="card">
+<div class="status"><i></i>موجود</div>
+<h3>🔗 Tunnel</h3>
+<div class="subtitle">مسیر تونلی<br>مناسب اتصال پایدار<br>سرویس پرسرعت</div>
+<select class="select" id="tunnelPlan">
+<option value="50">۵۰ گیگ — ۱۲۵,۰۰۰ تومان</option>
+<option value="100">۱۰۰ گیگ — ۲۵۰,۰۰۰ تومان</option>
+<option value="150">۱۵۰ گیگ — ۳۷۵,۰۰۰ تومان</option>
+<option value="200">۲۰۰ گیگ — ۵۰۰,۰۰۰ تومان</option>
+<option value="250">۲۵۰ گیگ — ۶۲۵,۰۰۰ تومان</option>
+<option value="300">۳۰۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
+<option value="400">۴۰۰ گیگ — ۱,۰۰۰,۰۰۰ تومان</option>
+<option value="500">۵۰۰ گیگ — ۱,۲۵۰,۰۰۰ تومان</option>
+</select>
+<button class="btn btn-primary" onclick="buyServer('Tunnel','tunnelPlan',2500)">افزودن به سبد</button>
+</div>
 
-      </div>
+<div class="card special-card">
+<div class="status"><i></i>حرفه‌ای</div>
+<h3>👑 سرور حرفه‌ای</h3>
+<div class="subtitle">مناسب مصرف سنگین<br>سرعت بالا<br>سرویس حرفه‌ای V2GURD</div>
+<select class="select" id="proPlan">
+<option value="50">۵۰ گیگ — ۱۵۰,۰۰۰ تومان</option>
+<option value="100">۱۰۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
+<option value="150">۱۵۰ گیگ — ۴۵۰,۰۰۰ تومان</option>
+<option value="200">۲۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
+<option value="250">۲۵۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
+<option value="300">۳۰۰ گیگ — ۹۰۰,۰۰۰ تومان</option>
+<option value="400">۴۰۰ گیگ — ۱,۲۰۰,۰۰۰ تومان</option>
+<option value="500">۵۰۰ گیگ — ۱,۵۰۰,۰۰۰ تومان</option>
+</select>
+<button class="btn btn-purple" onclick="buyServer('حرفه‌ای','proPlan',3000)">افزودن به سبد</button>
+</div>
 
-    </div>
-
-  </div>
-
-
-  <div class="section">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <h2>
-          🌐 سرویس‌های V2Box
-        </h2>
-
-        <p>
-          پلن مناسب خودت رو انتخاب کن
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود
-          </div>
-
-          <h3>
-            💠 سرور اقتصادی
-          </h3>
-
-          <div class="subtitle">
-            مناسب مصرف روزمره<br>
-            قیمت اقتصادی<br>
-            حجم قابل انتخاب
-          </div>
-
-          <select
-            class="select"
-            id="economicPlan"
-          >
-            <option value="50">۵۰ گیگ — ۱۰۰,۰۰۰ تومان</option>
-            <option value="100">۱۰۰ گیگ — ۲۰۰,۰۰۰ تومان</option>
-            <option value="150">۱۵۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
-            <option value="200">۲۰۰ گیگ — ۴۰۰,۰۰۰ تومان</option>
-            <option value="250">۲۵۰ گیگ — ۵۰۰,۰۰۰ تومان</option>
-            <option value="300">۳۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
-            <option value="400">۴۰۰ گیگ — ۸۰۰,۰۰۰ تومان</option>
-            <option value="500">۵۰۰ گیگ — ۱,۰۰۰,۰۰۰ تومان</option>
-          </select>
-
-          <button
-            class="btn btn-primary"
-            onclick="buyServer('اقتصادی','economicPlan',2000)"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود
-          </div>
-
-          <h3>
-            ⚡ سرور معمولی
-          </h3>
-
-          <div class="subtitle">
-            سرعت مناسب<br>
-            اتصال پایدار<br>
-            مناسب استفاده روزمره
-          </div>
-
-          <select
-            class="select"
-            id="normalPlan"
-          >
-            <option value="50">۵۰ گیگ — ۷۵,۰۰۰ تومان</option>
-            <option value="100">۱۰۰ گیگ — ۱۵۰,۰۰۰ تومان</option>
-            <option value="150">۱۵۰ گیگ — ۲۲۵,۰۰۰ تومان</option>
-            <option value="200">۲۰۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
-            <option value="250">۲۵۰ گیگ — ۳۷۵,۰۰۰ تومان</option>
-            <option value="300">۳۰۰ گیگ — ۴۵۰,۰۰۰ تومان</option>
-            <option value="400">۴۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
-            <option value="500">۵۰۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
-          </select>
-
-          <button
-            class="btn btn-primary"
-            onclick="buyServer('معمولی','normalPlan',1500)"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card special-card">
-
-          <div class="status">
-            <i></i>
-            ویژه
-          </div>
-
-          <h3>
-            🚀 CDN
-          </h3>
-
-          <div class="subtitle">
-            اتصال سریع<br>
-            مناسب مصرف بالا<br>
-            مسیر بهینه
-          </div>
-
-          <select
-            class="select"
-            id="cdnPlan"
-          >
-            <option value="50">۵۰ گیگ — ۷۵,۰۰۰ تومان</option>
-            <option value="100">۱۰۰ گیگ — ۱۵۰,۰۰۰ تومان</option>
-            <option value="150">۱۵۰ گیگ — ۲۲۵,۰۰۰ تومان</option>
-            <option value="200">۲۰۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
-            <option value="250">۲۵۰ گیگ — ۳۷۵,۰۰۰ تومان</option>
-            <option value="300">۳۰۰ گیگ — ۴۵۰,۰۰۰ تومان</option>
-            <option value="400">۴۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
-            <option value="500">۵۰۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
-          </select>
-
-          <button
-            class="btn btn-primary"
-            onclick="buyServer('CDN','cdnPlan',1500)"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود
-          </div>
-
-          <h3>
-            🔗 Tunnel
-          </h3>
-
-          <div class="subtitle">
-            مسیر تونلی<br>
-            مناسب اتصال پایدار<br>
-            سرویس پرسرعت
-          </div>
-
-          <select
-            class="select"
-            id="tunnelPlan"
-          >
-            <option value="50">۵۰ گیگ — ۱۲۵,۰۰۰ تومان</option>
-            <option value="100">۱۰۰ گیگ — ۲۵۰,۰۰۰ تومان</option>
-            <option value="150">۱۵۰ گیگ — ۳۷۵,۰۰۰ تومان</option>
-            <option value="200">۲۰۰ گیگ — ۵۰۰,۰۰۰ تومان</option>
-            <option value="250">۲۵۰ گیگ — ۶۲۵,۰۰۰ تومان</option>
-            <option value="300">۳۰۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
-            <option value="400">۴۰۰ گیگ — ۱,۰۰۰,۰۰۰ تومان</option>
-            <option value="500">۵۰۰ گیگ — ۱,۲۵۰,۰۰۰ تومان</option>
-          </select>
-
-          <button
-            class="btn btn-primary"
-            onclick="buyServer('Tunnel','tunnelPlan',2500)"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card special-card">
-
-          <div class="status">
-            <i></i>
-            حرفه‌ای
-          </div>
-
-          <h3>
-            👑 سرور حرفه‌ای
-          </h3>
-
-          <div class="subtitle">
-            مناسب مصرف سنگین<br>
-            سرعت بالا<br>
-            سرویس حرفه‌ای V2GURD
-          </div>
-
-          <select
-            class="select"
-            id="proPlan"
-          >
-            <option value="50">۵۰ گیگ — ۱۵۰,۰۰۰ تومان</option>
-            <option value="100">۱۰۰ گیگ — ۳۰۰,۰۰۰ تومان</option>
-            <option value="150">۱۵۰ گیگ — ۴۵۰,۰۰۰ تومان</option>
-            <option value="200">۲۰۰ گیگ — ۶۰۰,۰۰۰ تومان</option>
-            <option value="250">۲۵۰ گیگ — ۷۵۰,۰۰۰ تومان</option>
-            <option value="300">۳۰۰ گیگ — ۹۰۰,۰۰۰ تومان</option>
-            <option value="400">۴۰۰ گیگ — ۱,۲۰۰,۰۰۰ تومان</option>
-            <option value="500">۵۰۰ گیگ — ۱,۵۰۰,۰۰۰ تومان</option>
-          </select>
-
-          <button
-            class="btn btn-purple"
-            onclick="buyServer('حرفه‌ای','proPlan',3000)"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
+</div>
 </section>
 
-
-<!-- ================= JUMPJUMP ================= -->
-
+<!-- JUMPJUMP -->
 <section id="jumpjump" class="page">
 
-  <div class="category-hero">
+<div class="category-hero">
+<img class="category-hero-img" src="https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA" alt="JumpJump">
+<div class="category-hero-overlay"></div>
+<div class="container">
+<div class="category-hero-content">
+<img class="category-icon" src="https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA" alt="JumpJump">
+<h1>🚀 JumpJump</h1>
+<p>سرویس‌های اختصاصی JumpJump برای استفاده روی یک یا چند دستگاه با پلن‌های مختلف.</p>
+</div>
+</div>
+</div>
 
-    <img
-      class="category-hero-img"
-      src="https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA"
-      alt="JumpJump"
-    >
+<div class="section">
+<div class="container">
+<div class="section-title">
+<h2>🚀 پلن‌های JumpJump</h2>
+<p>فقط سرویس‌های مربوط به JumpJump</p>
+</div>
 
-    <div class="category-hero-overlay"></div>
+<div class="grid">
 
-    <div class="container">
+<div class="card">
+<div class="status"><i></i>موجود</div>
+<h3>🚀 JumpJump</h3>
+<div class="subtitle">۱ دستگاه<br>۱ ماه</div>
+<div class="price">۷۰۰,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-primary" onclick="addToCart('jj1')">افزودن به سبد</button>
+</div>
 
-      <div class="category-hero-content">
+<div class="card">
+<div class="status"><i></i>موجود</div>
+<h3>🚀 JumpJump</h3>
+<div class="subtitle">۲ دستگاه<br>۱ ماه</div>
+<div class="price">۹۹۹,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-primary" onclick="addToCart('jj2')">افزودن به سبد</button>
+</div>
 
-        <img
-          class="category-icon"
-          src="https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA"
-          alt="JumpJump"
-        >
+<div class="card special-card">
+<div class="status"><i></i>پیشنهاد ویژه</div>
+<h3>🚀 JumpJump</h3>
+<div class="subtitle">۲ دستگاه<br>۶ ماه</div>
+<div class="price">۴,۶۰۰,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-purple" onclick="addToCart('jj6')">افزودن به سبد</button>
+</div>
 
-        <h1>
-          🚀 JumpJump
-        </h1>
+<div class="card special-card">
+<div class="status"><i></i>بهترین ارزش خرید</div>
+<h3>🚀 JumpJump</h3>
+<div class="subtitle">۲ دستگاه<br>۱۲ ماه</div>
+<div class="price">۵,۵۰۰,۰۰۰ <small>تومان</small></div>
+<button class="btn btn-purple" onclick="addToCart('jj12')">افزودن به سبد</button>
+</div>
 
-        <p>
-          سرویس‌های اختصاصی JumpJump برای استفاده
-          روی یک یا چند دستگاه با پلن‌های مختلف.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="section">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <h2>
-          🚀 پلن‌های JumpJump
-        </h2>
-
-        <p>
-          فقط سرویس‌های مربوط به JumpJump
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود
-          </div>
-
-          <h3>
-            🚀 JumpJump
-          </h3>
-
-          <div class="subtitle">
-            ۱ دستگاه<br>
-            ۱ ماه
-          </div>
-
-          <div class="price">
-            ۷۰۰,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            onclick="addToCart('jj1')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="status">
-            <i></i>
-            موجود
-          </div>
-
-          <h3>
-            🚀 JumpJump
-          </h3>
-
-          <div class="subtitle">
-            ۲ دستگاه<br>
-            ۱ ماه
-          </div>
-
-          <div class="price">
-            ۹۹۹,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            onclick="addToCart('jj2')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card special-card">
-
-          <div class="status">
-            <i></i>
-            پیشنهاد ویژه
-          </div>
-
-          <h3>
-            🚀 JumpJump
-          </h3>
-
-          <div class="subtitle">
-            ۲ دستگاه<br>
-            ۶ ماه
-          </div>
-
-          <div class="price">
-            ۴,۶۰۰,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-purple"
-            onclick="addToCart('jj6')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-        <div class="card special-card">
-
-          <div class="status">
-            <i></i>
-            بهترین ارزش خرید
-          </div>
-
-          <h3>
-            🚀 JumpJump
-          </h3>
-
-          <div class="subtitle">
-            ۲ دستگاه<br>
-            ۱۲ ماه
-          </div>
-
-          <div class="price">
-            ۵,۵۰۰,۰۰۰
-            <small>تومان</small>
-          </div>
-
-          <button
-            class="btn btn-purple"
-            onclick="addToCart('jj12')"
-          >
-            افزودن به سبد
-          </button>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
+</div>
 </section>
 
-
-<!-- ================= GAME ================= -->
-
+<!-- GAME -->
 <section id="game" class="page">
 
-  <div class="section">
+<div class="section">
+<div class="container">
 
-    <div class="container">
+<div class="section-title">
+<h2>🎮 بازی V2GURD</h2>
+<p>۳۰ امتیاز بگیر و ۳۰ گیگ سرویس هدیه بگیر</p>
+</div>
 
-      <div class="section-title">
+<div class="info-box game-box">
 
-        <h2>
-          🎮 بازی V2GURD
-        </h2>
-
-        <p>
-          توپ را با تخته نگه دار و تا ۳۰ امتیاز برو
-        </p>
+<div id="gameLogin">
 
-      </div>
+<div class="game-icon">🎮</div>
+<h2>ورود به بازی</h2>
+<p>برای شروع بازی شماره موبایل خود را وارد کنید.</p>
 
+<input class="form-input" id="gamePhone" type="tel"
+inputmode="numeric" placeholder="شماره موبایل">
 
-      <!-- LOGIN -->
+<button class="btn btn-primary" onclick="sendGameCode()"
+style="width:100%;margin-top:8px">
+ادامه
+</button>
 
-      <div
-        class="game-login"
-        id="gameLogin"
-      >
+</div>
 
-        <div class="game-login-icon">
-          🎮
-        </div>
+<div id="gameCodeBox" style="display:none">
 
-        <h2>
-          ورود به بازی
-        </h2>
+<div class="game-icon">🔐</div>
+<h2>کد ورود</h2>
+<p>کد ۸ کاراکتری که از پشتیبانی دریافت کردی را وارد کن.</p>
 
-        <p>
-          برای شروع بازی ابتدا شماره موبایلت رو وارد کن.
-          بعد از ادامه، پیوی پشتیبانی باز میشه تا کد ورود رو از ما بگیری.
-        </p>
+<input class="form-input" id="gameCode" maxlength="8"
+autocomplete="off" placeholder="مثلاً 15v8293G"
+style="text-align:center;direction:ltr;letter-spacing:3px">
 
+<button class="btn btn-primary" onclick="verifyGameCode()"
+style="width:100%;margin-top:8px">
+ورود به بازی
+</button>
 
-        <!-- PHONE -->
+<button class="btn" onclick="backGameLogin()"
+style="width:100%;margin-top:8px">
+برگشت
+</button>
 
-        <div
-          class="game-step active"
-          id="gamePhoneStep"
-        >
+</div>
 
-          <input
-            class="form-input"
-            id="gamePhone"
-            type="tel"
-            inputmode="tel"
-            placeholder="شماره موبایل"
-            maxlength="15"
-          >
+<div id="gameArea" style="display:none">
 
-          <button
-            class="btn btn-primary"
-            onclick="sendGameCode()"
-            style="width:100%;margin-top:8px"
-          >
-            ادامه و دریافت کد
-          </button>
+<div class="game-user">
+<span>👤 <span id="gameUserPhone"></span></span>
+<button class="btn" onclick="logoutGame()">خروج</button>
+</div>
 
-          <div class="game-note">
-            بعد از زدن ادامه، تلگرام برای گرفتن کد ورود باز می‌شود.
-          </div>
-
-        </div>
-
+<div class="game-stats">
 
-        <!-- CODE -->
-
-        <div
-          class="game-step"
-          id="gameCodeStep"
-        >
-
-          <div class="telegram-request">
-
-            📩 پیوی پشتیبانی باز شد.<br>
-            کد ۸ کاراکتری که از پشتیبانی گرفتی رو اینجا وارد کن.
+<div class="game-stat">
+<strong id="gameScore">۰</strong>
+<span>امتیاز</span>
+</div>
 
-          </div>
-
-          <input
-            class="form-input"
-            id="gameCode"
-            type="text"
-            inputmode="text"
-            autocomplete="off"
-            maxlength="8"
-            placeholder="مثلاً 15v8293G"
-            dir="ltr"
-            style="text-align:center;letter-spacing:3px;font-weight:800"
-          >
-
-          <button
-            class="btn btn-primary"
-            onclick="verifyGameCode()"
-            style="width:100%;margin-top:8px"
-          >
-            ورود به بازی 🎮
-          </button>
-
-          <button
-            class="game-logout"
-            onclick="backToGamePhone()"
-          >
-            تغییر شماره
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- GAME AREA -->
-
-      <div
-        class="game-wrap"
-        id="gameArea"
-        style="display:none"
-      >
-
-        <div class="game-top">
-
-          <div>
-            <div style="font-weight:900">
-              🏓 V2GURD BALL
-            </div>
-
-            <div class="game-user">
-              بازیکن:
-              <strong id="gameUserPhone">
-                -
-              </strong>
-            </div>
-          </div>
-
-          <button
-            class="btn"
-            onclick="logoutGame()"
-          >
-            خروج
-          </button>
-
-        </div>
+<div class="game-stat">
+<strong id="gameBest">۰</strong>
+<span>رکورد</span>
+</div>
 
+<div class="game-stat">
+<strong>۳۰</strong>
+<span>هدف</span>
+</div>
 
-        <div class="game-stats">
-
-          <div class="game-stat">
-            <strong id="gameScore">
-              ۰
-            </strong>
-            <span>
-              امتیاز
-            </span>
-          </div>
+</div>
 
-          <div class="game-stat">
-            <strong id="gameBest">
-              ۰
-            </strong>
-            <span>
-              رکورد
-            </span>
-          </div>
+<div class="game-progress">
+<div id="gameProgress"></div>
+</div>
 
-          <div class="game-stat">
-            <strong>
-              ۳۰
-            </strong>
-            <span>
-              هدف
-            </span>
-          </div>
+<div id="gameMessage" class="game-message">
+برای شروع آماده‌ای؟
+</div>
 
-        </div>
+<div id="gameStage" class="game-stage">
 
+<button id="gameTarget" class="game-target"
+onclick="hitGameTarget(event)">
+⚡
+</button>
 
-        <div class="game-progress">
-          <div
-            class="game-progress-bar"
-            id="gameProgressBar"
-          ></div>
-        </div>
+</div>
 
+<button id="gameStartBtn" class="btn btn-primary"
+onclick="startGame()" style="width:100%;margin-top:15px">
+🎮 شروع بازی
+</button>
 
-        <div
-          class="game-board"
-          id="gameBoard"
-        >
+<div id="gameCooldown" class="game-cooldown"
+style="display:none"></div>
 
-          <div
-            class="game-ball"
-            id="gameBall"
-          ></div>
+<div id="gameReward" class="game-reward"
+style="display:none">
 
-          <div
-            class="game-paddle"
-            id="gamePaddle"
-          ></div>
+<div style="font-size:55px">🎉</div>
 
+<h2>تبریک! برنده شدی</h2>
 
-          <div
-            class="game-overlay"
-            id="gameOverlay"
-          >
+<p>شما ۳۰ امتیاز را کامل کردی.</p>
 
-            <div class="game-overlay-box">
+<div class="reward-number">
+🎁 ۳۰ گیگ سرویس رایگان V2GURD
+</div>
 
-              <div
-                id="gameOverlayIcon"
-                style="font-size:50px;margin-bottom:8px"
-              >
-                🎮
-              </div>
+<button class="btn btn-primary"
+onclick="sendGameRewardScreenshot()" style="width:100%">
+📸 ارسال اسکرین‌شات به پشتیبانی
+</button>
 
-              <h2 id="gameOverlayTitle">
-                آماده‌ای؟
-              </h2>
+</div>
 
-              <p id="gameOverlayText">
-                توپ رو با تخته نگه دار.
-                هر برخورد = یک امتیاز و سرعت بیشتر.
-              </p>
+</div>
 
-              <div class="game-controls">
-
-                <button
-                  class="btn btn-primary"
-                  id="gameStartBtn"
-                  onclick="startGame()"
-                >
-                  شروع بازی
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="game-hint">
-          📱 روی صفحه انگشتت رو چپ و راست بکش تا تخته حرکت کنه.
-          <br>
-          هر بار توپ به تخته بخوره سرعتش بیشتر میشه.
-        </div>
-
-      </div>
-
-
-      <!-- REWARD -->
-
-      <div
-        class="game-reward"
-        id="gameReward"
-        style="display:none"
-      >
-
-        <div class="reward-icon">
-          🎁
-        </div>
-
-        <h2>
-          تبریک! <span>۳۰ امتیاز</span> گرفتی 🎉
-        </h2>
-
-        <p>
-          تو موفق شدی بازی V2GURD رو کامل کنی.
-          جایزه‌ات آماده‌ست.
-        </p>
-
-        <div class="reward-box">
-
-          <strong>
-            ۳۰ گیگ
-          </strong>
-
-          <span>
-            سرویس VPN / فیلترشکن هدیه
-          </span>
-
-        </div>
-
-        <button
-          class="btn btn-primary"
-          onclick="sendGameRewardScreenshot()"
-          style="width:100%"
-        >
-          📸 ارسال اسکرین‌شات به پشتیبانی
-        </button>
-
-        <p style="margin-top:12px;font-size:11px;color:#71839e">
-          بعد از ارسال، اسکرین‌شات نتیجه بازی را هم در همین چت تلگرام بفرست.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
+</div>
 </section>
 
-
-<!-- ================= GUIDE ================= -->
-
+<!-- GUIDE -->
 <section id="guide" class="page">
+<div class="section">
+<div class="container">
 
-  <div class="section">
+<div class="section-title">
+<h2>📚 راهنمای استفاده</h2>
+<p>مراحل دریافت و استفاده از سرویس</p>
+</div>
 
-    <div class="container">
+<div class="info-box">
 
-      <div class="section-title">
+<div class="step">
+<div class="step-num">۱</div>
+<div><h3>انتخاب سرویس</h3>
+<p>از دسته‌بندی موردنظر سرویس خود را انتخاب کنید و به سبد خرید اضافه کنید.</p></div>
+</div>
 
-        <h2>
-          📚 راهنمای استفاده
-        </h2>
+<div class="step">
+<div class="step-num">۲</div>
+<div><h3>بررسی سبد خرید</h3>
+<p>سرویس‌ها و مبلغ نهایی را بررسی کنید.</p></div>
+</div>
 
-        <p>
-          مراحل دریافت و استفاده از سرویس
-        </p>
+<div class="step">
+<div class="step-num">۳</div>
+<div><h3>پرداخت</h3>
+<p>مبلغ را به کارت اعلام‌شده انتقال دهید.</p></div>
+</div>
 
-      </div>
+<div class="step">
+<div class="step-num">۴</div>
+<div><h3>ارسال رسید</h3>
+<p>رسید پرداخت را از طریق تلگرام ارسال کنید تا سرویس برای شما ارسال شود.</p></div>
+</div>
 
-
-      <div class="info-box">
-
-        <div class="step">
-
-          <div class="step-num">
-            ۱
-          </div>
-
-          <div>
-            <h3>
-              انتخاب سرویس
-            </h3>
-
-            <p>
-              از دسته‌بندی موردنظر سرویس خود را انتخاب کنید
-              و به سبد خرید اضافه کنید.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div class="step">
-
-          <div class="step-num">
-            ۲
-          </div>
-
-          <div>
-            <h3>
-              بررسی سبد خرید
-            </h3>
-
-            <p>
-              سرویس‌ها و مبلغ نهایی را بررسی کنید.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div class="step">
-
-          <div class="step-num">
-            ۳
-          </div>
-
-          <div>
-            <h3>
-              پرداخت
-            </h3>
-
-            <p>
-              مبلغ را به کارت اعلام‌شده انتقال دهید.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div class="step">
-
-          <div class="step-num">
-            ۴
-          </div>
-
-          <div>
-            <h3>
-              ارسال رسید
-            </h3>
-
-            <p>
-              رسید پرداخت را از طریق تلگرام ارسال کنید
-              تا سرویس برای شما ارسال شود.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
+</div>
 </section>
 
-
-<!-- ================= RULES ================= -->
-
+<!-- RULES -->
 <section id="rules" class="page">
+<div class="section">
+<div class="container">
 
-  <div class="section">
+<div class="section-title"><h2>📜 قوانین خرید</h2></div>
 
-    <div class="container">
+<div class="info-box">
+<ul>
+<li>قبل از خرید، مشخصات سرویس را به دقت بررسی کنید.</li>
+<li>پس از فعال‌سازی سرویس، امکان تغییر پلن طبق شرایط سرویس انجام می‌شود.</li>
+<li>اطلاعات سرویس را در اختیار افراد دیگر قرار ندهید.</li>
+<li>مسئولیت استفاده نادرست از سرویس بر عهده خریدار است.</li>
+<li>برای پیگیری سفارش، حتماً شماره سفارش را نگه دارید.</li>
+</ul>
+</div>
 
-      <div class="section-title">
-
-        <h2>
-          📜 قوانین خرید
-        </h2>
-
-      </div>
-
-
-      <div class="info-box">
-
-        <ul>
-
-          <li>
-            قبل از خرید، مشخصات سرویس را به دقت بررسی کنید.
-          </li>
-
-          <li>
-            پس از فعال‌سازی سرویس، امکان تغییر پلن طبق شرایط سرویس انجام می‌شود.
-          </li>
-
-          <li>
-            اطلاعات سرویس را در اختیار افراد دیگر قرار ندهید.
-          </li>
-
-          <li>
-            مسئولیت استفاده نادرست از سرویس بر عهده خریدار است.
-          </li>
-
-          <li>
-            برای پیگیری سفارش، حتماً شماره سفارش را نگه دارید.
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
 </section>
 
-
-<!-- ================= BOT ================= -->
-
+<!-- BOT -->
 <section id="bot" class="page">
+<div class="section">
+<div class="container">
 
-  <div class="section">
+<div class="section-title">
+<h2>🤖 ربات V2GURD</h2>
+<p>مدیریت و دریافت سرویس از طریق ربات</p>
+</div>
 
-    <div class="container">
+<div class="info-box" style="text-align:center">
 
-      <div class="section-title">
+<div style="font-size:55px;margin-bottom:15px">🤖</div>
 
-        <h2>
-          🤖 ربات V2GURD
-        </h2>
+<h2>echo_priime_bot</h2>
 
-        <p>
-          مدیریت و دریافت سرویس از طریق ربات
-        </p>
+<p>
+برای دریافت اطلاعات سرویس و ارتباط سریع‌تر
+می‌توانید از ربات تلگرام استفاده کنید.
+</p>
 
-      </div>
+<br>
 
+<a class="btn btn-primary"
+href="https://t.me/echo_priime_bot" target="_blank">
+ورود به ربات
+</a>
 
-      <div class="info-box" style="text-align:center">
-
-        <div style="font-size:55px;margin-bottom:15px">
-          🤖
-        </div>
-
-        <h2>
-          echo_priime_bot
-        </h2>
-
-        <p>
-          برای دریافت اطلاعات سرویس و ارتباط سریع‌تر
-          می‌توانید از ربات تلگرام استفاده کنید.
-        </p>
-
-        <br>
-
-        <a
-          class="btn btn-primary"
-          href="https://t.me/echo_priime_bot"
-          target="_blank"
-        >
-          ورود به ربات
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
+</div>
 </section>
 
-
-<!-- ================= SUPPORT ================= -->
-
+<!-- SUPPORT -->
 <section id="support" class="page">
+<div class="section">
+<div class="container">
 
-  <div class="section">
+<div class="section-title">
+<h2>🎧 پشتیبانی V2GURD</h2>
+<p>در صورت وجود مشکل با ما در ارتباط باشید</p>
+</div>
 
-    <div class="container">
+<div class="info-box">
 
-      <div class="section-title">
+<h2>ایجاد تیکت پشتیبانی</h2>
 
-        <h2>
-          🎧 پشتیبانی V2GURD
-        </h2>
+<input class="form-input" id="supportName" placeholder="نام شما">
 
-        <p>
-          در صورت وجود مشکل با ما در ارتباط باشید
-        </p>
+<input class="form-input" id="supportProblem"
+placeholder="موضوع یا مشکل">
 
-      </div>
+<br>
 
+<button class="btn btn-primary"
+onclick="createTicket()">
+ارسال درخواست پشتیبانی
+</button>
 
-      <div class="info-box">
+<br><br>
 
-        <h2>
-          ایجاد تیکت پشتیبانی
-        </h2>
+<a class="btn" href="https://t.me/Vtwoguard" target="_blank">
+💬 ارتباط مستقیم در تلگرام
+</a>
 
-        <input
-          class="form-input"
-          id="supportName"
-          placeholder="نام شما"
-        >
-
-        <input
-          class="form-input"
-          id="supportProblem"
-          placeholder="موضوع یا مشکل"
-        >
-
-        <br>
-
-        <button
-          class="btn btn-primary"
-          onclick="createTicket()"
-        >
-          ارسال درخواست پشتیبانی
-        </button>
-
-        <br><br>
-
-        <a
-          class="btn"
-          href="https://t.me/Vtwoguard"
-          target="_blank"
-        >
-          💬 ارتباط مستقیم در تلگرام
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
+</div>
 </section>
 
 </main>
 
-
 <!-- CART BUTTON -->
-
-<button
-  class="cart-float"
-  onclick="openCart()"
->
-  🛒
-
-  <span
-    class="cart-count"
-    id="cartCount"
-  >
-    0
-  </span>
-
+<button class="cart-float" onclick="openCart()">
+🛒
+<span class="cart-count" id="cartCount">0</span>
 </button>
 
-
 <!-- CART -->
+<div class="cart-panel" id="cartPanel" onclick="outsideCart(event)">
 
-<div
-  class="cart-panel"
-  id="cartPanel"
-  onclick="outsideCart(event)"
->
+<div class="cart-box">
 
-  <div class="cart-box">
-
-    <div class="cart-head">
-
-      <h2>
-        🛒 سبد خرید
-      </h2>
-
-      <button
-        class="close"
-        onclick="closeCart()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div id="cartItems"></div>
-
-
-    <div class="summary">
-
-      <div class="sum-row">
-        <span>
-          مبلغ:
-        </span>
-
-        <span id="subtotal">
-          ۰ تومان
-        </span>
-      </div>
-
-
-      <div class="sum-row">
-        <span>
-          تخفیف:
-        </span>
-
-        <span id="discount">
-          ۰ تومان
-        </span>
-      </div>
-
-
-      <div class="sum-row sum-final">
-
-        <span>
-          مبلغ نهایی:
-        </span>
-
-        <span id="finalTotal">
-          ۰ تومان
-        </span>
-
-      </div>
-
-
-      <input
-        class="form-input"
-        id="coupon"
-        placeholder="کد تخفیف"
-      >
-
-      <button
-        class="btn"
-        onclick="applyCoupon()"
-        style="width:100%"
-      >
-        اعمال کد تخفیف
-      </button>
-
-      <br><br>
-
-      <button
-        class="btn btn-primary"
-        onclick="startCheckout()"
-        style="width:100%"
-      >
-        ادامه و پرداخت
-      </button>
-
-    </div>
-
-  </div>
-
+<div class="cart-head">
+<h2>🛒 سبد خرید</h2>
+<button class="close" onclick="closeCart()">×</button>
 </div>
 
+<div id="cartItems"></div>
+
+<div class="summary">
+
+<div class="sum-row">
+<span>مبلغ:</span>
+<span id="subtotal">۰ تومان</span>
+</div>
+
+<div class="sum-row">
+<span>تخفیف:</span>
+<span id="discount">۰ تومان</span>
+</div>
+
+<div class="sum-row sum-final">
+<span>مبلغ نهایی:</span>
+<span id="finalTotal">۰ تومان</span>
+</div>
+
+<input class="form-input" id="coupon" placeholder="کد تخفیف">
+
+<button class="btn" onclick="applyCoupon()" style="width:100%">
+اعمال کد تخفیف
+</button>
+
+<br><br>
+
+<button class="btn btn-primary"
+onclick="startCheckout()" style="width:100%">
+ادامه و پرداخت
+</button>
+
+</div>
+</div>
+</div>
 
 <!-- RULE MODAL -->
+<div class="modal" id="rulesModal">
+<div class="modal-box">
 
-<div
-  class="modal"
-  id="rulesModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <h2>
-        📜 تأیید قوانین
-      </h2>
-
-      <button
-        class="close"
-        onclick="closeModal('rulesModal')"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <p style="color:#a8b6ca;line-height:2">
-
-      قوانین خرید را مطالعه کردم و مشخصات سرویس
-      انتخاب‌شده را بررسی کرده‌ام.
-
-    </p>
-
-    <br>
-
-    <button
-      class="btn btn-primary"
-      onclick="confirmRules()"
-      style="width:100%"
-    >
-      تأیید قوانین و ادامه
-    </button>
-
-  </div>
-
+<div class="modal-head">
+<h2>📜 تأیید قوانین</h2>
+<button class="close" onclick="closeModal('rulesModal')">×</button>
 </div>
 
+<p style="color:#a8b6ca;line-height:2">
+قوانین خرید را مطالعه کردم و مشخصات سرویس
+انتخاب‌شده را بررسی کرده‌ام.
+</p>
 
-<!-- INVOICE MODAL -->
+<br>
 
-<div
-  class="modal"
-  id="invoiceModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <h2>
-        🧾 فاکتور سفارش
-      </h2>
-
-      <button
-        class="close"
-        onclick="closeModal('invoiceModal')"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div
-      id="invoiceContent"
-      style="line-height:2;color:#aebbd0"
-    ></div>
-
-
-    <br>
-
-    <button
-      class="btn btn-primary"
-      onclick="openPayment()"
-      style="width:100%"
-    >
-      ادامه به پرداخت
-    </button>
-
-  </div>
+<button class="btn btn-primary"
+onclick="confirmRules()" style="width:100%">
+تأیید قوانین و ادامه
+</button>
 
 </div>
-
-
-<!-- PAYMENT MODAL -->
-
-<div
-  class="modal"
-  id="paymentModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <h2>
-        💳 پرداخت
-      </h2>
-
-      <button
-        class="close"
-        onclick="closeModal('paymentModal')"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <p style="color:#9eafc7;line-height:2">
-
-      مبلغ سفارش را به شماره کارت زیر واریز کنید
-      و سپس رسید پرداخت را ارسال نمایید.
-
-    </p>
-
-
-    <div class="card-number">
-      6219 8618 4163 5526
-    </div>
-
-
-    <div style="text-align:center;color:#aebbd0">
-
-      <b style="color:white">
-        نام صاحب کارت:
-      </b>
-
-      نامی
-
-      <br>
-
-      <b style="color:white">
-        بانک:
-      </b>
-
-      BLU / بلو بانک
-
-    </div>
-
-
-    <br>
-
-    <button
-      class="btn"
-      onclick="copyCard()"
-      style="width:100%"
-    >
-      📋 کپی شماره کارت
-    </button>
-
-    <br><br>
-
-    <button
-      class="btn btn-primary"
-      onclick="sendReceipt()"
-      style="width:100%"
-    >
-      📤 ارسال رسید در تلگرام
-    </button>
-
-  </div>
-
 </div>
 
+<!-- INVOICE -->
+<div class="modal" id="invoiceModal">
+<div class="modal-box">
 
-<!-- TOAST -->
+<div class="modal-head">
+<h2>🧾 فاکتور سفارش</h2>
+<button class="close" onclick="closeModal('invoiceModal')">×</button>
+</div>
+
+<div id="invoiceContent"
+style="line-height:2;color:#aebbd0"></div>
+
+<br>
+
+<button class="btn btn-primary"
+onclick="openPayment()" style="width:100%">
+ادامه به پرداخت
+</button>
+
+</div>
+</div>
+
+<!-- PAYMENT -->
+<div class="modal" id="paymentModal">
+<div class="modal-box">
+
+<div class="modal-head">
+<h2>💳 پرداخت</h2>
+<button class="close" onclick="closeModal('paymentModal')">×</button>
+</div>
+
+<p style="color:#9eafc7;line-height:2">
+مبلغ سفارش را به شماره کارت زیر واریز کنید
+و سپس رسید پرداخت را ارسال نمایید.
+</p>
+
+<div class="card-number">
+6219 8618 4163 5526
+</div>
+
+<div style="text-align:center;color:#aebbd0">
+<b style="color:white">نام صاحب کارت:</b>
+نامی
+<br>
+<b style="color:white">بانک:</b>
+BLU / بلو بانک
+</div>
+
+<br>
+
+<button class="btn" onclick="copyCard()" style="width:100%">
+📋 کپی شماره کارت
+</button>
+
+<br><br>
+
+<button class="btn btn-primary"
+onclick="sendReceipt()" style="width:100%">
+📤 ارسال رسید در تلگرام
+</button>
+
+</div>
+</div>
 
 <div id="toast"></div>
 
-
 <footer>
 
-  <div class="footer-logo">
-    V2<span>GURD</span>
-  </div>
+<div class="footer-logo">V2<span>GURD</span></div>
 
-  <p>
-    Secure • Fast • Premium
-  </p>
+<p>Secure • Fast • Premium</p>
 
-  <p style="margin-top:8px">
-    © 2026 V2GURD
-  </p>
+<p style="margin-top:8px">© 2026 V2GURD</p>
 
 </footer>
-
 
 <script>
 
 /* ================= PRODUCTS ================= */
 
-const PRODUCTS = {
+const PRODUCTS={
 
-  wg10:{
-    name:"🟣 وایرگارد — ۱۰ گیگ / ۳۰ روز",
-    price:149000
-  },
+wg10:{name:"🟣 وایرگارد — ۱۰ گیگ / ۳۰ روز",price:149000},
+wg20:{name:"🟣 وایرگارد — ۲۰ گیگ / ۳۰ روز",price:279000},
+wg40:{name:"🟣 وایرگارد — ۴۰ گیگ / ۳۰ روز",price:499000},
+wg60:{name:"🟣 وایرگارد — ۶۰ گیگ / ۳۰ روز",price:699000},
+wg100:{name:"🟣 وایرگارد — ۱۰۰ گیگ / ۳۰ روز",price:999000},
 
-  wg20:{
-    name:"🟣 وایرگارد — ۲۰ گیگ / ۳۰ روز",
-    price:279000
-  },
-
-  wg40:{
-    name:"🟣 وایرگارد — ۴۰ گیگ / ۳۰ روز",
-    price:499000
-  },
-
-  wg60:{
-    name:"🟣 وایرگارد — ۶۰ گیگ / ۳۰ روز",
-    price:699000
-  },
-
-  wg100:{
-    name:"🟣 وایرگارد — ۱۰۰ گیگ / ۳۰ روز",
-    price:999000
-  },
-
-  jj1:{
-    name:"🚀 JumpJump — ۱ دستگاه / ۱ ماه",
-    price:700000
-  },
-
-  jj2:{
-    name:"🚀 JumpJump — ۲ دستگاه / ۱ ماه",
-    price:999000
-  },
-
-  jj6:{
-    name:"🚀 JumpJump — ۲ دستگاه / ۶ ماه",
-    price:4600000
-  },
-
-  jj12:{
-    name:"🚀 JumpJump — ۲ دستگاه / ۱۲ ماه",
-    price:5500000
-  }
+jj1:{name:"🚀 JumpJump — ۱ دستگاه / ۱ ماه",price:700000},
+jj2:{name:"🚀 JumpJump — ۲ دستگاه / ۱ ماه",price:999000},
+jj6:{name:"🚀 JumpJump — ۲ دستگاه / ۶ ماه",price:4600000},
+jj12:{name:"🚀 JumpJump — ۲ دستگاه / ۱۲ ماه",price:5500000}
 
 };
 
-
 /* ================= CART ================= */
 
-let cart =
-  JSON.parse(localStorage.getItem("v2gurd_cart") || "{}");
-
-let discountPercent = 0;
-
-let currentOrder = null;
-
+let cart=JSON.parse(localStorage.getItem("v2gurd_cart")||"{}");
+let discountPercent=0;
+let currentOrder=null;
 
 /* ================= INTRO ================= */
 
 window.addEventListener("load",()=>{
 
-  setTimeout(()=>{
+setTimeout(()=>{
 
-    const intro =
-      document.getElementById("intro");
+const intro=document.getElementById("intro");
 
-    intro.style.opacity="0";
+intro.style.opacity="0";
 
-    setTimeout(()=>{
+setTimeout(()=>{
+intro.style.display="none";
+},800);
 
-      intro.style.display="none";
+},1200);
 
-    },800);
-
-  },1200);
-
-  updateCart();
-
-  loadGameSession();
+updateCart();
+loadGameSession();
 
 });
-
 
 /* ================= PAGE ================= */
 
 function showPage(id){
 
-  document
-    .querySelectorAll(".page")
-    .forEach(page=>{
-      page.classList.remove("active");
-    });
+document.querySelectorAll(".page").forEach(page=>{
+page.classList.remove("active");
+});
 
-  const page =
-    document.getElementById(id);
+const page=document.getElementById(id);
 
-  if(page){
-    page.classList.add("active");
-  }
-
-  document
-    .querySelectorAll(".nav-links button")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  document
-    .getElementById("navLinks")
-    .classList.remove("show");
-
+if(page){
+page.classList.add("active");
 }
 
+document.querySelectorAll(".nav-links button").forEach(btn=>{
+btn.classList.remove("active");
+});
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+document.getElementById("navLinks").classList.remove("show");
+
+if(id==="game"){
+loadGameSession();
+}
+
+}
 
 /* ================= MENU ================= */
 
 function toggleMenu(){
-
-  document
-    .getElementById("navLinks")
-    .classList.toggle("show");
-
+document.getElementById("navLinks").classList.toggle("show");
 }
-
 
 /* ================= TOAST ================= */
 
 function toast(message){
 
-  const el =
-    document.getElementById("toast");
+const el=document.getElementById("toast");
 
-  el.textContent=message;
+el.textContent=message;
+el.classList.add("show");
 
-  el.classList.add("show");
+clearTimeout(window.toastTimer);
 
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer =
-    setTimeout(()=>{
-      el.classList.remove("show");
-    },2500);
+window.toastTimer=setTimeout(()=>{
+el.classList.remove("show");
+},2500);
 
 }
-
 
 /* ================= ADD CART ================= */
 
 function addToCart(id){
 
-  if(!PRODUCTS[id]){
-    return;
-  }
+if(!PRODUCTS[id])return;
 
-  if(!cart[id]){
-    cart[id]=1;
-  }else{
-    cart[id]++;
-  }
-
-  saveCart();
-
-  toast("محصول به سبد خرید اضافه شد ✅");
-
+if(!cart[id]){
+cart[id]=1;
+}else{
+cart[id]++;
 }
 
+saveCart();
+
+toast("محصول به سبد خرید اضافه شد ✅");
+
+}
 
 /* ================= SERVER ================= */
 
-function buyServer(
-  type,
-  selectId,
-  pricePerGB
-){
+function buyServer(type,selectId,pricePerGB){
 
-  const select =
-    document.getElementById(selectId);
+const select=document.getElementById(selectId);
+const gb=Number(select.value);
+const price=gb*pricePerGB;
 
-  const gb =
-    Number(select.value);
+const id="server_"+type+"_"+gb+"_"+Date.now();
 
-  const price =
-    gb * pricePerGB;
+PRODUCTS[id]={
+name:"📦 "+type+" — "+gb+" گیگ",
+price:price
+};
 
-  const id =
-    "server_" +
-    type +
-    "_" +
-    gb +
-    "_" +
-    Date.now();
-
-  PRODUCTS[id]={
-    name:
-      "📦 " +
-      type +
-      " — " +
-      gb +
-      " گیگ",
-    price:price
-  };
-
-  addToCart(id);
+addToCart(id);
 
 }
-
 
 /* ================= SAVE ================= */
 
 function saveCart(){
 
-  localStorage.setItem(
-    "v2gurd_cart",
-    JSON.stringify(cart)
-  );
+localStorage.setItem(
+"v2gurd_cart",
+JSON.stringify(cart)
+);
 
-  updateCart();
+updateCart();
 
 }
-
 
 /* ================= FORMAT ================= */
 
 function formatPrice(number){
 
-  return Number(number)
-    .toLocaleString("fa-IR") +
-    " تومان";
+return Number(number).toLocaleString("fa-IR")+" تومان";
 
 }
-
 
 /* ================= CART UPDATE ================= */
 
 function updateCart(){
 
-  const container =
-    document.getElementById("cartItems");
+const container=document.getElementById("cartItems");
+const count=document.getElementById("cartCount");
 
-  const count =
-    document.getElementById("cartCount");
+let totalItems=0;
+let subtotal=0;
 
-  let totalItems=0;
-  let subtotal=0;
+container.innerHTML="";
 
-  container.innerHTML="";
+Object.keys(cart).forEach(id=>{
 
+const qty=Number(cart[id]);
 
-  Object.keys(cart).forEach(id=>{
+if(!qty||!PRODUCTS[id]){
+delete cart[id];
+return;
+}
 
-    const qty =
-      Number(cart[id]);
+const product=PRODUCTS[id];
 
-    if(!qty || !PRODUCTS[id]){
-      delete cart[id];
-      return;
-    }
+totalItems+=qty;
+subtotal+=product.price*qty;
 
-    const product =
-      PRODUCTS[id];
+const item=document.createElement("div");
 
-    totalItems += qty;
+item.className="cart-item";
 
-    subtotal +=
-      product.price * qty;
+item.innerHTML=`
 
+<div>
+<div>${product.name}</div>
+<small>${formatPrice(product.price)}</small>
+</div>
 
-    const item =
-      document.createElement("div");
+<div class="cart-actions">
 
-    item.className="cart-item";
+<div class="qty">
 
-    item.innerHTML=`
+<button onclick="changeQty('${id}',-1)">−</button>
 
-      <div>
+<span>${qty}</span>
 
-        <div>
-          ${product.name}
-        </div>
+<button onclick="changeQty('${id}',1)">+</button>
 
-        <small>
-          ${formatPrice(product.price)}
-        </small>
+</div>
 
-      </div>
+<button class="close" onclick="removeFromCart('${id}')">×</button>
 
-      <div class="cart-actions">
+</div>
+`;
 
-        <div class="qty">
+container.appendChild(item);
 
-          <button
-            onclick="changeQty('${id}',-1)"
-          >
-            −
-          </button>
+});
 
-          <span>
-            ${qty}
-          </span>
+const discount=Math.round(
+subtotal*discountPercent/100
+);
 
-          <button
-            onclick="changeQty('${id}',1)"
-          >
-            +
-          </button>
+const final=subtotal-discount;
 
-        </div>
+count.textContent=totalItems.toLocaleString("fa-IR");
 
-        <button
-          class="close"
-          onclick="removeFromCart('${id}')"
-        >
-          ×
-        </button>
+document.getElementById("subtotal").textContent=formatPrice(subtotal);
+document.getElementById("discount").textContent=formatPrice(discount);
+document.getElementById("finalTotal").textContent=formatPrice(final);
 
-      </div>
+if(totalItems===0){
 
-    `;
+container.innerHTML=`
 
-    container.appendChild(item);
+<div style="
+text-align:center;
+padding:35px 10px;
+color:#8292aa;
+">
+🛒 سبد خرید خالی است
+</div>
 
-  });
-
-
-  const discount =
-    Math.round(
-      subtotal *
-      discountPercent /
-      100
-    );
-
-  const final =
-    subtotal-discount;
-
-
-  count.textContent =
-    totalItems.toLocaleString("fa-IR");
-
-
-  document.getElementById("subtotal")
-    .textContent =
-    formatPrice(subtotal);
-
-  document.getElementById("discount")
-    .textContent =
-    formatPrice(discount);
-
-  document.getElementById("finalTotal")
-    .textContent =
-    formatPrice(final);
-
-
-  if(totalItems===0){
-
-    container.innerHTML=`
-
-      <div style="
-        text-align:center;
-        padding:35px 10px;
-        color:#8292aa;
-      ">
-        🛒 سبد خرید خالی است
-      </div>
-
-    `;
-
-  }
-
-
-  localStorage.setItem(
-    "v2gurd_cart",
-    JSON.stringify(cart)
-  );
+`;
 
 }
 
+localStorage.setItem(
+"v2gurd_cart",
+JSON.stringify(cart)
+);
+
+}
 
 /* ================= QTY ================= */
 
 function changeQty(id,change){
 
-  if(!cart[id]){
-    return;
-  }
+if(!cart[id])return;
 
-  cart[id]+=change;
+cart[id]+=change;
 
-  if(cart[id]<=0){
-    delete cart[id];
-  }
-
-  saveCart();
-
+if(cart[id]<=0){
+delete cart[id];
 }
 
+saveCart();
+
+}
 
 /* ================= REMOVE ================= */
 
 function removeFromCart(id){
 
-  delete cart[id];
+delete cart[id];
 
-  saveCart();
+saveCart();
 
-  toast("محصول حذف شد");
+toast("محصول حذف شد");
 
 }
 
-
-/* ================= OPEN CART ================= */
+/* ================= CART ================= */
 
 function openCart(){
 
-  document
-    .getElementById("cartPanel")
-    .classList.add("show");
-
-  updateCart();
+document.getElementById("cartPanel").classList.add("show");
+updateCart();
 
 }
-
-
-/* ================= CLOSE CART ================= */
 
 function closeCart(){
 
-  document
-    .getElementById("cartPanel")
-    .classList.remove("show");
+document.getElementById("cartPanel").classList.remove("show");
 
 }
-
-
-/* ================= OUTSIDE CART ================= */
 
 function outsideCart(event){
 
-  if(
-    event.target ===
-    document.getElementById("cartPanel")
-  ){
-    closeCart();
-  }
-
+if(event.target===document.getElementById("cartPanel")){
+closeCart();
 }
 
+}
 
 /* ================= COUPON ================= */
 
 function applyCoupon(){
 
-  const code =
-    document
-      .getElementById("coupon")
-      .value
-      .trim()
-      .toUpperCase();
+const code=document.getElementById("coupon").value.trim().toUpperCase();
 
-  if(code==="V2G10"){
+if(code==="V2G10"){
 
-    discountPercent=10;
+discountPercent=10;
 
-    toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
+toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
 
-    updateCart();
+updateCart();
 
-  }else{
+}else{
 
-    discountPercent=0;
+discountPercent=0;
 
-    toast("کد تخفیف معتبر نیست ❌");
+toast("کد تخفیف معتبر نیست ❌");
 
-    updateCart();
-
-  }
+updateCart();
 
 }
 
+}
 
 /* ================= CHECKOUT ================= */
 
 function startCheckout(){
 
-  if(
-    Object.keys(cart).length===0
-  ){
+if(Object.keys(cart).length===0){
 
-    toast("سبد خرید خالی است ❌");
+toast("سبد خرید خالی است ❌");
 
-    return;
-  }
-
-  document
-    .getElementById("rulesModal")
-    .classList.add("show");
-
+return;
 }
 
+document.getElementById("rulesModal").classList.add("show");
+
+}
 
 /* ================= MODAL ================= */
 
 function closeModal(id){
 
-  document
-    .getElementById(id)
-    .classList.remove("show");
+document.getElementById(id).classList.remove("show");
 
 }
 
-
-/* ================= RULE CONFIRM ================= */
+/* ================= RULE ================= */
 
 function confirmRules(){
 
-  closeModal("rulesModal");
+closeModal("rulesModal");
 
-  createInvoice();
+createInvoice();
 
 }
 
-
-/* ================= ORDER ID ================= */
+/* ================= ORDER ================= */
 
 function createOrderId(){
 
-  const date =
-    new Date();
+const date=new Date();
 
-  const y =
-    date.getFullYear();
+const y=date.getFullYear();
+const m=String(date.getMonth()+1).padStart(2,"0");
+const d=String(date.getDate()).padStart(2,"0");
 
-  const m =
-    String(date.getMonth()+1)
-      .padStart(2,"0");
+const random=Math.floor(1000+Math.random()*9000);
 
-  const d =
-    String(date.getDate())
-      .padStart(2,"0");
-
-  const random =
-    Math.floor(
-      1000 +
-      Math.random()*9000
-    );
-
-  return `V2G-${y}${m}${d}-${random}`;
+return `V2G-${y}${m}${d}-${random}`;
 
 }
-
 
 /* ================= INVOICE ================= */
 
 function createInvoice(){
 
-  const orderId =
-    createOrderId();
+const orderId=createOrderId();
 
-  let subtotal=0;
+let subtotal=0;
 
-  let html=`
+let html=`
 
-    <div style="
-      background:rgba(22,140,255,.06);
-      border:1px solid rgba(22,140,255,.15);
-      padding:15px;
-      border-radius:13px;
-      margin-bottom:15px;
-    ">
+<div style="
+background:rgba(22,140,255,.06);
+border:1px solid rgba(22,140,255,.15);
+padding:15px;
+border-radius:13px;
+margin-bottom:15px;
+">
 
-      <b style="color:white">
-        شماره سفارش:
-      </b>
+<b style="color:white">
+شماره سفارش:
+</b>
 
-      ${orderId}
+${orderId}
 
-    </div>
+</div>
 
-  `;
+`;
 
+Object.keys(cart).forEach(id=>{
 
-  Object.keys(cart).forEach(id=>{
+if(!PRODUCTS[id])return;
 
-    if(!PRODUCTS[id]){
-      return;
-    }
+const product=PRODUCTS[id];
+const qty=cart[id];
+const total=product.price*qty;
 
-    const product =
-      PRODUCTS[id];
+subtotal+=total;
 
-    const qty =
-      cart[id];
+html+=`
 
-    const total =
-      product.price * qty;
+<div style="
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:9px 0;
+border-bottom:1px solid rgba(255,255,255,.05)
+">
 
-    subtotal += total;
+<span>${product.name} × ${qty}</span>
 
+<span>${formatPrice(total)}</span>
 
-    html += `
+</div>
 
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        gap:10px;
-        padding:9px 0;
-        border-bottom:1px solid rgba(255,255,255,.05)
-      ">
+`;
 
-        <span>
-          ${product.name}
-          × ${qty}
-        </span>
+});
 
-        <span>
-          ${formatPrice(total)}
-        </span>
+const discount=Math.round(
+subtotal*discountPercent/100
+);
 
-      </div>
+const final=subtotal-discount;
 
-    `;
+html+=`
 
-  });
+<div style="margin-top:15px">
 
+<div class="sum-row">
+<span>مبلغ:</span>
+<span>${formatPrice(subtotal)}</span>
+</div>
 
-  const discount =
-    Math.round(
-      subtotal *
-      discountPercent /
-      100
-    );
+<div class="sum-row">
+<span>تخفیف:</span>
+<span>${formatPrice(discount)}</span>
+</div>
 
-  const final =
-    subtotal-discount;
+<div class="sum-row sum-final">
+<span>نهایی:</span>
+<span>${formatPrice(final)}</span>
+</div>
 
+</div>
 
-  html += `
+`;
 
-    <div style="
-      margin-top:15px;
-    ">
+currentOrder={
+id:orderId,
+subtotal:subtotal,
+discount:discount,
+total:final
+};
 
-      <div class="sum-row">
-        <span>مبلغ:</span>
-        <span>${formatPrice(subtotal)}</span>
-      </div>
+document.getElementById("invoiceContent").innerHTML=html;
 
-      <div class="sum-row">
-        <span>تخفیف:</span>
-        <span>${formatPrice(discount)}</span>
-      </div>
-
-      <div class="sum-row sum-final">
-        <span>نهایی:</span>
-        <span>${formatPrice(final)}</span>
-      </div>
-
-    </div>
-
-  `;
-
-
-  currentOrder={
-    id:orderId,
-    subtotal:subtotal,
-    discount:discount,
-    total:final
-  };
-
-
-  document
-    .getElementById("invoiceContent")
-    .innerHTML=html;
-
-  document
-    .getElementById("invoiceModal")
-    .classList.add("show");
+document.getElementById("invoiceModal").classList.add("show");
 
 }
-
 
 /* ================= PAYMENT ================= */
 
 function openPayment(){
 
-  closeModal("invoiceModal");
+closeModal("invoiceModal");
 
-  document
-    .getElementById("paymentModal")
-    .classList.add("show");
+document.getElementById("paymentModal").classList.add("show");
 
 }
 
-
-/* ================= COPY CARD ================= */
+/* ================= COPY ================= */
 
 function copyCard(){
 
-  navigator.clipboard
-    .writeText("6219861841635526")
-    .then(()=>{
-      toast("شماره کارت کپی شد ✅");
-    })
-    .catch(()=>{
-      toast("کپی انجام نشد");
-    });
+navigator.clipboard.writeText("6219861841635526")
+.then(()=>{
+toast("شماره کارت کپی شد ✅");
+})
+.catch(()=>{
+toast("کپی انجام نشد");
+});
 
 }
-
 
 /* ================= RECEIPT ================= */
 
 function sendReceipt(){
 
-  if(!currentOrder){
-    return;
-  }
+if(!currentOrder)return;
 
-  let productsText="";
+let productsText="";
 
-  Object.keys(cart).forEach(id=>{
+Object.keys(cart).forEach(id=>{
 
-    if(!PRODUCTS[id]){
-      return;
-    }
+if(!PRODUCTS[id])return;
 
-    productsText +=
-      `• ${PRODUCTS[id].name} × ${cart[id]}\n`;
+productsText+=
+`• ${PRODUCTS[id].name} × ${cart[id]}\n`;
 
-  });
+});
 
-
-  const message =
+const message=
 
 `سلام V2GURD 👋
 
@@ -4191,71 +1821,38 @@ ${formatPrice(currentOrder.total)}
 
 ممنون از V2GURD 🙏`;
 
-
-  const url =
-    "https://t.me/Vtwoguard?text=" +
-    encodeURIComponent(message);
-
-
-  window.open(
-    url,
-    "_blank"
-  );
+window.open(
+"https://t.me/Vtwoguard?text="+encodeURIComponent(message),
+"_blank"
+);
 
 }
 
-
-/* ================= SUPPORT TICKET ================= */
+/* ================= SUPPORT ================= */
 
 function createTicket(){
 
-  const name =
-    document
-      .getElementById("supportName")
-      .value
-      .trim();
+const name=document.getElementById("supportName").value.trim();
+const problem=document.getElementById("supportProblem").value.trim();
 
-  const problem =
-    document
-      .getElementById("supportProblem")
-      .value
-      .trim();
+if(!name||!problem){
 
+toast("لطفاً اطلاعات را کامل کنید ❌");
 
-  if(!name || !problem){
+return;
+}
 
-    toast("لطفاً اطلاعات را کامل کنید ❌");
+const date=new Date();
 
-    return;
-  }
+const y=date.getFullYear();
+const m=String(date.getMonth()+1).padStart(2,"0");
+const d=String(date.getDate()).padStart(2,"0");
 
+const random=Math.floor(100000+Math.random()*900000);
 
-  const date =
-    new Date();
+const ticket=`TKT-${y}${m}${d}-${random}`;
 
-  const y =
-    date.getFullYear();
-
-  const m =
-    String(date.getMonth()+1)
-      .padStart(2,"0");
-
-  const d =
-    String(date.getDate())
-      .padStart(2,"0");
-
-  const random =
-    Math.floor(
-      100000 +
-      Math.random()*900000
-    );
-
-
-  const ticket =
-    `TKT-${y}${m}${d}-${random}`;
-
-
-  const message =
+const message=
 
 `سلام V2GURD 👋
 
@@ -4270,287 +1867,117 @@ ${name}
 ❗ مشکل:
 ${problem}`;
 
+window.open(
+"https://t.me/Vtwoguard?text="+encodeURIComponent(message),
+"_blank"
+);
 
-  const url =
-    "https://t.me/Vtwoguard?text=" +
-    encodeURIComponent(message);
-
-
-  window.open(
-    url,
-    "_blank"
-  );
-
-
-  toast(
-    "تیکت ایجاد شد: " +
-    ticket
-  );
+toast("تیکت ایجاد شد: "+ticket);
 
 }
-
 
 /* ================= FAQ ================= */
 
 function toggleFaq(button){
 
-  const item =
-    button.parentElement;
+const item=button.parentElement;
 
-  item.classList.toggle("open");
+item.classList.toggle("open");
 
 }
-
 
 /* ================= SEARCH ================= */
 
 function filterCards(){
 
-  const input =
-    document
-      .getElementById("vpnSearch");
+const input=document.getElementById("vpnSearch");
 
-  if(!input){
-    return;
-  }
+if(!input)return;
 
-  const value =
-    input.value
-      .trim()
-      .toLowerCase();
+const value=input.value.trim().toLowerCase();
 
-  document
-    .querySelectorAll(".vpn-card")
-    .forEach(card=>{
+document.querySelectorAll(".vpn-card").forEach(card=>{
 
-      const text =
-        card.textContent
-          .toLowerCase();
+const text=card.textContent.toLowerCase();
 
-      card.style.display =
-        text.includes(value)
-        ? ""
-        : "none";
+card.style.display=
+text.includes(value)?"":"none";
 
-    });
+});
 
 }
-
 
 /* =========================================================
-   GAME LOGIN
+   🎮 V2GURD GAME
    ========================================================= */
 
-const GAME_SESSION_KEY =
-  "v2gurd_game_session";
+const GAME_SESSION_KEY="v2gurd_game_session";
+const GAME_DATA_KEY="v2gurd_game_data";
+const GAME_PENDING_PHONE="v2gurd_pending_phone";
+const GAME_WEEK_MS=7*24*60*60*1000;
 
-const GAME_DATA_PREFIX =
-  "v2gurd_game_data_";
+let gameTimer=null;
+let gameMoveTimer=null;
+let gameActive=false;
+let gameScore=0;
+let gamePhone="";
+let gameData=null;
 
-const GAME_PENDING_PHONE =
-  "v2gurd_game_pending_phone";
+/* ================= GAME DATA ================= */
 
+function normalizePhone(phone){
 
-let gameSession = null;
-
-let gameData = null;
-
-let gameAnimation = null;
-
-let gameRunning = false;
-
-let gamePaused = false;
-
-let gameScore = 0;
-
-let gameBest = 0;
-
-let gameRewardClaimed = false;
-
-let gameBallX = 0;
-
-let gameBallY = 0;
-
-let gameBallVX = 0;
-
-let gameBallVY = 0;
-
-let gamePaddleX = 0;
-
-let gamePaddleWidth = 130;
-
-let gameLastTime = 0;
-
-let gameBoardWidth = 0;
-
-let gameBoardHeight = 0;
-
-let gameBallSize = 24;
-
-let gamePointerActive = false;
-
-
-/* ================= PHONE NORMALIZE ================= */
-
-function normalizeGamePhone(phone){
-
-  return String(phone || "")
-    .replace(/\s+/g,"")
-    .replace(/-/g,"")
-    .replace(/[۰-۹]/g,d =>
-      String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))
-    );
+return phone
+.replace(/[^\d+]/g,"")
+.replace(/\s+/g,"");
 
 }
 
+function getGameData(phone){
 
-/* ================= GAME STORAGE ================= */
+const key=
+GAME_DATA_KEY+"_"+normalizePhone(phone);
 
-function getGameDataKey(phone){
-
-  return GAME_DATA_PREFIX +
-    normalizeGamePhone(phone);
-
-}
-
-
-function getStoredGameData(phone){
-
-  const raw =
-    localStorage.getItem(
-      getGameDataKey(phone)
-    );
-
-  if(!raw){
-
-    return {
-      score:0,
-      best:0,
-      rewardClaimed:false
-    };
-
-  }
-
-  try{
-
-    const data =
-      JSON.parse(raw);
-
-    return {
-
-      score:
-        Number(data.score) || 0,
-
-      best:
-        Number(data.best) || 0,
-
-      rewardClaimed:
-        Boolean(data.rewardClaimed)
-
-    };
-
-  }catch{
-
-    return {
-      score:0,
-      best:0,
-      rewardClaimed:false
-    };
-
-  }
+return JSON.parse(
+localStorage.getItem(key)||
+'{"score":0,"best":0,"rewardClaimed":false,"lastPlayAt":0,"attemptActive":false}'
+);
 
 }
-
 
 function saveGameData(){
 
-  if(!gameSession){
-    return;
-  }
+const key=
+GAME_DATA_KEY+"_"+normalizePhone(gamePhone);
 
-  gameData={
-    score:gameScore,
-    best:gameBest,
-    rewardClaimed:gameRewardClaimed
-  };
-
-  localStorage.setItem(
-    getGameDataKey(gameSession.phone),
-    JSON.stringify(gameData)
-  );
+localStorage.setItem(
+key,
+JSON.stringify(gameData)
+);
 
 }
 
-
-/* ================= GAME SESSION LOAD ================= */
-
-function loadGameSession(){
-
-  const raw =
-    localStorage.getItem(
-      GAME_SESSION_KEY
-    );
-
-  if(!raw){
-    return;
-  }
-
-  try{
-
-    gameSession =
-      JSON.parse(raw);
-
-    if(
-      !gameSession ||
-      !gameSession.phone
-    ){
-
-      localStorage.removeItem(
-        GAME_SESSION_KEY
-      );
-
-      return;
-    }
-
-    enterGameAfterLogin();
-
-  }catch{
-
-    localStorage.removeItem(
-      GAME_SESSION_KEY
-    );
-
-  }
-
-}
-
-
-/* ================= SEND CODE ================= */
+/* ================= LOGIN ================= */
 
 function sendGameCode(){
 
-  const input =
-    document.getElementById("gamePhone");
+const input=document.getElementById("gamePhone");
 
-  const phone =
-    normalizeGamePhone(
-      input.value.trim()
-    );
+const phone=normalizePhone(input.value);
 
-  if(phone.length < 8){
+if(phone.length<8){
 
-    toast("شماره موبایل را درست وارد کن ❌");
+toast("شماره موبایل را درست وارد کنید ❌");
 
-    return;
-  }
+return;
+}
 
-  localStorage.setItem(
-    GAME_PENDING_PHONE,
-    phone
-  );
+localStorage.setItem(
+GAME_PENDING_PHONE,
+phone
+);
 
-
-  const message =
+const message=
 
 `سلام V2GURD 👋
 
@@ -4559,1299 +1986,590 @@ function sendGameCode(){
 📱 شماره:
 ${phone}
 
-لطفاً کد ۸ کاراکتری ورود به بازی را برای من ارسال کنید.`;
+لطفاً کد ورود ۸ کاراکتری بازی را برای من ارسال کنید.`;
 
+window.open(
+"https://t.me/Vtwoguard?text="+encodeURIComponent(message),
+"_blank"
+);
 
-  const url =
-    "https://t.me/Vtwoguard?text=" +
-    encodeURIComponent(message);
+document.getElementById("gameLogin").style.display="none";
+document.getElementById("gameCodeBox").style.display="block";
 
-
-  window.open(
-    url,
-    "_blank"
-  );
-
-
-  document
-    .getElementById("gamePhoneStep")
-    .classList.remove("active");
-
-  document
-    .getElementById("gameCodeStep")
-    .classList.add("active");
-
-  document
-    .getElementById("gameCode")
-    .focus();
-
-  toast("کد را از پشتیبانی بگیر و اینجا وارد کن 📩");
+toast("کد را از پشتیبانی دریافت کنید 🔐");
 
 }
 
-
-/* ================= BACK PHONE ================= */
-
-function backToGamePhone(){
-
-  document
-    .getElementById("gameCodeStep")
-    .classList.remove("active");
-
-  document
-    .getElementById("gamePhoneStep")
-    .classList.add("active");
-
-}
-
-
-/* ================= VERIFY CODE ================= */
+/* ================= VERIFY ================= */
 
 function verifyGameCode(){
 
-  const input =
-    document.getElementById("gameCode");
+const code=document.getElementById("gameCode").value.trim();
 
-  const code =
-    input.value.trim();
+const phone=localStorage.getItem(GAME_PENDING_PHONE);
 
+if(!phone){
 
-  /*
-    کد باید دقیقاً ۸ کاراکتر باشد
-    و ترتیب v سپس 2 سپس G را داشته باشد.
-  */
+toast("شماره پیدا نشد ❌");
 
-  const valid =
-    code.length === 8 &&
-    /^[A-Za-z0-9]*v[A-Za-z0-9]*2[A-Za-z0-9]*G[A-Za-z0-9]*$/.test(code);
-
-
-  if(!valid){
-
-    toast(
-      "کد اشتباه است ❌ مثال: 15v8293G"
-    );
-
-    input.select();
-
-    return;
-  }
-
-
-  const pendingPhone =
-    localStorage.getItem(
-      GAME_PENDING_PHONE
-    );
-
-  if(!pendingPhone){
-
-    toast("شماره پیدا نشد؛ دوباره شماره را وارد کن ❌");
-
-    backToGamePhone();
-
-    return;
-  }
-
-
-  gameSession={
-
-    phone:pendingPhone,
-
-    loginTime:Date.now()
-
-  };
-
-
-  localStorage.setItem(
-    GAME_SESSION_KEY,
-    JSON.stringify(gameSession)
-  );
-
-
-  localStorage.removeItem(
-    GAME_PENDING_PHONE
-  );
-
-
-  enterGameAfterLogin();
-
-  toast("ورود موفق بود 🎮");
-
+return;
 }
 
+/*
+کد دقیقاً ۸ کاراکتر است
+و باید شامل v سپس 2 سپس G باشد.
+*/
 
-/* ================= ENTER GAME ================= */
+const valid=
+code.length===8&&
+/^[A-Za-z0-9]*v[A-Za-z0-9]*2[A-Za-z0-9]*G[A-Za-z0-9]*$/.test(code);
 
-function enterGameAfterLogin(){
+if(!valid){
 
-  if(!gameSession){
-    return;
-  }
+toast("کد نامعتبر است ❌");
 
-
-  gameData =
-    getStoredGameData(
-      gameSession.phone
-    );
-
-
-  gameScore =
-    gameData.score;
-
-  gameBest =
-    gameData.best;
-
-  gameRewardClaimed =
-    gameData.rewardClaimed;
-
-
-  document
-    .getElementById("gameLogin")
-    .style.display="none";
-
-
-  document
-    .getElementById("gameUserPhone")
-    .textContent =
-    gameSession.phone;
-
-
-  if(gameRewardClaimed){
-
-    document
-      .getElementById("gameArea")
-      .style.display="none";
-
-    document
-      .getElementById("gameReward")
-      .style.display="block";
-
-    return;
-
-  }
-
-
-  document
-    .getElementById("gameReward")
-    .style.display="none";
-
-
-  document
-    .getElementById("gameArea")
-    .style.display="block";
-
-
-  updateGameStats();
-
-  setTimeout(()=>{
-
-    setupGameBoard();
-
-    showGameReady();
-
-  },100);
-
+return;
 }
 
+gamePhone=phone;
 
-/* ================= SETUP BOARD ================= */
-
-function setupGameBoard(){
-
-  const board =
-    document.getElementById("gameBoard");
-
-  if(!board){
-    return;
-  }
-
-
-  gameBoardWidth =
-    board.clientWidth;
-
-  gameBoardHeight =
-    board.clientHeight;
-
-
-  gameBallSize =
-    window.innerWidth <= 600
-      ? 22
-      : 24;
-
-
-  gamePaddleWidth =
-    window.innerWidth <= 600
-      ? 115
-      : 130;
-
-
-  gamePaddleX =
-    (gameBoardWidth -
-      gamePaddleWidth) / 2;
-
-
-  updatePaddle();
-
-
-  gameBallX =
-    gameBoardWidth / 2 -
-    gameBallSize / 2;
-
-
-  gameBallY =
-    gameBoardHeight * .30;
-
-
-  updateBall();
-
-}
-
-
-/* ================= WINDOW RESIZE ================= */
-
-window.addEventListener(
-  "resize",
-  ()=>{
-
-    if(
-      !gameSession ||
-      !document.getElementById("gameArea") ||
-      document.getElementById("gameArea").style.display==="none"
-    ){
-      return;
-    }
-
-    const oldWidth =
-      gameBoardWidth || 1;
-
-    const board =
-      document.getElementById("gameBoard");
-
-    gameBoardWidth =
-      board.clientWidth;
-
-    gameBoardHeight =
-      board.clientHeight;
-
-
-    const ratio =
-      gameBoardWidth / oldWidth;
-
-
-    gamePaddleX *= ratio;
-
-    gamePaddleX =
-      Math.max(
-        0,
-        Math.min(
-          gameBoardWidth-gamePaddleWidth,
-          gamePaddleX
-        )
-      );
-
-
-    updatePaddle();
-
-  }
+localStorage.setItem(
+GAME_SESSION_KEY,
+phone
 );
 
+localStorage.removeItem(
+GAME_PENDING_PHONE
+);
 
-/* ================= SHOW READY ================= */
-
-function showGameReady(){
-
-  if(gameRewardClaimed){
-    return;
-  }
-
-
-  gameRunning=false;
-
-  gamePaused=false;
-
-
-  cancelAnimationFrame(
-    gameAnimation
-  );
-
-
-  const overlay =
-    document.getElementById(
-      "gameOverlay"
-    );
-
-  const title =
-    document.getElementById(
-      "gameOverlayTitle"
-    );
-
-  const text =
-    document.getElementById(
-      "gameOverlayText"
-    );
-
-  const icon =
-    document.getElementById(
-      "gameOverlayIcon"
-    );
-
-  const button =
-    document.getElementById(
-      "gameStartBtn"
-    );
-
-
-  overlay.classList.remove("hidden");
-
-
-  icon.textContent="🎮";
-
-
-  if(gameScore > 0){
-
-    title.textContent =
-      "ادامه بده!";
-
-    text.textContent =
-      `امتیازت ${gameScore} است. توپ را نگه دار و به ۳۰ برس.`;
-
-    button.textContent =
-      "ادامه بازی";
-
-  }else{
-
-    title.textContent =
-      "آماده‌ای؟";
-
-    text.textContent =
-      "توپ رو با تخته نگه دار. هر برخورد = یک امتیاز و سرعت بیشتر.";
-
-    button.textContent =
-      "شروع بازی";
-
-  }
-
-
-  setupGameBoard();
+loadGameSession();
 
 }
 
+function backGameLogin(){
 
-/* ================= START GAME ================= */
+document.getElementById("gameCodeBox").style.display="none";
+document.getElementById("gameLogin").style.display="block";
+
+}
+
+/* ================= LOAD ================= */
+
+function loadGameSession(){
+
+const session=
+localStorage.getItem(GAME_SESSION_KEY);
+
+if(!session){
+
+document.getElementById("gameLogin").style.display="block";
+document.getElementById("gameCodeBox").style.display="none";
+document.getElementById("gameArea").style.display="none";
+
+return;
+}
+
+gamePhone=session;
+
+gameData=getGameData(gamePhone);
+
+document.getElementById("gameLogin").style.display="none";
+document.getElementById("gameCodeBox").style.display="none";
+document.getElementById("gameArea").style.display="block";
+
+document.getElementById("gameUserPhone").textContent=
+gamePhone;
+
+updateGameUI();
+
+}
+
+/* ================= UI ================= */
+
+function updateGameUI(){
+
+if(!gameData)return;
+
+document.getElementById("gameScore").textContent=
+Number(gameData.score||0).toLocaleString("fa-IR");
+
+document.getElementById("gameBest").textContent=
+Number(gameData.best||0).toLocaleString("fa-IR");
+
+const progress=
+Math.min(
+100,
+((gameData.score||0)/30)*100
+);
+
+document.getElementById("gameProgress").style.width=
+progress+"%";
+
+const remaining=
+getGameCooldownRemaining(gameData);
+
+const cooldown=
+document.getElementById("gameCooldown");
+
+const startBtn=
+document.getElementById("gameStartBtn");
+
+const reward=
+document.getElementById("gameReward");
+
+if(gameData.rewardClaimed){
+
+startBtn.style.display="none";
+cooldown.style.display="none";
+reward.style.display="block";
+
+document.getElementById("gameMessage").textContent=
+"جایزه این حساب قبلاً فعال شده است 🎁";
+
+return;
+}
+
+reward.style.display="none";
+
+if(remaining>0){
+
+startBtn.disabled=true;
+startBtn.style.opacity=".5";
+startBtn.textContent="⏳ بازی بعدی";
+
+cooldown.style.display="block";
+
+cooldown.innerHTML=
+"⏳ زمان باقی‌مانده تا بازی بعدی:<br><b>"+
+formatGameRemaining(remaining)+
+"</b>";
+
+}else{
+
+startBtn.disabled=false;
+startBtn.style.opacity="1";
+
+startBtn.textContent=
+gameData.attemptActive
+?"🎮 ادامه بازی"
+:"🎮 شروع بازی";
+
+cooldown.style.display="none";
+
+}
+
+}
+
+/* ================= COOLDOWN ================= */
+
+function getGameCooldownRemaining(data){
+
+if(!data||!data.lastPlayAt){
+return 0;
+}
+
+return Math.max(
+0,
+GAME_WEEK_MS-
+(Date.now()-Number(data.lastPlayAt))
+);
+
+}
+
+function formatGameRemaining(ms){
+
+const totalMinutes=
+Math.ceil(ms/60000);
+
+const days=
+Math.floor(totalMinutes/1440);
+
+const hours=
+Math.floor((totalMinutes%1440)/60);
+
+const minutes=
+totalMinutes%60;
+
+if(days>0){
+return `${days} روز و ${hours} ساعت`;
+}
+
+if(hours>0){
+return `${hours} ساعت و ${minutes} دقیقه`;
+}
+
+return `${minutes} دقیقه`;
+
+}
+
+/* ================= START ================= */
 
 function startGame(){
 
-  if(
-    gameRewardClaimed ||
-    !gameSession
-  ){
-    return;
-  }
+if(!gameData)return;
 
+if(gameData.rewardClaimed){
 
-  setupGameBoard();
+toast("این حساب قبلاً جایزه را دریافت کرده است 🎁");
 
+return;
+}
 
-  const board =
-    document.getElementById(
-      "gameBoard"
-    );
+const remaining=
+getGameCooldownRemaining(gameData);
 
+if(remaining>0){
 
-  gameBoardWidth =
-    board.clientWidth;
+toast("تا بازی بعدی باید صبر کنید ⏳");
 
-  gameBoardHeight =
-    board.clientHeight;
+updateGameUI();
 
+return;
+}
 
-  /*
-    سرعت اولیه
-    هر بار برخورد بعداً در hitPaddle
-    بیشتر می‌شود.
-  */
+/*
+امتیاز قبلی حفظ می‌شود.
+هفته جدید از همان امتیاز قبلی ادامه پیدا می‌کند.
+*/
 
-  const baseSpeed =
-    Math.max(
-      4.2,
-      Math.min(
-        6.5,
-        4.2 + gameScore * .035
-      )
-    );
+if(!gameData.attemptActive){
 
+gameData.lastPlayAt=Date.now();
 
-  const angle =
-    (-0.65 +
-      Math.random()*1.3);
+gameData.attemptActive=true;
 
+gameData.score=
+Number(gameData.score||0);
 
-  gameBallX =
-    gameBoardWidth / 2 -
-    gameBallSize / 2;
-
-
-  gameBallY =
-    gameBoardHeight * .42;
-
-
-  gameBallVX =
-    Math.sin(angle) *
-    baseSpeed;
-
-
-  gameBallVY =
-    -Math.cos(angle) *
-    baseSpeed;
-
-
-  gameRunning=true;
-
-  gamePaused=false;
-
-  gameLastTime=
-    performance.now();
-
-
-  document
-    .getElementById("gameOverlay")
-    .classList.add("hidden");
-
-
-  cancelAnimationFrame(
-    gameAnimation
-  );
-
-
-  gameAnimation =
-    requestAnimationFrame(
-      gameLoop
-    );
+saveGameData();
 
 }
 
+gameScore=
+Number(gameData.score||0);
 
-/* ================= GAME LOOP ================= */
+gameActive=true;
 
-function gameLoop(timestamp){
+document.getElementById("gameStartBtn").textContent=
+"🔄 بازی در حال اجرا...";
 
-  if(!gameRunning){
-    return;
-  }
+document.getElementById("gameStartBtn").disabled=true;
 
+document.getElementById("gameMessage").textContent=
+"⚡ هدف را قبل از ناپدید شدن بزن!";
 
-  const delta =
-    Math.min(
-      2,
-      (timestamp-gameLastTime)/16.6667
-    );
-
-
-  gameLastTime=timestamp;
-
-
-  gameBallX +=
-    gameBallVX * delta;
-
-  gameBallY +=
-    gameBallVY * delta;
-
-
-  /*
-    برخورد با دیوار چپ
-  */
-
-  if(gameBallX <= 0){
-
-    gameBallX=0;
-
-    gameBallVX=
-      Math.abs(gameBallVX);
-
-  }
-
-
-  /*
-    برخورد با دیوار راست
-  */
-
-  if(
-    gameBallX + gameBallSize >=
-    gameBoardWidth
-  ){
-
-    gameBallX =
-      gameBoardWidth -
-      gameBallSize;
-
-    gameBallVX =
-      -Math.abs(gameBallVX);
-
-  }
-
-
-  /*
-    برخورد با سقف
-  */
-
-  if(gameBallY <= 0){
-
-    gameBallY=0;
-
-    gameBallVY=
-      Math.abs(gameBallVY);
-
-  }
-
-
-  /*
-    برخورد با تخته
-  */
-
-  const paddleY =
-    gameBoardHeight - 18 - 15;
-
-
-  const ballBottom =
-    gameBallY + gameBallSize;
-
-
-  const paddleRight =
-    gamePaddleX +
-    gamePaddleWidth;
-
-
-  const ballRight =
-    gameBallX +
-    gameBallSize;
-
-
-  if(
-    gameBallVY > 0 &&
-    ballBottom >= paddleY &&
-    gameBallY <= paddleY + 18 &&
-    ballRight >= gamePaddleX &&
-    gameBallX <= paddleRight
-  ){
-
-    gameBallY =
-      paddleY -
-      gameBallSize;
-
-
-    hitGamePaddle();
-
-  }
-
-
-  /*
-    توپ افتاد پایین
-  */
-
-  if(
-    gameBallY >
-    gameBoardHeight +
-    gameBallSize
-  ){
-
-    gameMissed();
-
-    return;
-
-  }
-
-
-  updateBall();
-
-
-  gameAnimation =
-    requestAnimationFrame(
-      gameLoop
-    );
+spawnGameTarget();
 
 }
 
+/* ================= SPAWN ================= */
 
-/* ================= PADDLE HIT ================= */
+function spawnGameTarget(){
 
-function hitGamePaddle(){
+if(!gameActive)return;
 
-  gameScore++;
+clearTimeout(gameTimer);
+clearTimeout(gameMoveTimer);
 
+const stage=document.getElementById("gameStage");
+const target=document.getElementById("gameTarget");
 
-  if(
-    gameScore >
-    gameBest
-  ){
+let size=62;
 
-    gameBest =
-      gameScore;
+if(gameScore>=15)size=48;
+if(gameScore>=23)size=38;
 
-  }
+target.style.width=size+"px";
+target.style.height=size+"px";
 
+const padding=size/2+8;
 
-  /*
-    افزایش سرعت با هر برخورد
-  */
+const x=
+padding+
+Math.random()*
+(stage.clientWidth-padding*2);
 
-  const currentSpeed =
-    Math.sqrt(
-      gameBallVX*gameBallVX +
-      gameBallVY*gameBallVY
-    );
+const y=
+padding+
+Math.random()*
+(stage.clientHeight-padding*2);
 
+target.style.left=x+"px";
+target.style.top=y+"px";
 
-  const speedBoost =
-    gameScore < 10
-      ? 1.045
-      : gameScore < 20
-        ? 1.065
-        : 1.085;
+target.classList.add("active");
 
+let lifetime=
+1250-
+gameScore*22;
 
-  let newSpeed =
-    currentSpeed *
-    speedBoost;
+if(gameScore>=15){
+lifetime-=180;
+}
 
+if(gameScore>=22){
+lifetime-=180;
+}
 
-  /*
-    سقف سرعت
-    تا بازی خیلی سریع ولی همچنان قابل بازی باشد.
-  */
+lifetime=Math.max(420,lifetime);
 
-  const maxSpeed =
-    gameScore < 10
-      ? 8.5
-      : gameScore < 20
-        ? 11
-        : 14;
+if(gameScore>=15){
 
+gameMoveTimer=
+setTimeout(()=>{
 
-  newSpeed =
-    Math.min(
-      newSpeed,
-      maxSpeed
-    );
+if(!gameActive)return;
 
+moveTargetQuickly();
 
-  /*
-    زاویه برخورد بر اساس محل برخورد
-    توپ روی تخته تغییر می‌کند.
-  */
-
-  const paddleCenter =
-    gamePaddleX +
-    gamePaddleWidth/2;
-
-
-  const ballCenter =
-    gameBallX +
-    gameBallSize/2;
-
-
-  const hitPosition =
-    (ballCenter-paddleCenter) /
-    (gamePaddleWidth/2);
-
-
-  let horizontal =
-    hitPosition *
-    newSpeed *
-    .82;
-
-
-  let vertical =
-    Math.sqrt(
-      Math.max(
-        1,
-        newSpeed*newSpeed -
-        horizontal*horizontal
-      )
-    );
-
-
-  gameBallVX =
-    horizontal;
-
-  gameBallVY =
-    -vertical;
-
-
-  /*
-    بعد از ۱۵ و ۲۳ امتیاز تخته کمی کوچک‌تر می‌شود.
-  */
-
-  if(gameScore >= 23){
-
-    gamePaddleWidth =
-      Math.max(
-        78,
-        window.innerWidth <= 600
-          ? 90
-          : 100
-      );
-
-  }else if(gameScore >= 15){
-
-    gamePaddleWidth =
-      Math.max(
-        95,
-        window.innerWidth <= 600
-          ? 100
-          : 110
-      );
-
-  }else{
-
-    gamePaddleWidth =
-      window.innerWidth <= 600
-        ? 115
-        : 130;
-
-  }
-
-
-  gamePaddleX =
-    Math.min(
-      gamePaddleX,
-      gameBoardWidth-gamePaddleWidth
-    );
-
-
-  updatePaddle();
-
-  updateGameStats();
-
-  saveGameData();
-
-
-  /*
-    رسیدن به ۳۰
-  */
-
-  if(gameScore >= 30){
-
-    finishGame();
-
-  }
+},300);
 
 }
 
+gameTimer=
+setTimeout(()=>{
+
+if(!gameActive)return;
+
+missGameTarget();
+
+},lifetime);
+
+}
+
+/* ================= MOVE ================= */
+
+function moveTargetQuickly(){
+
+if(!gameActive)return;
+
+const stage=document.getElementById("gameStage");
+const target=document.getElementById("gameTarget");
+
+const size=
+parseFloat(
+getComputedStyle(target).width
+);
+
+const padding=size/2+8;
+
+const x=
+padding+
+Math.random()*
+(stage.clientWidth-padding*2);
+
+const y=
+padding+
+Math.random()*
+(stage.clientHeight-padding*2);
+
+target.style.left=x+"px";
+target.style.top=y+"px";
+
+}
+
+/* ================= HIT ================= */
+
+function hitGameTarget(event){
+
+event.stopPropagation();
+
+if(!gameActive)return;
+
+clearTimeout(gameTimer);
+clearTimeout(gameMoveTimer);
+
+document
+.getElementById("gameTarget")
+.classList.remove("active");
+
+gameScore++;
+
+gameData.score=gameScore;
+
+if(gameScore>Number(gameData.best||0)){
+
+gameData.best=gameScore;
+
+}
+
+saveGameData();
+
+updateGameUI();
+
+if(gameScore>=30){
+
+finishGame();
+
+return;
+}
+
+document.getElementById("gameMessage").textContent=
+gameScore>=23
+?"🔥 خیلی سخت شد! تمرکز کن!"
+:gameScore>=15
+?"⚡ سرعت بیشتر شد!"
+:"خوبه! ادامه بده 😎";
+
+spawnGameTarget();
+
+}
 
 /* ================= MISS ================= */
 
-function gameMissed(){
+function missGameTarget(){
 
-  gameRunning=false;
+if(!gameActive)return;
 
+clearTimeout(gameTimer);
+clearTimeout(gameMoveTimer);
 
-  cancelAnimationFrame(
-    gameAnimation
-  );
+document
+.getElementById("gameTarget")
+.classList.remove("active");
 
+/*
+هر اشتباه یک امتیاز کم می‌کند،
+اما رکورد قبلی حذف نمی‌شود.
+*/
 
-  /*
-    امتیاز فعلی پاک نمی‌شود.
-  */
+gameScore=
+Math.max(0,gameScore-1);
 
-  saveGameData();
+gameData.score=gameScore;
 
-  updateGameStats();
+saveGameData();
 
+updateGameUI();
 
-  const overlay =
-    document.getElementById(
-      "gameOverlay"
-    );
+document.getElementById("gameMessage").textContent=
+"❌ از دست رفت! یک امتیاز کم شد.";
 
-  const icon =
-    document.getElementById(
-      "gameOverlayIcon"
-    );
-
-  const title =
-    document.getElementById(
-      "gameOverlayTitle"
-    );
-
-  const text =
-    document.getElementById(
-      "gameOverlayText"
-    );
-
-  const button =
-    document.getElementById(
-      "gameStartBtn"
-    );
-
-
-  icon.textContent="😈";
-
-  title.textContent="توپ افتاد!";
-
-  text.textContent =
-    `نگران نباش؛ امتیازت ${gameScore} حفظ شده. دوباره امتحان کن.`;
-
-  button.textContent =
-    "ادامه بازی";
-
-
-  overlay.classList.remove("hidden");
-
-
-  setupGameBoard();
+spawnGameTarget();
 
 }
-
 
 /* ================= FINISH ================= */
 
 function finishGame(){
 
-  gameRunning=false;
+gameActive=false;
 
+clearTimeout(gameTimer);
+clearTimeout(gameMoveTimer);
 
-  cancelAnimationFrame(
-    gameAnimation
-  );
+gameScore=30;
 
+gameData.score=30;
 
-  gameScore=30;
-
-
-  if(gameBest < 30){
-    gameBest=30;
-  }
-
-
-  gameRewardClaimed=true;
-
-
-  saveGameData();
-
-
-  updateGameStats();
-
-
-  document
-    .getElementById("gameArea")
-    .style.display="none";
-
-
-  document
-    .getElementById("gameReward")
-    .style.display="block";
-
-
-  toast(
-    "۳۰ امتیاز کامل شد! جایزه‌ات آماده است 🎁"
-  );
-
-}
-
-
-/* ================= UPDATE BALL ================= */
-
-function updateBall(){
-
-  const ball =
-    document.getElementById(
-      "gameBall"
-    );
-
-  if(!ball){
-    return;
-  }
-
-
-  ball.style.transform =
-    `translate3d(${gameBallX}px,${gameBallY}px,0)`;
-
-}
-
-
-/* ================= UPDATE PADDLE ================= */
-
-function updatePaddle(){
-
-  const paddle =
-    document.getElementById(
-      "gamePaddle"
-    );
-
-  if(!paddle){
-    return;
-  }
-
-
-  paddle.style.width =
-    gamePaddleWidth + "px";
-
-
-  paddle.style.left =
-    (
-      gamePaddleX +
-      gamePaddleWidth/2
-    ) + "px";
-
-}
-
-
-/* ================= GAME STATS ================= */
-
-function updateGameStats(){
-
-  const score =
-    document.getElementById(
-      "gameScore"
-    );
-
-  const best =
-    document.getElementById(
-      "gameBest"
-    );
-
-  const progress =
-    document.getElementById(
-      "gameProgressBar"
-    );
-
-
-  if(score){
-
-    score.textContent =
-      Number(gameScore)
-        .toLocaleString("fa-IR");
-
-  }
-
-
-  if(best){
-
-    best.textContent =
-      Number(gameBest)
-        .toLocaleString("fa-IR");
-
-  }
-
-
-  if(progress){
-
-    progress.style.width =
-      Math.min(
-        100,
-        (gameScore/30)*100
-      ) + "%";
-
-  }
-
-}
-
-
-/* =========================================================
-   TOUCH / MOUSE CONTROL
-   ========================================================= */
-
-function movePaddleTo(clientX){
-
-  const board =
-    document.getElementById(
-      "gameBoard"
-    );
-
-  if(!board){
-    return;
-  }
-
-
-  const rect =
-    board.getBoundingClientRect();
-
-
-  let x =
-    clientX -
-    rect.left;
-
-
-  x -=
-    gamePaddleWidth/2;
-
-
-  gamePaddleX =
-    Math.max(
-      0,
-      Math.min(
-        rect.width-gamePaddleWidth,
-        x
-      )
-    );
-
-
-  updatePaddle();
-
-}
-
-
-document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
-
-    const board =
-      document.getElementById(
-        "gameBoard"
-      );
-
-
-    if(!board){
-      return;
-    }
-
-
-    board.addEventListener(
-      "pointerdown",
-      event=>{
-
-        gamePointerActive=true;
-
-        try{
-          board.setPointerCapture(
-            event.pointerId
-          );
-        }catch(e){}
-
-        movePaddleTo(
-          event.clientX
-        );
-
-      }
-    );
-
-
-    board.addEventListener(
-      "pointermove",
-      event=>{
-
-        if(!gamePointerActive){
-          return;
-        }
-
-        movePaddleTo(
-          event.clientX
-        );
-
-      }
-    );
-
-
-    board.addEventListener(
-      "pointerup",
-      ()=>{
-
-        gamePointerActive=false;
-
-      }
-    );
-
-
-    board.addEventListener(
-      "pointercancel",
-      ()=>{
-
-        gamePointerActive=false;
-
-      }
-    );
-
-
-    board.addEventListener(
-      "pointerleave",
-      ()=>{
-
-        gamePointerActive=false;
-
-      }
-    );
-
-  }
+gameData.best=Math.max(
+30,
+Number(gameData.best||0)
 );
 
+gameData.rewardClaimed=true;
+gameData.attemptActive=false;
+
+saveGameData();
+
+document
+.getElementById("gameTarget")
+.classList.remove("active");
+
+document.getElementById("gameStartBtn").style.display="none";
+
+document.getElementById("gameCooldown").style.display="none";
+
+document.getElementById("gameReward").style.display="block";
+
+document.getElementById("gameMessage").textContent=
+"🎉 مرحله با موفقیت کامل شد!";
+
+updateGameUI();
+
+}
 
 /* ================= LOGOUT ================= */
 
 function logoutGame(){
 
-  gameRunning=false;
+gameActive=false;
 
+clearTimeout(gameTimer);
+clearTimeout(gameMoveTimer);
 
-  cancelAnimationFrame(
-    gameAnimation
-  );
+localStorage.removeItem(
+GAME_SESSION_KEY
+);
 
+gamePhone="";
+gameData=null;
 
-  localStorage.removeItem(
-    GAME_SESSION_KEY
-  );
+document.getElementById("gameArea").style.display="none";
+document.getElementById("gameCodeBox").style.display="none";
+document.getElementById("gameLogin").style.display="block";
 
-
-  gameSession=null;
-
-  gameData=null;
-
-
-  document
-    .getElementById("gameArea")
-    .style.display="none";
-
-
-  document
-    .getElementById("gameReward")
-    .style.display="none";
-
-
-  document
-    .getElementById("gameLogin")
-    .style.display="block";
-
-
-  document
-    .getElementById("gamePhoneStep")
-    .classList.add("active");
-
-
-  document
-    .getElementById("gameCodeStep")
-    .classList.remove("active");
-
-
-  document
-    .getElementById("gameCode")
-    .value="";
-
-
-  toast("از بازی خارج شدی");
+document.getElementById("gamePhone").value="";
+document.getElementById("gameCode").value="";
 
 }
 
-
-/* ================= REWARD TELEGRAM ================= */
+/* ================= REWARD ================= */
 
 function sendGameRewardScreenshot(){
 
-  if(
-    !gameSession ||
-    !gameRewardClaimed
-  ){
-    return;
-  }
+if(!gameData||!gameData.rewardClaimed){
+return;
+}
 
-
-  const message =
+const message=
 
 `سلام V2GURD 👋
 
 🎮 نتیجه بازی V2GURD
 
-📱 شماره بازیکن:
-${gameSession.phone}
+📱 شماره:
+${gamePhone}
 
 🏆 امتیاز:
-۳۰ از ۳۰
+30 از 30
+
+🥇 رکورد:
+${gameData.best}
 
 🎁 جایزه:
-۳۰ گیگ سرویس VPN / فیلترشکن
+۳۰ گیگ سرویس رایگان
 
-📸 اسکرین‌شات نتیجه بازی را همینجا ارسال می‌کنم.
+📸 اسکرین‌شات نتیجه بازی را در همین چت ارسال می‌کنم.
 
-لطفاً جایزه ۳۰ گیگ را برای من فعال کنید.`;
+لطفاً جایزه ۳۰ گیگ من را فعال کنید.`;
 
-
-
-  const url =
-    "https://t.me/Vtwoguard?text=" +
-    encodeURIComponent(message);
-
-
-  window.open(
-    url,
-    "_blank"
-  );
+window.open(
+"https://t.me/Vtwoguard?text="+
+encodeURIComponent(message),
+"_blank"
+);
 
 }
 
+/* ================= COOLDOWN CHECK ================= */
 
-/* ================= GAME PAGE WATCHER ================= */
+setInterval(()=>{
 
-const originalShowPage =
-  showPage;
+if(gameData&&!gameActive){
 
+const remaining=
+getGameCooldownRemaining(gameData);
 
-/*
-  وقتی صفحه بازی باز شود،
-  اگر قبلاً وارد شده باشیم بازی را آماده می‌کنیم.
-*/
+if(remaining<=0){
 
-showPage = function(id){
+updateGameUI();
 
-  originalShowPage(id);
+}
 
+}
 
-  if(id === "game"){
-
-    setTimeout(()=>{
-
-      if(gameSession){
-
-        if(gameRewardClaimed){
-
-          document
-            .getElementById("gameLogin")
-            .style.display="none";
-
-          document
-            .getElementById("gameArea")
-            .style.display="none";
-
-          document
-            .getElementById("gameReward")
-            .style.display="block";
-
-        }else{
-
-          document
-            .getElementById("gameLogin")
-            .style.display="none";
-
-          document
-            .getElementById("gameArea")
-            .style.display="block";
-
-          setupGameBoard();
-
-          updateGameStats();
-
-        }
-
-      }else{
-
-        document
-          .getElementById("gameLogin")
-          .style.display="block";
-
-        document
-          .getElementById("gameArea")
-          .style.display="none";
-
-        document
-          .getElementById("gameReward")
-          .style.display="none";
-
-      }
-
-    },50);
-
-  }
-
-};
+},30000);
 
 </script>
 
