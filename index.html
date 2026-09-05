@@ -972,6 +972,368 @@ footer{
   color:var(--blue);
 }
 
+/* ================= GAME ================= */
+
+.game-login-wrap{
+  max-width:520px;
+  margin:0 auto;
+}
+
+.game-login-card{
+  position:relative;
+  padding:30px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(22,140,255,.12),transparent 35%),
+    radial-gradient(circle at 85% 85%,rgba(139,92,246,.12),transparent 35%),
+    #07101f;
+  border:1px solid rgba(22,140,255,.2);
+  box-shadow:0 20px 70px rgba(0,0,0,.3);
+  text-align:center;
+}
+
+.game-login-icon{
+  width:76px;
+  height:76px;
+  border-radius:22px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  background:linear-gradient(135deg,rgba(22,140,255,.18),rgba(139,92,246,.2));
+  border:1px solid rgba(139,92,246,.35);
+  box-shadow:0 0 35px rgba(139,92,246,.12);
+}
+
+.game-login-card h2{
+  font-size:27px;
+  margin-bottom:9px;
+}
+
+.game-login-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:2;
+  margin-bottom:20px;
+}
+
+.game-input{
+  width:100%;
+  padding:15px;
+  border-radius:13px;
+  border:1px solid var(--border);
+  background:#091424;
+  color:white;
+  outline:none;
+  margin:7px 0;
+  text-align:center;
+  direction:ltr;
+  font-size:16px;
+}
+
+.game-input:focus{
+  border-color:rgba(22,140,255,.65);
+  box-shadow:0 0 20px rgba(22,140,255,.08);
+}
+
+.game-code{
+  text-transform:none;
+  letter-spacing:3px;
+  font-weight:800;
+}
+
+.game-error{
+  color:#ff6d8a;
+  font-size:12px;
+  min-height:22px;
+  margin:5px 0;
+}
+
+.game-login-step{
+  display:none;
+}
+
+.game-login-step.active{
+  display:block;
+  animation:pageIn .3s ease;
+}
+
+.game-user-bar{
+  max-width:900px;
+  margin:0 auto 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  background:#07101f;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:13px 16px;
+}
+
+.game-user-bar span{
+  color:#9eafc7;
+  font-size:12px;
+}
+
+.game-user-bar strong{
+  color:white;
+}
+
+.game-area{
+  max-width:900px;
+  margin:0 auto;
+}
+
+.game-panel{
+  background:
+    radial-gradient(circle at 10% 10%,rgba(22,140,255,.12),transparent 35%),
+    radial-gradient(circle at 90% 90%,rgba(139,92,246,.12),transparent 35%),
+    #07101f;
+  border:1px solid rgba(22,140,255,.22);
+  border-radius:25px;
+  padding:22px;
+  box-shadow:0 25px 80px rgba(0,0,0,.3);
+}
+
+.game-top{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.game-stat{
+  text-align:center;
+  padding:13px 8px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+}
+
+.game-stat small{
+  display:block;
+  color:#8294ad;
+  font-size:10px;
+  margin-bottom:4px;
+}
+
+.game-stat strong{
+  font-size:23px;
+  color:white;
+}
+
+.game-progress{
+  height:9px;
+  background:#101c2e;
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:18px;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.game-progress-bar{
+  width:0%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#168cff,#8b5cf6);
+  transition:.35s ease;
+}
+
+.game-stage{
+  position:relative;
+  height:420px;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(22,140,255,.07),transparent 45%),
+    #040a14;
+  touch-action:none;
+}
+
+.game-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:35px 35px;
+  pointer-events:none;
+}
+
+.game-target{
+  position:absolute;
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle,#fff 0 8%,#a86cff 9% 27%,#7137e9 28% 55%,rgba(113,55,233,.15) 56% 100%);
+  border:2px solid rgba(255,255,255,.65);
+  box-shadow:
+    0 0 20px rgba(139,92,246,.7),
+    0 0 50px rgba(22,140,255,.25);
+  transform:translate(-50%,-50%) scale(1);
+  transition:
+    left .12s linear,
+    top .12s linear,
+    transform .12s ease;
+  z-index:3;
+  user-select:none;
+}
+
+.game-target::after{
+  content:"";
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 0 15px white;
+}
+
+.game-target.small{
+  width:48px;
+  height:48px;
+}
+
+.game-target.tiny{
+  width:38px;
+  height:38px;
+}
+
+.game-message{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  pointer-events:none;
+}
+
+.game-message-box{
+  padding:18px 22px;
+  border-radius:17px;
+  background:rgba(3,7,17,.78);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);
+  opacity:0;
+  transform:scale(.92);
+  transition:.2s;
+}
+
+.game-message.show .game-message-box{
+  opacity:1;
+  transform:scale(1);
+}
+
+.game-message-box strong{
+  display:block;
+  font-size:24px;
+  margin-bottom:5px;
+}
+
+.game-message-box span{
+  color:#91a2bb;
+  font-size:12px;
+}
+
+.game-controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+
+.game-hint{
+  text-align:center;
+  color:#7487a1;
+  font-size:11px;
+  margin-top:12px;
+}
+
+.game-win{
+  display:none;
+  text-align:center;
+  max-width:600px;
+  margin:0 auto;
+  padding:35px 25px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(139,92,246,.2),transparent 45%),
+    #07101f;
+  border:1px solid rgba(139,92,246,.4);
+  box-shadow:0 0 70px rgba(139,92,246,.12);
+}
+
+.game-win.show{
+  display:block;
+  animation:pageIn .4s ease;
+}
+
+.win-icon{
+  font-size:65px;
+  margin-bottom:10px;
+  animation:winPulse 1.3s infinite alternate;
+}
+
+@keyframes winPulse{
+  from{
+    transform:scale(1)
+  }
+  to{
+    transform:scale(1.1)
+  }
+}
+
+.game-win h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.game-win p{
+  color:#9eafc7;
+  line-height:2;
+}
+
+.reward-box{
+  margin:20px 0;
+  padding:20px;
+  border-radius:17px;
+  background:rgba(25,217,139,.07);
+  border:1px solid rgba(25,217,139,.25);
+}
+
+.reward-box strong{
+  display:block;
+  color:#4ff0ad;
+  font-size:27px;
+  margin-bottom:5px;
+}
+
+.reward-box span{
+  color:#a7b7ca;
+  font-size:12px;
+}
+
+.game-locked{
+  text-align:center;
+  max-width:650px;
+  margin:auto;
+  padding:35px 25px;
+  border-radius:22px;
+  background:#07101f;
+  border:1px solid var(--border);
+}
+
 /* MOBILE */
 
 @media(max-width:900px){
@@ -1046,6 +1408,27 @@ footer{
     min-height:270px;
   }
 
+  .game-panel{
+    padding:14px;
+  }
+
+  .game-stage{
+    height:390px;
+  }
+
+  .game-top{
+    gap:6px;
+  }
+
+  .game-stat strong{
+    font-size:19px;
+  }
+
+  .game-target{
+    width:56px;
+    height:56px;
+  }
+
 }
 </style>
 </head>
@@ -1077,6 +1460,7 @@ footer{
     <button onclick="showPage('wireguard')">WireGuard</button>
     <button onclick="showPage('v2box')">V2Box</button>
     <button onclick="showPage('jumpjump')">JumpJump</button>
+    <button onclick="showPage('game')">🎮 بازی</button>
     <button onclick="showPage('guide')">آموزش</button>
     <button onclick="showPage('rules')">قوانین</button>
     <button onclick="showPage('bot')">ربات</button>
@@ -2143,6 +2527,327 @@ footer{
 </section>
 
 
+<!-- ================= GAME ================= -->
+
+<section id="game" class="page">
+
+  <div class="section">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>🎮 بازی V2GURD</h2>
+        <p>
+          به ۳۰ امتیاز برس و ۳۰ گیگ سرویس جایزه بگیر
+        </p>
+      </div>
+
+      <!-- LOGIN -->
+
+      <div id="gameLogin">
+
+        <div class="game-login-wrap">
+
+          <div class="game-login-card">
+
+            <div class="game-login-icon">
+              🎮
+            </div>
+
+            <div id="loginStepPhone" class="game-login-step active">
+
+              <h2>
+                ورود به بازی
+              </h2>
+
+              <p>
+                برای شروع بازی شماره موبایل خودت را وارد کن.
+                اطلاعات بازی روی همین گوشی ذخیره می‌شود.
+              </p>
+
+              <input
+                class="game-input"
+                id="gamePhone"
+                type="tel"
+                inputmode="numeric"
+                maxlength="15"
+                placeholder="شماره موبایل"
+              >
+
+              <div
+                class="game-error"
+                id="phoneError"
+              ></div>
+
+              <button
+                class="btn btn-primary"
+                onclick="sendGameCode()"
+                style="width:100%"
+              >
+                ادامه
+              </button>
+
+            </div>
+
+
+            <div id="loginStepCode" class="game-login-step">
+
+              <h2>
+                🔐 تأیید ورود
+              </h2>
+
+              <p>
+                کد تأییدی که از پشتیبانی دریافت کردی را وارد کن.
+              </p>
+
+              <input
+                class="game-input game-code"
+                id="gameCode"
+                maxlength="8"
+                placeholder="کد ۸ کاراکتری"
+                autocomplete="off"
+              >
+
+              <div
+                class="game-error"
+                id="codeError"
+              ></div>
+
+              <button
+                class="btn btn-primary"
+                onclick="verifyGameCode()"
+                style="width:100%"
+              >
+                ورود به بازی
+              </button>
+
+              <br><br>
+
+              <button
+                class="btn"
+                onclick="backToPhoneStep()"
+                style="width:100%"
+              >
+                تغییر شماره
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- GAME CONTENT -->
+
+      <div id="gameContent" style="display:none">
+
+        <div class="game-user-bar">
+
+          <span>
+            👤 شماره:
+            <strong id="gameUserPhone">---</strong>
+          </span>
+
+          <button
+            class="btn"
+            onclick="logoutGame()"
+            style="padding:7px 12px;font-size:11px"
+          >
+            خروج
+          </button>
+
+        </div>
+
+
+        <div
+          id="gameLocked"
+          class="game-locked"
+          style="display:none"
+        >
+
+          <div style="font-size:55px;margin-bottom:10px">
+            🏆
+          </div>
+
+          <h2>
+            جایزه را قبلاً گرفتی
+          </h2>
+
+          <p style="color:#91a2bb;line-height:2;margin:10px 0 20px">
+            این حساب قبلاً به ۳۰ امتیاز رسیده و جایزه ۳۰ گیگ
+            برای آن ثبت شده است.
+          </p>
+
+          <button
+            class="btn btn-primary"
+            onclick="sendGameRewardScreenshot()"
+          >
+            📸 ارسال اسکرین‌شات به پشتیبانی
+          </button>
+
+        </div>
+
+
+        <div id="gamePlaying">
+
+          <div class="game-area">
+
+            <div class="game-panel">
+
+              <div class="game-top">
+
+                <div class="game-stat">
+                  <small>امتیاز</small>
+                  <strong id="gameScore">۰</strong>
+                </div>
+
+                <div class="game-stat">
+                  <small>رکورد</small>
+                  <strong id="gameBest">۰</strong>
+                </div>
+
+                <div class="game-stat">
+                  <small>هدف</small>
+                  <strong>۳۰</strong>
+                </div>
+
+              </div>
+
+
+              <div class="game-progress">
+                <div
+                  class="game-progress-bar"
+                  id="gameProgress"
+                ></div>
+              </div>
+
+
+              <div
+                class="game-stage"
+                id="gameStage"
+              >
+
+                <div
+                  class="game-target"
+                  id="gameTarget"
+                  onclick="hitGameTarget(event)"
+                ></div>
+
+                <div
+                  class="game-message"
+                  id="gameMessage"
+                >
+
+                  <div class="game-message-box">
+
+                    <strong id="gameMessageTitle">
+                      آماده‌ای؟
+                    </strong>
+
+                    <span id="gameMessageText">
+                      روی دایره بزن!
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="game-controls">
+
+                <button
+                  class="btn btn-primary"
+                  id="gameStartBtn"
+                  onclick="startGame()"
+                >
+                  🎮 شروع بازی
+                </button>
+
+                <button
+                  class="btn"
+                  onclick="resetGameProgress()"
+                >
+                  ↻ شروع مجدد
+                </button>
+
+              </div>
+
+
+              <div class="game-hint">
+                روی دایره‌ای که ظاهر می‌شود سریع بزن.
+                بعد از ۱۵ امتیاز سرعت و سختی بیشتر می‌شود.
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- WIN -->
+
+        <div
+          id="gameWin"
+          class="game-win"
+        >
+
+          <div class="win-icon">
+            🏆
+          </div>
+
+          <h2>
+            تبریک! 🎉
+          </h2>
+
+          <p>
+            تو موفق شدی به هدف ۳۰ امتیاز برسی!
+          </p>
+
+          <div class="reward-box">
+
+            <strong>
+              🎁 ۳۰ گیگ سرویس رایگان
+            </strong>
+
+            <span>
+              جایزه برای این حساب ثبت شد.
+            </span>
+
+          </div>
+
+          <button
+            class="btn btn-primary"
+            onclick="sendGameRewardScreenshot()"
+          >
+            📸 ارسال اسکرین‌شات به پشتیبانی
+          </button>
+
+          <br><br>
+
+          <button
+            class="btn"
+            onclick="showGameAgain()"
+          >
+            مشاهده بازی
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
 <!-- ================= GUIDE ================= -->
 
 <section id="guide" class="page">
@@ -2818,6 +3523,9 @@ window.addEventListener("load",()=>{
 
   updateCart();
 
+  /* بازی */
+  loadGameSession();
+
 });
 
 
@@ -2852,6 +3560,10 @@ function showPage(id){
   document
     .getElementById("navLinks")
     .classList.remove("show");
+
+  if(id==="game"){
+    loadGameSession();
+  }
 
 }
 
@@ -3640,6 +4352,1136 @@ function filterCards(){
         : "none";
 
     });
+
+}
+
+
+/* =========================================================
+   ================= GAME SYSTEM ===========================
+   ========================================================= */
+
+
+/* ---------------- GAME STORAGE ---------------- */
+
+const GAME_SESSION_KEY =
+  "v2gurd_game_session";
+
+const GAME_DATA_KEY =
+  "v2gurd_game_data";
+
+
+let gameSession =
+  JSON.parse(
+    localStorage.getItem(GAME_SESSION_KEY) || "null"
+  );
+
+
+let gameData =
+  JSON.parse(
+    localStorage.getItem(GAME_DATA_KEY) || "null"
+  );
+
+
+/* ---------------- GAME VARIABLES ---------------- */
+
+let gameScore = 0;
+
+let gameBest = 0;
+
+let gameRunning = false;
+
+let gameTimer = null;
+
+let gameMoveTimer = null;
+
+let gameRound = 0;
+
+let gameHitLock = false;
+
+
+/* ---------------- LOAD GAME ---------------- */
+
+function loadGameSession(){
+
+  gameSession =
+    JSON.parse(
+      localStorage.getItem(GAME_SESSION_KEY) || "null"
+    );
+
+  gameData =
+    JSON.parse(
+      localStorage.getItem(GAME_DATA_KEY) || "null"
+    );
+
+
+  const login =
+    document.getElementById("gameLogin");
+
+  const content =
+    document.getElementById("gameContent");
+
+  if(!login || !content){
+    return;
+  }
+
+
+  if(gameSession && gameSession.phone){
+
+    login.style.display="none";
+
+    content.style.display="block";
+
+    const phone =
+      document.getElementById("gameUserPhone");
+
+    if(phone){
+      phone.textContent =
+        gameSession.phone;
+    }
+
+    loadPlayerGameData();
+
+  }else{
+
+    login.style.display="block";
+
+    content.style.display="none";
+
+  }
+
+}
+
+
+/* ---------------- PHONE STEP ---------------- */
+
+function sendGameCode(){
+
+  const phoneInput =
+    document.getElementById("gamePhone");
+
+  const error =
+    document.getElementById("phoneError");
+
+  const phone =
+    phoneInput.value
+      .trim();
+
+
+  if(phone.length < 8){
+
+    error.textContent =
+      "شماره موبایل را درست وارد کن.";
+
+    return;
+  }
+
+
+  error.textContent="";
+
+
+  /*
+    چون سایت فعلاً بدون بک‌اند است،
+    شماره فقط روی گوشی نگهداری می‌شود.
+  */
+
+  localStorage.setItem(
+    "v2gurd_pending_phone",
+    phone
+  );
+
+
+  document
+    .getElementById("loginStepPhone")
+    .classList.remove("active");
+
+  document
+    .getElementById("loginStepCode")
+    .classList.add("active");
+
+
+  toast("کد تأیید را وارد کن 🔐");
+
+}
+
+
+/* ---------------- BACK PHONE ---------------- */
+
+function backToPhoneStep(){
+
+  document
+    .getElementById("loginStepCode")
+    .classList.remove("active");
+
+  document
+    .getElementById("loginStepPhone")
+    .classList.add("active");
+
+}
+
+
+/* ---------------- VERIFY CODE ---------------- */
+
+function verifyGameCode(){
+
+  const codeInput =
+    document.getElementById("gameCode");
+
+  const error =
+    document.getElementById("codeError");
+
+  const phone =
+    localStorage.getItem(
+      "v2gurd_pending_phone"
+    );
+
+
+  const code =
+    codeInput.value.trim();
+
+
+  /*
+    فرمت:
+    دقیقاً ۸ کاراکتر
+    v قبل از 2
+    2 قبل از G
+  */
+
+  const validCode =
+    /^[A-Za-z0-9]*v[A-Za-z0-9]*2[A-Za-z0-9]*G[A-Za-z0-9]*$/.test(code)
+    && code.length===8;
+
+
+  if(!validCode){
+
+    error.textContent =
+      "کد باید ۸ کاراکتر باشد و ترتیب v → 2 → G را داشته باشد.";
+
+    return;
+  }
+
+
+  if(!phone){
+
+    error.textContent =
+      "شماره موبایل پیدا نشد. دوباره وارد شو.";
+
+    return;
+  }
+
+
+  error.textContent="";
+
+
+  gameSession={
+    phone:phone,
+    loginTime:Date.now()
+  };
+
+
+  localStorage.setItem(
+    GAME_SESSION_KEY,
+    JSON.stringify(gameSession)
+  );
+
+
+  /*
+    کد بعد از استفاده نگهداری نمی‌شود.
+  */
+
+  localStorage.removeItem(
+    "v2gurd_pending_phone"
+  );
+
+
+  document
+    .getElementById("gameCode")
+    .value="";
+
+
+  toast("ورود با موفقیت انجام شد ✅");
+
+
+  loadGameSession();
+
+}
+
+
+/* ---------------- LOGOUT ---------------- */
+
+function logoutGame(){
+
+  stopGame();
+
+  localStorage.removeItem(
+    GAME_SESSION_KEY
+  );
+
+  loadGameSession();
+
+  toast("از بازی خارج شدی");
+
+}
+
+
+/* ---------------- PLAYER DATA ---------------- */
+
+function loadPlayerGameData(){
+
+  if(!gameSession){
+    return;
+  }
+
+
+  const key =
+    GAME_DATA_KEY +
+    "_" +
+    normalizePhone(gameSession.phone);
+
+
+  gameData =
+    JSON.parse(
+      localStorage.getItem(key) || "null"
+    );
+
+
+  if(!gameData){
+
+    gameData={
+      score:0,
+      best:0,
+      rewardClaimed:false
+    };
+
+    savePlayerGameData();
+
+  }
+
+
+  gameScore =
+    Number(gameData.score || 0);
+
+  gameBest =
+    Number(gameData.best || 0);
+
+
+  updateGameUI();
+
+
+  const locked =
+    document.getElementById("gameLocked");
+
+  const playing =
+    document.getElementById("gamePlaying");
+
+  const win =
+    document.getElementById("gameWin");
+
+
+  if(gameData.rewardClaimed){
+
+    if(locked){
+      locked.style.display="block";
+    }
+
+    if(playing){
+      playing.style.display="none";
+    }
+
+    if(win){
+      win.classList.remove("show");
+    }
+
+  }else{
+
+    if(locked){
+      locked.style.display="none";
+    }
+
+    if(playing){
+      playing.style.display="block";
+    }
+
+  }
+
+}
+
+
+/* ---------------- NORMALIZE PHONE ---------------- */
+
+function normalizePhone(phone){
+
+  return String(phone)
+    .replace(/\D/g,"");
+
+}
+
+
+/* ---------------- SAVE GAME ---------------- */
+
+function savePlayerGameData(){
+
+  if(!gameSession){
+    return;
+  }
+
+
+  const key =
+    GAME_DATA_KEY +
+    "_" +
+    normalizePhone(gameSession.phone);
+
+
+  localStorage.setItem(
+    key,
+    JSON.stringify(gameData)
+  );
+
+}
+
+
+/* ---------------- GAME UI ---------------- */
+
+function updateGameUI(){
+
+  const score =
+    document.getElementById("gameScore");
+
+  const best =
+    document.getElementById("gameBest");
+
+  const progress =
+    document.getElementById("gameProgress");
+
+
+  if(score){
+    score.textContent =
+      Number(gameScore)
+        .toLocaleString("fa-IR");
+  }
+
+
+  if(best){
+    best.textContent =
+      Number(gameBest)
+        .toLocaleString("fa-IR");
+  }
+
+
+  if(progress){
+
+    const percent =
+      Math.min(
+        gameScore / 30 * 100,
+        100
+      );
+
+    progress.style.width =
+      percent + "%";
+
+  }
+
+}
+
+
+/* ---------------- START GAME ---------------- */
+
+function startGame(){
+
+  if(!gameSession){
+    return;
+  }
+
+
+  if(gameData && gameData.rewardClaimed){
+
+    toast("این جایزه قبلاً دریافت شده 🏆");
+
+    return;
+  }
+
+
+  stopGame();
+
+
+  gameRunning=true;
+
+  gameRound=0;
+
+  gameHitLock=false;
+
+
+  const button =
+    document.getElementById("gameStartBtn");
+
+  if(button){
+    button.textContent="⏸️ بازی در حال اجرا";
+  }
+
+
+  showGameMessage(
+    "بزن بریم! 🔥",
+    "هدف‌ها سریع‌تر می‌شوند..."
+  );
+
+
+  setTimeout(()=>{
+
+    hideGameMessage();
+
+    spawnGameTarget();
+
+  },650);
+
+}
+
+
+/* ---------------- STOP GAME ---------------- */
+
+function stopGame(){
+
+  gameRunning=false;
+
+  clearTimeout(gameTimer);
+
+  clearTimeout(gameMoveTimer);
+
+  gameTimer=null;
+
+  gameMoveTimer=null;
+
+}
+
+
+/* ---------------- SPAWN TARGET ---------------- */
+
+function spawnGameTarget(){
+
+  if(!gameRunning){
+    return;
+  }
+
+
+  const stage =
+    document.getElementById("gameStage");
+
+  const target =
+    document.getElementById("gameTarget");
+
+
+  if(!stage || !target){
+    return;
+  }
+
+
+  gameRound++;
+
+
+  /*
+    سختی بر اساس امتیاز و راند افزایش پیدا می‌کند.
+    بعد از ۱۵ امتیاز به شکل محسوس سخت‌تر می‌شود.
+  */
+
+  let size = 62;
+
+  if(gameScore >= 15){
+    size=48;
+  }
+
+  if(gameScore >= 23){
+    size=38;
+  }
+
+
+  target.classList.remove(
+    "small",
+    "tiny"
+  );
+
+
+  if(size===48){
+    target.classList.add("small");
+  }
+
+  if(size===38){
+    target.classList.add("tiny");
+  }
+
+
+  const stageWidth =
+    stage.clientWidth;
+
+  const stageHeight =
+    stage.clientHeight;
+
+
+  const margin =
+    size / 2 + 12;
+
+
+  const x =
+    margin +
+    Math.random() *
+    (stageWidth - margin * 2);
+
+
+  const y =
+    margin +
+    Math.random() *
+    (stageHeight - margin * 2);
+
+
+  target.style.left =
+    x + "px";
+
+  target.style.top =
+    y + "px";
+
+
+  target.style.transform =
+    "translate(-50%,-50%) scale(1)";
+
+
+  /*
+    هرچه امتیاز بیشتر شود،
+    هدف زمان کمتری روی صفحه می‌ماند.
+  */
+
+  let lifetime =
+    1250 -
+    gameScore * 22;
+
+
+  if(gameScore >= 15){
+    lifetime -= 180;
+  }
+
+  if(gameScore >= 22){
+    lifetime -= 120;
+  }
+
+  if(lifetime < 420){
+    lifetime=420;
+  }
+
+
+  clearTimeout(gameTimer);
+
+
+  gameTimer =
+    setTimeout(()=>{
+
+      missGameTarget();
+
+    },lifetime);
+
+
+  /*
+    بعد از ۱۵ امتیاز هدف کمی حرکت می‌کند
+    تا بازی سخت‌تر شود.
+  */
+
+  clearTimeout(gameMoveTimer);
+
+
+  if(gameScore >= 15){
+
+    const moveDelay =
+      gameScore >= 23
+      ? 180
+      : 300;
+
+
+    gameMoveTimer =
+      setTimeout(()=>{
+
+        moveTargetQuickly();
+
+      },moveDelay);
+
+  }
+
+}
+
+
+/* ---------------- MOVE TARGET ---------------- */
+
+function moveTargetQuickly(){
+
+  if(!gameRunning){
+    return;
+  }
+
+
+  const stage =
+    document.getElementById("gameStage");
+
+  const target =
+    document.getElementById("gameTarget");
+
+
+  if(!stage || !target){
+    return;
+  }
+
+
+  const size =
+    gameScore >= 23
+    ? 38
+    : 48;
+
+
+  const margin =
+    size / 2 + 12;
+
+
+  const x =
+    margin +
+    Math.random() *
+    (stage.clientWidth - margin * 2);
+
+
+  const y =
+    margin +
+    Math.random() *
+    (stage.clientHeight - margin * 2);
+
+
+  target.style.left =
+    x + "px";
+
+  target.style.top =
+    y + "px";
+
+}
+
+
+/* ---------------- HIT TARGET ---------------- */
+
+function hitGameTarget(event){
+
+  if(event){
+    event.stopPropagation();
+  }
+
+
+  if(!gameRunning || gameHitLock){
+    return;
+  }
+
+
+  gameHitLock=true;
+
+
+  clearTimeout(gameTimer);
+
+
+  gameScore++;
+
+
+  if(gameScore > gameBest){
+    gameBest=gameScore;
+  }
+
+
+  if(gameData){
+
+    gameData.score =
+      gameScore;
+
+    gameData.best =
+      gameBest;
+
+  }
+
+
+  savePlayerGameData();
+
+  updateGameUI();
+
+
+  const target =
+    document.getElementById("gameTarget");
+
+
+  if(target){
+
+    target.style.transform =
+      "translate(-50%,-50%) scale(.75)";
+
+  }
+
+
+  if(gameScore >= 30){
+
+    setTimeout(()=>{
+
+      finishGame();
+
+    },100);
+
+    return;
+
+  }
+
+
+  if(gameScore === 10){
+
+    showGameMessage(
+      "خوبه! 🔥",
+      "ولی هنوز اول راهی..."
+    );
+
+    setTimeout(hideGameMessage,650);
+
+  }
+
+
+  if(gameScore === 15){
+
+    showGameMessage(
+      "از اینجا سخت میشه 😈",
+      "سرعت هدف‌ها بیشتر شد!"
+    );
+
+    setTimeout(hideGameMessage,900);
+
+  }
+
+
+  if(gameScore === 23){
+
+    showGameMessage(
+      "مرحله آخر! ⚠️",
+      "فقط ۷ امتیاز تا جایزه!"
+    );
+
+    setTimeout(hideGameMessage,900);
+
+  }
+
+
+  setTimeout(()=>{
+
+    gameHitLock=false;
+
+    spawnGameTarget();
+
+  },120);
+
+}
+
+
+/* ---------------- MISS ---------------- */
+
+function missGameTarget(){
+
+  if(!gameRunning){
+    return;
+  }
+
+
+  /*
+    باخت کامل نیست.
+    فقط یک امتیاز کم می‌شود.
+  */
+
+  gameScore =
+    Math.max(
+      0,
+      gameScore - 1
+    );
+
+
+  if(gameData){
+    gameData.score =
+      gameScore;
+  }
+
+
+  savePlayerGameData();
+
+  updateGameUI();
+
+
+  showGameMessage(
+    "نزدیک بود! 😅",
+    "یک امتیاز کم شد؛ دوباره ادامه بده."
+  );
+
+
+  setTimeout(()=>{
+
+    hideGameMessage();
+
+    gameHitLock=false;
+
+    spawnGameTarget();
+
+  },550);
+
+}
+
+
+/* ---------------- FINISH ---------------- */
+
+function finishGame(){
+
+  stopGame();
+
+
+  gameScore=30;
+
+
+  if(gameData){
+
+    gameData.score=30;
+
+    gameData.best =
+      Math.max(
+        Number(gameData.best || 0),
+        30
+      );
+
+    /*
+      جایزه روی همان گوشی ثبت می‌شود.
+    */
+
+    gameData.rewardClaimed=true;
+
+  }
+
+
+  savePlayerGameData();
+
+
+  updateGameUI();
+
+
+  const playing =
+    document.getElementById("gamePlaying");
+
+  const win =
+    document.getElementById("gameWin");
+
+  const locked =
+    document.getElementById("gameLocked");
+
+
+  if(playing){
+    playing.style.display="none";
+  }
+
+  if(locked){
+    locked.style.display="none";
+  }
+
+  if(win){
+    win.classList.add("show");
+  }
+
+
+  toast("۳۰ امتیاز کامل شد! 🎉");
+
+}
+
+
+/* ---------------- SHOW GAME AGAIN ---------------- */
+
+function showGameAgain(){
+
+  const win =
+    document.getElementById("gameWin");
+
+  const locked =
+    document.getElementById("gameLocked");
+
+  const playing =
+    document.getElementById("gamePlaying");
+
+
+  if(win){
+    win.classList.remove("show");
+  }
+
+  if(gameData && gameData.rewardClaimed){
+
+    if(locked){
+      locked.style.display="block";
+    }
+
+    if(playing){
+      playing.style.display="none";
+    }
+
+  }else{
+
+    if(playing){
+      playing.style.display="block";
+    }
+
+  }
+
+}
+
+
+/* ---------------- RESET PROGRESS ---------------- */
+
+function resetGameProgress(){
+
+  if(!gameSession){
+    return;
+  }
+
+
+  stopGame();
+
+
+  if(gameData && gameData.rewardClaimed){
+
+    toast("جایزه قبلاً ثبت شده و قابل حذف نیست 🏆");
+
+    return;
+
+  }
+
+
+  gameScore=0;
+
+
+  gameData={
+    score:0,
+    best:
+      Number(
+        gameData?.best || 0
+      ),
+    rewardClaimed:false
+  };
+
+
+  savePlayerGameData();
+
+  updateGameUI();
+
+
+  const win =
+    document.getElementById("gameWin");
+
+  if(win){
+    win.classList.remove("show");
+  }
+
+
+  const playing =
+    document.getElementById("gamePlaying");
+
+  if(playing){
+    playing.style.display="block";
+  }
+
+
+  toast("بازی از امتیاز فعلی شروع می‌شود 🔄");
+
+}
+
+
+/* ---------------- GAME MESSAGE ---------------- */
+
+function showGameMessage(
+  title,
+  text
+){
+
+  const message =
+    document.getElementById("gameMessage");
+
+  const titleEl =
+    document.getElementById("gameMessageTitle");
+
+  const textEl =
+    document.getElementById("gameMessageText");
+
+
+  if(!message){
+    return;
+  }
+
+
+  if(titleEl){
+    titleEl.textContent=title;
+  }
+
+  if(textEl){
+    textEl.textContent=text;
+  }
+
+
+  message.classList.add("show");
+
+}
+
+
+/* ---------------- HIDE MESSAGE ---------------- */
+
+function hideGameMessage(){
+
+  const message =
+    document.getElementById("gameMessage");
+
+  if(message){
+    message.classList.remove("show");
+  }
+
+}
+
+
+/* ---------------- REWARD TELEGRAM ---------------- */
+
+function sendGameRewardScreenshot(){
+
+  if(!gameSession){
+    return;
+  }
+
+
+  const phone =
+    gameSession.phone;
+
+
+  const best =
+    gameData
+    ? gameData.best
+    : 30;
+
+
+  const message =
+
+`سلام V2GURD 👋
+
+🏆 برنده بازی V2GURD
+
+📱 شماره:
+${phone}
+
+🎮 امتیاز:
+${best}
+
+🎁 جایزه:
+۳۰ گیگ سرویس رایگان
+
+📸 اسکرین‌شات برد بازی را در همین چت ارسال می‌کنم.
+
+ممنون از V2GURD 🙏`;
+
+
+  const url =
+    "https://t.me/Vtwoguard?text=" +
+    encodeURIComponent(message);
+
+
+  window.open(
+    url,
+    "_blank"
+  );
 
 }
 
