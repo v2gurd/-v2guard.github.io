@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -138,7 +138,6 @@ header{
   display:flex;
   align-items:center;
   gap:5px;
-  flex-wrap:wrap;
 }
 
 .nav-links button{
@@ -927,120 +926,143 @@ header{
   margin:7px 0;
 }
 
-/* ================= GAME ================= */
+/* GAME */
 
-.game-wrap{
-  max-width:900px;
-  margin:auto;
-}
-
-.game-login{
-  max-width:520px;
-  margin:50px auto;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(22,140,255,.12),transparent 45%),
-    #07101e;
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:30px;
+.game-box{
+  max-width:760px;
   text-align:center;
-  box-shadow:0 20px 70px rgba(0,0,0,.25);
+  position:relative;
+  overflow:hidden;
 }
 
 .game-icon{
-  font-size:65px;
-  margin-bottom:12px;
+  font-size:60px;
+  margin-bottom:10px;
 }
 
-.game-login h2{
-  font-size:28px;
+.game-box h2{
   margin-bottom:8px;
 }
 
-.game-login p{
+.game-box p{
   color:var(--muted);
   line-height:2;
-  font-size:13px;
 }
 
-.game-login .form-input{
-  text-align:center;
-  direction:ltr;
-  font-size:17px;
-  letter-spacing:1px;
+.game-user{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px;
+  margin-bottom:18px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:rgba(255,255,255,.025);
+  color:#aebbd0;
 }
 
-.game-login .code-input{
-  letter-spacing:4px;
-  text-transform:none;
-  font-weight:900;
-  font-size:20px;
-}
-
-.game-help{
-  color:#6f829d;
+.game-user .btn{
+  padding:7px 12px;
   font-size:11px;
-  line-height:1.9;
-  margin-top:12px;
 }
 
-.game-top{
+.game-attempts{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-bottom:18px;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.game-attempt{
+  padding:13px 8px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:rgba(255,255,255,.025);
+}
+
+.game-attempt strong{
+  display:block;
+  font-size:24px;
+  color:#69c4ff;
+}
+
+.game-attempt span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.game-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:15px;
 }
 
 .game-stat{
-  background:#07101e;
+  padding:15px 8px;
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:15px;
-  text-align:center;
+  border-radius:13px;
+  background:rgba(255,255,255,.025);
 }
 
 .game-stat strong{
   display:block;
   font-size:25px;
-  color:#65c3ff;
+  color:#69c4ff;
 }
 
 .game-stat span{
-  color:#7e90aa;
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
   font-size:11px;
 }
 
+.game-progress{
+  width:100%;
+  height:8px;
+  border-radius:20px;
+  background:#111d30;
+  overflow:hidden;
+  margin-bottom:15px;
+}
+
+#gameProgress{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#168cff,#8b5cf6);
+  transition:.2s;
+}
+
 .game-message{
-  text-align:center;
-  color:#a8b8cd;
-  margin:15px 0;
-  min-height:25px;
-  font-size:13px;
+  min-height:28px;
+  color:#aebbd0;
+  margin-bottom:10px;
+  font-weight:600;
 }
 
 .game-stage{
   position:relative;
   width:100%;
   height:390px;
-  overflow:hidden;
-  border-radius:22px;
-  border:1px solid rgba(22,140,255,.32);
+  border-radius:20px;
+  border:1px solid rgba(22,140,255,.25);
   background:
-    radial-gradient(circle at 50% 55%,rgba(22,140,255,.10),transparent 40%),
-    radial-gradient(circle at 50% 0%,rgba(139,92,246,.08),transparent 35%),
-    #020711;
+    radial-gradient(circle at center,rgba(22,140,255,.09),transparent 45%),
+    #040a14;
+  overflow:hidden;
   box-shadow:
-    inset 0 0 60px rgba(22,140,255,.04),
-    0 20px 70px rgba(0,0,0,.25);
-  touch-action:none;
-  user-select:none;
+    inset 0 0 50px rgba(0,0,0,.4),
+    0 0 35px rgba(22,140,255,.05);
 }
 
-.game-stage::before{
+.game-stage:before{
   content:"";
   position:absolute;
   inset:0;
-  opacity:.25;
   background-image:
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
@@ -1048,177 +1070,99 @@ header{
   pointer-events:none;
 }
 
-.game-stage::after{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:10%;
-  right:10%;
-  border-top:1px dashed rgba(255,255,255,.05);
-  pointer-events:none;
-}
-
-.game-wall{
-  position:absolute;
-  z-index:4;
-  background:linear-gradient(90deg,#168cff,#8b5cf6,#00b7ff);
+.game-stage.danger{
+  border-color:rgba(255,85,119,.35);
   box-shadow:
-    0 0 10px rgba(22,140,255,.7),
-    0 0 25px rgba(139,92,246,.25);
+    inset 0 0 60px rgba(255,0,70,.05),
+    0 0 30px rgba(255,85,119,.06);
 }
 
-.game-wall.top{
-  top:0;
-  left:0;
-  right:0;
-  height:4px;
-}
-
-.game-wall.left{
-  top:0;
-  bottom:0;
-  left:0;
-  width:4px;
-}
-
-.game-wall.right{
-  top:0;
-  bottom:0;
-  right:0;
-  width:4px;
-}
-
-#gameBall{
+.game-target{
   position:absolute;
-  z-index:8;
-  width:18px;
-  height:18px;
+  width:62px;
+  height:62px;
   border-radius:50%;
+  border:2px solid rgba(255,255,255,.45);
+  background:linear-gradient(135deg,#168cff,#8b5cf6);
+  color:white;
+  font-size:25px;
+  font-weight:900;
+  box-shadow:
+    0 0 20px rgba(22,140,255,.6),
+    0 0 45px rgba(139,92,246,.3);
   transform:translate(-50%,-50%);
-  background:
-    radial-gradient(circle at 30% 28%,#fff 0 12%,#8be0ff 28%,#168cff 63%,#8b5cf6 100%);
-  box-shadow:
-    0 0 10px #168cff,
-    0 0 24px rgba(22,140,255,.8),
-    0 0 40px rgba(139,92,246,.35);
   display:none;
+  z-index:2;
+  transition:
+    left .08s linear,
+    top .08s linear,
+    width .1s,
+    height .1s;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
 }
 
-#gamePaddle{
-  position:absolute;
-  z-index:7;
-  height:13px;
-  width:110px;
-  left:50%;
-  bottom:14px;
-  transform:translateX(-50%);
-  border-radius:999px;
-  background:linear-gradient(90deg,#087df5,#8b5cf6,#00b7ff);
+.game-target.active{
+  display:block;
+  animation:targetPulse .35s infinite alternate;
+}
+
+@keyframes targetPulse{
+  from{
+    transform:translate(-50%,-50%) scale(.9);
+  }
+  to{
+    transform:translate(-50%,-50%) scale(1.08);
+  }
+}
+
+.game-target.critical{
+  background:linear-gradient(135deg,#ff1744,#ff7b00);
   box-shadow:
-    0 0 12px rgba(22,140,255,.8),
-    0 0 28px rgba(139,92,246,.3);
-  display:none;
-  transition:width .18s ease;
-}
-
-.game-level{
-  position:absolute;
-  top:12px;
-  right:15px;
-  z-index:10;
-  color:#7d91ae;
-  font-size:10px;
-}
-
-.game-hint{
-  position:absolute;
-  bottom:48px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:6;
-  color:#50627b;
-  font-size:10px;
-  white-space:nowrap;
-  pointer-events:none;
-}
-
-.game-controls{
-  display:flex;
-  justify-content:center;
-  gap:9px;
-  flex-wrap:wrap;
-  margin-top:18px;
+    0 0 20px rgba(255,40,60,.8),
+    0 0 55px rgba(255,60,0,.4);
 }
 
 .game-cooldown{
-  max-width:600px;
-  margin:18px auto 0;
-  padding:18px;
-  border-radius:16px;
-  background:rgba(139,92,246,.07);
-  border:1px solid rgba(139,92,246,.2);
-  text-align:center;
-  color:#aebbd0;
-  display:none;
+  margin-top:15px;
+  padding:15px;
+  border-radius:13px;
+  border:1px solid rgba(255,85,119,.25);
+  background:rgba(255,85,119,.06);
+  color:#ff9bb1;
   line-height:2;
 }
 
-.game-cooldown strong{
-  color:#bda8ff;
+.game-warning{
+  margin-top:15px;
+  padding:14px;
+  border-radius:13px;
+  border:1px solid rgba(255,174,0,.25);
+  background:rgba(255,174,0,.05);
+  color:#ffd36b;
+  line-height:2;
 }
 
 .game-reward{
-  max-width:600px;
-  margin:20px auto;
+  margin-top:20px;
   padding:25px;
-  text-align:center;
-  border-radius:20px;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(25,217,139,.10),transparent 50%),
-    #07151a;
-  border:1px solid rgba(25,217,139,.25);
-  display:none;
-}
-
-.game-reward-icon{
-  font-size:55px;
+  border-radius:18px;
+  border:1px solid rgba(25,217,139,.3);
+  background:rgba(25,217,139,.06);
 }
 
 .game-reward h2{
+  color:#6ff0b7;
   margin:8px 0;
-  color:#6df2b6;
 }
 
-.game-reward p{
-  color:#9eb2c7;
-  line-height:2;
-  font-size:13px;
-}
-
-.game-info{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.game-info-box{
-  padding:16px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.025);
-  border-radius:15px;
-  text-align:center;
-}
-
-.game-info-box strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.game-info-box span{
-  color:#8192a9;
-  font-size:11px;
-  line-height:1.8;
+.reward-number{
+  margin:18px 0;
+  padding:14px;
+  border-radius:12px;
+  background:rgba(25,217,139,.08);
+  color:#6ff0b7;
+  font-weight:900;
 }
 
 /* TOAST */
@@ -1295,7 +1239,7 @@ footer{
     background:#07101e;
     border:1px solid var(--border);
     border-radius:15px;
-    max-height:80vh;
+    max-height:calc(100vh - 90px);
     overflow:auto;
   }
 
@@ -1305,10 +1249,6 @@ footer{
 
   .menu-btn{
     display:block;
-  }
-
-  .game-info{
-    grid-template-columns:1fr;
   }
 
 }
@@ -1347,34 +1287,14 @@ footer{
     min-height:270px;
   }
 
-  .game-top{
-    gap:7px;
-  }
-
-  .game-stat{
-    padding:12px 7px;
-  }
-
-  .game-stat strong{
-    font-size:21px;
-  }
-
   .game-stage{
-    height:330px;
-    border-radius:18px;
+    height:310px;
   }
 
-  #gamePaddle{
-    width:100px;
-  }
-
-  .game-hint{
-    font-size:9px;
-  }
-
-  .game-login{
-    padding:22px 18px;
-    margin:30px auto;
+  .game-target{
+    width:50px;
+    height:50px;
+    font-size:21px;
   }
 
 }
@@ -1405,7 +1325,9 @@ footer{
 
   <div class="nav-links" id="navLinks">
 
-    <button onclick="showPage('home')">خانه</button>
+    <button onclick="showPage('home')">
+      خانه
+    </button>
 
     <button onclick="showPage('wireguard')">
       WireGuard
@@ -1417,6 +1339,10 @@ footer{
 
     <button onclick="showPage('jumpjump')">
       JumpJump
+    </button>
+
+    <button onclick="showPage('game')">
+      🎮 بازی V2GURD
     </button>
 
     <button onclick="showPage('guide')">
@@ -1433,16 +1359,6 @@ footer{
 
     <button onclick="showPage('support')">
       پشتیبانی
-    </button>
-
-    <button
-      onclick="showPage('game')"
-      style="
-        color:#8bd4ff;
-        background:rgba(22,140,255,.08);
-      "
-    >
-      🎮 بازی V2GURD
     </button>
 
   </div>
@@ -1504,13 +1420,6 @@ footer{
             🛒 سبد خرید
           </button>
 
-          <button
-            class="btn btn-purple"
-            onclick="showPage('game')"
-          >
-            🎮 بازی V2GURD
-          </button>
-
         </div>
 
       </div>
@@ -1518,6 +1427,8 @@ footer{
     </div>
 
   </div>
+
+  <!-- FEATURED WIREGUARD -->
 
   <div class="container">
 
@@ -1581,6 +1492,8 @@ footer{
 
   </div>
 
+  <!-- CATEGORIES -->
+
   <div class="section">
 
     <div class="container">
@@ -1599,6 +1512,8 @@ footer{
 
       <div class="categories">
 
+        <!-- WIREGUARD -->
+
         <div
           class="category"
           onclick="showPage('wireguard')"
@@ -1606,7 +1521,7 @@ footer{
 
           <img
             class="category-img"
-            src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd"
+            src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44g2W05AypfyM6opCLcZQs4TU1Fd"
             alt="WireGuard"
           >
 
@@ -1625,6 +1540,8 @@ footer{
           </div>
 
         </div>
+
+        <!-- V2BOX -->
 
         <div
           class="category"
@@ -1652,6 +1569,8 @@ footer{
           </div>
 
         </div>
+
+        <!-- JUMPJUMP -->
 
         <div
           class="category"
@@ -1686,6 +1605,8 @@ footer{
 
   </div>
 
+  <!-- STATS -->
+
   <div class="section">
 
     <div class="container">
@@ -1718,16 +1639,16 @@ footer{
 
   </div>
 
+  <!-- FAQ -->
+
   <div class="section">
 
     <div class="container">
 
       <div class="section-title">
-
         <h2>
           سوالات متداول
         </h2>
-
       </div>
 
       <div class="faq">
@@ -1796,7 +1717,7 @@ footer{
 
     <img
       class="category-hero-img"
-      src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd"
+      src="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44g2W05AypfyM6opCLcZQs4TU1Fd"
       alt="WireGuard"
     >
 
@@ -2065,6 +1986,8 @@ footer{
 
       <div class="grid">
 
+        <!-- ECONOMIC -->
+
         <div class="card">
 
           <div class="status">
@@ -2104,6 +2027,8 @@ footer{
           </button>
 
         </div>
+
+        <!-- NORMAL -->
 
         <div class="card">
 
@@ -2145,6 +2070,8 @@ footer{
 
         </div>
 
+        <!-- CDN -->
+
         <div class="card special-card">
 
           <div class="status">
@@ -2185,6 +2112,8 @@ footer{
 
         </div>
 
+        <!-- TUNNEL -->
+
         <div class="card">
 
           <div class="status">
@@ -2224,6 +2153,8 @@ footer{
           </button>
 
         </div>
+
+        <!-- PROFESSIONAL -->
 
         <div class="card special-card">
 
@@ -2458,6 +2389,298 @@ footer{
 
 </section>
 
+<!-- ================= GAME ================= -->
+
+<section id="game" class="page">
+
+  <div class="section">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>
+          🎮 بازی V2GURD
+        </h2>
+
+        <p>
+          ۳۰ امتیاز بگیر و ۳۰ گیگ سرویس هدیه بگیر
+        </p>
+
+      </div>
+
+      <div class="info-box game-box">
+
+        <!-- LOGIN -->
+
+        <div id="gameLogin">
+
+          <div class="game-icon">
+            🎮
+          </div>
+
+          <h2>
+            ورود به بازی
+          </h2>
+
+          <p>
+            برای شروع بازی شماره موبایل خود را وارد کنید.
+          </p>
+
+          <input
+            class="form-input"
+            id="gamePhone"
+            type="tel"
+            inputmode="numeric"
+            placeholder="شماره موبایل"
+          >
+
+          <button
+            class="btn btn-primary"
+            onclick="sendGameCode()"
+            style="width:100%;margin-top:8px"
+          >
+            ادامه
+          </button>
+
+        </div>
+
+        <!-- CODE -->
+
+        <div
+          id="gameCodeBox"
+          style="display:none"
+        >
+
+          <div class="game-icon">
+            🔐
+          </div>
+
+          <h2>
+            کد ورود
+          </h2>
+
+          <p>
+            کد ۸ کاراکتری که از پشتیبانی دریافت کردی را وارد کن.
+          </p>
+
+          <input
+            class="form-input"
+            id="gameCode"
+            maxlength="8"
+            autocomplete="off"
+            placeholder="مثلاً 15v8293G"
+            style="text-align:center;direction:ltr;letter-spacing:3px"
+          >
+
+          <button
+            class="btn btn-primary"
+            onclick="verifyGameCode()"
+            style="width:100%;margin-top:8px"
+          >
+            ورود به بازی
+          </button>
+
+          <button
+            class="btn"
+            onclick="backGameLogin()"
+            style="width:100%;margin-top:8px"
+          >
+            برگشت
+          </button>
+
+        </div>
+
+        <!-- GAME AREA -->
+
+        <div
+          id="gameArea"
+          style="display:none"
+        >
+
+          <div class="game-user">
+
+            <span>
+              👤
+              <span id="gameUserPhone"></span>
+            </span>
+
+            <button
+              class="btn"
+              onclick="logoutGame()"
+            >
+              خروج
+            </button>
+
+          </div>
+
+          <!-- ATTEMPTS -->
+
+          <div class="game-attempts">
+
+            <div class="game-attempt">
+              <strong id="gameAttemptsLeft">
+                ۳
+              </strong>
+
+              <span>
+                تلاش باقی‌مانده
+              </span>
+            </div>
+
+            <div class="game-attempt">
+              <strong>
+                ۷ روز
+              </strong>
+
+              <span>
+                دوره بازی
+              </span>
+            </div>
+
+            <div class="game-attempt">
+              <strong>
+                ۳۰
+              </strong>
+
+              <span>
+                امتیاز هدف
+              </span>
+            </div>
+
+          </div>
+
+          <div class="game-stats">
+
+            <div class="game-stat">
+
+              <strong id="gameScore">
+                ۰
+              </strong>
+
+              <span>
+                امتیاز
+              </span>
+
+            </div>
+
+            <div class="game-stat">
+
+              <strong id="gameBest">
+                ۰
+              </strong>
+
+              <span>
+                رکورد
+              </span>
+
+            </div>
+
+            <div class="game-stat">
+
+              <strong>
+                ۳۰
+              </strong>
+
+              <span>
+                هدف
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="game-progress">
+
+            <div id="gameProgress"></div>
+
+          </div>
+
+          <div
+            id="gameMessage"
+            class="game-message"
+          >
+            برای شروع آماده‌ای؟
+          </div>
+
+          <div
+            id="gameStage"
+            class="game-stage"
+          >
+
+            <button
+              id="gameTarget"
+              class="game-target"
+              onclick="hitGameTarget(event)"
+            >
+              ⚡
+            </button>
+
+          </div>
+
+          <button
+            id="gameStartBtn"
+            class="btn btn-primary"
+            onclick="startGame()"
+            style="width:100%;margin-top:15px"
+          >
+            🎮 شروع تلاش
+          </button>
+
+          <div
+            id="gameCooldown"
+            class="game-cooldown"
+            style="display:none"
+          ></div>
+
+          <div
+            id="gameWinnerWarning"
+            class="game-warning"
+            style="display:none"
+          ></div>
+
+          <div
+            id="gameReward"
+            class="game-reward"
+            style="display:none"
+          >
+
+            <div style="font-size:55px">
+              🎉
+            </div>
+
+            <h2>
+              تبریک! برنده شدی
+            </h2>
+
+            <p>
+              شما ۳۰ امتیاز را کامل کردی.
+            </p>
+
+            <div class="reward-number">
+              🎁 ۳۰ گیگ سرویس رایگان V2GURD
+            </div>
+
+            <button
+              class="btn btn-primary"
+              onclick="sendGameRewardScreenshot()"
+              style="width:100%"
+            >
+              📸 ارسال اسکرین‌شات به پشتیبانی
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
 <!-- ================= GUIDE ================= -->
 
 <section id="guide" class="page">
@@ -2487,6 +2710,7 @@ footer{
           </div>
 
           <div>
+
             <h3>
               انتخاب سرویس
             </h3>
@@ -2495,6 +2719,7 @@ footer{
               از دسته‌بندی موردنظر سرویس خود را انتخاب کنید
               و به سبد خرید اضافه کنید.
             </p>
+
           </div>
 
         </div>
@@ -2506,6 +2731,7 @@ footer{
           </div>
 
           <div>
+
             <h3>
               بررسی سبد خرید
             </h3>
@@ -2513,6 +2739,7 @@ footer{
             <p>
               سرویس‌ها و مبلغ نهایی را بررسی کنید.
             </p>
+
           </div>
 
         </div>
@@ -2524,6 +2751,7 @@ footer{
           </div>
 
           <div>
+
             <h3>
               پرداخت
             </h3>
@@ -2531,6 +2759,7 @@ footer{
             <p>
               مبلغ را به کارت اعلام‌شده انتقال دهید.
             </p>
+
           </div>
 
         </div>
@@ -2542,6 +2771,7 @@ footer{
           </div>
 
           <div>
+
             <h3>
               ارسال رسید
             </h3>
@@ -2550,6 +2780,7 @@ footer{
               رسید پرداخت را از طریق تلگرام ارسال کنید
               تا سرویس برای شما ارسال شود.
             </p>
+
           </div>
 
         </div>
@@ -2733,291 +2964,6 @@ footer{
 
 </section>
 
-<!-- ================= GAME ================= -->
-
-<section id="game" class="page">
-
-  <div class="section">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <h2>
-          🎮 بازی V2GURD
-        </h2>
-
-        <p>
-          ۳۰ امتیاز بگیر و ۳۰ گیگ سرویس جایزه ببر 🎁
-        </p>
-
-      </div>
-
-      <div class="game-wrap">
-
-        <!-- LOGIN -->
-
-        <div
-          class="game-login"
-          id="gameLogin"
-        >
-
-          <div class="game-icon">
-            🎮
-          </div>
-
-          <h2>
-            ورود به بازی
-          </h2>
-
-          <p>
-            برای شروع بازی شماره موبایل خود را وارد کنید.
-          </p>
-
-          <input
-            class="form-input"
-            id="gamePhone"
-            type="tel"
-            inputmode="tel"
-            placeholder="مثلاً 09123456789"
-          >
-
-          <button
-            class="btn btn-primary"
-            onclick="sendGameCode()"
-            style="width:100%;margin-top:10px"
-          >
-            ادامه
-          </button>
-
-          <div class="game-help">
-            بعد از وارد کردن شماره، وارد چت پشتیبانی شوید
-            و درخواست کد ورود کنید.
-          </div>
-
-        </div>
-
-        <!-- CODE -->
-
-        <div
-          class="game-login"
-          id="gameCodeBox"
-          style="display:none"
-        >
-
-          <div class="game-icon">
-            🔐
-          </div>
-
-          <h2>
-            کد ورود
-          </h2>
-
-          <p>
-            کد ۸ کاراکتری ارسال‌شده توسط پشتیبانی را وارد کنید.
-          </p>
-
-          <input
-            class="form-input code-input"
-            id="gameCode"
-            maxlength="8"
-            autocomplete="off"
-            placeholder="XXXXXXXX"
-          >
-
-          <button
-            class="btn btn-primary"
-            onclick="verifyGameCode()"
-            style="width:100%;margin-top:10px"
-          >
-            ورود به بازی
-          </button>
-
-          <button
-            class="btn"
-            onclick="backGameLogin()"
-            style="width:100%;margin-top:8px"
-          >
-            برگشت
-          </button>
-
-          <div class="game-help">
-            کد باید دقیقاً ۸ کاراکتر داشته باشد و شامل
-            v سپس 2 و سپس G باشد.
-          </div>
-
-        </div>
-
-        <!-- GAME AREA -->
-
-        <div
-          id="gameArea"
-          style="display:none"
-        >
-
-          <div class="game-top">
-
-            <div class="game-stat">
-              <strong id="gameScore">۰</strong>
-              <span>امتیاز</span>
-            </div>
-
-            <div class="game-stat">
-              <strong id="gameBest">۰</strong>
-              <span>رکورد</span>
-            </div>
-
-            <div class="game-stat">
-              <strong>۳۰</strong>
-              <span>هدف</span>
-            </div>
-
-          </div>
-
-          <div
-            class="game-message"
-            id="gameMessage"
-          >
-            برای شروع بازی دکمه شروع را بزن.
-          </div>
-
-          <div
-            class="game-stage"
-            id="gameStage"
-          >
-
-            <div class="game-wall top"></div>
-            <div class="game-wall left"></div>
-            <div class="game-wall right"></div>
-
-            <div
-              class="game-level"
-              id="gameLevel"
-            >
-              سطح ۱
-            </div>
-
-            <div
-              id="gameBall"
-            ></div>
-
-            <div
-              id="gamePaddle"
-            ></div>
-
-            <div class="game-hint">
-              تخته را با لمس، موس یا انگشت حرکت بده
-            </div>
-
-          </div>
-
-          <div class="game-controls">
-
-            <button
-              class="btn btn-primary"
-              id="gameStartBtn"
-              onclick="startGame()"
-            >
-              ▶️ شروع بازی
-            </button>
-
-            <button
-              class="btn"
-              onclick="logoutGame()"
-            >
-              خروج
-            </button>
-
-          </div>
-
-          <div
-            class="game-cooldown"
-            id="gameCooldown"
-          ></div>
-
-          <div
-            class="game-reward"
-            id="gameReward"
-          >
-
-            <div class="game-reward-icon">
-              🎁
-            </div>
-
-            <h2>
-              تبریک! برنده شدی
-            </h2>
-
-            <p>
-              تو با موفقیت به ۳۰ امتیاز رسیدی.
-              جایزه شما:
-              <b style="color:#6df2b6">
-                ۳۰ گیگ سرویس V2GURD
-              </b>
-            </p>
-
-            <br>
-
-            <button
-              class="btn btn-primary"
-              onclick="sendGameRewardScreenshot()"
-            >
-              📸 ارسال نتیجه به پشتیبانی
-            </button>
-
-          </div>
-
-          <div class="game-info">
-
-            <div class="game-info-box">
-
-              <strong>
-                🏓 نحوه بازی
-              </strong>
-
-              <span>
-                توپ را با تخته برگردان.
-                هر برخورد موفق یک امتیاز دارد.
-              </span>
-
-            </div>
-
-            <div class="game-info-box">
-
-              <strong>
-                ⚡ امتیاز ۱۵
-              </strong>
-
-              <span>
-                سرعت بیشتر می‌شود و تخته کوچک‌تر خواهد شد.
-              </span>
-
-            </div>
-
-            <div class="game-info-box">
-
-              <strong>
-                🔥 امتیاز ۲۳
-              </strong>
-
-              <span>
-                بازی وارد مرحله سخت می‌شود.
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
 </main>
 
 <!-- CART BUTTON -->
@@ -3067,7 +3013,6 @@ footer{
     <div class="summary">
 
       <div class="sum-row">
-
         <span>
           مبلغ:
         </span>
@@ -3075,11 +3020,9 @@ footer{
         <span id="subtotal">
           ۰ تومان
         </span>
-
       </div>
 
       <div class="sum-row">
-
         <span>
           تخفیف:
         </span>
@@ -3087,7 +3030,6 @@ footer{
         <span id="discount">
           ۰ تومان
         </span>
-
       </div>
 
       <div class="sum-row sum-final">
@@ -3319,9 +3261,7 @@ footer{
 
 <script>
 
-/* =========================================================
-   PRODUCTS
-   ========================================================= */
+/* ================= PRODUCTS ================= */
 
 const PRODUCTS = {
 
@@ -3372,31 +3312,23 @@ const PRODUCTS = {
 
 };
 
-/* =========================================================
-   CART
-   ========================================================= */
+/* ================= CART ================= */
 
 let cart =
-  JSON.parse(
-    localStorage.getItem("v2gurd_cart") || "{}"
-  );
+  JSON.parse(localStorage.getItem("v2gurd_cart") || "{}");
 
-let discountPercent=0;
+let discountPercent = 0;
 
-let currentOrder=null;
+let currentOrder = null;
 
-/* =========================================================
-   INTRO
-   ========================================================= */
+/* ================= INTRO ================= */
 
 window.addEventListener("load",()=>{
 
   setTimeout(()=>{
 
-    const intro=
+    const intro =
       document.getElementById("intro");
-
-    if(!intro)return;
 
     intro.style.opacity="0";
 
@@ -3414,9 +3346,7 @@ window.addEventListener("load",()=>{
 
 });
 
-/* =========================================================
-   PAGE
-   ========================================================= */
+/* ================= PAGE ================= */
 
 function showPage(id){
 
@@ -3426,7 +3356,7 @@ function showPage(id){
       page.classList.remove("active");
     });
 
-  const page=
+  const page =
     document.getElementById(id);
 
   if(page){
@@ -3454,9 +3384,7 @@ function showPage(id){
 
 }
 
-/* =========================================================
-   MENU
-   ========================================================= */
+/* ================= MENU ================= */
 
 function toggleMenu(){
 
@@ -3466,13 +3394,11 @@ function toggleMenu(){
 
 }
 
-/* =========================================================
-   TOAST
-   ========================================================= */
+/* ================= TOAST ================= */
 
 function toast(message){
 
-  const el=
+  const el =
     document.getElementById("toast");
 
   el.textContent=message;
@@ -3481,16 +3407,14 @@ function toast(message){
 
   clearTimeout(window.toastTimer);
 
-  window.toastTimer=
+  window.toastTimer =
     setTimeout(()=>{
       el.classList.remove("show");
     },2500);
 
 }
 
-/* =========================================================
-   ADD CART
-   ========================================================= */
+/* ================= ADD CART ================= */
 
 function addToCart(id){
 
@@ -3506,15 +3430,11 @@ function addToCart(id){
 
   saveCart();
 
-  toast(
-    "محصول به سبد خرید اضافه شد ✅"
-  );
+  toast("محصول به سبد خرید اضافه شد ✅");
 
 }
 
-/* =========================================================
-   SERVER
-   ========================================================= */
+/* ================= SERVER ================= */
 
 function buyServer(
   type,
@@ -3522,29 +3442,29 @@ function buyServer(
   pricePerGB
 ){
 
-  const select=
+  const select =
     document.getElementById(selectId);
 
-  const gb=
+  const gb =
     Number(select.value);
 
-  const price=
-    gb*pricePerGB;
+  const price =
+    gb * pricePerGB;
 
-  const id=
-    "server_"+
-    type+
-    "_"+
-    gb+
-    "_"+
+  const id =
+    "server_" +
+    type +
+    "_" +
+    gb +
+    "_" +
     Date.now();
 
   PRODUCTS[id]={
     name:
-      "📦 "+
-      type+
-      " — "+
-      gb+
+      "📦 " +
+      type +
+      " — " +
+      gb +
       " گیگ",
     price:price
   };
@@ -3553,9 +3473,7 @@ function buyServer(
 
 }
 
-/* =========================================================
-   SAVE CART
-   ========================================================= */
+/* ================= SAVE ================= */
 
 function saveCart(){
 
@@ -3568,62 +3486,50 @@ function saveCart(){
 
 }
 
-/* =========================================================
-   FORMAT
-   ========================================================= */
+/* ================= FORMAT ================= */
 
 function formatPrice(number){
 
   return Number(number)
-    .toLocaleString("fa-IR")+
+    .toLocaleString("fa-IR") +
     " تومان";
 
 }
 
-/* =========================================================
-   CART UPDATE
-   ========================================================= */
+/* ================= CART UPDATE ================= */
 
 function updateCart(){
 
-  const container=
+  const container =
     document.getElementById("cartItems");
 
-  const count=
+  const count =
     document.getElementById("cartCount");
 
-  if(!container||!count){
-    return;
-  }
-
   let totalItems=0;
-
   let subtotal=0;
 
   container.innerHTML="";
 
   Object.keys(cart).forEach(id=>{
 
-    const qty=
+    const qty =
       Number(cart[id]);
 
-    if(!qty||!PRODUCTS[id]){
-
+    if(!qty || !PRODUCTS[id]){
       delete cart[id];
-
       return;
-
     }
 
-    const product=
+    const product =
       PRODUCTS[id];
 
-    totalItems+=qty;
+    totalItems += qty;
 
-    subtotal+=
-      product.price*qty;
+    subtotal +=
+      product.price * qty;
 
-    const item=
+    const item =
       document.createElement("div");
 
     item.className="cart-item";
@@ -3679,29 +3585,29 @@ function updateCart(){
 
   });
 
-  const discount=
+  const discount =
     Math.round(
-      subtotal*
-      discountPercent/
+      subtotal *
+      discountPercent /
       100
     );
 
-  const final=
+  const final =
     subtotal-discount;
 
-  count.textContent=
+  count.textContent =
     totalItems.toLocaleString("fa-IR");
 
   document.getElementById("subtotal")
-    .textContent=
+    .textContent =
     formatPrice(subtotal);
 
   document.getElementById("discount")
-    .textContent=
+    .textContent =
     formatPrice(discount);
 
   document.getElementById("finalTotal")
-    .textContent=
+    .textContent =
     formatPrice(final);
 
   if(totalItems===0){
@@ -3727,9 +3633,7 @@ function updateCart(){
 
 }
 
-/* =========================================================
-   QTY
-   ========================================================= */
+/* ================= QTY ================= */
 
 function changeQty(id,change){
 
@@ -3747,9 +3651,7 @@ function changeQty(id,change){
 
 }
 
-/* =========================================================
-   REMOVE
-   ========================================================= */
+/* ================= REMOVE ================= */
 
 function removeFromCart(id){
 
@@ -3761,9 +3663,7 @@ function removeFromCart(id){
 
 }
 
-/* =========================================================
-   OPEN CART
-   ========================================================= */
+/* ================= OPEN CART ================= */
 
 function openCart(){
 
@@ -3775,9 +3675,7 @@ function openCart(){
 
 }
 
-/* =========================================================
-   CLOSE CART
-   ========================================================= */
+/* ================= CLOSE CART ================= */
 
 function closeCart(){
 
@@ -3787,14 +3685,12 @@ function closeCart(){
 
 }
 
-/* =========================================================
-   OUTSIDE CART
-   ========================================================= */
+/* ================= OUTSIDE CART ================= */
 
 function outsideCart(event){
 
   if(
-    event.target===
+    event.target ===
     document.getElementById("cartPanel")
   ){
     closeCart();
@@ -3802,13 +3698,11 @@ function outsideCart(event){
 
 }
 
-/* =========================================================
-   COUPON
-   ========================================================= */
+/* ================= COUPON ================= */
 
 function applyCoupon(){
 
-  const code=
+  const code =
     document
       .getElementById("coupon")
       .value
@@ -3819,9 +3713,7 @@ function applyCoupon(){
 
     discountPercent=10;
 
-    toast(
-      "کد تخفیف ۱۰٪ اعمال شد 🎉"
-    );
+    toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
 
     updateCart();
 
@@ -3829,9 +3721,7 @@ function applyCoupon(){
 
     discountPercent=0;
 
-    toast(
-      "کد تخفیف معتبر نیست ❌"
-    );
+    toast("کد تخفیف معتبر نیست ❌");
 
     updateCart();
 
@@ -3839,9 +3729,7 @@ function applyCoupon(){
 
 }
 
-/* =========================================================
-   CHECKOUT
-   ========================================================= */
+/* ================= CHECKOUT ================= */
 
 function startCheckout(){
 
@@ -3849,9 +3737,7 @@ function startCheckout(){
     Object.keys(cart).length===0
   ){
 
-    toast(
-      "سبد خرید خالی است ❌"
-    );
+    toast("سبد خرید خالی است ❌");
 
     return;
   }
@@ -3862,9 +3748,7 @@ function startCheckout(){
 
 }
 
-/* =========================================================
-   MODAL
-   ========================================================= */
+/* ================= MODAL ================= */
 
 function closeModal(id){
 
@@ -3874,9 +3758,7 @@ function closeModal(id){
 
 }
 
-/* =========================================================
-   RULE CONFIRM
-   ========================================================= */
+/* ================= RULE CONFIRM ================= */
 
 function confirmRules(){
 
@@ -3886,29 +3768,27 @@ function confirmRules(){
 
 }
 
-/* =========================================================
-   ORDER ID
-   ========================================================= */
+/* ================= ORDER ID ================= */
 
 function createOrderId(){
 
-  const date=
+  const date =
     new Date();
 
-  const y=
+  const y =
     date.getFullYear();
 
-  const m=
+  const m =
     String(date.getMonth()+1)
       .padStart(2,"0");
 
-  const d=
+  const d =
     String(date.getDate())
       .padStart(2,"0");
 
-  const random=
+  const random =
     Math.floor(
-      1000+
+      1000 +
       Math.random()*9000
     );
 
@@ -3916,13 +3796,11 @@ function createOrderId(){
 
 }
 
-/* =========================================================
-   INVOICE
-   ========================================================= */
+/* ================= INVOICE ================= */
 
 function createInvoice(){
 
-  const orderId=
+  const orderId =
     createOrderId();
 
   let subtotal=0;
@@ -3953,18 +3831,18 @@ function createInvoice(){
       return;
     }
 
-    const product=
+    const product =
       PRODUCTS[id];
 
-    const qty=
+    const qty =
       cart[id];
 
-    const total=
-      product.price*qty;
+    const total =
+      product.price * qty;
 
-    subtotal+=total;
+    subtotal += total;
 
-    html+=`
+    html += `
 
       <div style="
         display:flex;
@@ -3989,17 +3867,17 @@ function createInvoice(){
 
   });
 
-  const discount=
+  const discount =
     Math.round(
-      subtotal*
-      discountPercent/
+      subtotal *
+      discountPercent /
       100
     );
 
-  const final=
+  const final =
     subtotal-discount;
 
-  html+=`
+  html += `
 
     <div style="
       margin-top:15px;
@@ -4041,9 +3919,7 @@ function createInvoice(){
 
 }
 
-/* =========================================================
-   PAYMENT
-   ========================================================= */
+/* ================= PAYMENT ================= */
 
 function openPayment(){
 
@@ -4055,30 +3931,22 @@ function openPayment(){
 
 }
 
-/* =========================================================
-   COPY CARD
-   ========================================================= */
+/* ================= COPY CARD ================= */
 
 function copyCard(){
 
   navigator.clipboard
     .writeText("6219861841635526")
     .then(()=>{
-      toast(
-        "شماره کارت کپی شد ✅"
-      );
+      toast("شماره کارت کپی شد ✅");
     })
     .catch(()=>{
-      toast(
-        "کپی انجام نشد"
-      );
+      toast("کپی انجام نشد");
     });
 
 }
 
-/* =========================================================
-   RECEIPT
-   ========================================================= */
+/* ================= RECEIPT ================= */
 
 function sendReceipt(){
 
@@ -4094,12 +3962,12 @@ function sendReceipt(){
       return;
     }
 
-    productsText+=
+    productsText +=
       `• ${PRODUCTS[id].name} × ${cart[id]}\n`;
 
   });
 
-  const message=
+  const message =
 
 `سلام V2GURD 👋
 
@@ -4124,8 +3992,8 @@ ${formatPrice(currentOrder.total)}
 
 ممنون از V2GURD 🙏`;
 
-  const url=
-    "https://t.me/Vtwoguard?text="+
+  const url =
+    "https://t.me/Vtwoguard?text=" +
     encodeURIComponent(message);
 
   window.open(
@@ -4135,57 +4003,53 @@ ${formatPrice(currentOrder.total)}
 
 }
 
-/* =========================================================
-   SUPPORT
-   ========================================================= */
+/* ================= SUPPORT TICKET ================= */
 
 function createTicket(){
 
-  const name=
+  const name =
     document
       .getElementById("supportName")
       .value
       .trim();
 
-  const problem=
+  const problem =
     document
       .getElementById("supportProblem")
       .value
       .trim();
 
-  if(!name||!problem){
+  if(!name || !problem){
 
-    toast(
-      "لطفاً اطلاعات را کامل کنید ❌"
-    );
+    toast("لطفاً اطلاعات را کامل کنید ❌");
 
     return;
   }
 
-  const date=
+  const date =
     new Date();
 
-  const y=
+  const y =
     date.getFullYear();
 
-  const m=
+  const m =
     String(date.getMonth()+1)
       .padStart(2,"0");
 
-  const d=
+  const d =
     String(date.getDate())
       .padStart(2,"0");
 
-  const random=
+  const random =
     Math.floor(
-      100000+
+      100000 +
       Math.random()*900000
     );
 
-  const ticket=
+  const ticket =
     `TKT-${y}${m}${d}-${random}`;
 
-  const message=
+  const message =
 
 `سلام V2GURD 👋
 
@@ -4200,8 +4064,8 @@ ${name}
 ❗ مشکل:
 ${problem}`;
 
-  const url=
-    "https://t.me/Vtwoguard?text="+
+  const url =
+    "https://t.me/Vtwoguard?text=" +
     encodeURIComponent(message);
 
   window.open(
@@ -4210,39 +4074,36 @@ ${problem}`;
   );
 
   toast(
-    "تیکت ایجاد شد: "+
+    "تیکت ایجاد شد: " +
     ticket
   );
 
 }
 
-/* =========================================================
-   FAQ
-   ========================================================= */
+/* ================= FAQ ================= */
 
 function toggleFaq(button){
 
-  const item=
+  const item =
     button.parentElement;
 
   item.classList.toggle("open");
 
 }
 
-/* =========================================================
-   SEARCH
-   ========================================================= */
+/* ================= SEARCH ================= */
 
 function filterCards(){
 
-  const input=
-    document.getElementById("vpnSearch");
+  const input =
+    document
+      .getElementById("vpnSearch");
 
   if(!input){
     return;
   }
 
-  const value=
+  const value =
     input.value
       .trim()
       .toLowerCase();
@@ -4251,124 +4112,222 @@ function filterCards(){
     .querySelectorAll(".vpn-card")
     .forEach(card=>{
 
-      const text=
+      const text =
         card.textContent
           .toLowerCase();
 
-      card.style.display=
+      card.style.display =
         text.includes(value)
-        ?""
-        :"none";
+        ? ""
+        : "none";
 
     });
 
 }
 
 /* =========================================================
-   ================= GAME SYSTEM =================
+   🎮 V2GURD GAME
    ========================================================= */
 
-/*
-  کل اطلاعات بازی روی همان دستگاه ذخیره می‌شود.
-*/
-
-const GAME_SESSION_KEY=
+const GAME_SESSION_KEY =
   "v2gurd_game_session";
 
-const GAME_PENDING_PHONE=
-  "v2gurd_pending_phone";
-
-const GAME_DATA_KEY=
+const GAME_DATA_KEY =
   "v2gurd_game_data";
 
-const GAME_WEEK_MS=
-  7*24*60*60*1000;
+const GAME_PENDING_PHONE =
+  "v2gurd_pending_phone";
+
+/*
+  هر هفته سه تلاش
+*/
+const GAME_WEEK_MS =
+  7 * 24 * 60 * 60 * 1000;
+
+/*
+  محدودیت جایزه برنده تا ابتدای ماه بعد
+*/
+const GAME_MONTH_LOCK =
+  true;
+
+let gameTimer=null;
+let gameMoveTimer=null;
+let gameHardMoveTimer=null;
+
+let gameActive=false;
+
+let gameScore=0;
 
 let gamePhone="";
 
 let gameData=null;
 
-let gameScore=0;
+/* ================= DEFAULT DATA ================= */
 
-let gameRunning=false;
+function createDefaultGameData(){
 
-let gameAnimation=null;
+  return {
 
-let gameLastTime=0;
+    score:0,
 
-let ballX=0;
+    best:0,
 
-let ballY=0;
+    attemptsUsed:0,
 
-let ballVX=0;
+    weekStart:0,
 
-let ballVY=0;
+    winner:false,
 
-let paddleX=0;
+    winnerMonth:"",
 
-/* =========================================================
-   NORMALIZE PHONE
-   ========================================================= */
+    rewardClaimed:false,
+
+    lastWinAt:0,
+
+    attemptActive:false
+
+  };
+
+}
+
+/* ================= PHONE ================= */
 
 function normalizePhone(phone){
 
-  return String(phone||"")
+  return phone
     .replace(/[^\d+]/g,"")
-    .replace(/^00/,"+")
-    .replace(/\s/g,"")
-    .replace(/-/g,"");
+    .replace(/\s+/g,"");
 
 }
 
-/* =========================================================
-   PHONE KEY
-   ========================================================= */
+/* ================= MONTH ================= */
 
-function gamePhoneKey(phone){
+function getCurrentMonthKey(){
 
-  return normalizePhone(phone)
-    .replace(/\D/g,"");
+  const date =
+    new Date();
 
-}
-
-/* =========================================================
-   GET GAME DATA
-   ========================================================= */
-
-function getGameData(phone){
-
-  const key=
-    GAME_DATA_KEY+
-    "_"+
-    gamePhoneKey(phone);
-
-  return JSON.parse(
-    localStorage.getItem(key) ||
-    JSON.stringify({
-      score:0,
-      best:0,
-      rewardClaimed:false,
-      lastPlayAt:0,
-      attemptActive:false
-    })
+  return (
+    date.getFullYear() +
+    "-" +
+    String(date.getMonth()+1)
+      .padStart(2,"0")
   );
 
 }
 
-/* =========================================================
-   SAVE GAME DATA
-   ========================================================= */
+/* ================= NEXT MONTH ================= */
+
+function getNextMonthDate(){
+
+  const now =
+    new Date();
+
+  return new Date(
+    now.getFullYear(),
+    now.getMonth()+1,
+    1,
+    0,
+    0,
+    0,
+    0
+  );
+
+}
+
+/* ================= DATA ================= */
+
+function getGameData(phone){
+
+  const key =
+    GAME_DATA_KEY +
+    "_" +
+    normalizePhone(phone);
+
+  let data=null;
+
+  try{
+
+    data =
+      JSON.parse(
+        localStorage.getItem(key)
+      );
+
+  }catch(error){
+
+    data=null;
+
+  }
+
+  if(!data){
+
+    data =
+      createDefaultGameData();
+
+  }
+
+  /*
+    مهاجرت اطلاعات نسخه قدیمی
+  */
+
+  if(
+    typeof data.attemptsUsed!=="number"
+  ){
+    data.attemptsUsed=0;
+  }
+
+  if(
+    typeof data.weekStart!=="number"
+  ){
+    data.weekStart=0;
+  }
+
+  if(
+    typeof data.best!=="number"
+  ){
+    data.best=0;
+  }
+
+  if(
+    typeof data.score!=="number"
+  ){
+    data.score=0;
+  }
+
+  if(
+    typeof data.winner!=="boolean"
+  ){
+    data.winner=false;
+  }
+
+  if(
+    typeof data.rewardClaimed!=="boolean"
+  ){
+    data.rewardClaimed=false;
+  }
+
+  if(
+    typeof data.attemptActive!=="boolean"
+  ){
+    data.attemptActive=false;
+  }
+
+  return data;
+
+}
+
+/* ================= SAVE DATA ================= */
 
 function saveGameData(){
 
-  if(!gamePhone||!gameData){
+  if(!gamePhone || !gameData){
     return;
   }
 
-  const key=
-    GAME_DATA_KEY+
-    "_"+
-    gamePhoneKey(gamePhone);
+  const key =
+    GAME_DATA_KEY +
+    "_" +
+    normalizePhone(gamePhone);
 
   localStorage.setItem(
     key,
@@ -4377,61 +4336,227 @@ function saveGameData(){
 
 }
 
-/* =========================================================
-   SEND GAME CODE
-   ========================================================= */
+/* ================= WEEK RESET ================= */
+
+function checkWeeklyReset(){
+
+  if(!gameData){
+    return;
+  }
+
+  /*
+    اگر دوره قبلی تمام شده،
+    سه تلاش جدید فعال می‌شود.
+  */
+
+  if(
+    gameData.weekStart &&
+    Date.now() - Number(gameData.weekStart)
+      >= GAME_WEEK_MS
+  ){
+
+    gameData.attemptsUsed=0;
+
+    gameData.weekStart=0;
+
+    /*
+      هر تلاش باید از صفر شروع شود.
+    */
+
+    gameData.score=0;
+
+    gameData.attemptActive=false;
+
+    saveGameData();
+
+  }
+
+}
+
+/* ================= WEEK REMAINING ================= */
+
+function getWeeklyCooldown(){
+
+  if(!gameData){
+    return 0;
+  }
+
+  if(
+    !gameData.weekStart ||
+    Number(gameData.attemptsUsed)<3
+  ){
+    return 0;
+  }
+
+  return Math.max(
+    0,
+    GAME_WEEK_MS -
+    (Date.now()-Number(gameData.weekStart))
+  );
+
+}
+
+/* ================= MONTH WIN CHECK ================= */
+
+function isWinnerLocked(){
+
+  if(
+    !gameData ||
+    !gameData.winner ||
+    !gameData.winnerMonth
+  ){
+    return false;
+  }
+
+  const currentMonth =
+    getCurrentMonthKey();
+
+  /*
+    اگر برنده مربوط به همین ماه است،
+    جایزه مجدد ممنوع است.
+  */
+
+  if(
+    gameData.winnerMonth===
+    currentMonth
+  ){
+
+    return true;
+
+  }
+
+  /*
+    وارد ماه جدید شده‌ایم.
+    محدودیت جایزه قبلی آزاد می‌شود.
+  */
+
+  gameData.winner=false;
+
+  gameData.rewardClaimed=false;
+
+  gameData.winnerMonth="";
+
+  gameData.lastWinAt=0;
+
+  /*
+    تلاش‌های هفته جدید نیز می‌تواند استفاده شود.
+  */
+
+  saveGameData();
+
+  return false;
+
+}
+
+/* ================= MONTH REMAINING ================= */
+
+function getMonthLockText(){
+
+  const nextMonth =
+    getNextMonthDate();
+
+  const remaining =
+    Math.max(
+      0,
+      nextMonth.getTime()-Date.now()
+    );
+
+  return formatGameRemaining(
+    remaining
+  );
+
+}
+
+/* ================= FORMAT TIME ================= */
+
+function formatGameRemaining(ms){
+
+  const totalMinutes =
+    Math.ceil(ms/60000);
+
+  const days =
+    Math.floor(
+      totalMinutes/1440
+    );
+
+  const hours =
+    Math.floor(
+      (totalMinutes%1440)/60
+    );
+
+  const minutes =
+    totalMinutes%60;
+
+  if(days>0){
+
+    return (
+      days +
+      " روز و " +
+      hours +
+      " ساعت"
+    );
+
+  }
+
+  if(hours>0){
+
+    return (
+      hours +
+      " ساعت و " +
+      minutes +
+      " دقیقه"
+    );
+
+  }
+
+  return (
+    minutes +
+    " دقیقه"
+  );
+
+}
+
+/* ================= LOGIN ================= */
 
 function sendGameCode(){
 
-  const input=
-    document.getElementById("gamePhone");
+  const input =
+    document.getElementById(
+      "gamePhone"
+    );
 
-  const phone=
-    normalizePhone(input.value);
+  const phone =
+    normalizePhone(
+      input.value
+    );
 
-  const digits=
-    phone.replace(/\D/g,"");
-
-  if(
-    digits.length<8 ||
-    digits.length>15
-  ){
+  if(phone.length<8){
 
     toast(
-      "شماره موبایل معتبر وارد کنید ❌"
+      "شماره موبایل را درست وارد کنید ❌"
     );
 
     return;
   }
-
-  gamePhone=phone;
 
   localStorage.setItem(
     GAME_PENDING_PHONE,
     phone
   );
 
-  /*
-    کد توسط پشتیبانی ارسال می‌شود.
-  */
-
-  const message=
-
+  const message =
 `سلام V2GURD 👋
 
-🎮 درخواست کد ورود به بازی
+🎮 درخواست کد ورود بازی
 
 📱 شماره:
 ${phone}
 
-لطفاً کد ۸ کاراکتری ورود به بازی را برای من ارسال کنید.`;
-
-  const url=
-    "https://t.me/Vtwoguard?text="+
-    encodeURIComponent(message);
+لطفاً کد ورود ۸ کاراکتری بازی را برای من ارسال کنید.`;
 
   window.open(
-    url,
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(message),
     "_blank"
   );
 
@@ -4443,106 +4568,71 @@ ${phone}
     .getElementById("gameCodeBox")
     .style.display="block";
 
-  document
-    .getElementById("gameCode")
-    .focus();
-
   toast(
-    "درخواست کد برای پشتیبانی ارسال شد 📩"
+    "کد را از پشتیبانی دریافت کنید 🔐"
   );
 
 }
 
-/* =========================================================
-   VERIFY GAME CODE
-   ========================================================= */
+/* ================= VERIFY ================= */
 
 function verifyGameCode(){
 
-  const input=
-    document.getElementById("gameCode");
+  const code =
+    document
+      .getElementById("gameCode")
+      .value
+      .trim();
 
-  const code=
-    input.value.trim();
+  const phone =
+    localStorage.getItem(
+      GAME_PENDING_PHONE
+    );
 
-  if(code.length!==8){
+  if(!phone){
 
     toast(
-      "کد باید دقیقاً ۸ کاراکتر باشد ❌"
+      "شماره پیدا نشد ❌"
     );
 
     return;
   }
 
   /*
-    ترتیب موردنظر:
-    v سپس 2 سپس G
+    کد دقیقاً ۸ کاراکتر است
+    و باید v سپس 2 سپس G داشته باشد.
   */
 
-  const valid=
+  const valid =
+    code.length===8 &&
     /^[A-Za-z0-9]*v[A-Za-z0-9]*2[A-Za-z0-9]*G[A-Za-z0-9]*$/
       .test(code);
 
   if(!valid){
 
     toast(
-      "کد ورود معتبر نیست ❌"
+      "کد نامعتبر است ❌"
     );
 
     return;
   }
 
-  if(!gamePhone){
-
-    gamePhone=
-      localStorage.getItem(
-        GAME_PENDING_PHONE
-      )||"";
-
-  }
-
-  if(!gamePhone){
-
-    toast(
-      "شماره موبایل پیدا نشد ❌"
-    );
-
-    backGameLogin();
-
-    return;
-  }
-
-  gameData=
-    getGameData(gamePhone);
+  gamePhone=phone;
 
   localStorage.setItem(
     GAME_SESSION_KEY,
-    gamePhone
+    phone
   );
 
   localStorage.removeItem(
     GAME_PENDING_PHONE
   );
 
-  document
-    .getElementById("gameCodeBox")
-    .style.display="none";
-
-  document
-    .getElementById("gameArea")
-    .style.display="block";
-
-  updateGameUI();
-
-  toast(
-    "ورود موفق بود 🎮"
-  );
+  loadGameSession();
 
 }
 
-/* =========================================================
-   BACK GAME LOGIN
-   ========================================================= */
+/* ================= BACK LOGIN ================= */
 
 function backGameLogin(){
 
@@ -4556,146 +4646,62 @@ function backGameLogin(){
 
 }
 
-/* =========================================================
-   LOAD GAME SESSION
-   ========================================================= */
+/* ================= LOAD GAME ================= */
 
 function loadGameSession(){
 
-  const savedPhone=
+  const session =
     localStorage.getItem(
       GAME_SESSION_KEY
     );
 
-  if(!savedPhone){
+  if(!session){
 
-    const login=
-      document.getElementById("gameLogin");
+    document
+      .getElementById("gameLogin")
+      .style.display="block";
 
-    const code=
-      document.getElementById("gameCodeBox");
+    document
+      .getElementById("gameCodeBox")
+      .style.display="none";
 
-    const area=
-      document.getElementById("gameArea");
-
-    if(login)login.style.display="block";
-
-    if(code)code.style.display="none";
-
-    if(area)area.style.display="none";
+    document
+      .getElementById("gameArea")
+      .style.display="none";
 
     return;
+
   }
 
-  gamePhone=savedPhone;
+  gamePhone=session;
 
-  gameData=
+  gameData =
     getGameData(gamePhone);
 
-  const login=
-    document.getElementById("gameLogin");
+  checkWeeklyReset();
 
-  const code=
-    document.getElementById("gameCodeBox");
+  document
+    .getElementById("gameLogin")
+    .style.display="none";
 
-  const area=
-    document.getElementById("gameArea");
+  document
+    .getElementById("gameCodeBox")
+    .style.display="none";
 
-  if(login)login.style.display="none";
+  document
+    .getElementById("gameArea")
+    .style.display="block";
 
-  if(code)code.style.display="none";
-
-  if(area)area.style.display="block";
+  document
+    .getElementById("gameUserPhone")
+    .textContent =
+    gamePhone;
 
   updateGameUI();
 
 }
 
-/* =========================================================
-   GAME COOLDOWN
-   ========================================================= */
-
-function getGameCooldownRemaining(data){
-
-  if(!data||!data.lastPlayAt){
-    return 0;
-  }
-
-  const remaining=
-    GAME_WEEK_MS-
-    (Date.now()-data.lastPlayAt);
-
-  return Math.max(
-    0,
-    remaining
-  );
-
-}
-
-/* =========================================================
-   FORMAT REMAINING
-   ========================================================= */
-
-function formatGameRemaining(ms){
-
-  if(ms<=0){
-    return "آماده بازی";
-  }
-
-  let totalSeconds=
-    Math.floor(ms/1000);
-
-  const days=
-    Math.floor(
-      totalSeconds/86400
-    );
-
-  totalSeconds%=86400;
-
-  const hours=
-    Math.floor(
-      totalSeconds/3600
-    );
-
-  totalSeconds%=3600;
-
-  const minutes=
-    Math.floor(
-      totalSeconds/60
-    );
-
-  if(days>0){
-
-    return(
-      days+
-      " روز و "+
-      hours+
-      " ساعت"
-    );
-
-  }
-
-  if(hours>0){
-
-    return(
-      hours+
-      " ساعت و "+
-      minutes+
-      " دقیقه"
-    );
-
-  }
-
-  return(
-    minutes+
-    " دقیقه"
-  );
-
-}
-
-/* =========================================================
-   UPDATE GAME UI
-   ========================================================= */
+/* ================= UI ================= */
 
 function updateGameUI(){
 
@@ -4703,854 +4709,783 @@ function updateGameUI(){
     return;
   }
 
-  const score=
+  checkWeeklyReset();
+
+  const score =
     Number(gameData.score||0);
 
-  const best=
+  const best =
     Number(gameData.best||0);
 
-  const scoreEl=
-    document.getElementById("gameScore");
-
-  const bestEl=
-    document.getElementById("gameBest");
-
-  if(scoreEl){
-
-    scoreEl.textContent=
-      score.toLocaleString("fa-IR");
-
-  }
-
-  if(bestEl){
-
-    bestEl.textContent=
-      best.toLocaleString("fa-IR");
-
-  }
-
-  const cooldown=
-    getGameCooldownRemaining(
-      gameData
+  const attemptsUsed =
+    Number(
+      gameData.attemptsUsed||0
     );
 
-  const cooldownEl=
-    document.getElementById(
-      "gameCooldown"
+  const attemptsLeft =
+    Math.max(
+      0,
+      3-attemptsUsed
     );
 
-  const startBtn=
+  document
+    .getElementById("gameScore")
+    .textContent =
+    score.toLocaleString("fa-IR");
+
+  document
+    .getElementById("gameBest")
+    .textContent =
+    best.toLocaleString("fa-IR");
+
+  document
+    .getElementById("gameAttemptsLeft")
+    .textContent =
+    attemptsLeft.toLocaleString("fa-IR");
+
+  const progress =
+    Math.min(
+      100,
+      (score/30)*100
+    );
+
+  document
+    .getElementById("gameProgress")
+    .style.width =
+    progress+"%";
+
+  const startBtn =
     document.getElementById(
       "gameStartBtn"
     );
 
-  const reward=
+  const cooldown =
+    document.getElementById(
+      "gameCooldown"
+    );
+
+  const warning =
+    document.getElementById(
+      "gameWinnerWarning"
+    );
+
+  const reward =
     document.getElementById(
       "gameReward"
     );
 
-  if(
-    gameData.rewardClaimed
-  ){
+  const remaining =
+    getWeeklyCooldown();
 
-    if(cooldownEl){
+  /*
+    پاک‌سازی
+  */
 
-      cooldownEl.style.display="block";
+  cooldown.style.display="none";
 
-      cooldownEl.innerHTML=
-        "🎁 شما قبلاً جایزه ۳۰ گیگ را دریافت کرده‌اید.";
+  warning.style.display="none";
 
-    }
+  reward.style.display="none";
 
-    if(startBtn){
+  /*
+    اگر برنده این ماه است
+  */
 
-      startBtn.disabled=true;
+  if(isWinnerLocked()){
 
-      startBtn.textContent=
-        "🎁 جایزه دریافت شده";
+    startBtn.disabled=true;
 
-    }
+    startBtn.style.opacity=".5";
 
-    if(reward){
+    startBtn.style.display="block";
 
-      reward.style.display="block";
+    startBtn.textContent=
+      "🏆 قبلاً برنده شده‌ای";
 
-    }
+    warning.style.display="block";
+
+    warning.innerHTML=
+      `🏆 این شماره قبلاً در این ماه برنده شده است.<br>
+      🎁 جایزه ۳۰ گیگ قبلاً برای این شخص ثبت شده است.<br>
+      ⏳ تا ماه آینده امکان دریافت دوباره جایزه وجود ندارد.<br>
+      <b>زمان باقی‌مانده: ${getMonthLockText()}</b>`;
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "این حساب در این ماه قبلاً برنده شده است.";
 
     return;
-  }
-
-  if(cooldown>0){
-
-    if(cooldownEl){
-
-      cooldownEl.style.display="block";
-
-      cooldownEl.innerHTML=
-        "⏳ زمان باقی‌مانده تا بازی بعدی:<br><strong>"+
-        formatGameRemaining(cooldown)+
-        "</strong>";
-
-    }
-
-    if(startBtn){
-
-      startBtn.disabled=true;
-
-      startBtn.textContent=
-        "⏳ هنوز زمان بازی نرسیده";
-
-    }
-
-  }else{
-
-    if(cooldownEl){
-
-      cooldownEl.style.display="none";
-
-    }
-
-    if(startBtn&&!gameRunning){
-
-      startBtn.disabled=false;
-
-      startBtn.textContent=
-        "▶️ شروع بازی";
-
-    }
 
   }
 
-}
-
-/* =========================================================
-   GAME PADDLE WIDTH
-   ========================================================= */
-
-function getPaddleWidth(){
-
-  if(gameScore>=23){
-
-    return 62;
-
-  }
-
-  if(gameScore>=15){
-
-    return 82;
-
-  }
-
-  return 110;
-
-}
-
-/* =========================================================
-   GAME SPEED
-   ========================================================= */
-
-function getGameSpeed(){
-
-  if(gameScore>=23){
-
-    return 7.2;
-
-  }
-
-  if(gameScore>=15){
-
-    return 5.8;
-
-  }
-
-  return 4.0;
-
-}
-
-/* =========================================================
-   MOVE PADDLE
-   ========================================================= */
-
-function setPaddleFromX(x){
-
-  const stage=
-    document.getElementById(
-      "gameStage"
-    );
-
-  const paddle=
-    document.getElementById(
-      "gamePaddle"
-    );
-
-  if(!stage||!paddle){
-    return;
-  }
-
-  const width=
-    getPaddleWidth();
-
-  paddle.style.width=
-    width+"px";
-
-  const half=
-    width/2;
-
-  paddleX=
-    Math.max(
-      half+5,
-      Math.min(
-        stage.clientWidth-half-5,
-        x
-      )
-    );
-
-  paddle.style.left=
-    paddleX+"px";
-
-}
-
-/* =========================================================
-   GAME INPUT
-   ========================================================= */
-
-function setupGameInput(){
-
-  const stage=
-    document.getElementById(
-      "gameStage"
-    );
-
-  if(!stage){
-    return;
-  }
-
-  stage.onmousemove=function(e){
-
-    if(!gameRunning){
-      return;
-    }
-
-    const rect=
-      stage.getBoundingClientRect();
-
-    setPaddleFromX(
-      e.clientX-
-      rect.left
-    );
-
-  };
-
-  stage.ontouchstart=function(e){
-
-    if(!gameRunning){
-      return;
-    }
-
-    const rect=
-      stage.getBoundingClientRect();
-
-    setPaddleFromX(
-      e.touches[0].clientX-
-      rect.left
-    );
-
-  };
-
-  stage.ontouchmove=function(e){
-
-    if(!gameRunning){
-      return;
-    }
-
-    e.preventDefault();
-
-    const rect=
-      stage.getBoundingClientRect();
-
-    setPaddleFromX(
-      e.touches[0].clientX-
-      rect.left
-    );
-
-  };
-
-}
-
-/* =========================================================
-   START GAME
-   ========================================================= */
-
-function startGame(){
-
-  if(!gameData||!gamePhone){
-
-    toast(
-      "ابتدا وارد بازی شوید ❌"
-    );
-
-    return;
-  }
-
-  if(gameData.rewardClaimed){
-
-    toast(
-      "این حساب قبلاً جایزه را دریافت کرده است 🎁"
-    );
-
-    return;
-  }
-
-  const remaining=
-    getGameCooldownRemaining(
-      gameData
-    );
+  /*
+    اگر هر سه تلاش استفاده شده
+  */
 
   if(remaining>0){
 
-    toast(
-      "هنوز زمان بازی بعدی نرسیده ⏳"
-    );
+    startBtn.disabled=true;
 
-    updateGameUI();
+    startBtn.style.opacity=".5";
 
-    return;
-  }
+    startBtn.style.display="block";
 
-  /*
-    شروع فرصت هفتگی
-  */
-
-  gameData.lastPlayAt=
-    Date.now();
-
-  gameData.attemptActive=
-    true;
-
-  /*
-    امتیاز قبلی حفظ می‌شود.
-  */
-
-  gameScore=
-    Number(gameData.score||0);
-
-  saveGameData();
-
-  gameRunning=true;
-
-  const stage=
-    document.getElementById(
-      "gameStage"
-    );
-
-  const ball=
-    document.getElementById(
-      "gameBall"
-    );
-
-  const paddle=
-    document.getElementById(
-      "gamePaddle"
-    );
-
-  if(!stage||!ball||!paddle){
-    return;
-  }
-
-  ball.style.display="block";
-
-  paddle.style.display="block";
-
-  document
-    .getElementById("gameStartBtn")
-    .disabled=true;
-
-  document
-    .getElementById("gameStartBtn")
-    .textContent=
-    "🏓 بازی در حال اجرا...";
-
-  document
-    .getElementById("gameMessage")
-    .textContent=
-    "🏓 توپ را با تخته برگردان!";
-
-  paddleX=
-    stage.clientWidth/2;
-
-  setPaddleFromX(
-    paddleX
-  );
-
-  ballX=
-    stage.clientWidth/2;
-
-  ballY=
-    stage.clientHeight*0.52;
-
-  const speed=
-    getGameSpeed();
-
-  const angle=
-    (Math.random()*.9-.45);
-
-  ballVX=
-    Math.sin(angle)*
-    speed;
-
-  ballVY=
-    -Math.cos(angle)*
-    speed;
-
-  ball.style.left=
-    ballX+"px";
-
-  ball.style.top=
-    ballY+"px";
-
-  updateGameLevel();
-
-  gameLastTime=
-    performance.now();
-
-  cancelAnimationFrame(
-    gameAnimation
-  );
-
-  gameAnimation=
-    requestAnimationFrame(
-      gameLoop
-    );
-
-}
-
-/* =========================================================
-   GAME LOOP
-   ========================================================= */
-
-function gameLoop(now){
-
-  if(!gameRunning){
-    return;
-  }
-
-  const stage=
-    document.getElementById(
-      "gameStage"
-    );
-
-  const ball=
-    document.getElementById(
-      "gameBall"
-    );
-
-  const paddle=
-    document.getElementById(
-      "gamePaddle"
-    );
-
-  if(!stage||!ball||!paddle){
-    return;
-  }
-
-  const delta=
-    Math.min(
-      2,
-      (now-gameLastTime)/
-      16.6667
-    );
-
-  gameLastTime=now;
-
-  let difficulty=1;
-
-  if(gameScore>=23){
-
-    difficulty=1.30;
-
-  }else if(gameScore>=15){
-
-    difficulty=1.13;
-
-  }
-
-  ballX+=
-    ballVX*
-    delta*
-    difficulty;
-
-  ballY+=
-    ballVY*
-    delta*
-    difficulty;
-
-  const radius=9;
-
-  const width=
-    stage.clientWidth;
-
-  const height=
-    stage.clientHeight;
-
-  /* دیوار چپ */
-
-  if(
-    ballX-radius<=5
-  ){
-
-    ballX=
-      radius+5;
-
-    ballVX=
-      Math.abs(ballVX);
-
-  }
-
-  /* دیوار راست */
-
-  if(
-    ballX+radius>=
-    width-5
-  ){
-
-    ballX=
-      width-radius-5;
-
-    ballVX=
-      -Math.abs(ballVX);
-
-  }
-
-  /* دیوار بالا */
-
-  if(
-    ballY-radius<=5
-  ){
-
-    ballY=
-      radius+5;
-
-    ballVY=
-      Math.abs(ballVY);
-
-  }
-
-  /* تخته */
-
-  const paddleWidth=
-    getPaddleWidth();
-
-  const paddleLeft=
-    paddleX-
-    paddleWidth/2;
-
-  const paddleRight=
-    paddleX+
-    paddleWidth/2;
-
-  const paddleTop=
-    height-14-13;
-
-  const paddleBottom=
-    height-14;
-
-  if(
-
-    ballVY>0 &&
-
-    ballY+radius>=
-    paddleTop &&
-
-    ballY-radius<=
-    paddleBottom &&
-
-    ballX>=
-    paddleLeft &&
-
-    ballX<=
-    paddleRight
-
-  ){
-
-    ballY=
-      paddleTop-radius;
-
-    ballVY=
-      -Math.abs(ballVY);
-
-    /*
-      زاویه برگشت بر اساس محل برخورد
-    */
-
-    const hit=
-      (ballX-paddleX)/
-      (paddleWidth/2);
-
-    const speed=
-      getGameSpeed();
-
-    ballVX=
-      hit*
-      speed*
-      .92;
-
-    const vertical=
-      Math.sqrt(
-        Math.max(
-          1,
-          speed*speed-
-          ballVX*ballVX
-        )
-      );
-
-    ballVY=
-      -vertical;
-
-    /*
-      +1 امتیاز
-    */
-
-    gameScore++;
-
-    gameData.score=
-      gameScore;
-
-    if(
-      gameScore>
-      Number(gameData.best||0)
-    ){
-
-      gameData.best=
-        gameScore;
-
-    }
-
-    saveGameData();
-
-    updateGameUI();
-
-    updateGameLevel();
-
-    /*
-      ۳۰ امتیاز
-    */
-
-    if(gameScore>=30){
-
-      finishGame();
-
-      return;
-
-    }
-
-    if(gameScore>=23){
-
-      document
-        .getElementById(
-          "gameMessage"
-        )
-        .textContent=
-        "🔥 مرحله نهایی! فوق‌العاده سخت شد!";
-
-    }else if(gameScore>=15){
-
-      document
-        .getElementById(
-          "gameMessage"
-        )
-        .textContent=
-        "⚡ سرعت بیشتر شد؛ تخته کوچک‌تر شد!";
-
-    }else{
-
-      document
-        .getElementById(
-          "gameMessage"
-        )
-        .textContent=
-        "🏓 عالی! ادامه بده!";
-
-    }
-
-  }
-
-  /*
-    توپ از پایین خارج شد
-  */
-
-  if(
-    ballY-radius>
-    height
-  ){
-
-    gameOver();
-
-    return;
-
-  }
-
-  ball.style.left=
-    ballX+"px";
-
-  ball.style.top=
-    ballY+"px";
-
-  gameAnimation=
-    requestAnimationFrame(
-      gameLoop
-    );
-
-}
-
-/* =========================================================
-   GAME LEVEL
-   ========================================================= */
-
-function updateGameLevel(){
-
-  const level=
-    document.getElementById(
-      "gameLevel"
-    );
-
-  if(!level){
-    return;
-  }
-
-  if(gameScore>=23){
-
-    level.textContent=
-      "🔥 سطح ۳";
-
-  }else if(gameScore>=15){
-
-    level.textContent=
-      "⚡ سطح ۲";
-
-  }else{
-
-    level.textContent=
-      "سطح ۱";
-
-  }
-
-}
-
-/* =========================================================
-   GAME OVER
-   ========================================================= */
-
-function gameOver(){
-
-  gameRunning=false;
-
-  cancelAnimationFrame(
-    gameAnimation
-  );
-
-  const ball=
-    document.getElementById(
-      "gameBall"
-    );
-
-  const paddle=
-    document.getElementById(
-      "gamePaddle"
-    );
-
-  if(ball){
-    ball.style.display="none";
-  }
-
-  if(paddle){
-    paddle.style.display="none";
-  }
-
-  /*
-    امتیاز حفظ می‌شود.
-  */
-
-  gameData.score=
-    gameScore;
-
-  gameData.attemptActive=
-    false;
-
-  saveGameData();
-
-  document
-    .getElementById(
-      "gameStartBtn"
-    )
-    .disabled=true;
-
-  document
-    .getElementById(
-      "gameStartBtn"
-    )
-    .textContent=
-    "⏳ فرصت این هفته تمام شد";
-
-  document
-    .getElementById(
-      "gameMessage"
-    )
-    .textContent=
-    "💥 توپ از تخته رد شد! امتیازت حفظ شد.";
-
-  updateGameUI();
-
-  const cooldown=
-    document.getElementById(
-      "gameCooldown"
-    );
-
-  if(cooldown){
+    startBtn.textContent=
+      "⏳ تلاش‌های این هفته تمام شد";
 
     cooldown.style.display="block";
 
     cooldown.innerHTML=
-      "⏳ بازی بعدی شما:<br><strong>"+
-      formatGameRemaining(
-        getGameCooldownRemaining(
-          gameData
-        )
-      )+
-      "</strong>";
+      `⏳ هر ۳ تلاش این هفته استفاده شده است.<br>
+      <b>زمان باقی‌مانده: ${formatGameRemaining(remaining)}</b>`;
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "هفته بعد ۳ تلاش جدید دریافت می‌کنی.";
+
+    return;
 
   }
+
+  /*
+    تلاش‌ها موجود است
+  */
+
+  startBtn.disabled=false;
+
+  startBtn.style.opacity="1";
+
+  startBtn.style.display="block";
+
+  startBtn.textContent=
+    "🎮 شروع تلاش از صفر";
+
+  if(
+    gameData.attemptActive
+  ){
+
+    gameData.attemptActive=false;
+
+    gameData.score=0;
+
+    saveGameData();
+
+  }
+
+  document
+    .getElementById("gameMessage")
+    .textContent=
+    `۳ تلاش داری؛ هر تلاش از صفر شروع می‌شود.`;
 
 }
 
-/* =========================================================
-   FINISH GAME
-   ========================================================= */
+/* ================= START ================= */
+
+function startGame(){
+
+  if(!gameData){
+    return;
+  }
+
+  checkWeeklyReset();
+
+  /*
+    برنده قبلی
+  */
+
+  if(isWinnerLocked()){
+
+    toast(
+      "این شماره قبلاً در این ماه برنده شده است 🏆"
+    );
+
+    notifyPreviousWinner();
+
+    updateGameUI();
+
+    return;
+
+  }
+
+  /*
+    بررسی سه تلاش
+  */
+
+  if(
+    Number(gameData.attemptsUsed||0)>=3
+  ){
+
+    const remaining =
+      getWeeklyCooldown();
+
+    if(remaining>0){
+
+      toast(
+        "هر ۳ تلاش این هفته استفاده شده است ⏳"
+      );
+
+      updateGameUI();
+
+      return;
+
+    }
+
+  }
+
+  /*
+    اگر بازی فعال است
+  */
+
+  if(gameActive){
+    return;
+  }
+
+  /*
+    هر تلاش از صفر
+  */
+
+  gameScore=0;
+
+  gameData.score=0;
+
+  /*
+    تلاش اول در یک هفته
+  */
+
+  if(
+    Number(gameData.attemptsUsed||0)===0
+  ){
+
+    gameData.weekStart=
+      Date.now();
+
+  }
+
+  /*
+    مصرف یک تلاش
+  */
+
+  gameData.attemptsUsed=
+    Number(gameData.attemptsUsed||0)+1;
+
+  /*
+    تلاش جدید از صفر
+  */
+
+  gameData.score=0;
+
+  gameData.attemptActive=true;
+
+  saveGameData();
+
+  gameActive=true;
+
+  document
+    .getElementById("gameScore")
+    .textContent="۰";
+
+  document
+    .getElementById("gameProgress")
+    .style.width="0%";
+
+  document
+    .getElementById("gameStartBtn")
+    .disabled=true;
+
+  document
+    .getElementById("gameStartBtn")
+    .style.opacity=".5";
+
+  document
+    .getElementById("gameStartBtn")
+    .textContent=
+    "🔄 بازی در حال اجرا...";
+
+  document
+    .getElementById("gameMessage")
+    .textContent=
+    "🔥 خیلی سریع باش! هدف ممکن است هر لحظه جابه‌جا شود.";
+
+  document
+    .getElementById("gameStage")
+    .classList.remove("danger");
+
+  updateGameUI();
+
+  /*
+    دوباره دکمه را غیرفعال نگه می‌داریم
+  */
+
+  document
+    .getElementById("gameStartBtn")
+    .disabled=true;
+
+  spawnGameTarget();
+
+}
+
+/* ================= SPAWN ================= */
+
+function spawnGameTarget(){
+
+  if(!gameActive){
+    return;
+  }
+
+  clearTimeout(gameTimer);
+
+  clearTimeout(gameMoveTimer);
+
+  clearTimeout(gameHardMoveTimer);
+
+  const stage =
+    document.getElementById(
+      "gameStage"
+    );
+
+  const target =
+    document.getElementById(
+      "gameTarget"
+    );
+
+  /*
+    سختی بر اساس امتیاز
+  */
+
+  let size=56;
+
+  if(gameScore>=5){
+    size=52;
+  }
+
+  if(gameScore>=10){
+    size=47;
+  }
+
+  if(gameScore>=15){
+    size=42;
+  }
+
+  if(gameScore>=20){
+    size=37;
+  }
+
+  if(gameScore>=24){
+    size=33;
+  }
+
+  if(gameScore>=27){
+    size=29;
+  }
+
+  if(gameScore>=29){
+    size=26;
+  }
+
+  target.style.width=
+    size+"px";
+
+  target.style.height=
+    size+"px";
+
+  /*
+    موقعیت تصادفی
+  */
+
+  const padding =
+    size/2+10;
+
+  const x =
+    padding +
+    Math.random() *
+    (
+      stage.clientWidth -
+      padding*2
+    );
+
+  const y =
+    padding +
+    Math.random() *
+    (
+      stage.clientHeight -
+      padding*2
+    );
+
+  target.style.left=
+    x+"px";
+
+  target.style.top=
+    y+"px";
+
+  target.classList.add(
+    "active"
+  );
+
+  /*
+    بعد از ۲۰ امتیاز حالت خطرناک
+  */
+
+  if(gameScore>=20){
+
+    target.classList.add(
+      "critical"
+    );
+
+    stage.classList.add(
+      "danger"
+    );
+
+  }else{
+
+    target.classList.remove(
+      "critical"
+    );
+
+    stage.classList.remove(
+      "danger"
+    );
+
+  }
+
+  /*
+    زمان نمایش هدف
+    بسیار سخت‌تر از نسخه قبلی
+  */
+
+  let lifetime =
+    900 -
+    gameScore*25;
+
+  if(gameScore>=8){
+    lifetime-=80;
+  }
+
+  if(gameScore>=15){
+    lifetime-=100;
+  }
+
+  if(gameScore>=20){
+    lifetime-=100;
+  }
+
+  if(gameScore>=24){
+    lifetime-=100;
+  }
+
+  if(gameScore>=27){
+    lifetime-=80;
+  }
+
+  if(gameScore>=29){
+    lifetime-=50;
+  }
+
+  lifetime =
+    Math.max(
+      190,
+      lifetime
+    );
+
+  /*
+    حرکت سریع هدف
+  */
+
+  if(gameScore>=5){
+
+    const moveDelay =
+      gameScore>=24
+      ? 90
+      : gameScore>=15
+      ? 130
+      : 190;
+
+    gameMoveTimer =
+      setTimeout(()=>{
+        if(gameActive){
+          moveTargetQuickly();
+        }
+      },moveDelay);
+
+  }
+
+  /*
+    از امتیاز ۱۵ به بعد
+    چند حرکت در یک عمر هدف
+  */
+
+  if(gameScore>=15){
+
+    const hardMoveDelay =
+      gameScore>=27
+      ? 180
+      : gameScore>=22
+      ? 230
+      : 300;
+
+    gameHardMoveTimer =
+      setTimeout(()=>{
+        if(gameActive){
+          moveTargetQuickly();
+        }
+      },hardMoveDelay);
+
+  }
+
+  /*
+    اگر تا این زمان زده نشد،
+    امتیاز کم می‌شود.
+  */
+
+  gameTimer =
+    setTimeout(()=>{
+
+      if(!gameActive){
+        return;
+      }
+
+      missGameTarget();
+
+    },lifetime);
+
+}
+
+/* ================= MOVE ================= */
+
+function moveTargetQuickly(){
+
+  if(!gameActive){
+    return;
+  }
+
+  const stage =
+    document.getElementById(
+      "gameStage"
+    );
+
+  const target =
+    document.getElementById(
+      "gameTarget"
+    );
+
+  const size =
+    parseFloat(
+      getComputedStyle(target)
+        .width
+    );
+
+  const padding =
+    size/2+10;
+
+  const x =
+    padding+
+    Math.random()*
+    (
+      stage.clientWidth-
+      padding*2
+    );
+
+  const y =
+    padding+
+    Math.random()*
+    (
+      stage.clientHeight-
+      padding*2
+    );
+
+  target.style.left=
+    x+"px";
+
+  target.style.top=
+    y+"px";
+
+}
+
+/* ================= HIT ================= */
+
+function hitGameTarget(event){
+
+  event.stopPropagation();
+
+  if(!gameActive){
+    return;
+  }
+
+  clearTimeout(gameTimer);
+
+  clearTimeout(gameMoveTimer);
+
+  clearTimeout(gameHardMoveTimer);
+
+  const target =
+    document.getElementById(
+      "gameTarget"
+    );
+
+  target.classList.remove(
+    "active"
+  );
+
+  /*
+    یک امتیاز
+  */
+
+  gameScore++;
+
+  gameData.score=
+    gameScore;
+
+  /*
+    رکورد همیشه حفظ می‌شود
+  */
+
+  if(
+    gameScore>
+    Number(gameData.best||0)
+  ){
+
+    gameData.best=
+      gameScore;
+
+  }
+
+  saveGameData();
+
+  updateGameUI();
+
+  /*
+    برنده
+  */
+
+  if(gameScore>=30){
+
+    finishGame();
+
+    return;
+
+  }
+
+  /*
+    پیام سختی
+  */
+
+  if(gameScore>=29){
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "☠️ فقط یک ضربه تا جایزه!";
+
+  }else if(gameScore>=27){
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "🔥 فوق‌العاده سخت شد!";
+
+  }else if(gameScore>=24){
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "💀 تقریباً غیرممکنه!";
+
+  }else if(gameScore>=20){
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "⚠️ حالت خطر فعال شد!";
+
+  }else if(gameScore>=15){
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "⚡ هدف خیلی سریع‌تر شده!";
+
+  }else if(gameScore>=10){
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "🔥 سرعت داره بالا میره!";
+
+  }else{
+
+    document
+      .getElementById("gameMessage")
+      .textContent=
+      "خوبه! ولی هنوز خیلی مونده 😈";
+
+  }
+
+  spawnGameTarget();
+
+}
+
+/* ================= MISS ================= */
+
+function missGameTarget(){
+
+  if(!gameActive){
+    return;
+  }
+
+  clearTimeout(gameTimer);
+
+  clearTimeout(gameMoveTimer);
+
+  clearTimeout(gameHardMoveTimer);
+
+  document
+    .getElementById("gameTarget")
+    .classList.remove("active");
+
+  /*
+    باختن هدف:
+    یک امتیاز کم می‌شود،
+    ولی تلاش تمام نمی‌شود.
+  */
+
+  gameScore=
+    Math.max(
+      0,
+      gameScore-1
+    );
+
+  gameData.score=
+    gameScore;
+
+  /*
+    best هرگز کم نمی‌شود.
+  */
+
+  saveGameData();
+
+  updateGameUI();
+
+  document
+    .getElementById("gameMessage")
+    .textContent=
+    "❌ از دست رفت! یک امتیاز کم شد.";
+
+  spawnGameTarget();
+
+}
+
+/* ================= FINISH ================= */
 
 function finishGame(){
 
-  gameRunning=false;
+  gameActive=false;
 
-  cancelAnimationFrame(
-    gameAnimation
-  );
+  clearTimeout(gameTimer);
 
-  const ball=
-    document.getElementById(
-      "gameBall"
-    );
+  clearTimeout(gameMoveTimer);
 
-  const paddle=
-    document.getElementById(
-      "gamePaddle"
-    );
-
-  if(ball){
-    ball.style.display="none";
-  }
-
-  if(paddle){
-    paddle.style.display="none";
-  }
+  clearTimeout(gameHardMoveTimer);
 
   gameScore=30;
 
@@ -5562,126 +5497,163 @@ function finishGame(){
       Number(gameData.best||0)
     );
 
-  gameData.rewardClaimed=
-    true;
+  /*
+    ثبت برد
+  */
 
-  gameData.attemptActive=
-    false;
+  gameData.winner=true;
+
+  gameData.rewardClaimed=true;
+
+  gameData.winnerMonth=
+    getCurrentMonthKey();
+
+  gameData.lastWinAt=
+    Date.now();
+
+  gameData.attemptActive=false;
 
   saveGameData();
 
   document
-    .getElementById(
-      "gameStartBtn"
-    )
+    .getElementById("gameTarget")
+    .classList.remove(
+      "active"
+    );
+
+  document
+    .getElementById("gameStage")
+    .classList.remove(
+      "danger"
+    );
+
+  document
+    .getElementById("gameStartBtn")
     .style.display="none";
 
   document
-    .getElementById(
-      "gameCooldown"
-    )
+    .getElementById("gameCooldown")
     .style.display="none";
 
   document
-    .getElementById(
-      "gameReward"
-    )
+    .getElementById("gameWinnerWarning")
+    .style.display="none";
+
+  document
+    .getElementById("gameReward")
     .style.display="block";
 
   document
-    .getElementById(
-      "gameMessage"
-    )
+    .getElementById("gameMessage")
     .textContent=
-    "🎉 ۳۰ امتیاز کامل شد! تبریک!";
+    "🎉 مرحله با موفقیت کامل شد!";
 
   updateGameUI();
 
 }
 
-/* =========================================================
-   LOGOUT
-   ========================================================= */
+/* ================= PREVIOUS WINNER ================= */
+
+function notifyPreviousWinner(){
+
+  if(!gamePhone){
+    return;
+  }
+
+  const message =
+
+`⚠️ اطلاع‌رسانی بازی V2GURD
+
+📱 شماره کاربر:
+${gamePhone}
+
+🏆 وضعیت:
+این شخص قبلاً یک بار برنده بازی V2GURD شده است.
+
+🎁 وضعیت جایزه:
+جایزه ۳۰ گیگ قبلاً برای این شخص ثبت شده.
+
+📅 محدودیت:
+تا ماه آینده اجازه دریافت دوباره جایزه ندارد.
+
+⏳ زمان باقی‌مانده:
+${getMonthLockText()}`;
+
+  /*
+    سایت نمی‌تواند بدون Bot/API
+    پیام را خودش ارسال کند.
+    تلگرام با متن آماده باز می‌شود.
+  */
+
+  window.open(
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(message),
+    "_blank"
+  );
+
+}
+
+/* ================= LOGOUT ================= */
 
 function logoutGame(){
 
-  gameRunning=false;
+  gameActive=false;
 
-  cancelAnimationFrame(
-    gameAnimation
-  );
+  clearTimeout(gameTimer);
 
-  localStorage.removeItem(
-    GAME_SESSION_KEY
-  );
+  clearTimeout(gameMoveTimer);
+
+  clearTimeout(gameHardMoveTimer);
+
+  document
+    .getElementById("gameTarget")
+    .classList.remove(
+      "active"
+    );
 
   gamePhone="";
 
   gameData=null;
 
-  gameScore=0;
-
-  const login=
-    document.getElementById(
-      "gameLogin"
-    );
-
-  const code=
-    document.getElementById(
-      "gameCodeBox"
-    );
-
-  const area=
-    document.getElementById(
-      "gameArea"
-    );
-
-  if(login){
-
-    login.style.display="block";
-
-  }
-
-  if(code){
-
-    code.style.display="none";
-
-  }
-
-  if(area){
-
-    area.style.display="none";
-
-  }
+  localStorage.removeItem(
+    GAME_SESSION_KEY
+  );
 
   document
-    .getElementById(
-      "gamePhone"
-    )
+    .getElementById("gameArea")
+    .style.display="none";
+
+  document
+    .getElementById("gameCodeBox")
+    .style.display="none";
+
+  document
+    .getElementById("gameLogin")
+    .style.display="block";
+
+  document
+    .getElementById("gamePhone")
     .value="";
 
   document
-    .getElementById(
-      "gameCode"
-    )
+    .getElementById("gameCode")
     .value="";
 
 }
 
-/* =========================================================
-   SEND REWARD RESULT
-   ========================================================= */
+/* ================= REWARD ================= */
 
 function sendGameRewardScreenshot(){
 
-  if(!gamePhone||!gameData){
+  if(
+    !gameData ||
+    !gameData.rewardClaimed ||
+    !gameData.winner
+  ){
     return;
   }
 
-  const best=
-    Number(gameData.best||30);
-
-  const message=
+  const message =
 
 `سلام V2GURD 👋
 
@@ -5691,65 +5663,45 @@ function sendGameRewardScreenshot(){
 ${gamePhone}
 
 🏆 امتیاز:
-۳۰ از ۳۰
+30 از 30
 
 🥇 رکورد:
-${best}
+${gameData.best}
 
 🎁 جایزه:
-۳۰ گیگ سرویس V2GURD
+۳۰ گیگ سرویس رایگان
 
-📸 اسکرین‌شات نتیجه را در همین چت ارسال می‌کنم.
+📅 وضعیت:
+اولین برد این ماه
 
-ممنون 🙏`;
+📸 اسکرین‌شات نتیجه بازی را در همین چت ارسال می‌کنم.
 
-  const url=
-    "https://t.me/Vtwoguard?text="+
-    encodeURIComponent(message);
+لطفاً جایزه ۳۰ گیگ من را فعال کنید.`;
 
   window.open(
-    url,
+    "https://t.me/Vtwoguard?text="+
+    encodeURIComponent(message),
     "_blank"
   );
 
 }
 
-/* =========================================================
-   GAME INPUT INIT
-   ========================================================= */
-
-setupGameInput();
-
-/*
-  چون صفحه بازی ممکن است بعداً نمایش داده شود،
-  دوباره ورودی‌ها را بعد از load وصل می‌کنیم.
-*/
-
-window.addEventListener(
-  "load",
-  ()=>{
-    setupGameInput();
-  }
-);
-
-/* =========================================================
-   COOLDOWN LIVE UPDATE
-   ========================================================= */
+/* ================= GAME TIMER ================= */
 
 setInterval(()=>{
 
   if(
-    gameData&&
-    document.getElementById(
-      "gameArea"
-    )?.style.display!=="none"
+    gameData &&
+    !gameActive
   ){
+
+    checkWeeklyReset();
 
     updateGameUI();
 
   }
 
-},1000);
+},30000);
 
 </script>
 
