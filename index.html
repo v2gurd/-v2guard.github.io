@@ -972,367 +972,338 @@ footer{
   color:var(--blue);
 }
 
-/* ================= GAME ================= */
 
-.game-login-wrap{
-  max-width:520px;
-  margin:0 auto;
+/* =========================================================
+   V2GURD GAME
+   ========================================================= */
+
+.game-wrap{
+  max-width:850px;
+  margin:auto;
 }
 
-.game-login-card{
-  position:relative;
-  padding:30px;
-  border-radius:25px;
-  background:
-    radial-gradient(circle at 15% 15%,rgba(22,140,255,.12),transparent 35%),
-    radial-gradient(circle at 85% 85%,rgba(139,92,246,.12),transparent 35%),
-    #07101f;
-  border:1px solid rgba(22,140,255,.2);
-  box-shadow:0 20px 70px rgba(0,0,0,.3);
+.game-login{
+  max-width:500px;
+  margin:60px auto;
   text-align:center;
+  padding:30px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(22,140,255,.12),transparent 45%),
+    #07101e;
+  border:1px solid rgba(22,140,255,.2);
+  box-shadow:0 20px 70px rgba(0,0,0,.25);
 }
 
 .game-login-icon{
-  width:76px;
-  height:76px;
-  border-radius:22px;
-  margin:0 auto 18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-  background:linear-gradient(135deg,rgba(22,140,255,.18),rgba(139,92,246,.2));
-  border:1px solid rgba(139,92,246,.35);
-  box-shadow:0 0 35px rgba(139,92,246,.12);
+  font-size:55px;
+  margin-bottom:12px;
+  filter:drop-shadow(0 0 18px rgba(22,140,255,.45));
 }
 
-.game-login-card h2{
-  font-size:27px;
-  margin-bottom:9px;
+.game-login h2{
+  font-size:28px;
+  font-weight:900;
 }
 
-.game-login-card p{
-  color:var(--muted);
+.game-login p{
+  color:#91a2bb;
   font-size:13px;
   line-height:2;
-  margin-bottom:20px;
+  margin:10px 0 20px;
 }
 
-.game-input{
-  width:100%;
-  padding:15px;
-  border-radius:13px;
-  border:1px solid var(--border);
-  background:#091424;
-  color:white;
-  outline:none;
-  margin:7px 0;
-  text-align:center;
-  direction:ltr;
-  font-size:16px;
-}
-
-.game-input:focus{
-  border-color:rgba(22,140,255,.65);
-  box-shadow:0 0 20px rgba(22,140,255,.08);
-}
-
-.game-code{
-  text-transform:none;
-  letter-spacing:3px;
-  font-weight:800;
-}
-
-.game-error{
-  color:#ff6d8a;
-  font-size:12px;
-  min-height:22px;
-  margin:5px 0;
-}
-
-.game-login-step{
+.game-step{
   display:none;
 }
 
-.game-login-step.active{
+.game-step.active{
   display:block;
-  animation:pageIn .3s ease;
 }
 
-.game-user-bar{
-  max-width:900px;
-  margin:0 auto 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  background:#07101f;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:13px 16px;
+.game-note{
+  margin-top:12px;
+  color:#71839e;
+  font-size:11px;
+  line-height:1.9;
 }
 
-.game-user-bar span{
-  color:#9eafc7;
+.telegram-request{
+  background:rgba(22,140,255,.07);
+  border:1px solid rgba(22,140,255,.16);
+  padding:12px;
+  border-radius:12px;
+  margin:12px 0;
+  color:#a8bad1;
   font-size:12px;
-}
-
-.game-user-bar strong{
-  color:white;
-}
-
-.game-area{
-  max-width:900px;
-  margin:0 auto;
-}
-
-.game-panel{
-  background:
-    radial-gradient(circle at 10% 10%,rgba(22,140,255,.12),transparent 35%),
-    radial-gradient(circle at 90% 90%,rgba(139,92,246,.12),transparent 35%),
-    #07101f;
-  border:1px solid rgba(22,140,255,.22);
-  border-radius:25px;
-  padding:22px;
-  box-shadow:0 25px 80px rgba(0,0,0,.3);
+  line-height:2;
 }
 
 .game-top{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   gap:10px;
   margin-bottom:18px;
+  flex-wrap:wrap;
 }
 
-.game-stat{
-  text-align:center;
-  padding:13px 8px;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
+.game-user{
+  color:#91a2bb;
+  font-size:12px;
 }
 
-.game-stat small{
-  display:block;
-  color:#8294ad;
-  font-size:10px;
-  margin-bottom:4px;
-}
-
-.game-stat strong{
-  font-size:23px;
+.game-user strong{
   color:white;
 }
 
+.game-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.game-stat{
+  background:#07101e;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:13px;
+  text-align:center;
+}
+
+.game-stat strong{
+  display:block;
+  color:#66c4ff;
+  font-size:23px;
+  font-weight:900;
+}
+
+.game-stat span{
+  color:#71839e;
+  font-size:10px;
+}
+
 .game-progress{
-  height:9px;
-  background:#101c2e;
-  border-radius:999px;
+  width:100%;
+  height:8px;
+  background:#0c1728;
+  border-radius:20px;
   overflow:hidden;
-  margin-bottom:18px;
+  margin-bottom:16px;
   border:1px solid rgba(255,255,255,.05);
 }
 
 .game-progress-bar{
   width:0%;
   height:100%;
-  border-radius:999px;
   background:linear-gradient(90deg,#168cff,#8b5cf6);
-  transition:.35s ease;
-}
-
-.game-stage{
-  position:relative;
-  height:420px;
   border-radius:20px;
+  transition:.25s;
+  box-shadow:0 0 15px rgba(22,140,255,.5);
+}
+
+.game-board{
+  position:relative;
+  width:100%;
+  height:min(600px,72vh);
+  min-height:430px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
+  border-radius:25px;
+  border:1px solid rgba(22,140,255,.28);
   background:
-    radial-gradient(circle at 50% 50%,rgba(22,140,255,.07),transparent 45%),
-    #040a14;
-  touch-action:none;
-}
-
-.game-stage::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:35px 35px;
-  pointer-events:none;
-}
-
-.game-target{
-  position:absolute;
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-    radial-gradient(circle,#fff 0 8%,#a86cff 9% 27%,#7137e9 28% 55%,rgba(113,55,233,.15) 56% 100%);
-  border:2px solid rgba(255,255,255,.65);
+    radial-gradient(circle at 50% 25%,rgba(22,140,255,.08),transparent 35%),
+    radial-gradient(circle at 20% 90%,rgba(139,92,246,.06),transparent 35%),
+    #030914;
   box-shadow:
-    0 0 20px rgba(139,92,246,.7),
-    0 0 50px rgba(22,140,255,.25);
-  transform:translate(-50%,-50%) scale(1);
-  transition:
-    left .12s linear,
-    top .12s linear,
-    transform .12s ease;
-  z-index:3;
+    inset 0 0 60px rgba(0,0,0,.55),
+    0 20px 70px rgba(0,0,0,.25);
+  touch-action:none;
   user-select:none;
 }
 
-.game-target::after{
+.game-board::before{
   content:"";
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:white;
-  box-shadow:0 0 15px white;
-}
-
-.game-target.small{
-  width:48px;
-  height:48px;
-}
-
-.game-target.tiny{
-  width:38px;
-  height:38px;
-}
-
-.game-message{
   position:absolute;
   inset:0;
-  z-index:4;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:35px 35px;
+  opacity:.25;
+}
+
+.game-board::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  box-shadow:inset 0 0 90px rgba(0,0,0,.65);
+}
+
+.game-ball{
+  position:absolute;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,#fff 0 8%,#8be1ff 18%,#168cff 48%,#6d3df0 75%,#35117c 100%);
+  box-shadow:
+    0 0 10px rgba(22,140,255,.95),
+    0 0 28px rgba(22,140,255,.65),
+    0 0 55px rgba(139,92,246,.35);
+  z-index:5;
+  pointer-events:none;
+  transform:translate3d(0,0,0);
+}
+
+.game-paddle{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  width:130px;
+  height:15px;
+  transform:translateX(-50%);
+  border-radius:999px;
+  background:linear-gradient(90deg,#087df5,#00c6ff,#8b5cf6);
+  box-shadow:
+    0 0 13px rgba(22,140,255,.9),
+    0 0 30px rgba(22,140,255,.45);
+  z-index:6;
   pointer-events:none;
 }
 
-.game-message-box{
-  padding:18px 22px;
-  border-radius:17px;
-  background:rgba(3,7,17,.78);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(8px);
-  opacity:0;
-  transform:scale(.92);
-  transition:.2s;
+.game-overlay{
+  position:absolute;
+  inset:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(3,8,18,.68);
+  backdrop-filter:blur(5px);
 }
 
-.game-message.show .game-message-box{
-  opacity:1;
-  transform:scale(1);
+.game-overlay.hidden{
+  display:none;
 }
 
-.game-message-box strong{
-  display:block;
-  font-size:24px;
-  margin-bottom:5px;
+.game-overlay-box{
+  width:min(430px,100%);
+  text-align:center;
+  padding:28px;
+  border-radius:22px;
+  background:rgba(7,16,30,.92);
+  border:1px solid rgba(22,140,255,.25);
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
-.game-message-box span{
-  color:#91a2bb;
-  font-size:12px;
+.game-overlay-box h2{
+  font-size:27px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.game-overlay-box p{
+  color:#94a6bf;
+  line-height:2;
+  font-size:13px;
 }
 
 .game-controls{
   display:flex;
-  justify-content:center;
   gap:10px;
-  margin-top:18px;
+  justify-content:center;
   flex-wrap:wrap;
+  margin-top:16px;
 }
 
 .game-hint{
   text-align:center;
-  color:#7487a1;
+  color:#71839e;
   font-size:11px;
-  margin-top:12px;
+  margin-top:13px;
+  line-height:2;
 }
 
-.game-win{
-  display:none;
-  text-align:center;
+.game-reward{
   max-width:600px;
-  margin:0 auto;
-  padding:35px 25px;
+  margin:55px auto;
+  text-align:center;
+  padding:40px 25px;
   border-radius:25px;
   background:
-    radial-gradient(circle at 50% 0%,rgba(139,92,246,.2),transparent 45%),
-    #07101f;
-  border:1px solid rgba(139,92,246,.4);
-  box-shadow:0 0 70px rgba(139,92,246,.12);
+    radial-gradient(circle at 50% 0%,rgba(139,92,246,.16),transparent 45%),
+    #07101e;
+  border:1px solid rgba(139,92,246,.35);
+  box-shadow:
+    0 0 70px rgba(139,92,246,.1),
+    0 20px 70px rgba(0,0,0,.35);
 }
 
-.game-win.show{
-  display:block;
-  animation:pageIn .4s ease;
+.reward-icon{
+  font-size:70px;
+  animation:rewardFloat 2s ease-in-out infinite;
 }
 
-.win-icon{
-  font-size:65px;
-  margin-bottom:10px;
-  animation:winPulse 1.3s infinite alternate;
-}
-
-@keyframes winPulse{
-  from{
-    transform:scale(1)
+@keyframes rewardFloat{
+  0%,100%{
+    transform:translateY(0) scale(1)
   }
-  to{
-    transform:scale(1.1)
+  50%{
+    transform:translateY(-8px) scale(1.05)
   }
 }
 
-.game-win h2{
+.game-reward h2{
   font-size:32px;
-  margin-bottom:10px;
+  font-weight:900;
+  margin:10px 0;
 }
 
-.game-win p{
+.game-reward h2 span{
+  color:#a98aff;
+}
+
+.game-reward p{
   color:#9eafc7;
   line-height:2;
+  font-size:14px;
 }
 
 .reward-box{
   margin:20px 0;
-  padding:20px;
-  border-radius:17px;
-  background:rgba(25,217,139,.07);
-  border:1px solid rgba(25,217,139,.25);
+  padding:18px;
+  border-radius:16px;
+  background:rgba(25,217,139,.06);
+  border:1px solid rgba(25,217,139,.2);
 }
 
 .reward-box strong{
   display:block;
-  color:#4ff0ad;
   font-size:27px;
-  margin-bottom:5px;
+  color:#19d98b;
 }
 
 .reward-box span{
-  color:#a7b7ca;
-  font-size:12px;
+  color:#90a2ba;
+  font-size:11px;
 }
 
-.game-locked{
-  text-align:center;
-  max-width:650px;
-  margin:auto;
-  padding:35px 25px;
-  border-radius:22px;
-  background:#07101f;
-  border:1px solid var(--border);
+.game-logout{
+  color:#71839e;
+  border:0;
+  background:none;
+  font-size:11px;
+  margin-top:14px;
 }
+
+.game-logout:hover{
+  color:#ff5577;
+}
+
 
 /* MOBILE */
 
@@ -1408,25 +1379,38 @@ footer{
     min-height:270px;
   }
 
-  .game-panel{
-    padding:14px;
+  .game-board{
+    height:65vh;
+    min-height:420px;
+    border-radius:20px;
   }
 
-  .game-stage{
-    height:390px;
+  .game-paddle{
+    width:115px;
+    height:14px;
+    bottom:15px;
   }
 
-  .game-top{
-    gap:6px;
+  .game-ball{
+    width:22px;
+    height:22px;
+  }
+
+  .game-stats{
+    gap:7px;
+  }
+
+  .game-stat{
+    padding:10px 5px;
   }
 
   .game-stat strong{
-    font-size:19px;
+    font-size:20px;
   }
 
-  .game-target{
-    width:56px;
-    height:56px;
+  .game-login{
+    margin:35px auto;
+    padding:25px 18px;
   }
 
 }
@@ -1456,15 +1440,43 @@ footer{
   </div>
 
   <div class="nav-links" id="navLinks">
-    <button onclick="showPage('home')">خانه</button>
-    <button onclick="showPage('wireguard')">WireGuard</button>
-    <button onclick="showPage('v2box')">V2Box</button>
-    <button onclick="showPage('jumpjump')">JumpJump</button>
-    <button onclick="showPage('game')">🎮 بازی</button>
-    <button onclick="showPage('guide')">آموزش</button>
-    <button onclick="showPage('rules')">قوانین</button>
-    <button onclick="showPage('bot')">ربات</button>
-    <button onclick="showPage('support')">پشتیبانی</button>
+
+    <button onclick="showPage('home')">
+      خانه
+    </button>
+
+    <button onclick="showPage('wireguard')">
+      WireGuard
+    </button>
+
+    <button onclick="showPage('v2box')">
+      V2Box
+    </button>
+
+    <button onclick="showPage('jumpjump')">
+      JumpJump
+    </button>
+
+    <button onclick="showPage('game')">
+      🎮 بازی
+    </button>
+
+    <button onclick="showPage('guide')">
+      آموزش
+    </button>
+
+    <button onclick="showPage('rules')">
+      قوانین
+    </button>
+
+    <button onclick="showPage('bot')">
+      ربات
+    </button>
+
+    <button onclick="showPage('support')">
+      پشتیبانی
+    </button>
+
   </div>
 
   <div class="nav-actions">
@@ -1530,8 +1542,6 @@ footer{
   </div>
 
 
-  <!-- FEATURED WIREGUARD -->
-
   <div class="container">
 
     <div class="wg-featured">
@@ -1595,8 +1605,6 @@ footer{
   </div>
 
 
-  <!-- CATEGORIES -->
-
   <div class="section">
 
     <div class="container">
@@ -1616,8 +1624,6 @@ footer{
 
       <div class="categories">
 
-
-        <!-- WIREGUARD -->
 
         <div
           class="category"
@@ -1647,8 +1653,6 @@ footer{
         </div>
 
 
-        <!-- V2BOX -->
-
         <div
           class="category"
           onclick="showPage('v2box')"
@@ -1676,8 +1680,6 @@ footer{
 
         </div>
 
-
-        <!-- JUMPJUMP -->
 
         <div
           class="category"
@@ -1714,8 +1716,6 @@ footer{
   </div>
 
 
-  <!-- STATS -->
-
   <div class="section">
 
     <div class="container">
@@ -1748,8 +1748,6 @@ footer{
 
   </div>
 
-
-  <!-- FAQ -->
 
   <div class="section">
 
@@ -2111,8 +2109,6 @@ footer{
       <div class="grid">
 
 
-        <!-- ECONOMIC -->
-
         <div class="card">
 
           <div class="status">
@@ -2153,8 +2149,6 @@ footer{
 
         </div>
 
-
-        <!-- NORMAL -->
 
         <div class="card">
 
@@ -2197,8 +2191,6 @@ footer{
         </div>
 
 
-        <!-- CDN -->
-
         <div class="card special-card">
 
           <div class="status">
@@ -2240,8 +2232,6 @@ footer{
         </div>
 
 
-        <!-- TUNNEL -->
-
         <div class="card">
 
           <div class="status">
@@ -2282,8 +2272,6 @@ footer{
 
         </div>
 
-
-        <!-- PROFESSIONAL -->
 
         <div class="card special-card">
 
@@ -2536,125 +2524,142 @@ footer{
     <div class="container">
 
       <div class="section-title">
-        <h2>🎮 بازی V2GURD</h2>
+
+        <h2>
+          🎮 بازی V2GURD
+        </h2>
+
         <p>
-          به ۳۰ امتیاز برس و ۳۰ گیگ سرویس جایزه بگیر
+          توپ را با تخته نگه دار و تا ۳۰ امتیاز برو
         </p>
+
       </div>
+
 
       <!-- LOGIN -->
 
-      <div id="gameLogin">
+      <div
+        class="game-login"
+        id="gameLogin"
+      >
 
-        <div class="game-login-wrap">
+        <div class="game-login-icon">
+          🎮
+        </div>
 
-          <div class="game-login-card">
+        <h2>
+          ورود به بازی
+        </h2>
 
-            <div class="game-login-icon">
-              🎮
-            </div>
-
-            <div id="loginStepPhone" class="game-login-step active">
-
-              <h2>
-                ورود به بازی
-              </h2>
-
-              <p>
-                برای شروع بازی شماره موبایل خودت را وارد کن.
-                اطلاعات بازی روی همین گوشی ذخیره می‌شود.
-              </p>
-
-              <input
-                class="game-input"
-                id="gamePhone"
-                type="tel"
-                inputmode="numeric"
-                maxlength="15"
-                placeholder="شماره موبایل"
-              >
-
-              <div
-                class="game-error"
-                id="phoneError"
-              ></div>
-
-              <button
-                class="btn btn-primary"
-                onclick="sendGameCode()"
-                style="width:100%"
-              >
-                ادامه
-              </button>
-
-            </div>
+        <p>
+          برای شروع بازی ابتدا شماره موبایلت رو وارد کن.
+          بعد از ادامه، پیوی پشتیبانی باز میشه تا کد ورود رو از ما بگیری.
+        </p>
 
 
-            <div id="loginStepCode" class="game-login-step">
+        <!-- PHONE -->
 
-              <h2>
-                🔐 تأیید ورود
-              </h2>
+        <div
+          class="game-step active"
+          id="gamePhoneStep"
+        >
 
-              <p>
-                کد تأییدی که از پشتیبانی دریافت کردی را وارد کن.
-              </p>
+          <input
+            class="form-input"
+            id="gamePhone"
+            type="tel"
+            inputmode="tel"
+            placeholder="شماره موبایل"
+            maxlength="15"
+          >
 
-              <input
-                class="game-input game-code"
-                id="gameCode"
-                maxlength="8"
-                placeholder="کد ۸ کاراکتری"
-                autocomplete="off"
-              >
+          <button
+            class="btn btn-primary"
+            onclick="sendGameCode()"
+            style="width:100%;margin-top:8px"
+          >
+            ادامه و دریافت کد
+          </button>
 
-              <div
-                class="game-error"
-                id="codeError"
-              ></div>
+          <div class="game-note">
+            بعد از زدن ادامه، تلگرام برای گرفتن کد ورود باز می‌شود.
+          </div>
 
-              <button
-                class="btn btn-primary"
-                onclick="verifyGameCode()"
-                style="width:100%"
-              >
-                ورود به بازی
-              </button>
+        </div>
 
-              <br><br>
 
-              <button
-                class="btn"
-                onclick="backToPhoneStep()"
-                style="width:100%"
-              >
-                تغییر شماره
-              </button>
+        <!-- CODE -->
 
-            </div>
+        <div
+          class="game-step"
+          id="gameCodeStep"
+        >
+
+          <div class="telegram-request">
+
+            📩 پیوی پشتیبانی باز شد.<br>
+            کد ۸ کاراکتری که از پشتیبانی گرفتی رو اینجا وارد کن.
 
           </div>
+
+          <input
+            class="form-input"
+            id="gameCode"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            maxlength="8"
+            placeholder="مثلاً 15v8293G"
+            dir="ltr"
+            style="text-align:center;letter-spacing:3px;font-weight:800"
+          >
+
+          <button
+            class="btn btn-primary"
+            onclick="verifyGameCode()"
+            style="width:100%;margin-top:8px"
+          >
+            ورود به بازی 🎮
+          </button>
+
+          <button
+            class="game-logout"
+            onclick="backToGamePhone()"
+          >
+            تغییر شماره
+          </button>
 
         </div>
 
       </div>
 
 
-      <!-- GAME CONTENT -->
+      <!-- GAME AREA -->
 
-      <div id="gameContent" style="display:none">
+      <div
+        class="game-wrap"
+        id="gameArea"
+        style="display:none"
+      >
 
-        <div class="game-user-bar">
+        <div class="game-top">
 
-          <span>
-            👤 شماره:
-            <strong id="gameUserPhone">---</strong>
-          </span>
+          <div>
+            <div style="font-weight:900">
+              🏓 V2GURD BALL
+            </div>
+
+            <div class="game-user">
+              بازیکن:
+              <strong id="gameUserPhone">
+                -
+              </strong>
+            </div>
+          </div>
 
           <button
             class="btn"
             onclick="logoutGame()"
-            style="padding:7px 12px;font-size:11px"
           >
             خروج
           </button>
@@ -2662,101 +2667,84 @@ footer{
         </div>
 
 
-        <div
-          id="gameLocked"
-          class="game-locked"
-          style="display:none"
-        >
+        <div class="game-stats">
 
-          <div style="font-size:55px;margin-bottom:10px">
-            🏆
+          <div class="game-stat">
+            <strong id="gameScore">
+              ۰
+            </strong>
+            <span>
+              امتیاز
+            </span>
           </div>
 
-          <h2>
-            جایزه را قبلاً گرفتی
-          </h2>
+          <div class="game-stat">
+            <strong id="gameBest">
+              ۰
+            </strong>
+            <span>
+              رکورد
+            </span>
+          </div>
 
-          <p style="color:#91a2bb;line-height:2;margin:10px 0 20px">
-            این حساب قبلاً به ۳۰ امتیاز رسیده و جایزه ۳۰ گیگ
-            برای آن ثبت شده است.
-          </p>
-
-          <button
-            class="btn btn-primary"
-            onclick="sendGameRewardScreenshot()"
-          >
-            📸 ارسال اسکرین‌شات به پشتیبانی
-          </button>
+          <div class="game-stat">
+            <strong>
+              ۳۰
+            </strong>
+            <span>
+              هدف
+            </span>
+          </div>
 
         </div>
 
 
-        <div id="gamePlaying">
-
-          <div class="game-area">
-
-            <div class="game-panel">
-
-              <div class="game-top">
-
-                <div class="game-stat">
-                  <small>امتیاز</small>
-                  <strong id="gameScore">۰</strong>
-                </div>
-
-                <div class="game-stat">
-                  <small>رکورد</small>
-                  <strong id="gameBest">۰</strong>
-                </div>
-
-                <div class="game-stat">
-                  <small>هدف</small>
-                  <strong>۳۰</strong>
-                </div>
-
-              </div>
+        <div class="game-progress">
+          <div
+            class="game-progress-bar"
+            id="gameProgressBar"
+          ></div>
+        </div>
 
 
-              <div class="game-progress">
-                <div
-                  class="game-progress-bar"
-                  id="gameProgress"
-                ></div>
-              </div>
+        <div
+          class="game-board"
+          id="gameBoard"
+        >
 
+          <div
+            class="game-ball"
+            id="gameBall"
+          ></div>
+
+          <div
+            class="game-paddle"
+            id="gamePaddle"
+          ></div>
+
+
+          <div
+            class="game-overlay"
+            id="gameOverlay"
+          >
+
+            <div class="game-overlay-box">
 
               <div
-                class="game-stage"
-                id="gameStage"
+                id="gameOverlayIcon"
+                style="font-size:50px;margin-bottom:8px"
               >
-
-                <div
-                  class="game-target"
-                  id="gameTarget"
-                  onclick="hitGameTarget(event)"
-                ></div>
-
-                <div
-                  class="game-message"
-                  id="gameMessage"
-                >
-
-                  <div class="game-message-box">
-
-                    <strong id="gameMessageTitle">
-                      آماده‌ای؟
-                    </strong>
-
-                    <span id="gameMessageText">
-                      روی دایره بزن!
-                    </span>
-
-                  </div>
-
-                </div>
-
+                🎮
               </div>
 
+              <h2 id="gameOverlayTitle">
+                آماده‌ای؟
+              </h2>
+
+              <p id="gameOverlayText">
+                توپ رو با تخته نگه دار.
+                هر برخورد = یک امتیاز و سرعت بیشتر.
+              </p>
 
               <div class="game-controls">
 
@@ -2765,22 +2753,9 @@ footer{
                   id="gameStartBtn"
                   onclick="startGame()"
                 >
-                  🎮 شروع بازی
+                  شروع بازی
                 </button>
 
-                <button
-                  class="btn"
-                  onclick="resetGameProgress()"
-                >
-                  ↻ شروع مجدد
-                </button>
-
-              </div>
-
-
-              <div class="game-hint">
-                روی دایره‌ای که ظاهر می‌شود سریع بزن.
-                بعد از ۱۵ امتیاز سرعت و سختی بیشتر می‌شود.
               </div>
 
             </div>
@@ -2790,54 +2765,59 @@ footer{
         </div>
 
 
-        <!-- WIN -->
+        <div class="game-hint">
+          📱 روی صفحه انگشتت رو چپ و راست بکش تا تخته حرکت کنه.
+          <br>
+          هر بار توپ به تخته بخوره سرعتش بیشتر میشه.
+        </div>
 
-        <div
-          id="gameWin"
-          class="game-win"
-        >
+      </div>
 
-          <div class="win-icon">
-            🏆
-          </div>
 
-          <h2>
-            تبریک! 🎉
-          </h2>
+      <!-- REWARD -->
 
-          <p>
-            تو موفق شدی به هدف ۳۰ امتیاز برسی!
-          </p>
+      <div
+        class="game-reward"
+        id="gameReward"
+        style="display:none"
+      >
 
-          <div class="reward-box">
+        <div class="reward-icon">
+          🎁
+        </div>
 
-            <strong>
-              🎁 ۳۰ گیگ سرویس رایگان
-            </strong>
+        <h2>
+          تبریک! <span>۳۰ امتیاز</span> گرفتی 🎉
+        </h2>
 
-            <span>
-              جایزه برای این حساب ثبت شد.
-            </span>
+        <p>
+          تو موفق شدی بازی V2GURD رو کامل کنی.
+          جایزه‌ات آماده‌ست.
+        </p>
 
-          </div>
+        <div class="reward-box">
 
-          <button
-            class="btn btn-primary"
-            onclick="sendGameRewardScreenshot()"
-          >
-            📸 ارسال اسکرین‌شات به پشتیبانی
-          </button>
+          <strong>
+            ۳۰ گیگ
+          </strong>
 
-          <br><br>
-
-          <button
-            class="btn"
-            onclick="showGameAgain()"
-          >
-            مشاهده بازی
-          </button>
+          <span>
+            سرویس VPN / فیلترشکن هدیه
+          </span>
 
         </div>
+
+        <button
+          class="btn btn-primary"
+          onclick="sendGameRewardScreenshot()"
+          style="width:100%"
+        >
+          📸 ارسال اسکرین‌شات به پشتیبانی
+        </button>
+
+        <p style="margin-top:12px;font-size:11px;color:#71839e">
+          بعد از ارسال، اسکرین‌شات نتیجه بازی را هم در همین چت تلگرام بفرست.
+        </p>
 
       </div>
 
@@ -3379,15 +3359,21 @@ footer{
 
 
     <div style="text-align:center;color:#aebbd0">
+
       <b style="color:white">
         نام صاحب کارت:
       </b>
+
       نامی
+
       <br>
+
       <b style="color:white">
         بانک:
       </b>
+
       BLU / بلو بانک
+
     </div>
 
 
@@ -3523,7 +3509,6 @@ window.addEventListener("load",()=>{
 
   updateCart();
 
-  /* بازی */
   loadGameSession();
 
 });
@@ -3560,10 +3545,6 @@ function showPage(id){
   document
     .getElementById("navLinks")
     .classList.remove("show");
-
-  if(id==="game"){
-    loadGameSession();
-  }
 
 }
 
@@ -4357,224 +4338,327 @@ function filterCards(){
 
 
 /* =========================================================
-   ================= GAME SYSTEM ===========================
+   GAME LOGIN
    ========================================================= */
-
-
-/* ---------------- GAME STORAGE ---------------- */
 
 const GAME_SESSION_KEY =
   "v2gurd_game_session";
 
-const GAME_DATA_KEY =
-  "v2gurd_game_data";
+const GAME_DATA_PREFIX =
+  "v2gurd_game_data_";
+
+const GAME_PENDING_PHONE =
+  "v2gurd_game_pending_phone";
 
 
-let gameSession =
-  JSON.parse(
-    localStorage.getItem(GAME_SESSION_KEY) || "null"
-  );
+let gameSession = null;
 
+let gameData = null;
 
-let gameData =
-  JSON.parse(
-    localStorage.getItem(GAME_DATA_KEY) || "null"
-  );
+let gameAnimation = null;
 
+let gameRunning = false;
 
-/* ---------------- GAME VARIABLES ---------------- */
+let gamePaused = false;
 
 let gameScore = 0;
 
 let gameBest = 0;
 
-let gameRunning = false;
+let gameRewardClaimed = false;
 
-let gameTimer = null;
+let gameBallX = 0;
 
-let gameMoveTimer = null;
+let gameBallY = 0;
 
-let gameRound = 0;
+let gameBallVX = 0;
 
-let gameHitLock = false;
+let gameBallVY = 0;
+
+let gamePaddleX = 0;
+
+let gamePaddleWidth = 130;
+
+let gameLastTime = 0;
+
+let gameBoardWidth = 0;
+
+let gameBoardHeight = 0;
+
+let gameBallSize = 24;
+
+let gamePointerActive = false;
 
 
-/* ---------------- LOAD GAME ---------------- */
+/* ================= PHONE NORMALIZE ================= */
 
-function loadGameSession(){
+function normalizeGamePhone(phone){
 
-  gameSession =
-    JSON.parse(
-      localStorage.getItem(GAME_SESSION_KEY) || "null"
+  return String(phone || "")
+    .replace(/\s+/g,"")
+    .replace(/-/g,"")
+    .replace(/[۰-۹]/g,d =>
+      String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))
     );
 
-  gameData =
-    JSON.parse(
-      localStorage.getItem(GAME_DATA_KEY) || "null"
+}
+
+
+/* ================= GAME STORAGE ================= */
+
+function getGameDataKey(phone){
+
+  return GAME_DATA_PREFIX +
+    normalizeGamePhone(phone);
+
+}
+
+
+function getStoredGameData(phone){
+
+  const raw =
+    localStorage.getItem(
+      getGameDataKey(phone)
     );
 
+  if(!raw){
 
-  const login =
-    document.getElementById("gameLogin");
+    return {
+      score:0,
+      best:0,
+      rewardClaimed:false
+    };
 
-  const content =
-    document.getElementById("gameContent");
-
-  if(!login || !content){
-    return;
   }
 
+  try{
 
-  if(gameSession && gameSession.phone){
+    const data =
+      JSON.parse(raw);
 
-    login.style.display="none";
+    return {
 
-    content.style.display="block";
+      score:
+        Number(data.score) || 0,
 
-    const phone =
-      document.getElementById("gameUserPhone");
+      best:
+        Number(data.best) || 0,
 
-    if(phone){
-      phone.textContent =
-        gameSession.phone;
-    }
+      rewardClaimed:
+        Boolean(data.rewardClaimed)
 
-    loadPlayerGameData();
+    };
 
-  }else{
+  }catch{
 
-    login.style.display="block";
-
-    content.style.display="none";
+    return {
+      score:0,
+      best:0,
+      rewardClaimed:false
+    };
 
   }
 
 }
 
 
-/* ---------------- PHONE STEP ---------------- */
+function saveGameData(){
+
+  if(!gameSession){
+    return;
+  }
+
+  gameData={
+    score:gameScore,
+    best:gameBest,
+    rewardClaimed:gameRewardClaimed
+  };
+
+  localStorage.setItem(
+    getGameDataKey(gameSession.phone),
+    JSON.stringify(gameData)
+  );
+
+}
+
+
+/* ================= GAME SESSION LOAD ================= */
+
+function loadGameSession(){
+
+  const raw =
+    localStorage.getItem(
+      GAME_SESSION_KEY
+    );
+
+  if(!raw){
+    return;
+  }
+
+  try{
+
+    gameSession =
+      JSON.parse(raw);
+
+    if(
+      !gameSession ||
+      !gameSession.phone
+    ){
+
+      localStorage.removeItem(
+        GAME_SESSION_KEY
+      );
+
+      return;
+    }
+
+    enterGameAfterLogin();
+
+  }catch{
+
+    localStorage.removeItem(
+      GAME_SESSION_KEY
+    );
+
+  }
+
+}
+
+
+/* ================= SEND CODE ================= */
 
 function sendGameCode(){
 
-  const phoneInput =
+  const input =
     document.getElementById("gamePhone");
 
-  const error =
-    document.getElementById("phoneError");
-
   const phone =
-    phoneInput.value
-      .trim();
-
+    normalizeGamePhone(
+      input.value.trim()
+    );
 
   if(phone.length < 8){
 
-    error.textContent =
-      "شماره موبایل را درست وارد کن.";
+    toast("شماره موبایل را درست وارد کن ❌");
 
     return;
   }
 
-
-  error.textContent="";
-
-
-  /*
-    چون سایت فعلاً بدون بک‌اند است،
-    شماره فقط روی گوشی نگهداری می‌شود.
-  */
-
   localStorage.setItem(
-    "v2gurd_pending_phone",
+    GAME_PENDING_PHONE,
     phone
   );
 
 
+  const message =
+
+`سلام V2GURD 👋
+
+🎮 درخواست کد ورود بازی
+
+📱 شماره:
+${phone}
+
+لطفاً کد ۸ کاراکتری ورود به بازی را برای من ارسال کنید.`;
+
+
+  const url =
+    "https://t.me/Vtwoguard?text=" +
+    encodeURIComponent(message);
+
+
+  window.open(
+    url,
+    "_blank"
+  );
+
+
   document
-    .getElementById("loginStepPhone")
+    .getElementById("gamePhoneStep")
     .classList.remove("active");
 
   document
-    .getElementById("loginStepCode")
+    .getElementById("gameCodeStep")
     .classList.add("active");
 
+  document
+    .getElementById("gameCode")
+    .focus();
 
-  toast("کد تأیید را وارد کن 🔐");
+  toast("کد را از پشتیبانی بگیر و اینجا وارد کن 📩");
 
 }
 
 
-/* ---------------- BACK PHONE ---------------- */
+/* ================= BACK PHONE ================= */
 
-function backToPhoneStep(){
+function backToGamePhone(){
 
   document
-    .getElementById("loginStepCode")
+    .getElementById("gameCodeStep")
     .classList.remove("active");
 
   document
-    .getElementById("loginStepPhone")
+    .getElementById("gamePhoneStep")
     .classList.add("active");
 
 }
 
 
-/* ---------------- VERIFY CODE ---------------- */
+/* ================= VERIFY CODE ================= */
 
 function verifyGameCode(){
 
-  const codeInput =
+  const input =
     document.getElementById("gameCode");
 
-  const error =
-    document.getElementById("codeError");
-
-  const phone =
-    localStorage.getItem(
-      "v2gurd_pending_phone"
-    );
-
-
   const code =
-    codeInput.value.trim();
+    input.value.trim();
 
 
   /*
-    فرمت:
-    دقیقاً ۸ کاراکتر
-    v قبل از 2
-    2 قبل از G
+    کد باید دقیقاً ۸ کاراکتر باشد
+    و ترتیب v سپس 2 سپس G را داشته باشد.
   */
 
-  const validCode =
-    /^[A-Za-z0-9]*v[A-Za-z0-9]*2[A-Za-z0-9]*G[A-Za-z0-9]*$/.test(code)
-    && code.length===8;
+  const valid =
+    code.length === 8 &&
+    /^[A-Za-z0-9]*v[A-Za-z0-9]*2[A-Za-z0-9]*G[A-Za-z0-9]*$/.test(code);
 
 
-  if(!validCode){
+  if(!valid){
 
-    error.textContent =
-      "کد باید ۸ کاراکتر باشد و ترتیب v → 2 → G را داشته باشد.";
+    toast(
+      "کد اشتباه است ❌ مثال: 15v8293G"
+    );
 
-    return;
-  }
-
-
-  if(!phone){
-
-    error.textContent =
-      "شماره موبایل پیدا نشد. دوباره وارد شو.";
+    input.select();
 
     return;
   }
 
 
-  error.textContent="";
+  const pendingPhone =
+    localStorage.getItem(
+      GAME_PENDING_PHONE
+    );
+
+  if(!pendingPhone){
+
+    toast("شماره پیدا نشد؛ دوباره شماره را وارد کن ❌");
+
+    backToGamePhone();
+
+    return;
+  }
 
 
   gameSession={
-    phone:phone,
+
+    phone:pendingPhone,
+
     loginTime:Date.now()
+
   };
 
 
@@ -4584,13 +4668,1059 @@ function verifyGameCode(){
   );
 
 
+  localStorage.removeItem(
+    GAME_PENDING_PHONE
+  );
+
+
+  enterGameAfterLogin();
+
+  toast("ورود موفق بود 🎮");
+
+}
+
+
+/* ================= ENTER GAME ================= */
+
+function enterGameAfterLogin(){
+
+  if(!gameSession){
+    return;
+  }
+
+
+  gameData =
+    getStoredGameData(
+      gameSession.phone
+    );
+
+
+  gameScore =
+    gameData.score;
+
+  gameBest =
+    gameData.best;
+
+  gameRewardClaimed =
+    gameData.rewardClaimed;
+
+
+  document
+    .getElementById("gameLogin")
+    .style.display="none";
+
+
+  document
+    .getElementById("gameUserPhone")
+    .textContent =
+    gameSession.phone;
+
+
+  if(gameRewardClaimed){
+
+    document
+      .getElementById("gameArea")
+      .style.display="none";
+
+    document
+      .getElementById("gameReward")
+      .style.display="block";
+
+    return;
+
+  }
+
+
+  document
+    .getElementById("gameReward")
+    .style.display="none";
+
+
+  document
+    .getElementById("gameArea")
+    .style.display="block";
+
+
+  updateGameStats();
+
+  setTimeout(()=>{
+
+    setupGameBoard();
+
+    showGameReady();
+
+  },100);
+
+}
+
+
+/* ================= SETUP BOARD ================= */
+
+function setupGameBoard(){
+
+  const board =
+    document.getElementById("gameBoard");
+
+  if(!board){
+    return;
+  }
+
+
+  gameBoardWidth =
+    board.clientWidth;
+
+  gameBoardHeight =
+    board.clientHeight;
+
+
+  gameBallSize =
+    window.innerWidth <= 600
+      ? 22
+      : 24;
+
+
+  gamePaddleWidth =
+    window.innerWidth <= 600
+      ? 115
+      : 130;
+
+
+  gamePaddleX =
+    (gameBoardWidth -
+      gamePaddleWidth) / 2;
+
+
+  updatePaddle();
+
+
+  gameBallX =
+    gameBoardWidth / 2 -
+    gameBallSize / 2;
+
+
+  gameBallY =
+    gameBoardHeight * .30;
+
+
+  updateBall();
+
+}
+
+
+/* ================= WINDOW RESIZE ================= */
+
+window.addEventListener(
+  "resize",
+  ()=>{
+
+    if(
+      !gameSession ||
+      !document.getElementById("gameArea") ||
+      document.getElementById("gameArea").style.display==="none"
+    ){
+      return;
+    }
+
+    const oldWidth =
+      gameBoardWidth || 1;
+
+    const board =
+      document.getElementById("gameBoard");
+
+    gameBoardWidth =
+      board.clientWidth;
+
+    gameBoardHeight =
+      board.clientHeight;
+
+
+    const ratio =
+      gameBoardWidth / oldWidth;
+
+
+    gamePaddleX *= ratio;
+
+    gamePaddleX =
+      Math.max(
+        0,
+        Math.min(
+          gameBoardWidth-gamePaddleWidth,
+          gamePaddleX
+        )
+      );
+
+
+    updatePaddle();
+
+  }
+);
+
+
+/* ================= SHOW READY ================= */
+
+function showGameReady(){
+
+  if(gameRewardClaimed){
+    return;
+  }
+
+
+  gameRunning=false;
+
+  gamePaused=false;
+
+
+  cancelAnimationFrame(
+    gameAnimation
+  );
+
+
+  const overlay =
+    document.getElementById(
+      "gameOverlay"
+    );
+
+  const title =
+    document.getElementById(
+      "gameOverlayTitle"
+    );
+
+  const text =
+    document.getElementById(
+      "gameOverlayText"
+    );
+
+  const icon =
+    document.getElementById(
+      "gameOverlayIcon"
+    );
+
+  const button =
+    document.getElementById(
+      "gameStartBtn"
+    );
+
+
+  overlay.classList.remove("hidden");
+
+
+  icon.textContent="🎮";
+
+
+  if(gameScore > 0){
+
+    title.textContent =
+      "ادامه بده!";
+
+    text.textContent =
+      `امتیازت ${gameScore} است. توپ را نگه دار و به ۳۰ برس.`;
+
+    button.textContent =
+      "ادامه بازی";
+
+  }else{
+
+    title.textContent =
+      "آماده‌ای؟";
+
+    text.textContent =
+      "توپ رو با تخته نگه دار. هر برخورد = یک امتیاز و سرعت بیشتر.";
+
+    button.textContent =
+      "شروع بازی";
+
+  }
+
+
+  setupGameBoard();
+
+}
+
+
+/* ================= START GAME ================= */
+
+function startGame(){
+
+  if(
+    gameRewardClaimed ||
+    !gameSession
+  ){
+    return;
+  }
+
+
+  setupGameBoard();
+
+
+  const board =
+    document.getElementById(
+      "gameBoard"
+    );
+
+
+  gameBoardWidth =
+    board.clientWidth;
+
+  gameBoardHeight =
+    board.clientHeight;
+
+
   /*
-    کد بعد از استفاده نگهداری نمی‌شود.
+    سرعت اولیه
+    هر بار برخورد بعداً در hitPaddle
+    بیشتر می‌شود.
   */
 
-  localStorage.removeItem(
-    "v2gurd_pending_phone"
+  const baseSpeed =
+    Math.max(
+      4.2,
+      Math.min(
+        6.5,
+        4.2 + gameScore * .035
+      )
+    );
+
+
+  const angle =
+    (-0.65 +
+      Math.random()*1.3);
+
+
+  gameBallX =
+    gameBoardWidth / 2 -
+    gameBallSize / 2;
+
+
+  gameBallY =
+    gameBoardHeight * .42;
+
+
+  gameBallVX =
+    Math.sin(angle) *
+    baseSpeed;
+
+
+  gameBallVY =
+    -Math.cos(angle) *
+    baseSpeed;
+
+
+  gameRunning=true;
+
+  gamePaused=false;
+
+  gameLastTime=
+    performance.now();
+
+
+  document
+    .getElementById("gameOverlay")
+    .classList.add("hidden");
+
+
+  cancelAnimationFrame(
+    gameAnimation
   );
+
+
+  gameAnimation =
+    requestAnimationFrame(
+      gameLoop
+    );
+
+}
+
+
+/* ================= GAME LOOP ================= */
+
+function gameLoop(timestamp){
+
+  if(!gameRunning){
+    return;
+  }
+
+
+  const delta =
+    Math.min(
+      2,
+      (timestamp-gameLastTime)/16.6667
+    );
+
+
+  gameLastTime=timestamp;
+
+
+  gameBallX +=
+    gameBallVX * delta;
+
+  gameBallY +=
+    gameBallVY * delta;
+
+
+  /*
+    برخورد با دیوار چپ
+  */
+
+  if(gameBallX <= 0){
+
+    gameBallX=0;
+
+    gameBallVX=
+      Math.abs(gameBallVX);
+
+  }
+
+
+  /*
+    برخورد با دیوار راست
+  */
+
+  if(
+    gameBallX + gameBallSize >=
+    gameBoardWidth
+  ){
+
+    gameBallX =
+      gameBoardWidth -
+      gameBallSize;
+
+    gameBallVX =
+      -Math.abs(gameBallVX);
+
+  }
+
+
+  /*
+    برخورد با سقف
+  */
+
+  if(gameBallY <= 0){
+
+    gameBallY=0;
+
+    gameBallVY=
+      Math.abs(gameBallVY);
+
+  }
+
+
+  /*
+    برخورد با تخته
+  */
+
+  const paddleY =
+    gameBoardHeight - 18 - 15;
+
+
+  const ballBottom =
+    gameBallY + gameBallSize;
+
+
+  const paddleRight =
+    gamePaddleX +
+    gamePaddleWidth;
+
+
+  const ballRight =
+    gameBallX +
+    gameBallSize;
+
+
+  if(
+    gameBallVY > 0 &&
+    ballBottom >= paddleY &&
+    gameBallY <= paddleY + 18 &&
+    ballRight >= gamePaddleX &&
+    gameBallX <= paddleRight
+  ){
+
+    gameBallY =
+      paddleY -
+      gameBallSize;
+
+
+    hitGamePaddle();
+
+  }
+
+
+  /*
+    توپ افتاد پایین
+  */
+
+  if(
+    gameBallY >
+    gameBoardHeight +
+    gameBallSize
+  ){
+
+    gameMissed();
+
+    return;
+
+  }
+
+
+  updateBall();
+
+
+  gameAnimation =
+    requestAnimationFrame(
+      gameLoop
+    );
+
+}
+
+
+/* ================= PADDLE HIT ================= */
+
+function hitGamePaddle(){
+
+  gameScore++;
+
+
+  if(
+    gameScore >
+    gameBest
+  ){
+
+    gameBest =
+      gameScore;
+
+  }
+
+
+  /*
+    افزایش سرعت با هر برخورد
+  */
+
+  const currentSpeed =
+    Math.sqrt(
+      gameBallVX*gameBallVX +
+      gameBallVY*gameBallVY
+    );
+
+
+  const speedBoost =
+    gameScore < 10
+      ? 1.045
+      : gameScore < 20
+        ? 1.065
+        : 1.085;
+
+
+  let newSpeed =
+    currentSpeed *
+    speedBoost;
+
+
+  /*
+    سقف سرعت
+    تا بازی خیلی سریع ولی همچنان قابل بازی باشد.
+  */
+
+  const maxSpeed =
+    gameScore < 10
+      ? 8.5
+      : gameScore < 20
+        ? 11
+        : 14;
+
+
+  newSpeed =
+    Math.min(
+      newSpeed,
+      maxSpeed
+    );
+
+
+  /*
+    زاویه برخورد بر اساس محل برخورد
+    توپ روی تخته تغییر می‌کند.
+  */
+
+  const paddleCenter =
+    gamePaddleX +
+    gamePaddleWidth/2;
+
+
+  const ballCenter =
+    gameBallX +
+    gameBallSize/2;
+
+
+  const hitPosition =
+    (ballCenter-paddleCenter) /
+    (gamePaddleWidth/2);
+
+
+  let horizontal =
+    hitPosition *
+    newSpeed *
+    .82;
+
+
+  let vertical =
+    Math.sqrt(
+      Math.max(
+        1,
+        newSpeed*newSpeed -
+        horizontal*horizontal
+      )
+    );
+
+
+  gameBallVX =
+    horizontal;
+
+  gameBallVY =
+    -vertical;
+
+
+  /*
+    بعد از ۱۵ و ۲۳ امتیاز تخته کمی کوچک‌تر می‌شود.
+  */
+
+  if(gameScore >= 23){
+
+    gamePaddleWidth =
+      Math.max(
+        78,
+        window.innerWidth <= 600
+          ? 90
+          : 100
+      );
+
+  }else if(gameScore >= 15){
+
+    gamePaddleWidth =
+      Math.max(
+        95,
+        window.innerWidth <= 600
+          ? 100
+          : 110
+      );
+
+  }else{
+
+    gamePaddleWidth =
+      window.innerWidth <= 600
+        ? 115
+        : 130;
+
+  }
+
+
+  gamePaddleX =
+    Math.min(
+      gamePaddleX,
+      gameBoardWidth-gamePaddleWidth
+    );
+
+
+  updatePaddle();
+
+  updateGameStats();
+
+  saveGameData();
+
+
+  /*
+    رسیدن به ۳۰
+  */
+
+  if(gameScore >= 30){
+
+    finishGame();
+
+  }
+
+}
+
+
+/* ================= MISS ================= */
+
+function gameMissed(){
+
+  gameRunning=false;
+
+
+  cancelAnimationFrame(
+    gameAnimation
+  );
+
+
+  /*
+    امتیاز فعلی پاک نمی‌شود.
+  */
+
+  saveGameData();
+
+  updateGameStats();
+
+
+  const overlay =
+    document.getElementById(
+      "gameOverlay"
+    );
+
+  const icon =
+    document.getElementById(
+      "gameOverlayIcon"
+    );
+
+  const title =
+    document.getElementById(
+      "gameOverlayTitle"
+    );
+
+  const text =
+    document.getElementById(
+      "gameOverlayText"
+    );
+
+  const button =
+    document.getElementById(
+      "gameStartBtn"
+    );
+
+
+  icon.textContent="😈";
+
+  title.textContent="توپ افتاد!";
+
+  text.textContent =
+    `نگران نباش؛ امتیازت ${gameScore} حفظ شده. دوباره امتحان کن.`;
+
+  button.textContent =
+    "ادامه بازی";
+
+
+  overlay.classList.remove("hidden");
+
+
+  setupGameBoard();
+
+}
+
+
+/* ================= FINISH ================= */
+
+function finishGame(){
+
+  gameRunning=false;
+
+
+  cancelAnimationFrame(
+    gameAnimation
+  );
+
+
+  gameScore=30;
+
+
+  if(gameBest < 30){
+    gameBest=30;
+  }
+
+
+  gameRewardClaimed=true;
+
+
+  saveGameData();
+
+
+  updateGameStats();
+
+
+  document
+    .getElementById("gameArea")
+    .style.display="none";
+
+
+  document
+    .getElementById("gameReward")
+    .style.display="block";
+
+
+  toast(
+    "۳۰ امتیاز کامل شد! جایزه‌ات آماده است 🎁"
+  );
+
+}
+
+
+/* ================= UPDATE BALL ================= */
+
+function updateBall(){
+
+  const ball =
+    document.getElementById(
+      "gameBall"
+    );
+
+  if(!ball){
+    return;
+  }
+
+
+  ball.style.transform =
+    `translate3d(${gameBallX}px,${gameBallY}px,0)`;
+
+}
+
+
+/* ================= UPDATE PADDLE ================= */
+
+function updatePaddle(){
+
+  const paddle =
+    document.getElementById(
+      "gamePaddle"
+    );
+
+  if(!paddle){
+    return;
+  }
+
+
+  paddle.style.width =
+    gamePaddleWidth + "px";
+
+
+  paddle.style.left =
+    (
+      gamePaddleX +
+      gamePaddleWidth/2
+    ) + "px";
+
+}
+
+
+/* ================= GAME STATS ================= */
+
+function updateGameStats(){
+
+  const score =
+    document.getElementById(
+      "gameScore"
+    );
+
+  const best =
+    document.getElementById(
+      "gameBest"
+    );
+
+  const progress =
+    document.getElementById(
+      "gameProgressBar"
+    );
+
+
+  if(score){
+
+    score.textContent =
+      Number(gameScore)
+        .toLocaleString("fa-IR");
+
+  }
+
+
+  if(best){
+
+    best.textContent =
+      Number(gameBest)
+        .toLocaleString("fa-IR");
+
+  }
+
+
+  if(progress){
+
+    progress.style.width =
+      Math.min(
+        100,
+        (gameScore/30)*100
+      ) + "%";
+
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH / MOUSE CONTROL
+   ========================================================= */
+
+function movePaddleTo(clientX){
+
+  const board =
+    document.getElementById(
+      "gameBoard"
+    );
+
+  if(!board){
+    return;
+  }
+
+
+  const rect =
+    board.getBoundingClientRect();
+
+
+  let x =
+    clientX -
+    rect.left;
+
+
+  x -=
+    gamePaddleWidth/2;
+
+
+  gamePaddleX =
+    Math.max(
+      0,
+      Math.min(
+        rect.width-gamePaddleWidth,
+        x
+      )
+    );
+
+
+  updatePaddle();
+
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    const board =
+      document.getElementById(
+        "gameBoard"
+      );
+
+
+    if(!board){
+      return;
+    }
+
+
+    board.addEventListener(
+      "pointerdown",
+      event=>{
+
+        gamePointerActive=true;
+
+        try{
+          board.setPointerCapture(
+            event.pointerId
+          );
+        }catch(e){}
+
+        movePaddleTo(
+          event.clientX
+        );
+
+      }
+    );
+
+
+    board.addEventListener(
+      "pointermove",
+      event=>{
+
+        if(!gamePointerActive){
+          return;
+        }
+
+        movePaddleTo(
+          event.clientX
+        );
+
+      }
+    );
+
+
+    board.addEventListener(
+      "pointerup",
+      ()=>{
+
+        gamePointerActive=false;
+
+      }
+    );
+
+
+    board.addEventListener(
+      "pointercancel",
+      ()=>{
+
+        gamePointerActive=false;
+
+      }
+    );
+
+
+    board.addEventListener(
+      "pointerleave",
+      ()=>{
+
+        gamePointerActive=false;
+
+      }
+    );
+
+  }
+);
+
+
+/* ================= LOGOUT ================= */
+
+function logoutGame(){
+
+  gameRunning=false;
+
+
+  cancelAnimationFrame(
+    gameAnimation
+  );
+
+
+  localStorage.removeItem(
+    GAME_SESSION_KEY
+  );
+
+
+  gameSession=null;
+
+  gameData=null;
+
+
+  document
+    .getElementById("gameArea")
+    .style.display="none";
+
+
+  document
+    .getElementById("gameReward")
+    .style.display="none";
+
+
+  document
+    .getElementById("gameLogin")
+    .style.display="block";
+
+
+  document
+    .getElementById("gamePhoneStep")
+    .classList.add("active");
+
+
+  document
+    .getElementById("gameCodeStep")
+    .classList.remove("active");
 
 
   document
@@ -4598,879 +5728,42 @@ function verifyGameCode(){
     .value="";
 
 
-  toast("ورود با موفقیت انجام شد ✅");
-
-
-  loadGameSession();
-
-}
-
-
-/* ---------------- LOGOUT ---------------- */
-
-function logoutGame(){
-
-  stopGame();
-
-  localStorage.removeItem(
-    GAME_SESSION_KEY
-  );
-
-  loadGameSession();
-
   toast("از بازی خارج شدی");
 
 }
 
 
-/* ---------------- PLAYER DATA ---------------- */
-
-function loadPlayerGameData(){
-
-  if(!gameSession){
-    return;
-  }
-
-
-  const key =
-    GAME_DATA_KEY +
-    "_" +
-    normalizePhone(gameSession.phone);
-
-
-  gameData =
-    JSON.parse(
-      localStorage.getItem(key) || "null"
-    );
-
-
-  if(!gameData){
-
-    gameData={
-      score:0,
-      best:0,
-      rewardClaimed:false
-    };
-
-    savePlayerGameData();
-
-  }
-
-
-  gameScore =
-    Number(gameData.score || 0);
-
-  gameBest =
-    Number(gameData.best || 0);
-
-
-  updateGameUI();
-
-
-  const locked =
-    document.getElementById("gameLocked");
-
-  const playing =
-    document.getElementById("gamePlaying");
-
-  const win =
-    document.getElementById("gameWin");
-
-
-  if(gameData.rewardClaimed){
-
-    if(locked){
-      locked.style.display="block";
-    }
-
-    if(playing){
-      playing.style.display="none";
-    }
-
-    if(win){
-      win.classList.remove("show");
-    }
-
-  }else{
-
-    if(locked){
-      locked.style.display="none";
-    }
-
-    if(playing){
-      playing.style.display="block";
-    }
-
-  }
-
-}
-
-
-/* ---------------- NORMALIZE PHONE ---------------- */
-
-function normalizePhone(phone){
-
-  return String(phone)
-    .replace(/\D/g,"");
-
-}
-
-
-/* ---------------- SAVE GAME ---------------- */
-
-function savePlayerGameData(){
-
-  if(!gameSession){
-    return;
-  }
-
-
-  const key =
-    GAME_DATA_KEY +
-    "_" +
-    normalizePhone(gameSession.phone);
-
-
-  localStorage.setItem(
-    key,
-    JSON.stringify(gameData)
-  );
-
-}
-
-
-/* ---------------- GAME UI ---------------- */
-
-function updateGameUI(){
-
-  const score =
-    document.getElementById("gameScore");
-
-  const best =
-    document.getElementById("gameBest");
-
-  const progress =
-    document.getElementById("gameProgress");
-
-
-  if(score){
-    score.textContent =
-      Number(gameScore)
-        .toLocaleString("fa-IR");
-  }
-
-
-  if(best){
-    best.textContent =
-      Number(gameBest)
-        .toLocaleString("fa-IR");
-  }
-
-
-  if(progress){
-
-    const percent =
-      Math.min(
-        gameScore / 30 * 100,
-        100
-      );
-
-    progress.style.width =
-      percent + "%";
-
-  }
-
-}
-
-
-/* ---------------- START GAME ---------------- */
-
-function startGame(){
-
-  if(!gameSession){
-    return;
-  }
-
-
-  if(gameData && gameData.rewardClaimed){
-
-    toast("این جایزه قبلاً دریافت شده 🏆");
-
-    return;
-  }
-
-
-  stopGame();
-
-
-  gameRunning=true;
-
-  gameRound=0;
-
-  gameHitLock=false;
-
-
-  const button =
-    document.getElementById("gameStartBtn");
-
-  if(button){
-    button.textContent="⏸️ بازی در حال اجرا";
-  }
-
-
-  showGameMessage(
-    "بزن بریم! 🔥",
-    "هدف‌ها سریع‌تر می‌شوند..."
-  );
-
-
-  setTimeout(()=>{
-
-    hideGameMessage();
-
-    spawnGameTarget();
-
-  },650);
-
-}
-
-
-/* ---------------- STOP GAME ---------------- */
-
-function stopGame(){
-
-  gameRunning=false;
-
-  clearTimeout(gameTimer);
-
-  clearTimeout(gameMoveTimer);
-
-  gameTimer=null;
-
-  gameMoveTimer=null;
-
-}
-
-
-/* ---------------- SPAWN TARGET ---------------- */
-
-function spawnGameTarget(){
-
-  if(!gameRunning){
-    return;
-  }
-
-
-  const stage =
-    document.getElementById("gameStage");
-
-  const target =
-    document.getElementById("gameTarget");
-
-
-  if(!stage || !target){
-    return;
-  }
-
-
-  gameRound++;
-
-
-  /*
-    سختی بر اساس امتیاز و راند افزایش پیدا می‌کند.
-    بعد از ۱۵ امتیاز به شکل محسوس سخت‌تر می‌شود.
-  */
-
-  let size = 62;
-
-  if(gameScore >= 15){
-    size=48;
-  }
-
-  if(gameScore >= 23){
-    size=38;
-  }
-
-
-  target.classList.remove(
-    "small",
-    "tiny"
-  );
-
-
-  if(size===48){
-    target.classList.add("small");
-  }
-
-  if(size===38){
-    target.classList.add("tiny");
-  }
-
-
-  const stageWidth =
-    stage.clientWidth;
-
-  const stageHeight =
-    stage.clientHeight;
-
-
-  const margin =
-    size / 2 + 12;
-
-
-  const x =
-    margin +
-    Math.random() *
-    (stageWidth - margin * 2);
-
-
-  const y =
-    margin +
-    Math.random() *
-    (stageHeight - margin * 2);
-
-
-  target.style.left =
-    x + "px";
-
-  target.style.top =
-    y + "px";
-
-
-  target.style.transform =
-    "translate(-50%,-50%) scale(1)";
-
-
-  /*
-    هرچه امتیاز بیشتر شود،
-    هدف زمان کمتری روی صفحه می‌ماند.
-  */
-
-  let lifetime =
-    1250 -
-    gameScore * 22;
-
-
-  if(gameScore >= 15){
-    lifetime -= 180;
-  }
-
-  if(gameScore >= 22){
-    lifetime -= 120;
-  }
-
-  if(lifetime < 420){
-    lifetime=420;
-  }
-
-
-  clearTimeout(gameTimer);
-
-
-  gameTimer =
-    setTimeout(()=>{
-
-      missGameTarget();
-
-    },lifetime);
-
-
-  /*
-    بعد از ۱۵ امتیاز هدف کمی حرکت می‌کند
-    تا بازی سخت‌تر شود.
-  */
-
-  clearTimeout(gameMoveTimer);
-
-
-  if(gameScore >= 15){
-
-    const moveDelay =
-      gameScore >= 23
-      ? 180
-      : 300;
-
-
-    gameMoveTimer =
-      setTimeout(()=>{
-
-        moveTargetQuickly();
-
-      },moveDelay);
-
-  }
-
-}
-
-
-/* ---------------- MOVE TARGET ---------------- */
-
-function moveTargetQuickly(){
-
-  if(!gameRunning){
-    return;
-  }
-
-
-  const stage =
-    document.getElementById("gameStage");
-
-  const target =
-    document.getElementById("gameTarget");
-
-
-  if(!stage || !target){
-    return;
-  }
-
-
-  const size =
-    gameScore >= 23
-    ? 38
-    : 48;
-
-
-  const margin =
-    size / 2 + 12;
-
-
-  const x =
-    margin +
-    Math.random() *
-    (stage.clientWidth - margin * 2);
-
-
-  const y =
-    margin +
-    Math.random() *
-    (stage.clientHeight - margin * 2);
-
-
-  target.style.left =
-    x + "px";
-
-  target.style.top =
-    y + "px";
-
-}
-
-
-/* ---------------- HIT TARGET ---------------- */
-
-function hitGameTarget(event){
-
-  if(event){
-    event.stopPropagation();
-  }
-
-
-  if(!gameRunning || gameHitLock){
-    return;
-  }
-
-
-  gameHitLock=true;
-
-
-  clearTimeout(gameTimer);
-
-
-  gameScore++;
-
-
-  if(gameScore > gameBest){
-    gameBest=gameScore;
-  }
-
-
-  if(gameData){
-
-    gameData.score =
-      gameScore;
-
-    gameData.best =
-      gameBest;
-
-  }
-
-
-  savePlayerGameData();
-
-  updateGameUI();
-
-
-  const target =
-    document.getElementById("gameTarget");
-
-
-  if(target){
-
-    target.style.transform =
-      "translate(-50%,-50%) scale(.75)";
-
-  }
-
-
-  if(gameScore >= 30){
-
-    setTimeout(()=>{
-
-      finishGame();
-
-    },100);
-
-    return;
-
-  }
-
-
-  if(gameScore === 10){
-
-    showGameMessage(
-      "خوبه! 🔥",
-      "ولی هنوز اول راهی..."
-    );
-
-    setTimeout(hideGameMessage,650);
-
-  }
-
-
-  if(gameScore === 15){
-
-    showGameMessage(
-      "از اینجا سخت میشه 😈",
-      "سرعت هدف‌ها بیشتر شد!"
-    );
-
-    setTimeout(hideGameMessage,900);
-
-  }
-
-
-  if(gameScore === 23){
-
-    showGameMessage(
-      "مرحله آخر! ⚠️",
-      "فقط ۷ امتیاز تا جایزه!"
-    );
-
-    setTimeout(hideGameMessage,900);
-
-  }
-
-
-  setTimeout(()=>{
-
-    gameHitLock=false;
-
-    spawnGameTarget();
-
-  },120);
-
-}
-
-
-/* ---------------- MISS ---------------- */
-
-function missGameTarget(){
-
-  if(!gameRunning){
-    return;
-  }
-
-
-  /*
-    باخت کامل نیست.
-    فقط یک امتیاز کم می‌شود.
-  */
-
-  gameScore =
-    Math.max(
-      0,
-      gameScore - 1
-    );
-
-
-  if(gameData){
-    gameData.score =
-      gameScore;
-  }
-
-
-  savePlayerGameData();
-
-  updateGameUI();
-
-
-  showGameMessage(
-    "نزدیک بود! 😅",
-    "یک امتیاز کم شد؛ دوباره ادامه بده."
-  );
-
-
-  setTimeout(()=>{
-
-    hideGameMessage();
-
-    gameHitLock=false;
-
-    spawnGameTarget();
-
-  },550);
-
-}
-
-
-/* ---------------- FINISH ---------------- */
-
-function finishGame(){
-
-  stopGame();
-
-
-  gameScore=30;
-
-
-  if(gameData){
-
-    gameData.score=30;
-
-    gameData.best =
-      Math.max(
-        Number(gameData.best || 0),
-        30
-      );
-
-    /*
-      جایزه روی همان گوشی ثبت می‌شود.
-    */
-
-    gameData.rewardClaimed=true;
-
-  }
-
-
-  savePlayerGameData();
-
-
-  updateGameUI();
-
-
-  const playing =
-    document.getElementById("gamePlaying");
-
-  const win =
-    document.getElementById("gameWin");
-
-  const locked =
-    document.getElementById("gameLocked");
-
-
-  if(playing){
-    playing.style.display="none";
-  }
-
-  if(locked){
-    locked.style.display="none";
-  }
-
-  if(win){
-    win.classList.add("show");
-  }
-
-
-  toast("۳۰ امتیاز کامل شد! 🎉");
-
-}
-
-
-/* ---------------- SHOW GAME AGAIN ---------------- */
-
-function showGameAgain(){
-
-  const win =
-    document.getElementById("gameWin");
-
-  const locked =
-    document.getElementById("gameLocked");
-
-  const playing =
-    document.getElementById("gamePlaying");
-
-
-  if(win){
-    win.classList.remove("show");
-  }
-
-  if(gameData && gameData.rewardClaimed){
-
-    if(locked){
-      locked.style.display="block";
-    }
-
-    if(playing){
-      playing.style.display="none";
-    }
-
-  }else{
-
-    if(playing){
-      playing.style.display="block";
-    }
-
-  }
-
-}
-
-
-/* ---------------- RESET PROGRESS ---------------- */
-
-function resetGameProgress(){
-
-  if(!gameSession){
-    return;
-  }
-
-
-  stopGame();
-
-
-  if(gameData && gameData.rewardClaimed){
-
-    toast("جایزه قبلاً ثبت شده و قابل حذف نیست 🏆");
-
-    return;
-
-  }
-
-
-  gameScore=0;
-
-
-  gameData={
-    score:0,
-    best:
-      Number(
-        gameData?.best || 0
-      ),
-    rewardClaimed:false
-  };
-
-
-  savePlayerGameData();
-
-  updateGameUI();
-
-
-  const win =
-    document.getElementById("gameWin");
-
-  if(win){
-    win.classList.remove("show");
-  }
-
-
-  const playing =
-    document.getElementById("gamePlaying");
-
-  if(playing){
-    playing.style.display="block";
-  }
-
-
-  toast("بازی از امتیاز فعلی شروع می‌شود 🔄");
-
-}
-
-
-/* ---------------- GAME MESSAGE ---------------- */
-
-function showGameMessage(
-  title,
-  text
-){
-
-  const message =
-    document.getElementById("gameMessage");
-
-  const titleEl =
-    document.getElementById("gameMessageTitle");
-
-  const textEl =
-    document.getElementById("gameMessageText");
-
-
-  if(!message){
-    return;
-  }
-
-
-  if(titleEl){
-    titleEl.textContent=title;
-  }
-
-  if(textEl){
-    textEl.textContent=text;
-  }
-
-
-  message.classList.add("show");
-
-}
-
-
-/* ---------------- HIDE MESSAGE ---------------- */
-
-function hideGameMessage(){
-
-  const message =
-    document.getElementById("gameMessage");
-
-  if(message){
-    message.classList.remove("show");
-  }
-
-}
-
-
-/* ---------------- REWARD TELEGRAM ---------------- */
+/* ================= REWARD TELEGRAM ================= */
 
 function sendGameRewardScreenshot(){
 
-  if(!gameSession){
+  if(
+    !gameSession ||
+    !gameRewardClaimed
+  ){
     return;
   }
-
-
-  const phone =
-    gameSession.phone;
-
-
-  const best =
-    gameData
-    ? gameData.best
-    : 30;
 
 
   const message =
 
 `سلام V2GURD 👋
 
-🏆 برنده بازی V2GURD
+🎮 نتیجه بازی V2GURD
 
-📱 شماره:
-${phone}
+📱 شماره بازیکن:
+${gameSession.phone}
 
-🎮 امتیاز:
-${best}
+🏆 امتیاز:
+۳۰ از ۳۰
 
 🎁 جایزه:
-۳۰ گیگ سرویس رایگان
+۳۰ گیگ سرویس VPN / فیلترشکن
 
-📸 اسکرین‌شات برد بازی را در همین چت ارسال می‌کنم.
+📸 اسکرین‌شات نتیجه بازی را همینجا ارسال می‌کنم.
 
-ممنون از V2GURD 🙏`;
+لطفاً جایزه ۳۰ گیگ را برای من فعال کنید.`;
+
 
 
   const url =
@@ -5484,6 +5777,81 @@ ${best}
   );
 
 }
+
+
+/* ================= GAME PAGE WATCHER ================= */
+
+const originalShowPage =
+  showPage;
+
+
+/*
+  وقتی صفحه بازی باز شود،
+  اگر قبلاً وارد شده باشیم بازی را آماده می‌کنیم.
+*/
+
+showPage = function(id){
+
+  originalShowPage(id);
+
+
+  if(id === "game"){
+
+    setTimeout(()=>{
+
+      if(gameSession){
+
+        if(gameRewardClaimed){
+
+          document
+            .getElementById("gameLogin")
+            .style.display="none";
+
+          document
+            .getElementById("gameArea")
+            .style.display="none";
+
+          document
+            .getElementById("gameReward")
+            .style.display="block";
+
+        }else{
+
+          document
+            .getElementById("gameLogin")
+            .style.display="none";
+
+          document
+            .getElementById("gameArea")
+            .style.display="block";
+
+          setupGameBoard();
+
+          updateGameStats();
+
+        }
+
+      }else{
+
+        document
+          .getElementById("gameLogin")
+          .style.display="block";
+
+        document
+          .getElementById("gameArea")
+          .style.display="none";
+
+        document
+          .getElementById("gameReward")
+          .style.display="none";
+
+      }
+
+    },50);
+
+  }
+
+};
 
 </script>
 
