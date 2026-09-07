@@ -4,7 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050914">
-<title>V2GURD | Secure • Fast • Premium</title>
+<title>V2GURD | اینترنت امن، سریع و پایدار</title>
+
+<!-- SEO -->
+<meta name="description" content="V2GURD ارائه‌دهنده سرویس‌های VPN امن و پرسرعت شامل WireGuard تک‌کاربره، V2Box (CDN، حرفه‌ای، اقتصادی، Tunnel) و JumpJump با IP ثابت و پشتیبانی ۲۴ ساعته.">
+<meta name="keywords" content="V2GURD, وایرگارد, WireGuard, V2Box, JumpJump, خرید vpn, فیلترشکن, اینترنت پرسرعت, IP ثابت">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://v2gurd.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:site_name" content="V2GURD">
+<meta property="og:title" content="V2GURD | اینترنت امن، سریع و پایدار">
+<meta property="og:description" content="سرویس‌های پرسرعت WireGuard، V2Box و JumpJump با IP ثابت، پایداری بالا و پشتیبانی ۲۴ ساعته.">
+<meta property="og:image" content="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd">
+<meta property="og:url" content="https://v2gurd.com/">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="V2GURD | اینترنت امن، سریع و پایدار">
+<meta name="twitter:description" content="سرویس‌های پرسرعت WireGuard، V2Box و JumpJump با IP ثابت و پشتیبانی ۲۴ ساعته.">
+<meta name="twitter:image" content="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="V2GURD">
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
 
@@ -101,6 +130,38 @@ header{position:sticky;top:0;z-index:500;background:rgba(5,9,20,.78);backdrop-fi
 .wg-inner p{color:#9eafc7;line-height:2;margin:12px 0 20px}
 .wg-points{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .wg-point{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:10px;font-size:12px;color:#b8c7da}
+
+/* COUNTDOWN */
+.countdown{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;font-size:13px;color:#cbd8ec}
+.countdown-timer{font-weight:900;font-size:16px;color:#fff;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);padding:6px 12px;border-radius:10px;direction:ltr;letter-spacing:1px}
+
+/* COMPARE TABLE */
+.compare-wrap{overflow-x:auto;max-width:1100px;margin:0 auto 45px;border-radius:16px;border:1px solid var(--border)}
+.compare-table{width:100%;border-collapse:collapse;min-width:640px;background:var(--card)}
+.compare-table th,.compare-table td{padding:14px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.compare-table th{background:rgba(22,140,255,.09);color:#fff;font-weight:900;font-size:13px}
+.compare-table td{color:#b8c7da}
+.compare-table tr:last-child td{border-bottom:0}
+.compare-table tr.highlight td{background:rgba(139,92,246,.06)}
+.compare-table td:first-child,.compare-table th:first-child{text-align:right}
+
+/* INVITE / REFERRAL */
+.invite-box{max-width:900px;margin:auto;text-align:center;background:var(--card);border:1px solid rgba(139,92,246,.35);
+  border-radius:20px;padding:30px;box-shadow:0 0 30px rgba(139,92,246,.08)}
+.invite-box h2{font-size:clamp(20px,4vw,26px);margin-bottom:10px}
+.invite-box p{color:var(--muted);line-height:2;margin-bottom:18px;max-width:600px;margin-inline:auto}
+.copy-row{display:flex;gap:8px;max-width:520px;margin:0 auto 14px}
+.copy-row input{flex:1;padding:12px;border-radius:10px;border:1px solid var(--border);background:#091424;color:#fff;text-align:center;min-width:0}
+
+/* QUICK BUY BAR */
+.quickbar{position:fixed;bottom:0;right:0;left:0;z-index:300;display:none;align-items:center;justify-content:space-between;
+  gap:12px;padding:12px 18px;background:rgba(7,16,30,.94);backdrop-filter:blur(14px);border-top:1px solid var(--border);
+  transform:translateY(100%);transition:.3s}
+.quickbar.show{display:flex;transform:translateY(0)}
+.quickbar-info{display:flex;flex-direction:column;gap:2px;font-size:12px;color:#b8c7da;overflow:hidden}
+.quickbar-info strong{color:#fff;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-float.raised{bottom:88px;transition:.3s}
 
 /* CARDS */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -260,6 +321,10 @@ footer{margin-top:50px;padding:35px 18px;border-top:1px solid var(--border);text
         <div class="feature-badge">⭐ ویژه • پرفروش • پیشنهادی</div>
         <h2>🟣 وایرگارد <span>| تک‌کاربره</span></h2>
         <p>🚀 سرعت فضایی، اتصال پایدار و IP ثابت. یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD برای اتصال سریع و مطمئن.</p>
+        <div class="countdown">
+          <span>⏳ پیشنهاد ویژه تا پایان امروز:</span>
+          <div class="countdown-timer" id="countdownTimer">00:00:00</div>
+        </div>
         <div class="wg-points" id="wgPoints"></div>
         <button class="btn btn-primary" onclick="showPage('wireguard')">⭐ مشاهده پلن‌های وایرگارد</button>
       </div>
@@ -280,6 +345,20 @@ footer{margin-top:50px;padding:35px 18px;border-top:1px solid var(--border);text
         <div class="stat"><strong>24/7</strong><span>پشتیبانی</span></div>
         <div class="stat"><strong>IP</strong><span>ثابت</span></div>
         <div class="stat"><strong>⚡</strong><span>سرعت بالا</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="invite-box">
+        <h2>🎁 دوستاتو دعوت کن، هر دو تخفیف بگیرید</h2>
+        <p>لینک اختصاصی خودت رو با دوستات به اشتراک بذار؛ اونا با اولین خرید ۵٪ تخفیف خوش‌آمد می‌گیرن.</p>
+        <div class="copy-row">
+          <input id="referralLink" readonly>
+          <button class="btn btn-primary" onclick="copyReferralLink()">کپی لینک</button>
+        </div>
+        <button class="btn" onclick="shareReferralLink()">📤 اشتراک‌گذاری در تلگرام</button>
       </div>
     </div>
   </div>
@@ -328,6 +407,10 @@ footer{margin-top:50px;padding:35px 18px;border-top:1px solid var(--border);text
   </div>
   <div class="section">
     <div class="container">
+      <div class="section-title"><h2>📊 مقایسه سرویس‌ها</h2><p>کدوم سرور مناسب توئه؟</p></div>
+      <div class="compare-wrap">
+        <table class="compare-table" id="compareTable"></table>
+      </div>
       <div class="section-title"><h2>🌐 سرویس‌های V2Box</h2><p>پلن مناسب خودت رو انتخاب کن</p></div>
       <div class="grid" id="v2boxGrid"></div>
     </div>
@@ -410,6 +493,14 @@ footer{margin-top:50px;padding:35px 18px;border-top:1px solid var(--border);text
 </section>
 
 </main>
+
+<div class="quickbar" id="quickBar">
+  <div class="quickbar-info">
+    <strong id="quickBarTitle"></strong>
+    <span id="quickBarPrice"></span>
+  </div>
+  <button class="btn btn-primary" id="quickBarBtn">افزودن سریع</button>
+</div>
 
 <button class="cart-float" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></button>
 
@@ -503,15 +594,15 @@ const GB_OPTIONS = [50,100,150,200,250,300,400,500];
 
 const V2BOX_PLANS = [
   {id:"economicPlan",type:"اقتصادی",icon:"💠",title:"سرور اقتصادی",status:"موجود",pricePerGB:2000,
-    desc:["مناسب مصرف روزمره","قیمت اقتصادی","حجم قابل انتخاب"],btn:"btn-primary"},
+    desc:["مناسب مصرف روزمره","قیمت اقتصادی","حجم قابل انتخاب"],btn:"btn-primary",bestFor:"مصرف سبک و روزمره"},
   {id:"normalPlan",type:"معمولی",icon:"⚡",title:"سرور معمولی",status:"موجود",pricePerGB:1500,
-    desc:["سرعت مناسب","اتصال پایدار","مناسب استفاده روزمره"],btn:"btn-primary"},
+    desc:["سرعت مناسب","اتصال پایدار","مناسب استفاده روزمره"],btn:"btn-primary",bestFor:"استفاده عمومی و مرورگری"},
   {id:"cdnPlan",type:"CDN",icon:"🚀",title:"CDN",status:"ویژه",pricePerGB:1500,special:true,
-    desc:["اتصال سریع","مناسب مصرف بالا","مسیر بهینه"],btn:"btn-primary"},
+    desc:["اتصال سریع","مناسب مصرف بالا","مسیر بهینه"],btn:"btn-primary",bestFor:"دانلود حجم بالا و استریم"},
   {id:"tunnelPlan",type:"Tunnel",icon:"🔗",title:"Tunnel",status:"موجود",pricePerGB:2500,
-    desc:["مسیر تونلی","مناسب اتصال پایدار","سرویس پرسرعت"],btn:"btn-primary"},
+    desc:["مسیر تونلی","مناسب اتصال پایدار","سرویس پرسرعت"],btn:"btn-primary",bestFor:"اتصال پایدار در شرایط ضعیف"},
   {id:"proPlan",type:"حرفه‌ای",icon:"👑",title:"سرور حرفه‌ای",status:"حرفه‌ای",pricePerGB:3000,special:true,
-    desc:["مناسب مصرف سنگین","سرعت بالا","سرویس حرفه‌ای V2GURD"],btn:"btn-purple"}
+    desc:["مناسب مصرف سنگین","سرعت بالا","سرویس حرفه‌ای V2GURD"],btn:"btn-purple",bestFor:"کاربران پرمصرف و حرفه‌ای"}
 ];
 
 const JUMPJUMP_PLANS = [
@@ -544,6 +635,7 @@ const RULES = [
 
 const CARD_NUMBER = "6219861841635526";
 const TELEGRAM = "https://t.me/Vtwoguard";
+const REFERRAL_DISCOUNT = 5;
 
 const PRODUCTS = {};
 WIREGUARD_PLANS.forEach(p=>{
@@ -644,11 +736,28 @@ function renderRules(){
   document.getElementById("rulesList").innerHTML = RULES.map(r => `<li>${r}</li>`).join("");
 }
 
+function renderCompareTable(){
+  const rows = V2BOX_PLANS.map(p => `
+    <tr class="${p.special?"highlight":""}">
+      <td>${p.icon} ${p.title}</td>
+      <td>${formatPrice(p.pricePerGB)}</td>
+      <td>${p.bestFor}</td>
+    </tr>`).join("");
+  document.getElementById("compareTable").innerHTML = `
+    <tr><th>سرویس</th><th>قیمت هر گیگ</th><th>مناسب برای</th></tr>
+    ${rows}`;
+}
+
 /* ================= CART STATE ================= */
 
 let cart = JSON.parse(localStorage.getItem("v2gurd_cart") || "{}");
-let discountPercent = 0;
+let couponDiscount = 0;
+let referralDiscount = 0;
 let currentOrder = null;
+
+function getDiscountPercent(){
+  return Math.max(couponDiscount, referralDiscount);
+}
 
 /* ================= INIT ================= */
 
@@ -660,9 +769,14 @@ window.addEventListener("load", () => {
   renderWireguardPlans();
   renderV2BoxPlans();
   renderJumpjumpPlans();
+  renderCompareTable();
   renderSteps();
   renderRules();
   updateCart();
+  initReferral();
+  startCountdown();
+  registerServiceWorker();
+  updateQuickBar();
 
   setTimeout(() => {
     const intro = document.getElementById("intro");
@@ -671,6 +785,8 @@ window.addEventListener("load", () => {
   }, 1200);
 });
 
+window.addEventListener("scroll", updateQuickBar);
+
 /* ================= NAVIGATION ================= */
 
 function showPage(id){
@@ -678,6 +794,7 @@ function showPage(id){
   document.getElementById(id)?.classList.add("active");
   window.scrollTo({top:0, behavior:"smooth"});
   document.getElementById("navLinks").classList.remove("show");
+  updateQuickBar();
 }
 
 function toggleMenu(){
@@ -755,7 +872,7 @@ function updateCart(){
       </div>`));
   });
 
-  const discount = Math.round(subtotal * discountPercent / 100);
+  const discount = Math.round(subtotal * getDiscountPercent() / 100);
   const final = subtotal - discount;
 
   count.textContent = totalItems.toLocaleString("fa-IR");
@@ -786,10 +903,10 @@ function outsideCart(e){
 function applyCoupon(){
   const code = document.getElementById("coupon").value.trim().toUpperCase();
   if(code === "V2G10"){
-    discountPercent = 10;
+    couponDiscount = 10;
     toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
   }else{
-    discountPercent = 0;
+    couponDiscount = 0;
     toast("کد تخفیف معتبر نیست ❌");
   }
   updateCart();
@@ -842,7 +959,7 @@ function createInvoice(){
       </div>`;
   });
 
-  const discount = Math.round(subtotal * discountPercent / 100);
+  const discount = Math.round(subtotal * getDiscountPercent() / 100);
   const final = subtotal - discount;
 
   document.getElementById("invoiceContent").innerHTML = `
@@ -939,6 +1056,125 @@ ${problem}`;
 
 function toggleFaq(button){
   button.parentElement.classList.toggle("open");
+}
+
+/* ================= REFERRAL ================= */
+
+function getReferralCode(){
+  let code = localStorage.getItem("v2gurd_refcode");
+  if(!code){
+    code = "V2G" + Math.random().toString(36).slice(2,8).toUpperCase();
+    localStorage.setItem("v2gurd_refcode", code);
+  }
+  return code;
+}
+
+function initReferral(){
+  const linkInput = document.getElementById("referralLink");
+  if(linkInput){
+    linkInput.value = `${location.origin}${location.pathname}?ref=${getReferralCode()}`;
+  }
+
+  if(localStorage.getItem("v2gurd_referral_applied")){
+    referralDiscount = REFERRAL_DISCOUNT;
+    return;
+  }
+
+  const ref = new URLSearchParams(location.search).get("ref");
+  if(ref && ref !== getReferralCode()){
+    referralDiscount = REFERRAL_DISCOUNT;
+    localStorage.setItem("v2gurd_referral_applied", "1");
+    localStorage.setItem("v2gurd_referred_by", ref);
+    toast(`به‌خاطر دعوت دوستت ${toFa(REFERRAL_DISCOUNT)}٪ تخفیف خوش‌آمد فعال شد 🎉`);
+    updateCart();
+  }
+}
+
+function copyReferralLink(){
+  const input = document.getElementById("referralLink");
+  navigator.clipboard.writeText(input.value)
+    .then(() => toast("لینک دعوت کپی شد ✅"))
+    .catch(() => toast("کپی انجام نشد"));
+}
+
+function shareReferralLink(){
+  const link = document.getElementById("referralLink").value;
+  const message = `از V2GURD اینترنت امن و پرسرعت بگیر و با لینک من ${toFa(REFERRAL_DISCOUNT)}٪ تخفیف بگیر:\n${link}`;
+  window.open("https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(message), "_blank");
+}
+
+/* ================= COUNTDOWN ================= */
+
+function startCountdown(){
+  const timerEl = document.getElementById("countdownTimer");
+  if(!timerEl) return;
+
+  function tick(){
+    const now = new Date();
+    const end = new Date(now);
+    end.setHours(23,59,59,999);
+    const diff = Math.max(0, end - now);
+    const h = String(Math.floor(diff/3600000)).padStart(2,"0");
+    const m = String(Math.floor(diff/60000) % 60).padStart(2,"0");
+    const s = String(Math.floor(diff/1000) % 60).padStart(2,"0");
+    timerEl.textContent = `${h}:${m}:${s}`;
+  }
+
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* ================= QUICK BUY BAR ================= */
+
+function updateQuickBar(){
+  const bar = document.getElementById("quickBar");
+  const cartBtn = document.querySelector(".cart-float");
+  if(!bar) return;
+
+  const pageId = document.querySelector(".page.active")?.id;
+  const showable = ["wireguard","v2box","jumpjump"].includes(pageId);
+  const scrolled = window.scrollY > 380;
+
+  if(!showable || !scrolled){
+    bar.classList.remove("show");
+    cartBtn?.classList.remove("raised");
+    return;
+  }
+
+  const titleEl = document.getElementById("quickBarTitle");
+  const priceEl = document.getElementById("quickBarPrice");
+  const btn = document.getElementById("quickBarBtn");
+
+  if(pageId === "wireguard"){
+    const p = WIREGUARD_PLANS.find(x => x.special) || WIREGUARD_PLANS[0];
+    titleEl.textContent = `🟣 وایرگارد ${toFa(p.gb)} گیگ`;
+    priceEl.textContent = formatPrice(p.price);
+    btn.textContent = "افزودن سریع";
+    btn.onclick = () => addToCart(p.id);
+  }else if(pageId === "jumpjump"){
+    const p = JUMPJUMP_PLANS.find(x => x.special) || JUMPJUMP_PLANS[0];
+    titleEl.textContent = `🚀 JumpJump ${toFa(p.devices)} دستگاه / ${toFa(p.months)} ماه`;
+    priceEl.textContent = formatPrice(p.price);
+    btn.textContent = "افزودن سریع";
+    btn.onclick = () => addToCart(p.id);
+  }else if(pageId === "v2box"){
+    const p = V2BOX_PLANS.find(x => x.special) || V2BOX_PLANS[0];
+    titleEl.textContent = `${p.icon} ${p.title}`;
+    priceEl.textContent = `از ${formatPrice(GB_OPTIONS[0] * p.pricePerGB)}`;
+    btn.textContent = "مشاهده پلن";
+    btn.onclick = () => document.getElementById(p.id)?.closest(".card")?.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+
+  bar.classList.add("show");
+  cartBtn?.classList.add("raised");
+}
+
+/* ================= PWA ================= */
+
+function registerServiceWorker(){
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
 }
 </script>
 
