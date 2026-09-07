@@ -1,31 +1,946 @@
-V2GURD
-SECURE • FAST • PREMIUM
-☰
-V2GURD
-تلگرام
-🛡️ V2GURD • SECURE NETWORK
-اینترنت سریع، پایدار و امن
-سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت، پایداری، امنیت و اتصال مطمئن.
-مشاهده سرویس‌ها
-🛒 سبد خرید
-⭐ ویژه • پرفروش • پیشنهادی
-🟣 وایرگارد | تک‌کاربره
-🚀 سرعت فضایی، اتصال پایدار و IP ثابت. یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD برای اتصال سریع و مطمئن.
-⭐ مشاهده پلن‌های وایرگارد
-دسته‌بندی خدمات
-هر دسته سرویس‌های مخصوص خودش را دارد
-99%
-پایداری سرویس
-24/7
-پشتیبانی
-IP
-ثابت
-⚡
-سرعت بالا
-سوالات متداول
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050914">
+<title>V2GURD | Secure • Fast • Premium</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
 
-🛒0
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050914;--card:#0b1425;--blue:#168cff;--purple:#8b5cf6;
+  --text:#f5f9ff;--muted:#91a2bb;--border:rgba(80,150,255,.18);--green:#19d98b;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vazirmatn',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden;
+  background:radial-gradient(circle at 15% 10%,rgba(22,140,255,.12),transparent 30%),
+    radial-gradient(circle at 85% 20%,rgba(139,92,246,.10),transparent 28%),var(--bg);
+}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
-V2GURD
-Secure • Fast • Premium
-© 2026 V2GURD
+/* INTRO */
+#intro{position:fixed;inset:0;z-index:99999;background:#030711;display:flex;align-items:center;justify-content:center;transition:.8s ease}
+.intro-logo{font-size:clamp(42px,12vw,90px);font-weight:900;letter-spacing:8px;text-align:center;
+  background:linear-gradient(90deg,#fff,#168cff,#8b5cf6);-webkit-background-clip:text;color:transparent;
+  animation:logoGlow 2s infinite alternate}
+.intro-sub{color:#8094b3;font-size:12px;letter-spacing:5px;margin-top:10px;text-align:center}
+@keyframes logoGlow{from{filter:drop-shadow(0 0 5px rgba(22,140,255,.2))}to{filter:drop-shadow(0 0 28px rgba(22,140,255,.65))}}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:500;background:rgba(5,9,20,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav{max-width:1200px;margin:auto;min-height:70px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px;color:#fff;cursor:pointer}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:5px}
+.nav-links button{border:0;background:transparent;color:#aebbd0;padding:10px 11px;border-radius:10px;transition:.25s}
+.nav-links button:hover,.nav-links button.active{color:#fff;background:rgba(22,140,255,.12)}
+.menu-btn{display:none;font-size:23px;background:none;border:0;color:#fff}
+
+/* GENERAL */
+.container{max-width:1200px;margin:auto;padding:0 18px}
+.page{display:none;animation:pageIn .35s ease}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.section{padding:70px 0}
+.section-title{text-align:center;margin-bottom:35px}
+.section-title h2{font-size:clamp(25px,5vw,38px);font-weight:900}
+.section-title p{color:var(--muted);margin-top:8px}
+
+.hero{min-height:610px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-content{max-width:760px;margin:auto;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;
+  background:rgba(22,140,255,.09);border:1px solid rgba(22,140,255,.25);color:#7bc8ff;font-size:12px;margin-bottom:18px}
+.hero h1{font-size:clamp(38px,8vw,75px);font-weight:900;line-height:1.1}
+.hero h1 span{background:linear-gradient(90deg,#168cff,#8b5cf6);-webkit-background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:680px;margin:20px auto;line-height:2}
+.hero-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn{border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff;border-radius:12px;padding:11px 16px;transition:.25s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(22,140,255,.5)}
+.btn-primary{background:linear-gradient(135deg,#087df5,#12b6ff);border:0;box-shadow:0 8px 30px rgba(22,140,255,.2)}
+.btn-purple{background:linear-gradient(135deg,#6d3df0,#a66cff);border:0}
+.btn-block{width:100%}
+
+/* CATEGORY CARDS */
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.category{position:relative;overflow:hidden;min-height:245px;border-radius:22px;border:1px solid var(--border);
+  background:#08111f;cursor:pointer;transition:.3s}
+.category:hover{transform:translateY(-7px);border-color:rgba(22,140,255,.45);box-shadow:0 20px 55px rgba(0,0,0,.3)}
+.category-img{width:100%;height:145px;object-fit:cover;display:block;background:#050505}
+.category-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,9,20,1) 0%,rgba(5,9,20,.75) 35%,transparent 75%)}
+.category-content{position:absolute;right:18px;left:18px;bottom:16px}
+.category-content h3{font-size:20px;font-weight:900}
+.category-content p{color:#9aaac0;font-size:12px;margin-top:4px}
+
+/* CATEGORY HERO */
+.category-hero{position:relative;overflow:hidden;min-height:300px;display:flex;align-items:end;border-bottom:1px solid var(--border)}
+.category-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;filter:blur(1px)}
+.category-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,#050914 0%,rgba(5,9,20,.82) 45%,rgba(5,9,20,.25) 100%)}
+.category-hero-content{position:relative;z-index:2;width:100%;padding:70px 0 45px}
+.category-hero-content h1{font-size:clamp(32px,7vw,55px);font-weight:900}
+.category-hero-content p{max-width:700px;color:#9cacbf;margin-top:10px;line-height:2}
+.category-icon{width:70px;height:70px;object-fit:cover;border-radius:17px;margin-bottom:15px;border:1px solid rgba(255,255,255,.15)}
+
+/* FEATURED WIREGUARD */
+.wg-featured{position:relative;padding:2px;border-radius:24px;overflow:hidden;margin:0 auto 35px;max-width:1100px;
+  background:linear-gradient(120deg,#168cff,#8b5cf6,#00c6ff,#168cff);background-size:300% 300%;
+  animation:borderMove 5s ease infinite;box-shadow:0 0 50px rgba(22,140,255,.12),0 0 50px rgba(139,92,246,.08)}
+@keyframes borderMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.wg-inner{border-radius:22px;padding:30px;background:radial-gradient(circle at 90% 10%,rgba(139,92,246,.16),transparent 35%),
+  radial-gradient(circle at 10% 90%,rgba(22,140,255,.12),transparent 35%),#07101f}
+.feature-badge{display:inline-block;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.4);
+  color:#cbb8ff;border-radius:999px;padding:7px 13px;font-size:12px;margin-bottom:15px}
+.wg-inner h2{font-size:clamp(24px,5vw,36px)}
+.wg-inner h2 span{color:#a98aff}
+.wg-inner p{color:#9eafc7;line-height:2;margin:12px 0 20px}
+.wg-points{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.wg-point{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:10px;font-size:12px;color:#b8c7da}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{border:1px solid var(--border);border-radius:18px;padding:22px;transition:.25s;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),var(--card)}
+.card:hover{transform:translateY(-5px);border-color:rgba(22,140,255,.4);box-shadow:0 15px 45px rgba(0,0,0,.25)}
+.card h3{font-size:19px;margin-bottom:8px}
+.card .subtitle{color:var(--muted);font-size:13px;line-height:1.9;min-height:55px}
+.price{font-size:21px;font-weight:900;margin:17px 0}
+.price small{font-size:11px;color:var(--muted);font-weight:400}
+.special-card{border-color:rgba(139,92,246,.4);box-shadow:0 0 30px rgba(139,92,246,.07)}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:var(--green);margin-bottom:13px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+
+.select{width:100%;padding:12px;border-radius:11px;background:#081222;color:#fff;border:1px solid var(--border);outline:none;margin:10px 0}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.stat{text-align:center;padding:24px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:16px}
+.stat strong{display:block;font-size:27px;color:#6bc4ff}
+.stat span{color:var(--muted);font-size:12px}
+
+/* INFO */
+.info-box{max-width:900px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px}
+.info-box h2{margin-bottom:18px}
+.info-box p,.info-box li{color:#a8b6ca;line-height:2.1;font-size:14px}
+.info-box ul{padding-right:22px}
+
+/* STEPS */
+.step{display:flex;gap:15px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.step:last-child{border-bottom:0}
+.step-num{min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;
+  background:rgba(22,140,255,.12);color:#66c2ff;font-weight:900}
+
+/* FAQ */
+.faq{max-width:850px;margin:auto}
+.faq-item{border:1px solid var(--border);border-radius:13px;margin-bottom:10px;overflow:hidden;background:rgba(255,255,255,.025)}
+.faq-q{width:100%;padding:17px;border:0;background:none;color:#fff;text-align:right;display:flex;justify-content:space-between;font-size:14px}
+.faq-a{display:none;padding:0 17px 17px;color:var(--muted);font-size:13px;line-height:2}
+.faq-item.open .faq-a{display:block}
+
+/* CART */
+.cart-float{position:fixed;left:18px;bottom:18px;z-index:400;width:58px;height:58px;border-radius:50%;
+  border:1px solid rgba(22,140,255,.45);background:linear-gradient(135deg,#087df5,#0baaff);color:#fff;
+  box-shadow:0 12px 35px rgba(0,0,0,.4);font-size:21px}
+.cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:20px;
+  background:#ff3e65;font-size:10px;display:flex;align-items:center;justify-content:center}
+.cart-panel{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(7px);z-index:1000;
+  display:none;align-items:flex-end;justify-content:center}
+.cart-panel.show{display:flex}
+.cart-box{width:min(650px,100%);max-height:90vh;overflow:auto;background:#07101e;border:1px solid var(--border);
+  border-radius:22px 22px 0 0;padding:22px}
+.cart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.close{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff}
+.cart-item{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.cart-item small{color:var(--muted)}
+.cart-actions{display:flex;gap:7px;align-items:center}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:#0d192b;color:#fff}
+.summary{margin-top:18px;padding-top:15px;border-top:1px solid var(--border)}
+.sum-row{display:flex;justify-content:space-between;padding:7px 0;color:#aab8cc}
+.sum-final{color:#fff;font-size:19px;font-weight:900}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;padding:15px}
+.modal.show{display:flex}
+.modal-box{width:min(560px,100%);max-height:90vh;overflow:auto;background:#07101e;border:1px solid var(--border);border-radius:20px;padding:25px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.card-number{font-size:25px;font-weight:900;letter-spacing:2px;text-align:center;padding:20px 5px;
+  background:rgba(22,140,255,.07);border:1px solid rgba(22,140,255,.2);border-radius:14px;margin:15px 0;direction:ltr}
+.form-input{width:100%;padding:13px;border-radius:11px;border:1px solid var(--border);background:#091424;color:#fff;outline:none;margin:7px 0}
+
+/* TOAST */
+#toast{position:fixed;top:85px;left:50%;transform:translate(-50%,-20px);z-index:9999;background:#0d1a2c;
+  border:1px solid rgba(22,140,255,.35);color:#fff;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;
+  transition:.3s;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* FOOTER */
+footer{margin-top:50px;padding:35px 18px;border-top:1px solid var(--border);text-align:center;color:#73849e;font-size:12px}
+.footer-logo{color:#fff;font-size:22px;font-weight:900;margin-bottom:8px}
+.footer-logo span{color:var(--blue)}
+
+/* MOBILE */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .categories{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none;position:absolute;top:70px;right:12px;left:12px;padding:10px;flex-direction:column;
+    align-items:stretch;background:#07101e;border:1px solid var(--border);border-radius:15px}
+  .nav-links.show{display:flex}
+  .menu-btn{display:block}
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .hero{min-height:530px}
+  .wg-inner{padding:22px}
+  .stats{grid-template-columns:1fr 1fr}
+  .section{padding:55px 0}
+  .category{min-height:230px}
+  .category-img{height:140px}
+  .category-hero{min-height:270px}
+}
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <div>
+    <div class="intro-logo">V2GURD</div>
+    <div class="intro-sub">SECURE • FAST • PREMIUM</div>
+  </div>
+</div>
+
+<header>
+<nav class="nav">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="logo" onclick="showPage('home')">V2<span>GURD</span></div>
+  <div class="nav-links" id="navLinks">
+    <button onclick="showPage('home')">خانه</button>
+    <button onclick="showPage('wireguard')">WireGuard</button>
+    <button onclick="showPage('v2box')">V2Box</button>
+    <button onclick="showPage('jumpjump')">JumpJump</button>
+    <button onclick="showPage('guide')">آموزش</button>
+    <button onclick="showPage('rules')">قوانین</button>
+    <button onclick="showPage('bot')">ربات</button>
+    <button onclick="showPage('support')">پشتیبانی</button>
+  </div>
+  <div class="nav-actions">
+    <a class="btn btn-primary" href="https://t.me/Vtwoguard" target="_blank">تلگرام</a>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge">🛡️ V2GURD • SECURE NETWORK</div>
+        <h1>اینترنت سریع، <span>پایدار و امن</span></h1>
+        <p>سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت، پایداری، امنیت و اتصال مطمئن.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="showPage('wireguard')">مشاهده سرویس‌ها</button>
+          <button class="btn" onclick="openCart()">🛒 سبد خرید</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="wg-featured">
+      <div class="wg-inner">
+        <div class="feature-badge">⭐ ویژه • پرفروش • پیشنهادی</div>
+        <h2>🟣 وایرگارد <span>| تک‌کاربره</span></h2>
+        <p>🚀 سرعت فضایی، اتصال پایدار و IP ثابت. یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD برای اتصال سریع و مطمئن.</p>
+        <div class="wg-points" id="wgPoints"></div>
+        <button class="btn btn-primary" onclick="showPage('wireguard')">⭐ مشاهده پلن‌های وایرگارد</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>دسته‌بندی خدمات</h2><p>هر دسته سرویس‌های مخصوص خودش را دارد</p></div>
+      <div class="categories" id="categoriesGrid"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><strong>99%</strong><span>پایداری سرویس</span></div>
+        <div class="stat"><strong>24/7</strong><span>پشتیبانی</span></div>
+        <div class="stat"><strong>IP</strong><span>ثابت</span></div>
+        <div class="stat"><strong>⚡</strong><span>سرعت بالا</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>سوالات متداول</h2></div>
+      <div class="faq" id="faqList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WIREGUARD -->
+<section id="wireguard" class="page">
+  <div class="category-hero">
+    <img class="category-hero-img" id="wgHeroImg" alt="WireGuard">
+    <div class="category-hero-overlay"></div>
+    <div class="container">
+      <div class="category-hero-content">
+        <img class="category-icon" id="wgIcon" alt="WireGuard">
+        <h1>🟣 وایرگارد</h1>
+        <p>سرویس تک‌کاربره ویژه V2GURD با سرعت بالا، اتصال پایدار و IP ثابت.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>⭐ پلن‌های وایرگارد</h2><p>یکی از بهترین و پرفروش‌ترین سرویس‌های ما</p></div>
+      <div class="grid" id="wgGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- V2BOX -->
+<section id="v2box" class="page">
+  <div class="category-hero">
+    <img class="category-hero-img" id="v2boxHeroImg" alt="V2Box">
+    <div class="category-hero-overlay"></div>
+    <div class="container">
+      <div class="category-hero-content">
+        <img class="category-icon" id="v2boxIcon" alt="V2Box">
+        <h1>📦 V2Box</h1>
+        <p>سرویس‌های سروری V2GURD شامل CDN، حرفه‌ای، اقتصادی، معمولی و Tunnel.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>🌐 سرویس‌های V2Box</h2><p>پلن مناسب خودت رو انتخاب کن</p></div>
+      <div class="grid" id="v2boxGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- JUMPJUMP -->
+<section id="jumpjump" class="page">
+  <div class="category-hero">
+    <img class="category-hero-img" id="jjHeroImg" alt="JumpJump">
+    <div class="category-hero-overlay"></div>
+    <div class="container">
+      <div class="category-hero-content">
+        <img class="category-icon" id="jjIcon" alt="JumpJump">
+        <h1>🚀 JumpJump</h1>
+        <p>سرویس‌های اختصاصی JumpJump برای استفاده روی یک یا چند دستگاه با پلن‌های مختلف.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>🚀 پلن‌های JumpJump</h2><p>فقط سرویس‌های مربوط به JumpJump</p></div>
+      <div class="grid" id="jjGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section id="guide" class="page">
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>📚 راهنمای استفاده</h2><p>مراحل دریافت و استفاده از سرویس</p></div>
+      <div class="info-box" id="stepsList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="rules" class="page">
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>📜 قوانین خرید</h2></div>
+      <div class="info-box"><ul id="rulesList"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOT -->
+<section id="bot" class="page">
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>🤖 ربات V2GURD</h2><p>مدیریت و دریافت سرویس از طریق ربات</p></div>
+      <div class="info-box" style="text-align:center">
+        <div style="font-size:55px;margin-bottom:15px">🤖</div>
+        <h2>echo_priime_bot</h2>
+        <p>برای دریافت اطلاعات سرویس و ارتباط سریع‌تر می‌توانید از ربات تلگرام استفاده کنید.</p>
+        <br>
+        <a class="btn btn-primary" href="https://t.me/echo_priime_bot" target="_blank">ورود به ربات</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support" class="page">
+  <div class="section">
+    <div class="container">
+      <div class="section-title"><h2>🎧 پشتیبانی V2GURD</h2><p>در صورت وجود مشکل با ما در ارتباط باشید</p></div>
+      <div class="info-box">
+        <h2>ایجاد تیکت پشتیبانی</h2>
+        <input class="form-input" id="supportName" placeholder="نام شما">
+        <input class="form-input" id="supportProblem" placeholder="موضوع یا مشکل">
+        <br>
+        <button class="btn btn-primary" onclick="createTicket()">ارسال درخواست پشتیبانی</button>
+        <br><br>
+        <a class="btn" href="https://t.me/Vtwoguard" target="_blank">💬 ارتباط مستقیم در تلگرام</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<button class="cart-float" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></button>
+
+<div class="cart-panel" id="cartPanel" onclick="outsideCart(event)">
+  <div class="cart-box">
+    <div class="cart-head">
+      <h2>🛒 سبد خرید</h2>
+      <button class="close" onclick="closeCart()">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="summary">
+      <div class="sum-row"><span>مبلغ:</span><span id="subtotal">۰ تومان</span></div>
+      <div class="sum-row"><span>تخفیف:</span><span id="discount">۰ تومان</span></div>
+      <div class="sum-row sum-final"><span>مبلغ نهایی:</span><span id="finalTotal">۰ تومان</span></div>
+      <input class="form-input" id="coupon" placeholder="کد تخفیف">
+      <button class="btn btn-block" onclick="applyCoupon()">اعمال کد تخفیف</button>
+      <br><br>
+      <button class="btn btn-primary btn-block" onclick="startCheckout()">ادامه و پرداخت</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="rulesModal">
+  <div class="modal-box">
+    <div class="modal-head"><h2>📜 تأیید قوانین</h2><button class="close" onclick="closeModal('rulesModal')">×</button></div>
+    <p style="color:#a8b6ca;line-height:2">قوانین خرید را مطالعه کردم و مشخصات سرویس انتخاب‌شده را بررسی کرده‌ام.</p>
+    <br>
+    <button class="btn btn-primary btn-block" onclick="confirmRules()">تأیید قوانین و ادامه</button>
+  </div>
+</div>
+
+<div class="modal" id="invoiceModal">
+  <div class="modal-box">
+    <div class="modal-head"><h2>🧾 فاکتور سفارش</h2><button class="close" onclick="closeModal('invoiceModal')">×</button></div>
+    <div id="invoiceContent" style="line-height:2;color:#aebbd0"></div>
+    <br>
+    <button class="btn btn-primary btn-block" onclick="openPayment()">ادامه به پرداخت</button>
+  </div>
+</div>
+
+<div class="modal" id="paymentModal">
+  <div class="modal-box">
+    <div class="modal-head"><h2>💳 پرداخت</h2><button class="close" onclick="closeModal('paymentModal')">×</button></div>
+    <p style="color:#9eafc7;line-height:2">مبلغ سفارش را به شماره کارت زیر واریز کنید و سپس رسید پرداخت را ارسال نمایید.</p>
+    <div class="card-number">6219 8618 4163 5526</div>
+    <div style="text-align:center;color:#aebbd0">
+      <b style="color:#fff">نام صاحب کارت:</b> نامی<br>
+      <b style="color:#fff">بانک:</b> BLU / بلو بانک
+    </div>
+    <br>
+    <button class="btn btn-block" onclick="copyCard()">📋 کپی شماره کارت</button>
+    <br><br>
+    <button class="btn btn-primary btn-block" onclick="sendReceipt()">📤 ارسال رسید در تلگرام</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<footer>
+  <div class="footer-logo">V2<span>GURD</span></div>
+  <p>Secure • Fast • Premium</p>
+  <p style="margin-top:8px">© 2026 V2GURD</p>
+</footer>
+
+<script>
+/* ================= DATA ================= */
+
+const IMG = {
+  wireguard:"https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd",
+  v2box:"https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA",
+  jumpjump:"https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA"
+};
+
+const CATEGORIES = [
+  {id:"wireguard",icon:"🟣",title:"WireGuard",desc:"تک‌کاربره • IP ثابت • سرعت بالا"},
+  {id:"v2box",icon:"📦",title:"V2Box",desc:"CDN • حرفه‌ای • اقتصادی • Tunnel"},
+  {id:"jumpjump",icon:"🚀",title:"JumpJump",desc:"سرویس چند دستگاه"}
+];
+
+const WG_POINTS = ["🚀 سرعت فضایی","⚡ بدون قطعی","🌐 IP ثابت","🔒 تک‌کاربره","📱 آیفون و اندروید","● یکی از بهترین سرورهای ما"];
+
+const WIREGUARD_PLANS = [
+  {id:"wg10",gb:10,price:149000,special:true},
+  {id:"wg20",gb:20,price:279000},
+  {id:"wg40",gb:40,price:499000},
+  {id:"wg60",gb:60,price:699000},
+  {id:"wg100",gb:100,price:999000}
+];
+
+const GB_OPTIONS = [50,100,150,200,250,300,400,500];
+
+const V2BOX_PLANS = [
+  {id:"economicPlan",type:"اقتصادی",icon:"💠",title:"سرور اقتصادی",status:"موجود",pricePerGB:2000,
+    desc:["مناسب مصرف روزمره","قیمت اقتصادی","حجم قابل انتخاب"],btn:"btn-primary"},
+  {id:"normalPlan",type:"معمولی",icon:"⚡",title:"سرور معمولی",status:"موجود",pricePerGB:1500,
+    desc:["سرعت مناسب","اتصال پایدار","مناسب استفاده روزمره"],btn:"btn-primary"},
+  {id:"cdnPlan",type:"CDN",icon:"🚀",title:"CDN",status:"ویژه",pricePerGB:1500,special:true,
+    desc:["اتصال سریع","مناسب مصرف بالا","مسیر بهینه"],btn:"btn-primary"},
+  {id:"tunnelPlan",type:"Tunnel",icon:"🔗",title:"Tunnel",status:"موجود",pricePerGB:2500,
+    desc:["مسیر تونلی","مناسب اتصال پایدار","سرویس پرسرعت"],btn:"btn-primary"},
+  {id:"proPlan",type:"حرفه‌ای",icon:"👑",title:"سرور حرفه‌ای",status:"حرفه‌ای",pricePerGB:3000,special:true,
+    desc:["مناسب مصرف سنگین","سرعت بالا","سرویس حرفه‌ای V2GURD"],btn:"btn-purple"}
+];
+
+const JUMPJUMP_PLANS = [
+  {id:"jj1",devices:1,months:1,price:700000,status:"موجود"},
+  {id:"jj2",devices:2,months:1,price:999000,status:"موجود"},
+  {id:"jj6",devices:2,months:6,price:4600000,special:true,status:"پیشنهاد ویژه"},
+  {id:"jj12",devices:2,months:12,price:5500000,special:true,status:"بهترین ارزش خرید"}
+];
+
+const FAQS = [
+  {q:"سرویس‌ها IP ثابت دارند؟",a:"سرویس وایرگارد تک‌کاربره دارای IP ثابت است."},
+  {q:"سرویس روی آیفون و اندروید کار می‌کند؟",a:"بله، سرویس‌های مناسب موبایل روی آیفون و اندروید قابل استفاده هستند."},
+  {q:"بعد از خرید چطور سرویس را دریافت کنم؟",a:"بعد از پرداخت، رسید خود را از طریق تلگرام ارسال کنید تا اطلاعات سرویس برای شما ارسال شود."}
+];
+
+const STEPS = [
+  {title:"انتخاب سرویس",desc:"از دسته‌بندی موردنظر سرویس خود را انتخاب کنید و به سبد خرید اضافه کنید."},
+  {title:"بررسی سبد خرید",desc:"سرویس‌ها و مبلغ نهایی را بررسی کنید."},
+  {title:"پرداخت",desc:"مبلغ را به کارت اعلام‌شده انتقال دهید."},
+  {title:"ارسال رسید",desc:"رسید پرداخت را از طریق تلگرام ارسال کنید تا سرویس برای شما ارسال شود."}
+];
+
+const RULES = [
+  "قبل از خرید، مشخصات سرویس را به دقت بررسی کنید.",
+  "پس از فعال‌سازی سرویس، امکان تغییر پلن طبق شرایط سرویس انجام می‌شود.",
+  "اطلاعات سرویس را در اختیار افراد دیگر قرار ندهید.",
+  "مسئولیت استفاده نادرست از سرویس بر عهده خریدار است.",
+  "برای پیگیری سفارش، حتماً شماره سفارش را نگه دارید."
+];
+
+const CARD_NUMBER = "6219861841635526";
+const TELEGRAM = "https://t.me/Vtwoguard";
+
+const PRODUCTS = {};
+WIREGUARD_PLANS.forEach(p=>{
+  PRODUCTS[p.id] = {name:`🟣 وایرگارد — ${toFa(p.gb)} گیگ / ۳۰ روز`, price:p.price};
+});
+JUMPJUMP_PLANS.forEach(p=>{
+  PRODUCTS[p.id] = {name:`🚀 JumpJump — ${toFa(p.devices)} دستگاه / ${toFa(p.months)} ماه`, price:p.price};
+});
+
+/* ================= HELPERS ================= */
+
+function toFa(n){
+  return String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+}
+function formatPrice(n){
+  return Number(n).toLocaleString("fa-IR") + " تومان";
+}
+function el(html){
+  const t = document.createElement("template");
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+}
+
+/* ================= RENDER STATIC SECTIONS ================= */
+
+function renderCategories(){
+  document.getElementById("categoriesGrid").innerHTML = CATEGORIES.map(c => `
+    <div class="category" onclick="showPage('${c.id}')">
+      <img class="category-img" src="${IMG[c.id]}" alt="${c.title}">
+      <div class="category-overlay"></div>
+      <div class="category-content"><h3>${c.icon} ${c.title}</h3><p>${c.desc}</p></div>
+    </div>`).join("");
+}
+
+function renderWgPoints(){
+  document.getElementById("wgPoints").innerHTML = WG_POINTS.map(p => `<div class="wg-point">${p}</div>`).join("");
+}
+
+function renderFaq(){
+  document.getElementById("faqList").innerHTML = FAQS.map(f => `
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">${f.q}<span>＋</span></button>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join("");
+}
+
+function renderCategoryHeroes(){
+  [["wg",IMG.wireguard],["v2box",IMG.v2box],["jj",IMG.jumpjump]].forEach(([prefix,img])=>{
+    document.getElementById(prefix+"HeroImg").src = img;
+    document.getElementById(prefix+"Icon").src = img;
+  });
+}
+
+function renderWireguardPlans(){
+  document.getElementById("wgGrid").innerHTML = WIREGUARD_PLANS.map(p => `
+    <div class="card ${p.special?"special-card":""}">
+      <div class="status"><i></i>موجود و فعال</div>
+      <h3>🟣 وایرگارد — ${toFa(p.gb)} گیگ</h3>
+      <div class="subtitle">تک‌کاربره<br>۳۰ روز اعتبار<br>IP ثابت</div>
+      <div class="price">${Number(p.price).toLocaleString("fa-IR")}<small>تومان</small></div>
+      <button class="btn btn-primary" onclick="addToCart('${p.id}')">افزودن به سبد</button>
+    </div>`).join("");
+}
+
+function renderV2BoxPlans(){
+  document.getElementById("v2boxGrid").innerHTML = V2BOX_PLANS.map(p => `
+    <div class="card ${p.special?"special-card":""}">
+      <div class="status"><i></i>${p.status}</div>
+      <h3>${p.icon} ${p.title}</h3>
+      <div class="subtitle">${p.desc.join("<br>")}</div>
+      <select class="select" id="${p.id}">
+        ${GB_OPTIONS.map(gb => `<option value="${gb}">${toFa(gb)} گیگ — ${formatPrice(gb*p.pricePerGB)}</option>`).join("")}
+      </select>
+      <button class="btn ${p.btn}" onclick="buyServer('${p.type}','${p.id}',${p.pricePerGB})">افزودن به سبد</button>
+    </div>`).join("");
+}
+
+function renderJumpjumpPlans(){
+  document.getElementById("jjGrid").innerHTML = JUMPJUMP_PLANS.map(p => `
+    <div class="card ${p.special?"special-card":""}">
+      <div class="status"><i></i>${p.status}</div>
+      <h3>🚀 JumpJump</h3>
+      <div class="subtitle">${toFa(p.devices)} دستگاه<br>${toFa(p.months)} ماه</div>
+      <div class="price">${Number(p.price).toLocaleString("fa-IR")}<small>تومان</small></div>
+      <button class="btn ${p.special?"btn-purple":"btn-primary"}" onclick="addToCart('${p.id}')">افزودن به سبد</button>
+    </div>`).join("");
+}
+
+function renderSteps(){
+  document.getElementById("stepsList").innerHTML = STEPS.map((s,i) => `
+    <div class="step">
+      <div class="step-num">${toFa(i+1)}</div>
+      <div><h3>${s.title}</h3><p>${s.desc}</p></div>
+    </div>`).join("");
+}
+
+function renderRules(){
+  document.getElementById("rulesList").innerHTML = RULES.map(r => `<li>${r}</li>`).join("");
+}
+
+/* ================= CART STATE ================= */
+
+let cart = JSON.parse(localStorage.getItem("v2gurd_cart") || "{}");
+let discountPercent = 0;
+let currentOrder = null;
+
+/* ================= INIT ================= */
+
+window.addEventListener("load", () => {
+  renderCategories();
+  renderWgPoints();
+  renderFaq();
+  renderCategoryHeroes();
+  renderWireguardPlans();
+  renderV2BoxPlans();
+  renderJumpjumpPlans();
+  renderSteps();
+  renderRules();
+  updateCart();
+
+  setTimeout(() => {
+    const intro = document.getElementById("intro");
+    intro.style.opacity = "0";
+    setTimeout(() => intro.style.display = "none", 800);
+  }, 1200);
+});
+
+/* ================= NAVIGATION ================= */
+
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id)?.classList.add("active");
+  window.scrollTo({top:0, behavior:"smooth"});
+  document.getElementById("navLinks").classList.remove("show");
+}
+
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
+}
+
+/* ================= TOAST ================= */
+
+function toast(message){
+  const t = document.getElementById("toast");
+  t.textContent = message;
+  t.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => t.classList.remove("show"), 2500);
+}
+
+/* ================= CART LOGIC ================= */
+
+function addToCart(id){
+  if(!PRODUCTS[id]) return;
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  toast("محصول به سبد خرید اضافه شد ✅");
+}
+
+function buyServer(type, selectId, pricePerGB){
+  const gb = Number(document.getElementById(selectId).value);
+  const price = gb * pricePerGB;
+  const id = `server_${type}_${gb}_${Date.now()}`;
+  PRODUCTS[id] = {name:`📦 ${type} — ${toFa(gb)} گیگ`, price};
+  addToCart(id);
+}
+
+function saveCart(){
+  localStorage.setItem("v2gurd_cart", JSON.stringify(cart));
+  updateCart();
+}
+
+function changeQty(id, change){
+  if(!cart[id]) return;
+  cart[id] += change;
+  if(cart[id] <= 0) delete cart[id];
+  saveCart();
+}
+
+function removeFromCart(id){
+  delete cart[id];
+  saveCart();
+  toast("محصول حذف شد");
+}
+
+function updateCart(){
+  const container = document.getElementById("cartItems");
+  const count = document.getElementById("cartCount");
+  let totalItems = 0, subtotal = 0;
+  container.innerHTML = "";
+
+  Object.keys(cart).forEach(id => {
+    const qty = Number(cart[id]);
+    if(!qty || !PRODUCTS[id]){ delete cart[id]; return; }
+    const product = PRODUCTS[id];
+    totalItems += qty;
+    subtotal += product.price * qty;
+    container.appendChild(el(`
+      <div class="cart-item">
+        <div><div>${product.name}</div><small>${formatPrice(product.price)}</small></div>
+        <div class="cart-actions">
+          <div class="qty">
+            <button onclick="changeQty('${id}',-1)">−</button>
+            <span>${qty}</span>
+            <button onclick="changeQty('${id}',1)">+</button>
+          </div>
+          <button class="close" onclick="removeFromCart('${id}')">×</button>
+        </div>
+      </div>`));
+  });
+
+  const discount = Math.round(subtotal * discountPercent / 100);
+  const final = subtotal - discount;
+
+  count.textContent = totalItems.toLocaleString("fa-IR");
+  document.getElementById("subtotal").textContent = formatPrice(subtotal);
+  document.getElementById("discount").textContent = formatPrice(discount);
+  document.getElementById("finalTotal").textContent = formatPrice(final);
+
+  if(totalItems === 0){
+    container.innerHTML = `<div style="text-align:center;padding:35px 10px;color:#8292aa">🛒 سبد خرید خالی است</div>`;
+  }
+
+  localStorage.setItem("v2gurd_cart", JSON.stringify(cart));
+}
+
+function openCart(){
+  document.getElementById("cartPanel").classList.add("show");
+  updateCart();
+}
+function closeCart(){
+  document.getElementById("cartPanel").classList.remove("show");
+}
+function outsideCart(e){
+  if(e.target === document.getElementById("cartPanel")) closeCart();
+}
+
+/* ================= COUPON ================= */
+
+function applyCoupon(){
+  const code = document.getElementById("coupon").value.trim().toUpperCase();
+  if(code === "V2G10"){
+    discountPercent = 10;
+    toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
+  }else{
+    discountPercent = 0;
+    toast("کد تخفیف معتبر نیست ❌");
+  }
+  updateCart();
+}
+
+/* ================= CHECKOUT FLOW ================= */
+
+function startCheckout(){
+  if(Object.keys(cart).length === 0){
+    toast("سبد خرید خالی است ❌");
+    return;
+  }
+  document.getElementById("rulesModal").classList.add("show");
+}
+
+function closeModal(id){
+  document.getElementById(id).classList.remove("show");
+}
+
+function confirmRules(){
+  closeModal("rulesModal");
+  createInvoice();
+}
+
+function createOrderId(prefix = "V2G", digits = 4){
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,"0");
+  const day = String(d.getDate()).padStart(2,"0");
+  const min = Math.pow(10, digits-1);
+  const random = Math.floor(min + Math.random()*min*9);
+  return `${prefix}-${y}${m}${day}-${random}`;
+}
+
+function createInvoice(){
+  const orderId = createOrderId();
+  let subtotal = 0;
+  let rows = "";
+
+  Object.keys(cart).forEach(id => {
+    if(!PRODUCTS[id]) return;
+    const product = PRODUCTS[id];
+    const qty = cart[id];
+    const total = product.price * qty;
+    subtotal += total;
+    rows += `
+      <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+        <span>${product.name} × ${qty}</span>
+        <span>${formatPrice(total)}</span>
+      </div>`;
+  });
+
+  const discount = Math.round(subtotal * discountPercent / 100);
+  const final = subtotal - discount;
+
+  document.getElementById("invoiceContent").innerHTML = `
+    <div style="background:rgba(22,140,255,.06);border:1px solid rgba(22,140,255,.15);padding:15px;border-radius:13px;margin-bottom:15px">
+      <b style="color:#fff">شماره سفارش:</b> ${orderId}
+    </div>
+    ${rows}
+    <div style="margin-top:15px">
+      <div class="sum-row"><span>مبلغ:</span><span>${formatPrice(subtotal)}</span></div>
+      <div class="sum-row"><span>تخفیف:</span><span>${formatPrice(discount)}</span></div>
+      <div class="sum-row sum-final"><span>نهایی:</span><span>${formatPrice(final)}</span></div>
+    </div>`;
+
+  currentOrder = {id:orderId, subtotal, discount, total:final};
+  document.getElementById("invoiceModal").classList.add("show");
+}
+
+function openPayment(){
+  closeModal("invoiceModal");
+  document.getElementById("paymentModal").classList.add("show");
+}
+
+function copyCard(){
+  navigator.clipboard.writeText(CARD_NUMBER)
+    .then(() => toast("شماره کارت کپی شد ✅"))
+    .catch(() => toast("کپی انجام نشد"));
+}
+
+function sendReceipt(){
+  if(!currentOrder) return;
+
+  let productsText = "";
+  Object.keys(cart).forEach(id => {
+    if(!PRODUCTS[id]) return;
+    productsText += `• ${PRODUCTS[id].name} × ${cart[id]}\n`;
+  });
+
+  const message = `سلام V2GURD 👋
+
+🧾 سفارش جدید
+
+شماره سفارش:
+${currentOrder.id}
+
+محصولات:
+${productsText}
+💰 مبلغ:
+${formatPrice(currentOrder.subtotal)}
+
+🎁 تخفیف:
+${formatPrice(currentOrder.discount)}
+
+💳 مبلغ نهایی:
+${formatPrice(currentOrder.total)}
+
+📸 رسید پرداخت را در همین چت ارسال می‌کنم.
+
+ممنون از V2GURD 🙏`;
+
+  window.open(TELEGRAM + "?text=" + encodeURIComponent(message), "_blank");
+}
+
+/* ================= SUPPORT TICKET ================= */
+
+function createTicket(){
+  const name = document.getElementById("supportName").value.trim();
+  const problem = document.getElementById("supportProblem").value.trim();
+
+  if(!name || !problem){
+    toast("لطفاً اطلاعات را کامل کنید ❌");
+    return;
+  }
+
+  const ticket = createOrderId("TKT", 6);
+
+  const message = `سلام V2GURD 👋
+
+🎧 درخواست پشتیبانی
+
+شماره تیکت:
+${ticket}
+
+👤 نام:
+${name}
+
+❗ مشکل:
+${problem}`;
+
+  window.open(TELEGRAM + "?text=" + encodeURIComponent(message), "_blank");
+  toast("تیکت ایجاد شد: " + ticket);
+}
+
+/* ================= FAQ TOGGLE ================= */
+
+function toggleFaq(button){
+  button.parentElement.classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
