@@ -1,0 +1,2450 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#03060d">
+<meta name="description" content="V2GURD Service Status">
+
+<title>V2GURD | وضعیت سرویس</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#02040a;
+    --panel:rgba(7,12,23,.78);
+    --panel2:rgba(10,17,31,.72);
+    --line:rgba(0,229,255,.16);
+    --cyan:#00e5ff;
+    --blue:#008cff;
+    --green:#00ff9d;
+    --red:#ff3158;
+    --yellow:#ffd166;
+    --text:#edfaff;
+    --muted:#7890a6;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:'Vazirmatn',sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 50% -10%,rgba(0,229,255,.12),transparent 35%),
+        radial-gradient(circle at 100% 50%,rgba(0,100,255,.08),transparent 35%),
+        radial-gradient(circle at 0 80%,rgba(0,255,157,.05),transparent 30%),
+        #02040a;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+.bg-grid{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    opacity:.22;
+    background-image:
+        linear-gradient(rgba(0,229,255,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,229,255,.08) 1px,transparent 1px);
+    background-size:45px 45px;
+    transform:perspective(500px) rotateX(55deg) scale(1.8);
+    transform-origin:center bottom;
+    animation:gridMove 9s linear infinite;
+}
+
+@keyframes gridMove{
+    from{background-position:0 0,0 0}
+    to{background-position:0 45px,45px 0}
+}
+
+.noise{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    pointer-events:none;
+    opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+.scanline{
+    position:fixed;
+    left:0;
+    right:0;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    box-shadow:0 0 15px var(--cyan),0 0 35px var(--cyan);
+    opacity:.25;
+    z-index:20;
+    pointer-events:none;
+    animation:scan 5s linear infinite;
+}
+
+@keyframes scan{
+    0%{top:-5%}
+    100%{top:105%}
+}
+
+.orb{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(70px);
+    pointer-events:none;
+    z-index:-2;
+}
+
+.orb.one{
+    width:280px;
+    height:280px;
+    background:rgba(0,229,255,.08);
+    top:15%;
+    left:-100px;
+    animation:orb1 8s ease-in-out infinite alternate;
+}
+
+.orb.two{
+    width:250px;
+    height:250px;
+    background:rgba(0,100,255,.07);
+    right:-100px;
+    bottom:10%;
+    animation:orb2 10s ease-in-out infinite alternate;
+}
+
+@keyframes orb1{
+    to{transform:translate(100px,80px)}
+}
+
+@keyframes orb2{
+    to{transform:translate(-100px,-60px)}
+}
+
+/* HEADER */
+
+header{
+    position:relative;
+    padding:24px 18px 10px;
+    max-width:1250px;
+    margin:auto;
+}
+
+.header-inner{
+    border:1px solid var(--line);
+    background:rgba(3,8,16,.72);
+    backdrop-filter:blur(18px);
+    border-radius:20px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    box-shadow:
+        0 0 35px rgba(0,229,255,.04),
+        inset 0 0 25px rgba(0,229,255,.025);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-logo{
+    width:43px;
+    height:43px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(0,229,255,.4);
+    background:rgba(0,229,255,.06);
+    color:var(--cyan);
+    font-size:18px;
+    font-weight:900;
+    box-shadow:0 0 20px rgba(0,229,255,.12);
+}
+
+.brand-name{
+    font-size:17px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.brand-sub{
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:2px;
+    margin-top:2px;
+}
+
+.live{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid rgba(0,255,157,.18);
+    background:rgba(0,255,157,.045);
+    padding:8px 12px;
+    border-radius:50px;
+    font-size:11px;
+    color:var(--green);
+}
+
+.live-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
+    animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+    50%{opacity:.35;transform:scale(.7)}
+}
+
+/* MAIN */
+
+main{
+    width:min(1250px,calc(100% - 30px));
+    margin:20px auto 70px;
+}
+
+.hero{
+    text-align:center;
+    padding:30px 10px 25px;
+}
+
+.system-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:10px;
+    color:var(--cyan);
+    border:1px solid rgba(0,229,255,.18);
+    padding:7px 12px;
+    border-radius:50px;
+    background:rgba(0,229,255,.035);
+    letter-spacing:1px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:clamp(25px,5vw,48px);
+    font-weight:900;
+    letter-spacing:-1px;
+    background:linear-gradient(90deg,#fff,var(--cyan),#fff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    background-size:200% auto;
+    animation:textFlow 4s linear infinite;
+}
+
+@keyframes textFlow{
+    to{background-position:200% center}
+}
+
+.hero p{
+    color:var(--muted);
+    margin-top:10px;
+    font-size:12px;
+}
+
+/* SEARCH */
+
+.search-panel{
+    max-width:900px;
+    margin:0 auto 25px;
+    border:1px solid rgba(0,229,255,.18);
+    background:linear-gradient(145deg,rgba(7,15,27,.9),rgba(3,8,16,.8));
+    border-radius:24px;
+    padding:18px;
+    box-shadow:0 0 50px rgba(0,229,255,.035);
+    position:relative;
+    overflow:hidden;
+}
+
+.search-panel:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:15%;
+    width:70%;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    box-shadow:0 0 15px var(--cyan);
+}
+
+.input-label{
+    font-size:11px;
+    color:#9eb6ca;
+    margin-bottom:9px;
+    display:block;
+}
+
+.input-wrap{
+    display:flex;
+    gap:9px;
+}
+
+.input-wrap input{
+    flex:1;
+    min-width:0;
+    border:1px solid rgba(0,229,255,.17);
+    outline:none;
+    background:rgba(0,0,0,.35);
+    color:#fff;
+    border-radius:13px;
+    padding:14px;
+    font-family:inherit;
+    direction:ltr;
+    font-size:12px;
+    transition:.25s;
+}
+
+.input-wrap input:focus{
+    border-color:rgba(0,229,255,.65);
+    box-shadow:0 0 20px rgba(0,229,255,.08);
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.primary-btn{
+    border:1px solid rgba(0,229,255,.5);
+    color:#001217;
+    background:var(--cyan);
+    border-radius:13px;
+    padding:0 20px;
+    font-weight:900;
+    white-space:nowrap;
+    box-shadow:0 0 22px rgba(0,229,255,.12);
+    transition:.25s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 30px rgba(0,229,255,.3);
+}
+
+.primary-btn:active{
+    transform:scale(.97);
+}
+
+.sub-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+}
+
+.action-btn{
+    border:1px solid rgba(120,160,190,.16);
+    color:#b5ccdd;
+    background:rgba(255,255,255,.025);
+    border-radius:10px;
+    padding:9px 12px;
+    font-size:10px;
+    transition:.2s;
+}
+
+.action-btn:hover{
+    color:#fff;
+    border-color:rgba(0,229,255,.35);
+    background:rgba(0,229,255,.05);
+}
+
+/* TERMINAL */
+
+.terminal{
+    max-width:900px;
+    margin:0 auto 22px;
+    border:1px solid rgba(0,229,255,.13);
+    border-radius:17px;
+    overflow:hidden;
+    background:rgba(1,5,11,.88);
+    box-shadow:0 0 40px rgba(0,0,0,.25);
+}
+
+.terminal-head{
+    height:34px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:0 12px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.t-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#53606d;
+}
+
+.terminal-title{
+    margin-right:auto;
+    margin-left:auto;
+    font-size:9px;
+    color:#5e7488;
+    letter-spacing:1px;
+}
+
+.terminal-body{
+    padding:13px;
+    min-height:75px;
+    font-family:monospace;
+    direction:ltr;
+    text-align:left;
+    font-size:10px;
+    line-height:1.9;
+    color:#78a5b8;
+}
+
+.log{
+    opacity:0;
+    animation:logIn .3s forwards;
+}
+
+.log .prompt{
+    color:var(--green);
+}
+
+.log .cyan{
+    color:var(--cyan);
+}
+
+@keyframes logIn{
+    to{opacity:1}
+}
+
+/* STATUS CARDS */
+
+#result{
+    display:none;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:25px 0 12px;
+}
+
+.section-title h2{
+    font-size:14px;
+}
+
+.section-title span{
+    font-size:9px;
+    color:var(--muted);
+    direction:ltr;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+    min-height:120px;
+    border:1px solid rgba(0,229,255,.12);
+    background:linear-gradient(145deg,rgba(10,18,32,.84),rgba(3,7,14,.85));
+    border-radius:17px;
+    padding:16px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(0,229,255,.32);
+    box-shadow:0 15px 40px rgba(0,0,0,.25),0 0 25px rgba(0,229,255,.045);
+}
+
+.card:after{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    right:-30px;
+    bottom:-35px;
+    background:rgba(0,229,255,.04);
+    filter:blur(5px);
+}
+
+.card-icon{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.card-label{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.card-value{
+    font-size:17px;
+    font-weight:900;
+    margin-top:6px;
+    word-break:break-word;
+}
+
+.card-value.green{
+    color:var(--green);
+}
+
+.card-value.yellow{
+    color:var(--yellow);
+}
+
+.card-value.red{
+    color:var(--red);
+}
+
+/* USER PANEL */
+
+.user-panel{
+    margin-top:12px;
+    border:1px solid rgba(0,229,255,.12);
+    border-radius:18px;
+    background:rgba(5,11,20,.75);
+    overflow:hidden;
+}
+
+.user-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding:14px 16px;
+    border-bottom:1px solid rgba(255,255,255,.045);
+}
+
+.user-row:last-child{
+    border-bottom:0;
+}
+
+.user-row span:first-child{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.user-row span:last-child{
+    font-size:11px;
+    font-weight:700;
+    word-break:break-all;
+}
+
+/* PROGRESS */
+
+.progress-box{
+    margin-top:12px;
+    border:1px solid rgba(0,229,255,.12);
+    border-radius:18px;
+    padding:16px;
+    background:rgba(5,11,20,.75);
+}
+
+.progress-head{
+    display:flex;
+    justify-content:space-between;
+    font-size:10px;
+    color:var(--muted);
+    margin-bottom:10px;
+}
+
+.progress-track{
+    height:8px;
+    border-radius:50px;
+    background:rgba(255,255,255,.05);
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0;
+    height:100%;
+    border-radius:50px;
+    background:linear-gradient(90deg,var(--green),var(--cyan));
+    box-shadow:0 0 15px rgba(0,229,255,.3);
+    transition:width 1s ease;
+}
+
+/* CONFIGS */
+
+.configs{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.config{
+    position:relative;
+    border:1px solid rgba(0,229,255,.12);
+    background:rgba(6,12,22,.78);
+    border-radius:17px;
+    padding:14px;
+    overflow:hidden;
+}
+
+.config:hover{
+    border-color:rgba(0,229,255,.3);
+}
+
+.config-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:11px;
+}
+
+.protocol{
+    min-width:55px;
+    text-align:center;
+    padding:5px 8px;
+    border-radius:7px;
+    font-size:9px;
+    font-weight:900;
+    color:var(--cyan);
+    border:1px solid rgba(0,229,255,.2);
+    background:rgba(0,229,255,.04);
+}
+
+.config-title{
+    font-size:11px;
+    font-weight:800;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.config-text{
+    direction:ltr;
+    text-align:left;
+    color:#657f94;
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.04);
+    border-radius:10px;
+    padding:10px;
+    font-family:monospace;
+    font-size:9px;
+    line-height:1.6;
+    max-height:68px;
+    overflow:auto;
+    word-break:break-all;
+}
+
+.config-buttons{
+    display:flex;
+    gap:7px;
+    margin-top:9px;
+}
+
+.copy-config{
+    flex:1;
+}
+
+.mini-btn{
+    border:1px solid rgba(0,229,255,.15);
+    color:#9db7c9;
+    background:rgba(255,255,255,.025);
+    border-radius:9px;
+    padding:8px 11px;
+    font-size:9px;
+}
+
+.mini-btn:hover{
+    color:#fff;
+    border-color:rgba(0,229,255,.4);
+}
+
+/* QR */
+
+.qr-section{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:14px;
+}
+
+.qr-card,
+.all-copy-card{
+    border:1px solid rgba(0,229,255,.12);
+    background:rgba(5,11,20,.78);
+    border-radius:20px;
+    padding:18px;
+}
+
+.qr-card{
+    text-align:center;
+}
+
+.qr-title{
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:13px;
+}
+
+#qrcode{
+    width:180px;
+    height:180px;
+    padding:10px;
+    margin:0 auto;
+    background:#fff;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#qrcode img{
+    max-width:100%;
+    max-height:100%;
+}
+
+.qr-empty{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#777;
+    font-size:10px;
+}
+
+.all-copy-card{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.all-copy-card h3{
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.all-copy-card p{
+    color:var(--muted);
+    font-size:10px;
+    line-height:2;
+    margin-bottom:14px;
+}
+
+.big-action{
+    border:1px solid rgba(0,229,255,.3);
+    background:rgba(0,229,255,.055);
+    color:var(--cyan);
+    border-radius:12px;
+    padding:12px;
+    font-weight:800;
+    transition:.2s;
+}
+
+.big-action:hover{
+    background:rgba(0,229,255,.1);
+    box-shadow:0 0 25px rgba(0,229,255,.08);
+}
+
+/* EMPTY / ERROR */
+
+.message{
+    max-width:900px;
+    margin:0 auto;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(5,10,18,.7);
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    color:var(--muted);
+    font-size:11px;
+    line-height:2;
+}
+
+.message.error{
+    border-color:rgba(255,49,88,.2);
+    color:#ff829a;
+    background:rgba(255,49,88,.035);
+}
+
+.message.success{
+    border-color:rgba(0,255,157,.2);
+    color:#7fffc7;
+    background:rgba(0,255,157,.035);
+}
+
+/* FOOTER */
+
+footer{
+    max-width:1250px;
+    margin:0 auto;
+    padding:20px 20px 35px;
+    text-align:center;
+    color:#405365;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.footer-line{
+    width:120px;
+    height:1px;
+    margin:0 auto 12px;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+}
+
+/* LOADER */
+
+.loader{
+    width:22px;
+    height:22px;
+    border:2px solid rgba(0,229,255,.15);
+    border-top-color:var(--cyan);
+    border-radius:50%;
+    animation:spin .7s linear infinite;
+    margin:0 auto 10px;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:22px;
+    left:50%;
+    transform:translate(-50%,20px);
+    opacity:0;
+    pointer-events:none;
+    z-index:100;
+    background:rgba(3,10,18,.95);
+    border:1px solid rgba(0,229,255,.35);
+    color:#dffaff;
+    padding:11px 18px;
+    border-radius:12px;
+    font-size:10px;
+    box-shadow:0 0 30px rgba(0,229,255,.12);
+    transition:.3s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .configs{
+        grid-template-columns:1fr;
+    }
+
+    .qr-section{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+    header{
+        padding:12px 10px 5px;
+    }
+
+    .header-inner{
+        border-radius:16px;
+        padding:12px;
+    }
+
+    .brand-logo{
+        width:38px;
+        height:38px;
+    }
+
+    .brand-name{
+        font-size:14px;
+    }
+
+    .brand-sub{
+        font-size:8px;
+    }
+
+    .live{
+        font-size:8px;
+        padding:7px 9px;
+    }
+
+    main{
+        width:calc(100% - 20px);
+        margin-top:10px;
+    }
+
+    .hero{
+        padding:25px 5px 20px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .hero p{
+        font-size:10px;
+    }
+
+    .input-wrap{
+        flex-direction:column;
+    }
+
+    .primary-btn{
+        height:45px;
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+    }
+
+    .card{
+        min-height:105px;
+        padding:13px;
+    }
+
+    .card-value{
+        font-size:14px;
+    }
+
+    .user-row{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .qr-card,
+    .all-copy-card{
+        padding:15px;
+    }
+
+    .section-title h2{
+        font-size:12px;
+    }
+}
+
+@media(max-width:380px){
+    .cards{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-grid"></div>
+<div class="noise"></div>
+<div class="scanline"></div>
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<header>
+    <div class="header-inner">
+        <div class="brand">
+            <div class="brand-logo">V2</div>
+            <div>
+                <div class="brand-name">V2GURD</div>
+                <div class="brand-sub">SECURE NETWORK SYSTEM</div>
+            </div>
+        </div>
+
+        <div class="live">
+            <span class="live-dot"></span>
+            SYSTEM ONLINE
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="system-tag">
+            <span>◉</span>
+            SECURE SERVICE MONITOR
+        </div>
+
+        <h1>وضعیت سرویس</h1>
+
+        <p>
+            اطلاعات سرویس و کانفیگ‌های خود را به‌صورت زنده بررسی کنید
+        </p>
+    </section>
+
+    <section class="search-panel">
+
+        <label class="input-label">
+            لینک Subscription خود را وارد کنید
+        </label>
+
+        <div class="input-wrap">
+
+            <input
+                id="subUrl"
+                type="text"
+                dir="ltr"
+                autocomplete="off"
+                placeholder="https://example.com/sub/..."
+            >
+
+            <button
+                class="primary-btn"
+                id="checkBtn"
+                onclick="checkService()"
+            >
+                بررسی سرویس
+            </button>
+
+        </div>
+
+        <div class="sub-actions">
+
+            <button class="action-btn" onclick="pasteUrl()">
+                📋 چسباندن لینک
+            </button>
+
+            <button class="action-btn" onclick="copySubscription()">
+                ⧉ کپی لینک
+            </button>
+
+            <button class="action-btn" onclick="clearAll()">
+                × پاک کردن
+            </button>
+
+        </div>
+
+    </section>
+
+    <section class="terminal">
+
+        <div class="terminal-head">
+            <span class="t-dot"></span>
+            <span class="t-dot"></span>
+            <span class="t-dot"></span>
+
+            <span class="terminal-title">
+                V2GURD // LIVE SECURITY TERMINAL
+            </span>
+        </div>
+
+        <div class="terminal-body" id="terminalBody">
+
+            <div class="log">
+                <span class="prompt">root@v2gurd:~$</span>
+                system_status --check
+            </div>
+
+            <div class="log">
+                <span class="cyan">[SYSTEM]</span>
+                secure monitoring interface initialized
+            </div>
+
+            <div class="log">
+                <span class="cyan">[READY]</span>
+                waiting for subscription endpoint...
+            </div>
+
+        </div>
+
+    </section>
+
+    <div id="message"></div>
+
+    <section id="result">
+
+        <div class="section-title">
+            <h2>وضعیت لحظه‌ای سرویس</h2>
+            <span id="lastUpdate">LIVE</span>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">◉</div>
+                <div class="card-label">وضعیت اتصال</div>
+                <div id="statusValue" class="card-value green">
+                    فعال
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">◈</div>
+                <div class="card-label">حجم باقی‌مانده</div>
+                <div id="trafficValue" class="card-value">
+                    —
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">◷</div>
+                <div class="card-label">زمان باقی‌مانده</div>
+                <div id="expiryValue" class="card-value">
+                    —
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⌁</div>
+                <div class="card-label">تعداد کانفیگ</div>
+                <div id="configCount" class="card-value">
+                    0
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section-title">
+            <h2>اطلاعات حساب</h2>
+            <span>USER PROFILE</span>
+        </div>
+
+        <div class="user-panel">
+
+            <div class="user-row">
+                <span>نام کاربر</span>
+                <span id="userName">—</span>
+            </div>
+
+            <div class="user-row">
+                <span>شناسه</span>
+                <span id="userId">—</span>
+            </div>
+
+            <div class="user-row">
+                <span>نوع سرویس</span>
+                <span id="serviceType">—</span>
+            </div>
+
+            <div class="user-row">
+                <span>تاریخ انقضا</span>
+                <span id="expiryFull">—</span>
+            </div>
+
+        </div>
+
+        <div class="progress-box">
+
+            <div class="progress-head">
+                <span>مصرف ترافیک</span>
+                <span id="usagePercent">—</span>
+            </div>
+
+            <div class="progress-track">
+                <div
+                    id="usageBar"
+                    class="progress-bar"
+                ></div>
+            </div>
+
+        </div>
+
+        <div class="section-title">
+            <h2>کانفیگ‌های سرویس</h2>
+            <span id="configStatus">SCANNING</span>
+        </div>
+
+        <div id="configs" class="configs"></div>
+
+        <div class="qr-section">
+
+            <div class="qr-card">
+
+                <div class="qr-title">
+                    QR اشتراک
+                </div>
+
+                <div id="qrcode">
+                    <div class="qr-empty">
+                        QR آماده نیست
+                    </div>
+                </div>
+
+                <div class="config-buttons" style="margin-top:13px">
+
+                    <button
+                        class="mini-btn"
+                        style="flex:1"
+                        onclick="downloadQR()"
+                    >
+                        دانلود QR
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="all-copy-card">
+
+                <h3>
+                    مدیریت سریع کانفیگ‌ها
+                </h3>
+
+                <p>
+                    می‌توانید تمام کانفیگ‌های دریافت‌شده را
+                    یکجا کپی کنید یا لینک Subscription را
+                    مستقیماً در کلاینت VPN خود وارد کنید.
+                </p>
+
+                <button
+                    class="big-action"
+                    onclick="copyAllConfigs()"
+                >
+                    ⧉ کپی همه کانفیگ‌ها
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <div class="footer-line"></div>
+
+    V2GURD • SECURE • FAST • STABLE
+
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+let subscriptionUrl = "";
+let configsData = [];
+let serviceData = null;
+
+
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+function terminalLog(text,type="normal"){
+
+    const terminal = document.getElementById("terminalBody");
+
+    const line = document.createElement("div");
+
+    line.className = "log";
+
+    if(type === "success"){
+        line.innerHTML =
+            '<span class="prompt">[OK]</span> ' + escapeHTML(text);
+    }
+    else if(type === "error"){
+        line.innerHTML =
+            '<span style="color:#ff3158">[ERROR]</span> ' + escapeHTML(text);
+    }
+    else{
+        line.innerHTML =
+            '<span class="cyan">[SYS]</span> ' + escapeHTML(text);
+    }
+
+    terminal.appendChild(line);
+
+    terminal.scrollTop = terminal.scrollHeight;
+
+    setTimeout(()=>{
+        line.style.opacity="1";
+    },20);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(text){
+
+    const el = document.getElementById("toast");
+
+    el.textContent = text;
+
+    el.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(()=>{
+        el.classList.remove("show");
+    },2200);
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function escapeHTML(str){
+
+    return String(str ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* =========================================================
+   PASTE
+========================================================= */
+
+async function pasteUrl(){
+
+    try{
+
+        const text = await navigator.clipboard.readText();
+
+        document.getElementById("subUrl").value = text.trim();
+
+        toast("لینک وارد شد");
+
+    }catch(e){
+
+        toast("دسترسی به کلیپ‌بورد امکان‌پذیر نیست");
+
+    }
+
+}
+
+
+/* =========================================================
+   COPY SUB
+========================================================= */
+
+async function copySubscription(){
+
+    const value = document.getElementById("subUrl").value.trim();
+
+    if(!value){
+
+        toast("ابتدا لینک Subscription را وارد کنید");
+
+        return;
+    }
+
+    await copyText(value);
+
+    toast("لینک Subscription کپی شد");
+}
+
+
+/* =========================================================
+   MAIN CHECK
+========================================================= */
+
+async function checkService(){
+
+    const input = document.getElementById("subUrl");
+
+    const url = input.value.trim();
+
+    if(!url){
+
+        showMessage(
+            "لطفاً لینک Subscription خود را وارد کنید.",
+            "error"
+        );
+
+        input.focus();
+
+        return;
+    }
+
+    subscriptionUrl = url;
+
+    const button = document.getElementById("checkBtn");
+
+    button.disabled = true;
+
+    button.innerHTML = "در حال بررسی...";
+
+    document.getElementById("result").style.display="none";
+
+    terminalLog("subscription endpoint detected");
+
+    terminalLog("establishing secure request...");
+
+    try{
+
+        const response = await fetch(url,{
+            method:"GET",
+            cache:"no-store"
+        });
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " + response.status
+            );
+
+        }
+
+        const text = await response.text();
+
+        terminalLog(
+            "subscription payload received",
+            "success"
+        );
+
+        processSubscription(text);
+
+    }catch(error){
+
+        terminalLog(
+            error.message || "request failed",
+            "error"
+        );
+
+        showMessage(
+            "دریافت Subscription انجام نشد.<br><br>" +
+            "ممکن است لینک اشتباه باشد یا سرور مقصد اجازه دسترسی مستقیم از مرورگر را ندهد (CORS).",
+            "error"
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.innerHTML = "بررسی سرویس";
+
+    }
+
+}
+
+
+/* =========================================================
+   PROCESS SUBSCRIPTION
+========================================================= */
+
+function processSubscription(raw){
+
+    raw = String(raw || "").trim();
+
+    if(!raw){
+
+        throw new Error("empty subscription");
+
+    }
+
+    configsData = parseSubscription(raw);
+
+    if(!configsData.length){
+
+        showMessage(
+            "Subscription دریافت شد اما کانفیگ قابل شناسایی پیدا نشد.",
+            "error"
+        );
+
+        return;
+    }
+
+    terminalLog(
+        configsData.length + " configuration(s) decoded",
+        "success"
+    );
+
+    renderConfigs();
+
+    generateQR();
+
+    document.getElementById("configCount").textContent =
+        configsData.length;
+
+    document.getElementById("configStatus").textContent =
+        "ONLINE / " + configsData.length;
+
+    document.getElementById("lastUpdate").textContent =
+        new Date().toLocaleTimeString("fa-IR");
+
+    document.getElementById("statusValue").textContent =
+        "فعال";
+
+    document.getElementById("statusValue").className =
+        "card-value green";
+
+    document.getElementById("result").style.display="block";
+
+    showMessage(
+        "سرویس با موفقیت دریافت و پردازش شد.",
+        "success"
+    );
+
+    /*
+       تلاش برای استخراج اطلاعات رایج
+       از Headerهای Subscription
+    */
+
+    loadHeaderInfo(subscriptionUrl);
+
+}
+
+
+/* =========================================================
+   PARSE SUBSCRIPTION
+========================================================= */
+
+function parseSubscription(raw){
+
+    let text = raw.trim();
+
+    const result = [];
+
+    /* Direct protocol lines */
+
+    const directRegex =
+        /(?:^|\n)\s*((?:vless|vmess|trojan|ss|socks|socks5|wireguard|hysteria2|hy2|tuic):\/\/[^\s\r\n]+)/gi;
+
+    let match;
+
+    while((match = directRegex.exec(text)) !== null){
+
+        result.push(match[1].trim());
+
+    }
+
+    if(result.length){
+
+        return unique(result);
+    }
+
+
+    /* Base64 */
+
+    const decoded = tryBase64Decode(text);
+
+    if(decoded){
+
+        const decodedConfigs = extractConfigs(decoded);
+
+        if(decodedConfigs.length){
+
+            return unique(decodedConfigs);
+        }
+
+        /* VMess JSON could be inside */
+        if(decoded.trim().startsWith("{")){
+
+            try{
+
+                const vmess =
+                    JSON.parse(decoded);
+
+                if(vmess.add || vmess.host){
+
+                    return [
+                        "vmess://" +
+                        btoa(unescape(encodeURIComponent(decoded)))
+                    ];
+                }
+
+            }catch(e){}
+
+        }
+
+    }
+
+
+    /* Plain text without line breaks */
+
+    const extracted = extractConfigs(text);
+
+    if(extracted.length){
+
+        return unique(extracted);
+
+    }
+
+    return [];
+}
+
+
+/* =========================================================
+   EXTRACT CONFIGS
+========================================================= */
+
+function extractConfigs(text){
+
+    const arr = [];
+
+    const regex =
+        /((?:vless|vmess|trojan|ss|socks|socks5|wireguard|hysteria2|hy2|tuic):\/\/[^\s\r\n]+)/gi;
+
+    let m;
+
+    while((m=regex.exec(text)) !== null){
+
+        arr.push(m[1].trim());
+
+    }
+
+    return unique(arr);
+
+}
+
+
+/* =========================================================
+   UNIQUE
+========================================================= */
+
+function unique(arr){
+
+    return [...new Set(
+        arr.filter(Boolean)
+    )];
+
+}
+
+
+/* =========================================================
+   BASE64
+========================================================= */
+
+function tryBase64Decode(value){
+
+    try{
+
+        let normalized =
+            value
+                .replace(/\s/g,"")
+                .replace(/-/g,"+")
+                .replace(/_/g,"/");
+
+        while(normalized.length % 4){
+            normalized += "=";
+        }
+
+        const binary =
+            atob(normalized);
+
+        let bytes =
+            new Uint8Array(binary.length);
+
+        for(let i=0;i<binary.length;i++){
+
+            bytes[i] =
+                binary.charCodeAt(i);
+
+        }
+
+        return new TextDecoder().decode(bytes);
+
+    }catch(e){
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   PROTOCOL
+========================================================= */
+
+function getProtocol(config){
+
+    const match =
+        config.match(/^([a-z0-9]+):\/\//i);
+
+    if(!match) return "CONFIG";
+
+    return match[1].toUpperCase();
+
+}
+
+
+/* =========================================================
+   CONFIG TITLE
+========================================================= */
+
+function getConfigTitle(config,index){
+
+    try{
+
+        if(config.startsWith("vless://")){
+
+            const url =
+                new URL(config);
+
+            return (
+                decodeURIComponent(
+                    url.hash.replace(/^#/,"")
+                ) ||
+                "VLESS " + (index+1)
+            );
+
+        }
+
+        if(config.startsWith("trojan://")){
+
+            const url =
+                new URL(config);
+
+            return (
+                decodeURIComponent(
+                    url.hash.replace(/^#/,"")
+                ) ||
+                "TROJAN " + (index+1)
+            );
+
+        }
+
+        if(config.startsWith("vmess://")){
+
+            return "VMESS " + (index+1);
+
+        }
+
+        if(config.startsWith("ss://")){
+
+            return "SHADOWSOCKS " + (index+1);
+
+        }
+
+        if(config.startsWith("hysteria2://") ||
+           config.startsWith("hy2://")){
+
+            return "HYSTERIA2 " + (index+1);
+
+        }
+
+        if(config.startsWith("tuic://")){
+
+            return "TUIC " + (index+1);
+
+        }
+
+        return getProtocol(config) + " " + (index+1);
+
+    }catch(e){
+
+        return getProtocol(config) + " " + (index+1);
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER CONFIGS
+========================================================= */
+
+function renderConfigs(){
+
+    const container =
+        document.getElementById("configs");
+
+    container.innerHTML="";
+
+    configsData.forEach((config,index)=>{
+
+        const box =
+            document.createElement("div");
+
+        box.className="config";
+
+        box.innerHTML=`
+
+            <div class="config-top">
+
+                <div class="protocol">
+                    ${escapeHTML(getProtocol(config))}
+                </div>
+
+                <div class="config-title">
+                    ${escapeHTML(
+                        getConfigTitle(config,index)
+                    )}
+                </div>
+
+            </div>
+
+            <div class="config-text">
+                ${escapeHTML(config)}
+            </div>
+
+            <div class="config-buttons">
+
+                <button
+                    class="mini-btn copy-config"
+                    onclick="copyConfig(${index})"
+                >
+                    ⧉ کپی کانفیگ
+                </button>
+
+                <button
+                    class="mini-btn"
+                    onclick="showConfig(${index})"
+                >
+                    مشاهده
+                </button>
+
+            </div>
+
+        `;
+
+        container.appendChild(box);
+
+    });
+
+}
+
+
+/* =========================================================
+   COPY CONFIG
+========================================================= */
+
+async function copyConfig(index){
+
+    const config =
+        configsData[index];
+
+    if(!config) return;
+
+    await copyText(config);
+
+    toast("کانفیگ کپی شد");
+
+}
+
+
+/* =========================================================
+   COPY ALL
+========================================================= */
+
+async function copyAllConfigs(){
+
+    if(!configsData.length){
+
+        toast("کانفیگی برای کپی وجود ندارد");
+
+        return;
+    }
+
+    await copyText(
+        configsData.join("\n")
+    );
+
+    toast(
+        configsData.length +
+        " کانفیگ کپی شد"
+    );
+
+}
+
+
+/* =========================================================
+   COPY TEXT
+========================================================= */
+
+async function copyText(text){
+
+    try{
+
+        await navigator.clipboard.writeText(text);
+
+    }catch(e){
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value=text;
+
+        textarea.style.position="fixed";
+        textarea.style.opacity="0";
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+
+    }
+
+}
+
+
+/* =========================================================
+   SHOW CONFIG
+========================================================= */
+
+function showConfig(index){
+
+    const config =
+        configsData[index];
+
+    if(!config) return;
+
+    const newWindow =
+        window.open(
+            "",
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+    if(!newWindow){
+
+        toast("پنجره جدید توسط مرورگر مسدود شد");
+
+        return;
+    }
+
+    newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="fa" dir="rtl">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>V2GURD Config</title>
+        <style>
+            body{
+                margin:0;
+                min-height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#02040a;
+                color:#eafaff;
+                font-family:Arial,sans-serif;
+                padding:20px;
+            }
+            .box{
+                width:min(850px,100%);
+                border:1px solid rgba(0,229,255,.25);
+                border-radius:18px;
+                padding:20px;
+                background:#070d17;
+                box-shadow:0 0 40px rgba(0,229,255,.08);
+            }
+            h2{
+                color:#00e5ff;
+                font-size:17px;
+            }
+            pre{
+                direction:ltr;
+                text-align:left;
+                white-space:pre-wrap;
+                word-break:break-all;
+                color:#9db7c9;
+                background:#02050a;
+                padding:15px;
+                border-radius:12px;
+                line-height:1.7;
+            }
+            button{
+                border:1px solid #00e5ff;
+                background:#00e5ff;
+                color:#001217;
+                padding:11px 18px;
+                border-radius:10px;
+                font-weight:bold;
+                cursor:pointer;
+            }
+        </style>
+        </head>
+        <body>
+            <div class="box">
+                <h2>V2GURD // CONFIG</h2>
+                <pre id="config">${escapeHTML(config)}</pre>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('config').innerText)">
+                    کپی کانفیگ
+                </button>
+            </div>
+        </body>
+        </html>
+    `);
+
+    newWindow.document.close();
+
+}
+
+
+/* =========================================================
+   QR
+========================================================= */
+
+function generateQR(){
+
+    const container =
+        document.getElementById("qrcode");
+
+    container.innerHTML="";
+
+    if(!subscriptionUrl){
+
+        container.innerHTML =
+            '<div class="qr-empty">QR آماده نیست</div>';
+
+        return;
+    }
+
+    new QRCode(container,{
+
+        text:subscriptionUrl,
+
+        width:160,
+
+        height:160,
+
+        colorDark:"#000000",
+
+        colorLight:"#ffffff",
+
+        correctLevel:
+            QRCode.CorrectLevel.M
+
+    });
+
+}
+
+
+/* =========================================================
+   DOWNLOAD QR
+========================================================= */
+
+function downloadQR(){
+
+    const container =
+        document.getElementById("qrcode");
+
+    const canvas =
+        container.querySelector("canvas");
+
+    const image =
+        container.querySelector("img");
+
+    let url="";
+
+    if(canvas){
+
+        url=canvas.toDataURL("image/png");
+
+    }
+    else if(image){
+
+        url=image.src;
+
+    }
+
+    if(!url){
+
+        toast("ابتدا سرویس را بررسی کنید");
+
+        return;
+    }
+
+    const a =
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download="V2GURD-Subscription-QR.png";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+}
+
+
+/* =========================================================
+   HEADER INFO
+========================================================= */
+
+async function loadHeaderInfo(url){
+
+    try{
+
+        const response =
+            await fetch(url,{
+                method:"GET",
+                cache:"no-store"
+            });
+
+        const headers =
+            response.headers;
+
+        /*
+          Headerهای رایج Subscription
+        */
+
+        const upload =
+            headers.get("subscription-userinfo") ||
+            headers.get("Subscription-Userinfo");
+
+        if(upload){
+
+            parseSubscriptionUserInfo(upload);
+
+        }
+
+    }catch(e){
+
+        /*
+          CORS یا محدودیت سرور
+          مانع ادامه کار نمی‌شود.
+        */
+
+    }
+
+}
+
+
+/* =========================================================
+   SUBSCRIPTION USERINFO
+========================================================= */
+
+function parseSubscriptionUserInfo(value){
+
+    /*
+      مثال رایج:
+
+      upload=123;
+      download=123;
+      total=123;
+      expire=1234567890
+    */
+
+    const data={};
+
+    value.split(";").forEach(part=>{
+
+        const [key,val] =
+            part.trim().split("=");
+
+        if(key && val){
+
+            data[key.trim().toLowerCase()] =
+                val.trim();
+
+        }
+
+    });
+
+    if(data.total){
+
+        const total =
+            Number(data.total);
+
+        const used =
+            Number(data.upload || 0) +
+            Number(data.download || 0);
+
+        const remaining =
+            Math.max(0,total-used);
+
+        document.getElementById("trafficValue")
+            .textContent =
+            formatBytes(remaining);
+
+        const percent =
+            total ?
+            Math.min(100,Math.round((used/total)*100))
+            : 0;
+
+        document.getElementById("usagePercent")
+            .textContent =
+            percent + "%";
+
+        setTimeout(()=>{
+
+            document.getElementById("usageBar")
+                .style.width =
+                percent + "%";
+
+        },100);
+
+    }
+
+    if(data.expire){
+
+        const timestamp =
+            Number(data.expire);
+
+        if(timestamp > 0){
+
+            const date =
+                new Date(timestamp * 1000);
+
+            document.getElementById("expiryFull")
+                .textContent =
+                date.toLocaleString("fa-IR");
+
+            updateExpiry(date);
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   EXPIRY
+========================================================= */
+
+function updateExpiry(date){
+
+    const now =
+        Date.now();
+
+    const diff =
+        date.getTime() - now;
+
+    if(diff <= 0){
+
+        const el =
+            document.getElementById("expiryValue");
+
+        el.textContent="منقضی شده";
+
+        el.className="card-value red";
+
+        document.getElementById("statusValue")
+            .textContent="منقضی";
+
+        document.getElementById("statusValue")
+            .className="card-value red";
+
+        return;
+    }
+
+    const days =
+        Math.floor(
+            diff / 86400000
+        );
+
+    const hours =
+        Math.floor(
+            (diff % 86400000) / 3600000
+        );
+
+    let text="";
+
+    if(days > 0){
+
+        text =
+            days + " روز";
+
+        if(hours > 0){
+
+            text +=
+                " و " + hours + " ساعت";
+
+        }
+
+    }else{
+
+        text =
+            hours + " ساعت";
+
+    }
+
+    const el =
+        document.getElementById("expiryValue");
+
+    el.textContent=text;
+
+    if(days <= 7){
+
+        el.className =
+            "card-value yellow";
+
+    }
+    else{
+
+        el.className =
+            "card-value green";
+
+    }
+
+}
+
+
+/* =========================================================
+   BYTES
+========================================================= */
+
+function formatBytes(bytes){
+
+    bytes =
+        Number(bytes);
+
+    if(!Number.isFinite(bytes) || bytes < 0){
+
+        return "—";
+
+    }
+
+    const units=[
+        "B",
+        "KB",
+        "MB",
+        "GB",
+        "TB"
+    ];
+
+    let i=0;
+
+    while(bytes >= 1024 && i < units.length-1){
+
+        bytes /= 1024;
+
+        i++;
+
+    }
+
+    return (
+        bytes.toFixed(
+            i === 0 ? 0 : 2
+        )
+        + " "
+        + units[i]
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(text,type=""){
+
+    const box =
+        document.getElementById("message");
+
+    box.className =
+        "message " + type;
+
+    box.innerHTML=text;
+
+}
+
+
+/* =========================================================
+   CLEAR
+========================================================= */
+
+function clearAll(){
+
+    document.getElementById("subUrl").value="";
+
+    document.getElementById("result")
+        .style.display="none";
+
+    document.getElementById("message")
+        .innerHTML="";
+
+    document.getElementById("configs")
+        .innerHTML="";
+
+    document.getElementById("qrcode")
+        .innerHTML =
+        '<div class="qr-empty">QR آماده نیست</div>';
+
+    configsData=[];
+
+    subscriptionUrl="";
+
+    toast("پاک شد");
+
+}
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+document
+.getElementById("subUrl")
+.addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
+
+        checkService();
+
+    }
+
+});
+
+
+/* =========================================================
+   LIVE CLOCK
+========================================================= */
+
+setInterval(()=>{
+
+    if(
+        document.getElementById("result").style.display !== "none"
+    ){
+
+        document.getElementById("lastUpdate")
+            .textContent =
+            "LIVE • " +
+            new Date()
+                .toLocaleTimeString("fa-IR");
+
+    }
+
+},1000);
+
+
+/* =========================================================
+   INITIAL ANIMATION
+========================================================= */
+
+setTimeout(()=>{
+
+    document
+        .querySelectorAll(".log")
+        .forEach((el,i)=>{
+
+            el.style.animationDelay =
+                (i * .18) + "s";
+
+        });
+
+},100);
+
+</script>
+
+</body>
+</html>
