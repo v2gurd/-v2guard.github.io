@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#050914">
+<meta name="theme-color" content="#080b10">
 <title>V2GURD | اینترنت امن، سریع و پایدار</title>
 
 <meta name="description" content="V2GURD ارائه‌دهنده سرویس‌های VPN امن و پرسرعت شامل WireGuard تک‌کاربره، V2Box و JumpJump با IP ثابت و پشتیبانی ۲۴ ساعته.">
 <meta name="keywords" content="V2GURD, وایرگارد, WireGuard, V2Box, JumpJump, خرید vpn, فیلترشکن, اینترنت پرسرعت, IP ثابت">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://v2gurd.com/">
+<link rel="canonical" href="https://v2gurd.github.io/-v2guard.github.io/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fa_IR">
@@ -17,7 +17,7 @@
 <meta property="og:title" content="V2GURD | اینترنت امن، سریع و پایدار">
 <meta property="og:description" content="سرویس‌های پرسرعت WireGuard، V2Box و JumpJump با IP ثابت، پایداری بالا و پشتیبانی ۲۴ ساعته.">
 <meta property="og:image" content="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd">
-<meta property="og:url" content="https://v2gurd.com/">
+<meta property="og:url" content="https://v2gurd.github.io/-v2guard.github.io/">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="V2GURD | اینترنت امن، سریع و پایدار">
@@ -29,3560 +29,1276 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="V2GURD">
-
 <link rel="icon" href="https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd" type="image/png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
 
-*{
- box-sizing:border-box;
- margin:0;
- padding:0
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
- --bg:#050914;
- --card:#0b1425;
- --blue:#168cff;
- --purple:#8b5cf6;
- --text:#f5f9ff;
- --muted:#91a2bb;
- --border:rgba(80,150,255,.18);
- --green:#19d98b;
+  --bg:#080b10;
+  --bg2:#0b0f16;
+  --panel:#0e141c;
+  --card:#10171f;
+  --teal:#26e0c9;
+  --teal2:#0bb8ff;
+  --amber:#ffb020;
+  --violet:#b16bff;
+  --green:#34d399;
+  --red:#ff5577;
+  --text:#eef6f3;
+  --muted:#87a09b;
+  --border:rgba(38,224,201,.16);
 }
 
-html{
- scroll-behavior:smooth
-}
+html{scroll-behavior:smooth}
 
 body{
- font-family:'Vazirmatn',sans-serif;
- color:var(--text);
- min-height:100vh;
- overflow-x:hidden;
- background:
- radial-gradient(circle at 15% 10%,rgba(22,140,255,.12),transparent 30%),
- radial-gradient(circle at 85% 20%,rgba(139,92,246,.10),transparent 28%),
- var(--bg)
+  font-family:'Vazirmatn',sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(38,224,201,.10),transparent 32%),
+    radial-gradient(circle at 88% 18%,rgba(177,107,255,.08),transparent 30%),
+    radial-gradient(circle at 50% 100%,rgba(11,184,255,.06),transparent 40%),
+    var(--bg);
 }
 
-button,input,select,textarea{
- font-family:inherit
-}
-
-button{
- cursor:pointer
-}
-
-a{
- color:inherit;
- text-decoration:none
-}
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
 /* INTRO */
-
-#intro{
- position:fixed;
- inset:0;
- z-index:99999;
- background:#030711;
- display:flex;
- align-items:center;
- justify-content:center;
- transition:.8s ease
-}
-
-.intro-logo{
- font-size:clamp(42px,12vw,90px);
- font-weight:900;
- letter-spacing:8px;
- text-align:center;
- background:linear-gradient(90deg,#fff,#168cff,#8b5cf6);
- -webkit-background-clip:text;
- color:transparent;
- animation:logoGlow 2s infinite alternate
-}
-
-.intro-sub{
- color:#8094b3;
- font-size:12px;
- letter-spacing:5px;
- margin-top:10px;
- text-align:center
-}
-
-@keyframes logoGlow{
- from{filter:drop-shadow(0 0 5px rgba(22,140,255,.2))}
- to{filter:drop-shadow(0 0 28px rgba(22,140,255,.65))}
-}
+#intro{position:fixed;inset:0;z-index:99999;background:#05070a;display:flex;align-items:center;justify-content:center;transition:.8s ease}
+.intro-logo{font-size:clamp(42px,12vw,86px);font-weight:900;letter-spacing:6px;text-align:center;
+  background:linear-gradient(90deg,#fff,var(--teal),var(--teal2));-webkit-background-clip:text;color:transparent;
+  animation:logoGlow 2s infinite alternate}
+.intro-sub{color:#5f7a75;font-size:12px;letter-spacing:5px;margin-top:10px;text-align:center}
+@keyframes logoGlow{from{filter:drop-shadow(0 0 5px rgba(38,224,201,.25))}to{filter:drop-shadow(0 0 30px rgba(38,224,201,.6))}}
 
 /* HEADER */
-
-header{
- position:sticky;
- top:0;
- z-index:500;
- background:rgba(5,9,20,.78);
- backdrop-filter:blur(18px);
- border-bottom:1px solid var(--border)
-}
-
-.nav{
- max-width:1200px;
- margin:auto;
- min-height:70px;
- padding:0 18px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:20px
-}
-
-.logo{
- font-size:23px;
- font-weight:900;
- letter-spacing:2px;
- color:#fff;
- cursor:pointer
-}
-
-.logo span{
- color:var(--blue)
-}
-
-.nav-links{
- display:flex;
- align-items:center;
- gap:5px
-}
-
-.nav-links button{
- border:0;
- background:transparent;
- color:#aebbd0;
- padding:10px 11px;
- border-radius:10px;
- transition:.25s
-}
-
-.nav-links button:hover,
-.nav-links button.active{
- color:#fff;
- background:rgba(22,140,255,.12)
-}
-
-.menu-btn{
- display:none;
- font-size:23px;
- background:none;
- border:0;
- color:#fff
-}
+header{position:sticky;top:0;z-index:500;background:rgba(8,11,16,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav{max-width:1200px;margin:auto;min-height:70px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px;color:#fff;cursor:pointer}
+.logo span{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:5px}
+.nav-links button{border:0;background:transparent;color:#9fb5b0;padding:10px 11px;border-radius:10px;transition:.25s}
+.nav-links button:hover,.nav-links button.active{color:#fff;background:rgba(38,224,201,.1)}
+.menu-btn{display:none;font-size:23px;background:none;border:0;color:#fff}
 
 /* GENERAL */
-
-.container{
- max-width:1200px;
- margin:auto;
- padding:0 18px
-}
-
-.page{
- display:none;
- animation:pageIn .35s ease
-}
-
-.page.active{
- display:block
-}
-
-@keyframes pageIn{
- from{opacity:0;transform:translateY(8px)}
- to{opacity:1;transform:none}
-}
-
-.section{
- padding:70px 0
-}
-
-.section-title{
- text-align:center;
- margin-bottom:35px
-}
-
-.section-title h2{
- font-size:clamp(25px,5vw,38px);
- font-weight:900
-}
-
-.section-title p{
- color:var(--muted);
- margin-top:8px
-}
+.container{max-width:1200px;margin:auto;padding:0 18px}
+.page{display:none;animation:pageIn .35s ease}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.section{padding:70px 0}
+.section-title{text-align:center;margin-bottom:35px}
+.section-title h2{font-size:clamp(25px,5vw,38px);font-weight:900}
+.section-title p{color:var(--muted);margin-top:8px}
 
 /* HERO */
-
-.hero{
- min-height:610px;
- display:flex;
- align-items:center;
- position:relative;
- overflow:hidden
-}
-
-.hero-content{
- max-width:760px;
- margin:auto;
- text-align:center
-}
-
-.badge{
- display:inline-flex;
- align-items:center;
- gap:7px;
- padding:8px 13px;
- border-radius:999px;
- background:rgba(22,140,255,.09);
- border:1px solid rgba(22,140,255,.25);
- color:#7bc8ff;
- font-size:12px;
- margin-bottom:18px
-}
-
-.hero h1{
- font-size:clamp(38px,8vw,75px);
- font-weight:900;
- line-height:1.1
-}
-
-.hero h1 span{
- background:linear-gradient(90deg,#168cff,#8b5cf6);
- -webkit-background-clip:text;
- color:transparent
-}
-
-.hero p{
- color:var(--muted);
- max-width:680px;
- margin:20px auto;
- line-height:2
-}
-
-.hero-buttons{
- display:flex;
- justify-content:center;
- gap:10px;
- flex-wrap:wrap
-}
+.hero{min-height:600px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-content{max-width:760px;margin:auto;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;
+  background:rgba(38,224,201,.08);border:1px solid rgba(38,224,201,.28);color:#7fe9d8;font-size:12px;margin-bottom:18px}
+.hero h1{font-size:clamp(36px,7.5vw,68px);font-weight:900;line-height:1.15}
+.hero h1 span{background:linear-gradient(90deg,var(--teal),var(--teal2));-webkit-background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:680px;margin:20px auto;line-height:2}
+.hero-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
 /* BUTTONS */
+.btn{border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff;border-radius:12px;padding:11px 16px;transition:.25s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(38,224,201,.5)}
+.btn-primary{background:linear-gradient(135deg,#0aa88f,#26e0c9);color:#04211c;border:0;box-shadow:0 8px 30px rgba(38,224,201,.18);font-weight:800}
+.btn-purple{background:linear-gradient(135deg,#7a3de0,#b16bff);border:0;font-weight:800}
+.btn-block{width:100%}
 
-.btn{
- border:1px solid var(--border);
- background:rgba(255,255,255,.04);
- color:#fff;
- border-radius:12px;
- padding:11px 16px;
- transition:.25s
-}
+/* FEATURED WIREGUARD */
+.wg-featured{position:relative;padding:2px;border-radius:24px;overflow:hidden;margin:0 auto 35px;max-width:1100px;
+  background:linear-gradient(120deg,var(--teal),var(--violet),var(--teal2),var(--teal));background-size:300% 300%;
+  animation:borderMove 6s ease infinite;box-shadow:0 0 50px rgba(38,224,201,.1),0 0 50px rgba(177,107,255,.07)}
+@keyframes borderMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.wg-inner{border-radius:22px;padding:30px;background:
+  radial-gradient(circle at 90% 10%,rgba(177,107,255,.14),transparent 35%),
+  radial-gradient(circle at 10% 90%,rgba(38,224,201,.1),transparent 35%),#0a1015}
+.feature-badge{display:inline-block;background:rgba(177,107,255,.14);border:1px solid rgba(177,107,255,.4);
+  color:#d3b4ff;border-radius:999px;padding:7px 13px;font-size:12px;margin-bottom:15px}
+.wg-inner h2{font-size:clamp(24px,5vw,34px)}
+.wg-inner h2 span{color:#d3b4ff}
+.wg-inner p{color:#9db8b3;line-height:2;margin:12px 0 18px}
 
-.btn:hover{
- transform:translateY(-2px);
- border-color:rgba(22,140,255,.5)
-}
+.countdown{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;font-size:13px;color:#c7ded9}
+.countdown-timer{font-weight:900;font-size:16px;color:#fff;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);padding:6px 12px;border-radius:10px;direction:ltr;letter-spacing:1px}
 
-.btn-primary{
- background:linear-gradient(135deg,#087df5,#12b6ff);
- border:0;
- box-shadow:0 8px 30px rgba(22,140,255,.2)
-}
+.wg-price-row{display:flex;align-items:baseline;gap:10px;margin:6px 0 16px;flex-wrap:wrap}
+.wg-price-old{color:#5f776f;text-decoration:line-through;font-size:15px}
+.wg-price-new{font-size:26px;font-weight:900;color:#fff}
+.wg-price-new small{font-size:12px;color:var(--muted);font-weight:400}
+.wg-discount-tag{background:rgba(255,176,32,.14);border:1px solid rgba(255,176,32,.4);color:var(--amber);
+  border-radius:999px;padding:4px 11px;font-size:11px;font-weight:800}
 
-.btn-purple{
- background:linear-gradient(135deg,#6d3df0,#a66cff);
- border:0
-}
+.wg-checklist{list-style:none;display:grid;gap:9px;margin-bottom:20px}
+.wg-checklist li{display:flex;align-items:center;gap:9px;color:#c3d8d3;font-size:13px}
+.wg-checklist li:before{content:"✓";width:20px;height:20px;flex:none;border-radius:6px;background:rgba(38,224,201,.15);
+  color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
 
-.btn-block{
- width:100%
-}
+/* ROUTE DIAGRAM */
+.route-section{max-width:1100px;margin:0 auto 20px;border:1px solid var(--border);border-radius:20px;
+  background:linear-gradient(160deg,rgba(38,224,201,.05),transparent 40%),var(--panel);padding:28px;overflow:hidden}
+.route-copy{max-width:640px;margin:0 auto 26px;text-align:center}
+.route-copy h2{font-size:clamp(22px,4.5vw,32px);font-weight:900;margin-bottom:10px}
+.route-copy p{color:var(--muted);line-height:2}
 
-/* SERVICE STATUS */
+.route-diagram{position:relative;border:1px solid rgba(255,255,255,.06);border-radius:16px;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 34px),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0 1px,transparent 1px 34px),#0a1014;
+  padding:28px 18px;display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
+.route-live-badge{position:absolute;top:14px;left:16px;display:flex;align-items:center;gap:6px;
+  font-size:11px;color:#9fb5b0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  padding:5px 10px;border-radius:999px}
+.route-live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.3;transform:scale(.7)}}
 
-.service-status-box{
- max-width:850px;
- margin:auto;
- background:
- radial-gradient(circle at 90% 0%,rgba(22,140,255,.08),transparent 35%),
- radial-gradient(circle at 10% 100%,rgba(139,92,246,.07),transparent 35%),
- var(--card)
-}
+.route-node{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:64px}
+.route-node-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);font-size:20px}
+.route-node.active .route-node-icon{background:linear-gradient(135deg,var(--teal),var(--teal2));border:0;
+  box-shadow:0 0 25px rgba(38,224,201,.35);color:#04211c}
+.route-node span{font-size:11px;color:var(--muted)}
+.route-line{flex:1;min-width:24px;height:2px;background:linear-gradient(90deg,rgba(38,224,201,.5),rgba(38,224,201,.05));
+  position:relative;top:-22px}
 
-.status-input{
- width:100%;
- padding:13px;
- border-radius:11px;
- border:1px solid var(--border);
- background:#091424;
- color:#fff;
- outline:none;
- margin-bottom:12px;
- direction:ltr;
- text-align:left;
- font-size:12px
-}
+.route-stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.route-stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:11px;
+  padding:9px 16px;text-align:center;min-width:84px}
+.route-stat strong{display:block;font-size:15px;color:var(--teal);direction:ltr;font-variant-numeric:tabular-nums}
+.route-stat span{font-size:9px;color:var(--muted);letter-spacing:1px}
 
-.status-input:focus{
- border-color:rgba(22,140,255,.55);
- box-shadow:0 0 20px rgba(22,140,255,.08)
-}
+/* CONNECTION WIDGET */
+.conn-widget{max-width:320px;margin:26px auto 0;border-radius:18px;border:1px solid var(--border);
+  background:linear-gradient(160deg,#0d1520,#090d12);padding:20px;text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.conn-shield{width:56px;height:56px;margin:0 auto 12px;border-radius:16px;display:flex;align-items:center;
+  justify-content:center;background:rgba(38,224,201,.08);border:1px solid rgba(38,224,201,.3);font-size:26px}
+.conn-status{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--green);font-size:12px;
+  font-weight:800;margin-bottom:6px}
+.conn-status i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 1.4s infinite}
+.conn-meta{color:var(--muted);font-size:11px;direction:ltr}
 
-.status-result{
- margin-top:18px
-}
+/* SERVER CHIPS */
+.chips-wrap{max-width:640px;margin:0 auto;position:relative}
+.chips-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center}
+.chips-col{display:flex;flex-direction:column;gap:10px}
+.chip-server{display:flex;align-items:center;gap:8px;padding:11px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);color:#9fb5b0;font-size:12px;font-weight:700;direction:ltr;justify-content:flex-end;transition:.2s}
+.chip-server:hover{border-color:rgba(38,224,201,.35)}
+.chip-server.active{border-color:var(--teal);background:rgba(38,224,201,.08);color:#fff}
+.chip-dot{width:7px;height:7px;border-radius:50%;background:#4a615c;flex:none}
+.chip-server.active .chip-dot{background:var(--teal);box-shadow:0 0 8px var(--teal)}
+.chips-center{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--teal),var(--violet));
+  display:flex;align-items:center;justify-content:center;font-size:24px;margin:auto;box-shadow:0 0 35px rgba(38,224,201,.25)}
 
-.status-row{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:13px 0;
- border-bottom:1px solid rgba(255,255,255,.06);
- font-size:14px;
- gap:15px
-}
+/* WHY / STEPS SEQUENCE */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why-item{padding:26px 22px;border:1px solid var(--border);border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.03),rgba(255,255,255,.01)),var(--card);transition:.25s}
+.why-item:hover{transform:translateY(-4px);border-color:rgba(38,224,201,.4)}
+.why-icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:13px;
+  background:rgba(38,224,201,.1);font-size:22px;margin-bottom:14px}
+.why-item h3{font-size:16px;margin-bottom:6px}
+.why-item p{color:var(--muted);font-size:13px;line-height:1.9}
 
-.status-row:last-child{
- border-bottom:0
-}
+.seq-list{max-width:820px;margin:auto;display:grid;gap:2px}
+.seq-item{display:flex;gap:18px;padding:22px 4px;border-bottom:1px solid rgba(255,255,255,.06)}
+.seq-item:last-child{border-bottom:0}
+.seq-num{min-width:44px;font-size:13px;color:#3f5a55;font-weight:900;padding-top:3px}
+.seq-item h3{font-size:17px;margin-bottom:6px}
+.seq-item p{color:var(--muted);font-size:13px;line-height:1.9;max-width:560px}
 
-.status-row span:first-child{
- color:var(--muted)
-}
-
-.status-row span:last-child{
- color:#fff;
- font-weight:700
-}
-
-.status-msg{
- text-align:center;
- color:var(--muted);
- padding:16px 0;
- font-size:13px;
- line-height:2
-}
-
-.status-msg.error{
- color:#ff6b81
-}
-
-.progress-bar{
- width:100%;
- height:8px;
- border-radius:999px;
- background:rgba(255,255,255,.07);
- overflow:hidden;
- margin-top:7px
-}
-
-.progress-fill{
- height:100%;
- background:linear-gradient(90deg,#168cff,#8b5cf6);
- border-radius:999px;
- transition:.4s
-}
-
-.sub-title{
- font-size:16px;
- font-weight:900;
- margin:28px 0 12px;
- color:#fff
-}
-
-.sub-link-row{
- display:flex;
- gap:8px;
- align-items:center
-}
-
-.sub-link-row .status-input{
- flex:1;
- margin:0;
- min-width:0
-}
-
-.qr-box{
- width:180px;
- margin:18px auto 25px;
- text-align:center
-}
-
-.qr-box #subscriptionQR{
- width:180px;
- height:180px;
- background:#fff;
- padding:10px;
- border-radius:15px;
- display:flex;
- align-items:center;
- justify-content:center
-}
-
-.qr-box #subscriptionQR img,
-.qr-box #subscriptionQR canvas{
- max-width:100%;
- max-height:100%
-}
-
-.qr-box p{
- color:var(--muted);
- font-size:11px;
- margin-top:8px
-}
-
-/* NEW SERVICE ACTIONS */
-
-.service-actions{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
- margin-top:15px
-}
-
-.service-renew-box{
- display:none;
- margin-top:18px;
- padding:18px;
- border:1px solid rgba(22,140,255,.2);
- background:rgba(22,140,255,.04);
- border-radius:15px
-}
-
-.service-renew-box.show{
- display:block
-}
-
-.service-alert{
- padding:14px;
- border-radius:12px;
- background:rgba(139,92,246,.08);
- border:1px solid rgba(139,92,246,.2);
- margin-bottom:12px;
- color:#d8ccff;
- font-size:13px;
- line-height:2
-}
-
-.service-choice-buttons{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px
-}
-
-.service-options{
- display:none;
- margin-top:15px
-}
-
-.service-options.show{
- display:block
-}
-
-.service-option{
- width:100%;
- padding:13px;
- margin-top:8px;
- border:1px solid var(--border);
- background:#091424;
- color:#fff;
- border-radius:11px;
- text-align:right;
- transition:.2s
-}
-
-.service-option:hover{
- border-color:rgba(22,140,255,.55);
- background:rgba(22,140,255,.08)
-}
-
-.service-option.selected{
- border-color:#168cff;
- background:rgba(22,140,255,.12);
- box-shadow:0 0 18px rgba(22,140,255,.08)
-}
-
-/* CONFIGS */
-
-.config-card{
- background:rgba(255,255,255,.025);
- border:1px solid var(--border);
- border-radius:15px;
- padding:14px;
- margin-top:11px;
- transition:.25s
-}
-
-.config-card:hover{
- border-color:rgba(22,140,255,.4);
- transform:translateY(-2px)
-}
-
-.config-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
- margin-bottom:10px
-}
-
-.config-number{
- color:#7bc8ff;
- font-size:11px;
- font-weight:800
-}
-
-.config-type{
- color:#fff;
- font-size:13px;
- font-weight:800
-}
-
-.config-text{
- width:100%;
- min-height:100px;
- resize:none;
- border:1px solid rgba(255,255,255,.08);
- background:#050c18;
- color:#aebbd0;
- border-radius:10px;
- padding:10px;
- direction:ltr;
- text-align:left;
- font-family:monospace;
- font-size:10px;
- line-height:1.6;
- outline:none
-}
-
-.config-copy{
- margin-top:8px;
- width:100%
-}
-
-.copy-all-btn{
- margin-top:12px
-}
+/* DOWNLOAD */
+.download-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.download-group{border:1px solid var(--border);border-radius:18px;padding:20px;background:var(--card)}
+.download-group h3{font-size:15px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.download-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;
+  border-top:1px solid rgba(255,255,255,.06)}
+.download-row:first-of-type{border-top:0}
+.download-plat{display:flex;align-items:center;gap:10px;font-size:13px;color:#c9dbd7}
+.download-icon{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.04);display:flex;
+  align-items:center;justify-content:center;font-size:15px;flex:none}
+.download-btn{border:1px solid var(--border);background:rgba(38,224,201,.06);color:var(--teal);
+  border-radius:9px;padding:7px 12px;font-size:11px;font-weight:800;white-space:nowrap}
+.download-btn:hover{background:rgba(38,224,201,.14)}
 
 /* CATEGORY */
-
-.categories{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:18px
-}
-
-.category{
- position:relative;
- overflow:hidden;
- min-height:245px;
- border-radius:22px;
- border:1px solid var(--border);
- background:#08111f;
- cursor:pointer;
- transition:.3s
-}
-
-.category:hover{
- transform:translateY(-7px);
- border-color:rgba(22,140,255,.45);
- box-shadow:0 20px 55px rgba(0,0,0,.3)
-}
-
-.category-img{
- width:100%;
- height:145px;
- object-fit:cover;
- display:block;
- background:#050505
-}
-
-.category-overlay{
- position:absolute;
- inset:0;
- background:linear-gradient(to top,rgba(5,9,20,1) 0%,rgba(5,9,20,.75) 35%,transparent 75%)
-}
-
-.category-content{
- position:absolute;
- right:18px;
- left:18px;
- bottom:16px
-}
-
-.category-content h3{
- font-size:20px;
- font-weight:900
-}
-
-.category-content p{
- color:#9aaac0;
- font-size:12px;
- margin-top:4px
-}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.category{position:relative;overflow:hidden;min-height:245px;border-radius:22px;border:1px solid var(--border);
+  background:#0b1218;cursor:pointer;transition:.3s}
+.category:hover{transform:translateY(-7px);border-color:rgba(38,224,201,.4);box-shadow:0 20px 55px rgba(0,0,0,.35)}
+.category-img{width:100%;height:145px;object-fit:cover;display:block;background:#050505}
+.category-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,11,16,1) 0%,rgba(8,11,16,.75) 35%,transparent 75%)}
+.category-content{position:absolute;right:18px;left:18px;bottom:16px}
+.category-content h3{font-size:20px;font-weight:900}
+.category-content p{color:#8ca39d;font-size:12px;margin-top:4px}
 
 /* CATEGORY HERO */
-
-.category-hero{
- position:relative;
- overflow:hidden;
- min-height:300px;
- display:flex;
- align-items:end;
- border-bottom:1px solid var(--border)
-}
-
-.category-hero-img{
- position:absolute;
- inset:0;
- width:100%;
- height:100%;
- object-fit:cover;
- opacity:.2;
- filter:blur(1px)
-}
-
-.category-hero-overlay{
- position:absolute;
- inset:0;
- background:linear-gradient(to top,#050914 0%,rgba(5,9,20,.82) 45%,rgba(5,9,20,.25) 100%)
-}
-
-.category-hero-content{
- position:relative;
- z-index:2;
- width:100%;
- padding:70px 0 45px
-}
-
-.category-hero-content h1{
- font-size:clamp(32px,7vw,55px);
- font-weight:900
-}
-
-.category-hero-content p{
- max-width:700px;
- color:#9cacbf;
- margin-top:10px;
- line-height:2
-}
-
-.category-icon{
- width:70px;
- height:70px;
- object-fit:cover;
- border-radius:17px;
- margin-bottom:15px;
- border:1px solid rgba(255,255,255,.15)
-}
-
-/* FEATURED */
-
-.wg-featured{
- position:relative;
- padding:2px;
- border-radius:24px;
- overflow:hidden;
- margin:0 auto 35px;
- max-width:1100px;
- background:linear-gradient(120deg,#168cff,#8b5cf6,#00c6ff,#168cff);
- background-size:300% 300%;
- animation:borderMove 5s ease infinite;
- box-shadow:0 0 50px rgba(22,140,255,.12),0 0 50px rgba(139,92,246,.08)
-}
-
-@keyframes borderMove{
- 0%{background-position:0% 50%}
- 50%{background-position:100% 50%}
- 100%{background-position:0% 50%}
-}
-
-.wg-inner{
- border-radius:22px;
- padding:30px;
- background:
- radial-gradient(circle at 90% 10%,rgba(139,92,246,.16),transparent 35%),
- radial-gradient(circle at 10% 90%,rgba(22,140,255,.12),transparent 35%),
- #07101f
-}
-
-.feature-badge{
- display:inline-block;
- background:rgba(139,92,246,.15);
- border:1px solid rgba(139,92,246,.4);
- color:#cbb8ff;
- border-radius:999px;
- padding:7px 13px;
- font-size:12px;
- margin-bottom:15px
-}
-
-.wg-inner h2{
- font-size:clamp(24px,5vw,36px)
-}
-
-.wg-inner h2 span{
- color:#a98aff
-}
-
-.wg-inner p{
- color:#9eafc7;
- line-height:2;
- margin:12px 0 20px
-}
-
-.wg-points{
- display:flex;
- flex-wrap:wrap;
- gap:8px;
- margin-bottom:22px
-}
-
-.wg-point{
- background:rgba(255,255,255,.04);
- border:1px solid rgba(255,255,255,.08);
- padding:8px 12px;
- border-radius:10px;
- font-size:12px;
- color:#b8c7da
-}
-
-/* COUNTDOWN */
-
-.countdown{
- display:flex;
- align-items:center;
- gap:10px;
- flex-wrap:wrap;
- margin-bottom:18px;
- font-size:13px;
- color:#cbd8ec
-}
-
-.countdown-timer{
- font-weight:900;
- font-size:16px;
- color:#fff;
- background:rgba(255,255,255,.06);
- border:1px solid rgba(255,255,255,.12);
- padding:6px 12px;
- border-radius:10px;
- direction:ltr;
- letter-spacing:1px
-}
+.category-hero{position:relative;overflow:hidden;min-height:290px;display:flex;align-items:end;border-bottom:1px solid var(--border)}
+.category-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;filter:blur(1px)}
+.category-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(8,11,16,.85) 45%,rgba(8,11,16,.25) 100%)}
+.category-hero-content{position:relative;z-index:2;width:100%;padding:65px 0 42px}
+.category-hero-content h1{font-size:clamp(30px,6.5vw,50px);font-weight:900}
+.category-hero-content p{max-width:700px;color:#95aca7;margin-top:10px;line-height:2}
+.category-icon{width:66px;height:66px;object-fit:cover;border-radius:16px;margin-bottom:14px;border:1px solid rgba(255,255,255,.14)}
 
 /* COMPARE */
-
-.compare-wrap{
- overflow-x:auto;
- max-width:1100px;
- margin:0 auto 45px;
- border-radius:16px;
- border:1px solid var(--border)
-}
-
-.compare-table{
- width:100%;
- border-collapse:collapse;
- min-width:640px;
- background:var(--card)
-}
-
-.compare-table th,
-.compare-table td{
- padding:14px;
- text-align:center;
- border-bottom:1px solid rgba(255,255,255,.06);
- font-size:13px
-}
-
-.compare-table th{
- background:rgba(22,140,255,.09);
- color:#fff;
- font-weight:900
-}
-
-.compare-table td{
- color:#b8c7da
-}
-
-.compare-table tr:last-child td{
- border-bottom:0
-}
-
-.compare-table tr.highlight td{
- background:rgba(139,92,246,.06)
-}
-
-.compare-table td:first-child,
-.compare-table th:first-child{
- text-align:right
-}
+.compare-wrap{overflow-x:auto;max-width:1100px;margin:0 auto 45px;border-radius:16px;border:1px solid var(--border)}
+.compare-table{width:100%;border-collapse:collapse;min-width:640px;background:var(--card)}
+.compare-table th,.compare-table td{padding:14px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.compare-table th{background:rgba(38,224,201,.08);color:#fff;font-weight:900}
+.compare-table td{color:#b0c7c2}
+.compare-table tr:last-child td{border-bottom:0}
+.compare-table tr.highlight td{background:rgba(177,107,255,.06)}
+.compare-table td:first-child,.compare-table th:first-child{text-align:right}
 
 /* INVITE */
-
-.invite-box{
- max-width:900px;
- margin:auto;
- text-align:center;
- background:var(--card);
- border:1px solid rgba(139,92,246,.35);
- border-radius:20px;
- padding:30px;
- box-shadow:0 0 30px rgba(139,92,246,.08)
-}
-
-.invite-box h2{
- font-size:clamp(20px,4vw,26px);
- margin-bottom:10px
-}
-
-.invite-box p{
- color:var(--muted);
- line-height:2;
- margin-bottom:18px;
- max-width:600px;
- margin-inline:auto
-}
-
-.copy-row{
- display:flex;
- gap:8px;
- max-width:520px;
- margin:0 auto 14px
-}
-
-.copy-row input{
- flex:1;
- padding:12px;
- border-radius:10px;
- border:1px solid var(--border);
- background:#091424;
- color:#fff;
- text-align:center;
- min-width:0
-}
+.invite-box{max-width:900px;margin:auto;text-align:center;background:var(--card);border:1px solid rgba(177,107,255,.32);
+  border-radius:20px;padding:30px;box-shadow:0 0 30px rgba(177,107,255,.08)}
+.invite-box h2{font-size:clamp(20px,4vw,26px);margin-bottom:10px}
+.invite-box p{color:var(--muted);line-height:2;margin-bottom:18px;max-width:600px;margin-inline:auto}
+.copy-row{display:flex;gap:8px;max-width:520px;margin:0 auto 14px}
+.copy-row input{flex:1;padding:12px;border-radius:10px;border:1px solid var(--border);background:#0a1218;
+  color:#fff;text-align:center;min-width:0}
 
 /* QUICK BAR */
-
-.quickbar{
- position:fixed;
- bottom:0;
- right:0;
- left:0;
- z-index:300;
- display:none;
- align-items:center;
- justify-content:space-between;
- gap:12px;
- padding:12px 18px;
- background:rgba(7,16,30,.94);
- backdrop-filter:blur(14px);
- border-top:1px solid var(--border);
- transform:translateY(100%);
- transition:.3s
-}
-
-.quickbar.show{
- display:flex;
- transform:translateY(0)
-}
-
-.quickbar-info{
- display:flex;
- flex-direction:column;
- gap:2px;
- font-size:12px;
- color:#b8c7da;
- overflow:hidden
-}
-
-.quickbar-info strong{
- color:#fff;
- font-size:14px;
- white-space:nowrap;
- overflow:hidden;
- text-overflow:ellipsis
-}
-
-.cart-float.raised{
- bottom:88px;
- transition:.3s
-}
+.quickbar{position:fixed;bottom:0;right:0;left:0;z-index:300;display:none;align-items:center;justify-content:space-between;
+  gap:12px;padding:12px 18px;background:rgba(9,13,18,.94);backdrop-filter:blur(14px);border-top:1px solid var(--border);
+  transform:translateY(100%);transition:.3s}
+.quickbar.show{display:flex;transform:translateY(0)}
+.quickbar-info{display:flex;flex-direction:column;gap:2px;font-size:12px;color:#a9c2bd;overflow:hidden}
+.quickbar-info strong{color:#fff;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-float.raised{bottom:88px;transition:.3s}
 
 /* CARDS */
-
-.grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:18px
-}
-
-.card{
- border:1px solid var(--border);
- border-radius:18px;
- padding:22px;
- transition:.25s;
- position:relative;
- overflow:hidden;
- background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),var(--card)
-}
-
-.card:hover{
- transform:translateY(-5px);
- border-color:rgba(22,140,255,.4);
- box-shadow:0 15px 45px rgba(0,0,0,.25)
-}
-
-.card h3{
- font-size:19px;
- margin-bottom:8px
-}
-
-.card .subtitle{
- color:var(--muted);
- font-size:13px;
- line-height:1.9;
- min-height:55px
-}
-
-.price{
- font-size:21px;
- font-weight:900;
- margin:17px 0
-}
-
-.price small{
- font-size:11px;
- color:var(--muted);
- font-weight:400
-}
-
-.special-card{
- border-color:rgba(139,92,246,.4);
- box-shadow:0 0 30px rgba(139,92,246,.07)
-}
-
-.status{
- display:inline-flex;
- align-items:center;
- gap:7px;
- font-size:11px;
- color:var(--green);
- margin-bottom:13px
-}
-
-.status i{
- width:7px;
- height:7px;
- border-radius:50%;
- background:var(--green);
- box-shadow:0 0 10px var(--green)
-}
-
-.select{
- width:100%;
- padding:12px;
- border-radius:11px;
- background:#081222;
- color:#fff;
- border:1px solid var(--border);
- outline:none;
- margin:10px 0
-}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{border:1px solid var(--border);border-radius:18px;padding:22px;transition:.25s;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.03),rgba(255,255,255,.01)),var(--card)}
+.card:hover{transform:translateY(-5px);border-color:rgba(38,224,201,.4);box-shadow:0 15px 45px rgba(0,0,0,.3)}
+.card h3{font-size:19px;margin-bottom:8px}
+.card .subtitle{color:var(--muted);font-size:13px;line-height:1.9;min-height:55px}
+.price{font-size:21px;font-weight:900;margin:17px 0}
+.price small{font-size:11px;color:var(--muted);font-weight:400}
+.special-card{border-color:rgba(177,107,255,.38);box-shadow:0 0 30px rgba(177,107,255,.06)}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:var(--green);margin-bottom:13px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.select{width:100%;padding:12px;border-radius:11px;background:#0a121a;color:#fff;border:1px solid var(--border);outline:none;margin:10px 0}
 
 /* STATS */
-
-.stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:15px
-}
-
-.stat{
- text-align:center;
- padding:24px;
- background:rgba(255,255,255,.025);
- border:1px solid var(--border);
- border-radius:16px
-}
-
-.stat strong{
- display:block;
- font-size:27px;
- color:#6bc4ff
-}
-
-.stat span{
- color:var(--muted);
- font-size:12px
-}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.stat{text-align:center;padding:24px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:16px}
+.stat strong{display:block;font-size:27px;color:var(--teal)}
+.stat span{color:var(--muted);font-size:12px}
 
 /* INFO */
-
-.info-box{
- max-width:900px;
- margin:auto;
- background:var(--card);
- border:1px solid var(--border);
- border-radius:20px;
- padding:30px
-}
-
-.info-box h2{
- margin-bottom:18px
-}
-
-.info-box p,
-.info-box li{
- color:#a8b6ca;
- line-height:2.1;
- font-size:14px
-}
-
-.info-box ul{
- padding-right:22px
-}
+.info-box{max-width:900px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px}
+.info-box h2{margin-bottom:18px}
+.info-box p,.info-box li{color:#a3bab4;line-height:2.1;font-size:14px}
+.info-box ul{padding-right:22px}
 
 /* STEPS */
-
-.step{
- display:flex;
- gap:15px;
- padding:16px 0;
- border-bottom:1px solid rgba(255,255,255,.06)
-}
-
-.step:last-child{
- border-bottom:0
-}
-
-.step-num{
- min-width:36px;
- height:36px;
- display:flex;
- align-items:center;
- justify-content:center;
- border-radius:50%;
- background:rgba(22,140,255,.12);
- color:#66c2ff;
- font-weight:900
-}
+.step{display:flex;gap:15px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.step:last-child{border-bottom:0}
+.step-num{min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;
+  background:rgba(38,224,201,.1);color:var(--teal);font-weight:900}
 
 /* FAQ */
-
-.faq{
- max-width:850px;
- margin:auto
-}
-
-.faq-item{
- border:1px solid var(--border);
- border-radius:13px;
- margin-bottom:10px;
- overflow:hidden;
- background:rgba(255,255,255,.025)
-}
-
-.faq-q{
- width:100%;
- padding:17px;
- border:0;
- background:none;
- color:#fff;
- text-align:right;
- display:flex;
- justify-content:space-between;
- font-size:14px
-}
-
-.faq-a{
- display:none;
- padding:0 17px 17px;
- color:var(--muted);
- font-size:13px;
- line-height:2
-}
-
-.faq-item.open .faq-a{
- display:block
-}
+.faq{max-width:850px;margin:auto}
+.faq-item{border:1px solid var(--border);border-radius:13px;margin-bottom:10px;overflow:hidden;background:rgba(255,255,255,.02)}
+.faq-q{width:100%;padding:17px;border:0;background:none;color:#fff;text-align:right;display:flex;justify-content:space-between;font-size:14px}
+.faq-a{display:none;padding:0 17px 17px;color:var(--muted);font-size:13px;line-height:2}
+.faq-item.open .faq-a{display:block}
 
 /* CART */
-
-.cart-float{
- position:fixed;
- left:18px;
- bottom:18px;
- z-index:400;
- width:58px;
- height:58px;
- border-radius:50%;
- border:1px solid rgba(22,140,255,.45);
- background:linear-gradient(135deg,#087df5,#0baaff);
- color:#fff;
- box-shadow:0 12px 35px rgba(0,0,0,.4);
- font-size:21px
-}
-
-.cart-count{
- position:absolute;
- top:-4px;
- right:-4px;
- min-width:20px;
- height:20px;
- padding:0 5px;
- border-radius:20px;
- background:#ff3e65;
- font-size:10px;
- display:flex;
- align-items:center;
- justify-content:center
-}
-
-.cart-panel{
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.7);
- backdrop-filter:blur(7px);
- z-index:1000;
- display:none;
- align-items:flex-end;
- justify-content:center
-}
-
-.cart-panel.show{
- display:flex
-}
-
-.cart-box{
- width:min(650px,100%);
- max-height:90vh;
- overflow:auto;
- background:#07101e;
- border:1px solid var(--border);
- border-radius:22px 22px 0 0;
- padding:22px
-}
-
-.cart-head{
- display:flex;
- align-items:center;
- justify-content:space-between;
- margin-bottom:18px
-}
-
-.close{
- width:38px;
- height:38px;
- border-radius:10px;
- border:1px solid var(--border);
- background:rgba(255,255,255,.04);
- color:#fff
-}
-
-.cart-item{
- display:flex;
- justify-content:space-between;
- gap:10px;
- padding:14px 0;
- border-bottom:1px solid rgba(255,255,255,.06)
-}
-
-.cart-item small{
- color:var(--muted)
-}
-
-.cart-actions{
- display:flex;
- gap:7px;
- align-items:center
-}
-
-.qty{
- display:flex;
- align-items:center;
- gap:8px
-}
-
-.qty button{
- width:28px;
- height:28px;
- border-radius:7px;
- border:1px solid var(--border);
- background:#0d192b;
- color:#fff
-}
-
-.summary{
- margin-top:18px;
- padding-top:15px;
- border-top:1px solid var(--border)
-}
-
-.sum-row{
- display:flex;
- justify-content:space-between;
- padding:7px 0;
- color:#aab8cc
-}
-
-.sum-final{
- color:#fff;
- font-size:19px;
- font-weight:900
-}
+.cart-float{position:fixed;left:18px;bottom:18px;z-index:400;width:58px;height:58px;border-radius:50%;
+  border:1px solid rgba(38,224,201,.4);background:linear-gradient(135deg,#0aa88f,#26e0c9);color:#04211c;
+  box-shadow:0 12px 35px rgba(0,0,0,.4);font-size:21px}
+.cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:20px;
+  background:#ff3e65;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center}
+.cart-panel{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(7px);z-index:1000;
+  display:none;align-items:flex-end;justify-content:center}
+.cart-panel.show{display:flex}
+.cart-box{width:min(650px,100%);max-height:90vh;overflow:auto;background:#0a1119;border:1px solid var(--border);
+  border-radius:22px 22px 0 0;padding:22px}
+.cart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.close{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff}
+.cart-item{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.cart-item small{color:var(--muted)}
+.cart-actions{display:flex;gap:7px;align-items:center}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:#0d1a24;color:#fff}
+.summary{margin-top:18px;padding-top:15px;border-top:1px solid var(--border)}
+.sum-row{display:flex;justify-content:space-between;padding:7px 0;color:#9fb7b1}
+.sum-final{color:#fff;font-size:19px;font-weight:900}
 
 /* MODAL */
-
-.modal{
- position:fixed;
- inset:0;
- z-index:2000;
- background:rgba(0,0,0,.75);
- backdrop-filter:blur(8px);
- display:none;
- align-items:center;
- justify-content:center;
- padding:15px
-}
-
-.modal.show{
- display:flex
-}
-
-.modal-box{
- width:min(560px,100%);
- max-height:90vh;
- overflow:auto;
- background:#07101e;
- border:1px solid var(--border);
- border-radius:20px;
- padding:25px
-}
-
-.modal-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:20px
-}
-
-.card-number{
- font-size:25px;
- font-weight:900;
- letter-spacing:2px;
- text-align:center;
- padding:20px 5px;
- background:rgba(22,140,255,.07);
- border:1px solid rgba(22,140,255,.2);
- border-radius:14px;
- margin:15px 0;
- direction:ltr
-}
-
-.form-input{
- width:100%;
- padding:13px;
- border-radius:11px;
- border:1px solid var(--border);
- background:#091424;
- color:#fff;
- outline:none;
- margin:7px 0
-}
+.modal{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;padding:15px}
+.modal.show{display:flex}
+.modal-box{width:min(560px,100%);max-height:90vh;overflow:auto;background:#0a1119;border:1px solid var(--border);border-radius:20px;padding:25px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.card-number{font-size:25px;font-weight:900;letter-spacing:2px;text-align:center;padding:20px 5px;
+  background:rgba(38,224,201,.06);border:1px solid rgba(38,224,201,.2);border-radius:14px;margin:15px 0;direction:ltr}
+.form-input{width:100%;padding:13px;border-radius:11px;border:1px solid var(--border);background:#0a1218;color:#fff;outline:none;margin:7px 0}
 
 /* TOAST */
-
-#toast{
- position:fixed;
- top:85px;
- left:50%;
- transform:translate(-50%,-20px);
- z-index:9999;
- background:#0d1a2c;
- border:1px solid rgba(22,140,255,.35);
- color:#fff;
- padding:12px 18px;
- border-radius:12px;
- opacity:0;
- pointer-events:none;
- transition:.3s;
- box-shadow:0 12px 30px rgba(0,0,0,.35)
-}
-
-#toast.show{
- opacity:1;
- transform:translate(-50%,0)
-}
+#toast{position:fixed;top:85px;left:50%;transform:translate(-50%,-20px);z-index:9999;background:#0d1a1e;
+  border:1px solid rgba(38,224,201,.35);color:#fff;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;
+  transition:.3s;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* FOOTER */
-
-footer{
- margin-top:50px;
- padding:35px 18px;
- border-top:1px solid var(--border);
- text-align:center;
- color:#73849e;
- font-size:12px
-}
-
-.footer-logo{
- color:#fff;
- font-size:22px;
- font-weight:900;
- margin-bottom:8px
-}
-
-.footer-logo span{
- color:var(--blue)
-}
-
-/* WHY */
-
-.why-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:18px
-}
-
-.why-item{
- padding:26px 22px;
- border:1px solid var(--border);
- border-radius:18px;
- background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),var(--card);
- transition:.25s
-}
-
-.why-item:hover{
- transform:translateY(-4px);
- border-color:rgba(22,140,255,.4)
-}
-
-.why-icon{
- width:46px;
- height:46px;
- display:flex;
- align-items:center;
- justify-content:center;
- border-radius:13px;
- background:rgba(22,140,255,.12);
- font-size:22px;
- margin-bottom:14px
-}
-
-.why-item h3{
- font-size:16px;
- margin-bottom:6px
-}
-
-.why-item p{
- color:var(--muted);
- font-size:13px;
- line-height:1.9
-}
+footer{margin-top:50px;padding:35px 18px;border-top:1px solid var(--border);text-align:center;color:#6e857f;font-size:12px}
+.footer-logo{color:#fff;font-size:22px;font-weight:900;margin-bottom:8px}
+.footer-logo span{color:var(--teal)}
+.footer-link{color:var(--teal);margin-top:6px;display:inline-block}
 
 /* MOBILE */
-
 @media(max-width:900px){
-
- .grid{
-  grid-template-columns:repeat(2,1fr)
- }
-
- .categories{
-  grid-template-columns:1fr
- }
-
- .stats{
-  grid-template-columns:repeat(2,1fr)
- }
-
- .why-grid{
-  grid-template-columns:1fr 1fr
- }
-
- .nav-links{
-  display:none;
-  position:absolute;
-  top:70px;
-  right:12px;
-  left:12px;
-  padding:10px;
-  flex-direction:column;
-  align-items:stretch;
-  background:#07101e;
-  border:1px solid var(--border);
-  border-radius:15px
- }
-
- .nav-links.show{
-  display:flex
- }
-
- .menu-btn{
-  display:block
- }
-
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .categories{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .download-groups{grid-template-columns:1fr}
+  .chips-grid{grid-template-columns:1fr}
+  .chips-center{margin:6px auto}
+  .nav-links{display:none;position:absolute;top:70px;right:12px;left:12px;padding:10px;flex-direction:column;
+    align-items:stretch;background:#0a1119;border:1px solid var(--border);border-radius:15px}
+  .nav-links.show{display:flex}
+  .menu-btn{display:block}
 }
-
 @media(max-width:600px){
-
- .grid{
-  grid-template-columns:1fr
- }
-
- .why-grid{
-  grid-template-columns:1fr
- }
-
- .hero{
-  min-height:530px
- }
-
- .wg-inner{
-  padding:22px
- }
-
- .stats{
-  grid-template-columns:1fr 1fr
- }
-
- .section{
-  padding:55px 0
- }
-
- .category{
-  min-height:230px
- }
-
- .category-img{
-  height:140px
- }
-
- .category-hero{
-  min-height:270px
- }
-
- .sub-link-row{
-  flex-direction:column
- }
-
- .sub-link-row .status-input{
-  width:100%
- }
-
- .sub-link-row .btn{
-  width:100%
- }
-
- .qr-box,
- .qr-box #subscriptionQR{
-  width:160px;
-  height:160px
- }
-
- .service-actions,
- .service-choice-buttons{
-  grid-template-columns:1fr
- }
-
+  .grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .hero{min-height:520px}
+  .wg-inner{padding:22px}
+  .stats{grid-template-columns:1fr 1fr}
+  .section{padding:50px 0}
+  .category{min-height:230px}
+  .category-img{height:140px}
+  .category-hero{min-height:260px}
+  .route-diagram{flex-direction:column}
+  .route-line{display:none}
+  .seq-item{gap:12px}
 }
-
 </style>
 </head>
-
 <body>
 
 <div id="intro">
- <div>
-  <div class="intro-logo">V2GURD</div>
-  <div class="intro-sub">SECURE • FAST • PREMIUM</div>
- </div>
+  <div>
+    <div class="intro-logo">V2GURD</div>
+    <div class="intro-sub">SECURE • FAST • PREMIUM</div>
+  </div>
 </div>
 
 <header>
 <nav class="nav">
-
- <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
- <div class="logo" onclick="showPage('home')">
-  V2<span>GURD</span>
- </div>
-
- <div class="nav-links" id="navLinks">
-
-  <button onclick="showPage('home')">خانه</button>
-  <button onclick="showPage('wireguard')">WireGuard</button>
-  <button onclick="showPage('v2box')">V2Box</button>
-  <button onclick="showPage('jumpjump')">JumpJump</button>
-  <button onclick="showPage('guide')">آموزش</button>
-  <button onclick="showPage('rules')">قوانین</button>
-  <button onclick="showPage('bot')">ربات</button>
-  <button onclick="showPage('support')">پشتیبانی</button>
-
- </div>
-
- <div class="nav-actions">
-  <a class="btn btn-primary" href="https://t.me/Vtwoguard" target="_blank">
-   تلگرام
-  </a>
- </div>
-
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="logo" onclick="showPage('home')">V2<span>GURD</span></div>
+  <div class="nav-links" id="navLinks">
+    <button onclick="showPage('home')">خانه</button>
+    <button onclick="showPage('wireguard')">WireGuard</button>
+    <button onclick="showPage('v2box')">V2Box</button>
+    <button onclick="showPage('jumpjump')">JumpJump</button>
+    <button onclick="showPage('guide')">آموزش</button>
+    <button onclick="showPage('rules')">قوانین</button>
+    <button onclick="showPage('bot')">ربات</button>
+    <button onclick="showPage('support')">پشتیبانی</button>
+  </div>
+  <div class="nav-actions">
+    <a class="btn btn-primary" href="https://t.me/Vtwoguard" target="_blank">تلگرام</a>
+  </div>
 </nav>
 </header>
 
 <main>
 
+<!-- HOME -->
 <section id="home" class="page active">
 
 <div class="hero">
 <div class="container">
 <div class="hero-content">
-
-<div class="badge">
- 🛡️ V2GURD • SECURE NETWORK
-</div>
-
-<h1>
- اینترنت سریع،
- <span>پایدار و امن</span>
-</h1>
-
-<p>
- سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت،
- پایداری، امنیت و اتصال مطمئن.
-</p>
-
+<div class="badge">🛡️ V2GURD • SECURE NETWORK</div>
+<h1>اینترنت سریع، <span>پایدار و امن</span></h1>
+<p>سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت، پایداری، امنیت و اتصال مطمئن.</p>
 <div class="hero-buttons">
-
-<button class="btn btn-primary" onclick="showPage('wireguard')">
- مشاهده سرویس‌ها
-</button>
-
-<a href="status.html" class="btn" target="_blank" rel="noopener">
-    📊 وضعیت سرویس
-</a>
-
-<button class="btn" onclick="openCart()">
- 🛒 سبد خرید
-</button>
-
+<button class="btn btn-primary" onclick="showPage('wireguard')">مشاهده سرویس‌ها</button>
+<a href="status.html" class="btn" target="_blank" rel="noopener">📊 وضعیت سرویس من</a>
+<button class="btn" onclick="openCart()">🛒 سبد خرید</button>
 </div>
-
 </div>
 </div>
 </div>
 
-<div class="section" id="serviceStatusTop">
-
+<!-- FEATURED WIREGUARD -->
 <div class="container">
-
-<div class="section-title">
-
-<h2>📊 وضعیت سرویس من</h2>
-
-<p>
- لینک اشتراک سرویست رو وارد کن تا حجم،
- تاریخ انقضا و کانفیگ‌ها رو ببینی
-</p>
-
-</div>
-
-<div class="info-box service-status-box">
-
-<input
- class="status-input"
- id="statusLinkInput"
- placeholder="https://panel.pasargardsub.ir:2096/sub/..."
- autocomplete="off"
- spellcheck="false">
-
-<button
- class="btn btn-primary btn-block"
- onclick="checkSubStatus()">
- 🔍 مشاهده وضعیت سرویس
-</button>
-
-<div class="status-result" id="statusResult"></div>
-
-<!-- RENEW / ADD VOLUME -->
-
-<div id="serviceActionBox" class="service-renew-box">
-
- <div id="serviceActionMessage" class="service-alert"></div>
-
- <div id="serviceChoiceButtons" class="service-choice-buttons">
-
-  <button
-   id="renewChoiceBtn"
-   class="btn btn-purple"
-   onclick="showRenewOptions()"
-   style="display:none">
-   🔄 تمدید سرویس
-  </button>
-
-  <button
-   id="volumeChoiceBtn"
-   class="btn btn-primary"
-   onclick="showVolumeOptions()"
-   style="display:none">
-   ➕ افزایش حجم
-  </button>
-
- </div>
-
- <div id="renewOptions" class="service-options">
-
-  <div class="sub-title">
-   ⏳ مدت تمدید را انتخاب کن
-  </div>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'renew','1 ماه')">
-   📅 ۱ ماه
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'renew','2 ماه')">
-   📅 ۲ ماه
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'renew','3 ماه')">
-   📅 ۳ ماه
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'renew','6 ماه')">
-   📅 ۶ ماه
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'renew','12 ماه')">
-   📅 ۱۲ ماه
-  </button>
-
-  <button
-   class="btn btn-primary btn-block"
-   style="margin-top:12px"
-   onclick="confirmServiceRequest()">
-   ✅ تأیید تمدید
-  </button>
-
- </div>
-
- <div id="volumeOptions" class="service-options">
-
-  <div class="sub-title">
-   📦 حجم موردنظر را انتخاب کن
-  </div>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','50 گیگ')">
-   📦 ۵۰ گیگ
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','100 گیگ')">
-   📦 ۱۰۰ گیگ
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','150 گیگ')">
-   📦 ۱۵۰ گیگ
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','200 گیگ')">
-   📦 ۲۰۰ گیگ
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','250 گیگ')">
-   📦 ۲۵۰ گیگ
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','300 گیگ')">
-   📦 ۳۰۰ گیگ
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','400 گیگ')">
-   📦 ۴۰۰ گیگ
-  </button>
-
-  <button class="service-option"
-   onclick="selectServiceOption(this,'volume','500 گیگ')">
-   📦 ۵۰۰ گیگ
-  </button>
-
-  <button
-   class="btn btn-primary btn-block"
-   style="margin-top:12px"
-   onclick="confirmServiceRequest()">
-   ✅ تأیید افزایش حجم
-  </button>
-
- </div>
-
-</div>
-
-<!-- SUBSCRIPTION -->
-
-<div id="subscriptionBox" style="display:none">
-
-<div class="sub-title">
- 🔗 لینک اشتراک شما
-</div>
-
-<div class="sub-link-row">
-
-<input
- id="subscriptionLink"
- class="status-input"
- readonly
- spellcheck="false">
-
-<button class="btn" onclick="copySubscriptionLink()">
- 📋 کپی
-</button>
-
-</div>
-
-<div class="qr-box">
-
-<div id="subscriptionQR"></div>
-
-<p>QR Code لینک اشتراک</p>
-
-<button
- class="btn btn-primary btn-block"
- onclick="downloadQRCode()"
- style="margin-top:10px">
- 📥 دانلود QR Code
-</button>
-
-</div>
-
-</div>
-
-<!-- CONFIGS -->
-
-<div id="configsBox" style="display:none">
-
-<div class="sub-title">
- ⚙️ کانفیگ‌های سرویس
-</div>
-
-<button
- id="copyAllConfigsBtn"
- class="btn btn-primary btn-block copy-all-btn"
- onclick="copyAllConfigs()">
- 📋 کپی همه کانفیگ‌ها
-</button>
-
-<div id="configsList"></div>
-
-</div>
-
-</div>
-</div>
-</div>
-
-<!-- FEATURED -->
-
-<div class="container">
-
 <div class="wg-featured">
-
 <div class="wg-inner">
-
-<div class="feature-badge">
- ⭐ ویژه • پرفروش • پیشنهادی
-</div>
-
-<h2>
- 🟣 وایرگارد
- <span>| تک‌کاربره</span>
-</h2>
-
-<p>
- 🚀 سرعت فضایی، اتصال پایدار و IP ثابت.
- یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD
- برای اتصال سریع و مطمئن.
-</p>
+<div class="feature-badge">⭐ ویژه • پرفروش • پیشنهادی</div>
+<h2>🟣 وایرگارد <span>| تک‌کاربره</span></h2>
+<p>سرعت فضایی، اتصال پایدار و IP ثابت. یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD برای اتصال سریع و مطمئن.</p>
 
 <div class="countdown">
-
 <span>⏳ پیشنهاد ویژه تا پایان امروز:</span>
+<div class="countdown-timer" id="countdownTimer">00:00:00</div>
+</div>
 
-<div class="countdown-timer" id="countdownTimer">
- 00:00:00
+<div class="wg-price-row">
+<span class="wg-price-old" id="wgOldPrice"></span>
+<span class="wg-price-new" id="wgNewPrice"></span>
+<span class="wg-discount-tag">۱۰٪ تخفیف</span>
+</div>
+
+<ul class="wg-checklist" id="wgChecklist"></ul>
+
+<button class="btn btn-primary" onclick="showPage('wireguard')">⭐ مشاهده پلن‌های وایرگارد</button>
+</div>
+</div>
+</div>
+
+<!-- ROUTE DIAGRAM -->
+<div class="section">
+<div class="container">
+<div class="route-section">
+
+<div class="route-copy">
+<h2>چرا اتصالت با ما فرق می‌کنه؟</h2>
+<p>فقط کاهش عدد پینگ نیست؛ مسیر اتصال تو رو از ابتدا تا مقصد هوشمند و پایدار می‌کنیم.</p>
+</div>
+
+<div class="route-diagram">
+<div class="route-live-badge"><span class="route-live-dot"></span> مسیر زنده</div>
+
+<div class="route-node"><div class="route-node-icon">👤</div><span>شما</span></div>
+<div class="route-line"></div>
+<div class="route-node active"><div class="route-node-icon">🛡️</div><span>V2GURD</span></div>
+<div class="route-line"></div>
+<div class="route-node"><div class="route-node-icon">🌐</div><span>مسیر بهینه</span></div>
+<div class="route-line"></div>
+<div class="route-node"><div class="route-node-icon">🎯</div><span>مقصد</span></div>
+</div>
+
+<div class="route-stats">
+<div class="route-stat"><strong id="liveStatPing">42ms</strong><span>PING</span></div>
+<div class="route-stat"><strong id="liveStatLoss">0%</strong><span>LOSS</span></div>
+<div class="route-stat"><strong id="liveStatRoute">IR-02</strong><span>ROUTE</span></div>
+</div>
+
+<div class="conn-widget">
+<div class="conn-shield">🛡️</div>
+<div class="conn-status"><i></i> CONNECTED</div>
+<div class="conn-meta" id="connMeta">42ms · 0% LOSS</div>
 </div>
 
 </div>
+</div>
+</div>
 
-<div class="wg-points" id="wgPoints"></div>
+<!-- SERVER CHIPS -->
+<div class="section">
+<div class="container">
+<div class="section-title">
+<h2>سرور مورد نظرت رو انتخاب کن</h2>
+<p>چند لوکیشن مختلف، همیشه نزدیک‌ترین و پایدارترین گزینه فعاله</p>
+</div>
 
-<button class="btn btn-primary" onclick="showPage('wireguard')">
- ⭐ مشاهده پلن‌های وایرگارد
-</button>
+<div class="chips-wrap">
+<div class="chips-grid">
+<div class="chips-col" id="chipsColRight"></div>
+<div class="chips-center">🛡️</div>
+<div class="chips-col" id="chipsColLeft"></div>
+</div>
+</div>
 
 </div>
+</div>
+
+<!-- SEQUENCE: HOW IT WORKS -->
+<div class="section">
+<div class="container">
+<div class="section-title">
+<h2>مسیر اتصال، قدم به قدم</h2>
+<p>چهار مرحله‌ای که پشت‌صحنه‌ی هر اتصال تو اتفاق می‌افته</p>
+</div>
+
+<div class="seq-list" id="seqList"></div>
+
 </div>
 </div>
 
 <!-- CATEGORIES -->
-
 <div class="section">
-
 <div class="container">
-
 <div class="section-title">
-
 <h2>دسته‌بندی خدمات</h2>
-
 <p>هر دسته سرویس‌های مخصوص خودش را دارد</p>
-
+</div>
+<div class="categories" id="categoriesGrid"></div>
+</div>
 </div>
 
-<div class="categories" id="categoriesGrid"></div>
-
+<!-- DOWNLOADS -->
+<div class="section">
+<div class="container">
+<div class="section-title">
+<h2>دانلود اپلیکیشن</h2>
+<p>هر سرویس روی اپ اختصاصی خودش، برای iOS و اندروید</p>
+</div>
+<div class="download-groups" id="downloadGroups"></div>
 </div>
 </div>
 
 <!-- STATS -->
-
 <div class="section">
-
 <div class="container">
-
 <div class="stats">
-
-<div class="stat">
-<strong>99%</strong>
-<span>پایداری سرویس</span>
-</div>
-
-<div class="stat">
-<strong>24/7</strong>
-<span>پشتیبانی</span>
-</div>
-
-<div class="stat">
-<strong>IP</strong>
-<span>ثابت</span>
-</div>
-
-<div class="stat">
-<strong>⚡</strong>
-<span>سرعت بالا</span>
-</div>
-
+<div class="stat"><strong>99%</strong><span>پایداری سرویس</span></div>
+<div class="stat"><strong>24/7</strong><span>پشتیبانی</span></div>
+<div class="stat"><strong>IP</strong><span>ثابت</span></div>
+<div class="stat"><strong>⚡</strong><span>سرعت بالا</span></div>
 </div>
 </div>
 </div>
 
 <!-- WHY -->
-
 <div class="section">
-
 <div class="container">
-
 <div class="section-title">
-
 <h2>چرا V2GURD؟</h2>
-
 <p>چیزی که ما رو برای اتصال روزمره‌ات مطمئن می‌کنه</p>
-
 </div>
-
 <div class="why-grid">
-
-<div class="why-item">
-<div class="why-icon">🛡️</div>
-<h3>امنیت اتصال</h3>
-<p>
- اتصال رمزنگاری‌شده روی همه سرویس‌ها،
- بدون افت امنیت در ازای سرعت.
-</p>
-</div>
-
-<div class="why-item">
-<div class="why-icon">⚡</div>
-<h3>سرعت بالا</h3>
-<p>
- زیرساخت بهینه‌شده برای اتصال سریع،
- مناسب مرورگری، دانلود و استریم.
-</p>
-</div>
-
-<div class="why-item">
-<div class="why-icon">🌐</div>
-<h3>IP ثابت</h3>
-<p>
- در سرویس وایرگارد تک‌کاربره،
- یک IP ثابت مخصوص خودت داری.
-</p>
-</div>
-
-<div class="why-item">
-<div class="why-icon">💬</div>
-<h3>پشتیبانی ۲۴ ساعته</h3>
-<p>
- از طریق تلگرام و ربات اختصاصی،
- همیشه در دسترسیم.
-</p>
-</div>
-
-<div class="why-item">
-<div class="why-icon">🚀</div>
-<h3>تحویل سریع</h3>
-<p>
- بعد از ارسال رسید پرداخت،
- اطلاعات سرویس سریع برات ارسال می‌شه.
-</p>
-</div>
-
-<div class="why-item">
-<div class="why-icon">📱</div>
-<h3>سازگار با همه دستگاه‌ها</h3>
-<p>
- روی آیفون، اندروید و ویندوز بدون محدودیت وصل شو.
-</p>
-</div>
-
+<div class="why-item"><div class="why-icon">🛡️</div><h3>امنیت اتصال</h3><p>اتصال رمزنگاری‌شده روی همه سرویس‌ها، بدون افت امنیت در ازای سرعت.</p></div>
+<div class="why-item"><div class="why-icon">⚡</div><h3>سرعت بالا</h3><p>زیرساخت بهینه‌شده برای اتصال سریع، مناسب مرورگری، دانلود و استریم.</p></div>
+<div class="why-item"><div class="why-icon">🌐</div><h3>IP ثابت</h3><p>در سرویس وایرگارد تک‌کاربره، یک IP ثابت مخصوص خودت داری.</p></div>
+<div class="why-item"><div class="why-icon">💬</div><h3>پشتیبانی ۲۴ ساعته</h3><p>از طریق تلگرام و ربات اختصاصی، همیشه در دسترسیم.</p></div>
+<div class="why-item"><div class="why-icon">🚀</div><h3>تحویل سریع</h3><p>بعد از ارسال رسید پرداخت، اطلاعات سرویس سریع برات ارسال می‌شه.</p></div>
+<div class="why-item"><div class="why-icon">📱</div><h3>سازگار با همه دستگاه‌ها</h3><p>روی آیفون، اندروید و ویندوز بدون محدودیت وصل شو.</p></div>
 </div>
 </div>
 </div>
 
 <!-- REFERRAL -->
-
 <div class="section">
-
 <div class="container">
-
 <div class="invite-box">
-
 <h2>🎁 دوستاتو دعوت کن، هر دو تخفیف بگیرید</h2>
-
-<p>
- لینک اختصاصی خودت رو با دوستات به اشتراک بذ؛
- اونا با اولین خرید ۵٪ تخفیف خوش‌آمد می‌گیرن.
-</p>
-
+<p>لینک اختصاصی خودت رو با دوستات به اشتراک بذار؛ اونا با اولین خرید ۵٪ تخفیف خوش‌آمد می‌گیرن.</p>
 <div class="copy-row">
-
 <input id="referralLink" readonly>
-
-<button class="btn btn-primary" onclick="copyReferralLink()">
- کپی لینک
-</button>
-
+<button class="btn btn-primary" onclick="copyReferralLink()">کپی لینک</button>
 </div>
-
-<button class="btn" onclick="shareReferralLink()">
- 📤 اشتراک‌گذاری در تلگرام
-</button>
-
+<button class="btn" onclick="shareReferralLink()">📤 اشتراک‌گذاری در تلگرام</button>
 </div>
 </div>
 </div>
 
 <!-- FAQ -->
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-<h2>سوالات متداول</h2>
-</div>
-
+<div class="section-title"><h2>سوالات متداول</h2></div>
 <div class="faq" id="faqList"></div>
-
 </div>
 </div>
 
 </section>
 
 <!-- WIREGUARD -->
-
 <section id="wireguard" class="page">
-
 <div class="category-hero">
-
 <img class="category-hero-img" id="wgHeroImg" alt="WireGuard">
-
 <div class="category-hero-overlay"></div>
-
 <div class="container">
-
 <div class="category-hero-content">
-
 <img class="category-icon" id="wgIcon" alt="WireGuard">
-
 <h1>🟣 وایرگارد</h1>
-
-<p>
- سرویس تک‌کاربره ویژه V2GURD
- با سرعت بالا، اتصال پایدار و IP ثابت.
-</p>
-
+<p>سرویس تک‌کاربره ویژه V2GURD با سرعت بالا، اتصال پایدار و IP ثابت.</p>
 </div>
 </div>
 </div>
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-
-<h2>⭐ پلن‌های وایرگارد</h2>
-
-<p>یکی از بهترین و پرفروش‌ترین سرویس‌های ما</p>
-
-</div>
-
+<div class="section-title"><h2>⭐ پلن‌های وایرگارد</h2><p>یکی از بهترین و پرفروش‌ترین سرویس‌های ما</p></div>
 <div class="grid" id="wgGrid"></div>
-
 </div>
 </div>
-
 </section>
 
 <!-- V2BOX -->
-
 <section id="v2box" class="page">
-
 <div class="category-hero">
-
 <img class="category-hero-img" id="v2boxHeroImg" alt="V2Box">
-
 <div class="category-hero-overlay"></div>
-
 <div class="container">
-
 <div class="category-hero-content">
-
 <img class="category-icon" id="v2boxIcon" alt="V2Box">
-
 <h1>📦 V2Box</h1>
-
-<p>
- سرویس‌های سروری V2GURD شامل CDN،
- حرفه‌ای، اقتصادی، معمولی و Tunnel.
-</p>
-
+<p>سرویس‌های سروری V2GURD شامل CDN، حرفه‌ای، اقتصادی، معمولی و Tunnel.</p>
 </div>
 </div>
 </div>
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-
-<h2>📊 مقایسه سرویس‌ها</h2>
-
-<p>کدوم سرور مناسب توئه؟</p>
-
-</div>
-
-<div class="compare-wrap">
-
-<table class="compare-table" id="compareTable"></table>
-
-</div>
-
-<div class="section-title">
-
-<h2>🌐 سرویس‌های V2Box</h2>
-
-<p>پلن مناسب خودت رو انتخاب کن</p>
-
-</div>
-
+<div class="section-title"><h2>📊 مقایسه سرویس‌ها</h2><p>کدوم سرور مناسب توئه؟</p></div>
+<div class="compare-wrap"><table class="compare-table" id="compareTable"></table></div>
+<div class="section-title"><h2>🌐 سرویس‌های V2Box</h2><p>پلن مناسب خودت رو انتخاب کن</p></div>
 <div class="grid" id="v2boxGrid"></div>
-
 </div>
 </div>
-
 </section>
 
 <!-- JUMPJUMP -->
-
 <section id="jumpjump" class="page">
-
 <div class="category-hero">
-
 <img class="category-hero-img" id="jjHeroImg" alt="JumpJump">
-
 <div class="category-hero-overlay"></div>
-
 <div class="container">
-
 <div class="category-hero-content">
-
 <img class="category-icon" id="jjIcon" alt="JumpJump">
-
 <h1>🚀 JumpJump</h1>
-
-<p>
- سرویس‌های اختصاصی JumpJump برای استفاده
- روی یک یا چند دستگاه با پلن‌های مختلف.
-</p>
-
+<p>سرویس‌های اختصاصی JumpJump برای استفاده روی یک یا چند دستگاه با پلن‌های مختلف.</p>
 </div>
 </div>
 </div>
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-
-<h2>🚀 پلن‌های JumpJump</h2>
-
-<p>فقط سرویس‌های مربوط به JumpJump</p>
-
-</div>
-
+<div class="section-title"><h2>🚀 پلن‌های JumpJump</h2><p>فقط سرویس‌های مربوط به JumpJump</p></div>
 <div class="grid" id="jjGrid"></div>
-
 </div>
 </div>
-
 </section>
 
 <!-- GUIDE -->
-
 <section id="guide" class="page">
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-
-<h2>📚 راهنمای استفاده</h2>
-
-<p>مراحل دریافت و استفاده از سرویس</p>
-
-</div>
-
+<div class="section-title"><h2>📚 راهنمای استفاده</h2><p>مراحل دریافت و استفاده از سرویس</p></div>
 <div class="info-box" id="stepsList"></div>
-
 </div>
 </div>
-
 </section>
 
 <!-- RULES -->
-
 <section id="rules" class="page">
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-<h2>📜 قوانین خرید</h2>
-</div>
-
-<div class="info-box">
-<ul id="rulesList"></ul>
-</div>
-
+<div class="section-title"><h2>📜 قوانین خرید</h2></div>
+<div class="info-box"><ul id="rulesList"></ul></div>
 </div>
 </div>
-
 </section>
 
 <!-- BOT -->
-
 <section id="bot" class="page">
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-
-<h2>🤖 ربات V2GURD</h2>
-
-<p>مدیریت و دریافت سرویس از طریق ربات</p>
-
-</div>
-
+<div class="section-title"><h2>🤖 ربات V2GURD</h2><p>مدیریت و دریافت سرویس از طریق ربات</p></div>
 <div class="info-box" style="text-align:center">
-
-<div style="font-size:55px;margin-bottom:15px">
-🤖
-</div>
-
+<div style="font-size:55px;margin-bottom:15px">🤖</div>
 <h2>echo_priime_bot</h2>
-
-<p>
- برای دریافت اطلاعات سرویس و ارتباط سریع‌تر
- می‌توانید از ربات تلگرام استفاده کنید.
-</p>
-
+<p>برای دریافت اطلاعات سرویس و ارتباط سریع‌تر می‌توانید از ربات تلگرام استفاده کنید.</p>
 <br>
-
-<a class="btn btn-primary"
- href="https://t.me/echo_priime_bot"
- target="_blank">
- ورود به ربات
-</a>
-
-</div>
-
+<a class="btn btn-primary" href="https://t.me/echo_priime_bot" target="_blank">ورود به ربات</a>
 </div>
 </div>
-
+</div>
 </section>
 
 <!-- SUPPORT -->
-
 <section id="support" class="page">
-
 <div class="section">
-
 <div class="container">
-
-<div class="section-title">
-
-<h2>🎧 پشتیبانی V2GURD</h2>
-
-<p>در صورت وجود مشکل با ما در ارتباط باشید</p>
-
-</div>
-
+<div class="section-title"><h2>🎧 پشتیبانی V2GURD</h2><p>در صورت وجود مشکل با ما در ارتباط باشید</p></div>
 <div class="info-box">
-
 <h2>ایجاد تیکت پشتیبانی</h2>
-
-<input
- class="form-input"
- id="supportName"
- placeholder="نام شما">
-
-<input
- class="form-input"
- id="supportProblem"
- placeholder="موضوع یا مشکل">
-
+<input class="form-input" id="supportName" placeholder="نام شما">
+<input class="form-input" id="supportProblem" placeholder="موضوع یا مشکل">
 <br>
-
-<button class="btn btn-primary" onclick="createTicket()">
- ارسال درخواست پشتیبانی
-</button>
-
+<button class="btn btn-primary" onclick="createTicket()">ارسال درخواست پشتیبانی</button>
 <br><br>
-
-<a class="btn"
- href="https://t.me/Vtwoguard"
- target="_blank">
- 💬 ارتباط مستقیم در تلگرام
-</a>
-
-</div>
-
+<a class="btn" href="https://t.me/Vtwoguard" target="_blank">💬 ارتباط مستقیم در تلگرام</a>
+<br><br>
+<a class="btn btn-block" href="status.html" target="_blank" rel="noopener">📊 بررسی وضعیت سرویس من</a>
 </div>
 </div>
-
+</div>
 </section>
 
 </main>
 
-<!-- QUICK BAR -->
-
 <div class="quickbar" id="quickBar">
-
-<div class="quickbar-info">
-
-<strong id="quickBarTitle"></strong>
-
-<span id="quickBarPrice"></span>
-
+<div class="quickbar-info"><strong id="quickBarTitle"></strong><span id="quickBarPrice"></span></div>
+<button class="btn btn-primary" id="quickBarBtn">افزودن سریع</button>
 </div>
 
-<button class="btn btn-primary" id="quickBarBtn">
- افزودن سریع
-</button>
-
-</div>
-
-<!-- CART -->
-
-<button class="cart-float" onclick="openCart()">
-
-🛒
-
-<span class="cart-count" id="cartCount">
-0
-</span>
-
-</button>
+<button class="cart-float" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></button>
 
 <div class="cart-panel" id="cartPanel" onclick="outsideCart(event)">
-
 <div class="cart-box">
-
-<div class="cart-head">
-
-<h2>🛒 سبد خرید</h2>
-
-<button class="close" onclick="closeCart()">×</button>
-
-</div>
-
+<div class="cart-head"><h2>🛒 سبد خرید</h2><button class="close" onclick="closeCart()">×</button></div>
 <div id="cartItems"></div>
-
 <div class="summary">
-
-<div class="sum-row">
-<span>مبلغ:</span>
-<span id="subtotal">۰ تومان</span>
-</div>
-
-<div class="sum-row">
-<span>تخفیف:</span>
-<span id="discount">۰ تومان</span>
-</div>
-
-<div class="sum-row sum-final">
-<span>مبلغ نهایی:</span>
-<span id="finalTotal">۰ تومان</span>
-</div>
-
-<input
- class="form-input"
- id="coupon"
- placeholder="کد تخفیف">
-
-<button class="btn btn-block" onclick="applyCoupon()">
- اعمال کد تخفیف
-</button>
-
+<div class="sum-row"><span>مبلغ:</span><span id="subtotal">۰ تومان</span></div>
+<div class="sum-row"><span>تخفیف:</span><span id="discount">۰ تومان</span></div>
+<div class="sum-row sum-final"><span>مبلغ نهایی:</span><span id="finalTotal">۰ تومان</span></div>
+<input class="form-input" id="coupon" placeholder="کد تخفیف">
+<button class="btn btn-block" onclick="applyCoupon()">اعمال کد تخفیف</button>
 <br><br>
-
-<button class="btn btn-primary btn-block" onclick="startCheckout()">
- ادامه و پرداخت
-</button>
-
+<button class="btn btn-primary btn-block" onclick="startCheckout()">ادامه و پرداخت</button>
 </div>
 </div>
 </div>
-
-<!-- RULES MODAL -->
 
 <div class="modal" id="rulesModal">
-
 <div class="modal-box">
-
-<div class="modal-head">
-
-<h2>📜 تأیید قوانین</h2>
-
-<button class="close" onclick="closeModal('rulesModal')">
-×
-</button>
-
-</div>
-
-<p style="color:#a8b6ca;line-height:2">
-
- قوانین خرید را مطالعه کردم و مشخصات سرویس
- انتخاب‌شده را بررسی کرده‌ام.
-
-</p>
-
+<div class="modal-head"><h2>📜 تأیید قوانین</h2><button class="close" onclick="closeModal('rulesModal')">×</button></div>
+<p style="color:#a3bab4;line-height:2">قوانین خرید را مطالعه کردم و مشخصات سرویس انتخاب‌شده را بررسی کرده‌ام.</p>
 <br>
-
-<button class="btn btn-primary btn-block" onclick="confirmRules()">
- تأیید قوانین و ادامه
-</button>
-
+<button class="btn btn-primary btn-block" onclick="confirmRules()">تأیید قوانین و ادامه</button>
 </div>
 </div>
-
-<!-- INVOICE -->
 
 <div class="modal" id="invoiceModal">
-
 <div class="modal-box">
-
-<div class="modal-head">
-
-<h2>🧾 فاکتور سفارش</h2>
-
-<button class="close" onclick="closeModal('invoiceModal')">
-×
-</button>
-
-</div>
-
-<div
- id="invoiceContent"
- style="line-height:2;color:#aebbd0">
-</div>
-
+<div class="modal-head"><h2>🧾 فاکتور سفارش</h2><button class="close" onclick="closeModal('invoiceModal')">×</button></div>
+<div id="invoiceContent" style="line-height:2;color:#a9c2bd"></div>
 <br>
-
-<button class="btn btn-primary btn-block" onclick="openPayment()">
- ادامه به پرداخت
-</button>
-
+<button class="btn btn-primary btn-block" onclick="openPayment()">ادامه به پرداخت</button>
 </div>
 </div>
-
-<!-- PAYMENT -->
 
 <div class="modal" id="paymentModal">
-
 <div class="modal-box">
-
-<div class="modal-head">
-
-<h2>💳 پرداخت</h2>
-
-<button class="close" onclick="closeModal('paymentModal')">
-×
-</button>
-
+<div class="modal-head"><h2>💳 پرداخت</h2><button class="close" onclick="closeModal('paymentModal')">×</button></div>
+<p style="color:#9db8b3;line-height:2">مبلغ سفارش را به شماره کارت زیر واریز کنید و سپس رسید پرداخت را ارسال نمایید.</p>
+<div class="card-number">6219 8618 4163 5526</div>
+<div style="text-align:center;color:#a9c2bd">
+<b style="color:#fff">نام صاحب کارت:</b> نامی<br>
+<b style="color:#fff">بانک:</b> BLU / بلو بانک
 </div>
-
-<p style="color:#9eafc7;line-height:2">
-
- مبلغ سفارش را به شماره کارت زیر واریز کنید
- و سپس رسید پرداخت را ارسال نمایید.
-
-</p>
-
-<div class="card-number">
-6219 8618 4163 5526
-</div>
-
-<div style="text-align:center;color:#aebbd0">
-
-<b style="color:#fff">
- نام صاحب کارت:
-</b>
-نامی
-
 <br>
-
-<b style="color:#fff">
- بانک:
-</b>
-BLU / بلو بانک
-
-</div>
-
-<br>
-
-<button class="btn btn-block" onclick="copyCard()">
- 📋 کپی شماره کارت
-</button>
-
+<button class="btn btn-block" onclick="copyCard()">📋 کپی شماره کارت</button>
 <br><br>
-
-<button class="btn btn-primary btn-block" onclick="sendReceipt()">
- 📤 ارسال رسید در تلگرام
-</button>
-
+<button class="btn btn-primary btn-block" onclick="sendReceipt()">📤 ارسال رسید در تلگرام</button>
 </div>
 </div>
 
 <div id="toast"></div>
 
 <footer>
-
-<div class="footer-logo">
-V2<span>GURD</span>
-</div>
-
+<div class="footer-logo">V2<span>GURD</span></div>
 <p>Secure • Fast • Premium</p>
-
-<p style="margin-top:8px">
-© 2026 V2GURD
-</p>
-
+<a class="footer-link" href="status.html" target="_blank" rel="noopener">📊 بررسی وضعیت سرویس</a>
+<p style="margin-top:8px">© 2026 V2GURD</p>
 </footer>
 
 <script>
-
 /* ================= DATA ================= */
 
 const IMG = {
-
- wireguard:
- "https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd",
-
- v2box:
- "https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA",
-
- jumpjump:
- "https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA"
-
+  wireguard:"https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd",
+  v2box:"https://play-lh.googleusercontent.com/qQpPZLi7FtvauCecbDnEbFe8JScW1fOP-EuIkUorFDsFFTa3luf3w48PKXjnaBf3kb4QNFJYBTtWxhZctGy1xyA",
+  jumpjump:"https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA"
 };
 
 const CATEGORIES = [
-
- {
-  id:"wireguard",
-  icon:"🟣",
-  title:"WireGuard",
-  desc:"تک‌کاربره • IP ثابت • سرعت بالا"
- },
-
- {
-  id:"v2box",
-  icon:"📦",
-  title:"V2Box",
-  desc:"CDN • حرفه‌ای • اقتصادی • Tunnel"
- },
-
- {
-  id:"jumpjump",
-  icon:"🚀",
-  title:"JumpJump",
-  desc:"سرویس چند دستگاه"
- }
-
+  {id:"wireguard",icon:"🟣",title:"WireGuard",desc:"تک‌کاربره • IP ثابت • سرعت بالا"},
+  {id:"v2box",icon:"📦",title:"V2Box",desc:"CDN • حرفه‌ای • اقتصادی • Tunnel"},
+  {id:"jumpjump",icon:"🚀",title:"JumpJump",desc:"سرویس چند دستگاه"}
 ];
 
-const WG_POINTS = [
-
- "🚀 سرعت فضایی",
- "⚡ بدون قطعی",
- "🌐 IP ثابت",
- "🔒 تک‌کاربره",
- "📱 آیفون و اندروید",
- "● یکی از بهترین سرورهای ما"
-
+const WG_CHECKLIST = [
+  "۵۰ گیگابایت ترافیک همه‌کاره",
+  "دسترسی به همه سایت‌ها و اپ‌ها",
+  "انتخاب خودکار بهترین مسیر",
+  "آمار لحظه‌ای پینگ و پکت‌لاس",
+  "پشتیبانی سریع‌تر"
 ];
 
 const WIREGUARD_PLANS = [
-
- {id:"wg10",gb:10,price:149000,special:true},
- {id:"wg20",gb:20,price:279000},
- {id:"wg40",gb:40,price:499000},
- {id:"wg60",gb:60,price:699000},
- {id:"wg100",gb:100,price:999000}
-
+  {id:"wg10",gb:10,price:149000,special:true},
+  {id:"wg20",gb:20,price:279000},
+  {id:"wg40",gb:40,price:499000},
+  {id:"wg60",gb:60,price:699000},
+  {id:"wg100",gb:100,price:999000}
 ];
 
-const GB_OPTIONS =
-[50,100,150,200,250,300,400,500];
+const GB_OPTIONS = [50,100,150,200,250,300,400,500];
 
 const V2BOX_PLANS = [
-
- {
-  id:"economicPlan",
-  type:"اقتصادی",
-  icon:"💠",
-  title:"سرور اقتصادی",
-  status:"موجود",
-  pricePerGB:2000,
-  desc:[
-   "مناسب مصرف روزمره",
-   "قیمت اقتصادی",
-   "حجم قابل انتخاب"
-  ],
-  btn:"btn-primary",
-  bestFor:"مصرف سبک و روزمره"
- },
-
- {
-  id:"normalPlan",
-  type:"معمولی",
-  icon:"⚡",
-  title:"سرور معمولی",
-  status:"موجود",
-  pricePerGB:1500,
-  desc:[
-   "سرعت مناسب",
-   "اتصال پایدار",
-   "مناسب استفاده روزمره"
-  ],
-  btn:"btn-primary",
-  bestFor:"استفاده عمومی و مرورگری"
- },
-
- {
-  id:"cdnPlan",
-  type:"CDN",
-  icon:"🚀",
-  title:"CDN",
-  status:"ویژه",
-  pricePerGB:1500,
-  special:true,
-  desc:[
-   "اتصال سریع",
-   "مناسب مصرف بالا",
-   "مسیر بهینه"
-  ],
-  btn:"btn-primary",
-  bestFor:"دانلود حجم بالا و استریم"
- },
-
- {
-  id:"tunnelPlan",
-  type:"Tunnel",
-  icon:"🔗",
-  title:"Tunnel",
-  status:"موجود",
-  pricePerGB:2500,
-  desc:[
-   "مسیر تونلی",
-   "مناسب اتصال پایدار",
-   "سرویس پرسرعت"
-  ],
-  btn:"btn-primary",
-  bestFor:"اتصال پایدار در شرایط ضعیف"
- },
-
- {
-  id:"proPlan",
-  type:"حرفه‌ای",
-  icon:"👑",
-  title:"سرور حرفه‌ای",
-  status:"حرفه‌ای",
-  pricePerGB:3000,
-  special:true,
-  desc:[
-   "مناسب مصرف سنگین",
-   "سرعت بالا",
-   "سرویس حرفه‌ای V2GURD"
-  ],
-  btn:"btn-purple",
-  bestFor:"کاربران پرمصرف و حرفه‌ای"
- }
-
+  {id:"economicPlan",type:"اقتصادی",icon:"💠",title:"سرور اقتصادی",status:"موجود",pricePerGB:2000,
+    desc:["مناسب مصرف روزمره","قیمت اقتصادی","حجم قابل انتخاب"],btn:"btn-primary",bestFor:"مصرف سبک و روزمره"},
+  {id:"normalPlan",type:"معمولی",icon:"⚡",title:"سرور معمولی",status:"موجود",pricePerGB:1500,
+    desc:["سرعت مناسب","اتصال پایدار","مناسب استفاده روزمره"],btn:"btn-primary",bestFor:"استفاده عمومی و مرورگری"},
+  {id:"cdnPlan",type:"CDN",icon:"🚀",title:"CDN",status:"ویژه",pricePerGB:1500,special:true,
+    desc:["اتصال سریع","مناسب مصرف بالا","مسیر بهینه"],btn:"btn-primary",bestFor:"دانلود حجم بالا و استریم"},
+  {id:"tunnelPlan",type:"Tunnel",icon:"🔗",title:"Tunnel",status:"موجود",pricePerGB:2500,
+    desc:["مسیر تونلی","مناسب اتصال پایدار","سرویس پرسرعت"],btn:"btn-primary",bestFor:"اتصال پایدار در شرایط ضعیف"},
+  {id:"proPlan",type:"حرفه‌ای",icon:"👑",title:"سرور حرفه‌ای",status:"حرفه‌ای",pricePerGB:3000,special:true,
+    desc:["مناسب مصرف سنگین","سرعت بالا","سرویس حرفه‌ای V2GURD"],btn:"btn-purple",bestFor:"کاربران پرمصرف و حرفه‌ای"}
 ];
 
 const JUMPJUMP_PLANS = [
+  {id:"jj1",devices:1,months:1,price:700000,status:"موجود"},
+  {id:"jj2",devices:2,months:1,price:999000,status:"موجود"},
+  {id:"jj6",devices:2,months:6,price:4600000,special:true,status:"پیشنهاد ویژه"},
+  {id:"jj12",devices:2,months:12,price:5500000,special:true,status:"بهترین ارزش خرید"}
+];
 
- {id:"jj1",devices:1,months:1,price:700000,status:"موجود"},
- {id:"jj2",devices:2,months:1,price:999000,status:"موجود"},
- {id:"jj6",devices:2,months:6,price:4600000,special:true,status:"پیشنهاد ویژه"},
- {id:"jj12",devices:2,months:12,price:5500000,special:true,status:"بهترین ارزش خرید"}
+const SERVER_CHIPS = ["IR-01","IR-02","IR-03","EU-01","TR-01","AE-01"];
 
+const SEQUENCE = [
+  {title:"کنترل مسیر، دست خودته",desc:"ترافیک تو از میان مسیرهای شلوغ عبور نمی‌کند؛ سریع‌ترین مسیر در لحظه انتخاب می‌شود."},
+  {title:"تحریم؟ دیگه نه",desc:"محدودیت سرویس‌ها را بدون تغییر پیچیده و دردسر پشت سر بگذار."},
+  {title:"بهترین مسیر، خودکار",desc:"V2GURD چند مسیر مختلف را همزمان بررسی می‌کند و پایدارترین گزینه را برایت نگه می‌دارد."},
+  {title:"پکت‌لاس نزدیک صفر",desc:"قطع و وصل، لگ ناگهانی و پرش‌های آزاردهنده را به حداقل می‌رساند."}
+];
+
+const DOWNLOADS = [
+  {name:"WireGuard",icon:"🟣",ios:"https://apps.apple.com/us/app/wireguard/id1441195209",
+    android:"https://play.google.com/store/apps/details?id=com.wireguard.android"},
+  {name:"V2Box",icon:"📦",ios:"https://apps.apple.com/app/id6446814690",
+    android:"https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box"},
+  {name:"JumpJump",icon:"🚀",ios:"https://apps.apple.com/app/id6451097052",
+    android:"https://play.google.com/store/apps/details?id=app.jumpjumpvpn.jumpjumpvpn"}
 ];
 
 const FAQS = [
-
- {
-  q:"سرویس‌ها IP ثابت دارند؟",
-  a:"سرویس وایرگارد تک‌کاربره دارای IP ثابت است."
- },
-
- {
-  q:"سرویس روی آیفون و اندروید کار می‌کند؟",
-  a:"بله، سرویس‌های مناسب موبایل روی آیفون و اندروید قابل استفاده هستند."
- },
-
- {
-  q:"بعد از خرید چطور سرویس را دریافت کنم؟",
-  a:"بعد از پرداخت، رسید خود را از طریق تلگرام ارسال کنید تا اطلاعات سرویس برای شما ارسال شود."
- }
-
+  {q:"سرویس‌ها IP ثابت دارند؟",a:"سرویس وایرگارد تک‌کاربره دارای IP ثابت است."},
+  {q:"سرویس روی آیفون و اندروید کار می‌کند؟",a:"بله، سرویس‌های مناسب موبایل روی آیفون و اندروید قابل استفاده هستند."},
+  {q:"بعد از خرید چطور سرویس را دریافت کنم؟",a:"بعد از پرداخت، رسید خود را از طریق تلگرام ارسال کنید تا اطلاعات سرویس برای شما ارسال شود."}
 ];
 
 const STEPS = [
-
- {
-  title:"انتخاب سرویس",
-  desc:"از دسته‌بندی موردنظر سرویس خود را انتخاب کنید و به سبد خرید اضافه کنید."
- },
-
- {
-  title:"بررسی سبد خرید",
-  desc:"سرویس‌ها و مبلغ نهایی را بررسی کنید."
- },
-
- {
-  title:"پرداخت",
-  desc:"مبلغ را به کارت اعلام‌شده انتقال دهید."
- },
-
- {
-  title:"ارسال رسید",
-  desc:"رسید پرداخت را از طریق تلگرام ارسال کنید تا سرویس برای شما ارسال شود."
- }
-
+  {title:"انتخاب سرویس",desc:"از دسته‌بندی موردنظر سرویس خود را انتخاب کنید و به سبد خرید اضافه کنید."},
+  {title:"بررسی سبد خرید",desc:"سرویس‌ها و مبلغ نهایی را بررسی کنید."},
+  {title:"پرداخت",desc:"مبلغ را به کارت اعلام‌شده انتقال دهید."},
+  {title:"ارسال رسید",desc:"رسید پرداخت را از طریق تلگرام ارسال کنید تا سرویس برای شما ارسال شود."}
 ];
 
 const RULES = [
-
- "قبل از خرید، مشخصات سرویس را به دقت بررسی کنید.",
- "پس از فعال‌سازی سرویس، امکان تغییر پلن طبق شرایط سرویس انجام می‌شود.",
- "اطلاعات سرویس را در اختیار افراد دیگر قرار ندهید.",
- "مسئولیت استفاده نادرست از سرویس بر عهده خریدار است.",
- "برای پیگیری سفارش، حتماً شماره سفارش را نگه دارید."
-
+  "قبل از خرید، مشخصات سرویس را به دقت بررسی کنید.",
+  "پس از فعال‌سازی سرویس، امکان تغییر پلن طبق شرایط سرویس انجام می‌شود.",
+  "اطلاعات سرویس را در اختیار افراد دیگر قرار ندهید.",
+  "مسئولیت استفاده نادرست از سرویس بر عهده خریدار است.",
+  "برای پیگیری سفارش، حتماً شماره سفارش را نگه دارید."
 ];
 
-const CARD_NUMBER =
-"6219861841635526";
-
-const TELEGRAM =
-"https://t.me/Vtwoguard";
-
+const CARD_NUMBER = "6219861841635526";
+const TELEGRAM = "https://t.me/Vtwoguard";
 const REFERRAL_DISCOUNT = 5;
 
 const PRODUCTS = {};
-
-WIREGUARD_PLANS.forEach(p => {
-
- PRODUCTS[p.id] = {
-
-  name:
-  `🟣 وایرگارد — ${toFa(p.gb)} گیگ / ۳۰ روز`,
-
-  price:p.price
-
- };
-
+WIREGUARD_PLANS.forEach(p=>{
+  PRODUCTS[p.id] = {name:`🟣 وایرگارد — ${toFa(p.gb)} گیگ / ۳۰ روز`, price:p.price};
 });
-
-JUMPJUMP_PLANS.forEach(p => {
-
- PRODUCTS[p.id] = {
-
-  name:
-  `🚀 JumpJump — ${toFa(p.devices)} دستگاه / ${toFa(p.months)} ماه`,
-
-  price:p.price
-
- };
-
+JUMPJUMP_PLANS.forEach(p=>{
+  PRODUCTS[p.id] = {name:`🚀 JumpJump — ${toFa(p.devices)} دستگاه / ${toFa(p.months)} ماه`, price:p.price};
 });
 
 /* ================= HELPERS ================= */
 
-function toFa(n){
+function toFa(n){ return String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]); }
+function formatPrice(n){ return Number(n).toLocaleString("fa-IR") + " تومان"; }
+function el(html){ const t=document.createElement("template"); t.innerHTML=html.trim(); return t.content.firstElementChild; }
 
- return String(n).replace(
-  /\d/g,
-  d=>"۰۱۲۳۴۵۶۷۸۹"[d]
- );
-
-}
-
-function formatPrice(n){
-
- return Number(n).toLocaleString("fa-IR")
- +" تومان";
-
-}
-
-function el(html){
-
- const t =
- document.createElement("template");
-
- t.innerHTML =
- html.trim();
-
- return t.content.firstElementChild;
-
-}
-
-function escapeHTML(value){
-
- return String(value)
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
-
-}
-
-/* ================= RENDER ================= */
+/* ================= RENDER STATIC SECTIONS ================= */
 
 function renderCategories(){
-
- document.getElementById("categoriesGrid").innerHTML =
- CATEGORIES.map(c => `
-
-  <div class="category"
-   onclick="showPage('${c.id}')">
-
-   <img
-    class="category-img"
-    src="${IMG[c.id]}"
-    alt="${c.title}"
-    loading="lazy"
-    decoding="async">
-
-   <div class="category-overlay"></div>
-
-   <div class="category-content">
-
-    <h3>
-     ${c.icon} ${c.title}
-    </h3>
-
-    <p>
-     ${c.desc}
-    </p>
-
-   </div>
-
-  </div>
-
- `).join("");
-
-}
-
-function renderWgPoints(){
-
- document.getElementById("wgPoints").innerHTML =
- WG_POINTS.map(p => `
-
-  <div class="wg-point">
-   ${p}
-  </div>
-
- `).join("");
-
+  document.getElementById("categoriesGrid").innerHTML = CATEGORIES.map(c => `
+    <div class="category" onclick="showPage('${c.id}')">
+      <img class="category-img" src="${IMG[c.id]}" alt="${c.title}" loading="lazy" decoding="async">
+      <div class="category-overlay"></div>
+      <div class="category-content"><h3>${c.icon} ${c.title}</h3><p>${c.desc}</p></div>
+    </div>`).join("");
 }
 
 function renderFaq(){
-
- document.getElementById("faqList").innerHTML =
- FAQS.map(f => `
-
-  <div class="faq-item">
-
-   <button
-    class="faq-q"
-    onclick="toggleFaq(this)">
-
-    ${f.q}
-
-    <span>＋</span>
-
-   </button>
-
-   <div class="faq-a">
-    ${f.a}
-   </div>
-
-  </div>
-
- `).join("");
-
+  document.getElementById("faqList").innerHTML = FAQS.map(f => `
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">${f.q}<span>＋</span></button>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join("");
 }
 
 function renderCategoryHeroes(){
+  [["wg",IMG.wireguard],["v2box",IMG.v2box],["jj",IMG.jumpjump]].forEach(([prefix,img])=>{
+    document.getElementById(prefix+"HeroImg").src = img;
+    document.getElementById(prefix+"Icon").src = img;
+  });
+}
 
- [
-  ["wg",IMG.wireguard],
-  ["v2box",IMG.v2box],
-  ["jj",IMG.jumpjump]
- ].forEach(([prefix,img]) => {
-
-  document.getElementById(prefix+"HeroImg").src = img;
-  document.getElementById(prefix+"Icon").src = img;
-
- });
-
+function renderWgFeatured(){
+  const p = WIREGUARD_PLANS.find(x=>x.special) || WIREGUARD_PLANS[0];
+  const oldPrice = Math.round(p.price/0.9);
+  document.getElementById("wgOldPrice").textContent = Number(oldPrice).toLocaleString("fa-IR")+" تومان";
+  document.getElementById("wgNewPrice").innerHTML = Number(p.price).toLocaleString("fa-IR")+" <small>تومان / ۳۰ روز</small>";
+  document.getElementById("wgChecklist").innerHTML = WG_CHECKLIST.map(c=>`<li>${c}</li>`).join("");
 }
 
 function renderWireguardPlans(){
-
- document.getElementById("wgGrid").innerHTML =
- WIREGUARD_PLANS.map(p => `
-
-  <div class="card ${p.special?"special-card":""}">
-
-   <div class="status">
-    <i></i>
-    موجود و فعال
-   </div>
-
-   <h3>
-    🟣 وایرگارد — ${toFa(p.gb)} گیگ
-   </h3>
-
-   <div class="subtitle">
-    تک‌کاربره
-    <br>
-    ۳۰ روز اعتبار
-    <br>
-    IP ثابت
-   </div>
-
-   <div class="price">
-    ${Number(p.price).toLocaleString("fa-IR")}
-    <small>تومان</small>
-   </div>
-
-   <button
-    class="btn btn-primary"
-    onclick="addToCart('${p.id}')">
-    افزودن به سبد
-   </button>
-
-  </div>
-
- `).join("");
-
+  document.getElementById("wgGrid").innerHTML = WIREGUARD_PLANS.map(p => `
+    <div class="card ${p.special?"special-card":""}">
+      <div class="status"><i></i>موجود و فعال</div>
+      <h3>🟣 وایرگارد — ${toFa(p.gb)} گیگ</h3>
+      <div class="subtitle">تک‌کاربره<br>۳۰ روز اعتبار<br>IP ثابت</div>
+      <div class="price">${Number(p.price).toLocaleString("fa-IR")}<small>تومان</small></div>
+      <button class="btn btn-primary" onclick="addToCart('${p.id}')">افزودن به سبد</button>
+    </div>`).join("");
 }
 
 function renderV2BoxPlans(){
-
- document.getElementById("v2boxGrid").innerHTML =
- V2BOX_PLANS.map(p => `
-
-  <div class="card ${p.special?"special-card":""}">
-
-   <div class="status">
-    <i></i>
-    ${p.status}
-   </div>
-
-   <h3>
-    ${p.icon} ${p.title}
-   </h3>
-
-   <div class="subtitle">
-    ${p.desc.join("<br>")}
-   </div>
-
-   <select class="select" id="${p.id}">
-
-    ${GB_OPTIONS.map(gb => `
-
-     <option value="${gb}">
-      ${toFa(gb)} گیگ —
-      ${formatPrice(gb*p.pricePerGB)}
-     </option>
-
-    `).join("")}
-
-   </select>
-
-   <button
-    class="btn ${p.btn}"
-    onclick="buyServer('${p.type}','${p.id}',${p.pricePerGB})">
-
-    افزودن به سبد
-
-   </button>
-
-  </div>
-
- `).join("");
-
+  document.getElementById("v2boxGrid").innerHTML = V2BOX_PLANS.map(p => `
+    <div class="card ${p.special?"special-card":""}">
+      <div class="status"><i></i>${p.status}</div>
+      <h3>${p.icon} ${p.title}</h3>
+      <div class="subtitle">${p.desc.join("<br>")}</div>
+      <select class="select" id="${p.id}">
+        ${GB_OPTIONS.map(gb => `<option value="${gb}">${toFa(gb)} گیگ — ${formatPrice(gb*p.pricePerGB)}</option>`).join("")}
+      </select>
+      <button class="btn ${p.btn}" onclick="buyServer('${p.type}','${p.id}',${p.pricePerGB})">افزودن به سبد</button>
+    </div>`).join("");
 }
 
 function renderJumpjumpPlans(){
-
- document.getElementById("jjGrid").innerHTML =
- JUMPJUMP_PLANS.map(p => `
-
-  <div class="card ${p.special?"special-card":""}">
-
-   <div class="status">
-    <i></i>
-    ${p.status}
-   </div>
-
-   <h3>
-    🚀 JumpJump
-   </h3>
-
-   <div class="subtitle">
-    ${toFa(p.devices)} دستگاه
-    <br>
-    ${toFa(p.months)} ماه
-   </div>
-
-   <div class="price">
-    ${Number(p.price).toLocaleString("fa-IR")}
-    <small>تومان</small>
-   </div>
-
-   <button
-    class="btn ${p.special?"btn-purple":"btn-primary"}"
-    onclick="addToCart('${p.id}')">
-    افزودن به سبد
-   </button>
-
-  </div>
-
- `).join("");
-
+  document.getElementById("jjGrid").innerHTML = JUMPJUMP_PLANS.map(p => `
+    <div class="card ${p.special?"special-card":""}">
+      <div class="status"><i></i>${p.status}</div>
+      <h3>🚀 JumpJump</h3>
+      <div class="subtitle">${toFa(p.devices)} دستگاه<br>${toFa(p.months)} ماه</div>
+      <div class="price">${Number(p.price).toLocaleString("fa-IR")}<small>تومان</small></div>
+      <button class="btn ${p.special?"btn-purple":"btn-primary"}" onclick="addToCart('${p.id}')">افزودن به سبد</button>
+    </div>`).join("");
 }
 
 function renderSteps(){
-
- document.getElementById("stepsList").innerHTML =
- STEPS.map((s,i) => `
-
-  <div class="step">
-
-   <div class="step-num">
-    ${toFa(i+1)}
-   </div>
-
-   <div>
-    <h3>${s.title}</h3>
-    <p>${s.desc}</p>
-   </div>
-
-  </div>
-
- `).join("");
-
+  document.getElementById("stepsList").innerHTML = STEPS.map((s,i) => `
+    <div class="step"><div class="step-num">${toFa(i+1)}</div><div><h3>${s.title}</h3><p>${s.desc}</p></div></div>`).join("");
 }
 
 function renderRules(){
-
- document.getElementById("rulesList").innerHTML =
- RULES.map(r => `<li>${r}</li>`).join("");
-
+  document.getElementById("rulesList").innerHTML = RULES.map(r => `<li>${r}</li>`).join("");
 }
 
 function renderCompareTable(){
-
- const rows =
- V2BOX_PLANS.map(p => `
-
-  <tr class="${p.special?"highlight":""}">
-
-   <td>${p.icon} ${p.title}</td>
-
-   <td>${formatPrice(p.pricePerGB)}</td>
-
-   <td>${p.bestFor}</td>
-
-  </tr>
-
- `).join("");
-
- document.getElementById("compareTable").innerHTML = `
-
-  <tr>
-   <th>سرویس</th>
-   <th>قیمت هر گیگ</th>
-   <th>مناسب برای</th>
-  </tr>
-
-  ${rows}
-
- `;
-
+  const rows = V2BOX_PLANS.map(p => `
+    <tr class="${p.special?"highlight":""}"><td>${p.icon} ${p.title}</td><td>${formatPrice(p.pricePerGB)}</td><td>${p.bestFor}</td></tr>`).join("");
+  document.getElementById("compareTable").innerHTML = `<tr><th>سرویس</th><th>قیمت هر گیگ</th><th>مناسب برای</th></tr>${rows}`;
 }
 
-/* ================= CART ================= */
+function renderSequence(){
+  document.getElementById("seqList").innerHTML = SEQUENCE.map((s,i)=>`
+    <div class="seq-item"><div class="seq-num">${toFa(i+1).padStart(2,"۰")}</div><div><h3>${s.title}</h3><p>${s.desc}</p></div></div>`).join("");
+}
 
-let cart =
- JSON.parse(
-  localStorage.getItem("v2gurd_cart") || "{}"
- );
+function renderChips(){
+  const half = Math.ceil(SERVER_CHIPS.length/2);
+  const right = SERVER_CHIPS.slice(0,half);
+  const left = SERVER_CHIPS.slice(half);
+  const chip = (code,i) => `<button class="chip-server ${i===0?"active":""}" onclick="selectChip(this)"><span class="chip-dot"></span>${code}</button>`;
+  document.getElementById("chipsColRight").innerHTML = right.map((c,i)=>chip(c,i)).join("");
+  document.getElementById("chipsColLeft").innerHTML = left.map((c)=>chip(c,-1)).join("");
+}
 
+function selectChip(button){
+  document.querySelectorAll(".chip-server").forEach(c=>c.classList.remove("active"));
+  button.classList.add("active");
+  document.getElementById("liveStatRoute").textContent = button.textContent.trim();
+}
+
+function renderDownloads(){
+  document.getElementById("downloadGroups").innerHTML = DOWNLOADS.map(d => `
+    <div class="download-group">
+      <h3>${d.icon} ${d.name}</h3>
+      <div class="download-row">
+        <div class="download-plat"><div class="download-icon"></div> iPhone / iOS</div>
+        <a class="download-btn" href="${d.ios}" target="_blank" rel="noopener">دانلود</a>
+      </div>
+      <div class="download-row">
+        <div class="download-plat"><div class="download-icon">🤖</div> Android</div>
+        <a class="download-btn" href="${d.android}" target="_blank" rel="noopener">دانلود</a>
+      </div>
+    </div>`).join("");
+}
+
+/* ================= LIVE STATS SIMULATION ================= */
+
+function tickLiveStats(){
+  const pingEl = document.getElementById("liveStatPing");
+  const lossEl = document.getElementById("liveStatLoss");
+  const connMeta = document.getElementById("connMeta");
+  if(!pingEl) return;
+
+  const ping = 34 + Math.floor(Math.random()*16);
+  const lossRoll = Math.random();
+  const loss = lossRoll > 0.92 ? 1 : 0;
+
+  pingEl.textContent = ping + "ms";
+  lossEl.textContent = loss + "%";
+  if(connMeta) connMeta.textContent = `${ping}ms · ${loss}% LOSS`;
+}
+
+/* ================= CART STATE ================= */
+
+let cart = JSON.parse(localStorage.getItem("v2gurd_cart") || "{}");
 let couponDiscount = 0;
 let referralDiscount = 0;
 let currentOrder = null;
 
-function getDiscountPercent(){
+function getDiscountPercent(){ return Math.max(couponDiscount, referralDiscount); }
 
- return Math.max(
-  couponDiscount,
-  referralDiscount
- );
+/* ================= INIT ================= */
 
+window.addEventListener("load", () => {
+  renderCategories();
+  renderFaq();
+  renderCategoryHeroes();
+  renderWgFeatured();
+  renderWireguardPlans();
+  renderV2BoxPlans();
+  renderJumpjumpPlans();
+  renderCompareTable();
+  renderSequence();
+  renderChips();
+  renderDownloads();
+  renderSteps();
+  renderRules();
+  updateCart();
+  initReferral();
+  startCountdown();
+  registerServiceWorker();
+  updateQuickBar();
+
+  tickLiveStats();
+  setInterval(tickLiveStats, 2600);
+
+  setTimeout(() => {
+    const intro = document.getElementById("intro");
+    intro.style.opacity = "0";
+    setTimeout(() => intro.style.display = "none", 800);
+  }, 1200);
+});
+
+window.addEventListener("scroll", updateQuickBar);
+
+/* ================= NAVIGATION ================= */
+
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id)?.classList.add("active");
+  window.scrollTo({top:0, behavior:"smooth"});
+  document.getElementById("navLinks").classList.remove("show");
+  updateQuickBar();
 }
+
+function toggleMenu(){ document.getElementById("navLinks").classList.toggle("show"); }
+
+/* ================= TOAST ================= */
+
+function toast(message){
+  const t = document.getElementById("toast");
+  t.textContent = message;
+  t.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => t.classList.remove("show"), 2500);
+}
+
+/* ================= CART LOGIC ================= */
 
 function addToCart(id){
-
- if(!PRODUCTS[id]) return;
-
- cart[id] =
- (cart[id] || 0) + 1;
-
- saveCart();
-
- toast("محصول به سبد خرید اضافه شد ✅");
-
+  if(!PRODUCTS[id]) return;
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  toast("محصول به سبد خرید اضافه شد ✅");
 }
 
-function buyServer(type,selectId,pricePerGB){
-
- const gb =
- Number(document.getElementById(selectId).value);
-
- const price =
- gb * pricePerGB;
-
- const id =
- `server_${type}_${gb}_${Date.now()}`;
-
- PRODUCTS[id] = {
-
-  name:
-  `📦 ${type} — ${toFa(gb)} گیگ`,
-
-  price
-
- };
-
- addToCart(id);
-
+function buyServer(type, selectId, pricePerGB){
+  const gb = Number(document.getElementById(selectId).value);
+  const price = gb * pricePerGB;
+  const id = `server_${type}_${gb}_${Date.now()}`;
+  PRODUCTS[id] = {name:`📦 ${type} — ${toFa(gb)} گیگ`, price};
+  addToCart(id);
 }
 
 function saveCart(){
-
- localStorage.setItem(
-  "v2gurd_cart",
-  JSON.stringify(cart)
- );
-
- updateCart();
-
+  localStorage.setItem("v2gurd_cart", JSON.stringify(cart));
+  updateCart();
 }
 
-function changeQty(id,change){
-
- if(!cart[id]) return;
-
- cart[id] += change;
-
- if(cart[id] <= 0){
-  delete cart[id];
- }
-
- saveCart();
-
+function changeQty(id, change){
+  if(!cart[id]) return;
+  cart[id] += change;
+  if(cart[id] <= 0) delete cart[id];
+  saveCart();
 }
 
 function removeFromCart(id){
-
- delete cart[id];
-
- saveCart();
-
- toast("محصول حذف شد");
-
+  delete cart[id];
+  saveCart();
+  toast("محصول حذف شد");
 }
 
 function updateCart(){
+  const container = document.getElementById("cartItems");
+  const count = document.getElementById("cartCount");
+  let totalItems = 0, subtotal = 0;
+  container.innerHTML = "";
 
- const container =
- document.getElementById("cartItems");
+  Object.keys(cart).forEach(id => {
+    const qty = Number(cart[id]);
+    if(!qty || !PRODUCTS[id]){ delete cart[id]; return; }
+    const product = PRODUCTS[id];
+    totalItems += qty;
+    subtotal += product.price * qty;
+    container.appendChild(el(`
+      <div class="cart-item">
+        <div><div>${product.name}</div><small>${formatPrice(product.price)}</small></div>
+        <div class="cart-actions">
+          <div class="qty">
+            <button onclick="changeQty('${id}',-1)">−</button>
+            <span>${qty}</span>
+            <button onclick="changeQty('${id}',1)">+</button>
+          </div>
+          <button class="close" onclick="removeFromCart('${id}')">×</button>
+        </div>
+      </div>`));
+  });
 
- const count =
- document.getElementById("cartCount");
+  const discount = Math.round(subtotal * getDiscountPercent() / 100);
+  const final = subtotal - discount;
 
- let totalItems = 0;
- let subtotal = 0;
+  count.textContent = totalItems.toLocaleString("fa-IR");
+  document.getElementById("subtotal").textContent = formatPrice(subtotal);
+  document.getElementById("discount").textContent = formatPrice(discount);
+  document.getElementById("finalTotal").textContent = formatPrice(final);
 
- container.innerHTML = "";
-
- Object.keys(cart).forEach(id => {
-
-  const qty =
-  Number(cart[id]);
-
-  if(!qty || !PRODUCTS[id]){
-
-   delete cart[id];
-
-   return;
-
+  if(totalItems === 0){
+    container.innerHTML = `<div style="text-align:center;padding:35px 10px;color:#71877f">🛒 سبد خرید خالی است</div>`;
   }
 
-  const product =
-  PRODUCTS[id];
-
-  totalItems += qty;
-
-  subtotal +=
-  product.price * qty;
-
-  container.appendChild(
-   el(`
-
-    <div class="cart-item">
-
-     <div>
-
-      <div>${product.name}</div>
-
-      <small>
-       ${formatPrice(product.price)}
-      </small>
-
-     </div>
-
-     <div class="cart-actions">
-
-      <div class="qty">
-
-       <button onclick="changeQty('${id}',-1)">
-        −
-       </button>
-
-       <span>${qty}</span>
-
-       <button onclick="changeQty('${id}',1)">
-        +
-       </button>
-
-      </div>
-
-      <button
-       class="close"
-       onclick="removeFromCart('${id}')">
-       ×
-      </button>
-
-     </div>
-
-    </div>
-
-   `)
-  );
-
- });
-
- const discount =
- Math.round(
-  subtotal *
-  getDiscountPercent() /
-  100
- );
-
- const final =
- subtotal - discount;
-
- count.textContent =
- totalItems.toLocaleString("fa-IR");
-
- document.getElementById("subtotal")
- .textContent =
- formatPrice(subtotal);
-
- document.getElementById("discount")
- .textContent =
- formatPrice(discount);
-
- document.getElementById("finalTotal")
- .textContent =
- formatPrice(final);
-
- if(totalItems === 0){
-
-  container.innerHTML = `
-
-   <div style="
-    text-align:center;
-    padding:35px 10px;
-    color:#8292aa">
-
-    🛒 سبد خرید خالی است
-
-   </div>
-
-  `;
-
- }
-
- localStorage.setItem(
-  "v2gurd_cart",
-  JSON.stringify(cart)
- );
-
+  localStorage.setItem("v2gurd_cart", JSON.stringify(cart));
 }
 
 function openCart(){
-
- document.getElementById("cartPanel")
- .classList.add("show");
-
- updateCart();
-
+  document.getElementById("cartPanel").classList.add("show");
+  updateCart();
 }
-
-function closeCart(){
-
- document.getElementById("cartPanel")
- .classList.remove("show");
-
-}
-
-function outsideCart(e){
-
- if(
-  e.target ===
-  document.getElementById("cartPanel")
- ){
-  closeCart();
- }
-
-}
+function closeCart(){ document.getElementById("cartPanel").classList.remove("show"); }
+function outsideCart(e){ if(e.target === document.getElementById("cartPanel")) closeCart(); }
 
 /* ================= COUPON ================= */
 
 function applyCoupon(){
-
- const code =
- document.getElementById("coupon")
- .value
- .trim()
- .toUpperCase();
-
- if(code === "V2G10"){
-
-  couponDiscount = 10;
-
-  toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
-
- }else{
-
-  couponDiscount = 0;
-
-  toast("کد تخفیف معتبر نیست ❌");
-
- }
-
- updateCart();
-
+  const code = document.getElementById("coupon").value.trim().toUpperCase();
+  if(code === "V2G10"){
+    couponDiscount = 10;
+    toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
+  }else{
+    couponDiscount = 0;
+    toast("کد تخفیف معتبر نیست ❌");
+  }
+  updateCart();
 }
 
-/* ================= CHECKOUT ================= */
+/* ================= CHECKOUT FLOW ================= */
 
 function startCheckout(){
-
- if(Object.keys(cart).length === 0){
-
-  toast("سبد خرید خالی است ❌");
-
-  return;
-
- }
-
- document.getElementById("rulesModal")
- .classList.add("show");
-
+  if(Object.keys(cart).length === 0){
+    toast("سبد خرید خالی است ❌");
+    return;
+  }
+  document.getElementById("rulesModal").classList.add("show");
 }
 
-function closeModal(id){
-
- document.getElementById(id)
- .classList.remove("show");
-
-}
+function closeModal(id){ document.getElementById(id).classList.remove("show"); }
 
 function confirmRules(){
-
- closeModal("rulesModal");
-
- createInvoice();
-
+  closeModal("rulesModal");
+  createInvoice();
 }
 
-function createOrderId(prefix="V2G",digits=4){
-
- const d = new Date();
-
- const y = d.getFullYear();
-
- const m =
- String(d.getMonth()+1).padStart(2,"0");
-
- const day =
- String(d.getDate()).padStart(2,"0");
-
- const min =
- Math.pow(10,digits-1);
-
- const random =
- Math.floor(
-  min +
-  Math.random()*min*9
- );
-
- return `${prefix}-${y}${m}${day}-${random}`;
-
+function createOrderId(prefix = "V2G", digits = 4){
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,"0");
+  const day = String(d.getDate()).padStart(2,"0");
+  const min = Math.pow(10, digits-1);
+  const random = Math.floor(min + Math.random()*min*9);
+  return `${prefix}-${y}${m}${day}-${random}`;
 }
 
 function createInvoice(){
+  const orderId = createOrderId();
+  let subtotal = 0;
+  let rows = "";
 
- const orderId =
- createOrderId();
+  Object.keys(cart).forEach(id => {
+    if(!PRODUCTS[id]) return;
+    const product = PRODUCTS[id];
+    const qty = cart[id];
+    const total = product.price * qty;
+    subtotal += total;
+    rows += `
+      <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+        <span>${product.name} × ${qty}</span>
+        <span>${formatPrice(total)}</span>
+      </div>`;
+  });
 
- let subtotal = 0;
+  const discount = Math.round(subtotal * getDiscountPercent() / 100);
+  const final = subtotal - discount;
 
- let rows = "";
+  document.getElementById("invoiceContent").innerHTML = `
+    <div style="background:rgba(38,224,201,.06);border:1px solid rgba(38,224,201,.15);padding:15px;border-radius:13px;margin-bottom:15px">
+      <b style="color:#fff">شماره سفارش:</b> ${orderId}
+    </div>
+    ${rows}
+    <div style="margin-top:15px">
+      <div class="sum-row"><span>مبلغ:</span><span>${formatPrice(subtotal)}</span></div>
+      <div class="sum-row"><span>تخفیف:</span><span>${formatPrice(discount)}</span></div>
+      <div class="sum-row sum-final"><span>نهایی:</span><span>${formatPrice(final)}</span></div>
+    </div>`;
 
- Object.keys(cart).forEach(id => {
-
-  if(!PRODUCTS[id]) return;
-
-  const product =
-  PRODUCTS[id];
-
-  const qty =
-  cart[id];
-
-  const total =
-  product.price * qty;
-
-  subtotal += total;
-
-  rows += `
-
-   <div style="
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    padding:9px 0;
-    border-bottom:1px solid rgba(255,255,255,.05)">
-
-    <span>
-     ${product.name} × ${qty}
-    </span>
-
-    <span>
-     ${formatPrice(total)}
-    </span>
-
-   </div>
-
-  `;
-
- });
-
- const discount =
- Math.round(
-  subtotal *
-  getDiscountPercent() /
-  100
- );
-
- const final =
- subtotal - discount;
-
- document.getElementById("invoiceContent")
- .innerHTML = `
-
-  <div style="
-   background:rgba(22,140,255,.06);
-   border:1px solid rgba(22,140,255,.15);
-   padding:15px;
-   border-radius:13px;
-   margin-bottom:15px">
-
-   <b style="color:#fff">
-    شماره سفارش:
-   </b>
-
-   ${orderId}
-
-  </div>
-
-  ${rows}
-
-  <div style="margin-top:15px">
-
-   <div class="sum-row">
-    <span>مبلغ:</span>
-    <span>${formatPrice(subtotal)}</span>
-   </div>
-
-   <div class="sum-row">
-    <span>تخفیف:</span>
-    <span>${formatPrice(discount)}</span>
-   </div>
-
-   <div class="sum-row sum-final">
-    <span>نهایی:</span>
-    <span>${formatPrice(final)}</span>
-   </div>
-
-  </div>
-
- `;
-
- currentOrder = {
-  id:orderId,
-  subtotal,
-  discount,
-  total:final
- };
-
- document.getElementById("invoiceModal")
- .classList.add("show");
-
+  currentOrder = {id:orderId, subtotal, discount, total:final};
+  document.getElementById("invoiceModal").classList.add("show");
 }
 
 function openPayment(){
-
- closeModal("invoiceModal");
-
- document.getElementById("paymentModal")
- .classList.add("show");
-
+  closeModal("invoiceModal");
+  document.getElementById("paymentModal").classList.add("show");
 }
 
 function copyCard(){
-
- navigator.clipboard
- .writeText(CARD_NUMBER)
- .then(() =>
-  toast("شماره کارت کپی شد ✅")
- )
- .catch(() =>
-  toast("کپی انجام نشد")
- );
-
+  navigator.clipboard.writeText(CARD_NUMBER)
+    .then(() => toast("شماره کارت کپی شد ✅"))
+    .catch(() => toast("کپی انجام نشد"));
 }
 
 function sendReceipt(){
+  if(!currentOrder) return;
 
- if(!currentOrder) return;
+  let productsText = "";
+  Object.keys(cart).forEach(id => {
+    if(!PRODUCTS[id]) return;
+    productsText += `• ${PRODUCTS[id].name} × ${cart[id]}\n`;
+  });
 
- let productsText = "";
-
- Object.keys(cart).forEach(id => {
-
-  if(!PRODUCTS[id]) return;
-
-  productsText +=
-  `• ${PRODUCTS[id].name} × ${cart[id]}\n`;
-
- });
-
- const message = `سلام V2GURD 👋
+  const message = `سلام V2GURD 👋
 
 🧾 سفارش جدید
 
@@ -3591,7 +1307,6 @@ ${currentOrder.id}
 
 محصولات:
 ${productsText}
-
 💰 مبلغ:
 ${formatPrice(currentOrder.subtotal)}
 
@@ -3605,39 +1320,23 @@ ${formatPrice(currentOrder.total)}
 
 ممنون از V2GURD 🙏`;
 
- window.open(
-  TELEGRAM +
-  "?text=" +
-  encodeURIComponent(message),
-  "_blank"
- );
-
+  window.open(TELEGRAM + "?text=" + encodeURIComponent(message), "_blank");
 }
 
-/* ================= SUPPORT ================= */
+/* ================= SUPPORT TICKET ================= */
 
 function createTicket(){
+  const name = document.getElementById("supportName").value.trim();
+  const problem = document.getElementById("supportProblem").value.trim();
 
- const name =
- document.getElementById("supportName")
- .value.trim();
+  if(!name || !problem){
+    toast("لطفاً اطلاعات را کامل کنید ❌");
+    return;
+  }
 
- const problem =
- document.getElementById("supportProblem")
- .value.trim();
+  const ticket = createOrderId("TKT", 6);
 
- if(!name || !problem){
-
-  toast("لطفاً اطلاعات را کامل کنید ❌");
-
-  return;
-
- }
-
- const ticket =
- createOrderId("TKT",6);
-
- const message = `سلام V2GURD 👋
+  const message = `سلام V2GURD 👋
 
 🎧 درخواست پشتیبانی
 
@@ -3650,1717 +1349,132 @@ ${name}
 ❗ مشکل:
 ${problem}`;
 
- window.open(
-  TELEGRAM +
-  "?text=" +
-  encodeURIComponent(message),
-  "_blank"
- );
-
- toast("تیکت ایجاد شد: " + ticket);
-
+  window.open(TELEGRAM + "?text=" + encodeURIComponent(message), "_blank");
+  toast("تیکت ایجاد شد: " + ticket);
 }
 
-/* ================= FAQ ================= */
+/* ================= FAQ TOGGLE ================= */
 
-function toggleFaq(button){
-
- button.parentElement
- .classList.toggle("open");
-
-}
+function toggleFaq(button){ button.parentElement.classList.toggle("open"); }
 
 /* ================= REFERRAL ================= */
 
 function getReferralCode(){
-
- let code =
- localStorage.getItem("v2gurd_refcode");
-
- if(!code){
-
-  code =
-  "V2G" +
-  Math.random()
-  .toString(36)
-  .slice(2,8)
-  .toUpperCase();
-
-  localStorage.setItem(
-   "v2gurd_refcode",
-   code
-  );
-
- }
-
- return code;
-
+  let code = localStorage.getItem("v2gurd_refcode");
+  if(!code){
+    code = "V2G" + Math.random().toString(36).slice(2,8).toUpperCase();
+    localStorage.setItem("v2gurd_refcode", code);
+  }
+  return code;
 }
 
 function initReferral(){
+  const linkInput = document.getElementById("referralLink");
+  if(linkInput){
+    linkInput.value = `${location.origin}${location.pathname}?ref=${getReferralCode()}`;
+  }
 
- const linkInput =
- document.getElementById("referralLink");
+  if(localStorage.getItem("v2gurd_referral_applied")){
+    referralDiscount = REFERRAL_DISCOUNT;
+    return;
+  }
 
- if(linkInput){
-
-  linkInput.value =
-  `${location.origin}${location.pathname}?ref=${getReferralCode()}`;
-
- }
-
- if(
-  localStorage.getItem(
-   "v2gurd_referral_applied"
-  )
- ){
-
-  referralDiscount = 5;
-
-  return;
-
- }
-
- const ref =
- new URLSearchParams(
-  location.search
- ).get("ref");
-
- if(
-  ref &&
-  ref !== getReferralCode()
- ){
-
-  referralDiscount =
-  REFERRAL_DISCOUNT;
-
-  localStorage.setItem(
-   "v2gurd_referral_applied",
-   "1"
-  );
-
-  localStorage.setItem(
-   "v2gurd_referred_by",
-   ref
-  );
-
-  toast(
-   `به‌خاطر دعوت دوستت ${toFa(REFERRAL_DISCOUNT)}٪ تخفیف خوش‌آمد فعال شد 🎉`
-  );
-
-  updateCart();
-
- }
-
+  const ref = new URLSearchParams(location.search).get("ref");
+  if(ref && ref !== getReferralCode()){
+    referralDiscount = REFERRAL_DISCOUNT;
+    localStorage.setItem("v2gurd_referral_applied", "1");
+    localStorage.setItem("v2gurd_referred_by", ref);
+    toast(`به‌خاطر دعوت دوستت ${toFa(REFERRAL_DISCOUNT)}٪ تخفیف خوش‌آمد فعال شد 🎉`);
+    updateCart();
+  }
 }
 
 function copyReferralLink(){
-
- const input =
- document.getElementById("referralLink");
-
- navigator.clipboard
- .writeText(input.value)
- .then(() =>
-  toast("لینک دعوت کپی شد ✅")
- )
- .catch(() =>
-  toast("کپی انجام نشد")
- );
-
+  const input = document.getElementById("referralLink");
+  navigator.clipboard.writeText(input.value)
+    .then(() => toast("لینک دعوت کپی شد ✅"))
+    .catch(() => toast("کپی انجام نشد"));
 }
 
 function shareReferralLink(){
-
- const link =
- document.getElementById("referralLink").value;
-
- const message =
- `از V2GURD اینترنت امن و پرسرعت بگیر و با لینک من ${toFa(REFERRAL_DISCOUNT)}٪ تخفیف بگیر:\n${link}`;
-
- window.open(
-  "https://t.me/share/url?url=" +
-  encodeURIComponent(link) +
-  "&text=" +
-  encodeURIComponent(message),
-  "_blank"
- );
-
+  const link = document.getElementById("referralLink").value;
+  const message = `از V2GURD اینترنت امن و پرسرعت بگیر و با لینک من ${toFa(REFERRAL_DISCOUNT)}٪ تخفیف بگیر:\n${link}`;
+  window.open("https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(message), "_blank");
 }
 
 /* ================= COUNTDOWN ================= */
 
 function startCountdown(){
+  const timerEl = document.getElementById("countdownTimer");
+  if(!timerEl) return;
 
- const timerEl =
- document.getElementById("countdownTimer");
+  function tick(){
+    const now = new Date();
+    const end = new Date(now);
+    end.setHours(23,59,59,999);
+    const diff = Math.max(0, end - now);
+    const h = String(Math.floor(diff/3600000)).padStart(2,"0");
+    const m = String(Math.floor(diff/60000) % 60).padStart(2,"0");
+    const s = String(Math.floor(diff/1000) % 60).padStart(2,"0");
+    timerEl.textContent = `${h}:${m}:${s}`;
+  }
 
- if(!timerEl) return;
-
- function tick(){
-
-  const now = new Date();
-
-  const end = new Date(now);
-
-  end.setHours(23,59,59,999);
-
-  const diff =
-  Math.max(0,end-now);
-
-  const h =
-  String(
-   Math.floor(diff/3600000)
-  ).padStart(2,"0");
-
-  const m =
-  String(
-   Math.floor(diff/60000)%60
-  ).padStart(2,"0");
-
-  const s =
-  String(
-   Math.floor(diff/1000)%60
-  ).padStart(2,"0");
-
-  timerEl.textContent =
-  `${h}:${m}:${s}`;
-
- }
-
- tick();
-
- setInterval(tick,1000);
-
+  tick();
+  setInterval(tick, 1000);
 }
 
-/* ================= QUICK BAR ================= */
+/* ================= QUICK BUY BAR ================= */
 
 function updateQuickBar(){
-
- const bar =
- document.getElementById("quickBar");
-
- const cartBtn =
- document.querySelector(".cart-float");
-
- if(!bar) return;
-
- const pageId =
- document.querySelector(".page.active")?.id;
-
- const showable =
- [
-  "wireguard",
-  "v2box",
-  "jumpjump"
- ].includes(pageId);
-
- const scrolled =
- window.scrollY > 380;
-
- if(!showable || !scrolled){
-
-  bar.classList.remove("show");
-
-  cartBtn?.classList.remove("raised");
-
-  return;
-
- }
-
- const titleEl =
- document.getElementById("quickBarTitle");
-
- const priceEl =
- document.getElementById("quickBarPrice");
-
- const btn =
- document.getElementById("quickBarBtn");
-
- if(pageId === "wireguard"){
-
-  const p =
-  WIREGUARD_PLANS.find(x=>x.special) ||
-  WIREGUARD_PLANS[0];
-
-  titleEl.textContent =
-  `🟣 وایرگارد ${toFa(p.gb)} گیگ`;
-
-  priceEl.textContent =
-  formatPrice(p.price);
-
-  btn.textContent =
-  "افزودن سریع";
-
-  btn.onclick =
-  () => addToCart(p.id);
-
- }
-
- else if(pageId === "jumpjump"){
-
-  const p =
-  JUMPJUMP_PLANS.find(x=>x.special) ||
-  JUMPJUMP_PLANS[0];
-
-  titleEl.textContent =
-  `🚀 JumpJump ${toFa(p.devices)} دستگاه / ${toFa(p.months)} ماه`;
-
-  priceEl.textContent =
-  formatPrice(p.price);
-
-  btn.textContent =
-  "افزودن سریع";
-
-  btn.onclick =
-  () => addToCart(p.id);
-
- }
-
- else if(pageId === "v2box"){
-
-  const p =
-  V2BOX_PLANS.find(x=>x.special) ||
-  V2BOX_PLANS[0];
-
-  titleEl.textContent =
-  `${p.icon} ${p.title}`;
-
-  priceEl.textContent =
-  `از ${formatPrice(
-   GB_OPTIONS[0]*p.pricePerGB
-  )}`;
-
-  btn.textContent =
-  "مشاهده پلن";
-
-  btn.onclick =
-  () =>
-  document.getElementById(p.id)
-  ?.closest(".card")
-  ?.scrollIntoView({
-   behavior:"smooth",
-   block:"center"
-  });
-
- }
-
- bar.classList.add("show");
-
- cartBtn?.classList.add("raised");
-
-}
-
-/* ============================================================
-   SUBSCRIPTION STATUS + CONFIGS
-============================================================ */
-
-function formatBytes(bytes){
-
- if(
-  bytes === null ||
-  bytes === undefined ||
-  isNaN(bytes)
- ){
-  return null;
- }
-
- const gb =
- Number(bytes)/(1024*1024*1024);
-
- return gb
- .toFixed(2)
- .replace(/\.00$/,"");
-
-}
-
-function formatExpire(expireVal){
-
- if(
-  expireVal === null ||
-  expireVal === undefined ||
-  expireVal === 0 ||
-  expireVal === ""
- ){
-  return "نامحدود";
- }
-
- const numeric =
- Number(expireVal);
-
- const ms =
- numeric > 9999999999
- ? numeric
- : numeric*1000;
-
- const d =
- new Date(ms);
-
- if(isNaN(d.getTime())){
-  return "نامشخص";
- }
-
- return d.toLocaleDateString("fa-IR");
-
-}
-
-/* GLOBAL STATUS DATA */
-
-let currentServiceData = null;
-let currentServiceLink = "";
-let selectedServiceRequest = null;
-
-/* GET EXPIRE DATE */
-
-function getExpireTimestamp(expireVal){
-
- if(
-  expireVal === null ||
-  expireVal === undefined ||
-  expireVal === 0 ||
-  expireVal === ""
- ){
-  return null;
- }
-
- const numeric =
- Number(expireVal);
-
- if(isNaN(numeric)) return null;
-
- const ms =
- numeric > 9999999999
- ? numeric
- : numeric*1000;
-
- const date =
- new Date(ms);
-
- if(isNaN(date.getTime())) return null;
-
- return date;
-
-}
-
-/* DAYS LEFT */
-
-function getDaysLeft(expireVal){
-
- const expireDate =
- getExpireTimestamp(expireVal);
-
- if(!expireDate) return null;
-
- const diff =
- expireDate.getTime() -
- new Date().getTime();
-
- return Math.ceil(
-  diff/(1000*60*60*24)
- );
-
-}
-
-/* STATUS */
-
-function renderStatus(data){
-
- currentServiceData = data;
-
- const used =
- data.used_traffic ??
- data.usedTraffic ??
- (
-  Number(data.upload || 0) +
-  Number(data.download || 0)
- );
-
- const limit =
- data.data_limit ??
- data.dataLimit ??
- data.total ??
- null;
-
- const expire =
- data.expire ??
- data.expire_date ??
- data.expireDate ??
- null;
-
- const username =
- data.username ??
- data.name ??
- data.email ??
- "";
-
- const usedGB =
- formatBytes(used);
-
- const limitGB =
- limit !== null &&
- limit !== undefined
- ?
- formatBytes(limit)
- :
- null;
-
- const remainingGB =
- limit !== null &&
- limit !== undefined
- ?
- formatBytes(
-  Math.max(
-   0,
-   Number(limit)-Number(used||0)
-  )
- )
- :
- null;
-
- const percent =
- limit
- ?
- Math.min(
- 100,
- Math.round(
-  (Number(used||0)/Number(limit))*100
- )
- )
- :
- null;
-
- let html = "";
-
- if(username){
-
-  html += `
-
-   <div class="status-row">
-
-    <span>نام کاربری</span>
-
-    <span>
-     ${escapeHTML(username)}
-    </span>
-
-   </div>
-
-  `;
-
- }
-
- if(usedGB !== null){
-
-  html += `
-
-   <div class="status-row">
-
-    <span>مصرف‌شده</span>
-
-    <span>
-     ${toFa(usedGB)} گیگ
-    </span>
-
-   </div>
-
-  `;
-
- }
-
- if(remainingGB !== null){
-
-  html += `
-
-   <div class="status-row">
-
-    <span>باقیمانده</span>
-
-    <span>
-     ${toFa(remainingGB)} گیگ
-    </span>
-
-   </div>
-
-  `;
-
- }else{
-
-  html += `
-
-   <div class="status-row">
-
-    <span>حجم</span>
-
-    <span>نامحدود</span>
-
-   </div>
-
-  `;
-
- }
-
- html += `
-
-  <div class="status-row">
-
-   <span>تاریخ انقضا</span>
-
-   <span>
-    ${formatExpire(expire)}
-   </span>
-
-  </div>
-
- `;
-
- if(percent !== null){
-
-  html += `
-
-   <div style="margin-top:14px">
-
-    <div style="
-     display:flex;
-     justify-content:space-between;
-     color:#91a2bb;
-     font-size:11px">
-
-     <span>میزان مصرف</span>
-
-     <span>${toFa(percent)}٪</span>
-
-    </div>
-
-    <div class="progress-bar">
-
-     <div
-      class="progress-fill"
-      style="width:${percent}%">
-     </div>
-
-    </div>
-
-   </div>
-
-  `;
-
- }
-
- document.getElementById("statusResult")
- .innerHTML = html;
-
- /*
-  بررسی هشدار تمدید / حجم
- */
-
- checkServiceWarnings(
-  data,
-  used,
-  limit,
-  expire
- );
-
-}
-
-/* ================= SERVICE WARNINGS ================= */
-
-function checkServiceWarnings(
- data,
- used,
- limit,
- expire
-){
-
- const box =
- document.getElementById(
-  "serviceActionBox"
- );
-
- const message =
- document.getElementById(
-  "serviceActionMessage"
- );
-
- const renewBtn =
- document.getElementById(
-  "renewChoiceBtn"
- );
-
- const volumeBtn =
- document.getElementById(
-  "volumeChoiceBtn"
- );
-
- if(!box) return;
-
- let warnings = [];
-
- /*
-  اگر ۷ روز یا کمتر مانده
- */
-
- const daysLeft =
- getDaysLeft(expire);
-
- const renewNeeded =
- daysLeft !== null &&
- daysLeft >= 0 &&
- daysLeft <= 7;
-
- /*
-  اگر حجم ۲۰٪ یا کمتر مانده
- */
-
- let volumeNeeded = false;
-
- if(
-  limit !== null &&
-  limit !== undefined &&
-  Number(limit) > 0
- ){
-
-  const remaining =
-  Math.max(
-   0,
-   Number(limit)-Number(used||0)
-  );
-
-  const remainingPercent =
-  (remaining/Number(limit))*100;
-
-  volumeNeeded =
-  remainingPercent <= 20;
-
- }
-
- if(renewNeeded){
-
-  warnings.push(
-   daysLeft === 0
-   ? "⏰ سرویس شما امروز منقضی می‌شود."
-   : `⏰ فقط ${toFa(daysLeft)} روز تا انقضای سرویس شما باقی مانده.`
-  );
-
-  renewBtn.style.display =
-  "block";
-
- }else{
-
-  renewBtn.style.display =
-  "none";
-
- }
-
- if(volumeNeeded){
-
-  const remaining =
-  Math.max(
-   0,
-   Number(limit)-Number(used||0)
-  );
-
-  warnings.push(
-   `📦 حجم سرویس شما رو به اتمام است؛ فقط ${toFa(formatBytes(remaining)||"0")} گیگ باقی مانده.`
-  );
-
-  volumeBtn.style.display =
-  "block";
-
- }else{
-
-  volumeBtn.style.display =
-  "none";
-
- }
-
- if(!warnings.length){
-
-  box.classList.remove("show");
-
-  return;
-
- }
-
- message.innerHTML =
- warnings.join("<br>");
-
- box.classList.add("show");
-
- document.getElementById("renewOptions")
- .classList.remove("show");
-
- document.getElementById("volumeOptions")
- .classList.remove("show");
-
-}
-
-/* ================= SERVICE OPTION ================= */
-
-function showRenewOptions(){
-
- selectedServiceRequest = null;
-
- document.querySelectorAll(".service-option")
- .forEach(x=>x.classList.remove("selected"));
-
- document.getElementById("volumeOptions")
- .classList.remove("show");
-
- document.getElementById("renewOptions")
- .classList.add("show");
-
-}
-
-function showVolumeOptions(){
-
- selectedServiceRequest = null;
-
- document.querySelectorAll(".service-option")
- .forEach(x=>x.classList.remove("selected"));
-
- document.getElementById("renewOptions")
- .classList.remove("show");
-
- document.getElementById("volumeOptions")
- .classList.add("show");
-
-}
-
-function selectServiceOption(
- button,
- type,
- value
-){
-
- document.querySelectorAll(".service-option")
- .forEach(x=>x.classList.remove("selected"));
-
- button.classList.add("selected");
-
- selectedServiceRequest = {
-  type,
-  value
- };
-
-}
-
-function confirmServiceRequest(){
-
- if(!selectedServiceRequest){
-
-  toast("لطفاً یک گزینه انتخاب کن ❌");
-
-  return;
-
- }
-
- if(!currentServiceLink){
-
-  toast("لینک اشتراک پیدا نشد ❌");
-
-  return;
-
- }
-
- let typeText =
- selectedServiceRequest.type === "renew"
- ? "تمدید سرویس"
- : "افزایش حجم";
-
- const username =
- currentServiceData?.username ??
- currentServiceData?.name ??
- currentServiceData?.email ??
- "نامشخص";
-
- const message = `سلام V2GURD 👋
-
-📌 درخواست ${typeText}
-
-👤 کاربر:
-${username}
-
-🔗 لینک اشتراک:
-${currentServiceLink}
-
-🎯 درخواست:
-${selectedServiceRequest.value}
-
-📊 وضعیت فعلی سرویس:
-${getServiceSummaryForTelegram()}
-
-لطفاً درخواست من رو بررسی و راهنمایی کنید.`;
-
- window.open(
-  TELEGRAM +
-  "?text=" +
-  encodeURIComponent(message),
-  "_blank"
- );
-
- toast(
-  "درخواست آماده شد؛ تلگرام باز می‌شود 📤"
- );
-
-}
-
-function getServiceSummaryForTelegram(){
-
- if(!currentServiceData){
-  return "اطلاعات موجود نیست";
- }
-
- const data =
- currentServiceData;
-
- const used =
- data.used_traffic ??
- data.usedTraffic ??
- (
-  Number(data.upload||0)+
-  Number(data.download||0)
- );
-
- const limit =
- data.data_limit ??
- data.dataLimit ??
- data.total ??
- null;
-
- const expire =
- data.expire ??
- data.expire_date ??
- data.expireDate ??
- null;
-
- let text = "";
-
- if(
-  limit !== null &&
-  limit !== undefined
- ){
-
-  const remaining =
-  Math.max(
-   0,
-   Number(limit)-Number(used||0)
-  );
-
-  text +=
-  `حجم باقی‌مانده: ${formatBytes(remaining)||"0"} گیگ\n`;
-
- }else{
-
-  text +=
-  "حجم: نامحدود\n";
-
- }
-
- text +=
- `تاریخ انقضا: ${formatExpire(expire)}`;
-
- return text;
-
-}
-
-/* ================= CONFIG TYPE ================= */
-
-function detectConfigType(config){
-
- const value =
- config.trim().toLowerCase();
-
- if(value.startsWith("vless://"))
-  return "VLESS";
-
- if(value.startsWith("vmess://"))
-  return "VMess";
-
- if(value.startsWith("trojan://"))
-  return "Trojan";
-
- if(value.startsWith("ss://"))
-  return "Shadowsocks";
-
- if(value.startsWith("socks://"))
-  return "SOCKS";
-
- if(
-  value.startsWith("wg://") ||
-  value.includes("[interface]")
- )
-  return "WireGuard";
-
- if(
-  value.startsWith("http://") ||
-  value.startsWith("https://")
- )
-  return "HTTP / HTTPS";
-
- return "Config";
-
-}
-
-/* ================= BASE64 ================= */
-
-function decodeBase64Safe(value){
-
- try{
-
-  let clean =
-  value
-  .replace(/\s/g,"")
-  .replace(/-/g,"+")
-  .replace(/_/g,"/");
-
-  while(clean.length%4!==0){
-   clean += "=";
+  const bar = document.getElementById("quickBar");
+  const cartBtn = document.querySelector(".cart-float");
+  if(!bar) return;
+
+  const pageId = document.querySelector(".page.active")?.id;
+  const showable = ["wireguard","v2box","jumpjump"].includes(pageId);
+  const scrolled = window.scrollY > 380;
+
+  if(!showable || !scrolled){
+    bar.classList.remove("show");
+    cartBtn?.classList.remove("raised");
+    return;
   }
 
-  const binary =
-  atob(clean);
+  const titleEl = document.getElementById("quickBarTitle");
+  const priceEl = document.getElementById("quickBarPrice");
+  const btn = document.getElementById("quickBarBtn");
 
-  const bytes =
-  new Uint8Array(binary.length);
-
-  for(
-   let i=0;
-   i<binary.length;
-   i++
-  ){
-
-   bytes[i] =
-   binary.charCodeAt(i);
-
+  if(pageId === "wireguard"){
+    const p = WIREGUARD_PLANS.find(x => x.special) || WIREGUARD_PLANS[0];
+    titleEl.textContent = `🟣 وایرگارد ${toFa(p.gb)} گیگ`;
+    priceEl.textContent = formatPrice(p.price);
+    btn.textContent = "افزودن سریع";
+    btn.onclick = () => addToCart(p.id);
+  }else if(pageId === "jumpjump"){
+    const p = JUMPJUMP_PLANS.find(x => x.special) || JUMPJUMP_PLANS[0];
+    titleEl.textContent = `🚀 JumpJump ${toFa(p.devices)} دستگاه / ${toFa(p.months)} ماه`;
+    priceEl.textContent = formatPrice(p.price);
+    btn.textContent = "افزودن سریع";
+    btn.onclick = () => addToCart(p.id);
+  }else if(pageId === "v2box"){
+    const p = V2BOX_PLANS.find(x => x.special) || V2BOX_PLANS[0];
+    titleEl.textContent = `${p.icon} ${p.title}`;
+    priceEl.textContent = `از ${formatPrice(GB_OPTIONS[0] * p.pricePerGB)}`;
+    btn.textContent = "مشاهده پلن";
+    btn.onclick = () => document.getElementById(p.id)?.closest(".card")?.scrollIntoView({behavior:"smooth", block:"center"});
   }
 
-  return new TextDecoder("utf-8")
-  .decode(bytes);
-
- }catch(e){
-
-  return null;
-
- }
-
+  bar.classList.add("show");
+  cartBtn?.classList.add("raised");
 }
-
-/* ================= PARSE SUB ================= */
-
-function parseSubscriptionText(text){
-
- if(!text){
-  return [];
- }
-
- let result =
- text
- .replace(/\r/g,"")
- .split("\n")
- .map(x=>x.trim())
- .filter(Boolean);
-
- if(
-  result.length === 1 &&
-  !result[0].includes("://")
- ){
-
-  const decoded =
-  decodeBase64Safe(result[0]);
-
-  if(decoded){
-
-   const decodedLines =
-   decoded
-   .replace(/\r/g,"")
-   .split("\n")
-   .map(x=>x.trim())
-   .filter(Boolean);
-
-   if(
-    decodedLines.some(
-     x=>x.includes("://")
-    )
-   ){
-
-    result =
-    decodedLines;
-
-   }
-
-  }
-
- }
-
- const finalConfigs = [];
-
- result.forEach(line => {
-
-  const low =
-  line.toLowerCase();
-
-  if(
-   low.startsWith("vless://") ||
-   low.startsWith("vmess://") ||
-   low.startsWith("trojan://") ||
-   low.startsWith("ss://") ||
-   low.startsWith("socks://") ||
-   low.startsWith("http://") ||
-   low.startsWith("https://") ||
-   line.includes("[Interface]")
-  ){
-
-   finalConfigs.push(line);
-
-  }
-
- });
-
- return [
-  ...new Set(finalConfigs)
- ];
-
-}
-
-/* ================= RENDER CONFIGS ================= */
-
-let currentConfigs = [];
-
-function renderConfigs(configs){
-
- currentConfigs =
- configs || [];
-
- const box =
- document.getElementById("configsBox");
-
- const list =
- document.getElementById("configsList");
-
- if(
-  !configs ||
-  !configs.length
- ){
-
-  box.style.display =
-  "none";
-
-  return;
-
- }
-
- box.style.display =
- "block";
-
- list.innerHTML =
- configs.map(
- (config,index) => {
-
-  const type =
-  detectConfigType(config);
-
-  const encoded =
-  encodeURIComponent(config);
-
-  return `
-
-   <div class="config-card">
-
-    <div class="config-head">
-
-     <span class="config-type">
-      ⚙️ ${type}
-     </span>
-
-     <span class="config-number">
-      کانفیگ ${toFa(index+1)}
-     </span>
-
-    </div>
-
-    <textarea
-     class="config-text"
-     readonly
-     onclick="this.select()"
-    >${escapeHTML(config)}</textarea>
-
-    <button
-     class="btn btn-primary config-copy"
-     data-config="${encoded}"
-     onclick="copyConfigFromButton(this)">
-
-     📋 کپی کانفیگ
-
-    </button>
-
-   </div>
-
-  `;
-
- }
- ).join("");
-
-}
-
-/* ================= COPY ONE CONFIG ================= */
-
-function copyConfigFromButton(button){
-
- const config =
- decodeURIComponent(
-  button.dataset.config
- );
-
- navigator.clipboard
- .writeText(config)
- .then(() => {
-
-  const old =
-  button.textContent;
-
-  button.textContent =
-  "✅ کپی شد";
-
-  toast("کانفیگ با موفقیت کپی شد");
-
-  setTimeout(() => {
-
-   button.textContent =
-   old;
-
-  },2000);
-
- })
- .catch(() => {
-
-  toast("کپی انجام نشد ❌");
-
- });
-
-}
-
-/* ================= COPY ALL CONFIGS ================= */
-
-function copyAllConfigs(){
-
- if(
-  !currentConfigs ||
-  !currentConfigs.length
- ){
-
-  toast("کانفیگی برای کپی وجود ندارد ❌");
-
-  return;
-
- }
-
- const allConfigs =
- currentConfigs.join("\n\n");
-
- navigator.clipboard
- .writeText(allConfigs)
- .then(() => {
-
-  const btn =
-  document.getElementById(
-   "copyAllConfigsBtn"
-  );
-
-  if(btn){
-
-   const old =
-   btn.textContent;
-
-   btn.textContent =
-   "✅ همه کانفیگ‌ها کپی شد";
-
-   setTimeout(() => {
-    btn.textContent = old;
-   },2000);
-
-  }
-
-  toast("همه کانفیگ‌ها کپی شدند ✅");
-
- })
- .catch(() => {
-
-  const textarea =
-  document.createElement("textarea");
-
-  textarea.value =
-  allConfigs;
-
-  document.body.appendChild(textarea);
-
-  textarea.select();
-
-  document.execCommand("copy");
-
-  textarea.remove();
-
-  toast("همه کانفیگ‌ها کپی شدند ✅");
-
- });
-
-}
-
-/* ================= SUB LINK ================= */
-
-function renderSubscriptionLink(link){
-
- const box =
- document.getElementById(
-  "subscriptionBox"
- );
-
- const input =
- document.getElementById(
-  "subscriptionLink"
- );
-
- const qr =
- document.getElementById(
-  "subscriptionQR"
- );
-
- currentServiceLink =
- link;
-
- box.style.display =
- "block";
-
- input.value =
- link;
-
- qr.innerHTML = "";
-
- if(
-  typeof QRCode !==
-  "undefined"
- ){
-
-  new QRCode(
-   qr,
-   {
-    text:link,
-    width:160,
-    height:160,
-    correctLevel:
-    QRCode.CorrectLevel.M
-   }
-  );
-
- }
-
-}
-
-/* ================= DOWNLOAD QR ================= */
-
-function downloadQRCode(){
-
- const qr =
- document.getElementById(
-  "subscriptionQR"
- );
-
- if(!qr){
-
-  toast("QR Code پیدا نشد ❌");
-
-  return;
-
- }
-
- const canvas =
- qr.querySelector("canvas");
-
- const img =
- qr.querySelector("img");
-
- let url = "";
-
- if(canvas){
-
-  url =
-  canvas.toDataURL(
-   "image/png"
-  );
-
- }
-
- else if(img){
-
-  url =
-  img.src;
-
- }
-
- if(!url){
-
-  toast("دانلود QR Code انجام نشد ❌");
-
-  return;
-
- }
-
- const a =
- document.createElement("a");
-
- a.href =
- url;
-
- a.download =
- "V2GURD-Subscription-QR.png";
-
- document.body.appendChild(a);
-
- a.click();
-
- a.remove();
-
- toast("QR Code دانلود شد ✅");
-
-}
-
-/* ================= COPY SUB ================= */
-
-function copySubscriptionLink(){
-
- const input =
- document.getElementById(
-  "subscriptionLink"
- );
-
- navigator.clipboard
- .writeText(input.value)
- .then(() =>
-  toast("لینک اشتراک کپی شد ✅")
- )
- .catch(() => {
-
-  input.select();
-
-  document.execCommand("copy");
-
-  toast("لینک اشتراک کپی شد ✅");
-
- });
-
-}
-
-/* ================= CHECK ================= */
-
-async function checkSubStatus(){
-
- const input =
- document.getElementById(
-  "statusLinkInput"
- );
-
- const resultBox =
- document.getElementById(
-  "statusResult"
- );
-
- const configsBox =
- document.getElementById(
-  "configsBox"
- );
-
- const subscriptionBox =
- document.getElementById(
-  "subscriptionBox"
- );
-
- const actionBox =
- document.getElementById(
-  "serviceActionBox"
- );
-
- let link =
- input.value.trim();
-
- if(!link){
-
-  resultBox.innerHTML = `
-
-   <div class="status-msg error">
-    لطفاً لینک اشتراک سرویست رو وارد کن ❌
-   </div>
-
-  `;
-
-  return;
-
- }
-
- if(
-  !/^https?:\/\//i.test(link)
- ){
-
-  resultBox.innerHTML = `
-
-   <div class="status-msg error">
-    لینک وارد‌شده معتبر نیست ❌
-   </div>
-
-  `;
-
-  return;
-
- }
-
- resultBox.innerHTML = `
-
-  <div class="status-msg">
-   ⏳ در حال دریافت اطلاعات سرویس...
-  </div>
-
- `;
-
- configsBox.style.display =
- "none";
-
- subscriptionBox.style.display =
- "none";
-
- actionBox.classList.remove("show");
-
- currentServiceData = null;
- currentConfigs = [];
-
- renderSubscriptionLink(link);
-
- const cleanLink =
- link.replace(/\/+$/,"");
-
- const infoUrl =
- cleanLink + "/info";
-
- try{
-
-  const response =
-  await fetch(
-   infoUrl,
-   {
-    method:"GET",
-    headers:{
-     "Accept":"application/json"
-    }
-   }
-  );
-
-  if(!response.ok){
-   throw new Error("INFO_REQUEST_FAILED");
-  }
-
-  const data =
-  await response.json();
-
-  renderStatus(data);
-
- }
- catch(error){
-
-  resultBox.innerHTML = `
-
-   <div class="status-msg">
-
-    ⚠️ اطلاعات مستقیم سرویس
-    از داخل مرورگر قابل دریافت نیست.
-
-    <br><br>
-
-    لینک اشتراک شما آماده است.
-    اگر سرور CORS را اجازه دهد،
-    کانفیگ‌ها نیز در همین صفحه نمایش داده می‌شوند.
-
-   </div>
-
-  `;
-
- }
-
- /* دریافت کانفیگ‌ها */
-
- try{
-
-  const subResponse =
-  await fetch(
-   cleanLink,
-   {
-    method:"GET",
-    headers:{
-     "Accept":"text/plain,*/*"
-    }
-   }
-  );
-
-  if(!subResponse.ok){
-
-   throw new Error(
-    "SUB_REQUEST_FAILED"
-   );
-
-  }
-
-  const text =
-  await subResponse.text();
-
-  const configs =
-  parseSubscriptionText(text);
-
-  renderConfigs(configs);
-
- }
- catch(configError){
-
-  console.log(
-   "Subscription fetch:",
-   configError
-  );
-
- }
-
-}
-
-/* ================= NAVIGATION ================= */
-
-function showPage(id){
-
- document.querySelectorAll(".page")
- .forEach(
-  p =>
-  p.classList.remove("active")
- );
-
- document.getElementById(id)
- ?.classList.add("active");
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-
- document.getElementById(
-  "navLinks"
- )
- .classList.remove("show");
-
- updateQuickBar();
-
-}
-
-function toggleMenu(){
-
- document.getElementById(
-  "navLinks"
- )
- .classList.toggle("show");
-
-}
-
-/* ================= TOAST ================= */
-
-function toast(message){
-
- const t =
- document.getElementById("toast");
-
- t.textContent =
- message;
-
- t.classList.add("show");
-
- clearTimeout(
-  window.toastTimer
- );
-
- window.toastTimer =
- setTimeout(
-  () =>
-  t.classList.remove("show"),
-  2500
- );
-
-}
-
-/* ================= INIT ================= */
-
-window.addEventListener(
- "load",
- () => {
-
-  renderCategories();
-
-  renderWgPoints();
-
-  renderFaq();
-
-  renderCategoryHeroes();
-
-  renderWireguardPlans();
-
-  renderV2BoxPlans();
-
-  renderJumpjumpPlans();
-
-  renderCompareTable();
-
-  renderSteps();
-
-  renderRules();
-
-  updateCart();
-
-  initReferral();
-
-  startCountdown();
-
-  registerServiceWorker();
-
-  updateQuickBar();
-
-  setTimeout(() => {
-
-   const intro =
-   document.getElementById("intro");
-
-   intro.style.opacity =
-   "0";
-
-   setTimeout(
-    () =>
-    intro.style.display =
-    "none",
-    800
-   );
-
-  },1200);
-
- });
-
-window.addEventListener(
- "scroll",
- updateQuickBar
-);
 
 /* ================= PWA ================= */
 
 function registerServiceWorker(){
-
- if("serviceWorker" in navigator){
-
-  navigator.serviceWorker
-  .register("sw.js")
-  .catch(() => {});
-
- }
-
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
 }
-
 </script>
 
 </body>
