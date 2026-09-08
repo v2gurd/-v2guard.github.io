@@ -37,17 +37,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"Organization",
- "name":"V2GURD",
- "url":"https://v2gurd.com/",
- "logo":"https://play-lh.googleusercontent.com/ggElzO1YS8fsVg5Y-lcsIV0slvKhKYiwHazffdKoAX-mLngJpiqoLXJ44gG2W05AypfyM6opCLcZQs4TU1Fd",
- "sameAs":["https://t.me/Vtwoguard"]
-}
-</script>
-
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
@@ -130,12 +119,8 @@ a{
 }
 
 @keyframes logoGlow{
- from{
-  filter:drop-shadow(0 0 5px rgba(22,140,255,.2))
- }
- to{
-  filter:drop-shadow(0 0 28px rgba(22,140,255,.65))
- }
+ from{filter:drop-shadow(0 0 5px rgba(22,140,255,.2))}
+ to{filter:drop-shadow(0 0 28px rgba(22,140,255,.65))}
 }
 
 /* HEADER */
@@ -219,14 +204,8 @@ header{
 }
 
 @keyframes pageIn{
- from{
-  opacity:0;
-  transform:translateY(8px)
- }
- to{
-  opacity:1;
-  transform:none
- }
+ from{opacity:0;transform:translateY(8px)}
+ to{opacity:1;transform:none}
 }
 
 .section{
@@ -467,6 +446,77 @@ header{
  margin-top:8px
 }
 
+/* NEW SERVICE ACTIONS */
+
+.service-actions{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-top:15px
+}
+
+.service-renew-box{
+ display:none;
+ margin-top:18px;
+ padding:18px;
+ border:1px solid rgba(22,140,255,.2);
+ background:rgba(22,140,255,.04);
+ border-radius:15px
+}
+
+.service-renew-box.show{
+ display:block
+}
+
+.service-alert{
+ padding:14px;
+ border-radius:12px;
+ background:rgba(139,92,246,.08);
+ border:1px solid rgba(139,92,246,.2);
+ margin-bottom:12px;
+ color:#d8ccff;
+ font-size:13px;
+ line-height:2
+}
+
+.service-choice-buttons{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
+}
+
+.service-options{
+ display:none;
+ margin-top:15px
+}
+
+.service-options.show{
+ display:block
+}
+
+.service-option{
+ width:100%;
+ padding:13px;
+ margin-top:8px;
+ border:1px solid var(--border);
+ background:#091424;
+ color:#fff;
+ border-radius:11px;
+ text-align:right;
+ transition:.2s
+}
+
+.service-option:hover{
+ border-color:rgba(22,140,255,.55);
+ background:rgba(22,140,255,.08)
+}
+
+.service-option.selected{
+ border-color:#168cff;
+ background:rgba(22,140,255,.12);
+ box-shadow:0 0 18px rgba(22,140,255,.08)
+}
+
 /* CONFIGS */
 
 .config-card{
@@ -523,6 +573,10 @@ header{
 .config-copy{
  margin-top:8px;
  width:100%
+}
+
+.copy-all-btn{
+ margin-top:12px
 }
 
 /* CATEGORY */
@@ -1443,9 +1497,12 @@ footer{
   height:160px
  }
 
-}
+ .service-actions,
+ .service-choice-buttons{
+  grid-template-columns:1fr
+ }
 
-/* ================= END CSS ================= */
+}
 
 </style>
 </head>
@@ -1492,1136 +1549,989 @@ footer{
 
 <main>
 
-<!-- HOME -->
-
 <section id="home" class="page active">
 
- <div class="hero">
+<div class="hero">
+<div class="container">
+<div class="hero-content">
 
-  <div class="container">
+<div class="badge">
+ 🛡️ V2GURD • SECURE NETWORK
+</div>
 
-   <div class="hero-content">
+<h1>
+ اینترنت سریع،
+ <span>پایدار و امن</span>
+</h1>
 
-    <div class="badge">
-     🛡️ V2GURD • SECURE NETWORK
-    </div>
+<p>
+ سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت،
+ پایداری، امنیت و اتصال مطمئن.
+</p>
 
-    <h1>
-     اینترنت سریع،
-     <span>پایدار و امن</span>
-    </h1>
+<div class="hero-buttons">
 
-    <p>
-     سرویس‌های پرسرعت V2GURD با تمرکز روی سرعت،
-     پایداری، امنیت و اتصال مطمئن.
-    </p>
+<button class="btn btn-primary" onclick="showPage('wireguard')">
+ مشاهده سرویس‌ها
+</button>
 
-    <div class="hero-buttons">
+<button class="btn"
+ onclick="document.getElementById('serviceStatusTop').scrollIntoView({behavior:'smooth'})">
+ 📊 وضعیت سرویس
+</button>
 
-     <button
-      class="btn btn-primary"
-      onclick="showPage('wireguard')">
-      مشاهده سرویس‌ها
-     </button>
+<button class="btn" onclick="openCart()">
+ 🛒 سبد خرید
+</button>
 
-     <button
-      class="btn"
-      onclick="document.getElementById('serviceStatusTop').scrollIntoView({behavior:'smooth'})">
-      📊 وضعیت سرویس
-     </button>
+</div>
 
-     <button
-      class="btn"
-      onclick="openCart()">
-      🛒 سبد خرید
-     </button>
+</div>
+</div>
+</div>
 
-    </div>
+<div class="section" id="serviceStatusTop">
 
-   </div>
+<div class="container">
 
-  </div>
+<div class="section-title">
 
- </div>
+<h2>📊 وضعیت سرویس من</h2>
 
+<p>
+ لینک اشتراک سرویست رو وارد کن تا حجم،
+ تاریخ انقضا و کانفیگ‌ها رو ببینی
+</p>
 
- <!-- SERVICE STATUS FIRST -->
+</div>
 
- <div class="section" id="serviceStatusTop">
+<div class="info-box service-status-box">
 
-  <div class="container">
+<input
+ class="status-input"
+ id="statusLinkInput"
+ placeholder="https://panel.pasargardsub.ir:2096/sub/..."
+ autocomplete="off"
+ spellcheck="false">
 
-   <div class="section-title">
+<button
+ class="btn btn-primary btn-block"
+ onclick="checkSubStatus()">
+ 🔍 مشاهده وضعیت سرویس
+</button>
 
-    <h2>
-     📊 وضعیت سرویس من
-    </h2>
+<div class="status-result" id="statusResult"></div>
 
-    <p>
-     لینک اشتراک سرویست رو وارد کن تا حجم،
-     تاریخ انقضا و کانفیگ‌ها رو ببینی
-    </p>
+<!-- RENEW / ADD VOLUME -->
 
-   </div>
+<div id="serviceActionBox" class="service-renew-box">
 
+ <div id="serviceActionMessage" class="service-alert"></div>
 
-   <div class="info-box service-status-box">
+ <div id="serviceChoiceButtons" class="service-choice-buttons">
 
-    <input
-     class="status-input"
-     id="statusLinkInput"
-     placeholder="https://panel.pasargardsub.ir:2096/sub/..."
-     autocomplete="off"
-     spellcheck="false"
-    >
+  <button
+   id="renewChoiceBtn"
+   class="btn btn-purple"
+   onclick="showRenewOptions()"
+   style="display:none">
+   🔄 تمدید سرویس
+  </button>
 
-    <button
-     class="btn btn-primary btn-block"
-     onclick="checkSubStatus()">
-     🔍 مشاهده وضعیت سرویس
-    </button>
-
-
-    <div
-     class="status-result"
-     id="statusResult">
-    </div>
-
-
-    <!-- SUBSCRIPTION -->
-
-    <div
-     id="subscriptionBox"
-     style="display:none">
-
-     <div class="sub-title">
-      🔗 لینک اشتراک شما
-     </div>
-
-     <div class="sub-link-row">
-
-      <input
-       id="subscriptionLink"
-       class="status-input"
-       readonly
-       spellcheck="false"
-      >
-
-      <button
-       class="btn"
-       onclick="copySubscriptionLink()">
-       📋 کپی
-      </button>
-
-     </div>
-
-
-     <div class="qr-box">
-
-      <div id="subscriptionQR"></div>
-
-      <p>
-       QR Code لینک اشتراک
-      </p>
-
-     </div>
-
-    </div>
-
-
-    <!-- CONFIGS -->
-
-    <div
-     id="configsBox"
-     style="display:none">
-
-     <div class="sub-title">
-      ⚙️ کانفیگ‌های سرویس
-     </div>
-
-     <div id="configsList"></div>
-
-    </div>
-
-   </div>
-
-  </div>
+  <button
+   id="volumeChoiceBtn"
+   class="btn btn-primary"
+   onclick="showVolumeOptions()"
+   style="display:none">
+   ➕ افزایش حجم
+  </button>
 
  </div>
 
+ <div id="renewOptions" class="service-options">
 
- <!-- FEATURED -->
-
- <div class="container">
-
-  <div class="wg-featured">
-
-   <div class="wg-inner">
-
-    <div class="feature-badge">
-     ⭐ ویژه • پرفروش • پیشنهادی
-    </div>
-
-    <h2>
-     🟣 وایرگارد
-     <span>| تک‌کاربره</span>
-    </h2>
-
-    <p>
-     🚀 سرعت فضایی، اتصال پایدار و IP ثابت.
-     یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD
-     برای اتصال سریع و مطمئن.
-    </p>
-
-    <div class="countdown">
-
-     <span>
-      ⏳ پیشنهاد ویژه تا پایان امروز:
-     </span>
-
-     <div
-      class="countdown-timer"
-      id="countdownTimer">
-      00:00:00
-     </div>
-
-    </div>
-
-    <div
-     class="wg-points"
-     id="wgPoints">
-    </div>
-
-    <button
-     class="btn btn-primary"
-     onclick="showPage('wireguard')">
-     ⭐ مشاهده پلن‌های وایرگارد
-    </button>
-
-   </div>
-
+  <div class="sub-title">
+   ⏳ مدت تمدید را انتخاب کن
   </div>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'renew','1 ماه')">
+   📅 ۱ ماه
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'renew','2 ماه')">
+   📅 ۲ ماه
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'renew','3 ماه')">
+   📅 ۳ ماه
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'renew','6 ماه')">
+   📅 ۶ ماه
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'renew','12 ماه')">
+   📅 ۱۲ ماه
+  </button>
+
+  <button
+   class="btn btn-primary btn-block"
+   style="margin-top:12px"
+   onclick="confirmServiceRequest()">
+   ✅ تأیید تمدید
+  </button>
 
  </div>
 
+ <div id="volumeOptions" class="service-options">
 
- <!-- CATEGORIES -->
-
- <div class="section">
-
-  <div class="container">
-
-   <div class="section-title">
-
-    <h2>
-     دسته‌بندی خدمات
-    </h2>
-
-    <p>
-     هر دسته سرویس‌های مخصوص خودش را دارد
-    </p>
-
-   </div>
-
-   <div
-    class="categories"
-    id="categoriesGrid">
-   </div>
-
+  <div class="sub-title">
+   📦 حجم موردنظر را انتخاب کن
   </div>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','50 گیگ')">
+   📦 ۵۰ گیگ
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','100 گیگ')">
+   📦 ۱۰۰ گیگ
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','150 گیگ')">
+   📦 ۱۵۰ گیگ
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','200 گیگ')">
+   📦 ۲۰۰ گیگ
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','250 گیگ')">
+   📦 ۲۵۰ گیگ
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','300 گیگ')">
+   📦 ۳۰۰ گیگ
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','400 گیگ')">
+   📦 ۴۰۰ گیگ
+  </button>
+
+  <button class="service-option"
+   onclick="selectServiceOption(this,'volume','500 گیگ')">
+   📦 ۵۰۰ گیگ
+  </button>
+
+  <button
+   class="btn btn-primary btn-block"
+   style="margin-top:12px"
+   onclick="confirmServiceRequest()">
+   ✅ تأیید افزایش حجم
+  </button>
 
  </div>
 
+</div>
 
- <!-- STATS -->
+<!-- SUBSCRIPTION -->
 
- <div class="section">
+<div id="subscriptionBox" style="display:none">
 
-  <div class="container">
+<div class="sub-title">
+ 🔗 لینک اشتراک شما
+</div>
 
-   <div class="stats">
+<div class="sub-link-row">
 
-    <div class="stat">
-     <strong>99%</strong>
-     <span>پایداری سرویس</span>
-    </div>
+<input
+ id="subscriptionLink"
+ class="status-input"
+ readonly
+ spellcheck="false">
 
-    <div class="stat">
-     <strong>24/7</strong>
-     <span>پشتیبانی</span>
-    </div>
+<button class="btn" onclick="copySubscriptionLink()">
+ 📋 کپی
+</button>
 
-    <div class="stat">
-     <strong>IP</strong>
-     <span>ثابت</span>
-    </div>
+</div>
 
-    <div class="stat">
-     <strong>⚡</strong>
-     <span>سرعت بالا</span>
-    </div>
+<div class="qr-box">
 
-   </div>
+<div id="subscriptionQR"></div>
 
-  </div>
+<p>QR Code لینک اشتراک</p>
 
- </div>
+<button
+ class="btn btn-primary btn-block"
+ onclick="downloadQRCode()"
+ style="margin-top:10px">
+ 📥 دانلود QR Code
+</button>
 
+</div>
 
- <!-- WHY -->
+</div>
 
- <div class="section">
+<!-- CONFIGS -->
 
-  <div class="container">
+<div id="configsBox" style="display:none">
 
-   <div class="section-title">
+<div class="sub-title">
+ ⚙️ کانفیگ‌های سرویس
+</div>
 
-    <h2>
-     چرا V2GURD؟
-    </h2>
+<button
+ id="copyAllConfigsBtn"
+ class="btn btn-primary btn-block copy-all-btn"
+ onclick="copyAllConfigs()">
+ 📋 کپی همه کانفیگ‌ها
+</button>
 
-    <p>
-     چیزی که ما رو برای اتصال روزمره‌ات مطمئن می‌کنه
-    </p>
+<div id="configsList"></div>
 
-   </div>
+</div>
 
+</div>
+</div>
+</div>
 
-   <div class="why-grid">
+<!-- FEATURED -->
 
-    <div class="why-item">
-     <div class="why-icon">🛡️</div>
-     <h3>امنیت اتصال</h3>
-     <p>
-      اتصال رمزنگاری‌شده روی همه سرویس‌ها،
-      بدون افت امنیت در ازای سرعت.
-     </p>
-    </div>
+<div class="container">
 
-    <div class="why-item">
-     <div class="why-icon">⚡</div>
-     <h3>سرعت بالا</h3>
-     <p>
-      زیرساخت بهینه‌شده برای اتصال سریع،
-      مناسب مرورگری، دانلود و استریم.
-     </p>
-    </div>
+<div class="wg-featured">
 
-    <div class="why-item">
-     <div class="why-icon">🌐</div>
-     <h3>IP ثابت</h3>
-     <p>
-      در سرویس وایرگارد تک‌کاربره،
-      یک IP ثابت مخصوص خودت داری.
-     </p>
-    </div>
+<div class="wg-inner">
 
-    <div class="why-item">
-     <div class="why-icon">💬</div>
-     <h3>پشتیبانی ۲۴ ساعته</h3>
-     <p>
-      از طریق تلگرام و ربات اختصاصی،
-      همیشه در دسترسیم.
-     </p>
-    </div>
+<div class="feature-badge">
+ ⭐ ویژه • پرفروش • پیشنهادی
+</div>
 
-    <div class="why-item">
-     <div class="why-icon">🚀</div>
-     <h3>تحویل سریع</h3>
-     <p>
-      بعد از ارسال رسید پرداخت،
-      اطلاعات سرویس سریع برات ارسال می‌شه.
-     </p>
-    </div>
+<h2>
+ 🟣 وایرگارد
+ <span>| تک‌کاربره</span>
+</h2>
 
-    <div class="why-item">
-     <div class="why-icon">📱</div>
-     <h3>سازگار با همه دستگاه‌ها</h3>
-     <p>
-      روی آیفون، اندروید و ویندوز بدون محدودیت وصل شو.
-     </p>
-    </div>
+<p>
+ 🚀 سرعت فضایی، اتصال پایدار و IP ثابت.
+ یکی از بهترین و پرفروش‌ترین سرویس‌های V2GURD
+ برای اتصال سریع و مطمئن.
+</p>
 
-   </div>
+<div class="countdown">
 
-  </div>
+<span>⏳ پیشنهاد ویژه تا پایان امروز:</span>
 
- </div>
+<div class="countdown-timer" id="countdownTimer">
+ 00:00:00
+</div>
 
+</div>
 
- <!-- REFERRAL -->
+<div class="wg-points" id="wgPoints"></div>
 
- <div class="section">
+<button class="btn btn-primary" onclick="showPage('wireguard')">
+ ⭐ مشاهده پلن‌های وایرگارد
+</button>
 
-  <div class="container">
+</div>
+</div>
+</div>
 
-   <div class="invite-box">
+<!-- CATEGORIES -->
 
-    <h2>
-     🎁 دوستاتو دعوت کن، هر دو تخفیف بگیرید
-    </h2>
+<div class="section">
 
-    <p>
-     لینک اختصاصی خودت رو با دوستات به اشتراک بذ؛
-     اونا با اولین خرید ۵٪ تخفیف خوش‌آمد می‌گیرن.
-    </p>
+<div class="container">
 
-    <div class="copy-row">
+<div class="section-title">
 
-     <input
-      id="referralLink"
-      readonly
-     >
+<h2>دسته‌بندی خدمات</h2>
 
-     <button
-      class="btn btn-primary"
-      onclick="copyReferralLink()">
-      کپی لینک
-     </button>
+<p>هر دسته سرویس‌های مخصوص خودش را دارد</p>
 
-    </div>
+</div>
 
-    <button
-     class="btn"
-     onclick="shareReferralLink()">
-     📤 اشتراک‌گذاری در تلگرام
-    </button>
+<div class="categories" id="categoriesGrid"></div>
 
-   </div>
+</div>
+</div>
 
-  </div>
+<!-- STATS -->
 
- </div>
+<div class="section">
 
+<div class="container">
 
- <!-- FAQ -->
+<div class="stats">
 
- <div class="section">
+<div class="stat">
+<strong>99%</strong>
+<span>پایداری سرویس</span>
+</div>
 
-  <div class="container">
+<div class="stat">
+<strong>24/7</strong>
+<span>پشتیبانی</span>
+</div>
 
-   <div class="section-title">
+<div class="stat">
+<strong>IP</strong>
+<span>ثابت</span>
+</div>
 
-    <h2>
-     سوالات متداول
-    </h2>
+<div class="stat">
+<strong>⚡</strong>
+<span>سرعت بالا</span>
+</div>
 
-   </div>
+</div>
+</div>
+</div>
 
-   <div
-    class="faq"
-    id="faqList">
-   </div>
+<!-- WHY -->
 
-  </div>
+<div class="section">
 
- </div>
+<div class="container">
+
+<div class="section-title">
+
+<h2>چرا V2GURD؟</h2>
+
+<p>چیزی که ما رو برای اتصال روزمره‌ات مطمئن می‌کنه</p>
+
+</div>
+
+<div class="why-grid">
+
+<div class="why-item">
+<div class="why-icon">🛡️</div>
+<h3>امنیت اتصال</h3>
+<p>
+ اتصال رمزنگاری‌شده روی همه سرویس‌ها،
+ بدون افت امنیت در ازای سرعت.
+</p>
+</div>
+
+<div class="why-item">
+<div class="why-icon">⚡</div>
+<h3>سرعت بالا</h3>
+<p>
+ زیرساخت بهینه‌شده برای اتصال سریع،
+ مناسب مرورگری، دانلود و استریم.
+</p>
+</div>
+
+<div class="why-item">
+<div class="why-icon">🌐</div>
+<h3>IP ثابت</h3>
+<p>
+ در سرویس وایرگارد تک‌کاربره،
+ یک IP ثابت مخصوص خودت داری.
+</p>
+</div>
+
+<div class="why-item">
+<div class="why-icon">💬</div>
+<h3>پشتیبانی ۲۴ ساعته</h3>
+<p>
+ از طریق تلگرام و ربات اختصاصی،
+ همیشه در دسترسیم.
+</p>
+</div>
+
+<div class="why-item">
+<div class="why-icon">🚀</div>
+<h3>تحویل سریع</h3>
+<p>
+ بعد از ارسال رسید پرداخت،
+ اطلاعات سرویس سریع برات ارسال می‌شه.
+</p>
+</div>
+
+<div class="why-item">
+<div class="why-icon">📱</div>
+<h3>سازگار با همه دستگاه‌ها</h3>
+<p>
+ روی آیفون، اندروید و ویندوز بدون محدودیت وصل شو.
+</p>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- REFERRAL -->
+
+<div class="section">
+
+<div class="container">
+
+<div class="invite-box">
+
+<h2>🎁 دوستاتو دعوت کن، هر دو تخفیف بگیرید</h2>
+
+<p>
+ لینک اختصاصی خودت رو با دوستات به اشتراک بذ؛
+ اونا با اولین خرید ۵٪ تخفیف خوش‌آمد می‌گیرن.
+</p>
+
+<div class="copy-row">
+
+<input id="referralLink" readonly>
+
+<button class="btn btn-primary" onclick="copyReferralLink()">
+ کپی لینک
+</button>
+
+</div>
+
+<button class="btn" onclick="shareReferralLink()">
+ 📤 اشتراک‌گذاری در تلگرام
+</button>
+
+</div>
+</div>
+</div>
+
+<!-- FAQ -->
+
+<div class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>سوالات متداول</h2>
+</div>
+
+<div class="faq" id="faqList"></div>
+
+</div>
+</div>
 
 </section>
-
 
 <!-- WIREGUARD -->
 
 <section id="wireguard" class="page">
 
- <div class="category-hero">
+<div class="category-hero">
 
-  <img
-   class="category-hero-img"
-   id="wgHeroImg"
-   alt="WireGuard"
-   loading="lazy"
-   decoding="async"
-  >
+<img class="category-hero-img" id="wgHeroImg" alt="WireGuard">
 
-  <div class="category-hero-overlay"></div>
+<div class="category-hero-overlay"></div>
 
-  <div class="container">
+<div class="container">
 
-   <div class="category-hero-content">
+<div class="category-hero-content">
 
-    <img
-     class="category-icon"
-     id="wgIcon"
-     alt="WireGuard"
-     loading="lazy"
-     decoding="async"
-    >
+<img class="category-icon" id="wgIcon" alt="WireGuard">
 
-    <h1>
-     🟣 وایرگارد
-    </h1>
+<h1>🟣 وایرگارد</h1>
 
-    <p>
-     سرویس تک‌کاربره ویژه V2GURD
-     با سرعت بالا، اتصال پایدار و IP ثابت.
-    </p>
+<p>
+ سرویس تک‌کاربره ویژه V2GURD
+ با سرعت بالا، اتصال پایدار و IP ثابت.
+</p>
 
-   </div>
+</div>
+</div>
+</div>
 
-  </div>
+<div class="section">
 
- </div>
+<div class="container">
 
+<div class="section-title">
 
- <div class="section">
+<h2>⭐ پلن‌های وایرگارد</h2>
 
-  <div class="container">
+<p>یکی از بهترین و پرفروش‌ترین سرویس‌های ما</p>
 
-   <div class="section-title">
+</div>
 
-    <h2>
-     ⭐ پلن‌های وایرگارد
-    </h2>
+<div class="grid" id="wgGrid"></div>
 
-    <p>
-     یکی از بهترین و پرفروش‌ترین سرویس‌های ما
-    </p>
-
-   </div>
-
-   <div
-    class="grid"
-    id="wgGrid">
-   </div>
-
-  </div>
-
- </div>
+</div>
+</div>
 
 </section>
-
 
 <!-- V2BOX -->
 
 <section id="v2box" class="page">
 
- <div class="category-hero">
+<div class="category-hero">
 
-  <img
-   class="category-hero-img"
-   id="v2boxHeroImg"
-   alt="V2Box"
-   loading="lazy"
-   decoding="async"
-  >
+<img class="category-hero-img" id="v2boxHeroImg" alt="V2Box">
 
-  <div class="category-hero-overlay"></div>
+<div class="category-hero-overlay"></div>
 
-  <div class="container">
+<div class="container">
 
-   <div class="category-hero-content">
+<div class="category-hero-content">
 
-    <img
-     class="category-icon"
-     id="v2boxIcon"
-     alt="V2Box"
-     loading="lazy"
-     decoding="async"
-    >
+<img class="category-icon" id="v2boxIcon" alt="V2Box">
 
-    <h1>
-     📦 V2Box
-    </h1>
+<h1>📦 V2Box</h1>
 
-    <p>
-     سرویس‌های سروری V2GURD شامل CDN،
-     حرفه‌ای، اقتصادی، معمولی و Tunnel.
-    </p>
+<p>
+ سرویس‌های سروری V2GURD شامل CDN،
+ حرفه‌ای، اقتصادی، معمولی و Tunnel.
+</p>
 
-   </div>
+</div>
+</div>
+</div>
 
-  </div>
+<div class="section">
 
- </div>
+<div class="container">
 
+<div class="section-title">
 
- <div class="section">
+<h2>📊 مقایسه سرویس‌ها</h2>
 
-  <div class="container">
+<p>کدوم سرور مناسب توئه؟</p>
 
-   <div class="section-title">
+</div>
 
-    <h2>
-     📊 مقایسه سرویس‌ها
-    </h2>
+<div class="compare-wrap">
 
-    <p>
-     کدوم سرور مناسب توئه؟
-    </p>
+<table class="compare-table" id="compareTable"></table>
 
-   </div>
+</div>
 
-   <div class="compare-wrap">
+<div class="section-title">
 
-    <table
-     class="compare-table"
-     id="compareTable">
-    </table>
+<h2>🌐 سرویس‌های V2Box</h2>
 
-   </div>
+<p>پلن مناسب خودت رو انتخاب کن</p>
 
+</div>
 
-   <div class="section-title">
+<div class="grid" id="v2boxGrid"></div>
 
-    <h2>
-     🌐 سرویس‌های V2Box
-    </h2>
-
-    <p>
-     پلن مناسب خودت رو انتخاب کن
-    </p>
-
-   </div>
-
-   <div
-    class="grid"
-    id="v2boxGrid">
-   </div>
-
-  </div>
-
- </div>
+</div>
+</div>
 
 </section>
-
 
 <!-- JUMPJUMP -->
 
 <section id="jumpjump" class="page">
 
- <div class="category-hero">
+<div class="category-hero">
 
-  <img
-   class="category-hero-img"
-   id="jjHeroImg"
-   alt="JumpJump"
-   loading="lazy"
-   decoding="async"
-  >
+<img class="category-hero-img" id="jjHeroImg" alt="JumpJump">
 
-  <div class="category-hero-overlay"></div>
+<div class="category-hero-overlay"></div>
 
-  <div class="container">
+<div class="container">
 
-   <div class="category-hero-content">
+<div class="category-hero-content">
 
-    <img
-     class="category-icon"
-     id="jjIcon"
-     alt="JumpJump"
-     loading="lazy"
-     decoding="async"
-    >
+<img class="category-icon" id="jjIcon" alt="JumpJump">
 
-    <h1>
-     🚀 JumpJump
-    </h1>
+<h1>🚀 JumpJump</h1>
 
-    <p>
-     سرویس‌های اختصاصی JumpJump برای استفاده
-     روی یک یا چند دستگاه با پلن‌های مختلف.
-    </p>
+<p>
+ سرویس‌های اختصاصی JumpJump برای استفاده
+ روی یک یا چند دستگاه با پلن‌های مختلف.
+</p>
 
-   </div>
+</div>
+</div>
+</div>
 
-  </div>
+<div class="section">
 
- </div>
+<div class="container">
 
+<div class="section-title">
 
- <div class="section">
+<h2>🚀 پلن‌های JumpJump</h2>
 
-  <div class="container">
+<p>فقط سرویس‌های مربوط به JumpJump</p>
 
-   <div class="section-title">
+</div>
 
-    <h2>
-     🚀 پلن‌های JumpJump
-    </h2>
+<div class="grid" id="jjGrid"></div>
 
-    <p>
-     فقط سرویس‌های مربوط به JumpJump
-    </p>
-
-   </div>
-
-   <div
-    class="grid"
-    id="jjGrid">
-   </div>
-
-  </div>
-
- </div>
+</div>
+</div>
 
 </section>
-
 
 <!-- GUIDE -->
 
 <section id="guide" class="page">
 
- <div class="section">
+<div class="section">
 
-  <div class="container">
+<div class="container">
 
-   <div class="section-title">
+<div class="section-title">
 
-    <h2>
-     📚 راهنمای استفاده
-    </h2>
+<h2>📚 راهنمای استفاده</h2>
 
-    <p>
-     مراحل دریافت و استفاده از سرویس
-    </p>
+<p>مراحل دریافت و استفاده از سرویس</p>
 
-   </div>
+</div>
 
-   <div
-    class="info-box"
-    id="stepsList">
-   </div>
+<div class="info-box" id="stepsList"></div>
 
-  </div>
-
- </div>
+</div>
+</div>
 
 </section>
-
 
 <!-- RULES -->
 
 <section id="rules" class="page">
 
- <div class="section">
+<div class="section">
 
-  <div class="container">
+<div class="container">
 
-   <div class="section-title">
+<div class="section-title">
+<h2>📜 قوانین خرید</h2>
+</div>
 
-    <h2>
-     📜 قوانین خرید
-    </h2>
+<div class="info-box">
+<ul id="rulesList"></ul>
+</div>
 
-   </div>
-
-   <div class="info-box">
-
-    <ul id="rulesList"></ul>
-
-   </div>
-
-  </div>
-
- </div>
+</div>
+</div>
 
 </section>
-
 
 <!-- BOT -->
 
 <section id="bot" class="page">
 
- <div class="section">
+<div class="section">
 
-  <div class="container">
+<div class="container">
 
-   <div class="section-title">
+<div class="section-title">
 
-    <h2>
-     🤖 ربات V2GURD
-    </h2>
+<h2>🤖 ربات V2GURD</h2>
 
-    <p>
-     مدیریت و دریافت سرویس از طریق ربات
-    </p>
+<p>مدیریت و دریافت سرویس از طریق ربات</p>
 
-   </div>
+</div>
 
-   <div
-    class="info-box"
-    style="text-align:center">
+<div class="info-box" style="text-align:center">
 
-    <div
-     style="font-size:55px;margin-bottom:15px">
-     🤖
-    </div>
+<div style="font-size:55px;margin-bottom:15px">
+🤖
+</div>
 
-    <h2>
-     echo_priime_bot
-    </h2>
+<h2>echo_priime_bot</h2>
 
-    <p>
-     برای دریافت اطلاعات سرویس و ارتباط سریع‌تر
-     می‌توانید از ربات تلگرام استفاده کنید.
-    </p>
+<p>
+ برای دریافت اطلاعات سرویس و ارتباط سریع‌تر
+ می‌توانید از ربات تلگرام استفاده کنید.
+</p>
 
-    <br>
+<br>
 
-    <a
-     class="btn btn-primary"
-     href="https://t.me/echo_priime_bot"
-     target="_blank">
-     ورود به ربات
-    </a>
+<a class="btn btn-primary"
+ href="https://t.me/echo_priime_bot"
+ target="_blank">
+ ورود به ربات
+</a>
 
-   </div>
+</div>
 
-  </div>
-
- </div>
+</div>
+</div>
 
 </section>
-
 
 <!-- SUPPORT -->
 
 <section id="support" class="page">
 
- <div class="section">
+<div class="section">
 
-  <div class="container">
+<div class="container">
 
-   <div class="section-title">
+<div class="section-title">
 
-    <h2>
-     🎧 پشتیبانی V2GURD
-    </h2>
+<h2>🎧 پشتیبانی V2GURD</h2>
 
-    <p>
-     در صورت وجود مشکل با ما در ارتباط باشید
-    </p>
+<p>در صورت وجود مشکل با ما در ارتباط باشید</p>
 
-   </div>
+</div>
 
-   <div class="info-box">
+<div class="info-box">
 
-    <h2>
-     ایجاد تیکت پشتیبانی
-    </h2>
+<h2>ایجاد تیکت پشتیبانی</h2>
 
-    <input
-     class="form-input"
-     id="supportName"
-     placeholder="نام شما"
-    >
+<input
+ class="form-input"
+ id="supportName"
+ placeholder="نام شما">
 
-    <input
-     class="form-input"
-     id="supportProblem"
-     placeholder="موضوع یا مشکل"
-    >
+<input
+ class="form-input"
+ id="supportProblem"
+ placeholder="موضوع یا مشکل">
 
-    <br>
+<br>
 
-    <button
-     class="btn btn-primary"
-     onclick="createTicket()">
-     ارسال درخواست پشتیبانی
-    </button>
+<button class="btn btn-primary" onclick="createTicket()">
+ ارسال درخواست پشتیبانی
+</button>
 
-    <br><br>
+<br><br>
 
-    <a
-     class="btn"
-     href="https://t.me/Vtwoguard"
-     target="_blank">
-     💬 ارتباط مستقیم در تلگرام
-    </a>
+<a class="btn"
+ href="https://t.me/Vtwoguard"
+ target="_blank">
+ 💬 ارتباط مستقیم در تلگرام
+</a>
 
-   </div>
+</div>
 
-  </div>
-
- </div>
+</div>
+</div>
 
 </section>
 
 </main>
 
-
 <!-- QUICK BAR -->
 
-<div
- class="quickbar"
- id="quickBar">
+<div class="quickbar" id="quickBar">
 
- <div class="quickbar-info">
+<div class="quickbar-info">
 
-  <strong id="quickBarTitle"></strong>
+<strong id="quickBarTitle"></strong>
 
-  <span id="quickBarPrice"></span>
-
- </div>
-
- <button
-  class="btn btn-primary"
-  id="quickBarBtn">
-  افزودن سریع
- </button>
+<span id="quickBarPrice"></span>
 
 </div>
 
+<button class="btn btn-primary" id="quickBarBtn">
+ افزودن سریع
+</button>
+
+</div>
 
 <!-- CART -->
 
-<button
- class="cart-float"
- onclick="openCart()">
+<button class="cart-float" onclick="openCart()">
 
- 🛒
+🛒
 
- <span
-  class="cart-count"
-  id="cartCount">
-  0
- </span>
+<span class="cart-count" id="cartCount">
+0
+</span>
 
 </button>
 
+<div class="cart-panel" id="cartPanel" onclick="outsideCart(event)">
 
-<div
- class="cart-panel"
- id="cartPanel"
- onclick="outsideCart(event)">
+<div class="cart-box">
 
- <div class="cart-box">
+<div class="cart-head">
 
-  <div class="cart-head">
+<h2>🛒 سبد خرید</h2>
 
-   <h2>
-    🛒 سبد خرید
-   </h2>
-
-   <button
-    class="close"
-    onclick="closeCart()">
-    ×
-   </button>
-
-  </div>
-
-  <div id="cartItems"></div>
-
-  <div class="summary">
-
-   <div class="sum-row">
-    <span>مبلغ:</span>
-    <span id="subtotal">۰ تومان</span>
-   </div>
-
-   <div class="sum-row">
-    <span>تخفیف:</span>
-    <span id="discount">۰ تومان</span>
-   </div>
-
-   <div class="sum-row sum-final">
-    <span>مبلغ نهایی:</span>
-    <span id="finalTotal">۰ تومان</span>
-   </div>
-
-   <input
-    class="form-input"
-    id="coupon"
-    placeholder="کد تخفیف"
-   >
-
-   <button
-    class="btn btn-block"
-    onclick="applyCoupon()">
-    اعمال کد تخفیف
-   </button>
-
-   <br><br>
-
-   <button
-    class="btn btn-primary btn-block"
-    onclick="startCheckout()">
-    ادامه و پرداخت
-   </button>
-
-  </div>
-
- </div>
+<button class="close" onclick="closeCart()">×</button>
 
 </div>
 
+<div id="cartItems"></div>
+
+<div class="summary">
+
+<div class="sum-row">
+<span>مبلغ:</span>
+<span id="subtotal">۰ تومان</span>
+</div>
+
+<div class="sum-row">
+<span>تخفیف:</span>
+<span id="discount">۰ تومان</span>
+</div>
+
+<div class="sum-row sum-final">
+<span>مبلغ نهایی:</span>
+<span id="finalTotal">۰ تومان</span>
+</div>
+
+<input
+ class="form-input"
+ id="coupon"
+ placeholder="کد تخفیف">
+
+<button class="btn btn-block" onclick="applyCoupon()">
+ اعمال کد تخفیف
+</button>
+
+<br><br>
+
+<button class="btn btn-primary btn-block" onclick="startCheckout()">
+ ادامه و پرداخت
+</button>
+
+</div>
+</div>
+</div>
 
 <!-- RULES MODAL -->
 
-<div
- class="modal"
- id="rulesModal">
+<div class="modal" id="rulesModal">
 
- <div class="modal-box">
+<div class="modal-box">
 
-  <div class="modal-head">
+<div class="modal-head">
 
-   <h2>
-    📜 تأیید قوانین
-   </h2>
+<h2>📜 تأیید قوانین</h2>
 
-   <button
-    class="close"
-    onclick="closeModal('rulesModal')">
-    ×
-   </button>
-
-  </div>
-
-  <p
-   style="color:#a8b6ca;line-height:2">
-
-   قوانین خرید را مطالعه کردم و مشخصات سرویس
-   انتخاب‌شده را بررسی کرده‌ام.
-
-  </p>
-
-  <br>
-
-  <button
-   class="btn btn-primary btn-block"
-   onclick="confirmRules()">
-   تأیید قوانین و ادامه
-  </button>
-
- </div>
+<button class="close" onclick="closeModal('rulesModal')">
+×
+</button>
 
 </div>
 
+<p style="color:#a8b6ca;line-height:2">
+
+ قوانین خرید را مطالعه کردم و مشخصات سرویس
+ انتخاب‌شده را بررسی کرده‌ام.
+
+</p>
+
+<br>
+
+<button class="btn btn-primary btn-block" onclick="confirmRules()">
+ تأیید قوانین و ادامه
+</button>
+
+</div>
+</div>
 
 <!-- INVOICE -->
 
-<div
- class="modal"
- id="invoiceModal">
+<div class="modal" id="invoiceModal">
 
- <div class="modal-box">
+<div class="modal-box">
 
-  <div class="modal-head">
+<div class="modal-head">
 
-   <h2>
-    🧾 فاکتور سفارش
-   </h2>
+<h2>🧾 فاکتور سفارش</h2>
 
-   <button
-    class="close"
-    onclick="closeModal('invoiceModal')">
-    ×
-   </button>
-
-  </div>
-
-  <div
-   id="invoiceContent"
-   style="line-height:2;color:#aebbd0">
-  </div>
-
-  <br>
-
-  <button
-   class="btn btn-primary btn-block"
-   onclick="openPayment()">
-   ادامه به پرداخت
-  </button>
-
- </div>
+<button class="close" onclick="closeModal('invoiceModal')">
+×
+</button>
 
 </div>
 
+<div
+ id="invoiceContent"
+ style="line-height:2;color:#aebbd0">
+</div>
+
+<br>
+
+<button class="btn btn-primary btn-block" onclick="openPayment()">
+ ادامه به پرداخت
+</button>
+
+</div>
+</div>
 
 <!-- PAYMENT -->
 
-<div
- class="modal"
- id="paymentModal">
+<div class="modal" id="paymentModal">
 
- <div class="modal-box">
+<div class="modal-box">
 
-  <div class="modal-head">
+<div class="modal-head">
 
-   <h2>
-    💳 پرداخت
-   </h2>
+<h2>💳 پرداخت</h2>
 
-   <button
-    class="close"
-    onclick="closeModal('paymentModal')">
-    ×
-   </button>
-
-  </div>
-
-  <p
-   style="color:#9eafc7;line-height:2">
-
-   مبلغ سفارش را به شماره کارت زیر واریز کنید
-   و سپس رسید پرداخت را ارسال نمایید.
-
-  </p>
-
-  <div class="card-number">
-   6219 8618 4163 5526
-  </div>
-
-  <div
-   style="text-align:center;color:#aebbd0">
-
-   <b style="color:#fff">
-    نام صاحب کارت:
-   </b>
-   نامی
-
-   <br>
-
-   <b style="color:#fff">
-    بانک:
-   </b>
-   BLU / بلو بانک
-
-  </div>
-
-  <br>
-
-  <button
-   class="btn btn-block"
-   onclick="copyCard()">
-   📋 کپی شماره کارت
-  </button>
-
-  <br><br>
-
-  <button
-   class="btn btn-primary btn-block"
-   onclick="sendReceipt()">
-   📤 ارسال رسید در تلگرام
-  </button>
-
- </div>
+<button class="close" onclick="closeModal('paymentModal')">
+×
+</button>
 
 </div>
 
+<p style="color:#9eafc7;line-height:2">
+
+ مبلغ سفارش را به شماره کارت زیر واریز کنید
+ و سپس رسید پرداخت را ارسال نمایید.
+
+</p>
+
+<div class="card-number">
+6219 8618 4163 5526
+</div>
+
+<div style="text-align:center;color:#aebbd0">
+
+<b style="color:#fff">
+ نام صاحب کارت:
+</b>
+نامی
+
+<br>
+
+<b style="color:#fff">
+ بانک:
+</b>
+BLU / بلو بانک
+
+</div>
+
+<br>
+
+<button class="btn btn-block" onclick="copyCard()">
+ 📋 کپی شماره کارت
+</button>
+
+<br><br>
+
+<button class="btn btn-primary btn-block" onclick="sendReceipt()">
+ 📤 ارسال رسید در تلگرام
+</button>
+
+</div>
+</div>
 
 <div id="toast"></div>
 
-
 <footer>
 
- <div class="footer-logo">
-  V2<span>GURD</span>
- </div>
+<div class="footer-logo">
+V2<span>GURD</span>
+</div>
 
- <p>
-  Secure • Fast • Premium
- </p>
+<p>Secure • Fast • Premium</p>
 
- <p style="margin-top:8px">
-  © 2026 V2GURD
- </p>
+<p style="margin-top:8px">
+© 2026 V2GURD
+</p>
 
 </footer>
-
 
 <script>
 
@@ -2639,7 +2549,6 @@ const IMG = {
  "https://play-lh.googleusercontent.com/bTiMcJCnGw0QTnhHxwHffOUYvha9BUz5FhK7JAogvO8P-J_qKiJaqnyDSO1WswuqSMFxHDlu9tE0nwicfYLqWA"
 
 };
-
 
 const CATEGORIES = [
 
@@ -2666,7 +2575,6 @@ const CATEGORIES = [
 
 ];
 
-
 const WG_POINTS = [
 
  "🚀 سرعت فضایی",
@@ -2678,48 +2586,18 @@ const WG_POINTS = [
 
 ];
 
-
 const WIREGUARD_PLANS = [
 
- {
-  id:"wg10",
-  gb:10,
-  price:149000,
-  special:true
- },
-
- {
-  id:"wg20",
-  gb:20,
-  price:279000
- },
-
- {
-  id:"wg40",
-  gb:40,
-  price:499000
- },
-
- {
-  id:"wg60",
-  gb:60,
-  price:699000
- },
-
- {
-  id:"wg100",
-  gb:100,
-  price:999000
- }
+ {id:"wg10",gb:10,price:149000,special:true},
+ {id:"wg20",gb:20,price:279000},
+ {id:"wg40",gb:40,price:499000},
+ {id:"wg60",gb:60,price:699000},
+ {id:"wg100",gb:100,price:999000}
 
 ];
-
 
 const GB_OPTIONS =
-[
- 50,100,150,200,250,300,400,500
-];
-
+[50,100,150,200,250,300,400,500];
 
 const V2BOX_PLANS = [
 
@@ -2807,45 +2685,14 @@ const V2BOX_PLANS = [
 
 ];
 
-
 const JUMPJUMP_PLANS = [
 
- {
-  id:"jj1",
-  devices:1,
-  months:1,
-  price:700000,
-  status:"موجود"
- },
-
- {
-  id:"jj2",
-  devices:2,
-  months:1,
-  price:999000,
-  status:"موجود"
- },
-
- {
-  id:"jj6",
-  devices:2,
-  months:6,
-  price:4600000,
-  special:true,
-  status:"پیشنهاد ویژه"
- },
-
- {
-  id:"jj12",
-  devices:2,
-  months:12,
-  price:5500000,
-  special:true,
-  status:"بهترین ارزش خرید"
- }
+ {id:"jj1",devices:1,months:1,price:700000,status:"موجود"},
+ {id:"jj2",devices:2,months:1,price:999000,status:"موجود"},
+ {id:"jj6",devices:2,months:6,price:4600000,special:true,status:"پیشنهاد ویژه"},
+ {id:"jj12",devices:2,months:12,price:5500000,special:true,status:"بهترین ارزش خرید"}
 
 ];
-
 
 const FAQS = [
 
@@ -2865,7 +2712,6 @@ const FAQS = [
  }
 
 ];
-
 
 const STEPS = [
 
@@ -2891,7 +2737,6 @@ const STEPS = [
 
 ];
 
-
 const RULES = [
 
  "قبل از خرید، مشخصات سرویس را به دقت بررسی کنید.",
@@ -2902,7 +2747,6 @@ const RULES = [
 
 ];
 
-
 const CARD_NUMBER =
 "6219861841635526";
 
@@ -2911,9 +2755,7 @@ const TELEGRAM =
 
 const REFERRAL_DISCOUNT = 5;
 
-
 const PRODUCTS = {};
-
 
 WIREGUARD_PLANS.forEach(p => {
 
@@ -2928,7 +2770,6 @@ WIREGUARD_PLANS.forEach(p => {
 
 });
 
-
 JUMPJUMP_PLANS.forEach(p => {
 
  PRODUCTS[p.id] = {
@@ -2942,7 +2783,6 @@ JUMPJUMP_PLANS.forEach(p => {
 
 });
 
-
 /* ================= HELPERS ================= */
 
 function toFa(n){
@@ -2954,14 +2794,12 @@ function toFa(n){
 
 }
 
-
 function formatPrice(n){
 
  return Number(n).toLocaleString("fa-IR")
  +" تومان";
 
 }
-
 
 function el(html){
 
@@ -2975,7 +2813,6 @@ function el(html){
 
 }
 
-
 function escapeHTML(value){
 
  return String(value)
@@ -2987,7 +2824,6 @@ function escapeHTML(value){
 
 }
 
-
 /* ================= RENDER ================= */
 
 function renderCategories(){
@@ -2995,8 +2831,7 @@ function renderCategories(){
  document.getElementById("categoriesGrid").innerHTML =
  CATEGORIES.map(c => `
 
-  <div
-   class="category"
+  <div class="category"
    onclick="showPage('${c.id}')">
 
    <img
@@ -3026,7 +2861,6 @@ function renderCategories(){
 
 }
 
-
 function renderWgPoints(){
 
  document.getElementById("wgPoints").innerHTML =
@@ -3039,7 +2873,6 @@ function renderWgPoints(){
  `).join("");
 
 }
-
 
 function renderFaq(){
 
@@ -3054,9 +2887,7 @@ function renderFaq(){
 
     ${f.q}
 
-    <span>
-     ＋
-    </span>
+    <span>＋</span>
 
    </button>
 
@@ -3069,7 +2900,6 @@ function renderFaq(){
  `).join("");
 
 }
-
 
 function renderCategoryHeroes(){
 
@@ -3086,14 +2916,12 @@ function renderCategoryHeroes(){
 
 }
 
-
 function renderWireguardPlans(){
 
  document.getElementById("wgGrid").innerHTML =
  WIREGUARD_PLANS.map(p => `
 
-  <div
-   class="card ${p.special?"special-card":""}">
+  <div class="card ${p.special?"special-card":""}">
 
    <div class="status">
     <i></i>
@@ -3120,9 +2948,7 @@ function renderWireguardPlans(){
    <button
     class="btn btn-primary"
     onclick="addToCart('${p.id}')">
-
     افزودن به سبد
-
    </button>
 
   </div>
@@ -3131,21 +2957,16 @@ function renderWireguardPlans(){
 
 }
 
-
 function renderV2BoxPlans(){
 
  document.getElementById("v2boxGrid").innerHTML =
  V2BOX_PLANS.map(p => `
 
-  <div
-   class="card ${p.special?"special-card":""}">
+  <div class="card ${p.special?"special-card":""}">
 
    <div class="status">
-
     <i></i>
-
     ${p.status}
-
    </div>
 
    <h3>
@@ -3156,9 +2977,7 @@ function renderV2BoxPlans(){
     ${p.desc.join("<br>")}
    </div>
 
-   <select
-    class="select"
-    id="${p.id}">
+   <select class="select" id="${p.id}">
 
     ${GB_OPTIONS.map(gb => `
 
@@ -3185,21 +3004,16 @@ function renderV2BoxPlans(){
 
 }
 
-
 function renderJumpjumpPlans(){
 
  document.getElementById("jjGrid").innerHTML =
  JUMPJUMP_PLANS.map(p => `
 
-  <div
-   class="card ${p.special?"special-card":""}">
+  <div class="card ${p.special?"special-card":""}">
 
    <div class="status">
-
     <i></i>
-
     ${p.status}
-
    </div>
 
    <h3>
@@ -3207,29 +3021,20 @@ function renderJumpjumpPlans(){
    </h3>
 
    <div class="subtitle">
-
     ${toFa(p.devices)} دستگاه
     <br>
     ${toFa(p.months)} ماه
-
    </div>
 
    <div class="price">
-
     ${Number(p.price).toLocaleString("fa-IR")}
-
-    <small>
-     تومان
-    </small>
-
+    <small>تومان</small>
    </div>
 
    <button
     class="btn ${p.special?"btn-purple":"btn-primary"}"
     onclick="addToCart('${p.id}')">
-
     افزودن به سبد
-
    </button>
 
   </div>
@@ -3237,7 +3042,6 @@ function renderJumpjumpPlans(){
  `).join("");
 
 }
-
 
 function renderSteps(){
 
@@ -3251,15 +3055,8 @@ function renderSteps(){
    </div>
 
    <div>
-
-    <h3>
-     ${s.title}
-    </h3>
-
-    <p>
-     ${s.desc}
-    </p>
-
+    <h3>${s.title}</h3>
+    <p>${s.desc}</p>
    </div>
 
   </div>
@@ -3268,20 +3065,12 @@ function renderSteps(){
 
 }
 
-
 function renderRules(){
 
  document.getElementById("rulesList").innerHTML =
- RULES.map(r => `
-
-  <li>
-   ${r}
-  </li>
-
- `).join("");
+ RULES.map(r => `<li>${r}</li>`).join("");
 
 }
-
 
 function renderCompareTable(){
 
@@ -3290,17 +3079,11 @@ function renderCompareTable(){
 
   <tr class="${p.special?"highlight":""}">
 
-   <td>
-    ${p.icon} ${p.title}
-   </td>
+   <td>${p.icon} ${p.title}</td>
 
-   <td>
-    ${formatPrice(p.pricePerGB)}
-   </td>
+   <td>${formatPrice(p.pricePerGB)}</td>
 
-   <td>
-    ${p.bestFor}
-   </td>
+   <td>${p.bestFor}</td>
 
   </tr>
 
@@ -3309,11 +3092,9 @@ function renderCompareTable(){
  document.getElementById("compareTable").innerHTML = `
 
   <tr>
-
    <th>سرویس</th>
    <th>قیمت هر گیگ</th>
    <th>مناسب برای</th>
-
   </tr>
 
   ${rows}
@@ -3321,7 +3102,6 @@ function renderCompareTable(){
  `;
 
 }
-
 
 /* ================= CART ================= */
 
@@ -3334,7 +3114,6 @@ let couponDiscount = 0;
 let referralDiscount = 0;
 let currentOrder = null;
 
-
 function getDiscountPercent(){
 
  return Math.max(
@@ -3343,7 +3122,6 @@ function getDiscountPercent(){
  );
 
 }
-
 
 function addToCart(id){
 
@@ -3354,23 +3132,14 @@ function addToCart(id){
 
  saveCart();
 
- toast(
-  "محصول به سبد خرید اضافه شد ✅"
- );
+ toast("محصول به سبد خرید اضافه شد ✅");
 
 }
 
-
-function buyServer(
- type,
- selectId,
- pricePerGB
-){
+function buyServer(type,selectId,pricePerGB){
 
  const gb =
- Number(
-  document.getElementById(selectId).value
- );
+ Number(document.getElementById(selectId).value);
 
  const price =
  gb * pricePerGB;
@@ -3391,7 +3160,6 @@ function buyServer(
 
 }
 
-
 function saveCart(){
 
  localStorage.setItem(
@@ -3402,7 +3170,6 @@ function saveCart(){
  updateCart();
 
 }
-
 
 function changeQty(id,change){
 
@@ -3418,19 +3185,15 @@ function changeQty(id,change){
 
 }
 
-
 function removeFromCart(id){
 
  delete cart[id];
 
  saveCart();
 
- toast(
-  "محصول حذف شد"
- );
+ toast("محصول حذف شد");
 
 }
-
 
 function updateCart(){
 
@@ -3473,9 +3236,7 @@ function updateCart(){
 
      <div>
 
-      <div>
-       ${product.name}
-      </div>
+      <div>${product.name}</div>
 
       <small>
        ${formatPrice(product.price)}
@@ -3487,17 +3248,13 @@ function updateCart(){
 
       <div class="qty">
 
-       <button
-        onclick="changeQty('${id}',-1)">
+       <button onclick="changeQty('${id}',-1)">
         −
        </button>
 
-       <span>
-        ${qty}
-       </span>
+       <span>${qty}</span>
 
-       <button
-        onclick="changeQty('${id}',1)">
+       <button onclick="changeQty('${id}',1)">
         +
        </button>
 
@@ -3543,17 +3300,14 @@ function updateCart(){
  .textContent =
  formatPrice(final);
 
-
  if(totalItems === 0){
 
   container.innerHTML = `
 
-   <div
-    style="
-     text-align:center;
-     padding:35px 10px;
-     color:#8292aa
-    ">
+   <div style="
+    text-align:center;
+    padding:35px 10px;
+    color:#8292aa">
 
     🛒 سبد خرید خالی است
 
@@ -3570,7 +3324,6 @@ function updateCart(){
 
 }
 
-
 function openCart(){
 
  document.getElementById("cartPanel")
@@ -3580,14 +3333,12 @@ function openCart(){
 
 }
 
-
 function closeCart(){
 
  document.getElementById("cartPanel")
  .classList.remove("show");
 
 }
-
 
 function outsideCart(e){
 
@@ -3599,7 +3350,6 @@ function outsideCart(e){
  }
 
 }
-
 
 /* ================= COUPON ================= */
 
@@ -3615,17 +3365,13 @@ function applyCoupon(){
 
   couponDiscount = 10;
 
-  toast(
-   "کد تخفیف ۱۰٪ اعمال شد 🎉"
-  );
+  toast("کد تخفیف ۱۰٪ اعمال شد 🎉");
 
  }else{
 
   couponDiscount = 0;
 
-  toast(
-   "کد تخفیف معتبر نیست ❌"
-  );
+  toast("کد تخفیف معتبر نیست ❌");
 
  }
 
@@ -3633,16 +3379,13 @@ function applyCoupon(){
 
 }
 
-
 /* ================= CHECKOUT ================= */
 
 function startCheckout(){
 
  if(Object.keys(cart).length === 0){
 
-  toast(
-   "سبد خرید خالی است ❌"
-  );
+  toast("سبد خرید خالی است ❌");
 
   return;
 
@@ -3653,14 +3396,12 @@ function startCheckout(){
 
 }
 
-
 function closeModal(id){
 
  document.getElementById(id)
  .classList.remove("show");
 
 }
-
 
 function confirmRules(){
 
@@ -3670,24 +3411,17 @@ function confirmRules(){
 
 }
 
-
-function createOrderId(
- prefix="V2G",
- digits=4
-){
+function createOrderId(prefix="V2G",digits=4){
 
  const d = new Date();
 
- const y =
- d.getFullYear();
+ const y = d.getFullYear();
 
  const m =
- String(d.getMonth()+1)
- .padStart(2,"0");
+ String(d.getMonth()+1).padStart(2,"0");
 
  const day =
- String(d.getDate())
- .padStart(2,"0");
+ String(d.getDate()).padStart(2,"0");
 
  const min =
  Math.pow(10,digits-1);
@@ -3701,7 +3435,6 @@ function createOrderId(
  return `${prefix}-${y}${m}${day}-${random}`;
 
 }
-
 
 function createInvoice(){
 
@@ -3729,14 +3462,12 @@ function createInvoice(){
 
   rows += `
 
-   <div
-    style="
-     display:flex;
-     justify-content:space-between;
-     gap:10px;
-     padding:9px 0;
-     border-bottom:1px solid rgba(255,255,255,.05)
-    ">
+   <div style="
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:9px 0;
+    border-bottom:1px solid rgba(255,255,255,.05)">
 
     <span>
      ${product.name} × ${qty}
@@ -3752,7 +3483,6 @@ function createInvoice(){
 
  });
 
-
  const discount =
  Math.round(
   subtotal *
@@ -3763,18 +3493,15 @@ function createInvoice(){
  const final =
  subtotal - discount;
 
-
  document.getElementById("invoiceContent")
  .innerHTML = `
 
-  <div
-   style="
-    background:rgba(22,140,255,.06);
-    border:1px solid rgba(22,140,255,.15);
-    padding:15px;
-    border-radius:13px;
-    margin-bottom:15px
-   ">
+  <div style="
+   background:rgba(22,140,255,.06);
+   border:1px solid rgba(22,140,255,.15);
+   padding:15px;
+   border-radius:13px;
+   margin-bottom:15px">
 
    <b style="color:#fff">
     شماره سفارش:
@@ -3807,22 +3534,17 @@ function createInvoice(){
 
  `;
 
-
  currentOrder = {
-
   id:orderId,
   subtotal,
   discount,
   total:final
-
  };
-
 
  document.getElementById("invoiceModal")
  .classList.add("show");
 
 }
-
 
 function openPayment(){
 
@@ -3832,7 +3554,6 @@ function openPayment(){
  .classList.add("show");
 
 }
-
 
 function copyCard(){
 
@@ -3846,7 +3567,6 @@ function copyCard(){
  );
 
 }
-
 
 function sendReceipt(){
 
@@ -3862,7 +3582,6 @@ function sendReceipt(){
   `• ${PRODUCTS[id].name} × ${cart[id]}\n`;
 
  });
-
 
  const message = `سلام V2GURD 👋
 
@@ -3887,7 +3606,6 @@ ${formatPrice(currentOrder.total)}
 
 ممنون از V2GURD 🙏`;
 
-
  window.open(
   TELEGRAM +
   "?text=" +
@@ -3897,26 +3615,21 @@ ${formatPrice(currentOrder.total)}
 
 }
 
-
 /* ================= SUPPORT ================= */
 
 function createTicket(){
 
  const name =
  document.getElementById("supportName")
- .value
- .trim();
+ .value.trim();
 
  const problem =
  document.getElementById("supportProblem")
- .value
- .trim();
+ .value.trim();
 
  if(!name || !problem){
 
-  toast(
-   "لطفاً اطلاعات را کامل کنید ❌"
-  );
+  toast("لطفاً اطلاعات را کامل کنید ❌");
 
   return;
 
@@ -3924,7 +3637,6 @@ function createTicket(){
 
  const ticket =
  createOrderId("TKT",6);
-
 
  const message = `سلام V2GURD 👋
 
@@ -3939,7 +3651,6 @@ ${name}
 ❗ مشکل:
 ${problem}`;
 
-
  window.open(
   TELEGRAM +
   "?text=" +
@@ -3947,12 +3658,9 @@ ${problem}`;
   "_blank"
  );
 
- toast(
-  "تیکت ایجاد شد: " + ticket
- );
+ toast("تیکت ایجاد شد: " + ticket);
 
 }
-
 
 /* ================= FAQ ================= */
 
@@ -3963,15 +3671,12 @@ function toggleFaq(button){
 
 }
 
-
 /* ================= REFERRAL ================= */
 
 function getReferralCode(){
 
  let code =
- localStorage.getItem(
-  "v2gurd_refcode"
- );
+ localStorage.getItem("v2gurd_refcode");
 
  if(!code){
 
@@ -3992,7 +3697,6 @@ function getReferralCode(){
  return code;
 
 }
-
 
 function initReferral(){
 
@@ -4021,8 +3725,7 @@ function initReferral(){
  const ref =
  new URLSearchParams(
   location.search
- )
- .get("ref");
+ ).get("ref");
 
  if(
   ref &&
@@ -4052,7 +3755,6 @@ function initReferral(){
 
 }
 
-
 function copyReferralLink(){
 
  const input =
@@ -4069,12 +3771,10 @@ function copyReferralLink(){
 
 }
 
-
 function shareReferralLink(){
 
  const link =
- document.getElementById("referralLink")
- .value;
+ document.getElementById("referralLink").value;
 
  const message =
  `از V2GURD اینترنت امن و پرسرعت بگیر و با لینک من ${toFa(REFERRAL_DISCOUNT)}٪ تخفیف بگیر:\n${link}`;
@@ -4089,55 +3789,39 @@ function shareReferralLink(){
 
 }
 
-
 /* ================= COUNTDOWN ================= */
 
 function startCountdown(){
 
  const timerEl =
- document.getElementById(
-  "countdownTimer"
- );
+ document.getElementById("countdownTimer");
 
  if(!timerEl) return;
 
  function tick(){
 
-  const now =
-  new Date();
+  const now = new Date();
 
-  const end =
-  new Date(now);
+  const end = new Date(now);
 
-  end.setHours(
-   23,59,59,999
-  );
+  end.setHours(23,59,59,999);
 
   const diff =
-  Math.max(
-   0,
-   end-now
-  );
+  Math.max(0,end-now);
 
   const h =
   String(
-   Math.floor(
-    diff/3600000
-   )
+   Math.floor(diff/3600000)
   ).padStart(2,"0");
 
   const m =
   String(
-   Math.floor(
-    diff/60000
-   )%60
+   Math.floor(diff/60000)%60
   ).padStart(2,"0");
 
   const s =
   String(
-   Math.floor(
-    diff/1000
-   )%60
+   Math.floor(diff/1000)%60
   ).padStart(2,"0");
 
   timerEl.textContent =
@@ -4147,13 +3831,9 @@ function startCountdown(){
 
  tick();
 
- setInterval(
-  tick,
-  1000
- );
+ setInterval(tick,1000);
 
 }
-
 
 /* ================= QUICK BAR ================= */
 
@@ -4168,8 +3848,7 @@ function updateQuickBar(){
  if(!bar) return;
 
  const pageId =
- document.querySelector(".page.active")
- ?.id;
+ document.querySelector(".page.active")?.id;
 
  const showable =
  [
@@ -4181,7 +3860,6 @@ function updateQuickBar(){
  const scrolled =
  window.scrollY > 380;
 
-
  if(!showable || !scrolled){
 
   bar.classList.remove("show");
@@ -4192,29 +3870,19 @@ function updateQuickBar(){
 
  }
 
-
  const titleEl =
- document.getElementById(
-  "quickBarTitle"
- );
+ document.getElementById("quickBarTitle");
 
  const priceEl =
- document.getElementById(
-  "quickBarPrice"
- );
+ document.getElementById("quickBarPrice");
 
  const btn =
- document.getElementById(
-  "quickBarBtn"
- );
-
+ document.getElementById("quickBarBtn");
 
  if(pageId === "wireguard"){
 
   const p =
-  WIREGUARD_PLANS.find(
-   x=>x.special
-  ) ||
+  WIREGUARD_PLANS.find(x=>x.special) ||
   WIREGUARD_PLANS[0];
 
   titleEl.textContent =
@@ -4231,13 +3899,10 @@ function updateQuickBar(){
 
  }
 
-
  else if(pageId === "jumpjump"){
 
   const p =
-  JUMPJUMP_PLANS.find(
-   x=>x.special
-  ) ||
+  JUMPJUMP_PLANS.find(x=>x.special) ||
   JUMPJUMP_PLANS[0];
 
   titleEl.textContent =
@@ -4254,13 +3919,10 @@ function updateQuickBar(){
 
  }
 
-
  else if(pageId === "v2box"){
 
   const p =
-  V2BOX_PLANS.find(
-   x=>x.special
-  ) ||
+  V2BOX_PLANS.find(x=>x.special) ||
   V2BOX_PLANS[0];
 
   titleEl.textContent =
@@ -4268,8 +3930,7 @@ function updateQuickBar(){
 
   priceEl.textContent =
   `از ${formatPrice(
-   GB_OPTIONS[0] *
-   p.pricePerGB
+   GB_OPTIONS[0]*p.pricePerGB
   )}`;
 
   btn.textContent =
@@ -4286,20 +3947,15 @@ function updateQuickBar(){
 
  }
 
-
  bar.classList.add("show");
 
  cartBtn?.classList.add("raised");
 
 }
 
-
 /* ============================================================
    SUBSCRIPTION STATUS + CONFIGS
 ============================================================ */
-
-
-/* BYTES */
 
 function formatBytes(bytes){
 
@@ -4312,17 +3968,13 @@ function formatBytes(bytes){
  }
 
  const gb =
- Number(bytes) /
- (1024*1024*1024);
+ Number(bytes)/(1024*1024*1024);
 
  return gb
  .toFixed(2)
  .replace(/\.00$/,"");
 
 }
-
-
-/* EXPIRE */
 
 function formatExpire(expireVal){
 
@@ -4340,10 +3992,8 @@ function formatExpire(expireVal){
 
  const ms =
  numeric > 9999999999
- ?
- numeric
- :
- numeric * 1000;
+ ? numeric
+ : numeric*1000;
 
  const d =
  new Date(ms);
@@ -4352,16 +4002,72 @@ function formatExpire(expireVal){
   return "نامشخص";
  }
 
- return d.toLocaleDateString(
-  "fa-IR"
+ return d.toLocaleDateString("fa-IR");
+
+}
+
+/* GLOBAL STATUS DATA */
+
+let currentServiceData = null;
+let currentServiceLink = "";
+let selectedServiceRequest = null;
+
+/* GET EXPIRE DATE */
+
+function getExpireTimestamp(expireVal){
+
+ if(
+  expireVal === null ||
+  expireVal === undefined ||
+  expireVal === 0 ||
+  expireVal === ""
+ ){
+  return null;
+ }
+
+ const numeric =
+ Number(expireVal);
+
+ if(isNaN(numeric)) return null;
+
+ const ms =
+ numeric > 9999999999
+ ? numeric
+ : numeric*1000;
+
+ const date =
+ new Date(ms);
+
+ if(isNaN(date.getTime())) return null;
+
+ return date;
+
+}
+
+/* DAYS LEFT */
+
+function getDaysLeft(expireVal){
+
+ const expireDate =
+ getExpireTimestamp(expireVal);
+
+ if(!expireDate) return null;
+
+ const diff =
+ expireDate.getTime() -
+ new Date().getTime();
+
+ return Math.ceil(
+  diff/(1000*60*60*24)
  );
 
 }
 
-
 /* STATUS */
 
 function renderStatus(data){
+
+ currentServiceData = data;
 
  const used =
  data.used_traffic ??
@@ -4407,8 +4113,7 @@ function renderStatus(data){
  formatBytes(
   Math.max(
    0,
-   Number(limit) -
-   Number(used || 0)
+   Number(limit)-Number(used||0)
   )
  )
  :
@@ -4420,17 +4125,13 @@ function renderStatus(data){
  Math.min(
  100,
  Math.round(
-  (Number(used||0) /
-   Number(limit)) *
-  100
+  (Number(used||0)/Number(limit))*100
  )
  )
  :
  null;
 
-
  let html = "";
-
 
  if(username){
 
@@ -4438,9 +4139,7 @@ function renderStatus(data){
 
    <div class="status-row">
 
-    <span>
-     نام کاربری
-    </span>
+    <span>نام کاربری</span>
 
     <span>
      ${escapeHTML(username)}
@@ -4452,16 +4151,13 @@ function renderStatus(data){
 
  }
 
-
  if(usedGB !== null){
 
   html += `
 
    <div class="status-row">
 
-    <span>
-     مصرف‌شده
-    </span>
+    <span>مصرف‌شده</span>
 
     <span>
      ${toFa(usedGB)} گیگ
@@ -4473,16 +4169,13 @@ function renderStatus(data){
 
  }
 
-
  if(remainingGB !== null){
 
   html += `
 
    <div class="status-row">
 
-    <span>
-     باقیمانده
-    </span>
+    <span>باقیمانده</span>
 
     <span>
      ${toFa(remainingGB)} گیگ
@@ -4492,20 +4185,15 @@ function renderStatus(data){
 
   `;
 
- }
- else{
+ }else{
 
   html += `
 
    <div class="status-row">
 
-    <span>
-     حجم
-    </span>
+    <span>حجم</span>
 
-    <span>
-     نامحدود
-    </span>
+    <span>نامحدود</span>
 
    </div>
 
@@ -4513,14 +4201,11 @@ function renderStatus(data){
 
  }
 
-
  html += `
 
   <div class="status-row">
 
-   <span>
-    تاریخ انقضا
-   </span>
+   <span>تاریخ انقضا</span>
 
    <span>
     ${formatExpire(expire)}
@@ -4530,28 +4215,21 @@ function renderStatus(data){
 
  `;
 
-
  if(percent !== null){
 
   html += `
 
    <div style="margin-top:14px">
 
-    <div
-     style="
-      display:flex;
-      justify-content:space-between;
-      color:#91a2bb;
-      font-size:11px
-     ">
+    <div style="
+     display:flex;
+     justify-content:space-between;
+     color:#91a2bb;
+     font-size:11px">
 
-     <span>
-      میزان مصرف
-     </span>
+     <span>میزان مصرف</span>
 
-     <span>
-      ${toFa(percent)}٪
-     </span>
+     <span>${toFa(percent)}٪</span>
 
     </div>
 
@@ -4570,72 +4248,362 @@ function renderStatus(data){
 
  }
 
+ document.getElementById("statusResult")
+ .innerHTML = html;
 
- document.getElementById(
-  "statusResult"
- ).innerHTML = html;
+ /*
+  بررسی هشدار تمدید / حجم
+ */
+
+ checkServiceWarnings(
+  data,
+  used,
+  limit,
+  expire
+ );
 
 }
 
+/* ================= SERVICE WARNINGS ================= */
 
-/* CONFIG TYPE */
+function checkServiceWarnings(
+ data,
+ used,
+ limit,
+ expire
+){
+
+ const box =
+ document.getElementById(
+  "serviceActionBox"
+ );
+
+ const message =
+ document.getElementById(
+  "serviceActionMessage"
+ );
+
+ const renewBtn =
+ document.getElementById(
+  "renewChoiceBtn"
+ );
+
+ const volumeBtn =
+ document.getElementById(
+  "volumeChoiceBtn"
+ );
+
+ if(!box) return;
+
+ let warnings = [];
+
+ /*
+  اگر ۷ روز یا کمتر مانده
+ */
+
+ const daysLeft =
+ getDaysLeft(expire);
+
+ const renewNeeded =
+ daysLeft !== null &&
+ daysLeft >= 0 &&
+ daysLeft <= 7;
+
+ /*
+  اگر حجم ۲۰٪ یا کمتر مانده
+ */
+
+ let volumeNeeded = false;
+
+ if(
+  limit !== null &&
+  limit !== undefined &&
+  Number(limit) > 0
+ ){
+
+  const remaining =
+  Math.max(
+   0,
+   Number(limit)-Number(used||0)
+  );
+
+  const remainingPercent =
+  (remaining/Number(limit))*100;
+
+  volumeNeeded =
+  remainingPercent <= 20;
+
+ }
+
+ if(renewNeeded){
+
+  warnings.push(
+   daysLeft === 0
+   ? "⏰ سرویس شما امروز منقضی می‌شود."
+   : `⏰ فقط ${toFa(daysLeft)} روز تا انقضای سرویس شما باقی مانده.`
+  );
+
+  renewBtn.style.display =
+  "block";
+
+ }else{
+
+  renewBtn.style.display =
+  "none";
+
+ }
+
+ if(volumeNeeded){
+
+  const remaining =
+  Math.max(
+   0,
+   Number(limit)-Number(used||0)
+  );
+
+  warnings.push(
+   `📦 حجم سرویس شما رو به اتمام است؛ فقط ${toFa(formatBytes(remaining)||"0")} گیگ باقی مانده.`
+  );
+
+  volumeBtn.style.display =
+  "block";
+
+ }else{
+
+  volumeBtn.style.display =
+  "none";
+
+ }
+
+ if(!warnings.length){
+
+  box.classList.remove("show");
+
+  return;
+
+ }
+
+ message.innerHTML =
+ warnings.join("<br>");
+
+ box.classList.add("show");
+
+ document.getElementById("renewOptions")
+ .classList.remove("show");
+
+ document.getElementById("volumeOptions")
+ .classList.remove("show");
+
+}
+
+/* ================= SERVICE OPTION ================= */
+
+function showRenewOptions(){
+
+ selectedServiceRequest = null;
+
+ document.querySelectorAll(".service-option")
+ .forEach(x=>x.classList.remove("selected"));
+
+ document.getElementById("volumeOptions")
+ .classList.remove("show");
+
+ document.getElementById("renewOptions")
+ .classList.add("show");
+
+}
+
+function showVolumeOptions(){
+
+ selectedServiceRequest = null;
+
+ document.querySelectorAll(".service-option")
+ .forEach(x=>x.classList.remove("selected"));
+
+ document.getElementById("renewOptions")
+ .classList.remove("show");
+
+ document.getElementById("volumeOptions")
+ .classList.add("show");
+
+}
+
+function selectServiceOption(
+ button,
+ type,
+ value
+){
+
+ document.querySelectorAll(".service-option")
+ .forEach(x=>x.classList.remove("selected"));
+
+ button.classList.add("selected");
+
+ selectedServiceRequest = {
+  type,
+  value
+ };
+
+}
+
+function confirmServiceRequest(){
+
+ if(!selectedServiceRequest){
+
+  toast("لطفاً یک گزینه انتخاب کن ❌");
+
+  return;
+
+ }
+
+ if(!currentServiceLink){
+
+  toast("لینک اشتراک پیدا نشد ❌");
+
+  return;
+
+ }
+
+ let typeText =
+ selectedServiceRequest.type === "renew"
+ ? "تمدید سرویس"
+ : "افزایش حجم";
+
+ const username =
+ currentServiceData?.username ??
+ currentServiceData?.name ??
+ currentServiceData?.email ??
+ "نامشخص";
+
+ const message = `سلام V2GURD 👋
+
+📌 درخواست ${typeText}
+
+👤 کاربر:
+${username}
+
+🔗 لینک اشتراک:
+${currentServiceLink}
+
+🎯 درخواست:
+${selectedServiceRequest.value}
+
+📊 وضعیت فعلی سرویس:
+${getServiceSummaryForTelegram()}
+
+لطفاً درخواست من رو بررسی و راهنمایی کنید.`;
+
+ window.open(
+  TELEGRAM +
+  "?text=" +
+  encodeURIComponent(message),
+  "_blank"
+ );
+
+ toast(
+  "درخواست آماده شد؛ تلگرام باز می‌شود 📤"
+ );
+
+}
+
+function getServiceSummaryForTelegram(){
+
+ if(!currentServiceData){
+  return "اطلاعات موجود نیست";
+ }
+
+ const data =
+ currentServiceData;
+
+ const used =
+ data.used_traffic ??
+ data.usedTraffic ??
+ (
+  Number(data.upload||0)+
+  Number(data.download||0)
+ );
+
+ const limit =
+ data.data_limit ??
+ data.dataLimit ??
+ data.total ??
+ null;
+
+ const expire =
+ data.expire ??
+ data.expire_date ??
+ data.expireDate ??
+ null;
+
+ let text = "";
+
+ if(
+  limit !== null &&
+  limit !== undefined
+ ){
+
+  const remaining =
+  Math.max(
+   0,
+   Number(limit)-Number(used||0)
+  );
+
+  text +=
+  `حجم باقی‌مانده: ${formatBytes(remaining)||"0"} گیگ\n`;
+
+ }else{
+
+  text +=
+  "حجم: نامحدود\n";
+
+ }
+
+ text +=
+ `تاریخ انقضا: ${formatExpire(expire)}`;
+
+ return text;
+
+}
+
+/* ================= CONFIG TYPE ================= */
 
 function detectConfigType(config){
 
  const value =
- config.trim()
- .toLowerCase();
+ config.trim().toLowerCase();
 
- if(
-  value.startsWith("vless://")
- ){
+ if(value.startsWith("vless://"))
   return "VLESS";
- }
 
- if(
-  value.startsWith("vmess://")
- ){
+ if(value.startsWith("vmess://"))
   return "VMess";
- }
 
- if(
-  value.startsWith("trojan://")
- ){
+ if(value.startsWith("trojan://"))
   return "Trojan";
- }
 
- if(
-  value.startsWith("ss://")
- ){
+ if(value.startsWith("ss://"))
   return "Shadowsocks";
- }
 
- if(
-  value.startsWith("socks://")
- ){
+ if(value.startsWith("socks://"))
   return "SOCKS";
- }
 
  if(
   value.startsWith("wg://") ||
   value.includes("[interface]")
- ){
+ )
   return "WireGuard";
- }
 
  if(
   value.startsWith("http://") ||
   value.startsWith("https://")
- ){
+ )
   return "HTTP / HTTPS";
- }
 
  return "Config";
 
 }
 
-
-/* BASE64 */
+/* ================= BASE64 ================= */
 
 function decodeBase64Safe(value){
 
@@ -4647,9 +4615,7 @@ function decodeBase64Safe(value){
   .replace(/-/g,"+")
   .replace(/_/g,"/");
 
-  while(
-   clean.length % 4 !== 0
-  ){
+  while(clean.length%4!==0){
    clean += "=";
   }
 
@@ -4657,9 +4623,7 @@ function decodeBase64Safe(value){
   atob(clean);
 
   const bytes =
-  new Uint8Array(
-   binary.length
-  );
+  new Uint8Array(binary.length);
 
   for(
    let i=0;
@@ -4672,12 +4636,10 @@ function decodeBase64Safe(value){
 
   }
 
-  return new TextDecoder(
-   "utf-8"
-  ).decode(bytes);
+  return new TextDecoder("utf-8")
+  .decode(bytes);
 
- }
- catch(e){
+ }catch(e){
 
   return null;
 
@@ -4685,8 +4647,7 @@ function decodeBase64Safe(value){
 
 }
 
-
-/* PARSE SUB */
+/* ================= PARSE SUB ================= */
 
 function parseSubscriptionText(text){
 
@@ -4701,20 +4662,13 @@ function parseSubscriptionText(text){
  .map(x=>x.trim())
  .filter(Boolean);
 
-
- /*
-  اگر خروجی Base64 باشد
- */
-
  if(
   result.length === 1 &&
   !result[0].includes("://")
  ){
 
   const decoded =
-  decodeBase64Safe(
-   result[0]
-  );
+  decodeBase64Safe(result[0]);
 
   if(decoded){
 
@@ -4740,9 +4694,7 @@ function parseSubscriptionText(text){
 
  }
 
-
  const finalConfigs = [];
-
 
  result.forEach(line => {
 
@@ -4766,28 +4718,26 @@ function parseSubscriptionText(text){
 
  });
 
-
  return [
   ...new Set(finalConfigs)
  ];
 
 }
 
+/* ================= RENDER CONFIGS ================= */
 
-/* RENDER CONFIGS */
+let currentConfigs = [];
 
 function renderConfigs(configs){
 
+ currentConfigs =
+ configs || [];
+
  const box =
- document.getElementById(
-  "configsBox"
- );
+ document.getElementById("configsBox");
 
  const list =
- document.getElementById(
-  "configsList"
- );
-
+ document.getElementById("configsList");
 
  if(
   !configs ||
@@ -4801,10 +4751,8 @@ function renderConfigs(configs){
 
  }
 
-
  box.style.display =
  "block";
-
 
  list.innerHTML =
  configs.map(
@@ -4815,7 +4763,6 @@ function renderConfigs(configs){
 
   const encoded =
   encodeURIComponent(config);
-
 
   return `
 
@@ -4857,8 +4804,7 @@ function renderConfigs(configs){
 
 }
 
-
-/* COPY CONFIG */
+/* ================= COPY ONE CONFIG ================= */
 
 function copyConfigFromButton(button){
 
@@ -4877,9 +4823,7 @@ function copyConfigFromButton(button){
   button.textContent =
   "✅ کپی شد";
 
-  toast(
-   "کانفیگ با موفقیت کپی شد"
-  );
+  toast("کانفیگ با موفقیت کپی شد");
 
   setTimeout(() => {
 
@@ -4891,16 +4835,79 @@ function copyConfigFromButton(button){
  })
  .catch(() => {
 
-  toast(
-   "کپی انجام نشد ❌"
-  );
+  toast("کپی انجام نشد ❌");
 
  });
 
 }
 
+/* ================= COPY ALL CONFIGS ================= */
 
-/* SUB LINK */
+function copyAllConfigs(){
+
+ if(
+  !currentConfigs ||
+  !currentConfigs.length
+ ){
+
+  toast("کانفیگی برای کپی وجود ندارد ❌");
+
+  return;
+
+ }
+
+ const allConfigs =
+ currentConfigs.join("\n\n");
+
+ navigator.clipboard
+ .writeText(allConfigs)
+ .then(() => {
+
+  const btn =
+  document.getElementById(
+   "copyAllConfigsBtn"
+  );
+
+  if(btn){
+
+   const old =
+   btn.textContent;
+
+   btn.textContent =
+   "✅ همه کانفیگ‌ها کپی شد";
+
+   setTimeout(() => {
+    btn.textContent = old;
+   },2000);
+
+  }
+
+  toast("همه کانفیگ‌ها کپی شدند ✅");
+
+ })
+ .catch(() => {
+
+  const textarea =
+  document.createElement("textarea");
+
+  textarea.value =
+  allConfigs;
+
+  document.body.appendChild(textarea);
+
+  textarea.select();
+
+  document.execCommand("copy");
+
+  textarea.remove();
+
+  toast("همه کانفیگ‌ها کپی شدند ✅");
+
+ });
+
+}
+
+/* ================= SUB LINK ================= */
 
 function renderSubscriptionLink(link){
 
@@ -4919,6 +4926,9 @@ function renderSubscriptionLink(link){
   "subscriptionQR"
  );
 
+ currentServiceLink =
+ link;
+
  box.style.display =
  "block";
 
@@ -4926,7 +4936,6 @@ function renderSubscriptionLink(link){
  link;
 
  qr.innerHTML = "";
-
 
  if(
   typeof QRCode !==
@@ -4948,8 +4957,75 @@ function renderSubscriptionLink(link){
 
 }
 
+/* ================= DOWNLOAD QR ================= */
 
-/* COPY SUB */
+function downloadQRCode(){
+
+ const qr =
+ document.getElementById(
+  "subscriptionQR"
+ );
+
+ if(!qr){
+
+  toast("QR Code پیدا نشد ❌");
+
+  return;
+
+ }
+
+ const canvas =
+ qr.querySelector("canvas");
+
+ const img =
+ qr.querySelector("img");
+
+ let url = "";
+
+ if(canvas){
+
+  url =
+  canvas.toDataURL(
+   "image/png"
+  );
+
+ }
+
+ else if(img){
+
+  url =
+  img.src;
+
+ }
+
+ if(!url){
+
+  toast("دانلود QR Code انجام نشد ❌");
+
+  return;
+
+ }
+
+ const a =
+ document.createElement("a");
+
+ a.href =
+ url;
+
+ a.download =
+ "V2GURD-Subscription-QR.png";
+
+ document.body.appendChild(a);
+
+ a.click();
+
+ a.remove();
+
+ toast("QR Code دانلود شد ✅");
+
+}
+
+/* ================= COPY SUB ================= */
 
 function copySubscriptionLink(){
 
@@ -4960,31 +5036,22 @@ function copySubscriptionLink(){
 
  navigator.clipboard
  .writeText(input.value)
- .then(() => {
-
-  toast(
-   "لینک اشتراک کپی شد ✅"
-  );
-
- })
+ .then(() =>
+  toast("لینک اشتراک کپی شد ✅")
+ )
  .catch(() => {
 
   input.select();
 
-  document.execCommand(
-   "copy"
-  );
+  document.execCommand("copy");
 
-  toast(
-   "لینک اشتراک کپی شد ✅"
-  );
+  toast("لینک اشتراک کپی شد ✅");
 
  });
 
 }
 
-
-/* CHECK */
+/* ================= CHECK ================= */
 
 async function checkSubStatus(){
 
@@ -5008,9 +5075,13 @@ async function checkSubStatus(){
   "subscriptionBox"
  );
 
+ const actionBox =
+ document.getElementById(
+  "serviceActionBox"
+ );
+
  let link =
  input.value.trim();
-
 
  if(!link){
 
@@ -5025,7 +5096,6 @@ async function checkSubStatus(){
   return;
 
  }
-
 
  if(
   !/^https?:\/\//i.test(link)
@@ -5043,7 +5113,6 @@ async function checkSubStatus(){
 
  }
 
-
  resultBox.innerHTML = `
 
   <div class="status-msg">
@@ -5052,37 +5121,24 @@ async function checkSubStatus(){
 
  `;
 
-
  configsBox.style.display =
  "none";
 
  subscriptionBox.style.display =
  "none";
 
+ actionBox.classList.remove("show");
 
- /*
-  لینک ساب
- */
+ currentServiceData = null;
+ currentConfigs = [];
 
- renderSubscriptionLink(
-  link
- );
-
+ renderSubscriptionLink(link);
 
  const cleanLink =
- link.replace(
-  /\/+$/,
-  ""
- );
-
-
- /*
-  تلاش برای /info
- */
+ link.replace(/\/+$/,"");
 
  const infoUrl =
  cleanLink + "/info";
-
 
  try{
 
@@ -5092,26 +5148,19 @@ async function checkSubStatus(){
    {
     method:"GET",
     headers:{
-     "Accept":
-     "application/json"
+     "Accept":"application/json"
     }
    }
   );
 
-
   if(!response.ok){
-   throw new Error(
-    "INFO_REQUEST_FAILED"
-   );
+   throw new Error("INFO_REQUEST_FAILED");
   }
-
 
   const data =
   await response.json();
 
-
   renderStatus(data);
-
 
  }
  catch(error){
@@ -5135,10 +5184,7 @@ async function checkSubStatus(){
 
  }
 
-
- /*
-  دریافت کانفیگ‌ها
- */
+ /* دریافت کانفیگ‌ها */
 
  try{
 
@@ -5148,12 +5194,10 @@ async function checkSubStatus(){
    {
     method:"GET",
     headers:{
-     "Accept":
-     "text/plain,*/*"
+     "Accept":"text/plain,*/*"
     }
    }
   );
-
 
   if(!subResponse.ok){
 
@@ -5163,19 +5207,13 @@ async function checkSubStatus(){
 
   }
 
-
   const text =
   await subResponse.text();
-
 
   const configs =
   parseSubscriptionText(text);
 
-
-  renderConfigs(
-   configs
-  );
-
+  renderConfigs(configs);
 
  }
  catch(configError){
@@ -5189,7 +5227,6 @@ async function checkSubStatus(){
 
 }
 
-
 /* ================= NAVIGATION ================= */
 
 function showPage(id){
@@ -5200,27 +5237,22 @@ function showPage(id){
   p.classList.remove("active")
  );
 
-
  document.getElementById(id)
  ?.classList.add("active");
-
 
  window.scrollTo({
   top:0,
   behavior:"smooth"
  });
 
-
  document.getElementById(
   "navLinks"
  )
  .classList.remove("show");
 
-
  updateQuickBar();
 
 }
-
 
 function toggleMenu(){
 
@@ -5230,7 +5262,6 @@ function toggleMenu(){
  .classList.toggle("show");
 
 }
-
 
 /* ================= TOAST ================= */
 
@@ -5256,7 +5287,6 @@ function toast(message){
  );
 
 }
-
 
 /* ================= INIT ================= */
 
@@ -5294,13 +5324,10 @@ window.addEventListener(
 
   updateQuickBar();
 
-
   setTimeout(() => {
 
    const intro =
-   document.getElementById(
-    "intro"
-   );
+   document.getElementById("intro");
 
    intro.style.opacity =
    "0";
@@ -5314,24 +5341,18 @@ window.addEventListener(
 
   },1200);
 
- }
-);
-
+ });
 
 window.addEventListener(
  "scroll",
  updateQuickBar
 );
 
-
 /* ================= PWA ================= */
 
 function registerServiceWorker(){
 
- if(
-  "serviceWorker"
-  in navigator
- ){
+ if("serviceWorker" in navigator){
 
   navigator.serviceWorker
   .register("sw.js")
