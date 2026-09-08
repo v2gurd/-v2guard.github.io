@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#02050b">
-
+<meta name="theme-color" content="#080b10">
 <title>V2GURD | وضعیت سرویس</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -12,1466 +11,307 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-    --bg:#02050b;
-    --panel:rgba(7,13,24,.82);
-    --panel2:rgba(10,18,31,.78);
-    --cyan:#00e5ff;
-    --blue:#0077ff;
-    --green:#00ff9d;
-    --yellow:#ffd166;
-    --red:#ff3158;
-    --white:#effcff;
-    --muted:#71869b;
-    --border:rgba(0,229,255,.14);
+  --bg:#080b10;
+  --card:#0e141c;
+  --teal:#26e0c9;
+  --teal2:#0bb8ff;
+  --amber:#ffb020;
+  --violet:#b16bff;
+  --green:#34d399;
+  --red:#ff5577;
+  --text:#eef6f3;
+  --muted:#87a09b;
+  --border:rgba(38,224,201,.16);
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-    min-height:100vh;
-    overflow-x:hidden;
-    font-family:'Vazirmatn',sans-serif;
-    color:var(--white);
-    background:
-        radial-gradient(circle at 50% -15%,rgba(0,229,255,.14),transparent 34%),
-        radial-gradient(circle at 100% 55%,rgba(0,100,255,.08),transparent 35%),
-        radial-gradient(circle at 0 80%,rgba(0,255,157,.05),transparent 30%),
-        var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family:'Vazirmatn',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 50% -15%,rgba(38,224,201,.12),transparent 34%),
+    radial-gradient(circle at 100% 55%,rgba(177,107,255,.07),transparent 35%),
+    var(--bg);
 }
 
-/* BACKGROUND */
-
-.grid{
-    position:fixed;
-    inset:0;
-    z-index:-10;
-    opacity:.2;
-    background-image:
-        linear-gradient(rgba(0,229,255,.07) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,229,255,.07) 1px,transparent 1px);
-    background-size:44px 44px;
-    transform:perspective(550px) rotateX(55deg) scale(1.8);
-    transform-origin:center bottom;
-    animation:gridMove 8s linear infinite;
-}
-
-@keyframes gridMove{
-    from{
-        background-position:0 0,0 0;
-    }
-    to{
-        background-position:0 44px,44px 0;
-    }
-}
-
-.scan{
-    position:fixed;
-    top:-5%;
-    left:0;
-    width:100%;
-    height:2px;
-    z-index:30;
-    pointer-events:none;
-    opacity:.3;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--cyan),
-        transparent
-    );
-    box-shadow:
-        0 0 15px var(--cyan),
-        0 0 35px var(--cyan);
-    animation:scan 5s linear infinite;
-}
-
-@keyframes scan{
-    to{
-        top:105%;
-    }
-}
-
-.glow{
-    position:fixed;
-    border-radius:50%;
-    pointer-events:none;
-    filter:blur(80px);
-    z-index:-5;
-}
-
-.glow1{
-    width:260px;
-    height:260px;
-    left:-100px;
-    top:15%;
-    background:rgba(0,229,255,.07);
-    animation:float1 8s ease-in-out infinite alternate;
-}
-
-.glow2{
-    width:250px;
-    height:250px;
-    right:-100px;
-    bottom:10%;
-    background:rgba(0,100,255,.07);
-    animation:float2 10s ease-in-out infinite alternate;
-}
-
-@keyframes float1{
-    to{
-        transform:translate(100px,70px);
-    }
-}
-
-@keyframes float2{
-    to{
-        transform:translate(-90px,-70px);
-    }
-}
+button,input{font-family:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
 /* HEADER */
-
-header{
-    max-width:1250px;
-    margin:auto;
-    padding:18px 15px 5px;
-}
-
-.header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    padding:14px 17px;
-    border:1px solid var(--border);
-    border-radius:19px;
-    background:rgba(3,8,16,.75);
-    backdrop-filter:blur(18px);
-    box-shadow:
-        0 0 40px rgba(0,229,255,.035),
-        inset 0 0 30px rgba(0,229,255,.02);
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.logo{
-    width:43px;
-    height:43px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:12px;
-    color:var(--cyan);
-    font-weight:900;
-    border:1px solid rgba(0,229,255,.35);
-    background:rgba(0,229,255,.05);
-    box-shadow:0 0 20px rgba(0,229,255,.1);
-}
-
-.name{
-    font-size:17px;
-    font-weight:900;
-    letter-spacing:2px;
-}
-
-.subname{
-    color:#5f7689;
-    font-size:9px;
-    letter-spacing:2px;
-}
-
-.online{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    padding:7px 11px;
-    border-radius:50px;
-    border:1px solid rgba(0,255,157,.17);
-    background:rgba(0,255,157,.04);
-    color:var(--green);
-    font-size:9px;
-}
-
-.dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 12px var(--green);
-    animation:pulse 1.3s infinite;
-}
-
-@keyframes pulse{
-    50%{
-        opacity:.3;
-        transform:scale(.7);
-    }
-}
+header{max-width:900px;margin:auto;padding:18px 15px 5px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 17px;
+  border:1px solid var(--border);border-radius:19px;background:rgba(9,13,18,.8);backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{width:43px;height:43px;display:flex;align-items:center;justify-content:center;border-radius:12px;color:var(--teal);
+  font-weight:900;border:1px solid rgba(38,224,201,.35);background:rgba(38,224,201,.05)}
+.name{font-size:17px;font-weight:900;letter-spacing:2px}
+.subname{color:#5f776f;font-size:9px;letter-spacing:2px}
+.backlink{display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:50px;border:1px solid var(--border);
+  background:rgba(38,224,201,.04);color:var(--teal);font-size:11px}
 
 /* MAIN */
+main{width:min(900px,calc(100% - 24px));margin:0 auto 60px}
 
-main{
-    width:min(1100px,calc(100% - 24px));
-    margin:0 auto 60px;
-}
-
-.hero{
-    text-align:center;
-    padding:35px 10px 24px;
-}
-
-.tag{
-    display:inline-flex;
-    gap:8px;
-    align-items:center;
-    padding:7px 12px;
-    border-radius:50px;
-    border:1px solid rgba(0,229,255,.17);
-    background:rgba(0,229,255,.03);
-    color:var(--cyan);
-    font-size:9px;
-    letter-spacing:1px;
-    margin-bottom:14px;
-}
-
-.hero h1{
-    font-size:clamp(28px,6vw,48px);
-    font-weight:900;
-    background:linear-gradient(
-        90deg,
-        #fff,
-        var(--cyan),
-        #fff
-    );
-    background-size:200% auto;
-    color:transparent;
-    -webkit-background-clip:text;
-    background-clip:text;
-    animation:textFlow 4s linear infinite;
-}
-
-@keyframes textFlow{
-    to{
-        background-position:200% center;
-    }
-}
-
-.hero p{
-    margin-top:9px;
-    color:var(--muted);
-    font-size:11px;
-}
+.hero{text-align:center;padding:30px 10px 20px}
+.tag{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:50px;border:1px solid rgba(38,224,201,.2);
+  background:rgba(38,224,201,.04);color:var(--teal);font-size:10px;letter-spacing:1px;margin-bottom:14px}
+.hero h1{font-size:clamp(26px,6vw,42px);font-weight:900}
+.hero p{margin-top:9px;color:var(--muted);font-size:12px}
 
 /* SEARCH */
-
-.search{
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:17px;
-    background:linear-gradient(
-        145deg,
-        rgba(8,16,29,.9),
-        rgba(3,8,15,.82)
-    );
-    box-shadow:0 0 45px rgba(0,229,255,.035);
-    position:relative;
-    overflow:hidden;
-}
-
-.search:before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:15%;
-    width:70%;
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--cyan),
-        transparent
-    );
-    box-shadow:0 0 15px var(--cyan);
-}
-
-.label{
-    display:block;
-    margin-bottom:8px;
-    color:#9cb4c7;
-    font-size:10px;
-}
-
-.inputrow{
-    display:flex;
-    gap:9px;
-}
-
-.inputrow input{
-    flex:1;
-    min-width:0;
-    padding:14px;
-    border-radius:12px;
-    outline:none;
-    border:1px solid rgba(0,229,255,.15);
-    background:rgba(0,0,0,.32);
-    color:#fff;
-    direction:ltr;
-    font-family:monospace;
-    font-size:11px;
-    transition:.25s;
-}
-
-.inputrow input:focus{
-    border-color:rgba(0,229,255,.6);
-    box-shadow:0 0 22px rgba(0,229,255,.08);
-}
-
-.check{
-    border:1px solid rgba(0,229,255,.5);
-    background:var(--cyan);
-    color:#001218;
-    border-radius:12px;
-    padding:0 20px;
-    font-family:inherit;
-    font-weight:900;
-    white-space:nowrap;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.check:hover{
-    transform:translateY(-2px);
-    box-shadow:0 0 25px rgba(0,229,255,.25);
-}
-
-.actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin-top:9px;
-}
-
-.action{
-    border:1px solid rgba(120,160,190,.14);
-    background:rgba(255,255,255,.025);
-    color:#9db5c8;
-    padding:8px 11px;
-    border-radius:9px;
-    font-family:inherit;
-    font-size:9px;
-    cursor:pointer;
-}
-
-/* TERMINAL */
-
-.terminal{
-    margin-top:15px;
-    border:1px solid rgba(0,229,255,.12);
-    background:rgba(1,5,11,.9);
-    border-radius:16px;
-    overflow:hidden;
-}
-
-.terminalHead{
-    height:33px;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    padding:0 11px;
-    border-bottom:1px solid rgba(255,255,255,.04);
-}
-
-.tdot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#52606d;
-}
-
-.terminalTitle{
-    margin:auto;
-    color:#536c80;
-    font-family:monospace;
-    font-size:8px;
-    letter-spacing:1px;
-}
-
-.terminalBody{
-    padding:11px;
-    min-height:72px;
-    max-height:150px;
-    overflow:auto;
-    direction:ltr;
-    text-align:left;
-    font-family:monospace;
-    color:#7391a5;
-    font-size:9px;
-    line-height:1.9;
-}
-
-.log{
-    animation:log .3s ease forwards;
-}
-
-@keyframes log{
-    from{
-        opacity:0;
-        transform:translateX(-8px);
-    }
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-.green{
-    color:var(--green);
-}
-
-.cyan{
-    color:var(--cyan);
-}
-
-.red{
-    color:var(--red);
-}
+.search{border:1px solid var(--border);border-radius:20px;padding:17px;background:var(--card)}
+.label{display:block;margin-bottom:8px;color:#9db8b3;font-size:11px}
+.inputrow{display:flex;gap:9px}
+.inputrow input{flex:1;min-width:0;padding:14px;border-radius:12px;outline:none;border:1px solid rgba(38,224,201,.15);
+  background:rgba(0,0,0,.3);color:#fff;direction:ltr;font-family:monospace;font-size:11px;transition:.25s}
+.inputrow input:focus{border-color:rgba(38,224,201,.55);box-shadow:0 0 20px rgba(38,224,201,.08)}
+.check{border:1px solid rgba(38,224,201,.5);background:linear-gradient(135deg,#0aa88f,#26e0c9);color:#04211c;
+  border-radius:12px;padding:0 20px;font-family:inherit;font-weight:900;white-space:nowrap;transition:.2s}
+.check:hover{transform:translateY(-2px)}
+.check:disabled{opacity:.6;transform:none}
+.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.action{border:1px solid rgba(140,170,165,.16);background:rgba(255,255,255,.02);color:#9db8b3;padding:8px 11px;
+  border-radius:9px;font-family:inherit;font-size:10px}
 
 /* MESSAGE */
-
-.message{
-    margin-top:14px;
-    padding:13px 15px;
-    border-radius:14px;
-    border:1px solid rgba(255,255,255,.07);
-    background:rgba(5,10,18,.72);
-    text-align:center;
-    color:var(--muted);
-    font-size:10px;
-    line-height:1.9;
-}
-
-.message.success{
-    color:#7fffc7;
-    border-color:rgba(0,255,157,.18);
-    background:rgba(0,255,157,.03);
-}
-
-.message.warning{
-    color:#ffe09a;
-    border-color:rgba(255,209,102,.22);
-    background:rgba(255,209,102,.035);
-}
-
-.message.error{
-    color:#ff8299;
-    border-color:rgba(255,49,88,.22);
-    background:rgba(255,49,88,.035);
-}
+.message{margin-top:14px;padding:13px 15px;border-radius:14px;border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.02);text-align:center;color:var(--muted);font-size:11px;line-height:1.9}
+.message.success{color:#7fffc7;border-color:rgba(52,211,153,.2);background:rgba(52,211,153,.03)}
+.message.warning{color:#ffe09a;border-color:rgba(255,176,32,.25);background:rgba(255,176,32,.035)}
+.message.error{color:#ff8299;border-color:rgba(255,85,119,.22);background:rgba(255,85,119,.035)}
 
 /* RESULT */
+#result{display:none}
+.titleRow{display:flex;justify-content:space-between;align-items:center;margin:25px 0 11px}
+.titleRow h2{font-size:14px}
+.titleRow span{color:#5c766f;font-family:monospace;font-size:9px;direction:ltr}
 
-#result{
-    display:none;
-}
-
-.titleRow{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:25px 0 11px;
-}
-
-.titleRow h2{
-    font-size:13px;
-}
-
-.titleRow span{
-    color:#536b7e;
-    font-family:monospace;
-    font-size:8px;
-    direction:ltr;
-}
-
-/* CARDS */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-}
-
-.card{
-    position:relative;
-    min-height:120px;
-    padding:15px;
-    border-radius:17px;
-    overflow:hidden;
-    border:1px solid var(--border);
-    background:linear-gradient(
-        145deg,
-        rgba(9,17,30,.84),
-        rgba(3,8,15,.86)
-    );
-    transition:.25s;
-}
-
-.card:hover{
-    transform:translateY(-3px);
-    border-color:rgba(0,229,255,.3);
-}
-
-.cardIcon{
-    font-size:17px;
-    margin-bottom:9px;
-}
-
-.cardLabel{
-    color:var(--muted);
-    font-size:9px;
-}
-
-.cardValue{
-    margin-top:5px;
-    font-size:16px;
-    font-weight:900;
-    word-break:break-word;
-}
-
-.cardValue.green{
-    color:var(--green);
-}
-
-.cardValue.yellow{
-    color:var(--yellow);
-}
-
-.cardValue.red{
-    color:var(--red);
-}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.card{position:relative;min-height:110px;padding:15px;border-radius:16px;overflow:hidden;border:1px solid var(--border);
+  background:var(--card);transition:.25s}
+.card:hover{transform:translateY(-3px);border-color:rgba(38,224,201,.32)}
+.cardIcon{font-size:17px;margin-bottom:9px}
+.cardLabel{color:var(--muted);font-size:10px}
+.cardValue{margin-top:5px;font-size:16px;font-weight:900;word-break:break-word}
+.cardValue.green{color:var(--green)}
+.cardValue.amber{color:var(--amber)}
+.cardValue.red{color:var(--red)}
 
 /* ALERT */
-
-.alert{
-    display:none;
-    margin-top:12px;
-    padding:15px;
-    border-radius:17px;
-    border:1px solid rgba(255,209,102,.25);
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,209,102,.06),
-            rgba(255,49,88,.025)
-        );
-    color:#ffe5a3;
-    font-size:10px;
-    line-height:2;
-    position:relative;
-    overflow:hidden;
-}
-
-.alert.show{
-    display:block;
-    animation:alertIn .45s ease;
-}
-
-@keyframes alertIn{
-    from{
-        opacity:0;
-        transform:translateY(7px);
-    }
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-.alert strong{
-    color:#fff;
-}
-
-.alertIcon{
-    font-size:19px;
-    float:right;
-    margin-left:9px;
-}
+.alert{display:none;margin-top:12px;padding:15px;border-radius:16px;border:1px solid rgba(255,176,32,.25);
+  background:linear-gradient(135deg,rgba(255,176,32,.06),rgba(255,85,119,.02));color:#ffe5a3;font-size:11px;line-height:2}
+.alert.show{display:block}
+.alert strong{color:#fff}
 
 /* USER */
-
-.user{
-    border:1px solid var(--border);
-    border-radius:17px;
-    overflow:hidden;
-    background:rgba(5,11,20,.76);
-}
-
-.row{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    padding:13px 15px;
-    border-bottom:1px solid rgba(255,255,255,.045);
-}
-
-.row:last-child{
-    border-bottom:0;
-}
-
-.row span:first-child{
-    color:var(--muted);
-    font-size:9px;
-}
-
-.row span:last-child{
-    color:#dcecf4;
-    font-size:10px;
-    font-weight:700;
-    word-break:break-all;
-}
+.user{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card)}
+.row{display:flex;justify-content:space-between;gap:15px;padding:13px 15px;border-bottom:1px solid rgba(255,255,255,.045)}
+.row:last-child{border-bottom:0}
+.row span:first-child{color:var(--muted);font-size:10px}
+.row span:last-child{color:#dcecf4;font-size:11px;font-weight:700;word-break:break-all}
 
 /* TRAFFIC */
-
-.traffic{
-    margin-top:11px;
-    border:1px solid var(--border);
-    border-radius:17px;
-    padding:15px;
-    background:rgba(5,11,20,.76);
-}
-
-.trafficTop{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:10px;
-    font-size:9px;
-    color:var(--muted);
-}
-
-.progress{
-    height:8px;
-    border-radius:50px;
-    overflow:hidden;
-    background:rgba(255,255,255,.05);
-}
-
-.progressBar{
-    width:0;
-    height:100%;
-    border-radius:50px;
-    background:linear-gradient(
-        90deg,
-        var(--green),
-        var(--cyan)
-    );
-    box-shadow:0 0 16px rgba(0,229,255,.3);
-    transition:width 1.1s ease;
-}
-
-.trafficStats{
-    display:flex;
-    justify-content:space-between;
-    margin-top:9px;
-    font-size:9px;
-}
-
-.used{
-    color:#8ba1b3;
-}
-
-.remaining{
-    color:var(--green);
-}
+.traffic{margin-top:11px;border:1px solid var(--border);border-radius:16px;padding:15px;background:var(--card)}
+.trafficTop{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;font-size:10px;color:var(--muted)}
+.progress{height:8px;border-radius:50px;overflow:hidden;background:rgba(255,255,255,.05)}
+.progressBar{width:0;height:100%;border-radius:50px;background:linear-gradient(90deg,var(--green),var(--teal));transition:width 1.1s ease}
+.trafficStats{display:flex;justify-content:space-between;margin-top:9px;font-size:10px}
+.used{color:#8ba1b3}
+.remaining{color:var(--green)}
 
 /* CONFIG */
-
-.configs{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.config{
-    padding:13px;
-    border-radius:16px;
-    border:1px solid var(--border);
-    background:rgba(6,12,22,.78);
-    transition:.2s;
-}
-
-.config:hover{
-    border-color:rgba(0,229,255,.3);
-}
-
-.configTop{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    margin-bottom:9px;
-}
-
-.protocol{
-    min-width:52px;
-    padding:5px 7px;
-    text-align:center;
-    border-radius:7px;
-    color:var(--cyan);
-    border:1px solid rgba(0,229,255,.2);
-    background:rgba(0,229,255,.035);
-    font-family:monospace;
-    font-size:8px;
-    font-weight:900;
-}
-
-.configName{
-    font-size:10px;
-    font-weight:800;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.configText{
-    direction:ltr;
-    text-align:left;
-    word-break:break-all;
-    max-height:70px;
-    overflow:auto;
-    padding:9px;
-    border-radius:9px;
-    background:rgba(0,0,0,.27);
-    color:#607b90;
-    font-family:monospace;
-    font-size:8px;
-    line-height:1.6;
-}
-
-.configActions{
-    display:flex;
-    gap:6px;
-    margin-top:8px;
-}
-
-.mini{
-    flex:1;
-    padding:8px;
-    border-radius:8px;
-    border:1px solid rgba(0,229,255,.14);
-    background:rgba(255,255,255,.025);
-    color:#a7bfce;
-    font-family:inherit;
-    font-size:8px;
-    cursor:pointer;
-}
-
-.mini:hover{
-    border-color:rgba(0,229,255,.4);
-    color:#fff;
-}
+.configs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.config{padding:13px;border-radius:15px;border:1px solid var(--border);background:var(--card);transition:.2s}
+.config:hover{border-color:rgba(38,224,201,.32)}
+.configTop{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.protocol{min-width:52px;padding:5px 7px;text-align:center;border-radius:7px;color:var(--teal);
+  border:1px solid rgba(38,224,201,.22);background:rgba(38,224,201,.035);font-family:monospace;font-size:9px;font-weight:900}
+.configName{font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.configText{direction:ltr;text-align:left;word-break:break-all;max-height:70px;overflow:auto;padding:9px;
+  border-radius:9px;background:rgba(0,0,0,.25);color:#6d8981;font-family:monospace;font-size:9px;line-height:1.6;
+  border:0;width:100%;resize:none}
+.configActions{display:flex;gap:6px;margin-top:8px}
+.mini{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(38,224,201,.16);background:rgba(255,255,255,.02);
+  color:#a7c2bc;font-family:inherit;font-size:9px}
+.mini:hover{border-color:rgba(38,224,201,.4);color:#fff}
 
 /* QR */
-
-.qrArea{
-    display:grid;
-    grid-template-columns:280px 1fr;
-    gap:11px;
-    margin-top:24px;
-}
-
-.qrCard,
-.copyCard{
-    border:1px solid var(--border);
-    border-radius:19px;
-    background:rgba(5,11,20,.78);
-    padding:17px;
-}
-
-.qrCard{
-    text-align:center;
-}
-
-.qrTitle{
-    font-size:11px;
-    font-weight:800;
-    margin-bottom:12px;
-}
-
-#qrcode{
-    width:180px;
-    height:180px;
-    padding:10px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:12px;
-    background:#fff;
-}
-
-#qrcode img,
-#qrcode canvas{
-    max-width:100%;
-    max-height:100%;
-}
-
-.copyCard{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.copyCard h3{
-    font-size:14px;
-    margin-bottom:7px;
-}
-
-.copyCard p{
-    color:var(--muted);
-    font-size:9px;
-    line-height:2;
-    margin-bottom:13px;
-}
-
-.bigBtn{
-    border:1px solid rgba(0,229,255,.3);
-    border-radius:11px;
-    padding:12px;
-    color:var(--cyan);
-    background:rgba(0,229,255,.045);
-    font-family:inherit;
-    font-weight:800;
-    cursor:pointer;
-}
-
-/* LOADER */
-
-.loader{
-    width:20px;
-    height:20px;
-    border:2px solid rgba(0,229,255,.15);
-    border-top-color:var(--cyan);
-    border-radius:50%;
-    animation:spin .7s linear infinite;
-    margin:0 auto 7px;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
+.qrArea{display:grid;grid-template-columns:220px 1fr;gap:11px;margin-top:24px}
+.qrCard,.copyCard{border:1px solid var(--border);border-radius:19px;background:var(--card);padding:17px}
+.qrCard{text-align:center}
+.qrTitle{font-size:12px;font-weight:800;margin-bottom:12px}
+#qrcode{width:160px;height:160px;padding:10px;margin:auto;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#fff}
+#qrcode img,#qrcode canvas{max-width:100%;max-height:100%}
+.copyCard{display:flex;flex-direction:column;justify-content:center}
+.copyCard h3{font-size:14px;margin-bottom:7px}
+.copyCard p{color:var(--muted);font-size:10px;line-height:2;margin-bottom:13px}
+.bigBtn{border:1px solid rgba(38,224,201,.3);border-radius:11px;padding:12px;color:var(--teal);
+  background:rgba(38,224,201,.045);font-family:inherit;font-weight:800}
 
 /* TOAST */
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:100;
+  padding:10px 16px;border-radius:11px;background:rgba(9,13,18,.96);border:1px solid rgba(38,224,201,.35);color:#e7fbff;
+  font-size:10px;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
 
-.toast{
-    position:fixed;
-    left:50%;
-    bottom:20px;
-    transform:translate(-50%,20px);
-    opacity:0;
-    pointer-events:none;
-    z-index:100;
-    padding:10px 16px;
-    border-radius:11px;
-    background:rgba(3,9,16,.96);
-    border:1px solid rgba(0,229,255,.35);
-    box-shadow:0 0 30px rgba(0,229,255,.1);
-    color:#e7fbff;
-    font-size:9px;
-    transition:.3s;
-}
-
-.toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
-}
-
-/* FOOTER */
-
-footer{
-    text-align:center;
-    padding:15px 15px 35px;
-    color:#3f5363;
-    font-family:monospace;
-    font-size:8px;
-    letter-spacing:1px;
-}
-
-.footerLine{
-    width:120px;
-    height:1px;
-    margin:0 auto 11px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--cyan),
-        transparent
-    );
-}
-
-/* MOBILE */
+footer{text-align:center;padding:15px 15px 35px;color:#3f5751;font-family:monospace;font-size:9px;letter-spacing:1px}
+.footerLine{width:120px;height:1px;margin:0 auto 11px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
 
 @media(max-width:800px){
-
-    .cards{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .configs{
-        grid-template-columns:1fr;
-    }
-
-    .qrArea{
-        grid-template-columns:1fr;
-    }
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .configs{grid-template-columns:1fr}
+  .qrArea{grid-template-columns:1fr}
 }
-
 @media(max-width:600px){
-
-    header{
-        padding:10px 9px 4px;
-    }
-
-    .header{
-        padding:11px;
-        border-radius:15px;
-    }
-
-    .logo{
-        width:37px;
-        height:37px;
-    }
-
-    .name{
-        font-size:14px;
-    }
-
-    .subname{
-        font-size:7px;
-    }
-
-    .online{
-        font-size:7px;
-        padding:6px 8px;
-    }
-
-    main{
-        width:calc(100% - 18px);
-    }
-
-    .hero{
-        padding:25px 5px 18px;
-    }
-
-    .hero h1{
-        font-size:29px;
-    }
-
-    .inputrow{
-        flex-direction:column;
-    }
-
-    .check{
-        height:44px;
-    }
-
-    .cards{
-        gap:7px;
-    }
-
-    .card{
-        min-height:104px;
-        padding:12px;
-    }
-
-    .cardValue{
-        font-size:14px;
-    }
-
-    .row{
-        flex-direction:column;
-        gap:5px;
-    }
+  header{padding:10px 9px 4px}
+  .header{padding:11px;border-radius:15px}
+  .logo{width:37px;height:37px}
+  .name{font-size:14px}
+  main{width:calc(100% - 18px)}
+  .hero{padding:22px 5px 16px}
+  .hero h1{font-size:27px}
+  .inputrow{flex-direction:column}
+  .check{height:44px}
+  .cards{gap:7px}
+  .row{flex-direction:column;gap:5px}
 }
-
 @media(max-width:370px){
-
-    .cards{
-        grid-template-columns:1fr;
-    }
+  .cards{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<div class="grid"></div>
-<div class="scan"></div>
-<div class="glow glow1"></div>
-<div class="glow glow2"></div>
-
 <header>
-
-    <div class="header">
-
-        <div class="brand">
-
-            <div class="logo">
-                V2
-            </div>
-
-            <div>
-                <div class="name">
-                    V2GURD
-                </div>
-
-                <div class="subname">
-                    SECURE NETWORK SYSTEM
-                </div>
-            </div>
-
-        </div>
-
-        <div class="online">
-            <span class="dot"></span>
-            SYSTEM ONLINE
-        </div>
-
+  <div class="header">
+    <div class="brand">
+      <div class="logo">V2</div>
+      <div>
+        <div class="name">V2GURD</div>
+        <div class="subname">SERVICE STATUS</div>
+      </div>
     </div>
-
+    <a class="backlink" href="index.html">← بازگشت به سایت</a>
+  </div>
 </header>
 
 <main>
 
-    <section class="hero">
-
-        <div class="tag">
-            ◉ LIVE SERVICE MONITOR
-        </div>
-
-        <h1>
-            وضعیت سرویس
-        </h1>
-
-        <p>
-            اطلاعات واقعی سرویس خود را از Subscription بررسی کنید
-        </p>
-
-    </section>
-
-
-    <section class="search">
-
-        <label class="label">
-            لینک Subscription
-        </label>
-
-        <div class="inputrow">
-
-            <input
-                id="subUrl"
-                type="text"
-                autocomplete="off"
-                placeholder="https://example.com/sub/..."
-            >
-
-            <button
-                id="checkBtn"
-                class="check"
-                onclick="checkService()"
-            >
-                بررسی سرویس
-            </button>
-
-        </div>
-
-        <div class="actions">
-
-            <button
-                class="action"
-                onclick="pasteUrl()"
-            >
-                📋 چسباندن لینک
-            </button>
-
-            <button
-                class="action"
-                onclick="copySubscription()"
-            >
-                ⧉ کپی لینک
-            </button>
-
-            <button
-                class="action"
-                onclick="clearAll()"
-            >
-                × پاک کردن
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <section class="terminal">
-
-        <div class="terminalHead">
-
-            <span class="tdot"></span>
-            <span class="tdot"></span>
-            <span class="tdot"></span>
-
-            <span class="terminalTitle">
-                V2GURD // SECURITY TERMINAL
-            </span>
-
-        </div>
-
-        <div
-            id="terminalBody"
-            class="terminalBody"
-        >
-
-            <div class="log">
-                <span class="green">root@v2gurd:~$</span>
-                system_status --check
-            </div>
-
-            <div class="log">
-                <span class="cyan">[SYSTEM]</span>
-                monitoring interface initialized
-            </div>
-
-            <div class="log">
-                <span class="cyan">[READY]</span>
-                waiting for subscription endpoint...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <div id="message"></div>
-
-
-    <section id="result">
-
-        <div class="titleRow">
-
-            <h2>
-                وضعیت لحظه‌ای سرویس
-            </h2>
-
-            <span id="lastUpdate">
-                LIVE
-            </span>
-
-        </div>
-
-
-        <div class="cards">
-
-            <div class="card">
-
-                <div class="cardIcon">
-                    ◉
-                </div>
-
-                <div class="cardLabel">
-                    وضعیت سرویس
-                </div>
-
-                <div
-                    id="statusValue"
-                    class="cardValue green"
-                >
-                    فعال
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="cardIcon">
-                    ◈
-                </div>
-
-                <div class="cardLabel">
-                    حجم باقی‌مانده
-                </div>
-
-                <div
-                    id="remainingValue"
-                    class="cardValue"
-                >
-                    —
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="cardIcon">
-                    ◇
-                </div>
-
-                <div class="cardLabel">
-                    حجم مصرف‌شده
-                </div>
-
-                <div
-                    id="usedValue"
-                    class="cardValue"
-                >
-                    —
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="cardIcon">
-                    ◷
-                </div>
-
-                <div class="cardLabel">
-                    زمان باقی‌مانده
-                </div>
-
-                <div
-                    id="expiryValue"
-                    class="cardValue"
-                >
-                    —
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="alertBox"
-            class="alert"
-        ></div>
-
-
-        <div class="titleRow">
-
-            <h2>
-                اطلاعات حساب
-            </h2>
-
-            <span>
-                USER PROFILE
-            </span>
-
-        </div>
-
-
-        <div class="user">
-
-            <div class="row">
-
-                <span>
-                    نام کاربر
-                </span>
-
-                <span id="userName">
-                    —
-                </span>
-
-            </div>
-
-            <div class="row">
-
-                <span>
-                    شناسه
-                </span>
-
-                <span id="userId">
-                    —
-                </span>
-
-            </div>
-
-            <div class="row">
-
-                <span>
-                    نوع سرویس
-                </span>
-
-                <span id="serviceType">
-                    Subscription
-                </span>
-
-            </div>
-
-            <div class="row">
-
-                <span>
-                    تاریخ انقضا
-                </span>
-
-                <span id="expiryFull">
-                    —
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="traffic">
-
-            <div class="trafficTop">
-
-                <span>
-                    مصرف ترافیک
-                </span>
-
-                <span id="usagePercent">
-                    —
-                </span>
-
-            </div>
-
-            <div class="progress">
-
-                <div
-                    id="usageBar"
-                    class="progressBar"
-                ></div>
-
-            </div>
-
-            <div class="trafficStats">
-
-                <span
-                    id="usedTraffic"
-                    class="used"
-                >
-                    مصرف: —
-                </span>
-
-                <span
-                    id="remainingTraffic"
-                    class="remaining"
-                >
-                    باقی‌مانده: —
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="titleRow">
-
-            <h2>
-                کانفیگ‌های سرویس
-            </h2>
-
-            <span id="configStatus">
-                SCANNING
-            </span>
-
-        </div>
-
-
-        <div
-            id="configs"
-            class="configs"
-        ></div>
-
-
-        <div class="qrArea">
-
-            <div class="qrCard">
-
-                <div class="qrTitle">
-                    QR اشتراک
-                </div>
-
-                <div id="qrcode">
-                    <span style="color:#777;font-size:9px">
-                        QR آماده نیست
-                    </span>
-                </div>
-
-                <div class="configActions">
-
-                    <button
-                        class="mini"
-                        onclick="downloadQR()"
-                    >
-                        دانلود QR
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="copyCard">
-
-                <h3>
-                    مدیریت سریع سرویس
-                </h3>
-
-                <p>
-                    تمام کانفیگ‌های دریافت‌شده را یکجا کپی کنید
-                    یا لینک Subscription را مستقیماً در کلاینت
-                    خود استفاده کنید.
-                </p>
-
-                <button
-                    class="bigBtn"
-                    onclick="copyAllConfigs()"
-                >
-                    ⧉ کپی همه کانفیگ‌ها
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+  <section class="hero">
+    <div class="tag">◉ وضعیت سرویس</div>
+    <h1>وضعیت سرویس من</h1>
+    <p>لینک اشتراک سرویست رو وارد کن تا حجم، تاریخ انقضا و کانفیگ‌ها رو ببینی</p>
+  </section>
+
+  <section class="search">
+    <label class="label">لینک Subscription</label>
+    <div class="inputrow">
+      <input id="subUrl" type="text" autocomplete="off" spellcheck="false" placeholder="https://panel.example.com/sub/...">
+      <button id="checkBtn" class="check" onclick="checkService()">بررسی سرویس</button>
+    </div>
+    <div class="actions">
+      <button class="action" onclick="pasteUrl()">📋 چسباندن لینک</button>
+      <button class="action" onclick="copySubscription()">⧉ کپی لینک</button>
+      <button class="action" onclick="clearAll()">× پاک کردن</button>
+    </div>
+  </section>
+
+  <div id="message"></div>
+
+  <section id="result">
+
+    <div class="titleRow">
+      <h2>وضعیت لحظه‌ای سرویس</h2>
+      <span id="lastUpdate">LIVE</span>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="cardIcon">◉</div>
+        <div class="cardLabel">وضعیت سرویس</div>
+        <div id="statusValue" class="cardValue green">فعال</div>
+      </div>
+      <div class="card">
+        <div class="cardIcon">◈</div>
+        <div class="cardLabel">حجم باقی‌مانده</div>
+        <div id="remainingValue" class="cardValue">—</div>
+      </div>
+      <div class="card">
+        <div class="cardIcon">◇</div>
+        <div class="cardLabel">حجم مصرف‌شده</div>
+        <div id="usedValue" class="cardValue">—</div>
+      </div>
+      <div class="card">
+        <div class="cardIcon">◷</div>
+        <div class="cardLabel">زمان باقی‌مانده</div>
+        <div id="expiryValue" class="cardValue">—</div>
+      </div>
+    </div>
+
+    <div id="alertBox" class="alert"></div>
+
+    <div class="titleRow">
+      <h2>اطلاعات حساب</h2>
+      <span>USER PROFILE</span>
+    </div>
+
+    <div class="user">
+      <div class="row"><span>نام کاربر</span><span id="userName">—</span></div>
+      <div class="row"><span>شناسه</span><span id="userId">—</span></div>
+      <div class="row"><span>نوع سرویس</span><span id="serviceType">Subscription</span></div>
+      <div class="row"><span>تاریخ انقضا</span><span id="expiryFull">—</span></div>
+    </div>
+
+    <div class="traffic">
+      <div class="trafficTop">
+        <span>مصرف ترافیک</span>
+        <span id="usagePercent">—</span>
+      </div>
+      <div class="progress"><div id="usageBar" class="progressBar"></div></div>
+      <div class="trafficStats">
+        <span id="usedTraffic" class="used">مصرف: —</span>
+        <span id="remainingTraffic" class="remaining">باقی‌مانده: —</span>
+      </div>
+    </div>
+
+    <div class="titleRow">
+      <h2>کانفیگ‌های سرویس</h2>
+      <span id="configStatus">SCANNING</span>
+    </div>
+
+    <div id="configs" class="configs"></div>
+
+    <div class="qrArea">
+      <div class="qrCard">
+        <div class="qrTitle">QR اشتراک</div>
+        <div id="qrcode"><span style="color:#5c766f;font-size:9px">QR آماده نیست</span></div>
+        <div class="configActions"><button class="mini" onclick="downloadQR()">دانلود QR</button></div>
+      </div>
+      <div class="copyCard">
+        <h3>مدیریت سریع سرویس</h3>
+        <p>تمام کانفیگ‌های دریافت‌شده را یکجا کپی کنید یا لینک Subscription را مستقیماً در کلاینت خود استفاده کنید.</p>
+        <button class="bigBtn" onclick="copyAllConfigs()">⧉ کپی همه کانفیگ‌ها</button>
+      </div>
+    </div>
+
+  </section>
 
 </main>
 
-
 <footer>
-
-    <div class="footerLine"></div>
-
-    V2GURD • SECURE • FAST • STABLE
-
+  <div class="footerLine"></div>
+  V2GURD • SECURE • FAST • STABLE
 </footer>
 
-
-<div
-    id="toast"
-    class="toast"
-></div>
-
+<div id="toast" class="toast"></div>
 
 <script>
 
@@ -1483,2115 +323,647 @@ let subscriptionUrl = "";
 let configsData = [];
 
 let subscriptionInfo = {
-    upload:0,
-    download:0,
-    total:0,
-    expire:0,
-    title:"",
-    updateInterval:0
+  upload:0, download:0, total:0, expire:0, title:"", username:""
 };
-
-
-/* =========================================================
-   TERMINAL
-========================================================= */
-
-function terminalLog(text,type="normal"){
-
-    const terminal =
-        document.getElementById("terminalBody");
-
-    const line =
-        document.createElement("div");
-
-    line.className="log";
-
-    if(type==="success"){
-
-        line.innerHTML =
-            '<span class="green">[OK]</span> ' +
-            escapeHTML(text);
-
-    }
-    else if(type==="error"){
-
-        line.innerHTML =
-            '<span class="red">[ERROR]</span> ' +
-            escapeHTML(text);
-
-    }
-    else{
-
-        line.innerHTML =
-            '<span class="cyan">[SYS]</span> ' +
-            escapeHTML(text);
-
-    }
-
-    terminal.appendChild(line);
-
-    terminal.scrollTop =
-        terminal.scrollHeight;
-}
-
 
 /* =========================================================
    TOAST
 ========================================================= */
 
 function toast(text){
-
-    const el =
-        document.getElementById("toast");
-
-    el.textContent=text;
-
-    el.classList.add("show");
-
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer =
-        setTimeout(()=>{
-            el.classList.remove("show");
-        },2200);
+  const el = document.getElementById("toast");
+  el.textContent = text;
+  el.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
 }
-
-
-/* =========================================================
-   ESCAPE
-========================================================= */
 
 function escapeHTML(str){
-
-    return String(str ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+  return String(str ?? "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
 
-
 /* =========================================================
-   PASTE
+   PASTE / COPY
 ========================================================= */
 
 async function pasteUrl(){
-
-    try{
-
-        const text =
-            await navigator.clipboard.readText();
-
-        document.getElementById("subUrl")
-            .value=text.trim();
-
-        toast("لینک وارد شد");
-
-    }
-    catch(e){
-
-        toast("دسترسی به کلیپ‌بورد امکان‌پذیر نیست");
-
-    }
+  try{
+    const text = await navigator.clipboard.readText();
+    document.getElementById("subUrl").value = text.trim();
+    toast("لینک وارد شد");
+  }catch(e){
+    toast("دسترسی به کلیپ‌بورد امکان‌پذیر نیست");
+  }
 }
-
-
-/* =========================================================
-   COPY SUBSCRIPTION
-========================================================= */
 
 async function copySubscription(){
-
-    const value =
-        document.getElementById("subUrl")
-            .value.trim();
-
-    if(!value){
-
-        toast("ابتدا لینک را وارد کنید");
-
-        return;
-    }
-
-    await copyText(value);
-
-    toast("لینک Subscription کپی شد");
+  const value = document.getElementById("subUrl").value.trim();
+  if(!value){ toast("ابتدا لینک را وارد کنید"); return; }
+  await copyText(value);
+  toast("لینک Subscription کپی شد");
 }
 
+async function copyText(text){
+  try{
+    await navigator.clipboard.writeText(text);
+  }catch(e){
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+}
 
 /* =========================================================
-   CHECK SERVICE
+   CHECK SERVICE — combines 3 independent data sources so a
+   single missing feature on the panel side doesn't blank the
+   whole dashboard:
+   1) {sub}/info JSON endpoint (Marzban / Marzneshin style)
+   2) Subscription-Userinfo response header on the sub request
+   3) Metadata embedded in the subscription body itself
 ========================================================= */
 
 async function checkService(){
+  const url = document.getElementById("subUrl").value.trim();
 
-    const url =
-        document.getElementById("subUrl")
-            .value.trim();
+  if(!url){
+    showMessage("لطفاً لینک Subscription را وارد کنید.", "error");
+    return;
+  }
 
-    if(!url){
+  if(!/^https?:\/\//i.test(url)){
+    showMessage("لینک وارد‌شده معتبر نیست؛ باید با http:// یا https:// شروع شود.", "error");
+    return;
+  }
 
-        showMessage(
-            "لطفاً لینک Subscription را وارد کنید.",
-            "error"
-        );
+  subscriptionUrl = url;
 
-        return;
+  const btn = document.getElementById("checkBtn");
+  btn.disabled = true;
+  btn.textContent = "در حال بررسی...";
+
+  document.getElementById("result").style.display = "none";
+  document.getElementById("alertBox").classList.remove("show");
+
+  subscriptionInfo = {upload:0, download:0, total:0, expire:0, title:"", username:""};
+  configsData = [];
+
+  const cleanLink = url.replace(/\/+$/,"");
+  let infoFound = false;
+  let configsFound = false;
+  let corsBlocked = false;
+
+  /* 1) Try the JSON info endpoint first — most reliable when available */
+  try{
+    const infoRes = await fetch(cleanLink + "/info", {method:"GET", headers:{"Accept":"application/json"}, cache:"no-store"});
+    if(infoRes.ok){
+      const data = await infoRes.json();
+      readObjectMetadata(data);
+      infoFound = true;
+    }
+  }catch(e){
+    corsBlocked = true;
+  }
+
+  /* 2) Fetch the subscription itself — needed for configs, and as a
+        fallback source for headers / embedded metadata */
+  try{
+    const subRes = await fetch(cleanLink, {method:"GET", headers:{"Accept":"text/plain,application/json,*/*"}, cache:"no-store"});
+
+    if(!subRes.ok){
+      throw new Error("HTTP " + subRes.status);
     }
 
-    subscriptionUrl=url;
+    if(!infoFound){
+      readSubscriptionHeaders(subRes.headers);
+    }
 
-    const btn =
-        document.getElementById("checkBtn");
+    const raw = await subRes.text();
 
-    btn.disabled=true;
+    if(!infoFound){
+      readMetadataFromText(raw);
+    }
 
-    btn.innerHTML="در حال بررسی...";
+    configsData = parseSubscription(raw);
+    configsFound = configsData.length > 0;
 
-    document.getElementById("result")
-        .style.display="none";
+  }catch(e){
+    corsBlocked = true;
+  }
 
-    document.getElementById("alertBox")
-        .classList.remove("show");
+  btn.disabled = false;
+  btn.textContent = "بررسی سرویس";
 
-    terminalLog(
-        "subscription endpoint detected"
+  if(!configsFound && !infoFound){
+    showMessage(
+      "دریافت اطلاعات از این لینک ممکن نشد.<br><br>" +
+      "این معمولاً یعنی سرور Subscription درخواست‌های مرورگر (CORS) را اجازه نمی‌دهد؛ لینک را در کلاینت VPN خودتان مستقیم استفاده کنید یا با پشتیبانی V2GURD هماهنگ کنید.",
+      "error"
     );
+    return;
+  }
 
-    terminalLog(
-        "opening secure connection..."
-    );
-
-    try{
-
-        /*
-         * بسیار مهم:
-         * اطلاعات Header باید از همین درخواست خوانده شود.
-         */
-
-        const response =
-            await fetch(url,{
-                method:"GET",
-                cache:"no-store"
-            });
-
-        if(!response.ok){
-
-            throw new Error(
-                "HTTP " + response.status
-            );
-        }
-
-        /*
-         * قبل از خواندن body،
-         * Headerها را استخراج می‌کنیم.
-         */
-
-        readSubscriptionHeaders(
-            response.headers
-        );
-
-        const raw =
-            await response.text();
-
-        terminalLog(
-            "subscription payload received",
-            "success"
-        );
-
-        terminalLog(
-            "decoding traffic metadata..."
-        );
-
-        /*
-         * بعضی سرویس‌ها اطلاعات را داخل متن
-         * Subscription می‌فرستند.
-         */
-
-        readMetadataFromText(raw);
-
-        configsData =
-            parseSubscription(raw);
-
-        if(!configsData.length){
-
-            throw new Error(
-                "No supported configurations found"
-            );
-        }
-
-        terminalLog(
-            configsData.length +
-            " configuration(s) decoded",
-            "success"
-        );
-
-        renderService();
-
-    }
-    catch(error){
-
-        terminalLog(
-            error.message ||
-            "request failed",
-            "error"
-        );
-
-        showMessage(
-            "دریافت اطلاعات سرویس انجام نشد.<br><br>" +
-            "اگر کانفیگ‌ها نمایش داده می‌شوند ولی حجم و انقضا نمایش داده نمی‌شود، " +
-            "احتمالاً Header اطلاعات Subscription توسط سرور قابل خواندن از مرورگر نیست.",
-            "error"
-        );
-
-    }
-    finally{
-
-        btn.disabled=false;
-
-        btn.innerHTML="بررسی سرویس";
-
-    }
+  renderService(infoFound, configsFound, corsBlocked);
 }
 
-
 /* =========================================================
-   READ SUBSCRIPTION HEADERS
+   READ HEADERS
 ========================================================= */
 
 function readSubscriptionHeaders(headers){
+  const userInfo =
+    headers.get("subscription-userinfo") ||
+    headers.get("Subscription-Userinfo") ||
+    headers.get("subscription_userinfo");
 
-    /*
-     * فرمت بسیار رایج:
-     *
-     * upload=123; download=123; total=123; expire=123
-     */
+  if(userInfo){
+    parseUserInfoString(userInfo);
+  }
 
-    const userInfo =
-        headers.get("subscription-userinfo") ||
-        headers.get("Subscription-Userinfo") ||
-        headers.get("subscription_userinfo");
-
-    if(userInfo){
-
-        terminalLog(
-            "subscription-userinfo header detected",
-            "success"
-        );
-
-        parseUserInfoString(userInfo);
-
-    }
-
-
-    /*
-     * بعضی پنل‌ها اطلاعات را جداگانه دارند.
-     */
-
-    const upload =
-        getHeader(
-            headers,
-            [
-                "upload",
-                "x-upload",
-                "subscription-upload"
-            ]
-        );
-
-    const download =
-        getHeader(
-            headers,
-            [
-                "download",
-                "x-download",
-                "subscription-download"
-            ]
-        );
-
-    const total =
-        getHeader(
-            headers,
-            [
-                "total",
-                "x-total",
-                "subscription-total"
-            ]
-        );
-
-    const expire =
-        getHeader(
-            headers,
-            [
-                "expire",
-                "expires",
-                "expiration",
-                "subscription-expire"
-            ]
-        );
-
-    if(upload !== null)
-        subscriptionInfo.upload =
-            parseNumber(upload);
-
-    if(download !== null)
-        subscriptionInfo.download =
-            parseNumber(download);
-
-    if(total !== null)
-        subscriptionInfo.total =
-            parseNumber(total);
-
-    if(expire !== null)
-        subscriptionInfo.expire =
-            normalizeExpire(expire);
-
-
-    const title =
-        getHeader(
-            headers,
-            [
-                "profile-title",
-                "subscription-title",
-                "x-profile-title"
-            ]
-        );
-
-    if(title){
-
-        try{
-
-            subscriptionInfo.title =
-                decodeURIComponent(title);
-
-        }catch(e){
-
-            subscriptionInfo.title=title;
-
-        }
-
-    }
-
-
-    const interval =
-        getHeader(
-            headers,
-            [
-                "profile-update-interval",
-                "subscription-update-interval"
-            ]
-        );
-
-    if(interval !== null){
-
-        subscriptionInfo.updateInterval =
-            parseNumber(interval);
-
-    }
-
+  const title = headers.get("profile-title") || headers.get("subscription-title") || headers.get("x-profile-title");
+  if(title){
+    try{ subscriptionInfo.title = decodeURIComponent(title); }
+    catch(e){ subscriptionInfo.title = title; }
+  }
 }
-
-
-/* =========================================================
-   HEADER GETTER
-========================================================= */
-
-function getHeader(headers,names){
-
-    for(const name of names){
-
-        const value =
-            headers.get(name);
-
-        if(value !== null &&
-           value !== ""){
-
-            return value;
-
-        }
-
-    }
-
-    return null;
-}
-
-
-/* =========================================================
-   USERINFO STRING
-========================================================= */
 
 function parseUserInfoString(value){
+  const parts = String(value).split(";");
+  parts.forEach(part => {
+    const clean = part.trim();
+    if(!clean) return;
+    const index = clean.indexOf("=");
+    if(index === -1) return;
+    const key = clean.slice(0,index).trim().toLowerCase();
+    const val = clean.slice(index+1).trim();
+    const number = parseNumber(val);
 
-    const parts =
-        String(value)
-            .split(";");
-
-    parts.forEach(part=>{
-
-        const clean =
-            part.trim();
-
-        if(!clean) return;
-
-        const index =
-            clean.indexOf("=");
-
-        if(index === -1) return;
-
-        const key =
-            clean
-                .slice(0,index)
-                .trim()
-                .toLowerCase();
-
-        const val =
-            clean
-                .slice(index+1)
-                .trim();
-
-        const number =
-            parseNumber(val);
-
-        if(key==="upload")
-            subscriptionInfo.upload=number;
-
-        else if(key==="download")
-            subscriptionInfo.download=number;
-
-        else if(key==="total")
-            subscriptionInfo.total=number;
-
-        else if(
-            key==="expire" ||
-            key==="expires" ||
-            key==="expiration"
-        )
-            subscriptionInfo.expire =
-                normalizeExpire(val);
-
-    });
-
+    if(key === "upload") subscriptionInfo.upload = number;
+    else if(key === "download") subscriptionInfo.download = number;
+    else if(key === "total") subscriptionInfo.total = number;
+    else if(key === "expire" || key === "expires" || key === "expiration") subscriptionInfo.expire = normalizeExpire(val);
+  });
 }
 
-
 /* =========================================================
-   READ METADATA FROM TEXT
+   METADATA FROM RAW TEXT / JSON
 ========================================================= */
 
 function readMetadataFromText(text){
+  const source = String(text || "");
 
-    /*
-     * اگر متن Subscription شامل metadata باشد.
-     */
+  try{
+    const json = JSON.parse(source);
+    if(json){ readObjectMetadata(json); return; }
+  }catch(e){}
 
-    const source =
-        String(text || "");
+  const patterns = {
+    upload: /(?:^|[\n;&])\s*upload\s*[:=]\s*([0-9.]+)/i,
+    download: /(?:^|[\n;&])\s*download\s*[:=]\s*([0-9.]+)/i,
+    total: /(?:^|[\n;&])\s*total\s*[:=]\s*([0-9.]+)/i,
+    expire: /(?:^|[\n;&])\s*(?:expire|expires|expiration)\s*[:=]\s*([0-9]+)/i
+  };
 
-
-    /*
-     * JSON metadata
-     */
-
-    try{
-
-        const json =
-            JSON.parse(source);
-
-        if(json){
-
-            readObjectMetadata(json);
-
-        }
-
-    }catch(e){}
-
-
-    /*
-     * خطوط رایج:
-     *
-     * upload=...
-     * download=...
-     * total=...
-     * expire=...
-     */
-
-    const patterns = {
-
-        upload:
-        /(?:^|[\n;&])\s*upload\s*[:=]\s*([0-9.]+)/i,
-
-        download:
-        /(?:^|[\n;&])\s*download\s*[:=]\s*([0-9.]+)/i,
-
-        total:
-        /(?:^|[\n;&])\s*total\s*[:=]\s*([0-9.]+)/i,
-
-        expire:
-        /(?:^|[\n;&])\s*(?:expire|expires|expiration)\s*[:=]\s*([0-9]+)/i
-
-    };
-
-
-    for(const key in patterns){
-
-        const match =
-            source.match(patterns[key]);
-
-        if(!match) continue;
-
-        if(key==="expire"){
-
-            subscriptionInfo.expire =
-                normalizeExpire(match[1]);
-
-        }
-        else{
-
-            subscriptionInfo[key] =
-                parseNumber(match[1]);
-
-        }
-
-    }
-
+  for(const key in patterns){
+    const match = source.match(patterns[key]);
+    if(!match) continue;
+    if(key === "expire") subscriptionInfo.expire = normalizeExpire(match[1]);
+    else subscriptionInfo[key] = parseNumber(match[1]);
+  }
 }
-
-
-/* =========================================================
-   OBJECT METADATA
-========================================================= */
 
 function readObjectMetadata(obj){
+  if(!obj || typeof obj !== "object") return;
 
-    if(!obj || typeof obj!=="object")
-        return;
+  const upload = obj.upload ?? obj.Upload ?? obj.usedUpload;
+  const download = obj.download ?? obj.Download ?? obj.usedDownload;
+  const total = obj.total ?? obj.Total ?? obj.data_limit ?? obj.dataLimit ?? obj.traffic;
+  const used = obj.used_traffic ?? obj.usedTraffic;
+  const expire = obj.expire ?? obj.expires ?? obj.expiration ?? obj.expiry ?? obj.expire_date ?? obj.expireDate;
+  const name = obj.name ?? obj.username ?? obj.user;
 
-
-    const upload =
-        obj.upload ??
-        obj.Upload ??
-        obj.usedUpload;
-
-    const download =
-        obj.download ??
-        obj.Download ??
-        obj.usedDownload;
-
-    const total =
-        obj.total ??
-        obj.Total ??
-        obj.traffic;
-
-    const expire =
-        obj.expire ??
-        obj.expires ??
-        obj.expiration ??
-        obj.expiry;
-
-
-    if(upload !== undefined)
-        subscriptionInfo.upload =
-            parseNumber(upload);
-
-    if(download !== undefined)
-        subscriptionInfo.download =
-            parseNumber(download);
-
-    if(total !== undefined)
-        subscriptionInfo.total =
-            parseNumber(total);
-
-    if(expire !== undefined)
-        subscriptionInfo.expire =
-            normalizeExpire(expire);
-
-
-    const name =
-        obj.name ??
-        obj.username ??
-        obj.user;
-
-    if(name){
-
-        document.getElementById("userName")
-            .textContent=String(name);
-
-    }
-
+  if(upload !== undefined) subscriptionInfo.upload = parseNumber(upload);
+  if(download !== undefined) subscriptionInfo.download = parseNumber(download);
+  if(used !== undefined && upload === undefined && download === undefined) subscriptionInfo.download = parseNumber(used);
+  if(total !== undefined) subscriptionInfo.total = parseNumber(total);
+  if(expire !== undefined) subscriptionInfo.expire = normalizeExpire(expire);
+  if(name) subscriptionInfo.username = String(name);
 }
 
-
 /* =========================================================
-   NUMBER
+   NUMBER / EXPIRE HELPERS
 ========================================================= */
 
 function parseNumber(value){
-
-    if(value === null ||
-       value === undefined)
-        return 0;
-
-    const clean =
-        String(value)
-            .replace(/,/g,"")
-            .trim();
-
-    const num =
-        Number(clean);
-
-    return Number.isFinite(num)
-        ? num
-        : 0;
+  if(value === null || value === undefined) return 0;
+  const clean = String(value).replace(/,/g,"").trim();
+  const num = Number(clean);
+  return Number.isFinite(num) ? num : 0;
 }
-
-
-/* =========================================================
-   NORMALIZE EXPIRE
-========================================================= */
 
 function normalizeExpire(value){
-
-    const num =
-        parseNumber(value);
-
-    if(!num) return 0;
-
-    /*
-     * Unix timestamp seconds
-     */
-
-    if(num < 100000000000){
-
-        return num * 1000;
-
-    }
-
-    /*
-     * Unix timestamp milliseconds
-     */
-
-    return num;
+  const num = parseNumber(value);
+  if(!num) return 0;
+  if(num < 100000000000) return num * 1000;
+  return num;
 }
-
 
 /* =========================================================
    RENDER SERVICE
 ========================================================= */
 
-function renderService(){
+function renderService(infoFound, configsFound, corsBlocked){
+  document.getElementById("result").style.display = "block";
+  document.getElementById("configStatus").textContent = "ONLINE / " + configsData.length;
 
-    document.getElementById("result")
-        .style.display="block";
+  renderStatus();
+  renderTraffic();
+  renderExpiry();
 
+  document.getElementById("userName").textContent = subscriptionInfo.username || "—";
+  if(subscriptionInfo.title){
+    document.getElementById("serviceType").textContent = subscriptionInfo.title;
+  }
 
-    document.getElementById("configCount");
+  renderConfigs();
+  generateQR();
 
-    document.getElementById("configStatus")
-        .textContent =
-        "ONLINE / " +
-        configsData.length;
+  const hasTraffic = subscriptionInfo.total > 0 || subscriptionInfo.download > 0;
+  const hasExpire = subscriptionInfo.expire > 0;
 
-
-    /*
-     * وضعیت
-     */
-
-    renderStatus();
-
-
-    /*
-     * ترافیک
-     */
-
-    renderTraffic();
-
-
-    /*
-     * انقضا
-     */
-
-    renderExpiry();
-
-
-    /*
-     * Header title
-     */
-
-    if(subscriptionInfo.title){
-
-        document.getElementById("serviceType")
-            .textContent =
-            subscriptionInfo.title;
-
-    }
-
-
-    /*
-     * کانفیگ‌ها
-     */
-
-    renderConfigs();
-
-
-    /*
-     * QR
-     */
-
-    generateQR();
-
-
-    /*
-     * message
-     */
-
-    const hasTraffic =
-        subscriptionInfo.total > 0;
-
-    const hasExpire =
-        subscriptionInfo.expire > 0;
-
-
-    if(hasTraffic || hasExpire){
-
-        showMessage(
-            "اطلاعات Subscription با موفقیت دریافت شد.",
-            "success"
-        );
-
-    }
-    else{
-
-        showMessage(
-            "کانفیگ‌ها دریافت شدند؛ اما اطلاعات حجم یا انقضا در پاسخ Subscription پیدا نشد.",
-            "warning"
-        );
-
-    }
-
-    terminalLog(
-        "service dashboard synchronized",
-        "success"
+  if(hasTraffic || hasExpire){
+    showMessage("اطلاعات Subscription با موفقیت دریافت شد.", "success");
+  }else if(configsFound){
+    showMessage(
+      "کانفیگ‌ها دریافت شدند؛ اما این پنل اطلاعات حجم یا انقضا را در قالبی که این صفحه می‌فهمد ارسال نمی‌کند." +
+      (corsBlocked ? " (ممکن است به دلیل تنظیمات CORS سرور باشد.)" : ""),
+      "warning"
     );
-
+  }
 }
 
-
 /* =========================================================
-   RENDER STATUS
+   STATUS
 ========================================================= */
 
 function renderStatus(){
+  const status = document.getElementById("statusValue");
+  const total = subscriptionInfo.total;
+  const used = subscriptionInfo.upload + subscriptionInfo.download;
 
-    const status =
-        document.getElementById("statusValue");
+  if(total > 0 && used >= total){
+    status.textContent = "اتمام حجم";
+    status.className = "cardValue red";
+    return;
+  }
 
-    const total =
-        subscriptionInfo.total;
+  if(subscriptionInfo.expire && subscriptionInfo.expire <= Date.now()){
+    status.textContent = "منقضی";
+    status.className = "cardValue red";
+    return;
+  }
 
-    const used =
-        subscriptionInfo.upload +
-        subscriptionInfo.download;
-
-    if(
-        total > 0 &&
-        used >= total
-    ){
-
-        status.textContent="اتمام حجم";
-
-        status.className=
-            "cardValue red";
-
-        return;
-    }
-
-
-    if(
-        subscriptionInfo.expire &&
-        subscriptionInfo.expire <= Date.now()
-    ){
-
-        status.textContent="منقضی";
-
-        status.className=
-            "cardValue red";
-
-        return;
-    }
-
-
-    status.textContent="فعال";
-
-    status.className=
-        "cardValue green";
-
+  status.textContent = "فعال";
+  status.className = "cardValue green";
 }
 
-
 /* =========================================================
-   RENDER TRAFFIC
+   TRAFFIC
 ========================================================= */
 
 function renderTraffic(){
+  const upload = subscriptionInfo.upload;
+  const download = subscriptionInfo.download;
+  const total = subscriptionInfo.total;
+  const used = upload + download;
 
-    const upload =
-        subscriptionInfo.upload;
+  document.getElementById("usedValue").textContent = (total > 0 || used > 0) ? formatBytes(used) : "نامشخص";
+  document.getElementById("usedTraffic").textContent = "مصرف: " + ((total > 0 || used > 0) ? formatBytes(used) : "نامشخص");
 
-    const download =
-        subscriptionInfo.download;
+  if(total > 0){
+    const remaining = Math.max(0, total - used);
+    const percent = Math.min(100, Math.max(0, (used/total)*100));
 
-    const total =
-        subscriptionInfo.total;
+    document.getElementById("remainingValue").textContent = formatBytes(remaining);
+    document.getElementById("remainingTraffic").textContent = "باقی‌مانده: " + formatBytes(remaining);
+    document.getElementById("usagePercent").textContent = Math.round(percent) + "% مصرف";
 
-    const used =
-        upload + download;
+    setTimeout(() => { document.getElementById("usageBar").style.width = percent + "%"; }, 100);
 
-
-    document.getElementById("usedValue")
-        .textContent =
-        total > 0
-            ? formatBytes(used)
-            : "نامشخص";
-
-
-    document.getElementById("usedTraffic")
-        .textContent =
-        "مصرف: " +
-        (
-            total > 0
-                ? formatBytes(used)
-                : "نامشخص"
-        );
-
-
-    if(total > 0){
-
-        const remaining =
-            Math.max(
-                0,
-                total-used
-            );
-
-        const percent =
-            Math.min(
-                100,
-                Math.max(
-                    0,
-                    (used/total)*100
-                )
-            );
-
-        document.getElementById("remainingValue")
-            .textContent =
-            formatBytes(remaining);
-
-
-        document.getElementById("remainingTraffic")
-            .textContent =
-            "باقی‌مانده: " +
-            formatBytes(remaining);
-
-
-        document.getElementById("usagePercent")
-            .textContent =
-            Math.round(percent) + "% مصرف";
-
-
-        setTimeout(()=>{
-
-            document.getElementById("usageBar")
-                .style.width =
-                percent + "%";
-
-        },100);
-
-
-        /*
-         * هشدار 20 درصد
-         */
-
-        const remainingPercent =
-            100-percent;
-
-
-        if(remainingPercent <= 20){
-
-            showTrafficWarning(
-                remainingPercent,
-                remaining
-            );
-
-        }
-
+    const remainingPercent = 100 - percent;
+    if(remainingPercent <= 20){
+      showTrafficWarning(remainingPercent, remaining);
     }
-    else{
-
-        document.getElementById("remainingValue")
-            .textContent="نامشخص";
-
-        document.getElementById("remainingTraffic")
-            .textContent="باقی‌مانده: نامشخص";
-
-        document.getElementById("usagePercent")
-            .textContent="—";
-
-    }
-
+  }else{
+    document.getElementById("remainingValue").textContent = "نامحدود";
+    document.getElementById("remainingTraffic").textContent = "باقی‌مانده: نامحدود";
+    document.getElementById("usagePercent").textContent = "—";
+  }
 }
 
-
-/* =========================================================
-   TRAFFIC WARNING
-========================================================= */
-
-function showTrafficWarning(
-    remainingPercent,
-    remaining
-){
-
-    const alert =
-        document.getElementById("alertBox");
-
-    alert.classList.add("show");
-
-    alert.innerHTML =
-        `
-        <span class="alertIcon">⚠️</span>
-        <strong>هشدار مصرف سرویس</strong><br>
-        فقط حدود
-        <strong>${Math.round(remainingPercent)}٪</strong>
-        از حجم سرویس باقی مانده است
-        (${escapeHTML(formatBytes(remaining))}).
-        بهتر است برای جلوگیری از قطع سرویس، تمدید یا افزایش حجم را انجام دهید.
-        `;
-
+function showTrafficWarning(remainingPercent, remaining){
+  const alert = document.getElementById("alertBox");
+  alert.classList.add("show");
+  alert.innerHTML = `
+    <strong>⚠️ هشدار مصرف سرویس</strong><br>
+    فقط حدود <strong>${Math.round(remainingPercent)}٪</strong> از حجم سرویس باقی مانده است
+    (${escapeHTML(formatBytes(remaining))}). بهتر است برای جلوگیری از قطع سرویس، تمدید یا افزایش حجم را انجام دهید.
+  `;
 }
-
 
 /* =========================================================
    EXPIRY
 ========================================================= */
 
 function renderExpiry(){
+  const expiry = subscriptionInfo.expire;
 
-    const expiry =
-        subscriptionInfo.expire;
+  if(!expiry){
+    document.getElementById("expiryValue").textContent = "نامحدود";
+    document.getElementById("expiryFull").textContent = "اطلاعات انقضا موجود نیست";
+    return;
+  }
 
-    if(!expiry){
+  const date = new Date(expiry);
+  if(isNaN(date.getTime())){
+    document.getElementById("expiryValue").textContent = "نامشخص";
+    return;
+  }
 
-        document.getElementById("expiryValue")
-            .textContent="نامشخص";
+  document.getElementById("expiryFull").textContent = date.toLocaleString("fa-IR");
 
-        document.getElementById("expiryFull")
-            .textContent="اطلاعات انقضا موجود نیست";
+  const diff = expiry - Date.now();
 
-        return;
+  if(diff <= 0){
+    document.getElementById("expiryValue").textContent = "منقضی";
+    document.getElementById("expiryValue").className = "cardValue red";
+    showExpiryWarning("سرویس شما منقضی شده است.");
+    renderStatus();
+    return;
+  }
 
-    }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
 
+  let text = "";
+  if(days > 0){
+    text = days + " روز";
+    if(hours > 0) text += " و " + hours + " ساعت";
+  }else if(hours > 0){
+    text = hours + " ساعت";
+  }else{
+    text = minutes + " دقیقه";
+  }
 
-    const date =
-        new Date(expiry);
+  const value = document.getElementById("expiryValue");
+  value.textContent = text;
 
-
-    if(isNaN(date.getTime())){
-
-        document.getElementById("expiryValue")
-            .textContent="نامشخص";
-
-        return;
-
-    }
-
-
-    document.getElementById("expiryFull")
-        .textContent =
-        date.toLocaleString("fa-IR");
-
-
-    const diff =
-        expiry - Date.now();
-
-
-    /*
-     * منقضی
-     */
-
-    if(diff <= 0){
-
-        document.getElementById("expiryValue")
-            .textContent="منقضی";
-
-        document.getElementById("expiryValue")
-            .className=
-            "cardValue red";
-
-
-        showExpiryWarning(
-            "سرویس شما منقضی شده است."
-        );
-
-        renderStatus();
-
-        return;
-
-    }
-
-
-    const days =
-        Math.floor(
-            diff / 86400000
-        );
-
-    const hours =
-        Math.floor(
-            (diff % 86400000) /
-            3600000
-        );
-
-    const minutes =
-        Math.floor(
-            (diff % 3600000) /
-            60000
-        );
-
-
-    let text="";
-
-
-    if(days > 0){
-
-        text =
-            days +
-            " روز";
-
-        if(hours > 0){
-
-            text +=
-                " و " +
-                hours +
-                " ساعت";
-
-        }
-
-    }
-    else if(hours > 0){
-
-        text =
-            hours +
-            " ساعت";
-
-    }
-    else{
-
-        text =
-            minutes +
-            " دقیقه";
-
-    }
-
-
-    const value =
-        document.getElementById("expiryValue");
-
-    value.textContent=text;
-
-
-    /*
-     * هشدار زیر 7 روز
-     */
-
-    if(days < 7){
-
-        value.className=
-            "cardValue yellow";
-
-        showExpiryWarning(
-            "کمتر از ۷ روز تا پایان سرویس باقی مانده است."
-        );
-
-    }
-    else{
-
-        value.className=
-            "cardValue green";
-
-    }
-
+  if(days < 7){
+    value.className = "cardValue amber";
+    showExpiryWarning("کمتر از ۷ روز تا پایان سرویس باقی مانده است.");
+  }else{
+    value.className = "cardValue green";
+  }
 }
-
-
-/* =========================================================
-   EXPIRY WARNING
-========================================================= */
 
 function showExpiryWarning(text){
+  const alert = document.getElementById("alertBox");
+  const existing = alert.classList.contains("show") ? alert.innerHTML : "";
+  alert.classList.add("show");
 
-    const alert =
-        document.getElementById("alertBox");
+  const expiryHTML = `<strong>⚠️ هشدار زمان سرویس</strong><br>${escapeHTML(text)}`;
 
-
-    /*
-     * اگر هشدار حجم قبلاً آمده،
-     * هشدار زمان را هم اضافه می‌کنیم.
-     */
-
-    const existing =
-        alert.classList.contains("show")
-            ? alert.innerHTML
-            : "";
-
-
-    alert.classList.add("show");
-
-
-    const expiryHTML =
-        `
-        <span class="alertIcon">⚠️</span>
-        <strong>هشدار زمان سرویس</strong><br>
-        ${escapeHTML(text)}
-        `;
-
-
-    if(existing){
-
-        alert.innerHTML =
-            existing +
-            "<hr style='border:0;border-top:1px solid rgba(255,255,255,.08);margin:9px 0'>" +
-            expiryHTML;
-
-    }
-    else{
-
-        alert.innerHTML =
-            expiryHTML;
-
-    }
-
+  alert.innerHTML = existing
+    ? existing + "<hr style='border:0;border-top:1px solid rgba(255,255,255,.08);margin:9px 0'>" + expiryHTML
+    : expiryHTML;
 }
-
 
 /* =========================================================
    FORMAT BYTES
 ========================================================= */
 
 function formatBytes(bytes){
+  const num = Number(bytes);
+  if(!Number.isFinite(num) || num < 0) return "—";
 
-    const num =
-        Number(bytes);
+  const units = ["B","KB","MB","GB","TB"];
+  let value = num;
+  let index = 0;
 
-    if(
-        !Number.isFinite(num) ||
-        num < 0
-    ){
+  while(value >= 1024 && index < units.length-1){
+    value /= 1024;
+    index++;
+  }
 
-        return "—";
-
-    }
-
-
-    const units=[
-        "B",
-        "KB",
-        "MB",
-        "GB",
-        "TB"
-    ];
-
-
-    let value=num;
-
-    let index=0;
-
-
-    while(
-        value >= 1024 &&
-        index < units.length-1
-    ){
-
-        value /= 1024;
-
-        index++;
-
-    }
-
-
-    return (
-        value.toFixed(
-            index === 0
-                ? 0
-                : 2
-        ) +
-        " " +
-        units[index]
-    );
-
+  return value.toFixed(index === 0 ? 0 : 2) + " " + units[index];
 }
-
 
 /* =========================================================
    PARSE SUBSCRIPTION
 ========================================================= */
 
 function parseSubscription(raw){
+  let text = String(raw || "").trim();
 
-    let text =
-        String(raw || "")
-            .trim();
+  let configs = extractConfigs(text);
+  if(configs.length) return unique(configs);
 
+  const decoded = tryBase64Decode(text);
+  if(decoded){
+    configs = extractConfigs(decoded);
+    if(configs.length) return unique(configs);
 
-    /*
-     * ابتدا مستقیم
-     */
-
-    let configs =
-        extractConfigs(text);
-
-
-    if(configs.length){
-
-        return unique(configs);
-
-    }
-
-
-    /*
-     * سپس Base64
-     */
-
-    const decoded =
-        tryBase64Decode(text);
-
-
-    if(decoded){
-
-        configs =
-            extractConfigs(decoded);
-
-
-        if(configs.length){
-
-            return unique(configs);
-
+    if(decoded.trim().startsWith("{")){
+      try{
+        const vmess = JSON.parse(decoded);
+        if(vmess.add || vmess.host){
+          return ["vmess://" + btoa(unescape(encodeURIComponent(decoded)))];
         }
-
-
-        /*
-         * VMess JSON
-         */
-
-        if(
-            decoded.trim().startsWith("{")
-        ){
-
-            try{
-
-                const vmess =
-                    JSON.parse(decoded);
-
-                if(
-                    vmess.add ||
-                    vmess.host
-                ){
-
-                    return [
-                        "vmess://" +
-                        btoa(
-                            unescape(
-                                encodeURIComponent(
-                                    decoded
-                                )
-                            )
-                        )
-                    ];
-
-                }
-
-            }
-            catch(e){}
-
-        }
-
+      }catch(e){}
     }
+  }
 
-
-    return [];
-
+  return [];
 }
-
-
-/* =========================================================
-   EXTRACT CONFIGS
-========================================================= */
 
 function extractConfigs(text){
-
-    const result=[];
-
-
-    const regex =
-        /((?:vless|vmess|trojan|ss|socks|socks5|wireguard|hysteria2|hy2|tuic):\/\/[^\s\r\n]+)/gi;
-
-
-    let match;
-
-
-    while(
-        (match=regex.exec(text)) !== null
-    ){
-
-        let value =
-            match[1]
-                .trim();
-
-
-        /*
-         * حذف کاراکترهای اضافی انتهای لینک
-         */
-
-        value =
-            value.replace(
-                /[<>"'`,]+$/g,
-                ""
-            );
-
-
-        result.push(value);
-
-    }
-
-
-    return unique(result);
-
+  const result = [];
+  const regex = /((?:vless|vmess|trojan|ss|socks|socks5|wireguard|hysteria2|hy2|tuic):\/\/[^\s\r\n]+)/gi;
+  let match;
+  while((match = regex.exec(text)) !== null){
+    let value = match[1].trim();
+    value = value.replace(/[<>"'`,]+$/g, "");
+    result.push(value);
+  }
+  return unique(result);
 }
-
-
-/* =========================================================
-   BASE64
-========================================================= */
 
 function tryBase64Decode(value){
-
-    try{
-
-        let normalized =
-            String(value)
-                .replace(/\s/g,"")
-                .replace(/-/g,"+")
-                .replace(/_/g,"/");
-
-
-        while(
-            normalized.length % 4
-        ){
-
-            normalized += "=";
-
-        }
-
-
-        const binary =
-            atob(normalized);
-
-
-        const bytes =
-            new Uint8Array(
-                binary.length
-            );
-
-
-        for(
-            let i=0;
-            i<binary.length;
-            i++
-        ){
-
-            bytes[i] =
-                binary.charCodeAt(i);
-
-        }
-
-
-        return new TextDecoder()
-            .decode(bytes);
-
-    }
-    catch(e){
-
-        return null;
-
-    }
-
+  try{
+    let normalized = String(value).replace(/\s/g,"").replace(/-/g,"+").replace(/_/g,"/");
+    while(normalized.length % 4) normalized += "=";
+    const binary = atob(normalized);
+    const bytes = new Uint8Array(binary.length);
+    for(let i=0; i<binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }catch(e){
+    return null;
+  }
 }
 
+function unique(arr){ return [...new Set(arr.filter(Boolean))]; }
 
 /* =========================================================
-   UNIQUE
-========================================================= */
-
-function unique(arr){
-
-    return [
-        ...new Set(
-            arr.filter(Boolean)
-        )
-    ];
-
-}
-
-
-/* =========================================================
-   PROTOCOL
+   CONFIG RENDER
 ========================================================= */
 
 function getProtocol(config){
-
-    const match =
-        config.match(
-            /^([a-z0-9]+):\/\//i
-        );
-
-
-    return match
-        ? match[1].toUpperCase()
-        : "CONFIG";
-
+  const match = config.match(/^([a-z0-9]+):\/\//i);
+  return match ? match[1].toUpperCase() : "CONFIG";
 }
 
-
-/* =========================================================
-   CONFIG TITLE
-========================================================= */
-
-function getConfigTitle(
-    config,
-    index
-){
-
-    try{
-
-        if(
-            config.startsWith("vless://") ||
-            config.startsWith("trojan://")
-        ){
-
-            const url =
-                new URL(config);
-
-
-            const hash =
-                decodeURIComponent(
-                    url.hash.replace(
-                        /^#/,
-                        ""
-                    )
-                );
-
-
-            if(hash)
-                return hash;
-
-        }
-
+function getConfigTitle(config, index){
+  try{
+    if(config.startsWith("vless://") || config.startsWith("trojan://")){
+      const url = new URL(config);
+      const hash = decodeURIComponent(url.hash.replace(/^#/, ""));
+      if(hash) return hash;
     }
-    catch(e){}
-
-
-    return (
-        getProtocol(config) +
-        " " +
-        (index+1)
-    );
-
+  }catch(e){}
+  return getProtocol(config) + " " + (index+1);
 }
-
-
-/* =========================================================
-   RENDER CONFIGS
-========================================================= */
 
 function renderConfigs(){
+  const container = document.getElementById("configs");
+  container.innerHTML = "";
 
-    const container =
-        document.getElementById("configs");
-
-
-    container.innerHTML="";
-
-
-    configsData.forEach(
-        (config,index)=>{
-
-            const box =
-                document.createElement("div");
-
-
-            box.className="config";
-
-
-            box.innerHTML=
-                `
-                <div class="configTop">
-
-                    <div class="protocol">
-                        ${escapeHTML(
-                            getProtocol(config)
-                        )}
-                    </div>
-
-                    <div class="configName">
-                        ${escapeHTML(
-                            getConfigTitle(
-                                config,
-                                index
-                            )
-                        )}
-                    </div>
-
-                </div>
-
-                <div class="configText">
-                    ${escapeHTML(config)}
-                </div>
-
-                <div class="configActions">
-
-                    <button
-                        class="mini"
-                        onclick="copyConfig(${index})"
-                    >
-                        ⧉ کپی کانفیگ
-                    </button>
-
-                    <button
-                        class="mini"
-                        onclick="showConfig(${index})"
-                    >
-                        مشاهده
-                    </button>
-
-                </div>
-                `;
-
-
-            container.appendChild(box);
-
-        }
-    );
-
+  configsData.forEach((config, index) => {
+    const box = document.createElement("div");
+    box.className = "config";
+    box.innerHTML = `
+      <div class="configTop">
+        <div class="protocol">${escapeHTML(getProtocol(config))}</div>
+        <div class="configName">${escapeHTML(getConfigTitle(config, index))}</div>
+      </div>
+      <textarea class="configText" readonly onclick="this.select()">${escapeHTML(config)}</textarea>
+      <div class="configActions">
+        <button class="mini" onclick="copyConfig(${index})">⧉ کپی کانفیگ</button>
+      </div>
+    `;
+    container.appendChild(box);
+  });
 }
-
-
-/* =========================================================
-   COPY CONFIG
-========================================================= */
 
 async function copyConfig(index){
-
-    const config =
-        configsData[index];
-
-
-    if(!config) return;
-
-
-    await copyText(config);
-
-
-    toast(
-        "کانفیگ کپی شد"
-    );
-
+  const config = configsData[index];
+  if(!config) return;
+  await copyText(config);
+  toast("کانفیگ کپی شد");
 }
-
-
-/* =========================================================
-   COPY ALL
-========================================================= */
 
 async function copyAllConfigs(){
-
-    if(!configsData.length){
-
-        toast(
-            "کانفیگی وجود ندارد"
-        );
-
-        return;
-
-    }
-
-
-    await copyText(
-        configsData.join("\n")
-    );
-
-
-    toast(
-        configsData.length +
-        " کانفیگ کپی شد"
-    );
-
+  if(!configsData.length){ toast("کانفیگی وجود ندارد"); return; }
+  await copyText(configsData.join("\n"));
+  toast(configsData.length + " کانفیگ کپی شد");
 }
-
-
-/* =========================================================
-   COPY TEXT
-========================================================= */
-
-async function copyText(text){
-
-    try{
-
-        await navigator.clipboard
-            .writeText(text);
-
-    }
-    catch(e){
-
-        const textarea =
-            document.createElement("textarea");
-
-
-        textarea.value=text;
-
-        textarea.style.position="fixed";
-
-        textarea.style.opacity="0";
-
-
-        document.body.appendChild(
-            textarea
-        );
-
-
-        textarea.select();
-
-        document.execCommand("copy");
-
-
-        textarea.remove();
-
-    }
-
-}
-
-
-/* =========================================================
-   SHOW CONFIG
-========================================================= */
-
-function showConfig(index){
-
-    const config =
-        configsData[index];
-
-
-    if(!config) return;
-
-
-    const win =
-        window.open(
-            "",
-            "_blank"
-        );
-
-
-    if(!win){
-
-        toast(
-            "پنجره جدید مسدود شده است"
-        );
-
-        return;
-
-    }
-
-
-    win.document.write(
-        `
-        <!DOCTYPE html>
-        <html lang="fa" dir="rtl">
-
-        <head>
-
-        <meta charset="UTF-8">
-
-        <meta
-            name="viewport"
-            content="width=device-width,initial-scale=1"
-        >
-
-        <title>
-            V2GURD Config
-        </title>
-
-        <style>
-
-        body{
-            margin:0;
-            min-height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-            background:#02050b;
-            color:#eafaff;
-            font-family:Arial,sans-serif;
-        }
-
-        .box{
-            width:min(850px,100%);
-            padding:20px;
-            border-radius:18px;
-            border:1px solid rgba(0,229,255,.25);
-            background:#070d17;
-            box-shadow:0 0 40px rgba(0,229,255,.08);
-        }
-
-        h2{
-            color:#00e5ff;
-        }
-
-        pre{
-            direction:ltr;
-            text-align:left;
-            word-break:break-all;
-            white-space:pre-wrap;
-            padding:15px;
-            border-radius:12px;
-            background:#02050a;
-            color:#91aabc;
-            line-height:1.7;
-        }
-
-        button{
-            border:0;
-            border-radius:10px;
-            padding:11px 18px;
-            background:#00e5ff;
-            color:#001218;
-            font-weight:bold;
-            cursor:pointer;
-        }
-
-        </style>
-
-        </head>
-
-        <body>
-
-        <div class="box">
-
-            <h2>
-                V2GURD // CONFIG
-            </h2>
-
-            <pre id="config">${escapeHTML(config)}</pre>
-
-            <button
-                onclick="
-                    navigator.clipboard.writeText(
-                        document.getElementById('config').innerText
-                    )
-                "
-            >
-                کپی کانفیگ
-            </button>
-
-        </div>
-
-        </body>
-        </html>
-        `
-    );
-
-
-    win.document.close();
-
-}
-
 
 /* =========================================================
    QR
 ========================================================= */
 
 function generateQR(){
+  const container = document.getElementById("qrcode");
+  container.innerHTML = "";
 
-    const container =
-        document.getElementById("qrcode");
+  if(!subscriptionUrl){
+    container.innerHTML = `<span style="color:#5c766f;font-size:9px">QR آماده نیست</span>`;
+    return;
+  }
 
-
-    container.innerHTML="";
-
-
-    if(!subscriptionUrl){
-
-        container.innerHTML =
-            `
-            <span style="
-                color:#777;
-                font-size:9px
-            ">
-                QR آماده نیست
-            </span>
-            `;
-
-        return;
-
-    }
-
-
-    new QRCode(
-        container,
-        {
-            text:subscriptionUrl,
-            width:160,
-            height:160,
-            colorDark:"#000000",
-            colorLight:"#ffffff",
-            correctLevel:
-                QRCode.CorrectLevel.M
-        }
-    );
-
+  new QRCode(container, {
+    text: subscriptionUrl, width:150, height:150,
+    colorDark:"#000000", colorLight:"#ffffff", correctLevel: QRCode.CorrectLevel.M
+  });
 }
-
-
-/* =========================================================
-   DOWNLOAD QR
-========================================================= */
 
 function downloadQR(){
+  const container = document.getElementById("qrcode");
+  const canvas = container.querySelector("canvas");
+  const image = container.querySelector("img");
+  let url = "";
 
-    const container =
-        document.getElementById("qrcode");
+  if(canvas) url = canvas.toDataURL("image/png");
+  else if(image) url = image.src;
 
+  if(!url){ toast("ابتدا سرویس را بررسی کنید"); return; }
 
-    const canvas =
-        container.querySelector("canvas");
-
-
-    const image =
-        container.querySelector("img");
-
-
-    let url="";
-
-
-    if(canvas){
-
-        url =
-            canvas.toDataURL(
-                "image/png"
-            );
-
-    }
-    else if(image){
-
-        url=image.src;
-
-    }
-
-
-    if(!url){
-
-        toast(
-            "ابتدا سرویس را بررسی کنید"
-        );
-
-        return;
-
-    }
-
-
-    const a =
-        document.createElement("a");
-
-
-    a.href=url;
-
-    a.download=
-        "V2GURD-Subscription-QR.png";
-
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "V2GURD-Subscription-QR.png";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
-
 /* =========================================================
-   MESSAGE
+   MESSAGE / CLEAR
 ========================================================= */
 
-function showMessage(
-    text,
-    type=""
-){
-
-    const box =
-        document.getElementById("message");
-
-
-    box.className =
-        "message " + type;
-
-
-    box.innerHTML=text;
-
+function showMessage(text, type=""){
+  const box = document.getElementById("message");
+  box.className = "message " + type;
+  box.innerHTML = text;
 }
-
-
-/* =========================================================
-   CLEAR
-========================================================= */
 
 function clearAll(){
+  document.getElementById("subUrl").value = "";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("message").innerHTML = "";
+  document.getElementById("configs").innerHTML = "";
+  document.getElementById("qrcode").innerHTML = `<span style="color:#5c766f;font-size:9px">QR آماده نیست</span>`;
 
-    document.getElementById("subUrl")
-        .value="";
+  configsData = [];
+  subscriptionUrl = "";
+  subscriptionInfo = {upload:0, download:0, total:0, expire:0, title:"", username:""};
 
+  document.getElementById("usageBar").style.width = "0";
+  document.getElementById("alertBox").classList.remove("show");
 
-    document.getElementById("result")
-        .style.display="none";
-
-
-    document.getElementById("message")
-        .innerHTML="";
-
-
-    document.getElementById("configs")
-        .innerHTML="";
-
-
-    document.getElementById("qrcode")
-        .innerHTML =
-        `
-        <span style="
-            color:#777;
-            font-size:9px
-        ">
-            QR آماده نیست
-        </span>
-        `;
-
-
-    configsData=[];
-
-
-    subscriptionUrl="";
-
-
-    subscriptionInfo={
-        upload:0,
-        download:0,
-        total:0,
-        expire:0,
-        title:"",
-        updateInterval:0
-    };
-
-
-    document.getElementById("usageBar")
-        .style.width="0";
-
-
-    document.getElementById("alertBox")
-        .classList.remove("show");
-
-
-    toast("پاک شد");
-
+  toast("پاک شد");
 }
 
-
 /* =========================================================
-   ENTER
+   ENTER KEY / LIVE CLOCK / AUTO LOAD
 ========================================================= */
 
-document
-    .getElementById("subUrl")
-    .addEventListener(
-        "keydown",
-        function(e){
+document.getElementById("subUrl").addEventListener("keydown", function(e){
+  if(e.key === "Enter") checkService();
+});
 
-            if(e.key==="Enter"){
-
-                checkService();
-
-            }
-
-        }
-    );
-
-
-/* =========================================================
-   LIVE CLOCK + EXPIRY
-========================================================= */
-
-setInterval(()=>{
-
-    const result =
-        document.getElementById("result");
-
-
-    if(
-        result.style.display !== "none" &&
-        subscriptionInfo.expire
-    ){
-
-        renderExpiry();
-
-    }
-
-
-    if(
-        result.style.display !== "none"
-    ){
-
-        document.getElementById("lastUpdate")
-            .textContent =
-            "LIVE • " +
-            new Date()
-                .toLocaleTimeString("fa-IR");
-
-    }
-
-},1000);
-
-
-/* =========================================================
-   AUTO LOAD URL
-========================================================= */
+setInterval(() => {
+  const result = document.getElementById("result");
+  if(result.style.display !== "none" && subscriptionInfo.expire) renderExpiry();
+  if(result.style.display !== "none"){
+    document.getElementById("lastUpdate").textContent = "LIVE • " + new Date().toLocaleTimeString("fa-IR");
+  }
+}, 1000);
 
 (function(){
-
-    try{
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const sub =
-            params.get("sub");
-
-
-        if(sub){
-
-            document.getElementById("subUrl")
-                .value=sub;
-
-        }
-
+  try{
+    const params = new URLSearchParams(window.location.search);
+    const sub = params.get("sub");
+    if(sub){
+      document.getElementById("subUrl").value = sub;
+      checkService();
     }
-    catch(e){}
-
+  }catch(e){}
 })();
 
 </script>
