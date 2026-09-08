@@ -1,8 +1,5 @@
-const CACHE_NAME = "v2gurd-cache-v1";
-const CORE_ASSETS = [
-  "./",
-  "./index.html"
-];
+const CACHE_NAME = "v2gurd-cache-v2";
+const CORE_ASSETS = ["./", "./index.html", "./status.html"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
