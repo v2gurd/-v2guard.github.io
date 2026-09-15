@@ -1,1 +1,580 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1117"
+    >
+
+    <title>ساخت سایت اختصاصی نمایندگی | V2GURD</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(38, 224, 201, 0.12),
+                    transparent 35%
+                ),
+                #080d12;
+            color: #f5f7fa;
+            font-family: "Vazirmatn", sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(900px, calc(100% - 30px));
+            margin: auto;
+        }
+
+        header {
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .back {
+            color: #26e0c9;
+            font-size: 14px;
+        }
+
+        main {
+            padding: 45px 0 70px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: rgba(38,224,201,.1);
+            color: #26e0c9;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(25px, 5vw, 38px);
+        }
+
+        .hero p {
+            margin: 0 auto;
+            max-width: 650px;
+            color: #aeb7c2;
+            line-height: 2;
+        }
+
+        .card {
+            background: rgba(17,24,32,.9);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.25);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 19px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .feature {
+            padding: 18px;
+            background: rgba(255,255,255,.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.06);
+        }
+
+        .feature strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .feature span {
+            color: #9da7b2;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .price {
+            text-align: center;
+            padding: 28px 15px;
+        }
+
+        .price-label {
+            color: #9da7b2;
+            font-size: 14px;
+        }
+
+        .price-number {
+            margin: 8px 0;
+            font-size: 34px;
+            font-weight: 800;
+            color: #26e0c9;
+        }
+
+        .price-note {
+            color: #929ba6;
+            font-size: 13px;
+        }
+
+        .payment-info {
+            display: grid;
+            gap: 12px;
+        }
+
+        .payment-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 17px;
+            background: rgba(255,255,255,.035);
+            border-radius: 13px;
+        }
+
+        .payment-row span {
+            color: #9da7b2;
+            font-size: 13px;
+        }
+
+        .payment-row strong {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .card-number {
+            font-size: 17px;
+            letter-spacing: 1px;
+        }
+
+        .copy-btn {
+            border: 1px solid rgba(38,224,201,.3);
+            background: rgba(38,224,201,.08);
+            color: #26e0c9;
+            border-radius: 9px;
+            padding: 7px 11px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            margin-top: 7px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: #0b1117;
+            color: white;
+            border-radius: 12px;
+            padding: 13px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #26e0c9;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #c3cad2;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .check input {
+            width: auto;
+            margin-top: 5px;
+        }
+
+        button[type="submit"] {
+            border: 0;
+            border-radius: 13px;
+            padding: 15px;
+            background: linear-gradient(
+                135deg,
+                #26e0c9,
+                #1ab3dc
+            );
+            color: #061014;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .message {
+            display: none;
+            padding: 13px 15px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(255,70,70,.1);
+            color: #ff8b8b;
+        }
+
+        .message.success {
+            background: rgba(38,224,201,.1);
+            color: #26e0c9;
+        }
+
+        footer {
+            text-align: center;
+            color: #69737e;
+            font-size: 12px;
+            padding-bottom: 30px;
+        }
+
+        @media (max-width: 650px) {
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-row {
+                flex-wrap: wrap;
+            }
+
+            .payment-row strong {
+                width: 100%;
+                text-align: right;
+            }
+
+            .card-number {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container header-inner">
+
+        <div class="logo">
+            V2GURD
+        </div>
+
+        <a
+            class="back"
+            href="agency-dashboard.html"
+        >
+            بازگشت به پنل
+        </a>
+
+    </div>
+</header>
+
+
+<main>
+
+    <div class="container">
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                سرویس اختصاصی نمایندگان
+            </div>
+
+            <h1>
+                سایت اختصاصی فروش شما
+            </h1>
+
+            <p>
+                یک سایت اختصاصی با ظاهر حرفه‌ای مشابه V2GURD
+                برای فروش محصولات نمایندگی و دریافت سفارش مستقیم
+                از مشتریان.
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>
+                امکانات سایت اختصاصی
+            </h2>
+
+            <div class="features">
+
+                <div class="feature">
+                    <strong>نام و برند شما</strong>
+                    <span>
+                        سایت با نام و هویت نمایندگی شما نمایش داده می‌شود.
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <strong>محصولات نمایندگی</strong>
+                    <span>
+                        محصولات V2GURD با قیمت مخصوص نماینده نمایش داده می‌شوند.
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <strong>ثبت سفارش</strong>
+                    <span>
+                        مشتری می‌تواند سفارش خود را مستقیماً از سایت ثبت کند.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card price">
+
+            <div class="price-label">
+                هزینه ساخت سایت اختصاصی
+            </div>
+
+            <div class="price-number">
+                ۹۹۹,۰۰۰ تومان
+            </div>
+
+            <div class="price-note">
+                هزینه یک‌باره ساخت و راه‌اندازی سایت اختصاصی
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>
+                اطلاعات پرداخت
+            </h2>
+
+            <div class="payment-info">
+
+                <div class="payment-row">
+                    <span>
+                        بانک
+                    </span>
+
+                    <strong>
+                        بلو بانک
+                    </strong>
+                </div>
+
+
+                <div class="payment-row">
+                    <span>
+                        به نام
+                    </span>
+
+                    <strong>
+                        نامی
+                    </strong>
+                </div>
+
+
+                <div class="payment-row">
+
+                    <span>
+                        شماره کارت
+                    </span>
+
+                    <strong class="card-number">
+                        6219 8618 4163 5526
+                    </strong>
+
+                    <button
+                        type="button"
+                        class="copy-btn"
+                        id="copyCard"
+                    >
+                        کپی
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>
+                ثبت پرداخت
+            </h2>
+
+            <form id="sitePaymentForm">
+
+                <label>
+                    نام پرداخت‌کننده
+
+                    <input
+                        type="text"
+                        id="payerName"
+                        placeholder="نام و نام خانوادگی"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+                    تاریخ پرداخت
+
+                    <input
+                        type="date"
+                        id="paymentDate"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+                    کد پیگیری / شماره مرجع
+
+                    <input
+                        type="text"
+                        id="trackingCode"
+                        placeholder="در صورت وجود وارد کنید"
+                    >
+
+                </label>
+
+
+                <label>
+                    توضیحات
+
+                    <textarea
+                        id="paymentNote"
+                        placeholder="اگر توضیحی دارید اینجا بنویسید..."
+                    ></textarea>
+
+                </label>
+
+
+                <label class="check">
+
+                    <input
+                        type="checkbox"
+                        id="paymentDone"
+                        required
+                    >
+
+                    <span>
+                        مبلغ ۹۹۹,۰۰۰ تومان را به شماره کارت اعلام‌شده
+                        واریز کرده‌ام و اطلاعات پرداخت را صحیح وارد کرده‌ام.
+                    </span>
+
+                </label>
+
+
+                <div
+                    id="paymentMessage"
+                    class="message"
+                ></div>
+
+
+                <button type="submit">
+                    ثبت اطلاعات پرداخت
+                </button>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<footer>
+    V2GURD — پنل نمایندگان
+</footer>
+
+
+<script src="agency-site-payment.js"></script>
+
+</body>
+</html>
