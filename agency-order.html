@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta name="theme-color" content="#0b1117">
+
+  <title>ثبت سفارش مشتری | V2GURD</title>
+
+  <link
+    rel="stylesheet"
+    href="agency-order.css"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <div class="brand">
+      <div class="brand-logo">V2GURD</div>
+
+      <div class="brand-text">
+        <span>پنل نمایندگی</span>
+        <small>ثبت سفارش مشتری</small>
+      </div>
+    </div>
+
+    <a
+      href="agency-products.html"
+      class="back-btn"
+    >
+      بازگشت به محصولات
+    </a>
+
+  </header>
+
+
+  <main class="container">
+
+    <section class="hero">
+
+      <div class="eyebrow">
+        ثبت سفارش
+      </div>
+
+      <h1>
+        ثبت سفارش برای مشتری
+      </h1>
+
+      <p>
+        اطلاعات مشتری را وارد کنید تا سفارش در سیستم نمایندگی ثبت شود.
+      </p>
+
+    </section>
+
+
+    <section class="order-layout">
+
+      <!-- Product -->
+
+      <article class="card product-card">
+
+        <div class="card-title">
+          <span>محصول انتخاب‌شده</span>
+        </div>
+
+        <div
+          id="productInfo"
+          class="product-info"
+        >
+
+          <div class="loading">
+            در حال دریافت اطلاعات محصول...
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- Customer -->
+
+      <article class="card">
+
+        <div class="card-title">
+          <span>اطلاعات مشتری</span>
+        </div>
+
+        <form id="orderForm">
+
+          <div class="form-group">
+
+            <label for="customerName">
+              نام و نام خانوادگی مشتری
+            </label>
+
+            <input
+              type="text"
+              id="customerName"
+              name="customerName"
+              placeholder="مثلاً علی رضایی"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="customerPhone">
+              شماره موبایل مشتری
+            </label>
+
+            <input
+              type="tel"
+              id="customerPhone"
+              name="customerPhone"
+              placeholder="09xxxxxxxxx"
+              inputmode="tel"
+              autocomplete="tel"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="customerTelegram">
+              آیدی تلگرام مشتری
+            </label>
+
+            <input
+              type="text"
+              id="customerTelegram"
+              name="customerTelegram"
+              placeholder="@username"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="customerEmail">
+              ایمیل مشتری
+            </label>
+
+            <input
+              type="email"
+              id="customerEmail"
+              name="customerEmail"
+              placeholder="example@email.com"
+              autocomplete="email"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="orderNote">
+              توضیحات سفارش
+            </label>
+
+            <textarea
+              id="orderNote"
+              name="orderNote"
+              rows="4"
+              placeholder="توضیحات اضافی مشتری..."
+            ></textarea>
+
+          </div>
+
+
+          <div
+            id="orderMessage"
+            class="message hidden"
+          ></div>
+
+
+          <button
+            type="submit"
+            class="submit-btn"
+          >
+            ادامه و ثبت سفارش
+          </button>
+
+        </form>
+
+      </article>
+
+    </section>
+
+
+    <!-- Representative -->
+
+    <section class="representative-card">
+
+      <div>
+
+        <span class="label">
+          نماینده فعال
+        </span>
+
+        <strong id="representativeName">
+          -
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span class="label">
+          وضعیت
+        </span>
+
+        <span class="active-status">
+          ● فعال
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <section class="info-box">
+
+      <div class="info-icon">
+        i
+      </div>
+
+      <div>
+
+        <strong>
+          توجه
+        </strong>
+
+        <p>
+          بعد از ثبت سفارش، اطلاعات سفارش در پنل نمایندگی ذخیره می‌شود.
+          پرداخت مشتری در مرحله بعد ثبت خواهد شد.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+
+    <strong>V2GURD</strong>
+
+    <span>
+      سیستم فروش نمایندگان
+    </span>
+
+  </footer>
+
+
+  <script src="agency-data.js"></script>
+  <script src="agency-products.js"></script>
+  <script src="agency-orders.js"></script>
+  <script src="agency-order.js"></script>
+
+</body>
+</html>
