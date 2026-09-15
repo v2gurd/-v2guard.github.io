@@ -255,23 +255,6 @@ direction:rtl;
 word-break:break-word
 }
 
-.success-box{
-background:#eaf7f1;
-border:1px solid #c7e8d9;
-color:#16734f;
-border-radius:12px;
-padding:14px;
-margin-top:15px;
-font-size:10px
-}
-
-.loading{
-text-align:center;
-padding:40px;
-color:var(--muted);
-font-size:11px
-}
-
 @media(max-width:800px){
 
 .grid{
@@ -335,7 +318,6 @@ onclick="login()"
 
 </div>
 
-
 <script>
 
 const SUPABASE_URL =
@@ -357,11 +339,21 @@ String(n).replace(
   d => "۰۱۲۳۴۵۶۷۸۹"[d]
 );
 
-
 const price = n =>
 fa(
   Number(n || 0).toLocaleString("en-US")
 );
+
+function escapeHtml(text){
+
+return String(text || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
 
 
 /* =========================
@@ -380,7 +372,7 @@ document.getElementById("app").innerHTML = `
 
 <div class="login panel">
 
-<h2>${title}</h2>
+<h2>${escapeHtml(title)}</h2>
 
 <div class="error-box">
 
@@ -431,18 +423,6 @@ onclick="showLogin()"
 }
 
 
-function escapeHtml(text){
-
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
 /* =========================
    LOGIN
 ========================= */
@@ -462,17 +442,14 @@ return;
 
 }
 
-
 const email =
 document.getElementById("email")
 .value
 .trim();
 
-
 const password =
 document.getElementById("password")
 .value;
-
 
 if(!email){
 
@@ -482,7 +459,6 @@ return;
 
 }
 
-
 if(!password){
 
 alert("رمز عبور را وارد کنید");
@@ -491,22 +467,17 @@ return;
 
 }
 
-
 sb =
 supabase.createClient(
 SUPABASE_URL,
 SUPABASE_ANON_KEY
 );
 
-
 const r =
 await sb.auth.signInWithPassword({
-
 email,
 password
-
 });
-
 
 if(r.error){
 
@@ -522,7 +493,6 @@ document.getElementById("password").focus();
 return;
 
 }
-
 
 await boot();
 
@@ -556,10 +526,8 @@ SUPABASE_ANON_KEY
 
 }
 
-
 const auth =
 await sb.auth.getUser();
-
 
 if(auth.error){
 
@@ -572,10 +540,8 @@ return;
 
 }
 
-
 const user =
 auth.data?.user;
-
 
 if(!user){
 
@@ -586,9 +552,7 @@ return;
 }
 
 
-/* =========================
-   CHECK PROFILE
-========================= */
+/* PROFILE */
 
 const p =
 await sb
@@ -596,7 +560,6 @@ await sb
 .select("id,email,role")
 .eq("id",user.id)
 .maybeSingle();
-
 
 if(p.error){
 
@@ -608,7 +571,6 @@ p.error
 return;
 
 }
-
 
 if(!p.data){
 
@@ -623,7 +585,6 @@ message:
 return;
 
 }
-
 
 if(p.data.role !== "admin"){
 
@@ -642,7 +603,7 @@ document.getElementById("app").innerHTML = `
 <div class="error-box">
 
 ایمیل:
-${escapeHtml(user.email || "")}
+${escapeHtml(user.email)}
 
 <br>
 
@@ -676,7 +637,6 @@ href="index.html"
 return;
 
 }
-
 
 await render();
 
@@ -791,10 +751,8 @@ SUPABASE_ANON_KEY
 
 }
 
-
 const auth =
 await sb.auth.getUser();
-
 
 if(auth.error){
 
@@ -807,7 +765,6 @@ return;
 
 }
 
-
 if(!auth.data?.user){
 
 showLogin();
@@ -817,9 +774,7 @@ return;
 }
 
 
-/* =========================
-   ORDERS
-========================= */
+/* ORDERS */
 
 const orders =
 await sb
@@ -844,9 +799,7 @@ quantity
 );
 
 
-/* =========================
-   SUBSCRIPTIONS
-========================= */
+/* SUBSCRIPTIONS */
 
 const subs =
 await sb
@@ -867,9 +820,10 @@ created_at
 );
 
 
-/* =========================
-   PRODUCTS
-========================= */
+/* PRODUCTS
+   category حذف شده چون
+   در جدول products وجود ندارد
+*/
 
 const products =
 await sb
@@ -878,18 +832,14 @@ await sb
 `
 id,
 name,
-category,
 price,
 active
 `
 )
-.order("category")
 .order("price");
 
 
-/* =========================
-   EXACT ERROR DETECTION
-========================= */
+/* ERRORS */
 
 if(orders.error){
 
@@ -902,7 +852,6 @@ return;
 
 }
 
-
 if(subs.error){
 
 showError(
@@ -913,7 +862,6 @@ subs.error
 return;
 
 }
-
 
 if(products.error){
 
@@ -927,21 +875,17 @@ return;
 }
 
 
-/* =========================
-   STATS
-========================= */
+/* STATS */
 
 const pending =
 orders.data.filter(
 x => x.status === "pending"
 ).length;
 
-
 const approved =
 orders.data.filter(
 x => x.status === "approved"
 ).length;
-
 
 const available =
 subs.data.filter(
@@ -949,9 +893,7 @@ x => x.status === "available"
 ).length;
 
 
-/* =========================
-   PAGE
-========================= */
+/* PAGE */
 
 document.getElementById("app").innerHTML = `
 
@@ -1330,12 +1272,10 @@ try{
 const product_id =
 document.getElementById("subProduct").value;
 
-
 const url =
 document.getElementById("subUrl")
 .value
 .trim();
-
 
 if(!url){
 
@@ -1345,17 +1285,13 @@ return;
 
 }
 
-
 const r =
 await sb
 .from("subscriptions")
 .insert({
-
 product_id,
 subscription_url:url
-
 });
-
 
 if(r.error){
 
@@ -1367,7 +1303,6 @@ r.error.message
 return;
 
 }
-
 
 document.getElementById("subUrl").value = "";
 
@@ -1401,7 +1336,6 @@ return;
 
 }
 
-
 try{
 
 const r =
@@ -1411,7 +1345,6 @@ await sb.rpc(
 p_order_id:id
 }
 );
-
 
 if(r.error){
 
@@ -1423,7 +1356,6 @@ r.error.message
 return;
 
 }
-
 
 await render();
 
@@ -1455,7 +1387,6 @@ return;
 
 }
 
-
 try{
 
 const r =
@@ -1465,7 +1396,6 @@ await sb.rpc(
 p_order_id:id
 }
 );
-
 
 if(r.error){
 
@@ -1477,7 +1407,6 @@ r.error.message
 return;
 
 }
-
 
 await render();
 
@@ -1541,20 +1470,17 @@ return;
 
 }
 
-
 sb =
 supabase.createClient(
 SUPABASE_URL,
 SUPABASE_ANON_KEY
 );
 
-
 const {
 data,
 error
 } =
 await sb.auth.getSession();
-
 
 if(error){
 
@@ -1566,7 +1492,6 @@ error
 return;
 
 }
-
 
 if(data?.session){
 
