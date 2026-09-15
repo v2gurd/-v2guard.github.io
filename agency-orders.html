@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#0b1117">
+    <meta name="description" content="مدیریت سفارش‌های نمایندگی V2GURD">
+
+    <title>سفارش‌های من | V2GURD</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="agency-orders.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-logo">V2</div>
+
+            <div class="brand-text">
+                <strong>V2GURD</strong>
+                <span>پنل نمایندگی</span>
+            </div>
+        </div>
+
+        <a href="agency-dashboard.html" class="back-btn">
+            ← بازگشت به پنل
+        </a>
+    </header>
+
+
+    <main class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="hero-content">
+                <span class="eyebrow">AGENCY ORDERS</span>
+
+                <h1>
+                    سفارش‌های مشتریان
+                </h1>
+
+                <p>
+                    سفارش‌های ثبت‌شده از طریق سایت و پنل نمایندگی خودت را اینجا مدیریت کن.
+                </p>
+            </div>
+
+            <div class="representative-card">
+                <span>نماینده</span>
+                <strong id="representativeName">در حال بررسی...</strong>
+
+                <div class="representative-status">
+                    <span class="status-dot"></span>
+                    نمایندگی فعال
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Message -->
+        <div id="ordersMessage" class="message hidden"></div>
+
+
+        <!-- Statistics -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <span class="stat-label">کل سفارش‌ها</span>
+                <strong id="totalOrders">۰</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">در انتظار پرداخت</span>
+                <strong id="pendingOrders">۰</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">پرداخت ثبت‌شده</span>
+                <strong id="submittedOrders">۰</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">فروش موفق</span>
+                <strong id="completedOrders">۰</strong>
+            </div>
+
+            <div class="stat-card highlight">
+                <span class="stat-label">مجموع فروش</span>
+                <strong id="salesTotal">۰ تومان</strong>
+            </div>
+
+        </section>
+
+
+        <!-- Orders -->
+        <section class="orders-section">
+
+            <div class="section-header">
+                <div>
+                    <span class="eyebrow">ORDERS</span>
+                    <h2>لیست سفارش‌ها</h2>
+                </div>
+
+                <button type="button" id="refreshOrders" class="refresh-btn">
+                    ↻ بروزرسانی
+                </button>
+            </div>
+
+
+            <div id="emptyOrders" class="empty-state hidden">
+
+                <div class="empty-icon">⌁</div>
+
+                <h3>
+                    هنوز سفارشی ثبت نشده
+                </h3>
+
+                <p>
+                    وقتی مشتری از طریق سایت یا لینک فروش نمایندگی سفارشی ثبت کند،
+                    سفارش اینجا نمایش داده می‌شود.
+                </p>
+
+                <a href="agency-products.html" class="primary-btn">
+                    مشاهده محصولات
+                </a>
+
+            </div>
+
+
+            <div id="ordersList" class="orders-list"></div>
+
+        </section>
+
+
+        <!-- Order details -->
+        <section id="orderDetails" class="order-details hidden">
+
+            <div class="details-header">
+
+                <div>
+                    <span class="eyebrow">ORDER DETAILS</span>
+
+                    <h2>
+                        جزئیات سفارش
+                    </h2>
+                </div>
+
+                <button type="button" id="closeDetails" class="close-btn">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="details-grid">
+
+                <div class="detail-card">
+                    <span>شماره سفارش</span>
+                    <strong id="detailOrderId">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>تاریخ ثبت</span>
+                    <strong id="detailCreatedAt">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>وضعیت</span>
+                    <strong id="detailStatus">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>مبلغ</span>
+                    <strong id="detailPrice">-</strong>
+                </div>
+
+            </div>
+
+
+            <div class="customer-box">
+
+                <h3>اطلاعات مشتری</h3>
+
+                <div class="customer-grid">
+
+                    <div>
+                        <span>نام</span>
+                        <strong id="detailCustomerName">-</strong>
+                    </div>
+
+                    <div>
+                        <span>شماره موبایل</span>
+                        <strong id="detailCustomerPhone">-</strong>
+                    </div>
+
+                    <div>
+                        <span>تلگرام</span>
+                        <strong id="detailCustomerTelegram">-</strong>
+                    </div>
+
+                    <div>
+                        <span>ایمیل</span>
+                        <strong id="detailCustomerEmail">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="product-box">
+
+                <h3>محصول</h3>
+
+                <div class="product-detail">
+
+                    <div>
+                        <span>محصول</span>
+                        <strong id="detailProductName">-</strong>
+                    </div>
+
+                    <div>
+                        <span>دسته‌بندی</span>
+                        <strong id="detailProductCategory">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="payment-box">
+
+                <h3>اطلاعات پرداخت</h3>
+
+                <div class="payment-detail">
+
+                    <div>
+                        <span>وضعیت پرداخت</span>
+                        <strong id="detailPaymentStatus">-</strong>
+                    </div>
+
+                    <div>
+                        <span>کد پیگیری</span>
+                        <strong id="detailTrackingCode">-</strong>
+                    </div>
+
+                    <div>
+                        <span>تاریخ پرداخت</span>
+                        <strong id="detailPaymentDate">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="note-box">
+
+                <h3>یادداشت مشتری</h3>
+
+                <p id="detailNote">
+                    یادداشتی ثبت نشده است.
+                </p>
+
+            </div>
+
+
+            <div class="order-actions">
+
+                <button
+                    type="button"
+                    id="verifyPaymentButton"
+                    class="success-btn"
+                >
+                    ✓ تأیید پرداخت
+                </button>
+
+                <button
+                    type="button"
+                    id="rejectOrderButton"
+                    class="danger-btn"
+                >
+                    رد سفارش
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Info -->
+        <section class="info-box">
+
+            <div class="info-icon">i</div>
+
+            <div>
+                <h3>نکته مهم</h3>
+
+                <p>
+                    اطلاعات سفارش‌ها در این نسخه به‌صورت محلی در مرورگر ذخیره می‌شود.
+                    برای استفاده واقعی و دریافت سفارش‌ها روی چند دستگاه،
+                    در مرحله نهایی سیستم را به دیتابیس و تلگرام متصل می‌کنیم.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+        <p>
+            © V2GURD — پنل نمایندگی
+        </p>
+    </footer>
+
+
+    <script src="agency-data.js"></script>
+    <script src="agency-orders.js"></script>
+    <script src="agency-orders-page.js"></script>
+
+</body>
+</html>
