@@ -1,1 +1,888 @@
+/* =========================================================
+   V2GURD AGENCY ADMIN
+   پنل مدیریت نمایندگی
+   ========================================================= */
 
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080d12;
+    --panel: #111820;
+    --panel-soft: #0d141b;
+
+    --text: #f5f7fa;
+    --muted: #929daa;
+
+    --primary: #26e0c9;
+    --primary-dark: #159d8e;
+
+    --danger: #ff6262;
+    --danger-dark: #c83d3d;
+
+    --border: rgba(255, 255, 255, 0.08);
+
+    --radius: 18px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(38, 224, 201, 0.09),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(104, 92, 255, 0.06),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        "Vazirmatn",
+        Tahoma,
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   عمومی
+   ========================================================= */
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: min(
+        1100px,
+        calc(100% - 30px)
+    );
+
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.admin-header {
+    border-bottom: 1px solid var(--border);
+
+    background:
+        rgba(8, 13, 18, 0.88);
+
+    backdrop-filter: blur(14px);
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.header-inner {
+    min-height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.brand {
+    font-size: 22px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    color: var(--primary);
+}
+
+.subtitle {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.back-link {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   Main
+   ========================================================= */
+
+main {
+    padding-top: 35px;
+
+    padding-bottom: 60px;
+}
+
+
+/* =========================================================
+   Statistics
+   ========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.18);
+}
+
+.stat-card span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+}
+
+.stat-card strong {
+    display: block;
+
+    color: var(--primary);
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   Message
+   ========================================================= */
+
+.admin-message {
+    display: none;
+
+    margin-bottom: 18px;
+
+    padding: 14px 16px;
+
+    border-radius: 13px;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.admin-message.show {
+    display: block;
+}
+
+.admin-message.success {
+    background:
+        rgba(38, 224, 201, 0.09);
+
+    border:
+        1px solid
+        rgba(38, 224, 201, 0.18);
+
+    color: var(--primary);
+}
+
+.admin-message.error {
+    background:
+        rgba(255, 98, 98, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 98, 98, 0.18);
+
+    color: #ff9a9a;
+}
+
+
+/* =========================================================
+   Panel
+   ========================================================= */
+
+.panel {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.22);
+}
+
+.panel-header {
+    padding: 23px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.panel-header h1 {
+    margin: 0 0 5px;
+
+    font-size: 20px;
+}
+
+.panel-header p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.secondary-btn {
+    border: 1px solid var(--border);
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color: var(--text);
+
+    border-radius: 10px;
+
+    padding: 10px 15px;
+
+    transition: 0.2s;
+}
+
+.secondary-btn:hover {
+    border-color:
+        rgba(38, 224, 201, 0.3);
+
+    color: var(--primary);
+}
+
+.approve-btn,
+.reject-btn {
+    border: 0;
+
+    border-radius: 12px;
+
+    padding: 13px 18px;
+
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.approve-btn {
+    background: var(--primary);
+
+    color: #061014;
+}
+
+.approve-btn:hover {
+    background:
+        #42f0da;
+
+    transform: translateY(-1px);
+}
+
+.reject-btn {
+    background:
+        rgba(255, 98, 98, 0.1);
+
+    border:
+        1px solid
+        rgba(255, 98, 98, 0.2);
+
+    color: #ff8888;
+}
+
+.reject-btn:hover {
+    background:
+        rgba(255, 98, 98, 0.16);
+}
+
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+
+.empty-state {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   Request Content
+   ========================================================= */
+
+.request-content {
+    padding: 25px;
+}
+
+.request-content[hidden] {
+    display: none;
+}
+
+.section-title {
+    margin-top: 28px;
+
+    margin-bottom: 14px;
+
+    padding-bottom: 9px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+.section-title:first-child {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   Info Grid
+   ========================================================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.info-box {
+    padding: 15px;
+
+    background:
+        var(--panel-soft);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+
+    min-width: 0;
+}
+
+.info-box span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 7px;
+}
+
+.info-box strong {
+    display: block;
+
+    overflow-wrap: anywhere;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   Activity
+   ========================================================= */
+
+.activity-box {
+    display: grid;
+
+    gap: 13px;
+
+    padding: 17px;
+
+    background:
+        var(--panel-soft);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 14px;
+}
+
+.activity-box span {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.activity-box p {
+    margin: 7px 0 0;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   Conditions
+   ========================================================= */
+
+.conditions-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.condition-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 15px;
+
+    background:
+        var(--panel-soft);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+}
+
+.condition-question {
+    font-size: 12px;
+
+    color: #d8dde3;
+
+    line-height: 1.7;
+}
+
+.condition-answer {
+    flex-shrink: 0;
+
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.condition-answer.yes {
+    color: var(--primary);
+
+    background:
+        rgba(38, 224, 201, 0.1);
+}
+
+.condition-answer.no {
+    color: #ff8888;
+
+    background:
+        rgba(255, 98, 98, 0.09);
+}
+
+
+/* =========================================================
+   Payment
+   ========================================================= */
+
+.payment-card {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.payment-card > div {
+    padding: 15px;
+
+    background:
+        var(--panel-soft);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+}
+
+.payment-card span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 7px;
+}
+
+.payment-card strong {
+    display: block;
+
+    font-size: 13px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   Admin Actions
+   ========================================================= */
+
+.admin-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.admin-actions button {
+    flex: 1;
+
+    min-width: 220px;
+}
+
+
+/* =========================================================
+   Reject Box
+   ========================================================= */
+
+.reject-box {
+    margin-top: 15px;
+
+    padding: 18px;
+
+    background:
+        rgba(255, 98, 98, 0.05);
+
+    border:
+        1px solid
+        rgba(255, 98, 98, 0.14);
+
+    border-radius: 15px;
+}
+
+.reject-box[hidden] {
+    display: none;
+}
+
+.reject-box label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.reject-box textarea {
+    width: 100%;
+
+    min-height: 100px;
+
+    resize: vertical;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        #080d12;
+
+    color: var(--text);
+
+    border-radius: 11px;
+
+    padding: 13px;
+
+    outline: none;
+}
+
+.reject-box textarea:focus {
+    border-color:
+        rgba(255, 98, 98, 0.45);
+}
+
+.reject-box .reject-btn {
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   Current Status
+   ========================================================= */
+
+.current-status {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.current-status strong {
+    color: var(--text);
+
+    margin-right: 5px;
+}
+
+
+/* =========================================================
+   Security Note
+   ========================================================= */
+
+.security-note {
+    margin-top: 18px;
+
+    padding: 18px;
+
+    background:
+        rgba(255, 183, 77, 0.05);
+
+    border:
+        1px solid
+        rgba(255, 183, 77, 0.13);
+
+    border-radius: 15px;
+}
+
+.security-note strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #ffca78;
+
+    font-size: 13px;
+}
+
+.security-note p {
+    margin: 0;
+
+    color: #a7adb5;
+
+    font-size: 12px;
+
+    line-height: 2;
+}
+
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+footer {
+    padding: 0 15px 30px;
+
+    text-align: center;
+
+    color: #5e6873;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .info-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .payment-card {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 620px) {
+
+    .container {
+        width:
+            min(
+                100% - 20px,
+                1100px
+            );
+    }
+
+    .header-inner {
+        min-height: 68px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+    }
+
+    main {
+        padding-top: 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 9px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card strong {
+        font-size: 23px;
+    }
+
+    .panel-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .panel-header .secondary-btn {
+        width: 100%;
+    }
+
+    .request-content {
+        padding: 17px;
+    }
+
+    .info-grid,
+    .conditions-list,
+    .payment-card {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+    }
+
+    .admin-actions button {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .condition-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .condition-answer {
+        align-self: flex-start;
+    }
+}
