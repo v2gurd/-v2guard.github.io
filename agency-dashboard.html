@@ -1,1 +1,379 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta name="theme-color" content="#070b10">
+
+  <title>داشبورد نمایندگی | V2GURD</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="agency-dashboard.css">
+</head>
+
+<body>
+
+  <header class="dashboard-header">
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo">
+        V2GURD
+      </a>
+
+      <div class="header-title">
+        پنل نمایندگی
+      </div>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <section class="dashboard-hero">
+      <div class="container">
+
+        <div class="hero-badge">
+          پنل نمایندگی V2GURD
+        </div>
+
+        <h1>
+          سلام،
+          <span id="representativeName">
+            نماینده عزیز
+          </span>
+        </h1>
+
+        <p>
+          وضعیت درخواست و امکانات نمایندگی خود را از اینجا مدیریت کنید.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container">
+
+        <!-- وضعیت نمایندگی -->
+
+        <div class="status-card">
+
+          <div class="status-icon" id="statusIcon">
+            ⏳
+          </div>
+
+          <div class="status-content">
+
+            <span class="status-label">
+              وضعیت نمایندگی
+            </span>
+
+            <h2 id="agencyStatus">
+              در انتظار بررسی
+            </h2>
+
+            <p id="agencyStatusText">
+              اطلاعات درخواست شما در سیستم ثبت شده و پس از بررسی وضعیت آن مشخص می‌شود.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- اطلاعات نماینده -->
+
+        <div class="section-title-row">
+
+          <div>
+            <h2 class="section-title">
+              اطلاعات نمایندگی
+            </h2>
+
+            <p class="section-subtitle">
+              اطلاعات ثبت‌شده برای درخواست شما
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="info-grid">
+
+          <div class="info-card">
+
+            <span>
+              نام نماینده
+            </span>
+
+            <strong id="infoName">
+              -
+            </strong>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <span>
+              نام مجموعه
+            </span>
+
+            <strong id="infoAgency">
+              -
+            </strong>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <span>
+              شهر
+            </span>
+
+            <strong id="infoCity">
+              -
+            </strong>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <span>
+              وضعیت پرداخت
+            </span>
+
+            <strong id="infoPayment">
+              در انتظار پرداخت
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- امکانات -->
+
+        <div class="section-title-row features-heading">
+
+          <div>
+            <h2 class="section-title">
+              امکانات نمایندگی
+            </h2>
+
+            <p class="section-subtitle">
+              امکانات پس از تأیید نمایندگی فعال می‌شوند.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="features-grid">
+
+          <!-- فروش محصولات -->
+
+          <div
+            class="feature-card locked"
+            id="productsFeature"
+          >
+
+            <div class="feature-icon">
+              🛒
+            </div>
+
+            <div class="feature-content">
+
+              <h3>
+                فروش محصولات V2GURD
+              </h3>
+
+              <p>
+                مشاهده محصولات و قیمت اختصاصی نمایندگی برای فروش به مشتریان.
+              </p>
+
+            </div>
+
+            <span class="feature-status">
+              🔒 قفل
+            </span>
+
+          </div>
+
+
+          <!-- سایت اختصاصی -->
+
+          <div
+            class="feature-card locked"
+            id="siteFeature"
+          >
+
+            <div class="feature-icon">
+              🌐
+            </div>
+
+            <div class="feature-content">
+
+              <h3>
+                سایت اختصاصی فروش
+              </h3>
+
+              <p>
+                ساخت سایت اختصاصی با نام و برند نماینده برای فروش مستقیم.
+              </p>
+
+            </div>
+
+            <span class="feature-status">
+              🔒 قفل
+            </span>
+
+          </div>
+
+
+          <!-- سفارش‌ها -->
+
+          <div
+            class="feature-card locked"
+            id="ordersFeature"
+          >
+
+            <div class="feature-icon">
+              📦
+            </div>
+
+            <div class="feature-content">
+
+              <h3>
+                سفارش‌های مشتریان
+              </h3>
+
+              <p>
+                مشاهده و مدیریت سفارش‌هایی که از طریق نمایندگی ثبت شده‌اند.
+              </p>
+
+            </div>
+
+            <span class="feature-status">
+              🔒 قفل
+            </span>
+
+          </div>
+
+
+          <!-- پشتیبانی -->
+
+          <a
+            href="https://t.me/Vtwoguard"
+            target="_blank"
+            rel="noopener"
+            class="feature-card support-feature"
+          >
+
+            <div class="feature-icon">
+              💬
+            </div>
+
+            <div class="feature-content">
+
+              <h3>
+                پشتیبانی V2GURD
+              </h3>
+
+              <p>
+                ارتباط با پشتیبانی برای سوالات و مشکلات نمایندگی.
+              </p>
+
+            </div>
+
+            <span class="feature-status">
+              آنلاین
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <!-- سایت اختصاصی -->
+
+        <div
+          class="site-promotion locked-section"
+          id="sitePromotion"
+        >
+
+          <div class="site-promotion-content">
+
+            <div class="promotion-icon">
+              🌐
+            </div>
+
+            <div>
+
+              <h2>
+                سایت اختصاصی فروش می‌خواهی؟
+              </h2>
+
+              <p>
+                یک سایت اختصاصی با نام، لوگو و قیمت‌های نمایندگی خودت داشته باش.
+                هزینه ساخت سایت اختصاصی:
+                <strong>
+                  ۹۹۹٬۰۰۰ تومان
+                </strong>
+              </p>
+
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            id="siteButton"
+            class="primary-btn"
+            disabled
+          >
+            درخواست سایت اختصاصی
+          </button>
+
+        </div>
+
+
+        <div
+          id="dashboardMessage"
+          class="dashboard-message"
+        ></div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="dashboard-footer">
+
+    <div class="container">
+
+      <p>
+        V2GURD © تمامی حقوق محفوظ است.
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script src="agency-dashboard.js"></script>
+
+</body>
+</html>
