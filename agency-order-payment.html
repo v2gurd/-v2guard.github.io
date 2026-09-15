@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#070c11"
+    >
+
+    <title>پرداخت سفارش | V2GURD</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --bg: #070c11;
+            --panel: #0e171f;
+            --panel2: #111d26;
+
+            --primary: #26e0c9;
+            --primary-soft: rgba(38, 224, 201, 0.10);
+
+            --secondary: #b16bff;
+
+            --text: #f5f8fa;
+            --muted: #8d9aa5;
+
+            --border: rgba(255, 255, 255, 0.08);
+
+            --success: #45d895;
+            --danger: #ff5d70;
+
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Vazirmatn", sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 15% 0%,
+                    rgba(38, 224, 201, 0.08),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(177, 107, 255, 0.08),
+                    transparent 28%
+                ),
+                var(--bg);
+
+            line-height: 1.8;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        .page {
+            width: min(920px, 92%);
+            margin: 0 auto;
+
+            padding: 35px 0 60px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-logo {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: var(--primary);
+
+            color: #06100e;
+
+            font-size: 14px;
+            font-weight: 900;
+
+            box-shadow:
+                0 10px 30px rgba(38, 224, 201, 0.16);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+
+            line-height: 1.3;
+        }
+
+        .brand-text strong {
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+        .back-link {
+            padding: 8px 13px;
+
+            border-radius: 10px;
+
+            border: 1px solid var(--border);
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            transition: 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+
+            border-color:
+                rgba(38, 224, 201, 0.3);
+        }
+
+        .page-header {
+            text-align: center;
+
+            margin: 25px 0 30px;
+        }
+
+        .page-header .eyebrow {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 999px;
+
+            background: var(--primary-soft);
+
+            color: var(--primary);
+
+            font-size: 9px;
+            font-weight: 800;
+
+            margin-bottom: 10px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(26px, 5vw, 38px);
+
+            line-height: 1.4;
+
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+        .layout {
+            display: grid;
+
+            grid-template-columns:
+                0.9fr 1.1fr;
+
+            gap: 20px;
+
+            align-items: start;
+        }
+
+        .card {
+            padding: 25px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.035),
+                    rgba(255, 255, 255, 0.015)
+                );
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.22);
+        }
+
+        .card-title {
+            font-size: 16px;
+
+            margin-bottom: 20px;
+        }
+
+        /* سفارش */
+
+        .order-product {
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: rgba(255, 255, 255, 0.025);
+
+            border: 1px solid var(--border);
+
+            margin-bottom: 15px;
+        }
+
+        .order-product small {
+            display: block;
+
+            color: var(--primary);
+
+            font-size: 9px;
+
+            margin-bottom: 5px;
+        }
+
+        .order-product strong {
+            display: block;
+
+            font-size: 18px;
+
+            margin-bottom: 5px;
+        }
+
+        .order-product p {
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        .order-info {
+            display: flex;
+            flex-direction: column;
+
+            gap: 9px;
+
+            margin-top: 18px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding-bottom: 9px;
+
+            border-bottom: 1px solid
+                rgba(255, 255, 255, 0.05);
+
+            font-size: 10px;
+        }
+
+        .info-row span:first-child {
+            color: var(--muted);
+        }
+
+        .info-row span:last-child {
+            text-align: left;
+
+            font-weight: 700;
+        }
+
+        .price-box {
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(38, 224, 201, 0.10),
+                    rgba(177, 107, 255, 0.06)
+                );
+
+            border: 1px solid
+                rgba(38, 224, 201, 0.12);
+
+            text-align: center;
+        }
+
+        .price-box span {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            margin-bottom: 4px;
+        }
+
+        .price-box strong {
+            color: var(--primary);
+
+            font-size: 28px;
+        }
+
+        .price-box small {
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+        /* پرداخت */
+
+        .payment-account {
+            padding: 20px;
+
+            margin-bottom: 22px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(38, 224, 201, 0.09),
+                    rgba(38, 224, 201, 0.025)
+                );
+
+            border: 1px solid
+                rgba(38, 224, 201, 0.13);
+        }
+
+        .payment-account-label {
+            color: var(--muted);
+
+            font-size: 9px;
+
+            margin-bottom: 8px;
+        }
+
+        .card-number {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+        }
+
+        .card-number strong {
+            direction: ltr;
+
+            font-size: 18px;
+
+            letter-spacing: 1.5px;
+
+            word-break: break-all;
+        }
+
+        .copy-button {
+            flex-shrink: 0;
+
+            padding: 7px 10px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            background: rgba(255, 255, 255, 0.04);
+
+            color: var(--primary);
+
+            cursor: pointer;
+
+            font-size: 9px;
+        }
+
+        .bank-name {
+            margin-top: 9px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        .account-owner {
+            margin-top: 2px;
+
+            color: #dce5e9;
+
+            font-size: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+
+            color: #c9d2d7;
+
+            font-size: 10px;
+
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            border: 1px solid var(--border);
+
+            border-radius: 11px;
+
+            background: rgba(255, 255, 255, 0.025);
+
+            color: var(--text);
+
+            outline: none;
+
+            padding: 11px 13px;
+
+            font-size: 11px;
+
+            transition: 0.2s ease;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color:
+                rgba(38, 224, 201, 0.45);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(38, 224, 201, 0.06);
+        }
+
+        .checkbox-row {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            margin: 18px 0;
+        }
+
+        .checkbox-row input {
+            width: 17px;
+            height: 17px;
+
+            margin-top: 3px;
+
+            accent-color: var(--primary);
+
+            flex-shrink: 0;
+        }
+
+        .checkbox-row label {
+            color: #c4cdd2;
+
+            font-size: 10px;
+
+            line-height: 1.8;
+
+            cursor: pointer;
+        }
+
+        .submit-button {
+            width: 100%;
+
+            min-height: 47px;
+
+            border: 0;
+
+            border-radius: 12px;
+
+            background: var(--primary);
+
+            color: #06100e;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .submit-button:hover {
+            background: #58eedc;
+
+            transform: translateY(-2px);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.55;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        .message {
+            display: none;
+
+            padding: 12px 14px;
+
+            margin-bottom: 18px;
+
+            border-radius: 11px;
+
+            font-size: 10px;
+
+            line-height: 1.8;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            color: #ffb2bd;
+
+            background: rgba(255, 93, 112, 0.08);
+
+            border: 1px solid
+                rgba(255, 93, 112, 0.15);
+        }
+
+        .message.success {
+            color: #a7f2cc;
+
+            background: rgba(69, 216, 149, 0.08);
+
+            border: 1px solid
+                rgba(69, 216, 149, 0.15);
+        }
+
+        .notice {
+            margin-top: 17px;
+
+            padding: 13px;
+
+            border-radius: 11px;
+
+            background: rgba(255, 200, 87, 0.06);
+
+            border: 1px solid
+                rgba(255, 200, 87, 0.10);
+
+            color: #cfc4a2;
+
+            font-size: 9px;
+
+            line-height: 1.9;
+        }
+
+        .loading {
+            text-align: center;
+
+            padding: 70px 20px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        @media (max-width: 760px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .page {
+                width: 91%;
+
+                padding-top: 22px;
+            }
+
+            .topbar {
+                margin-bottom: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card-number {
+                align-items: flex-start;
+            }
+
+            .card-number strong {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .brand-text span {
+                display: none;
+            }
+
+            .back-link {
+                font-size: 9px;
+
+                padding: 7px 10px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .card-number {
+                flex-direction: column;
+            }
+
+            .copy-button {
+                width: 100%;
+            }
+
+            .price-box strong {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <header class="topbar">
+
+        <a
+            href="agency-site.html"
+            class="brand"
+        >
+            <div class="brand-logo">
+                V2
+            </div>
+
+            <div class="brand-text">
+                <strong>V2GURD</strong>
+                <span>فروش امن و پایدار</span>
+            </div>
+        </a>
+
+        <a
+            href="agency-site.html"
+            class="back-link"
+        >
+            بازگشت به فروشگاه
+        </a>
+
+    </header>
+
+
+    <section class="page-header">
+
+        <span class="eyebrow">
+            پرداخت سفارش
+        </span>
+
+        <h1>
+            تکمیل پرداخت
+        </h1>
+
+        <p>
+            اطلاعات سفارش را بررسی کنید و مبلغ را کارت‌به‌کارت کنید.
+        </p>
+
+    </section>
+
+
+    <div
+        id="pageMessage"
+        class="message"
+    ></div>
+
+
+    <div
+        id="loadingBox"
+        class="loading"
+    >
+        در حال دریافت اطلاعات سفارش...
+    </div>
+
+
+    <main
+        id="paymentLayout"
+        class="layout"
+        style="display:none;"
+    >
+
+        <!-- اطلاعات سفارش -->
+
+        <section class="card">
+
+            <h2 class="card-title">
+                اطلاعات سفارش
+            </h2>
+
+            <div class="order-product">
+
+                <small>
+                    محصول انتخاب‌شده
+                </small>
+
+                <strong id="productName">
+                    -
+                </strong>
+
+                <p id="productDescription">
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="order-info">
+
+                <div class="info-row">
+                    <span>
+                        شماره سفارش
+                    </span>
+
+                    <span id="orderId">
+                        -
+                    </span>
+                </div>
+
+                <div class="info-row">
+                    <span>
+                        مشتری
+                    </span>
+
+                    <span id="customerName">
+                        -
+                    </span>
+                </div>
+
+                <div class="info-row">
+                    <span>
+                        شماره تماس
+                    </span>
+
+                    <span id="customerPhone">
+                        -
+                    </span>
+                </div>
+
+                <div class="info-row">
+                    <span>
+                        نماینده
+                    </span>
+
+                    <span id="agencyName">
+                        -
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="price-box">
+
+                <span>
+                    مبلغ قابل پرداخت
+                </span>
+
+                <strong id="orderPrice">
+                    ۰
+                </strong>
+
+                <small>
+                    تومان
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- پرداخت -->
+
+        <section class="card">
+
+            <h2 class="card-title">
+                پرداخت کارت‌به‌کارت
+            </h2>
+
+
+            <div class="payment-account">
+
+                <div class="payment-account-label">
+                    شماره کارت
+                </div>
+
+                <div class="card-number">
+
+                    <strong id="cardNumber">
+                        6219 8618 4163 5526
+                    </strong>
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        id="copyCardButton"
+                    >
+                        کپی
+                    </button>
+
+                </div>
+
+                <div class="bank-name">
+                    بانک: بلو بانک
+                </div>
+
+                <div class="account-owner">
+                    به نام: نامی
+                </div>
+
+            </div>
+
+
+            <div
+                id="formMessage"
+                class="message"
+            ></div>
+
+
+            <form id="paymentForm">
+
+                <div class="form-group">
+
+                    <label for="payerName">
+                        نام پرداخت‌کننده
+                    </label>
+
+                    <input
+                        type="text"
+                        id="payerName"
+                        name="payerName"
+                        placeholder="نام و نام خانوادگی"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="paymentDate">
+                        تاریخ پرداخت
+                    </label>
+
+                    <input
+                        type="date"
+                        id="paymentDate"
+                        name="paymentDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="trackingCode">
+                        کد پیگیری / شماره مرجع
+                    </label>
+
+                    <input
+                        type="text"
+                        id="trackingCode"
+                        name="trackingCode"
+                        placeholder="در صورت وجود وارد کنید"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="paymentNote">
+                        توضیحات
+                    </label>
+
+                    <textarea
+                        id="paymentNote"
+                        name="paymentNote"
+                        placeholder="توضیحات مربوط به پرداخت را در صورت نیاز بنویسید..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="checkbox-row">
+
+                    <input
+                        type="checkbox"
+                        id="paymentDone"
+                        name="paymentDone"
+                        required
+                    >
+
+                    <label for="paymentDone">
+                        مبلغ سفارش را به شماره کارت اعلام‌شده واریز کرده‌ام و اطلاعات پرداخت را صحیح وارد می‌کنم.
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                    id="submitPaymentButton"
+                >
+                    ثبت پرداخت و ارسال سفارش
+                </button>
+
+            </form>
+
+
+            <div class="notice">
+                پس از ثبت پرداخت، سفارش برای بررسی پرداخت در اختیار نماینده قرار می‌گیرد.
+                تا زمان تأیید پرداخت، سفارش نهایی محسوب نمی‌شود.
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="agency-data.js"></script>
+<script src="agency-products.js"></script>
+<script src="agency-orders.js"></script>
+<script src="agency-order-payment.js"></script>
+
+</body>
+</html>
