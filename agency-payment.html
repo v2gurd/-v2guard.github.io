@@ -1,1 +1,291 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta name="theme-color" content="#070b10">
+
+  <title>پرداخت هزینه نمایندگی | V2GURD</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="agency-payment.css">
+</head>
+
+<body>
+
+  <header class="payment-header">
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo">
+        V2GURD
+      </a>
+
+      <div class="header-title">
+        فعال‌سازی نمایندگی
+      </div>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="hero-badge">
+          مرحله دوم درخواست نمایندگی
+        </div>
+
+        <h1>
+          پرداخت هزینه <span>نمایندگی</span>
+        </h1>
+
+        <p>
+          برای بررسی و فعال‌سازی درخواست نمایندگی،
+          هزینه ثبت نمایندگی را به صورت کارت‌به‌کارت پرداخت کنید.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container">
+
+        <div class="payment-card">
+
+          <div class="payment-card-header">
+
+            <div>
+              <div class="small-title">
+                هزینه فعال‌سازی نمایندگی
+              </div>
+
+              <div class="price">
+                ۴۹۹٬۰۰۰
+                <span>تومان</span>
+              </div>
+            </div>
+
+            <div class="payment-status">
+              پرداخت دستی
+            </div>
+
+          </div>
+
+
+          <div class="divider"></div>
+
+
+          <div class="card-info">
+
+            <div class="info-row">
+
+              <span class="info-label">
+                بانک
+              </span>
+
+              <strong>
+                بلو بانک
+              </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+              <span class="info-label">
+                نام صاحب حساب
+              </span>
+
+              <strong>
+                نامی
+              </strong>
+
+            </div>
+
+
+            <div class="info-row card-number-row">
+
+              <span class="info-label">
+                شماره کارت
+              </span>
+
+              <strong
+                id="cardNumber"
+                dir="ltr"
+              >
+                6219 8618 4163 5526
+              </strong>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="copy-btn"
+              id="copyCard"
+            >
+              کپی شماره کارت
+            </button>
+
+          </div>
+
+
+          <div class="notice">
+
+            <div class="notice-icon">
+              !
+            </div>
+
+            <div>
+
+              <strong>
+                توجه
+              </strong>
+
+              <p>
+                مبلغ دقیق را به کارت بالا واریز کنید.
+                پس از پرداخت، اطلاعات پرداخت را ثبت کنید
+                تا درخواست شما برای بررسی ارسال شود.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="payment-form">
+
+            <h2>
+              ثبت اطلاعات پرداخت
+            </h2>
+
+            <p class="form-description">
+              اطلاعات زیر برای تطبیق پرداخت با درخواست نمایندگی شما استفاده می‌شود.
+            </p>
+
+
+            <div class="form-group">
+
+              <label for="paymentName">
+                نام و نام خانوادگی
+              </label>
+
+              <input
+                type="text"
+                id="paymentName"
+                placeholder="نام پرداخت‌کننده"
+                autocomplete="name"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="trackingCode">
+                شماره پیگیری / کد تراکنش
+              </label>
+
+              <input
+                type="text"
+                id="trackingCode"
+                placeholder="در صورت وجود"
+                inputmode="numeric"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="paymentDate">
+                تاریخ پرداخت
+              </label>
+
+              <input
+                type="date"
+                id="paymentDate"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="paymentNote">
+                توضیحات
+              </label>
+
+              <textarea
+                id="paymentNote"
+                placeholder="در صورت نیاز توضیحی بنویسید..."
+              ></textarea>
+
+            </div>
+
+
+            <label class="receipt-box">
+
+              <input
+                type="checkbox"
+                id="paymentDone"
+              >
+
+              <span>
+                مبلغ ۴۹۹٬۰۰۰ تومان را پرداخت کرده‌ام و اطلاعات بالا صحیح است.
+              </span>
+
+            </label>
+
+
+            <button
+              type="button"
+              id="submitPayment"
+              class="submit-btn"
+            >
+              ثبت پرداخت و ادامه
+            </button>
+
+
+            <div
+              id="paymentMessage"
+              class="payment-message"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="payment-footer">
+
+    <div class="container">
+
+      <p>
+        V2GURD © تمامی حقوق محفوظ است.
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script src="agency-payment.js"></script>
+
+</body>
+</html>
