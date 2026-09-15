@@ -2270,6 +2270,12 @@
       align-self:flex-start;
     }
 
+    .ai-msg-user{
+      background:var(--primary);
+      color:#fff;
+      align-self:flex-end;
+    }
+
     .ai-soon-note{
       margin-top:10px;
       font-size:9.5px;
@@ -2278,6 +2284,28 @@
       border:1px solid var(--border);
       border-radius:var(--radius-sm);
       padding:8px 10px;
+    }
+
+    .ai-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:10px;
+    }
+
+    .ai-chip{
+      border:1px solid var(--border-strong);
+      background:var(--surface-2);
+      color:var(--ink);
+      font-size:9px;
+      font-weight:700;
+      padding:6px 10px;
+      border-radius:20px;
+    }
+
+    .ai-chip:hover{
+      background:var(--primary-soft);
+      border-color:var(--primary);
     }
 
     .ai-input-row{
@@ -3910,7 +3938,6 @@
 
   <button class="ai-fab" id="aiFab" onclick="openModal('aiModal')" aria-label="دستیار هوشمند V2GURD">
     <span class="ai-fab-icon">🤖</span>
-    <span class="ai-fab-badge">به‌زودی</span>
   </button>
 
   <div class="modal-wrap" id="aiModal">
@@ -3922,13 +3949,19 @@
       <div class="modal-body">
         <div class="ai-chat-window" id="aiChatWindow">
           <div class="ai-msg ai-msg-bot">
-            سلام 👋 من دستیار هوشمند V2GURD هستم. به‌زودی می‌تونم راجع به وایرگارد، V2Box، JumpJump و مشکلات اتصال شما کمک کنم.
+            سلام 👋 من دستیار هوشمند V2GURD هستم. راجع به وایرگارد، V2Box، JumpJump و مشکلات اتصال بپرس.
           </div>
         </div>
-        <div class="ai-soon-note">🚧 این بخش هنوز فعال نشده و به‌زودی راه‌اندازی می‌شود.</div>
+        <div class="ai-soon-note" id="aiNote">این دستیار به سوالات پرتکرار پاسخ آماده می‌ده؛ برای موارد خاص با تلگرام پشتیبانی صحبت کن.</div>
+        <div class="ai-chips">
+          <button class="ai-chip" onclick="aiAskSuggestion('IP ثابت دارید؟')">IP ثابت</button>
+          <button class="ai-chip" onclick="aiAskSuggestion('چطور اپلیکیشن رو دانلود کنم')">دانلود اپ</button>
+          <button class="ai-chip" onclick="aiAskSuggestion('اتصال وصل نمیشه')">مشکل اتصال</button>
+          <button class="ai-chip" onclick="aiAskSuggestion('مراحل خرید چیه')">مراحل خرید</button>
+        </div>
         <div class="ai-input-row">
-          <input type="text" id="aiInputField" placeholder="سوالت رو بپرس... (به‌زودی)" disabled>
-          <button class="btn btn-primary" onclick="sendAiMessage()" disabled id="aiSendBtn">ارسال</button>
+          <input type="text" id="aiInputField" placeholder="سوالت رو بپرس..." onkeydown="if(event.key==='Enter')sendAiMessage();">
+          <button class="btn btn-primary" onclick="sendAiMessage()" id="aiSendBtn">ارسال</button>
         </div>
         <div class="modal-actions">
           <button class="btn btn-outline" onclick="closeModal('aiModal')">بستن</button>
@@ -6695,10 +6728,174 @@ ${formatPrice(cartTotal())}
       showToast("سفارش ثبت شده و منتظر بررسی است");
     }
 
+    /* ==========================================
+       دستیار هوشمند — رایگان و بدون اتصال به سرور
+       (بر اساس محتوای واقعی سایت: FAQS, STEPS, RULES, DOWNLOADS)
+    ========================================== */
+
+    const AI_KB = [
+      {
+        keywords:["سلام","درود","وقت بخیر","سلام خوبی","های","hi","hello"],
+        answer:"سلام 👋 خوش اومدی به V2GURD! می‌تونم دربارهٔ IP ثابت، نصب اپلیکیشن، مراحل خرید، مشکل اتصال یا سرعت کمکت کنم. سوالت چیه؟"
+      },
+      {
+        keywords:["چطوری","حالت چطوره","خوبی","حال شما"],
+        answer:"خوبم، ممنون 😊 تو چطوری؟ اگه سوالی دربارهٔ سرویس‌های V2GURD داری بپرس تا کمکت کنم."
+      },
+      {
+        keywords:["نه ممنون","نه نمیخوام","نچ"],
+        answer:"باشه، مشکلی نیست 🙏 اگه بعداً چیزی لازم داشتی همینجام."
+      },
+      {
+        keywords:["ممنون","مرسی","تشکر","سپاس"],
+        answer:"خواهش می‌کنم 🌿 اگه سوال دیگه‌ای داشتی در خدمتم."
+      },
+      {
+        keywords:["خداحافظ","فعلا","بای","میرم"],
+        answer:"خداحافظ 👋 هر وقت سوالی داشتی برگرد همینجا."
+      },
+      {
+        keywords:["اسمت چیه","تو کی هستی","معرفی کن خودتو"],
+        answer:"من دستیار پشتیبانی V2GURD هستم، برای راهنمایی سریع دربارهٔ سرویس‌ها و رفع مشکلات رایج اینجام."
+      },
+      {
+        keywords:["اهان","اها","آهان","اوه که اینطور"],
+        answer:"😊 بفرمایید، اگه سوال دیگه‌ای هم داشتی بپرس."
+      },
+      {
+        keywords:["باشه","اوکی","اوک","ok","okay","چشم","حله"],
+        answer:"باشه 👍 هر وقت سوالی داشتی در خدمتم."
+      },
+      {
+        keywords:["نفهمیدم","متوجه نشدم","نگرفتم","چی گفتی","یعنی چی","تکرار کن","دوباره بگو"],
+        answer:"اشکالی نداره 🙏 بگو دقیقاً کدوم قسمت رو متوجه نشدی تا واضح‌تر توضیح بدم، یا با پشتیبانی تلگرام صحبت کن: "+TELEGRAM
+      },
+      {
+        keywords:["فهمیدم","متوجه شدم","گرفتم","اوکی فهمیدم"],
+        answer:"خوبه 👍 اگه بازم سوالی بود بپرس."
+      },
+      {
+        keywords:["آره","بله","درسته","دقیقا"],
+        answer:"بسیار خب 👍 قدم بعدی رو بگو تا کمکت کنم."
+      },
+      {
+        keywords:["یه لحظه","صبر کن","الان میام","وایسا"],
+        answer:"باشه، هر وقت آماده بودی بپرس 🙌"
+      },
+      {
+        keywords:["واقعا","جدی","جدا"],
+        answer:"بله جدی می‌گم 😊 اگه سوال بیشتری داری بپرس."
+      },
+      {
+        keywords:["عالیه","خوبه که","قشنگه","محشره"],
+        answer:"خوشحالم که خوب بود 🙌 اگه کار دیگه‌ای هم بود بگو."
+      },
+      {
+        keywords:["افتضاح","بد شد","ناراحت شدم","خیلی بده"],
+        answer:"متاسفم که این‌طور شده 🙏 بگو دقیقاً چه مشکلی پیش اومده تا کمکت کنم، یا با پشتیبانی تلگرام صحبت کن: "+TELEGRAM
+      },
+      {
+        keywords:["ip","ثابت","آی پی","آیپی"],
+        answer:FAQS[0].a
+      },
+      {
+        keywords:["آیفون","اندروید","موبایل","گوشی","ios","android"],
+        answer:FAQS[1].a
+      },
+      {
+        keywords:["دریافت سرویس","بعد از خرید","بعد از پرداخت","رسید"],
+        answer:FAQS[2].a+" لینک تلگرام پشتیبانی: "+TELEGRAM
+      },
+      {
+        keywords:["پیگیری","سفارش","شماره سفارش","وضعیت سفارش"],
+        answer:FAQS[3].a
+      },
+      {
+        keywords:["مراحل خرید","چطور بخرم","چجوری بخرم","خرید کنم","نحوه خرید"],
+        answer:STEPS.map((s,i)=>(i+1)+". "+s.title+": "+s.text).join(" — ")
+      },
+      {
+        keywords:["قانون","قوانین","شرایط استفاده","مقررات"],
+        answer:RULES.join(" | ")
+      },
+      {
+        keywords:["دانلود","نصب","اپلیکیشن وایرگارد","دانلود وایرگارد"],
+        answer:"لینک دانلود WireGuard — اندروید: "+DOWNLOADS[0].android+" — آیفون: "+DOWNLOADS[0].ios
+      },
+      {
+        keywords:["دانلود v2box","نصب v2box","اپلیکیشن v2box"],
+        answer:"لینک دانلود V2Box — اندروید: "+DOWNLOADS[1].android+" — آیفون: "+DOWNLOADS[1].ios
+      },
+      {
+        keywords:["دانلود jumpjump","نصب jumpjump","اپلیکیشن jumpjump"],
+        answer:"لینک دانلود JumpJump — اندروید: "+DOWNLOADS[2].android+" — آیفون: "+DOWNLOADS[2].ios
+      },
+      {
+        keywords:["وصل نمیشه","قطع میشه","کانکت نمیشه","اتصال برقرار نمیشه","کانکشن قطع"],
+        answer:"چند مورد رو چک کن: ۱) اینترنت گوشی/سیستم وصل باشه ۲) اپلیکیشن رو کامل ببند و دوباره باز کن ۳) کانفیگ یا سرویست منقضی نشده باشه ۴) اگه سرور خاصی وصل نمیشه، سرور دیگه‌ای رو امتحان کن. اگه بازم حل نشد، از تلگرام پشتیبانی کمک بگیر: "+TELEGRAM
+      },
+      {
+        keywords:["سرعت کم","کند شده","سرعت پایین","اینترنت کنده","سرعت پایینه"],
+        answer:"برای سرعت کم: یه سرور دیگه رو امتحان کن، اپ‌های پرمصرف اینترنت رو ببند، و مطمئن شو محدودیت حجمی سرویست تموم نشده باشه. اگه مشکل ادامه داشت با پشتیبانی تلگرام هماهنگ کن: "+TELEGRAM
+      },
+      {
+        keywords:["فرق","تفاوت","کدومو بخرم","کدوم بهتره","مقایسه"],
+        answer:"هر سه سرویس (WireGuard، V2Box، JumpJump) رویکرد و مزایای متفاوتی دارن؛ جزئیات هر کدوم رو تو همون بخش محصول سایت می‌تونی ببینی. اگه مطمئن نیستی کدوم مناسب توئه، تو تلگرام بپرس تا راهنماییت کنن: "+TELEGRAM
+      },
+      {
+        keywords:["پشتیبان","اپراتور","انسان","تماس با پشتیبانی","صحبت با پشتیبان"],
+        answer:"برای صحبت مستقیم با تیم پشتیبانی V2GURD از تلگرام استفاده کن: "+TELEGRAM
+      }
+    ];
+
+    const AI_FALLBACK="متوجه نشدم دقیقاً منظورت چیه 🙏 می‌تونی دربارهٔ IP ثابت، نصب اپلیکیشن، مراحل خرید، مشکل اتصال یا سرعت بپرسی. برای موارد خاص‌تر با پشتیبانی در تلگرام صحبت کن: "+TELEGRAM;
+
+    function aiAppendMessage(role,text){
+      const win=document.getElementById("aiChatWindow");
+      const bubble=document.createElement("div");
+      bubble.className="ai-msg "+(role==="user"?"ai-msg-user":"ai-msg-bot");
+      bubble.textContent=text;
+      win.appendChild(bubble);
+      win.scrollTop=win.scrollHeight;
+      return bubble;
+    }
+
+    function aiFindAnswer(rawText){
+      const text=rawText.toLowerCase();
+      let best=null;
+      let bestScore=0;
+      AI_KB.forEach(entry=>{
+        let score=0;
+        entry.keywords.forEach(k=>{
+          if(text.includes(k.toLowerCase()))score++;
+        });
+        if(score>bestScore){bestScore=score;best=entry;}
+      });
+      return best?best.answer:AI_FALLBACK;
+    }
+
     function sendAiMessage(){
-      showToast("دستیار هوشمند هنوز فعال نشده — به‌زودی 🤖");
+      const field=document.getElementById("aiInputField");
+      const text=field.value.trim();
+      if(!text)return;
+
+      aiAppendMessage("user",text);
+      field.value="";
+
+      const typing=aiAppendMessage("bot","...");
+      setTimeout(()=>{
+        typing.remove();
+        aiAppendMessage("bot",aiFindAnswer(text));
+      },350);
     }
     window.sendAiMessage=sendAiMessage;
+
+    function aiAskSuggestion(text){
+      document.getElementById("aiInputField").value=text;
+      sendAiMessage();
+    }
+    window.aiAskSuggestion=aiAskSuggestion;
+
 
     window.startCheckout=secureStartCheckout;
     window.confirmRules=secureConfirmRules;
