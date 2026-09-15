@@ -2262,6 +2262,7 @@
       border-radius:12px;
       font-size:11px;
       line-height:1.9;
+      white-space:pre-line;
     }
 
     .ai-msg-bot{
@@ -6540,8 +6541,8 @@ ${problem}
 
 
     /* AUTH / ORDERS / SUBSCRIPTIONS */
-    const SUPABASE_URL = "YOUR_SUPABASE_URL";
-    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+    const SUPABASE_URL = "https://psvesfkxtmlnjyhphsfs.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_QClWgLVOmPGwPK_kTsL5UA_L0cNqJ4H";
     let supabaseClient = null;
     let authMode = "login";
     let checkoutNeedsLogin = false;
@@ -6845,10 +6846,93 @@ ${formatPrice(cartTotal())}
       {
         keywords:["پشتیبان","اپراتور","انسان","تماس با پشتیبانی","صحبت با پشتیبان"],
         answer:"برای صحبت مستقیم با تیم پشتیبانی V2GURD از تلگرام استفاده کن: "+TELEGRAM
+      },
+      {
+        keywords:["جوک","شوخی","لطیفه","بامزه","بخندون"],
+        answer:"😄 باشه یه شوخی کوچیک: چرا با VPN هیچکس گمت نمی‌کنه؟ چون خودتم نمی‌دونی کجایی 😅 حالا بگو چطور می‌تونم کمکت کنم؟"
       }
     ];
 
-    const AI_FALLBACK="متوجه نشدم دقیقاً منظورت چیه 🙏 می‌تونی دربارهٔ IP ثابت، نصب اپلیکیشن، مراحل خرید، مشکل اتصال یا سرعت بپرسی. برای موارد خاص‌تر با پشتیبانی در تلگرام صحبت کن: "+TELEGRAM;
+    const AI_FALLBACK="این یکی رو مطمئن نیستم بتونم جواب بدم 🙏 من فقط دربارهٔ سرویس‌های V2GURD (وایرگارد، V2Box، JumpJump)، خرید، و مشکلات اتصال می‌تونم کمک کنم. برای بقیهٔ موارد با پشتیبانی تلگرام صحبت کن: "+TELEGRAM;
+
+    // فحش و الفاظ نامناسب — می‌تونی این لیست رو گسترش بدی
+    const AI_BAD_WORDS=["کیری","کسکش","کونی","جنده","لاشی","عوضی","حرومزاده","مادرجنده","گوه"];
+
+    function aiContainsProfanity(text){
+      const t=text.toLowerCase();
+      return AI_BAD_WORDS.some(w=>t.includes(w));
+    }
+
+    function aiNormalizeDigits(s){
+      const fa="۰۱۲۳۴۵۶۷۸۹",en="0123456789";
+      let out=s;
+      for(let i=0;i<fa.length;i++)out=out.split(fa[i]).join(en[i]);
+      return out;
+    }
+
+    let aiPendingPlans=null;
+    let aiAwaitingCheckout=false;
+
+    function aiListWireguardPlans(){
+      aiPendingPlans=WIREGUARD_PLANS.map(p=>p.id);
+      const lines=WIREGUARD_PLANS.map((p,i)=>(i+1)+") "+toFa(p.gb)+" گیگ — "+formatPrice(p.price)+" تومان");
+      return "کدوم حجم وایرگارد رو می‌خوای؟ فقط عدد گزینه رو بفرست:\n"+lines.join("\n");
+    }
+
+    function aiListJumpjumpPlans(){
+      aiPendingPlans=JUMPJUMP_PLANS.map(p=>p.id);
+      const lines=JUMPJUMP_PLANS.map((p,i)=>(i+1)+") "+toFa(p.devices)+" دستگاه، "+toFa(p.months)+" ماه"+(p.special?" ⭐":"")+" — "+formatPrice(p.price)+" تومان");
+      return "کدوم پلن JumpJump رو می‌خوای؟ فقط عدد گزینه رو بفرست:\n"+lines.join("\n");
+    }
+
+    function aiHandleCartFlow(rawText){
+      const text=aiNormalizeDigits(rawText.trim());
+      const lower=text.toLowerCase();
+
+      // ۱) در انتظار انتخاب شماره پلن
+      if(aiPendingPlans){
+        const m=text.match(/\d+/);
+        if(m){
+          const idx=parseInt(m[0],10)-1;
+          const planId=aiPendingPlans[idx];
+          const product=planId?FIXED_PRODUCTS[planId]:null;
+          if(product){
+            addToCart(product);
+            aiPendingPlans=null;
+            aiAwaitingCheckout=true;
+            return (product.shortName||product.name)+" به سبد خریدت اضافه شد ✅ می‌خوای ادامه بدی خرید یا بریم صفحهٔ پرداخت؟";
+          }
+        }
+        return "عدد گزینه معتبر نبود، لطفاً فقط شمارهٔ گزینه رو بفرست (مثلاً 1).";
+      }
+
+      // ۲) در انتظار تصمیم ادامهٔ خرید یا پرداخت
+      if(aiAwaitingCheckout){
+        if(/نه|پرداخت|تسویه|حساب کن/.test(lower)){
+          aiAwaitingCheckout=false;
+          closeModal("aiModal");
+          startCheckout();
+          return "باشه، بردمت به صفحهٔ پرداخت 🧾";
+        }
+        if(/(^|[^ن])اره|بله|ادامه|بازم|دیگه میخوام/.test(lower)){
+          aiAwaitingCheckout=false;
+          return "باشه 👍 بگو کدوم سرویس دیگه‌ای می‌خوای اضافه کنم (وایرگارد یا JumpJump).";
+        }
+        // اگه واضح نبود، ادامه می‌دیم به تشخیص عادی و این وضعیت رو نگه می‌داریم
+      }
+
+      // ۳) درخواست جدید برای افزودن به سبد
+      const buyIntent=/میخوام بخرم|میخوام بگیرم|اضافه کن به سبد|به سبد اضافه|میخوام سفارش بدم|میخوام خرید کنم|بخرم|اضافه کن|سبد خرید/.test(lower);
+      const mentionsWireguard=/وایرگارد|wireguard/.test(lower);
+      const mentionsJumpjump=/جامپ ?جامپ|jumpjump/.test(lower);
+      const mentionsV2box=/v2box|وی ?۲ ?باکس|وی2باکس|وی۲باکس/.test(lower);
+
+      if(buyIntent&&mentionsWireguard)return aiListWireguardPlans();
+      if(buyIntent&&mentionsJumpjump)return aiListJumpjumpPlans();
+      if(buyIntent&&mentionsV2box)return "برای V2Box چون حجم و نوع سرور قابل انتخابه، بهتره از بخش V2Box تو خود سایت انتخابش کنی تا دقیق‌تر باشه 🙏";
+
+      return null;
+    }
 
     function aiAppendMessage(role,text){
       const win=document.getElementById("aiChatWindow");
@@ -6874,6 +6958,15 @@ ${formatPrice(cartTotal())}
       return best?best.answer:AI_FALLBACK;
     }
 
+    function aiGenerateReply(text){
+      if(aiContainsProfanity(text)){
+        return "لطفاً از الفاظ نامناسب استفاده نکن 🙏 برای اینکه دسترسیت به این چت محدود (بلاک) نشه، محترمانه ادامه بدیم. حالا بگو چطور می‌تونم کمکت کنم؟";
+      }
+      const cartReply=aiHandleCartFlow(text);
+      if(cartReply!==null)return cartReply;
+      return aiFindAnswer(text);
+    }
+
     function sendAiMessage(){
       const field=document.getElementById("aiInputField");
       const text=field.value.trim();
@@ -6885,7 +6978,7 @@ ${formatPrice(cartTotal())}
       const typing=aiAppendMessage("bot","...");
       setTimeout(()=>{
         typing.remove();
-        aiAppendMessage("bot",aiFindAnswer(text));
+        aiAppendMessage("bot",aiGenerateReply(text));
       },350);
     }
     window.sendAiMessage=sendAiMessage;
