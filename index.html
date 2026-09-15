@@ -2507,7 +2507,33 @@
         grid-template-columns:1fr;
       }
     }
-  </style>
+      /* AUTH / ACCOUNT */
+    .account-header-btn{position:relative}
+    .account-dot{position:absolute;width:7px;height:7px;right:5px;bottom:5px;border-radius:50%;background:#bfc9c6;border:2px solid #fff}
+    .account-dot.online{background:var(--success)}
+    .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px}
+    .auth-tab{min-height:38px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:11px;font-weight:800}
+    .auth-tab.active{background:#fff;color:var(--primary);box-shadow:var(--shadow-sm)}
+    .account-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;margin-bottom:16px}
+    .account-avatar{width:45px;height:45px;border-radius:13px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-size:20px}
+    .account-card strong{display:block;font-size:11px;direction:ltr;text-align:right;overflow-wrap:anywhere}
+    .account-card span{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+    .account-section{margin-top:15px}
+    .account-section-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+    .account-section-head h3{font-size:12px}
+    .account-refresh{min-height:32px!important;padding:0 9px!important;font-size:9px!important}
+    .account-list{display:grid;gap:7px}
+    .account-item{border:1px solid var(--border);background:#fff;border-radius:11px;padding:11px}
+    .account-item-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .account-item strong{font-size:10px}
+    .account-item small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+    .account-status{padding:4px 7px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}
+    .account-status.pending{background:#fff7e7;color:var(--warning)}
+    .account-status.approved{background:#eaf7f1;color:var(--success)}
+    .account-status.rejected{background:#fff2f2;color:var(--danger)}
+    .subscription-value{margin-top:8px;padding:8px;border-radius:8px;background:var(--surface-2);border:1px dashed var(--border-strong);direction:ltr;text-align:left;font-size:9px;overflow:auto;white-space:nowrap}
+    .account-empty{padding:14px;border:1px dashed var(--border-strong);border-radius:11px;color:var(--muted);text-align:center;font-size:9px}
+</style>
 </head>
 
 <body>
@@ -2563,6 +2589,11 @@
       </nav>
 
       <div class="header-actions">
+        <button class="icon-btn account-header-btn" onclick="openAccount()" aria-label="حساب کاربری" title="حساب کاربری">
+          👤
+          <span class="account-dot" id="accountDot"></span>
+        </button>
+
         <button class="icon-btn" onclick="openCart()" aria-label="سبد خرید">
           🛒
           <span class="cart-count" id="cartCount">۰</span>
@@ -3695,6 +3726,73 @@
 
   <!-- TOAST -->
 
+  <div class="modal-wrap" id="authModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="authTitle">ورود به حساب</h2>
+        <button class="modal-close" onclick="closeModal('authModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button id="loginTab" class="auth-tab active" onclick="switchAuth('login')">ورود</button>
+          <button id="signupTab" class="auth-tab" onclick="switchAuth('signup')">ثبت‌نام</button>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label>ایمیل</label>
+            <input id="authEmail" type="email" dir="ltr" autocomplete="email" placeholder="example@email.com">
+          </div>
+          <div class="field">
+            <label>رمز عبور</label>
+            <input id="authPassword" type="password" dir="ltr" autocomplete="current-password" placeholder="حداقل ۶ کاراکتر">
+          </div>
+          <div class="field" id="authPassword2Wrap" style="display:none;">
+            <label>تکرار رمز عبور</label>
+            <input id="authPassword2" type="password" dir="ltr" autocomplete="new-password" placeholder="تکرار رمز عبور">
+          </div>
+        </div>
+        <p id="authHint" style="font-size:10px;color:var(--muted);margin-top:10px;">برای ادامه خرید ابتدا وارد حساب شوید.</p>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="authSubmit" onclick="submitAuth()">ورود</button>
+          <button class="btn btn-outline" onclick="closeModal('authModal')">بستن</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-wrap" id="accountModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>حساب کاربری</h2>
+        <button class="modal-close" onclick="closeModal('accountModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="account-card">
+          <div class="account-avatar">👤</div>
+          <div>
+            <strong id="accountEmail">—</strong>
+            <span id="accountRole">کاربر</span>
+          </div>
+        </div>
+        <div class="account-section">
+          <div class="account-section-head">
+            <h3>سفارش‌های من</h3>
+            <button class="btn btn-outline account-refresh" onclick="loadAccountData()">به‌روزرسانی</button>
+          </div>
+          <div id="myOrders" class="account-list"><div class="account-empty">هنوز سفارشی ثبت نشده است.</div></div>
+        </div>
+        <div class="account-section">
+          <div class="account-section-head"><h3>سرویس‌های من</h3></div>
+          <div id="mySubscriptions" class="account-list"><div class="account-empty">هنوز سرویس فعالی ندارید.</div></div>
+        </div>
+        <div class="modal-actions">
+          <a id="adminPanelBtn" class="btn btn-primary" href="admin.html" style="display:none;">پنل مدیریت</a>
+          <button class="btn btn-danger" onclick="logoutUser()">خروج از حساب</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast"></div>
 
 
@@ -3735,6 +3833,7 @@
   </div>
 
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
 
     /* ==========================================
@@ -6268,11 +6367,208 @@ ${problem}
     );
 
 
+    /* AUTH / ORDERS / SUBSCRIPTIONS */
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+    let supabaseClient = null;
+    let authMode = "login";
+    let checkoutNeedsLogin = false;
+
+    function initSupabase(){
+      if(typeof window.supabase==="undefined" || SUPABASE_URL==="YOUR_SUPABASE_URL" || SUPABASE_ANON_KEY==="YOUR_SUPABASE_ANON_KEY") return false;
+      supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+      supabaseClient.auth.onAuthStateChange((_event,session)=>updateAuthUI(session));
+      supabaseClient.auth.getSession().then(({data})=>updateAuthUI(data.session));
+      return true;
+    }
+
+    async function getCurrentUser(){
+      if(!supabaseClient) return null;
+      const {data:{user}}=await supabaseClient.auth.getUser();
+      return user||null;
+    }
+
+    function updateAuthUI(session){
+      const dot=document.getElementById("accountDot");
+      if(dot) dot.classList.toggle("online",!!session?.user);
+    }
+
+    function openAuthModal(continueCheckout=false){
+      checkoutNeedsLogin=!!continueCheckout;
+      switchAuth("login");
+      openModal("authModal");
+    }
+
+    async function openAccount(){
+      if(!supabaseClient){showToast("اتصال حساب کاربری هنوز تنظیم نشده است");return;}
+      const user=await getCurrentUser();
+      if(!user){openAuthModal(false);return;}
+      document.getElementById("accountEmail").textContent=user.email||"کاربر";
+      openModal("accountModal");
+      loadAccountData();
+    }
+
+    function switchAuth(mode){
+      authMode=mode;
+      document.getElementById("loginTab").classList.toggle("active",mode==="login");
+      document.getElementById("signupTab").classList.toggle("active",mode==="signup");
+      document.getElementById("authPassword2Wrap").style.display=mode==="signup"?"block":"none";
+      document.getElementById("authTitle").textContent=mode==="signup"?"ساخت حساب":"ورود به حساب";
+      document.getElementById("authSubmit").textContent=mode==="signup"?"ثبت‌نام":"ورود";
+      document.getElementById("authHint").textContent=checkoutNeedsLogin?"برای ادامه خرید ابتدا وارد حساب شوید.":"برای مشاهده حساب کاربری وارد شوید.";
+    }
+
+    async function submitAuth(){
+      if(!supabaseClient){showToast("ابتدا Supabase را در کد تنظیم کن");return;}
+      const email=document.getElementById("authEmail").value.trim();
+      const password=document.getElementById("authPassword").value;
+      if(!email||!password){showToast("ایمیل و رمز عبور را وارد کنید");return;}
+      if(password.length<6){showToast("رمز عبور باید حداقل ۶ کاراکتر باشد");return;}
+      const submit=document.getElementById("authSubmit");
+      submit.disabled=true;
+      try{
+        let result;
+        if(authMode==="signup"){
+          const password2=document.getElementById("authPassword2").value;
+          if(password!==password2){showToast("تکرار رمز عبور صحیح نیست");return;}
+          result=await supabaseClient.auth.signUp({email,password});
+          if(result.error) throw result.error;
+          if(!result.data.session){showToast("ثبت‌نام انجام شد؛ ایمیل تأیید را بررسی کنید");return;}
+        }else{
+          result=await supabaseClient.auth.signInWithPassword({email,password});
+          if(result.error) throw result.error;
+        }
+        closeModal("authModal");
+        const user=await getCurrentUser();
+        updateAuthUI(user?{user}:null);
+        showToast(authMode==="signup"?"حساب با موفقیت ساخته شد":"ورود موفق بود");
+        if(checkoutNeedsLogin&&cart.length){checkoutNeedsLogin=false;openModal("rulesModal");}
+      }catch(error){showToast(error?.message||"عملیات ورود انجام نشد");}
+      finally{submit.disabled=false;}
+    }
+
+    async function logoutUser(){
+      if(!supabaseClient)return;
+      await supabaseClient.auth.signOut();
+      closeModal("accountModal");
+      updateAuthUI(null);
+      showToast("از حساب خارج شدید");
+    }
+
+    function orderStatusFa(status){
+      return {pending:"در انتظار بررسی",approved:"تأیید شده",rejected:"رد شده"}[status]||status;
+    }
+
+    async function loadAccountData(){
+      if(!supabaseClient)return;
+      const user=await getCurrentUser();
+      if(!user)return;
+
+      const profile=await supabaseClient.from("profiles").select("role").eq("id",user.id).maybeSingle();
+      const isAdmin=!profile.error&&profile.data?.role==="admin";
+      document.getElementById("accountRole").textContent=isAdmin?"مدیر V2GURD":"کاربر";
+      document.getElementById("adminPanelBtn").style.display=isAdmin?"inline-flex":"none";
+
+      const orders=await supabaseClient.from("orders").select("id,order_number,status,total,created_at,order_items(product_name,quantity)").eq("user_id",user.id).order("created_at",{ascending:false});
+      const ordersBox=document.getElementById("myOrders");
+      if(orders.error){ordersBox.innerHTML='<div class="account-empty">خطا در دریافت سفارش‌ها</div>';}
+      else if(!orders.data.length){ordersBox.innerHTML='<div class="account-empty">هنوز سفارشی ثبت نشده است.</div>';}
+      else{
+        ordersBox.innerHTML=orders.data.map(o=>{
+          const products=(o.order_items||[]).map(i=>`${i.product_name} × ${toFa(i.quantity)}`).join("، ");
+          return `<div class="account-item"><div class="account-item-top"><div><strong>${o.order_number}</strong><small>${products}</small></div><span class="account-status ${o.status}">${orderStatusFa(o.status)}</span></div><div style="margin-top:6px;font-size:9px;color:var(--muted);">مبلغ: ${formatPrice(o.total)} تومان</div></div>`;
+        }).join("");
+      }
+
+      const subs=await supabaseClient.from("subscriptions").select("id,product_id,subscription_url,assigned_order_id,orders!inner(order_number,user_id)").eq("orders.user_id",user.id);
+      const subsBox=document.getElementById("mySubscriptions");
+      if(subs.error){subsBox.innerHTML='<div class="account-empty">خطا در دریافت سرویس‌ها</div>';}
+      else if(!subs.data.length){subsBox.innerHTML='<div class="account-empty">هنوز سرویس فعالی ندارید.</div>';}
+      else{
+        subsBox.innerHTML=subs.data.map(s=>`<div class="account-item"><div class="account-item-top"><div><strong>سرویس ${s.product_id}</strong><small>سفارش ${s.orders.order_number}</small></div><span class="account-status approved">فعال</span></div><div class="subscription-value">${s.subscription_url}</div><button class="btn btn-outline" style="margin-top:7px;width:100%;min-height:34px;font-size:9px;" onclick="copyText(${JSON.stringify(s.subscription_url)})">کپی لینک Subscription</button></div>`).join("");
+      }
+    }
+
+    async function createBackendOrder(){
+      const user=await getCurrentUser();
+      if(!user)throw new Error("برای خرید ابتدا وارد حساب شوید");
+      if(!cart.length)throw new Error("سبد خرید خالی است");
+
+      const items=cart.map(item=>({product_id:item.id,quantity:Number(item.qty||1)}));
+      const discountPercent=Math.min(15,Math.max(0,Number(couponDiscount||0)+Number(referralDiscount||0)));
+
+      const {data,error}=await supabaseClient.rpc("create_order",{p_items:items,p_discount_percent:discountPercent});
+      if(error)throw error;
+      if(!data?.order_id||!data?.order_number)throw new Error("سفارش از سمت سرور ساخته نشد");
+      return data;
+    }
+
+    async function secureStartCheckout(){
+      if(cart.length===0){showToast("سبد خرید شما خالی است");return;}
+      if(!supabaseClient){showToast("اتصال Supabase هنوز تنظیم نشده است");return;}
+      const user=await getCurrentUser();
+      if(!user){openAuthModal(true);return;}
+      openModal("rulesModal");
+    }
+
+    async function secureConfirmRules(){
+      closeModal("rulesModal");
+      try{
+        const order=await createBackendOrder();
+        currentOrderId=order.order_number;
+        const itemsHTML=cart.map(item=>`<div class="invoice-item"><span>${item.name} × ${toFa(item.qty)}</span><span>${formatPrice(item.price*item.qty)}</span></div>`).join("");
+        document.getElementById("invoiceContent").innerHTML=`
+          <div class="invoice">
+            <div class="invoice-head"><div><strong>V2GURD</strong><span style="display:block;">فاکتور سفارش</span></div><span>${currentOrderId}</span></div>
+            ${itemsHTML}
+            <div class="invoice-item" style="margin-top:10px;"><span>مبلغ سفارش</span><span>${formatPrice(order.subtotal)}</span></div>
+            <div class="invoice-item"><span>تخفیف</span><span>${formatPrice(order.discount)}</span></div>
+            <div class="invoice-total"><span>مبلغ نهایی</span><span style="color:var(--primary);">${formatPrice(order.total)}</span></div>
+          </div>
+          <div style="margin-top:10px;color:var(--muted);font-size:9px;">سفارش شما ثبت شد. پس از پرداخت، رسید را در تلگرام ارسال کنید.</div>`;
+        openModal("invoiceModal");
+      }catch(error){showToast(error?.message||"ثبت سفارش انجام نشد");}
+    }
+
+    async function secureSendReceipt(){
+      if(!currentOrderId){showToast("ابتدا سفارش را ثبت کنید");return;}
+      const user=await getCurrentUser();
+      if(!user){showToast("حساب کاربری پیدا نشد");return;}
+      const message=`سلام V2GURD 👋
+
+رسید پرداخت سفارش خود را ارسال می‌کنم.
+
+شماره سفارش:
+${currentOrderId}
+
+ایمیل حساب:
+${user.email||"—"}
+
+محصولات:
+${cart.map(item=>`• ${item.name} × ${item.qty} — ${formatPrice(item.price*item.qty)}`).join("
+")}
+
+مبلغ نهایی:
+${formatPrice(cartTotal())}
+
+رسید پرداخت را در ادامه ارسال می‌کنم.`.trim();
+      window.open(`${TELEGRAM}?text=${encodeURIComponent(message)}`,"_blank");
+      closeModal("paymentModal");
+      showToast("سفارش ثبت شده و منتظر بررسی است");
+    }
+
+    window.startCheckout=secureStartCheckout;
+    window.confirmRules=secureConfirmRules;
+    window.sendReceipt=secureSendReceipt;
+
+
     /* ==========================================
        INIT
     ========================================== */
 
     function init(){
+
+      initSupabase();
 
       renderCategories();
 
