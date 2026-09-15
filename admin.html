@@ -6,54 +6,1154 @@
 <title>V2GURD | پنل مدیریت</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-:root{--primary:#087765;--primary-dark:#05594d;--primary-soft:#e8f5f1;--ink:#14211f;--muted:#687673;--bg:#f5f7f6;--surface:#fff;--border:#e4ebe8;--success:#16845e;--danger:#c74848;--warning:#a9781f;--shadow:0 12px 35px rgba(20,33,31,.08);--radius:16px}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}.container{width:min(1180px,calc(100% - 28px));margin:auto;padding:30px 0}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.brand{font-size:24px;font-weight:900}.brand span{color:var(--primary)}button,input,select{font:inherit}.btn{border:0;border-radius:10px;padding:9px 13px;cursor:pointer;font-size:11px;font-weight:800}.primary{background:var(--primary);color:#fff}.outline{background:#fff;color:var(--ink);border:1px solid var(--border)}.danger{background:#fff2f2;color:var(--danger);border:1px solid #f1d7d7}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}.stat{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px}.stat span{display:block;color:var(--muted);font-size:10px}.stat strong{font-size:24px}.panel{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:18px;box-shadow:var(--shadow)}.panel h2{font-size:16px;margin-bottom:12px}.order{border:1px solid var(--border);border-radius:13px;padding:13px;margin-bottom:9px}.order-top{display:flex;justify-content:space-between;gap:10px}.badge{padding:4px 8px;border-radius:20px;font-size:8px;font-weight:800}.pending{background:#fff7e7;color:var(--warning)}.approved{background:#eaf7f1;color:var(--success)}.rejected{background:#fff2f2;color:var(--danger)}.meta{color:var(--muted);font-size:9px}.actions{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}.form{display:grid;grid-template-columns:1fr 2fr auto;gap:8px}.form input,.form select{height:40px;border:1px solid var(--border);border-radius:9px;padding:0 10px;outline:0;font-size:10px}.sub{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--border);border-radius:11px;padding:10px;margin-bottom:7px}.url{direction:ltr;overflow:auto;font-size:8px;max-width:65%;white-space:nowrap}.login{max-width:420px;margin:70px auto}.empty{text-align:center;color:var(--muted);padding:20px;font-size:10px}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.form{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.url{max-width:55%}}
+:root{
+--primary:#087765;
+--primary-dark:#05594d;
+--primary-soft:#e8f5f1;
+--ink:#14211f;
+--muted:#687673;
+--bg:#f5f7f6;
+--surface:#fff;
+--border:#e4ebe8;
+--success:#16845e;
+--danger:#c74848;
+--warning:#a9781f;
+--shadow:0 12px 35px rgba(20,33,31,.08);
+--radius:16px
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+body{
+font-family:Vazirmatn,Tahoma,sans-serif;
+background:var(--bg);
+color:var(--ink);
+line-height:1.8
+}
+
+.container{
+width:min(1180px,calc(100% - 28px));
+margin:auto;
+padding:30px 0
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+margin-bottom:20px
+}
+
+.brand{
+font-size:24px;
+font-weight:900
+}
+
+.brand span{
+color:var(--primary)
+}
+
+button,input,select{
+font:inherit
+}
+
+.btn{
+border:0;
+border-radius:10px;
+padding:9px 13px;
+cursor:pointer;
+font-size:11px;
+font-weight:800
+}
+
+.primary{
+background:var(--primary);
+color:#fff
+}
+
+.outline{
+background:#fff;
+color:var(--ink);
+border:1px solid var(--border)
+}
+
+.danger{
+background:#fff2f2;
+color:var(--danger);
+border:1px solid #f1d7d7
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:20px
+}
+
+.stat{
+background:#fff;
+border:1px solid var(--border);
+border-radius:16px;
+padding:18px
+}
+
+.stat span{
+display:block;
+color:var(--muted);
+font-size:10px
+}
+
+.stat strong{
+font-size:24px
+}
+
+.panel{
+background:#fff;
+border:1px solid var(--border);
+border-radius:18px;
+padding:18px;
+margin-bottom:18px;
+box-shadow:var(--shadow)
+}
+
+.panel h2{
+font-size:16px;
+margin-bottom:12px
+}
+
+.order{
+border:1px solid var(--border);
+border-radius:13px;
+padding:13px;
+margin-bottom:9px
+}
+
+.order-top{
+display:flex;
+justify-content:space-between;
+gap:10px
+}
+
+.badge{
+padding:4px 8px;
+border-radius:20px;
+font-size:8px;
+font-weight:800
+}
+
+.pending{
+background:#fff7e7;
+color:var(--warning)
+}
+
+.approved{
+background:#eaf7f1;
+color:var(--success)
+}
+
+.rejected{
+background:#fff2f2;
+color:var(--danger)
+}
+
+.meta{
+color:var(--muted);
+font-size:9px
+}
+
+.actions{
+display:flex;
+gap:7px;
+margin-top:10px;
+flex-wrap:wrap
+}
+
+.form{
+display:grid;
+grid-template-columns:1fr 2fr auto;
+gap:8px
+}
+
+.form input,
+.form select{
+height:40px;
+border:1px solid var(--border);
+border-radius:9px;
+padding:0 10px;
+outline:0;
+font-size:10px
+}
+
+.sub{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+border:1px solid var(--border);
+border-radius:11px;
+padding:10px;
+margin-bottom:7px
+}
+
+.url{
+direction:ltr;
+overflow:auto;
+font-size:8px;
+max-width:65%;
+white-space:nowrap
+}
+
+.login{
+max-width:420px;
+margin:70px auto
+}
+
+.empty{
+text-align:center;
+color:var(--muted);
+padding:20px;
+font-size:10px
+}
+
+.login input{
+width:100%;
+height:42px;
+border:1px solid var(--border);
+border-radius:9px;
+padding:0 10px;
+margin-bottom:8px;
+direction:ltr;
+outline:none
+}
+
+.login input:focus{
+border-color:var(--primary)
+}
+
+.login .btn{
+height:42px
+}
+
+@media(max-width:800px){
+.grid{
+grid-template-columns:repeat(2,1fr)
+}
+
+.form{
+grid-template-columns:1fr
+}
+
+.top{
+align-items:flex-start;
+flex-direction:column
+}
+
+.url{
+max-width:55%
+}
+}
 </style>
 </head>
+
 <body>
-<div class="container" id="app"><div class="login panel"><h2>ورود به پنل مدیریت</h2><p class="meta">برای ورود از همان حساب V2GURD استفاده کنید.</p><br><input id="email" type="email" placeholder="ایمیل" style="width:100%;height:42px;border:1px solid var(--border);border-radius:9px;padding:0 10px;margin-bottom:8px;direction:ltr"><input id="password" type="password" placeholder="رمز عبور" style="width:100%;height:42px;border:1px solid var(--border);border-radius:9px;padding:0 10px;margin-bottom:8px;direction:ltr"><button class="btn primary" style="width:100%" onclick="login()">ورود</button></div></div>
+
+<div class="container" id="app">
+
+<div class="login panel">
+
+<h2>ورود به پنل مدیریت</h2>
+
+<p class="meta">
+برای ورود از همان حساب V2GURD استفاده کنید.
+</p>
+
+<br>
+
+<input
+id="email"
+type="email"
+placeholder="ایمیل"
+autocomplete="username"
+>
+
+<input
+id="password"
+type="password"
+placeholder="رمز عبور"
+autocomplete="current-password"
+>
+
+<button
+class="btn primary"
+style="width:100%"
+onclick="login()"
+>
+ورود
+</button>
+
+</div>
+
+</div>
+
 <script>
+
 const SUPABASE_URL="https://psvesfkxtmlnjyhphsfs.supabase.co";
+
 const SUPABASE_ANON_KEY="sb_publishable_QClWgLVOmPGwPK_kTsL5UA_L0cNqJ4H";
+
 let sb=null;
-const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
-const price=n=>fa(Number(n||0).toLocaleString("en-US"));
+
+const fa=n=>
+String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+
+const price=n=>
+fa(Number(n||0).toLocaleString("en-US"));
+
+
+/* =========================
+   LOGIN
+========================= */
 
 async function login(){
-  if(SUPABASE_URL.startsWith("YOUR_")){alert("Supabase را در هر دو فایل تنظیم کن");return}
-  sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-  const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
-  const r=await sb.auth.signInWithPassword({email,password});
-  if(r.error){alert(r.error.message);return}
-  await boot();
+
+if(SUPABASE_URL.startsWith("YOUR_")){
+
+alert("Supabase را در هر دو فایل تنظیم کن");
+
+return;
 }
+
+sb=supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+const email=
+document.getElementById("email").value.trim();
+
+const password=
+document.getElementById("password").value;
+
+if(!email){
+
+alert("ایمیل را وارد کنید");
+
+return;
+}
+
+if(!password){
+
+alert("رمز عبور را وارد کنید");
+
+return;
+}
+
+const r=
+await sb.auth.signInWithPassword({
+email,
+password
+});
+
+if(r.error){
+
+alert("ایمیل یا رمز عبور اشتباه است.");
+
+document.getElementById("password").value="";
+
+document.getElementById("password").focus();
+
+return;
+}
+
+await boot();
+
+}
+
+
+/* =========================
+   BOOT
+========================= */
+
 async function boot(){
-  if(!sb)sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-  const {data:{user}}=await sb.auth.getUser();
-  if(!user){location.reload();return}
-  const p=await sb.from("profiles").select("role").eq("id",user.id).maybeSingle();
-  if(p.error||p.data?.role!=="admin"){document.getElementById("app").innerHTML='<div class="login panel"><h2>دسترسی رد شد</h2><p class="meta">این حساب مدیر نیست.</p><br><a class="btn outline" href="index.html">بازگشت به سایت</a></div>';return}
-  render();
+
+if(!sb){
+
+sb=supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
 }
+
+const {
+data:{user}
+}=await sb.auth.getUser();
+
+if(!user){
+
+showLogin();
+
+return;
+}
+
+const p=
+await sb
+.from("profiles")
+.select("role")
+.eq("id",user.id)
+.maybeSingle();
+
+
+/* اگر ادمین نبود */
+
+if(
+p.error ||
+p.data?.role!=="admin"
+){
+
+document.getElementById("app").innerHTML=`
+
+<div class="login panel">
+
+<h2>دسترسی رد شد</h2>
+
+<p class="meta">
+این حساب مدیر نیست.
+</p>
+
+<br>
+
+<button
+class="btn primary"
+style="width:100%;margin-bottom:8px"
+onclick="retryLogin()"
+>
+ورود با حساب دیگر
+</button>
+
+<a
+class="btn outline"
+style="display:block;text-align:center"
+href="index.html"
+>
+بازگشت به سایت
+</a>
+
+</div>
+
+`;
+
+return;
+
+}
+
+render();
+
+}
+
+
+/* =========================
+   SHOW LOGIN
+========================= */
+
+function showLogin(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="login panel">
+
+<h2>ورود به پنل مدیریت</h2>
+
+<p class="meta">
+برای ورود از همان حساب V2GURD استفاده کنید.
+</p>
+
+<br>
+
+<input
+id="email"
+type="email"
+placeholder="ایمیل"
+autocomplete="username"
+>
+
+<input
+id="password"
+type="password"
+placeholder="رمز عبور"
+autocomplete="current-password"
+>
+
+<button
+class="btn primary"
+style="width:100%"
+onclick="login()"
+>
+ورود
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   RETRY LOGIN
+========================= */
+
+async function retryLogin(){
+
+if(sb){
+
+await sb.auth.signOut();
+
+}
+
+showLogin();
+
+setTimeout(()=>{
+
+const email=
+document.getElementById("email");
+
+if(email){
+
+email.focus();
+
+}
+
+},100);
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
 async function render(){
-  const orders=await sb.from("orders").select("id,order_number,status,total,created_at,user_id,order_items(product_name,quantity)").order("created_at",{ascending:false});
-  const subs=await sb.from("subscriptions").select("id,product_id,subscription_url,status,assigned_order_id,created_at").order("created_at",{ascending:false});
-  const products=await sb.from("products").select("id,name,category,price,active").order("category").order("price");
-  if(orders.error||subs.error||products.error){document.getElementById("app").innerHTML='<div class="panel">خطا در دریافت اطلاعات. SQL را کامل اجرا کنید.</div>';return}
-  const pending=orders.data.filter(x=>x.status==="pending").length,approved=orders.data.filter(x=>x.status==="approved").length,available=subs.data.filter(x=>x.status==="available").length;
-  document.getElementById("app").innerHTML=`
-  <div class="top"><div class="brand">V2<span>GURD</span> — مدیریت</div><div class="actions"><a class="btn outline" href="index.html">سایت</a><button class="btn danger" onclick="logout()">خروج</button></div></div>
-  <div class="grid"><div class="stat"><span>کل سفارش‌ها</span><strong>${fa(orders.data.length)}</strong></div><div class="stat"><span>در انتظار</span><strong>${fa(pending)}</strong></div><div class="stat"><span>تأیید شده</span><strong>${fa(approved)}</strong></div><div class="stat"><span>Subscription آزاد</span><strong>${fa(available)}</strong></div></div>
-  <div class="panel"><h2>افزودن Subscription</h2><div class="form"><select id="subProduct">${products.data.map(p=>`<option value="${p.id}">${p.name}</option>`).join("")}</select><input id="subUrl" dir="ltr" placeholder="https://..."><button class="btn primary" onclick="addSub()">افزودن</button></div></div>
-  <div class="panel"><h2>سفارش‌ها</h2><div>${orders.data.length?orders.data.map(o=>`<div class="order"><div class="order-top"><div><b>${o.order_number}</b><div class="meta">${o.user_id}</div><div class="meta">${(o.order_items||[]).map(i=>i.product_name+" × "+fa(i.quantity)).join("، ")}</div></div><span class="badge ${o.status}">${o.status==="pending"?"در انتظار بررسی":o.status==="approved"?"تأیید شده":"رد شده"}</span></div><div class="meta" style="margin-top:5px">مبلغ: ${price(o.total)} تومان</div>${o.status==="pending"?`<div class="actions"><button class="btn primary" onclick="approve('${o.id}')">تأیید و تحویل سرویس</button><button class="btn danger" onclick="rejectOrder('${o.id}')">رد سفارش</button></div>`:""}</div>`).join(""):'<div class="empty">سفارشی وجود ندارد.</div>'}</div></div>
-  <div class="panel"><h2>Subscriptionها</h2>${subs.data.length?subs.data.map(s=>`<div class="sub"><div><b>${s.product_id}</b><div class="meta">${s.status==="available"?"آزاد":"اختصاص داده شده"}</div></div><div class="url">${s.subscription_url}</div><span class="badge ${s.status==="available"?"approved":"pending"}">${s.status==="available"?"آزاد":"فروخته شده"}</span></div>`).join(""):'<div class="empty">هنوز لینکی اضافه نشده است.</div>'}</div>`;
+
+const orders=
+await sb
+.from("orders")
+.select(
+"id,order_number,status,total,created_at,user_id,order_items(product_name,quantity)"
+)
+.order("created_at",{ascending:false});
+
+
+const subs=
+await sb
+.from("subscriptions")
+.select(
+"id,product_id,subscription_url,status,assigned_order_id,created_at"
+)
+.order("created_at",{ascending:false});
+
+
+const products=
+await sb
+.from("products")
+.select(
+"id,name,category,price,active"
+)
+.order("category")
+.order("price");
+
+
+if(
+orders.error ||
+subs.error ||
+products.error
+){
+
+document.getElementById("app").innerHTML=`
+
+<div class="panel">
+
+خطا در دریافت اطلاعات.
+
+<br><br>
+
+SQL را کامل اجرا کنید.
+
+<br><br>
+
+<button
+class="btn primary"
+onclick="render()"
+>
+تلاش مجدد
+</button>
+
+</div>
+
+`;
+
+return;
+
 }
-async function addSub(){const product_id=document.getElementById("subProduct").value,url=document.getElementById("subUrl").value.trim();if(!url){alert("لینک را وارد کنید");return}const r=await sb.from("subscriptions").insert({product_id,subscription_url:url});if(r.error){alert(r.error.message);return}document.getElementById("subUrl").value="";render()}
-async function approve(id){if(!confirm("این سفارش تأیید و Subscription آن اختصاص داده شود؟"))return;const r=await sb.rpc("approve_order",{p_order_id:id});if(r.error){alert(r.error.message);return}render()}
-async function rejectOrder(id){if(!confirm("این سفارش رد شود؟"))return;const r=await sb.rpc("reject_order",{p_order_id:id});if(r.error){alert(r.error.message);return}render()}
-async function logout(){if(sb)await sb.auth.signOut();location.reload()}
-window.addEventListener("DOMContentLoaded",async()=>{if(!SUPABASE_URL.startsWith("YOUR_")){sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);const {data:{session}}=await sb.auth.getSession();if(session)boot()}});
+
+
+const pending=
+orders.data.filter(
+x=>x.status==="pending"
+).length;
+
+
+const approved=
+orders.data.filter(
+x=>x.status==="approved"
+).length;
+
+
+const available=
+subs.data.filter(
+x=>x.status==="available"
+).length;
+
+
+document.getElementById("app").innerHTML=`
+
+<div class="top">
+
+<div class="brand">
+
+V2<span>GURD</span> — مدیریت
+
+</div>
+
+<div class="actions">
+
+<a
+class="btn outline"
+href="index.html"
+>
+سایت
+</a>
+
+<button
+class="btn danger"
+onclick="logout()"
+>
+خروج
+</button>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="stat">
+
+<span>
+کل سفارش‌ها
+</span>
+
+<strong>
+${fa(orders.data.length)}
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<span>
+در انتظار
+</span>
+
+<strong>
+${fa(pending)}
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<span>
+تأیید شده
+</span>
+
+<strong>
+${fa(approved)}
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<span>
+Subscription آزاد
+</span>
+
+<strong>
+${fa(available)}
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>
+افزودن Subscription
+</h2>
+
+<div class="form">
+
+<select id="subProduct">
+
+${products.data.map(p=>
+
+`<option value="${p.id}">
+${p.name}
+</option>`
+
+).join("")}
+
+</select>
+
+
+<input
+id="subUrl"
+dir="ltr"
+placeholder="https://..."
+>
+
+
+<button
+class="btn primary"
+onclick="addSub()"
+>
+افزودن
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>
+سفارش‌ها
+</h2>
+
+<div>
+
+${
+orders.data.length
+
+?
+
+orders.data.map(o=>
+
+`
+
+<div class="order">
+
+<div class="order-top">
+
+<div>
+
+<b>
+${o.order_number}
+</b>
+
+<div class="meta">
+${o.user_id}
+</div>
+
+<div class="meta">
+
+${(o.order_items||[])
+.map(
+i=>
+i.product_name+
+" × "+
+fa(i.quantity)
+)
+.join("، ")}
+
+</div>
+
+</div>
+
+
+<span class="badge ${o.status}">
+
+${
+o.status==="pending"
+?
+"در انتظار بررسی"
+:
+o.status==="approved"
+?
+"تأیید شده"
+:
+"رد شده"
+}
+
+</span>
+
+</div>
+
+
+<div
+class="meta"
+style="margin-top:5px"
+>
+
+مبلغ:
+
+${price(o.total)}
+
+تومان
+
+</div>
+
+
+${
+o.status==="pending"
+
+?
+
+`
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="approve('${o.id}')"
+>
+تأیید و تحویل سرویس
+</button>
+
+<button
+class="btn danger"
+onclick="rejectOrder('${o.id}')"
+>
+رد سفارش
+</button>
+
+</div>
+
+`
+
+:
+
+""
+
+}
+
+</div>
+
+`
+
+).join("")
+
+:
+
+`
+
+<div class="empty">
+سفارشی وجود ندارد.
+</div>
+
+`
+
+}
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>
+Subscriptionها
+</h2>
+
+
+${
+subs.data.length
+
+?
+
+subs.data.map(s=>
+
+`
+
+<div class="sub">
+
+<div>
+
+<b>
+${s.product_id}
+</b>
+
+<div class="meta">
+
+${
+s.status==="available"
+?
+"آزاد"
+:
+"اختصاص داده شده"
+}
+
+</div>
+
+</div>
+
+
+<div class="url">
+
+${s.subscription_url}
+
+</div>
+
+
+<span
+class="badge ${
+s.status==="available"
+?
+"approved"
+:
+"pending"
+}"
+>
+
+${
+s.status==="available"
+?
+"آزاد"
+:
+"فروخته شده"
+}
+
+</span>
+
+</div>
+
+`
+
+).join("")
+
+:
+
+`
+
+<div class="empty">
+هنوز لینکی اضافه نشده است.
+</div>
+
+`
+
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   ADD SUBSCRIPTION
+========================= */
+
+async function addSub(){
+
+const product_id=
+document.getElementById("subProduct").value;
+
+const url=
+document.getElementById("subUrl").value.trim();
+
+
+if(!url){
+
+alert("لینک را وارد کنید");
+
+return;
+
+}
+
+
+const r=
+await sb
+.from("subscriptions")
+.insert({
+product_id,
+subscription_url:url
+});
+
+
+if(r.error){
+
+alert(r.error.message);
+
+return;
+
+}
+
+
+document.getElementById("subUrl").value="";
+
+render();
+
+}
+
+
+/* =========================
+   APPROVE
+========================= */
+
+async function approve(id){
+
+if(
+!confirm(
+"این سفارش تأیید و Subscription آن اختصاص داده شود؟"
+)
+){
+
+return;
+
+}
+
+
+const r=
+await sb.rpc(
+"approve_order",
+{
+p_order_id:id
+}
+);
+
+
+if(r.error){
+
+alert(r.error.message);
+
+return;
+
+}
+
+render();
+
+}
+
+
+/* =========================
+   REJECT
+========================= */
+
+async function rejectOrder(id){
+
+if(
+!confirm(
+"این سفارش رد شود؟"
+)
+){
+
+return;
+
+}
+
+
+const r=
+await sb.rpc(
+"reject_order",
+{
+p_order_id:id
+}
+);
+
+
+if(r.error){
+
+alert(r.error.message);
+
+return;
+
+}
+
+render();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+if(sb){
+
+await sb.auth.signOut();
+
+}
+
+showLogin();
+
+}
+
+
+/* =========================
+   PAGE LOAD
+========================= */
+
+window.addEventListener(
+"DOMContentLoaded",
+async()=>{
+
+if(
+!SUPABASE_URL.startsWith("YOUR_")
+){
+
+sb=
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+const {
+data:{session}
+}=
+await sb.auth.getSession();
+
+
+if(session){
+
+boot();
+
+}
+
+}
+
+}
+);
+
 </script>
+
 </body>
 </html>
