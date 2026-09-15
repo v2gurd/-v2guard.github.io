@@ -6566,65 +6566,73 @@ ${formatPrice(cartTotal())}
        INIT
     ========================================== */
 
+    function hideIntro(){
+
+      const intro = document.getElementById("intro");
+
+      if(!intro) return;
+
+      intro.classList.add("hide");
+
+      // آخرین پشتیبان برای جلوگیری از گیر کردن صفحه روی Intro
+      setTimeout(() => {
+        if(intro && !intro.classList.contains("hide")){
+          intro.classList.add("hide");
+        }
+      }, 1800);
+
+    }
+
+
     function init(){
 
-      initSupabase();
+      try{
 
-      renderCategories();
+        initSupabase();
 
-      renderWireguard();
+        renderCategories();
+        renderWireguard();
+        renderV2Box();
+        renderJumpJump();
+        renderCompare();
+        renderSteps();
+        renderRules();
+        renderChips();
+        renderDownloads();
+        renderFaq();
+        loadCart();
+        initReferral();
+        initRoute();
+        registerServiceWorker();
+        updateQuickbar();
 
-      renderV2Box();
+        setInterval(
+          tickLiveStats,
+          3000
+        );
 
-      renderJumpJump();
+        tickLiveStats();
 
-      renderCompare();
-
-      renderSteps();
-
-      renderRules();
-
-      renderChips();
-
-      renderDownloads();
-
-      renderFaq();
-
-      loadCart();
-
-      initReferral();
-
-      initRoute();
-
-      registerServiceWorker();
-
-      updateQuickbar();
-
-      setInterval(
-        tickLiveStats,
-        3000
-      );
-
-      tickLiveStats();
-
-      setTimeout(
-        () => {
-
-          document
-            .getElementById("intro")
-            .classList.add("hide");
-
-        },
-        900
-      );
+      }catch(error){
+        console.error("V2GURD init error:", error);
+      }finally{
+        // حتی اگر یکی از بخش‌های سایت خطا بدهد، Intro نباید صفحه را قفل کند.
+        hideIntro();
+      }
 
     }
 
 
     document.addEventListener(
       "DOMContentLoaded",
-      init
+      init,
+      {once:true}
     );
+
+    // اگر DOMContentLoaded قبل از ثبت listener اتفاق افتاده باشد.
+    if(document.readyState !== "loading"){
+      init();
+    }
 
   </script>
 
