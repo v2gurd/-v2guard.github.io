@@ -1,1 +1,485 @@
+:root {
+  --bg: #070b10;
+  --card: #0d141c;
+  --card2: #111b25;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f5f7fa;
+  --muted: #9aa7b5;
+  --primary: #26e0c9;
+  --primary-dark: #159f91;
+  --gold: #d7b56d;
+  --danger: #ff5d73;
+  --success: #38d39f;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Vazirmatn", sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(38, 224, 201, 0.08), transparent 30%),
+    radial-gradient(circle at 85% 20%, rgba(177, 111, 255, 0.07), transparent 28%),
+    var(--bg);
+  color: var(--text);
+  direction: rtl;
+  min-height: 100vh;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* Header */
+
+.agency-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(7, 11, 16, 0.82);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
+
+.header-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Hero */
+
+.hero {
+  padding: 65px 0 35px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 15px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(38, 224, 201, 0.25);
+  background: rgba(38, 224, 201, 0.07);
+  color: var(--primary);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.35;
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.hero p {
+  max-width: 720px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* Benefits */
+
+.section {
+  padding: 35px 0;
+}
+
+.section-title {
+  font-size: 23px;
+  font-weight: 900;
+  margin-bottom: 22px;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.benefit-card {
+  background: linear-gradient(
+    145deg,
+    rgba(17, 27, 37, 0.95),
+    rgba(10, 16, 23, 0.95)
+  );
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 23px;
+  transition: 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(38, 224, 201, 0.3);
+}
+
+.benefit-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: rgba(38, 224, 201, 0.1);
+  color: var(--primary);
+  font-size: 21px;
+  margin-bottom: 13px;
+}
+
+.benefit-card h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.benefit-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Conditions */
+
+.conditions-box {
+  background: rgba(13, 20, 28, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 25px;
+}
+
+.condition {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.condition:last-child {
+  border-bottom: none;
+}
+
+.condition-question {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.condition-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.radio-label {
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-label input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-label span {
+  display: block;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.025);
+  color: #cbd3dc;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.radio-label:hover span {
+  border-color: rgba(38, 224, 201, 0.3);
+}
+
+.radio-label input:checked + span {
+  background: rgba(38, 224, 201, 0.11);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Form */
+
+.form-box {
+  background: rgba(13, 20, 28, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 27px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 17px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #dce2e8;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  border: 1px solid var(--border);
+  outline: none;
+  border-radius: 12px;
+  background: #091018;
+  color: #fff;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: rgba(38, 224, 201, 0.65);
+  box-shadow: 0 0 0 3px rgba(38, 224, 201, 0.07);
+}
+
+.form-group textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #667381;
+}
+
+/* Fee */
+
+.fee-card {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 17px;
+  border: 1px solid rgba(215, 181, 109, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(215, 181, 109, 0.08),
+    rgba(215, 181, 109, 0.02)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.fee-title {
+  font-weight: 900;
+  margin-bottom: 3px;
+}
+
+.fee-description {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.fee-price {
+  white-space: nowrap;
+  font-size: 23px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+/* Checkbox */
+
+.accept-box {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #cbd3dc;
+}
+
+.checkbox-label input {
+  margin-top: 6px;
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+}
+
+/* Button */
+
+.submit-area {
+  margin-top: 20px;
+}
+
+.submit-btn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  border-radius: 13px;
+  padding: 14px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  color: #06100f;
+  background: linear-gradient(135deg, var(--primary), #5cf1df);
+  box-shadow: 0 8px 25px rgba(38, 224, 201, 0.12);
+  transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(38, 224, 201, 0.2);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Message */
+
+.form-message {
+  display: none;
+  margin-top: 15px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.form-message.success {
+  display: block;
+  color: #8df0c9;
+  background: rgba(56, 211, 159, 0.08);
+  border: 1px solid rgba(56, 211, 159, 0.2);
+}
+
+.form-message.error {
+  display: block;
+  color: #ff9aaa;
+  background: rgba(255, 93, 115, 0.08);
+  border: 1px solid rgba(255, 93, 115, 0.2);
+}
+
+/* Footer */
+
+.agency-footer {
+  margin-top: 35px;
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: #687582;
+  font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+  .benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full {
+    grid-column: auto;
+  }
+
+  .fee-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fee-price {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: min(100% - 22px, 1100px);
+  }
+
+  .hero {
+    padding-top: 45px;
+  }
+
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  .conditions-box,
+  .form-box {
+    padding: 17px;
+  }
+
+  .condition-question {
+    font-size: 14px;
+  }
+
+  .radio-label span {
+    padding: 7px 11px;
+    font-size: 12px;
+  }
+}
