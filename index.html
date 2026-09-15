@@ -2202,6 +2202,116 @@
     }
 
     /* =========================
+       AI ASSISTANT FAB + MODAL
+    ========================== */
+
+    .ai-fab{
+      position:fixed;
+      left:20px;
+      bottom:24px;
+      z-index:6500;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      border:0;
+      background:var(--primary);
+      color:#fff;
+      box-shadow:var(--shadow-lg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      transition:.2s;
+    }
+
+    .ai-fab:hover{
+      transform:translateY(-3px);
+      background:var(--primary-dark);
+    }
+
+    .ai-fab-badge{
+      position:absolute;
+      top:-8px;
+      right:-10px;
+      background:var(--gold);
+      color:#fff;
+      font-size:8px;
+      font-weight:800;
+      padding:3px 6px;
+      border-radius:20px;
+      white-space:nowrap;
+      box-shadow:var(--shadow-sm);
+    }
+
+    .ai-chat-window{
+      background:var(--surface-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:14px;
+      min-height:120px;
+      max-height:260px;
+      overflow-y:auto;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .ai-msg{
+      max-width:85%;
+      padding:10px 13px;
+      border-radius:12px;
+      font-size:11px;
+      line-height:1.9;
+    }
+
+    .ai-msg-bot{
+      background:var(--surface);
+      border:1px solid var(--border);
+      align-self:flex-start;
+    }
+
+    .ai-soon-note{
+      margin-top:10px;
+      font-size:9.5px;
+      color:var(--warning);
+      background:var(--gold-soft);
+      border:1px solid var(--border);
+      border-radius:var(--radius-sm);
+      padding:8px 10px;
+    }
+
+    .ai-input-row{
+      display:flex;
+      gap:8px;
+      margin-top:12px;
+    }
+
+    .ai-input-row input{
+      flex:1;
+      height:40px;
+      border-radius:var(--radius-sm);
+      border:1px solid var(--border-strong);
+      padding:0 12px;
+      font-size:11px;
+      background:var(--surface-2);
+    }
+
+    .ai-input-row input:disabled,
+    .ai-input-row button:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+    @media(max-width:980px){
+      .ai-fab{
+        bottom:78px;
+        width:50px;
+        height:50px;
+        font-size:20px;
+      }
+    }
+
+    /* =========================
        MOBILE BOTTOM NAV
     ========================== */
 
@@ -3797,6 +3907,35 @@
 
 
   <!-- QUICK BAR -->
+
+  <button class="ai-fab" id="aiFab" onclick="openModal('aiModal')" aria-label="دستیار هوشمند V2GURD">
+    <span class="ai-fab-icon">🤖</span>
+    <span class="ai-fab-badge">به‌زودی</span>
+  </button>
+
+  <div class="modal-wrap" id="aiModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>دستیار هوشمند V2GURD</h2>
+        <button class="modal-close" onclick="closeModal('aiModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="ai-chat-window" id="aiChatWindow">
+          <div class="ai-msg ai-msg-bot">
+            سلام 👋 من دستیار هوشمند V2GURD هستم. به‌زودی می‌تونم راجع به وایرگارد، V2Box، JumpJump و مشکلات اتصال شما کمک کنم.
+          </div>
+        </div>
+        <div class="ai-soon-note">🚧 این بخش هنوز فعال نشده و به‌زودی راه‌اندازی می‌شود.</div>
+        <div class="ai-input-row">
+          <input type="text" id="aiInputField" placeholder="سوالت رو بپرس... (به‌زودی)" disabled>
+          <button class="btn btn-primary" onclick="sendAiMessage()" disabled id="aiSendBtn">ارسال</button>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline" onclick="closeModal('aiModal')">بستن</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="quickbar" id="quickbar">
     <button onclick="showPage('wireguard')">WireGuard</button>
@@ -6545,8 +6684,7 @@ ${currentOrderId}
 ${user.email||"—"}
 
 محصولات:
-${cart.map(item=>`• ${item.name} × ${item.qty} — ${formatPrice(item.price*item.qty)}`).join("
-")}
+${cart.map(item=>`• ${item.name} × ${item.qty} — ${formatPrice(item.price*item.qty)}`).join("\n")}
 
 مبلغ نهایی:
 ${formatPrice(cartTotal())}
@@ -6556,6 +6694,11 @@ ${formatPrice(cartTotal())}
       closeModal("paymentModal");
       showToast("سفارش ثبت شده و منتظر بررسی است");
     }
+
+    function sendAiMessage(){
+      showToast("دستیار هوشمند هنوز فعال نشده — به‌زودی 🤖");
+    }
+    window.sendAiMessage=sendAiMessage;
 
     window.startCheckout=secureStartCheckout;
     window.confirmRules=secureConfirmRules;
