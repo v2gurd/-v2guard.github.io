@@ -109,44 +109,89 @@
       /* -----------------------------------------------------
          بررسی ورود کاربر
 
-         نکته مهم: اینجا عمداً از auth.getSession() استفاده
-         می‌شود، نه auth.getUser(). تفاوت این دو:
+         نکته مهم: نه از auth.getUser() و نه حتی از یک فراخوانی
+         تنهای auth.getSession() استفاده نمی‌کنیم. دلیل:
 
          - getUser() یک درخواست شبکه‌ای واقعی به سرور Supabase
-           می‌فرستد تا توکن را دوباره با سرور اعتبارسنجی کند.
-           در لحظه‌ی لود اولیه صفحه (هم‌زمان با لود فونت‌ها،
-           CSS و اسکریپت‌های دیگر) این درخواست می‌تواند کند
-           شود یا موقتاً خطا بدهد؛ این باعث یک race condition
-           می‌شد که حتی کاربرِ لاگین‌شده هم به اشتباه «کاربر
-           لاگین نیست» تشخیص داده شود و بعد از حدود ۱ تا ۲
-           ثانیه به‌اشتباه به index.html ریدایرکت شود.
+           می‌فرستد تا توکن را دوباره اعتبارسنجی کند؛ در لحظه‌ی
+           لود اولیه صفحه (هم‌زمان با فونت‌ها، CSS و اسکریپت‌های
+           دیگر) این درخواست می‌تواند کند شود یا خطا بدهد.
 
-         - getSession() سشن را مستقیماً از storage محلی
-           (همان جایی که سشن لاگین در index.html هم ذخیره و
-           persist می‌شود) و بعد از تکمیل initialize داخلی
-           کلاینت Supabase برمی‌گرداند، بدون نیاز به یک
-           round-trip شبکه‌ای اضافه. این دقیقاً همان روشی است
-           که خود index.html هم برای همین بررسی استفاده
-           می‌کند، پس رفتار بین دو صفحه هم سازگار می‌شود و
-           دیگر ریدایرکت اشتباه رخ نمی‌دهد.
+         - getSession() به‌تنهایی هم می‌تواند دچار race condition
+           شود: اگر بلافاصله بعد از createClient() صدا زده شود،
+           ممکن است initialize داخلی کلاینت (خواندن سشن از
+           storage) هنوز تمام نشده باشد و مقدار null برگرداند —
+           حتی برای کاربر لاگین‌شده.
+
+         راه‌حل قطعی و بدون race که خود مستندات Supabase برای
+         این دقیقاً همین مورد پیشنهاد می‌دهد: گوش دادن به رویداد
+         "INITIAL_SESSION" روی auth.onAuthStateChange(). این
+         رویداد فقط زمانی fire می‌شود که کلاینت کار خواندن سشن
+         از storage را قطعاً و کامل تمام کرده باشد؛ بنابراین
+         دیگر هیچ وابستگی‌ای به سرعت شبکه یا لحظه‌ی اجرای اسکریپت
+         وجود ندارد و پاسخ همیشه قابل‌اعتماد است.
          ----------------------------------------------------- */
 
-      const {
-        data: { session },
-        error: sessionError
-      } = await supabaseClient.auth.getSession();
+      const initialSession = await new Promise((resolve) => {
+        const {
+          data: { subscription }
+        } = supabaseClient.auth.onAuthStateChange(
+          (event, session) => {
+            if (event === "INITIAL_SESSION") {
+              subscription.unsubscribe();
+              resolve(session);
+            }
+          }
+        );
+      });
 
-      const user = session?.user || null;
+      const user = initialSession?.user || null;
 
-      if (sessionError || !user) {
+      if (!user) {
+        /* -------------------------------------------------
+           کاربر لاگین نیست: به‌جای ریدایرکت خودکار به
+           index.html، روی همان صفحه نگه‌اش می‌داریم و با یک
+           پیام واضح از او می‌خواهیم اول ثبت‌نام/ورود کند.
+           فرم غیرفعال می‌شود تا بدون حساب کاربری قابل ارسال
+           نباشد، اما هیچ ریدایرکت خودکاری اتفاق نمی‌افتد.
+           ------------------------------------------------- */
+
         showMessage(
-          "برای ثبت درخواست نمایندگی ابتدا وارد حساب کاربری خود شوید.",
+          "برای ثبت درخواست نمایندگی ابتدا باید ثبت‌نام کرده و وارد حساب کاربری خود شوید.",
           "error"
         );
 
-        setTimeout(() => {
-          window.location.href = "index.html";
-        }, 1800);
+        form
+          .querySelectorAll("input, textarea, button")
+          .forEach((el) => {
+            el.disabled = true;
+          });
+
+        const messageBox =
+          document.getElementById("formMessage") ||
+          document.querySelector(".form-message");
+
+        if (
+          messageBox &&
+          !document.getElementById("agencyLoginLink")
+        ) {
+          const loginLink = document.createElement("a");
+
+          loginLink.id = "agencyLoginLink";
+          loginLink.href = "index.html";
+          loginLink.className = "submit-button";
+          loginLink.style.marginTop = "14px";
+          loginLink.style.textDecoration = "none";
+
+          loginLink.innerHTML =
+            "<span>ثبت‌نام یا ورود به حساب کاربری</span>" +
+            '<span class="button-arrow">←</span>';
+
+          messageBox.insertAdjacentElement(
+            "afterend",
+            loginLink
+          );
+        }
 
         return;
       }
