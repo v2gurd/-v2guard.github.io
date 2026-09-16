@@ -1,24 +1,62 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const cardNumberElement = document.getElementById("cardNumber");
-  const copyButton = document.getElementById("copyCard");
+/* =========================================================
+   V2GURD - Agency Payment
+   پرداخت کارت‌به‌کارت نمایندگی
+   مبلغ: 499,000 تومان
+   ========================================================= */
 
-  const submitButton = document.getElementById("submitPayment");
-  const message = document.getElementById("paymentMessage");
+(() => {
+  const SUPABASE_URL =
+    "https://psvesfkxtmlnjyhphsfs.supabase.co";
 
-  const paymentName = document.getElementById("paymentName");
-  const trackingCode = document.getElementById("trackingCode");
-  const paymentDate = document.getElementById("paymentDate");
-  const paymentNote = document.getElementById("paymentNote");
-  const paymentDone = document.getElementById("paymentDone");
+  const SUPABASE_ANON_KEY =
+    "sb_publishable_QClWgLVOmPGwPK_kTsL5UA_L0cNqJ4H";
 
-  const params = new URLSearchParams(window.location.search);
-  const requestId = params.get("request");
+  const SUPABASE_CDN =
+    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
 
-  function showMessage(text, type) {
-    if (!message) return;
+  const AGENCY_FEE = 499000;
+
+  const CARD_NUMBER = "6219861841635526";
+  const BANK_NAME = "بلو بانک";
+  const ACCOUNT_NAME = "نامی";
+
+  function loadSupabase() {
+    return new Promise((resolve, reject) => {
+      if (window.supabase) {
+        resolve();
+        return;
+      }
+
+      const script = document.createElement("script");
+
+      script.src = SUPABASE_CDN;
+      script.async = true;
+
+      script.onload = resolve;
+
+      script.onerror = () =>
+        reject(
+          new Error("Supabase SDK could not be loaded.")
+        );
+
+      document.head.appendChild(script);
+    });
+  }
+
+  function showMessage(text, type = "error") {
+    const message =
+      document.getElementById("paymentMessage") ||
+      document.getElementById("formMessage") ||
+      document.querySelector(".form-message");
+
+    if (!message) {
+      alert(text);
+      return;
+    }
 
     message.textContent = text;
-    message.className = "payment-message " + type;
+    message.className =
+      "form-message " + type;
 
     message.scrollIntoView({
       behavior: "smooth",
@@ -26,248 +64,499 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* -----------------------------
-     کپی شماره کارت
-  ----------------------------- */
-
-  if (copyButton && cardNumberElement) {
-    copyButton.addEventListener("click", async () => {
-      const rawCardNumber =
-        cardNumberElement.textContent
-          .replace(/\s+/g, "")
-          .trim();
-
-      try {
-        await navigator.clipboard.writeText(rawCardNumber);
-
-        copyButton.textContent = "شماره کارت کپی شد ✓";
-
-        setTimeout(() => {
-          copyButton.textContent = "کپی شماره کارت";
-        }, 2000);
-
-      } catch (error) {
-        showMessage(
-          "کپی شماره کارت انجام نشد. شماره کارت را به صورت دستی کپی کنید.",
-          "error"
-        );
-      }
-    });
-  }
-
-  /* -----------------------------
-     بررسی درخواست قبلی
-  ----------------------------- */
-
-  const savedRequestRaw =
-    localStorage.getItem("v2gurd_agency_request");
-
-  let savedRequest = null;
-
-  if (savedRequestRaw) {
+  function getTodayPersian() {
     try {
-      savedRequest = JSON.parse(savedRequestRaw);
-    } catch (error) {
-      console.error(
-        "Invalid agency request data:",
-        error
-      );
+      return new Intl.DateTimeFormat(
+        "fa-IR-u-ca-persian",
+        {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit"
+        }
+      ).format(new Date());
+    } catch {
+      return new Date().toLocaleDateString("fa-IR");
     }
   }
 
-  /*
-   * اگر ID داخل URL وجود داشته باشد،
-   * بررسی می‌کنیم که با درخواست ذخیره‌شده
-   * مطابقت داشته باشد.
-   */
+  function getOrderId() {
+    const params =
+      new URLSearchParams(window.location.search);
 
-  if (
-    requestId &&
-    savedRequest &&
-    savedRequest.id !== requestId
-  ) {
-    showMessage(
-      "اطلاعات درخواست با این صفحه مطابقت ندارد.",
-      "error"
+    return (
+      params.get("request") ||
+      params.get("agency") ||
+      localStorage.getItem(
+        "v2gurd_agency_request_id"
+      )
     );
+  }
 
-    if (submitButton) {
-      submitButton.disabled = true;
+  function setText(id, value) {
+    const element =
+      document.getElementById(id);
+
+    if (element) {
+      element.textContent = value;
     }
-
-    return;
   }
 
-  /* -----------------------------
-     پر کردن خودکار نام متقاضی
-  ----------------------------- */
+  function setInputValue(id, value) {
+    const element =
+      document.getElementById(id);
 
-  if (
-    paymentName &&
-    savedRequest &&
-    savedRequest.applicant &&
-    savedRequest.applicant.fullName
-  ) {
-    paymentName.value =
-      savedRequest.applicant.fullName;
+    if (element && !element.value) {
+      element.value = value;
+    }
   }
 
-  /* -----------------------------
-     تاریخ امروز
-  ----------------------------- */
-
-  if (paymentDate && !paymentDate.value) {
-    const today = new Date();
-
-    const year = today.getFullYear();
-    const month = String(
-      today.getMonth() + 1
-    ).padStart(2, "0");
-
-    const day = String(
-      today.getDate()
-    ).padStart(2, "0");
-
-    paymentDate.value =
-      `${year}-${month}-${day}`;
+  function copyCardNumber() {
+    navigator.clipboard
+      .writeText(CARD_NUMBER)
+      .then(() => {
+        showMessage(
+          "شماره کارت کپی شد.",
+          "success"
+        );
+      })
+      .catch(() => {
+        showMessage(
+          "کپی خودکار انجام نشد؛ شماره کارت را دستی کپی کنید.",
+          "error"
+        );
+      });
   }
 
-  /* -----------------------------
-     ثبت پرداخت
-  ----------------------------- */
-
-  if (submitButton) {
-    submitButton.addEventListener("click", () => {
-
-      const name =
-        paymentName?.value.trim() || "";
-
-      const tracking =
-        trackingCode?.value.trim() || "";
-
-      const date =
-        paymentDate?.value || "";
-
-      const note =
-        paymentNote?.value.trim() || "";
-
-      if (!savedRequest) {
-        showMessage(
-          "درخواست نمایندگی پیدا نشد. لطفاً ابتدا فرم درخواست نمایندگی را تکمیل کنید.",
-          "error"
-        );
-        return;
-      }
-
-      if (!name) {
-        showMessage(
-          "نام پرداخت‌کننده را وارد کنید.",
-          "error"
-        );
-        paymentName?.focus();
-        return;
-      }
-
-      if (!date) {
-        showMessage(
-          "تاریخ پرداخت را وارد کنید.",
-          "error"
-        );
-        paymentDate?.focus();
-        return;
-      }
-
-      if (!paymentDone?.checked) {
-        showMessage(
-          "ابتدا تأیید کنید که مبلغ ۴۹۹٬۰۰۰ تومان را پرداخت کرده‌اید.",
-          "error"
-        );
-        return;
-      }
-
-      const paymentData = {
-        id:
-          "PAY-" +
-          Date.now() +
-          "-" +
-          Math.floor(Math.random() * 1000),
-
-        requestId:
-          savedRequest.id,
-
-        amount: 499000,
-
-        payerName: name,
-
-        trackingCode: tracking,
-
-        paymentDate: date,
-
-        note: note,
-
-        submittedAt:
-          new Date().toISOString(),
-
-        status: "payment_submitted"
-      };
-
-      /* ذخیره پرداخت */
-
+  document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
       try {
-        localStorage.setItem(
-          "v2gurd_agency_payment",
-          JSON.stringify(paymentData)
+        await loadSupabase();
+
+        const supabaseClient =
+          window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+          );
+
+        /* ---------------------------------------------
+           بررسی ورود
+           --------------------------------------------- */
+
+        const {
+          data: { user },
+          error: userError
+        } =
+          await supabaseClient.auth.getUser();
+
+        if (userError || !user) {
+          showMessage(
+            "برای ادامه ابتدا وارد حساب کاربری شوید.",
+            "error"
+          );
+
+          setTimeout(() => {
+            window.location.href =
+              "index.html";
+          }, 1500);
+
+          return;
+        }
+
+        /* ---------------------------------------------
+           دریافت شناسه درخواست
+           --------------------------------------------- */
+
+        const requestId =
+          getOrderId();
+
+        if (!requestId) {
+          showMessage(
+            "شناسه درخواست نمایندگی پیدا نشد.",
+            "error"
+          );
+
+          return;
+        }
+
+        /* ---------------------------------------------
+           دریافت درخواست از Supabase
+           --------------------------------------------- */
+
+        const {
+          data: agency,
+          error: agencyError
+        } =
+          await supabaseClient
+            .from("agencies")
+            .select(
+              "id,user_id,full_name,email,agency_name,status,payment_status,agency_fee,payment_data"
+            )
+            .eq("id", requestId)
+            .eq("user_id", user.id)
+            .single();
+
+        if (agencyError || !agency) {
+          console.error(
+            "Agency fetch error:",
+            agencyError
+          );
+
+          showMessage(
+            "درخواست نمایندگی پیدا نشد یا متعلق به این حساب نیست.",
+            "error"
+          );
+
+          return;
+        }
+
+        /* ---------------------------------------------
+           اطلاعات صفحه
+           --------------------------------------------- */
+
+        setText(
+          "agencyName",
+          agency.agency_name ||
+            "نمایندگی V2GURD"
         );
 
-        /* به‌روزرسانی درخواست */
+        setText(
+          "applicantName",
+          agency.full_name || "-"
+        );
 
-        savedRequest.paymentStatus =
-          "payment_submitted";
+        setText(
+          "agencyFee",
+          AGENCY_FEE.toLocaleString(
+            "fa-IR"
+          ) + " تومان"
+        );
 
-        savedRequest.status =
-          "payment_submitted";
+        setText(
+          "paymentAmount",
+          AGENCY_FEE.toLocaleString(
+            "fa-IR"
+          ) + " تومان"
+        );
 
-        savedRequest.payment =
-          paymentData;
+        setText(
+          "cardNumber",
+          CARD_NUMBER
+        );
 
-        localStorage.setItem(
-          "v2gurd_agency_request",
-          JSON.stringify(savedRequest)
+        setText(
+          "bankName",
+          BANK_NAME
+        );
+
+        setText(
+          "accountName",
+          ACCOUNT_NAME
+        );
+
+        setInputValue(
+          "payerName",
+          agency.full_name || ""
+        );
+
+        setInputValue(
+          "paymentDate",
+          getTodayPersian()
+        );
+
+        /* ---------------------------------------------
+           وضعیت پرداخت قبلی
+           --------------------------------------------- */
+
+        if (
+          agency.payment_status ===
+            "submitted" ||
+          agency.payment_status ===
+            "verified"
+        ) {
+          showMessage(
+            agency.payment_status ===
+              "verified"
+              ? "پرداخت شما قبلاً تأیید شده است."
+              : "رسید پرداخت شما قبلاً ثبت شده و در انتظار بررسی است.",
+            "success"
+          );
+
+          const submitButton =
+            document.querySelector(
+              'button[type="submit"]'
+            );
+
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent =
+              agency.payment_status ===
+              "verified"
+                ? "پرداخت تأیید شده"
+                : "رسید قبلاً ثبت شده";
+          }
+
+          return;
+        }
+
+        /* ---------------------------------------------
+           کپی شماره کارت
+           --------------------------------------------- */
+
+        const copyButtons =
+          document.querySelectorAll(
+            "[data-copy-card], #copyCard, .copy-card"
+          );
+
+        copyButtons.forEach(
+          (button) => {
+            button.addEventListener(
+              "click",
+              copyCardNumber
+            );
+          }
+        );
+
+        /* ---------------------------------------------
+           فرم پرداخت
+           --------------------------------------------- */
+
+        const form =
+          document.getElementById(
+            "agencyPaymentForm"
+          ) ||
+          document.getElementById(
+            "paymentForm"
+          );
+
+        if (!form) {
+          console.warn(
+            "Agency payment form not found."
+          );
+          return;
+        }
+
+        form.addEventListener(
+          "submit",
+          async (event) => {
+            event.preventDefault();
+
+            const payerName =
+              document
+                .getElementById(
+                  "payerName"
+                )
+                ?.value.trim() || "";
+
+            const paymentDate =
+              document
+                .getElementById(
+                  "paymentDate"
+                )
+                ?.value.trim() || "";
+
+            const trackingCode =
+              document
+                .getElementById(
+                  "trackingCode"
+                )
+                ?.value.trim() || "";
+
+            const note =
+              document
+                .getElementById(
+                  "paymentNote"
+                )
+                ?.value.trim() || "";
+
+            const accepted =
+              document.getElementById(
+                "paymentConfirm"
+              ) ||
+              document.getElementById(
+                "acceptPayment"
+              );
+
+            /* -----------------------------------------
+               اعتبارسنجی
+               ----------------------------------------- */
+
+            if (!payerName) {
+              showMessage(
+                "نام پرداخت‌کننده را وارد کنید.",
+                "error"
+              );
+              return;
+            }
+
+            if (!paymentDate) {
+              showMessage(
+                "تاریخ پرداخت را وارد کنید.",
+                "error"
+              );
+              return;
+            }
+
+            if (
+              accepted &&
+              !accepted.checked
+            ) {
+              showMessage(
+                "لطفاً تأیید کنید که مبلغ را به حساب اعلام‌شده واریز کرده‌اید.",
+                "error"
+              );
+              return;
+            }
+
+            const submitButton =
+              form.querySelector(
+                'button[type="submit"]'
+              );
+
+            if (submitButton) {
+              submitButton.disabled = true;
+              submitButton.textContent =
+                "در حال ثبت رسید...";
+            }
+
+            try {
+              /* ---------------------------------------
+                 اطلاعات پرداخت
+                 --------------------------------------- */
+
+              const paymentData = {
+                amount: AGENCY_FEE,
+
+                payer_name:
+                  payerName,
+
+                payment_date:
+                  paymentDate,
+
+                tracking_code:
+                  trackingCode ||
+                  null,
+
+                note:
+                  note || null,
+
+                card_number:
+                  CARD_NUMBER,
+
+                bank_name:
+                  BANK_NAME,
+
+                account_name:
+                  ACCOUNT_NAME,
+
+                status:
+                  "submitted",
+
+                submitted_at:
+                  new Date().toISOString()
+              };
+
+              /* ---------------------------------------
+                 ذخیره در agencies
+                 --------------------------------------- */
+
+              const {
+                error: updateError
+              } =
+                await supabaseClient
+                  .from("agencies")
+                  .update({
+                    payment_status:
+                      "submitted",
+
+                    payment_data:
+                      paymentData,
+
+                    status:
+                      "pending"
+                  })
+                  .eq(
+                    "id",
+                    agency.id
+                  )
+                  .eq(
+                    "user_id",
+                    user.id
+                  );
+
+              if (updateError) {
+                throw updateError;
+              }
+
+              /* ---------------------------------------
+                 ذخیره محلی برای سازگاری
+                 --------------------------------------- */
+
+              localStorage.setItem(
+                "v2gurd_agency_payment",
+                JSON.stringify({
+                  agencyId:
+                    agency.id,
+
+                  amount:
+                    AGENCY_FEE,
+
+                  paymentData
+                })
+              );
+
+              /* ---------------------------------------
+                 موفقیت
+                 --------------------------------------- */
+
+              showMessage(
+                "رسید پرداخت با موفقیت ثبت شد. پرداخت شما در انتظار بررسی مدیریت است.",
+                "success"
+              );
+
+              if (submitButton) {
+                submitButton.textContent =
+                  "رسید ثبت شد";
+              }
+
+              setTimeout(() => {
+                window.location.href =
+                  "agency-dashboard.html";
+              }, 1800);
+
+            } catch (error) {
+              console.error(
+                "Agency payment error:",
+                error
+              );
+
+              showMessage(
+                "ثبت رسید پرداخت انجام نشد. لطفاً دوباره تلاش کنید.",
+                "error"
+              );
+
+              if (submitButton) {
+                submitButton.disabled =
+                  false;
+
+                submitButton.textContent =
+                  "ثبت رسید پرداخت";
+              }
+            }
+          }
         );
 
       } catch (error) {
         console.error(
-          "Payment storage error:",
+          "Agency payment initialization error:",
           error
         );
 
         showMessage(
-          "ذخیره اطلاعات پرداخت انجام نشد. دوباره تلاش کنید.",
+          "اتصال به سیستم پرداخت برقرار نشد. لطفاً صفحه را دوباره باز کنید.",
           "error"
         );
-
-        return;
       }
-
-      showMessage(
-        "اطلاعات پرداخت با موفقیت ثبت شد. درخواست شما برای بررسی آماده است.",
-        "success"
-      );
-
-      submitButton.disabled = true;
-      submitButton.textContent =
-        "پرداخت ثبت شد ✓";
-
-      /*
-       * فعلاً به پنل نمایندگی منتقل می‌شویم.
-       * در نسخه نهایی، وضعیت تا زمان تأیید ادمین
-       * «در انتظار بررسی» خواهد بود.
-       */
-
-      setTimeout(() => {
-        window.location.href =
-          "agency-dashboard.html";
-      }, 1800);
-    });
-  }
-});
+    }
+  );
+})();
