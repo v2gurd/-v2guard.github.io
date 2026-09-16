@@ -356,8 +356,155 @@ button{
   text-align:left;
 }
 
+/* AGENCY */
+
+.agency-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.agency-stat{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:15px;
+  box-shadow:var(--shadow);
+}
+
+.agency-stat small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:5px;
+}
+
+.agency-stat strong{
+  font-size:23px;
+}
+
+.agency-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:14px;
+}
+
+.agency-filter.active{
+  background:var(--p);
+  color:#fff;
+  border-color:var(--p);
+}
+
+.agency-card{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:10px;
+  background:#fff;
+}
+
+.agency-card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.agency-name{
+  font-size:13px;
+  font-weight:900;
+}
+
+.agency-sub{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+.agency-badges{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.agency-info{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:13px;
+  font-size:9px;
+}
+
+.agency-info div{
+  background:#f8fbfa;
+  border-radius:8px;
+  padding:8px;
+}
+
+.agency-info b{
+  color:var(--muted);
+}
+
+.agency-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:12px;
+}
+
+.agency-detail{
+  display:grid;
+  gap:12px;
+}
+
+.agency-detail-box{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px;
+}
+
+.agency-detail-box h3{
+  margin:0 0 10px;
+  font-size:12px;
+}
+
+.agency-detail-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:7px 0;
+  border-bottom:1px solid #edf2f0;
+  font-size:9px;
+}
+
+.agency-detail-row:last-child{
+  border-bottom:0;
+}
+
+.condition-row{
+  padding:6px 0;
+  border-bottom:1px solid #edf2f0;
+  font-size:9px;
+}
+
+.condition-row:last-child{
+  border-bottom:0;
+}
+
+.agency-loading{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  font-size:10px;
+}
+
 @media(max-width:800px){
-  .stats{
+
+  .stats,
+  .agency-stats{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -373,6 +520,24 @@ button{
   .table{
     min-width:900px;
   }
+
+  .agency-info{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:480px){
+
+  .stats,
+  .agency-stats{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .agency-stat{
+    padding:12px;
+  }
+
 }
 </style>
 </head>
@@ -501,6 +666,20 @@ button{
 </div>
 </div>
 
+<!-- AGENCY DETAILS MODAL -->
+<div class="modal" id="agencyModal">
+<div class="modal-box">
+
+<div class="modal-head">
+<h2>جزئیات درخواست نمایندگی</h2>
+<button class="close" onclick="closeModal('agencyModal')">×</button>
+</div>
+
+<div id="agencyModalContent"></div>
+
+</div>
+</div>
+
 <script>
 
 const SUPABASE_URL =
@@ -515,16 +694,22 @@ let DATA = {
 products:[],
 orders:[],
 subscriptions:[],
-users:[]
+users:[],
+agencies:[]
 };
 
 let currentPage = "dashboard";
 
+let agencyFilter = "all";
+
+
 const fa = n =>
 String(n ?? 0).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
 
+
 const money = n =>
 fa(Number(n || 0).toLocaleString("en-US"));
+
 
 const esc = s =>
 String(s ?? "").replace(/[&<>"']/g,m=>({
@@ -535,6 +720,7 @@ String(s ?? "").replace(/[&<>"']/g,m=>({
 "'":"&#039;"
 }[m]));
 
+
 const statusText = s => ({
 pending:"در انتظار",
 approved:"تأیید شده",
@@ -542,6 +728,24 @@ rejected:"رد شده",
 available:"آزاد",
 assigned:"اختصاص داده شده"
 }[s] || s);
+
+
+const agencyStatusText = s => ({
+pending:"در انتظار بررسی",
+payment_pending:"در انتظار پرداخت",
+active:"فعال",
+rejected:"رد شده",
+suspended:"معلق"
+}[s] || s || "نامشخص");
+
+
+const paymentStatusText = s => ({
+unpaid:"پرداخت نشده",
+submitted:"رسید ارسال شده",
+verified:"پرداخت تأیید شده",
+rejected:"پرداخت رد شده"
+}[s] || s || "نامشخص");
+
 
 function errorHTML(e){
 
@@ -554,9 +758,11 @@ ${e?.code ? `<br>Code: ${esc(e.code)}` : ""}
 
 }
 
+
 function openModal(id){
 document.getElementById(id).classList.add("show");
 }
+
 
 function closeModal(id){
 document.getElementById(id).classList.remove("show");
@@ -574,7 +780,7 @@ document.getElementById("app").innerHTML = `
 <h2>ورود به پنل مدیریت V2GURD</h2>
 
 <p class="small">
-مدیریت محصولات، پلن‌ها، سفارش‌ها و Subscriptionها
+مدیریت محصولات، پلن‌ها، سفارش‌ها، Subscriptionها و نمایندگان
 </p>
 
 <br>
@@ -605,6 +811,7 @@ onclick="login()"
 `;
 
 }
+
 
 async function login(){
 
@@ -810,11 +1017,24 @@ if(users.error)
 throw users.error;
 
 
+/* AGENCIES */
+
+const agencies =
+await supabaseClient
+.from("agencies")
+.select("*")
+.order("created_at",{ascending:false});
+
+if(agencies.error)
+throw agencies.error;
+
+
 DATA = {
 products:products.data || [],
 orders:orders.data || [],
 subscriptions:subscriptions.data || [],
-users:users.data || []
+users:users.data || [],
+agencies:agencies.data || []
 };
 
 }
@@ -880,6 +1100,11 @@ onclick="goTo('users')">
 کاربران
 </button>
 
+<button data-page="agencies"
+onclick="goTo('agencies')">
+نمایندگان
+</button>
+
 </div>
 
 <div id="content"></div>
@@ -923,6 +1148,9 @@ renderOrders();
 if(page === "users")
 renderUsers();
 
+if(page === "agencies")
+renderAgencies();
+
 }
 
 
@@ -951,6 +1179,16 @@ DATA.subscriptions.filter(
 s => s.status === "available"
 ).length;
 
+const activeAgencies =
+DATA.agencies.filter(
+a => a.status === "active"
+).length;
+
+const agencyReceipts =
+DATA.agencies.filter(
+a => a.payment_status === "submitted"
+).length;
+
 document.getElementById("content").innerHTML = `
 
 <div class="stats">
@@ -973,6 +1211,21 @@ document.getElementById("content").innerHTML = `
 <div class="stat">
 <small>Subscription آزاد</small>
 <strong>${fa(available)}</strong>
+</div>
+
+</div>
+
+
+<div class="stats" style="margin-top:12px">
+
+<div class="stat">
+<small>نمایندگان فعال</small>
+<strong>${fa(activeAgencies)}</strong>
+</div>
+
+<div class="stat">
+<small>رسید نمایندگی جدید</small>
+<strong>${fa(agencyReceipts)}</strong>
 </div>
 
 </div>
@@ -1026,6 +1279,13 @@ class="btn outline"
 onclick="goTo('orders')"
 >
 مدیریت سفارش‌ها
+</button>
+
+<button
+class="btn outline"
+onclick="goTo('agencies')"
+>
+مدیریت نمایندگان
 </button>
 
 </div>
@@ -1083,6 +1343,7 @@ class="tree"
 drawProducts();
 
 }
+
 
 function drawProducts(){
 
@@ -2058,6 +2319,797 @@ user.created_at
 </div>
 
 `;
+
+}
+
+
+/* =========================================================
+   AGENCY ADMIN
+   ========================================================= */
+
+function renderAgencies(){
+
+const total =
+DATA.agencies.length;
+
+const submitted =
+DATA.agencies.filter(
+a => a.payment_status === "submitted"
+).length;
+
+const active =
+DATA.agencies.filter(
+a => a.status === "active"
+).length;
+
+const rejected =
+DATA.agencies.filter(
+a => a.status === "rejected"
+).length;
+
+
+document.getElementById("content").innerHTML = `
+
+<div class="agency-stats">
+
+<div class="agency-stat">
+<small>کل درخواست‌ها</small>
+<strong>${fa(total)}</strong>
+</div>
+
+<div class="agency-stat">
+<small>رسیدهای جدید</small>
+<strong>${fa(submitted)}</strong>
+</div>
+
+<div class="agency-stat">
+<small>نمایندگان فعال</small>
+<strong>${fa(active)}</strong>
+</div>
+
+<div class="agency-stat">
+<small>رد شده</small>
+<strong>${fa(rejected)}</strong>
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="head">
+
+<div>
+
+<h2>
+مدیریت نمایندگان
+</h2>
+
+<div class="small">
+بررسی درخواست، رسید پرداخت و فعال‌سازی نمایندگی
+</div>
+
+</div>
+
+<button
+class="btn primary"
+onclick="refreshAgencies()"
+>
+↻ بروزرسانی
+</button>
+
+</div>
+
+
+<div class="agency-filters">
+
+<button
+class="btn outline agency-filter ${agencyFilter === "all" ? "active":""}"
+onclick="setAgencyFilter('all')"
+>
+همه
+</button>
+
+<button
+class="btn outline agency-filter ${agencyFilter === "payment_pending" ? "active":""}"
+onclick="setAgencyFilter('payment_pending')"
+>
+در انتظار پرداخت
+</button>
+
+<button
+class="btn outline agency-filter ${agencyFilter === "submitted" ? "active":""}"
+onclick="setAgencyFilter('submitted')"
+>
+رسیدهای جدید
+</button>
+
+<button
+class="btn outline agency-filter ${agencyFilter === "active" ? "active":""}"
+onclick="setAgencyFilter('active')"
+>
+فعال
+</button>
+
+<button
+class="btn outline agency-filter ${agencyFilter === "rejected" ? "active":""}"
+onclick="setAgencyFilter('rejected')"
+>
+رد شده
+</button>
+
+</div>
+
+
+<div id="agencyList"></div>
+
+</div>
+
+`;
+
+drawAgencies();
+
+}
+
+
+function setAgencyFilter(filter){
+
+agencyFilter = filter;
+
+renderAgencies();
+
+}
+
+
+function drawAgencies(){
+
+const list =
+document.getElementById("agencyList");
+
+if(!list)
+return;
+
+
+let rows =
+[...DATA.agencies];
+
+
+if(agencyFilter === "submitted"){
+
+rows =
+rows.filter(
+a => a.payment_status === "submitted"
+);
+
+}else if(agencyFilter !== "all"){
+
+rows =
+rows.filter(
+a => a.status === agencyFilter
+);
+
+}
+
+
+if(!rows.length){
+
+list.innerHTML = `
+<div class="empty">
+درخواستی برای نمایش وجود ندارد.
+</div>
+`;
+
+return;
+
+}
+
+
+list.innerHTML =
+rows.map(renderAgencyCard).join("");
+
+}
+
+
+function renderAgencyCard(a){
+
+const paymentSubmitted =
+a.payment_status === "submitted";
+
+const active =
+a.status === "active";
+
+const rejected =
+a.status === "rejected";
+
+
+let statusClass = "pending";
+
+if(active)
+statusClass = "on";
+
+if(rejected)
+statusClass = "off";
+
+
+let paymentClass = "pending";
+
+if(a.payment_status === "verified")
+paymentClass = "approved";
+
+if(a.payment_status === "rejected")
+paymentClass = "rejected";
+
+
+return `
+
+<div class="agency-card">
+
+<div class="agency-card-top">
+
+<div>
+
+<div class="agency-name">
+${esc(a.full_name || "-")}
+</div>
+
+<div class="agency-sub">
+${esc(a.agency_name || "بدون نام نمایندگی")}
+${a.city ? ` • ${esc(a.city)}` : ""}
+</div>
+
+</div>
+
+
+<div class="agency-badges">
+
+<span class="badge ${statusClass}">
+${agencyStatusText(a.status)}
+</span>
+
+<span class="badge ${paymentClass}">
+${paymentStatusText(a.payment_status)}
+</span>
+
+</div>
+
+</div>
+
+
+<div class="agency-info">
+
+<div>
+<b>ایمیل:</b>
+${esc(a.email || "-")}
+</div>
+
+<div>
+<b>موبایل:</b>
+${esc(a.phone || "-")}
+</div>
+
+<div>
+<b>تلگرام:</b>
+${esc(a.telegram || "-")}
+</div>
+
+<div>
+<b>مبلغ نمایندگی:</b>
+${money(a.agency_fee || 499000)} تومان
+</div>
+
+</div>
+
+
+<div class="agency-actions">
+
+<button
+class="btn outline"
+onclick="showAgencyDetails('${a.id}')"
+>
+مشاهده جزئیات
+</button>
+
+
+${
+paymentSubmitted && !active
+?
+
+`
+<button
+class="btn primary"
+onclick="approveAgency('${a.id}')"
+>
+✓ تأیید پرداخت و فعال‌سازی
+</button>
+`
+
+:
+
+""
+
+}
+
+
+${
+!active && !rejected
+?
+
+`
+<button
+class="btn danger"
+onclick="rejectAgency('${a.id}')"
+>
+رد درخواست
+</button>
+`
+
+:
+
+""
+
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* AGENCY DETAILS */
+
+function showAgencyDetails(id){
+
+const agency =
+DATA.agencies.find(
+a => a.id === id
+);
+
+if(!agency)
+return;
+
+
+const payment =
+agency.payment_data || {};
+
+const conditions =
+agency.conditions || {};
+
+
+let conditionsHTML =
+"اطلاعاتی ثبت نشده است.";
+
+
+if(
+conditions &&
+typeof conditions === "object" &&
+Object.keys(conditions).length
+){
+
+conditionsHTML =
+Object.entries(conditions)
+.map(([key,value]) => `
+
+<div class="condition-row">
+
+<b>${esc(key)}</b>
+
+:
+${esc(String(value))}
+
+</div>
+
+`)
+.join("");
+
+}
+
+
+document.getElementById("agencyModalContent").innerHTML = `
+
+<div class="agency-detail">
+
+
+<div class="agency-detail-box">
+
+<h3>
+اطلاعات متقاضی
+</h3>
+
+<div class="agency-detail-row">
+<span>نام و نام خانوادگی</span>
+<b>${esc(agency.full_name || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>ایمیل</span>
+<b class="ltr">${esc(agency.email || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>موبایل</span>
+<b>${esc(agency.phone || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>تلگرام</span>
+<b>${esc(agency.telegram || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>شهر</span>
+<b>${esc(agency.city || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>نام نمایندگی</span>
+<b>${esc(agency.agency_name || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>روش‌های فروش</span>
+<b>${esc(agency.sales_channels || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>توضیحات</span>
+<b>${esc(agency.notes || "-")}</b>
+</div>
+
+</div>
+
+
+<div class="agency-detail-box">
+
+<h3>
+وضعیت درخواست
+</h3>
+
+<div class="agency-detail-row">
+<span>وضعیت نمایندگی</span>
+<b>${agencyStatusText(agency.status)}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>وضعیت پرداخت</span>
+<b>${paymentStatusText(agency.payment_status)}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>هزینه</span>
+<b>${money(agency.agency_fee || 499000)} تومان</b>
+</div>
+
+<div class="agency-detail-row">
+<span>تاریخ درخواست</span>
+<b>
+${agency.created_at
+? new Date(agency.created_at).toLocaleString("fa-IR")
+: "-"
+}
+</b>
+</div>
+
+</div>
+
+
+<div class="agency-detail-box">
+
+<h3>
+اطلاعات رسید پرداخت
+</h3>
+
+<div class="agency-detail-row">
+<span>پرداخت‌کننده</span>
+<b>${esc(payment.payer_name || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>کد پیگیری</span>
+<b>${esc(payment.tracking_code || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>تاریخ پرداخت</span>
+<b>${esc(payment.payment_date || "-")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>بانک</span>
+<b>${esc(payment.bank_name || "بلو بانک")}</b>
+</div>
+
+<div class="agency-detail-row">
+<span>توضیحات</span>
+<b>${esc(payment.note || "-")}</b>
+</div>
+
+</div>
+
+
+<div class="agency-detail-box">
+
+<h3>
+پاسخ شرایط نمایندگی
+</h3>
+
+${conditionsHTML}
+
+</div>
+
+
+${
+payment.rejection_reason
+?
+
+`
+<div class="agency-detail-box">
+
+<h3>
+دلیل رد
+</h3>
+
+<div class="error">
+${esc(payment.rejection_reason)}
+</div>
+
+</div>
+`
+
+:
+
+""
+
+}
+
+
+<div class="actions">
+
+${
+paymentSubmitted && !active
+?
+
+`
+<button
+class="btn primary"
+onclick="
+closeModal('agencyModal');
+approveAgency('${agency.id}');
+"
+>
+✓ تأیید پرداخت و فعال‌سازی
+</button>
+`
+
+:
+
+""
+
+}
+
+
+${
+!active && !rejected
+?
+
+`
+<button
+class="btn danger"
+onclick="
+closeModal('agencyModal');
+rejectAgency('${agency.id}');
+"
+>
+رد درخواست
+</button>
+`
+
+:
+
+""
+
+}
+
+<button
+class="btn outline"
+onclick="closeModal('agencyModal')"
+>
+بستن
+</button>
+
+</div>
+
+
+</div>
+
+`;
+
+openModal("agencyModal");
+
+}
+
+
+/* AGENCY APPROVE */
+
+async function approveAgency(id){
+
+const agency =
+DATA.agencies.find(
+a => a.id === id
+);
+
+if(!agency)
+return;
+
+
+if(
+agency.payment_status !== "submitted"
+){
+
+alert(
+"هنوز رسید پرداختی برای این درخواست ثبت نشده است."
+);
+
+return;
+
+}
+
+
+const ok =
+confirm(
+`آیا پرداخت «${agency.full_name}» تأیید و نمایندگی فعال شود؟`
+);
+
+if(!ok)
+return;
+
+
+const result =
+await supabaseClient
+.from("agencies")
+.update({
+status:"active",
+payment_status:"verified"
+})
+.eq("id",id);
+
+
+if(result.error){
+
+alert(
+"فعال‌سازی انجام نشد:\n" +
+result.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"پرداخت تأیید شد و نمایندگی فعال شد."
+);
+
+
+await loadAll();
+
+renderAgencies();
+
+}
+
+
+/* AGENCY REJECT */
+
+async function rejectAgency(id){
+
+const agency =
+DATA.agencies.find(
+a => a.id === id
+);
+
+if(!agency)
+return;
+
+
+const reason =
+prompt(
+"دلیل رد درخواست را وارد کنید:"
+);
+
+
+if(reason === null)
+return;
+
+
+const paymentData =
+{
+...(agency.payment_data || {}),
+rejection_reason:
+reason.trim() || "بدون توضیح",
+rejected_at:
+new Date().toISOString()
+};
+
+
+const result =
+await supabaseClient
+.from("agencies")
+.update({
+
+status:"rejected",
+
+payment_status:"rejected",
+
+payment_data:paymentData
+
+})
+.eq("id",id);
+
+
+if(result.error){
+
+alert(
+"رد درخواست انجام نشد:\n" +
+result.error.message
+);
+
+return;
+
+}
+
+
+alert("درخواست رد شد.");
+
+
+await loadAll();
+
+renderAgencies();
+
+}
+
+
+/* AGENCY REFRESH */
+
+async function refreshAgencies(){
+
+const button =
+document.querySelector(
+'[onclick="refreshAgencies()"]'
+);
+
+if(button){
+
+button.disabled = true;
+button.textContent = "در حال بروزرسانی...";
+
+}
+
+
+try{
+
+await loadAll();
+
+renderAgencies();
+
+}catch(e){
+
+alert(
+"بروزرسانی انجام نشد:\n" +
+(e?.message || e)
+);
+
+}finally{
+
+if(button){
+
+button.disabled = false;
+button.textContent = "↻ بروزرسانی";
+
+}
+
+}
 
 }
 
