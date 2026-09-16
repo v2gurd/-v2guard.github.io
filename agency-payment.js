@@ -1,579 +1,602 @@
-(() => {
-  const SUPABASE_URL =
-    "https://psvesfkxtmlnjyhphsfs.supabase.co";
+// ============================================================
+// V2GURD - Agency Payment
+// agency-payment.js
+// ============================================================
 
-  const SUPABASE_ANON_KEY =
-    "sb_publishable_QClWgLVOmPGwPK_kTsL5UA_L0cNqJ4H";
+const SUPABASE_URL = "https://psvesfkxtmlnjyhphsfs.supabase.co";
+const SUPABASE_ANON_KEY =
+  "sb_publishable_QClWgLVOmPGwPK_kTsL5UA_L0cNqJ4H";
 
-  const SUPABASE_CDN =
-    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+const TELEGRAM_URL = "https://t.me/Vtwoguard";
 
-  const AGENCY_FEE = 499000;
+const AGENCY_FEE = 499000;
 
-  const CARD_NUMBER = "6219861841635526";
-  const BANK_NAME = "بلو بانک";
-  const ACCOUNT_NAME = "نامی";
+let supabaseClient = null;
+let currentUser = null;
+let agencyRequest = null;
 
-  const TELEGRAM_URL = "https://t.me/Vtwoguard";
 
-  function loadSupabase() {
-    return new Promise((resolve, reject) => {
-      if (window.supabase) {
-        resolve();
-        return;
-      }
+// ============================================================
+// Load Supabase
+// ============================================================
 
-      const script = document.createElement("script");
-      script.src = SUPABASE_CDN;
-      script.async = true;
-
-      script.onload = resolve;
-      script.onerror = () =>
-        reject(new Error("Supabase SDK load failed."));
-
-      document.head.appendChild(script);
-    });
-  }
-
-  function showMessage(text, type = "error") {
-    const message =
-      document.getElementById("paymentMessage");
-
-    if (!message) {
-      alert(text);
+function loadSupabase() {
+  return new Promise((resolve, reject) => {
+    if (window.supabase) {
+      resolve();
       return;
     }
 
-    message.textContent = text;
-    message.className =
-      "payment-message " + type;
+    const script = document.createElement("script");
 
-    message.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-  }
+    script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
 
-  function getRequestId() {
-    const params =
-      new URLSearchParams(window.location.search);
+    script.onload = resolve;
+    script.onerror = () => {
+      reject(new Error("خطا در بارگذاری سیستم پرداخت"));
+    };
 
-    return (
-      params.get("request") ||
-      localStorage.getItem(
-        "v2gurd_agency_request_id"
-      )
+    document.head.appendChild(script);
+  });
+}
+
+
+// ============================================================
+// Elements
+// ============================================================
+
+function getElements() {
+  return {
+    paymentName: document.getElementById("paymentName"),
+    trackingCode: document.getElementById("trackingCode"),
+    paymentDate: document.getElementById("paymentDate"),
+    paymentNote: document.getElementById("paymentNote"),
+    paymentDone: document.getElementById("paymentDone"),
+    submitPayment: document.getElementById("submitPayment"),
+    copyCard: document.getElementById("copyCard"),
+    cardNumber: document.getElementById("cardNumber"),
+    paymentMessage: document.getElementById("paymentMessage")
+  };
+}
+
+
+// ============================================================
+// Message
+// ============================================================
+
+function showMessage(message, type = "info") {
+  const { paymentMessage } = getElements();
+
+  if (!paymentMessage) return;
+
+  paymentMessage.className = `payment-message ${type}`;
+  paymentMessage.innerHTML = message;
+}
+
+
+// ============================================================
+// Init
+// ============================================================
+
+async function init() {
+  try {
+    await loadSupabase();
+
+    supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    const {
+      data: { user },
+      error: userError
+    } = await supabaseClient.auth.getUser();
+
+    if (userError || !user) {
+      showMessage(
+        `
+        <strong>ابتدا وارد حساب کاربری شوید.</strong>
+        <br>
+        سپس دوباره برای پرداخت هزینه نمایندگی اقدام کنید.
+        `,
+        "error"
+      );
+
+      return;
+    }
+
+    currentUser = user;
+
+    await loadAgency();
+
+    setupCopyButton();
+    setupPaymentForm();
+
+  } catch (error) {
+    console.error(error);
+
+    showMessage(
+      "خطایی در بارگذاری صفحه پرداخت رخ داد. لطفاً دوباره تلاش کنید.",
+      "error"
     );
   }
+}
 
-  function getPersianDate() {
-    try {
-      return new Intl.DateTimeFormat(
-        "fa-IR-u-ca-persian",
-        {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit"
-        }
-      ).format(new Date());
-    } catch {
-      return new Date().toLocaleDateString("fa-IR");
-    }
+
+// ============================================================
+// Load Agency Request
+// ============================================================
+
+async function loadAgency() {
+  const requestId =
+    new URLSearchParams(window.location.search).get("request") ||
+    localStorage.getItem("v2gurd_agency_request_id");
+
+  if (!requestId) {
+    showMessage(
+      `
+      <strong>درخواست نمایندگی پیدا نشد.</strong>
+      <br>
+      لطفاً ابتدا درخواست نمایندگی خود را ثبت کنید.
+      `,
+      "error"
+    );
+
+    return;
   }
 
-  function setText(id, value) {
-    const el = document.getElementById(id);
+  const { data, error } = await supabaseClient
+    .from("agencies")
+    .select(`
+      id,
+      user_id,
+      full_name,
+      email,
+      phone,
+      telegram,
+      city,
+      agency_name,
+      status,
+      agency_fee,
+      payment_status,
+      payment_data
+    `)
+    .eq("id", requestId)
+    .eq("user_id", currentUser.id)
+    .maybeSingle();
 
-    if (el) {
-      el.textContent = value;
-    }
+  if (error) {
+    console.error("Agency load error:", error);
+
+    showMessage(
+      "خطا در دریافت اطلاعات درخواست نمایندگی.",
+      "error"
+    );
+
+    return;
   }
 
-  async function copyCard() {
+  if (!data) {
+    showMessage(
+      `
+      <strong>درخواست نمایندگی پیدا نشد.</strong>
+      <br>
+      لطفاً دوباره درخواست خود را ثبت کنید.
+      `,
+      "error"
+    );
+
+    return;
+  }
+
+  agencyRequest = data;
+
+  localStorage.setItem(
+    "v2gurd_agency_request_id",
+    data.id
+  );
+
+  prepareForm();
+}
+
+
+// ============================================================
+// Prepare Form
+// ============================================================
+
+function prepareForm() {
+  const {
+    paymentName,
+    paymentDate,
+    submitPayment
+  } = getElements();
+
+  if (!agencyRequest) return;
+
+  if (paymentName && !paymentName.value) {
+    paymentName.value = agencyRequest.full_name || "";
+  }
+
+  if (paymentDate && !paymentDate.value) {
+    const today = new Date();
+
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+
+    paymentDate.value = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // قبلاً رسید ثبت شده
+  if (agencyRequest.payment_status === "submitted") {
+    showMessage(
+      `
+      <strong>رسید پرداخت شما قبلاً ثبت شده است.</strong>
+      <br>
+      درخواست شما در حال بررسی مدیریت است.
+      `,
+      "success"
+    );
+
+    if (submitPayment) {
+      submitPayment.disabled = true;
+      submitPayment.textContent = "✓ رسید قبلاً ثبت شده";
+    }
+
+    return;
+  }
+
+  // پرداخت تأیید شده
+  if (agencyRequest.payment_status === "verified") {
+    showMessage(
+      `
+      <strong>پرداخت شما قبلاً تأیید شده است.</strong>
+      <br>
+      نمایندگی شما در حال فعال‌سازی است.
+      `,
+      "success"
+    );
+
+    if (submitPayment) {
+      submitPayment.disabled = true;
+      submitPayment.textContent = "✓ پرداخت تأیید شده";
+    }
+
+    return;
+  }
+}
+
+
+// ============================================================
+// Copy Card Number
+// ============================================================
+
+function setupCopyButton() {
+  const { copyCard } = getElements();
+
+  if (!copyCard) return;
+
+  copyCard.addEventListener("click", async () => {
+    const cardNumber = "6219861841635526";
+
     try {
-      await navigator.clipboard.writeText(
-        CARD_NUMBER
-      );
+      await navigator.clipboard.writeText(cardNumber);
+
+      const oldText = copyCard.textContent;
+
+      copyCard.textContent = "✓ شماره کارت کپی شد";
+
+      setTimeout(() => {
+        copyCard.textContent = oldText;
+      }, 2000);
+
+    } catch (error) {
+      console.error(error);
 
       showMessage(
-        "شماره کارت کپی شد.",
-        "success"
-      );
-    } catch {
-      showMessage(
-        "کپی خودکار انجام نشد.",
+        "کپی شماره کارت انجام نشد. شماره کارت را دستی کپی کنید.",
         "error"
       );
     }
+  });
+}
+
+
+// ============================================================
+// Payment Form
+// ============================================================
+
+function setupPaymentForm() {
+  const { submitPayment } = getElements();
+
+  if (!submitPayment) return;
+
+  submitPayment.addEventListener("click", submitPaymentForm);
+}
+
+
+// ============================================================
+// Submit Payment
+// ============================================================
+
+async function submitPaymentForm() {
+  const {
+    paymentName,
+    trackingCode,
+    paymentDate,
+    paymentNote,
+    paymentDone,
+    submitPayment
+  } = getElements();
+
+  if (!agencyRequest) {
+    showMessage(
+      "اطلاعات درخواست نمایندگی پیدا نشد.",
+      "error"
+    );
+
+    return;
   }
 
-  document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
-      try {
-        await loadSupabase();
-
-        const supabaseClient =
-          window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_ANON_KEY
-          );
-
-        /* ================================
-           بررسی ورود
-           ================================ */
-
-        const {
-          data: { user },
-          error: authError
-        } =
-          await supabaseClient.auth.getUser();
-
-        if (authError || !user) {
-          showMessage(
-            "برای ادامه ابتدا وارد حساب کاربری شوید.",
-            "error"
-          );
-
-          setTimeout(() => {
-            window.location.href =
-              "index.html";
-          }, 1500);
-
-          return;
-        }
-
-        /* ================================
-           دریافت شناسه درخواست
-           ================================ */
-
-        const requestId =
-          getRequestId();
-
-        if (!requestId) {
-          showMessage(
-            "شناسه درخواست نمایندگی پیدا نشد.",
-            "error"
-          );
-
-          return;
-        }
-
-        /* ================================
-           دریافت درخواست از Supabase
-           ================================ */
-
-        const {
-          data: agency,
-          error: agencyError
-        } =
-          await supabaseClient
-            .from("agencies")
-            .select(
-              "id,user_id,full_name,email,phone,telegram,city,agency_name,status,payment_status,agency_fee,payment_data"
-            )
-            .eq("id", requestId)
-            .eq("user_id", user.id)
-            .single();
-
-        if (agencyError || !agency) {
-          console.error(
-            "Agency error:",
-            agencyError
-          );
-
-          showMessage(
-            "درخواست نمایندگی پیدا نشد.",
-            "error"
-          );
-
-          return;
-        }
-
-        /* ================================
-           اطلاعات صفحه
-           ================================ */
-
-        setText(
-          "cardNumber",
-          CARD_NUMBER
-        );
-
-        const paymentName =
-          document.getElementById(
-            "paymentName"
-          );
-
-        if (
-          paymentName &&
-          !paymentName.value
-        ) {
-          paymentName.value =
-            agency.full_name || "";
-        }
-
-        const paymentDate =
-          document.getElementById(
-            "paymentDate"
-          );
-
-        if (
-          paymentDate &&
-          !paymentDate.value
-        ) {
-          paymentDate.value =
-            new Date()
-              .toISOString()
-              .split("T")[0];
-        }
-
-        /* ================================
-           کپی کارت
-           ================================ */
-
-        const copyButton =
-          document.getElementById(
-            "copyCard"
-          );
-
-        if (copyButton) {
-          copyButton.addEventListener(
-            "click",
-            copyCard
-          );
-        }
-
-        /* ================================
-           اگر قبلاً رسید ارسال شده
-           ================================ */
-
-        if (
-          agency.payment_status ===
-          "submitted"
-        ) {
-          showMessage(
-            "رسید پرداخت شما قبلاً ثبت شده و در حال بررسی است.",
-            "success"
-          );
-
-          const button =
-            document.getElementById(
-              "submitPayment"
-            );
-
-          if (button) {
-            button.disabled = true;
-            button.textContent =
-              "در حال بررسی";
-          }
-
-          return;
-        }
-
-        if (
-          agency.payment_status ===
-          "verified"
-        ) {
-          showMessage(
-            "پرداخت شما قبلاً تأیید شده است.",
-            "success"
-          );
-
-          const button =
-            document.getElementById(
-              "submitPayment"
-            );
-
-          if (button) {
-            button.disabled = true;
-            button.textContent =
-              "پرداخت تأیید شده";
-          }
-
-          return;
-        }
-
-        /* ================================
-           دکمه ارسال رسید
-           ================================ */
-
-        const submitButton =
-          document.getElementById(
-            "submitPayment"
-          );
-
-        if (!submitButton) {
-          console.error(
-            "submitPayment button not found."
-          );
-
-          return;
-        }
-
-        submitButton.textContent =
-          "📩 ارسال رسید برای بررسی";
-
-        submitButton.addEventListener(
-          "click",
-          async () => {
-
-            const payerName =
-              document
-                .getElementById(
-                  "paymentName"
-                )
-                ?.value.trim() || "";
-
-            const trackingCode =
-              document
-                .getElementById(
-                  "trackingCode"
-                )
-                ?.value.trim() || "";
-
-            const paymentDate =
-              document
-                .getElementById(
-                  "paymentDate"
-                )
-                ?.value || "";
-
-            const paymentNote =
-              document
-                .getElementById(
-                  "paymentNote"
-                )
-                ?.value.trim() || "";
-
-            const paymentDone =
-              document.getElementById(
-                "paymentDone"
-              );
-
-            /* ==========================
-               اعتبارسنجی
-               ========================== */
-
-            if (!payerName) {
-              showMessage(
-                "لطفاً نام پرداخت‌کننده را وارد کنید.",
-                "error"
-              );
-
-              return;
-            }
-
-            if (
-              paymentDone &&
-              !paymentDone.checked
-            ) {
-              showMessage(
-                "لطفاً تأیید کنید که مبلغ را پرداخت کرده‌اید.",
-                "error"
-              );
-
-              return;
-            }
-
-            submitButton.disabled =
-              true;
-
-            submitButton.textContent =
-              "در حال ثبت رسید...";
-
-            try {
-
-              /* ========================
-                 اطلاعات پرداخت
-                 ======================== */
-
-              const paymentData = {
-                amount:
-                  AGENCY_FEE,
-
-                payer_name:
-                  payerName,
-
-                payment_date:
-                  paymentDate ||
-                  getPersianDate(),
-
-                tracking_code:
-                  trackingCode ||
-                  null,
-
-                note:
-                  paymentNote ||
-                  null,
-
-                card_number:
-                  CARD_NUMBER,
-
-                bank_name:
-                  BANK_NAME,
-
-                account_name:
-                  ACCOUNT_NAME,
-
-                status:
-                  "submitted",
-
-                submitted_at:
-                  new Date().toISOString()
-              };
-
-              /* ========================
-                 ثبت در Supabase
-                 ======================== */
-
-              const {
-                error: updateError
-              } =
-                await supabaseClient
-                  .from("agencies")
-                  .update({
-                    payment_status:
-                      "submitted",
-
-                    payment_data:
-                      paymentData,
-
-                    status:
-                      "pending"
-                  })
-                  .eq(
-                    "id",
-                    agency.id
-                  )
-                  .eq(
-                    "user_id",
-                    user.id
-                  );
-
-              if (updateError) {
-                throw updateError;
-              }
-
-              /* ========================
-                 ذخیره محلی
-                 ======================== */
-
-              localStorage.setItem(
-                "v2gurd_agency_payment",
-                JSON.stringify({
-                  agencyId:
-                    agency.id,
-
-                  payment:
-                    paymentData
-                })
-              );
-
-              /* ========================
-                 ساخت پیام تلگرام
-                 ======================== */
-
-              const telegramMessage =
-`سلام، من درخواست نمایندگی V2GURD ثبت کردم.
+  const payerName = paymentName?.value.trim() || "";
+  const tracking = trackingCode?.value.trim() || "";
+  const date = paymentDate?.value || "";
+  const note = paymentNote?.value.trim() || "";
+  const confirmed = paymentDone?.checked || false;
+
+  // -------------------------
+  // Validation
+  // -------------------------
+
+  if (!payerName) {
+    showMessage(
+      "لطفاً نام پرداخت‌کننده را وارد کنید.",
+      "error"
+    );
+
+    paymentName?.focus();
+
+    return;
+  }
+
+  if (!confirmed) {
+    showMessage(
+      "لطفاً تأیید کنید که مبلغ نمایندگی را پرداخت کرده‌اید.",
+      "error"
+    );
+
+    return;
+  }
+
+  // -------------------------
+  // Loading
+  // -------------------------
+
+  submitPayment.disabled = true;
+  submitPayment.textContent = "در حال ثبت رسید...";
+
+  showMessage(
+    "در حال ثبت اطلاعات پرداخت...",
+    "info"
+  );
+
+  try {
+
+    const paymentData = {
+      amount: AGENCY_FEE,
+
+      payer_name: payerName,
+
+      payment_date: date || null,
+
+      tracking_code: tracking || null,
+
+      note: note || null,
+
+      card_number: "6219861841635526",
+
+      bank_name: "بلو بانک",
+
+      account_name: "نامی",
+
+      status: "submitted",
+
+      submitted_at: new Date().toISOString()
+    };
+
+
+    // -------------------------
+    // Update Supabase
+    // -------------------------
+
+    const { error } = await supabaseClient
+      .from("agencies")
+      .update({
+        payment_status: "submitted",
+        payment_data: paymentData,
+        status: "pending"
+      })
+      .eq("id", agencyRequest.id)
+      .eq("user_id", currentUser.id);
+
+    if (error) {
+      console.error("Payment update error:", error);
+
+      throw error;
+    }
+
+
+    // -------------------------
+    // Save Local
+    // -------------------------
+
+    localStorage.setItem(
+      "v2gurd_agency_payment",
+      JSON.stringify(paymentData)
+    );
+
+
+    // -------------------------
+    // Telegram Message
+    // -------------------------
+
+    const telegramMessage = `
+سلام، من درخواست نمایندگی V2GURD ثبت کردم.
 
 👤 نام:
-${agency.full_name}
+${agencyRequest.full_name || "-"}
 
-🏢 نام نمایندگی:
-${agency.agency_name}
+🏪 نام نمایندگی:
+${agencyRequest.agency_name || "-"}
 
 📧 ایمیل:
-${agency.email}
+${agencyRequest.email || currentUser.email || "-"}
 
 📱 شماره تماس:
-${agency.phone}
+${agencyRequest.phone || "-"}
 
 💬 تلگرام:
-${agency.telegram}
+${agencyRequest.telegram || "-"}
 
 📍 شهر:
-${agency.city}
+${agencyRequest.city || "-"}
 
-💳 مبلغ پرداخت:
+💰 مبلغ پرداختی:
 ۴۹۹٬۰۰۰ تومان
 
 👤 نام پرداخت‌کننده:
 ${payerName}
 
-🧾 کد پیگیری:
-${trackingCode || "وارد نشده"}
+🔢 کد پیگیری:
+${tracking || "ندارد"}
 
 📅 تاریخ پرداخت:
-${paymentDate || getPersianDate()}
+${date || "ثبت نشده"}
 
-لطفاً درخواست نمایندگی من را بررسی کنید و در صورت تأیید، نمایندگی من را فعال کنید.`;
+لطفاً درخواست من رو بررسی کنید و در صورت تأیید، نمایندگی من رو فعال کنید.
+`.trim();
 
-              /* ========================
-                 کپی پیام
-                 ======================== */
 
-              try {
-                await navigator.clipboard.writeText(
-                  telegramMessage
-                );
-              } catch {
-                // اگر کپی در مرورگر اجازه داده نشد
-              }
+    // -------------------------
+    // Copy Telegram Message
+    // -------------------------
 
-              /* ========================
-                 نمایش پیام موفقیت
-                 ======================== */
+    let copied = false;
 
-              showMessage(
-                "رسید ثبت شد. پیام درخواست شما آماده است؛ در حال انتقال به PV مدیریت...",
-                "success"
-              );
-
-              submitButton.textContent =
-                "انتقال به PV مدیریت...";
-
-              /* ========================
-                 انتقال به PV
-                 ======================== */
-
-              setTimeout(() => {
-                window.location.href =
-                  TELEGRAM_URL;
-              }, 1200);
-
-            } catch (error) {
-
-              console.error(
-                "Agency payment submit error:",
-                error
-              );
-
-              showMessage(
-                "ثبت رسید پرداخت انجام نشد. لطفاً دوباره تلاش کنید.",
-                "error"
-              );
-
-              submitButton.disabled =
-                false;
-
-              submitButton.textContent =
-                "📩 ارسال رسید برای بررسی";
-            }
-          }
-        );
-
-      } catch (error) {
-
-        console.error(
-          "Agency payment initialization error:",
-          error
-        );
-
-        showMessage(
-          "اتصال به سیستم پرداخت برقرار نشد.",
-          "error"
-        );
-      }
+    try {
+      await navigator.clipboard.writeText(telegramMessage);
+      copied = true;
+    } catch (clipboardError) {
+      console.warn(
+        "Clipboard error:",
+        clipboardError
+      );
     }
-  );
-})();
+
+
+    // -------------------------
+    // Success UI
+    // -------------------------
+
+    showTelegramStep(copied);
+
+  } catch (error) {
+
+    console.error(error);
+
+    submitPayment.disabled = false;
+    submitPayment.textContent = "📩 ارسال رسید برای بررسی";
+
+    showMessage(
+      `
+      <strong>ثبت رسید انجام نشد.</strong>
+      <br>
+      لطفاً دوباره تلاش کنید.
+      `,
+      "error"
+    );
+  }
+}
+
+
+// ============================================================
+// Telegram Step
+// ============================================================
+
+function showTelegramStep(messageCopied) {
+  const {
+    submitPayment,
+    paymentMessage
+  } = getElements();
+
+  if (submitPayment) {
+    submitPayment.style.display = "none";
+  }
+
+  if (!paymentMessage) return;
+
+  paymentMessage.className =
+    "payment-message success";
+
+  paymentMessage.innerHTML = `
+    <div class="success-box">
+
+      <div class="success-icon">✓</div>
+
+      <h3>رسید پرداخت ثبت شد</h3>
+
+      <p>
+        اطلاعات پرداخت شما با موفقیت ثبت شد و درخواست شما برای بررسی آماده است.
+      </p>
+
+      ${
+        messageCopied
+          ? `
+            <p class="telegram-copy-info">
+              پیام آماده برای مدیریت نیز کپی شد.
+            </p>
+          `
+          : `
+            <p class="telegram-copy-info">
+              پیام آماده کپی نشد؛ در صورت نیاز اطلاعات درخواست را در PV ارسال کنید.
+            </p>
+          `
+      }
+
+      <button
+        type="button"
+        id="goTelegram"
+        class="telegram-btn"
+      >
+        📩 رفتن به PV مدیریت
+      </button>
+
+    </div>
+  `;
+
+
+  // -------------------------
+  // Telegram Button
+  // -------------------------
+
+  const goTelegram =
+    document.getElementById("goTelegram");
+
+  if (!goTelegram) return;
+
+  goTelegram.addEventListener("click", () => {
+
+    window.location.href = TELEGRAM_URL;
+
+  });
+}
+
+
+// ============================================================
+// Start
+// ============================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  init
+);
