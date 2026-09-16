@@ -3,118 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>پرداخت هزینه نمایندگی | V2GURD</title>
-  <link rel="stylesheet" href="agency-payment.css?v=3">
+
+  <link rel="stylesheet" href="agency-payment.css?v=5">
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="brand">V2GURD</div>
-  <div class="step">مرحله ۲ از ۲</div>
-</header>
+  <div class="page">
 
-<main>
-  <section class="hero">
-    <span class="badge">فعال‌سازی نمایندگی</span>
-    <h1>پرداخت هزینه نمایندگی</h1>
-    <p>پس از پرداخت، اطلاعات رسید خود را ثبت کنید تا درخواست شما برای بررسی مدیریت ارسال شود.</p>
-  </section>
+    <header class="topbar">
+      <div class="brand">V2GURD</div>
+      <div class="secure">🔒 پرداخت امن</div>
+    </header>
 
-  <section class="payment-card">
+    <main class="container">
 
-    <div class="price-box">
-      <span>هزینه نمایندگی</span>
-      <strong>۴۹۹٬۰۰۰ تومان</strong>
-    </div>
+      <section class="hero">
+        <span class="step">مرحله ۲ از ۲</span>
 
-    <div class="info-row">
-      <span>بانک</span>
-      <strong>بلو بانک</strong>
-    </div>
+        <h1>فعال‌سازی نمایندگی</h1>
 
-    <div class="info-row">
-      <span>نام صاحب کارت</span>
-      <strong>نامی</strong>
-    </div>
+        <p>
+          پس از پرداخت هزینه نمایندگی، رسید پرداخت خود را ثبت کنید
+          تا درخواست شما برای بررسی ارسال شود.
+        </p>
+      </section>
 
-    <div class="card-number-box">
-      <span>شماره کارت</span>
-      <strong id="cardNumber">6219 8618 4163 5526</strong>
-      <button type="button" id="copyCard">کپی</button>
-    </div>
+      <section class="payment-card">
 
-    <div class="notice">
-      بعد از انتقال وجه، اطلاعات پرداخت را وارد کنید و روی «ارسال رسید برای بررسی» بزنید.
-    </div>
-
-    <form id="paymentForm" class="payment-form">
-
-      <label for="paymentName">نام پرداخت‌کننده</label>
-      <input
-        type="text"
-        id="paymentName"
-        placeholder="نام و نام خانوادگی"
-        autocomplete="name"
-      >
-
-      <label for="trackingCode">کد پیگیری</label>
-      <input
-        type="text"
-        id="trackingCode"
-        placeholder="در صورت وجود"
-      >
-
-      <label for="paymentDate">تاریخ پرداخت</label>
-      <input type="date" id="paymentDate">
-
-      <label for="paymentNote">توضیحات</label>
-      <textarea
-        id="paymentNote"
-        rows="3"
-        placeholder="در صورت نیاز توضیحی بنویسید..."
-      ></textarea>
-
-      <label class="check-row">
-        <input type="checkbox" id="paymentDone">
-        <span>پرداخت را انجام داده‌ام و اطلاعات واردشده صحیح است.</span>
-      </label>
-
-      <button type="button" id="submitPayment" class="submit-btn">
-        📩 ارسال رسید برای بررسی
-      </button>
-
-      <div id="paymentMessage" class="payment-message"></div>
-
-      <div id="telegramAction" class="telegram-action" hidden>
-        <div class="success-box">
-          <div class="success-icon">✓</div>
-
-          <h3>رسید پرداخت ثبت شد</h3>
-
-          <p>
-            اطلاعات پرداخت شما با موفقیت ثبت شد و آماده بررسی مدیریت است.
-          </p>
-
-          <p id="telegramCopyInfo" class="telegram-copy-info">
-            متن درخواست نیز برای ارسال به مدیریت آماده شده است.
-          </p>
-
-          <button type="button" id="goTelegram" class="telegram-btn">
-            📩 رفتن به PV مدیریت
-          </button>
+        <div class="price-box">
+          <span>هزینه نمایندگی</span>
+          <strong>۴۹۹٬۰۰۰ تومان</strong>
         </div>
-      </div>
 
-    </form>
-  </section>
-</main>
+        <div class="bank-info">
 
-<footer>
-  V2GURD © 2026
-</footer>
+          <div class="info-row">
+            <span>بانک</span>
+            <strong>بلو بانک</strong>
+          </div>
 
-<script src="agency-payment.js?v=3"></script>
+          <div class="info-row">
+            <span>به نام</span>
+            <strong>نامی</strong>
+          </div>
+
+          <div class="card-number-box">
+
+            <span>شماره کارت</span>
+
+            <strong id="cardNumber">
+              6219 8618 4163 5526
+            </strong>
+
+            <button
+              type="button"
+              id="copyCard"
+              class="copy-card"
+            >
+              کپی شماره کارت
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="notice">
+          <strong>نکته:</strong>
+          پس از پرداخت، اطلاعات پرداخت را وارد کنید و رسید را ثبت کنید.
+        </div>
+
+        <div class="form-area">
+
+          <label for="paymentName">
+            نام پرداخت‌کننده
+          </label>
+
+          <input
+            type="text"
+            id="paymentName"
+            placeholder="نام و نام خانوادگی پرداخت‌کننده"
+          >
+
+          <label for="trackingCode">
+            کد پیگیری
+          </label>
+
+          <input
+            type="text"
+            id="trackingCode"
+            placeholder="در صورت وجود"
+          >
+
+          <label for="paymentDate">
+            تاریخ پرداخت
+          </label>
+
+          <input
+            type="date"
+            id="paymentDate"
+          >
+
+          <label for="paymentNote">
+            توضیحات
+          </label>
+
+          <textarea
+            id="paymentNote"
+            rows="4"
+            placeholder="اگر توضیحی درباره پرداخت دارید..."
+          ></textarea>
+
+          <label class="check-row">
+
+            <input
+              type="checkbox"
+              id="paymentDone"
+            >
+
+            <span>
+              مبلغ نمایندگی را پرداخت کرده‌ام و اطلاعات بالا صحیح است.
+            </span>
+
+          </label>
+
+          <button
+            type="button"
+            id="submitPayment"
+            class="submit-btn"
+          >
+            📩 ثبت رسید پرداخت
+          </button>
+
+          <div
+            id="paymentMessage"
+            class="payment-message"
+          ></div>
+
+        </div>
+
+        <!-- Telegram section -->
+        <div
+          id="telegramAction"
+          class="telegram-action"
+          style="display:none;"
+        >
+
+          <div class="success-box">
+
+            <div class="success-icon">
+              ✓
+            </div>
+
+            <h3>
+              رسید با موفقیت ثبت شد
+            </h3>
+
+            <p>
+              ابتدا متن درخواست را کپی کنید.
+              تا زمانی که متن کپی نشود، امکان رفتن به PV مدیریت وجود ندارد.
+            </p>
+
+          </div>
+
+          <button
+            type="button"
+            id="copyTelegramText"
+            class="copy-message-btn"
+          >
+            📋 کپی متن درخواست
+          </button>
+
+          <div
+            id="copyStatus"
+            class="copy-status"
+          ></div>
+
+          <button
+            type="button"
+            id="goTelegram"
+            class="telegram-btn"
+            disabled
+          >
+            💬 رفتن به PV مدیریت
+          </button>
+
+          <div class="telegram-hint">
+            بعد از باز شدن تلگرام، متن را داخل کادر پیام Paste کرده
+            و ارسال کنید.
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="agency-payment.js?v=5"></script>
 
 </body>
 </html>
