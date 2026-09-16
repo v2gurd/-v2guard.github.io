@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -8,25 +9,48 @@
 
 <link rel="stylesheet" href="admin.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 
 <body>
 
 <div class="container" id="app"></div>
 
+
 <!-- PRODUCT MODAL -->
+
 <div class="modal" id="productModal">
+
   <div class="modal-box">
 
     <div class="modal-head">
-      <h2 id="productModalTitle">افزودن محصول</h2>
-      <button type="button" class="close" onclick="closeModal('productModal')">×</button>
+
+      <h2 id="productModalTitle">
+        افزودن محصول
+      </h2>
+
+      <button
+        type="button"
+        class="close"
+        onclick="closeModal('productModal')"
+      >
+        ×
+      </button>
+
     </div>
 
-    <input type="hidden" id="oldProductId">
+
+    <input
+      type="hidden"
+      id="oldProductId"
+    >
+
 
     <div class="form">
 
@@ -37,9 +61,16 @@
 
       <div class="field">
         <label>محصول والد</label>
-        <select class="select" id="parentProduct">
-          <option value="">محصول اصلی</option>
+
+        <select
+          class="select"
+          id="parentProduct"
+        >
+          <option value="">
+            محصول اصلی
+          </option>
         </select>
+
       </div>
 
       <div class="field">
@@ -54,73 +85,167 @@
 
       <div class="field">
         <label>قیمت تومان</label>
-        <input class="input" id="productPrice" type="number" min="0">
+        <input
+          class="input"
+          id="productPrice"
+          type="number"
+          min="0"
+        >
       </div>
 
       <div class="field">
         <label>درصد تخفیف</label>
-        <input class="input" id="productDiscount" type="number" min="0" max="100" value="0">
+
+        <input
+          class="input"
+          id="productDiscount"
+          type="number"
+          min="0"
+          max="100"
+          value="0"
+        >
+
       </div>
 
       <div class="field">
         <label>حجم</label>
-        <input class="input" id="productVolume" placeholder="مثلاً 100 گیگ">
+
+        <input
+          class="input"
+          id="productVolume"
+          placeholder="مثلاً 100 گیگ"
+        >
+
       </div>
 
       <div class="field">
         <label>مدت</label>
-        <input class="input" id="productDuration" placeholder="مثلاً 30 روز">
+
+        <input
+          class="input"
+          id="productDuration"
+          placeholder="مثلاً 30 روز"
+        >
+
       </div>
 
       <div class="field">
         <label>موجودی</label>
-        <input class="input" id="productStock" type="number" min="0" value="0">
+
+        <input
+          class="input"
+          id="productStock"
+          type="number"
+          min="0"
+          value="0"
+        >
+
       </div>
 
       <div class="field">
         <label>ترتیب نمایش</label>
-        <input class="input" id="productSort" type="number" value="0">
+
+        <input
+          class="input"
+          id="productSort"
+          type="number"
+          value="0"
+        >
+
       </div>
 
       <div class="field">
         <label>لینک تصویر</label>
-        <input class="input" id="productImage">
+
+        <input
+          class="input"
+          id="productImage"
+        >
+
       </div>
 
-      <div class="field" style="grid-column:1/-1">
-        <label>توضیحات</label>
-        <textarea class="textarea" id="productDescription"></textarea>
+      <div
+        class="field"
+        style="grid-column:1/-1"
+      >
+
+        <label>
+          توضیحات
+        </label>
+
+        <textarea
+          class="textarea"
+          id="productDescription"
+        ></textarea>
+
       </div>
 
     </div>
 
-    <label style="font-size:10px;display:block;margin-top:9px">
-      <input type="checkbox" id="productActive" checked>
+
+    <label
+      style="font-size:10px;display:block;margin-top:9px"
+    >
+
+      <input
+        type="checkbox"
+        id="productActive"
+        checked
+      >
+
       محصول فعال باشد
+
     </label>
 
-    <div class="actions" style="margin-top:15px">
-      <button type="button" class="btn primary" onclick="saveProduct()">
+
+    <div
+      class="actions"
+      style="margin-top:15px"
+    >
+
+      <button
+        type="button"
+        class="btn primary"
+        onclick="saveProduct()"
+      >
         ذخیره محصول
       </button>
 
-      <button type="button" class="btn outline" onclick="closeModal('productModal')">
+      <button
+        type="button"
+        class="btn outline"
+        onclick="closeModal('productModal')"
+      >
         انصراف
       </button>
+
     </div>
 
-    <div id="productError" style="margin-top:10px"></div>
+
+    <div
+      id="productError"
+      style="margin-top:10px"
+    ></div>
 
   </div>
+
 </div>
 
 
 <!-- SUBSCRIPTION MODAL -->
-<div class="modal" id="subscriptionModal">
+
+<div
+  class="modal"
+  id="subscriptionModal"
+>
+
   <div class="modal-box">
 
     <div class="modal-head">
-      <h2>افزودن Subscription</h2>
+
+      <h2>
+        افزودن Subscription
+      </h2>
 
       <button
         type="button"
@@ -129,36 +254,81 @@
       >
         ×
       </button>
+
     </div>
+
 
     <div class="field">
-      <label>محصول / پلن</label>
-      <select class="select" id="subscriptionProduct"></select>
+
+      <label>
+        محصول / پلن
+      </label>
+
+      <select
+        class="select"
+        id="subscriptionProduct"
+      ></select>
+
     </div>
 
-    <div class="field" style="margin-top:10px">
-      <label>لینک Subscription</label>
-      <input class="input ltr" id="subscriptionUrl">
+
+    <div
+      class="field"
+      style="margin-top:10px"
+    >
+
+      <label>
+        لینک Subscription
+      </label>
+
+      <input
+        class="input ltr"
+        id="subscriptionUrl"
+      >
+
     </div>
 
-    <div class="actions" style="margin-top:15px">
-      <button type="button" class="btn primary" onclick="saveSubscription()">
+
+    <div
+      class="actions"
+      style="margin-top:15px"
+    >
+
+      <button
+        type="button"
+        class="btn primary"
+        onclick="saveSubscription()"
+      >
         ذخیره
       </button>
+
     </div>
 
-    <div id="subscriptionError" style="margin-top:10px"></div>
+
+    <div
+      id="subscriptionError"
+      style="margin-top:10px"
+    ></div>
 
   </div>
+
 </div>
 
 
-<!-- AGENCY DETAILS MODAL -->
-<div class="modal" id="agencyModal">
+<!-- AGENCY MODAL -->
+
+<div
+  class="modal"
+  id="agencyModal"
+>
+
   <div class="modal-box">
 
     <div class="modal-head">
-      <h2>جزئیات درخواست نمایندگی</h2>
+
+      <h2>
+        جزئیات درخواست نمایندگی
+      </h2>
 
       <button
         type="button"
@@ -167,11 +337,14 @@
       >
         ×
       </button>
+
     </div>
+
 
     <div id="agencyModalContent"></div>
 
   </div>
+
 </div>
 
 
@@ -188,11 +361,11 @@ let supabaseClient = null;
 
 
 let DATA = {
-  products: [],
-  orders: [],
-  subscriptions: [],
-  users: [],
-  agencies: []
+  products:[],
+  orders:[],
+  subscriptions:[],
+  users:[],
+  agencies:[]
 };
 
 
@@ -261,12 +434,6 @@ function errorHTML(e){
         e?.details ||
         "خطای نامشخص"
       )}
-
-      ${
-        e?.code
-        ? `<br>Code: ${esc(e.code)}`
-        : ""
-      }
     </div>
   `;
 
@@ -275,7 +442,8 @@ function errorHTML(e){
 
 function openModal(id){
 
-  const modal = document.getElementById(id);
+  const modal =
+    document.getElementById(id);
 
   if(!modal) return;
 
@@ -286,7 +454,8 @@ function openModal(id){
 
 function closeModal(id){
 
-  const modal = document.getElementById(id);
+  const modal =
+    document.getElementById(id);
 
   if(!modal) return;
 
@@ -299,14 +468,20 @@ function closeModal(id){
 
 function showLogin(){
 
-  document.getElementById("app").innerHTML = `
+  document.getElementById(
+    "app"
+  ).innerHTML = `
 
     <div class="panel login">
 
-      <div class="login-bear" id="loginBear">
+      <div
+        class="login-bear"
+        id="loginBear"
+      >
 
         <div class="bear-ear left"></div>
         <div class="bear-ear right"></div>
+
 
         <div class="bear-head">
 
@@ -321,8 +496,15 @@ function showLogin(){
 
         </div>
 
+
         <div class="bear-arm left"></div>
         <div class="bear-arm right"></div>
+
+
+        <!-- دست‌های مستقل -->
+
+        <div class="bear-hand left"></div>
+        <div class="bear-hand right"></div>
 
       </div>
 
@@ -379,10 +561,15 @@ function showLogin(){
 
 
   const password =
-    document.getElementById("loginPassword");
+    document.getElementById(
+      "loginPassword"
+    );
+
 
   const bear =
-    document.getElementById("loginBear");
+    document.getElementById(
+      "loginBear"
+    );
 
 
   if(password && bear){
@@ -391,29 +578,10 @@ function showLogin(){
       "input",
       () => {
 
-        if(password.value.length > 0){
-
-          bear.classList.add("password-mode");
-
-        }else{
-
-          bear.classList.remove("password-mode");
-
-        }
-
-      }
-    );
-
-
-    password.addEventListener(
-      "blur",
-      () => {
-
-        if(password.value.length === 0){
-
-          bear.classList.remove("password-mode");
-
-        }
+        bear.classList.toggle(
+          "password-mode",
+          password.value.length > 0
+        );
 
       }
     );
@@ -428,13 +596,15 @@ function showLogin(){
 async function login(){
 
   const email =
-    document.getElementById("loginEmail")
-    ?.value
-    .trim();
+    document.getElementById(
+      "loginEmail"
+    ).value.trim();
+
 
   const password =
-    document.getElementById("loginPassword")
-    ?.value;
+    document.getElementById(
+      "loginPassword"
+    ).value;
 
 
   if(!email || !password){
@@ -449,15 +619,18 @@ async function login(){
 
 
   const result =
-    await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
+    await supabaseClient.auth
+      .signInWithPassword({
+        email,
+        password
+      });
 
 
   if(result.error){
 
-    alert(result.error.message);
+    alert(
+      result.error.message
+    );
 
     return;
 
@@ -490,7 +663,9 @@ async function boot(){
 
   if(sessionResult.error){
 
-    showFatal(sessionResult.error);
+    showFatal(
+      sessionResult.error
+    );
 
     return;
 
@@ -513,14 +688,18 @@ async function boot(){
   const profile =
     await supabaseClient
       .from("profiles")
-      .select("id,email,role")
+      .select(
+        "id,email,role"
+      )
       .eq("id",user.id)
       .maybeSingle();
 
 
   if(profile.error){
 
-    showFatal(profile.error);
+    showFatal(
+      profile.error
+    );
 
     return;
 
@@ -529,7 +708,9 @@ async function boot(){
 
   if(profile.data?.role !== "admin"){
 
-    document.getElementById("app").innerHTML = `
+    document.getElementById(
+      "app"
+    ).innerHTML = `
 
       <div class="panel login">
 
@@ -716,13 +897,16 @@ async function loadAll(){
 
 function renderShell(){
 
-  document.getElementById("app").innerHTML = `
+  document.getElementById(
+    "app"
+  ).innerHTML = `
 
     <div class="top">
 
       <div class="logo">
         V2<span>GURD</span> — پنل مدیریت
       </div>
+
 
       <div class="actions">
 
@@ -732,6 +916,7 @@ function renderShell(){
         >
           سایت
         </a>
+
 
         <button
           type="button"
@@ -836,22 +1021,17 @@ function goTo(page){
   if(page === "dashboard")
     renderDashboard();
 
-
   if(page === "products")
     renderProducts();
-
 
   if(page === "subscriptions")
     renderSubscriptions();
 
-
   if(page === "orders")
     renderOrders();
 
-
   if(page === "users")
     renderUsers();
-
 
   if(page === "agencies")
     renderAgencies();
@@ -885,44 +1065,57 @@ function renderDashboard(){
 
   const available =
     DATA.subscriptions.filter(
-      s => s.status === "available"
+      s =>
+        s.status === "available"
     ).length;
 
 
   const activeAgencies =
     DATA.agencies.filter(
-      a => a.status === "active"
+      a =>
+        a.status === "active"
     ).length;
 
 
   const agencyReceipts =
     DATA.agencies.filter(
-      a => a.payment_status === "submitted"
+      a =>
+        a.payment_status === "submitted"
     ).length;
 
 
-  document.getElementById("content").innerHTML = `
+  document.getElementById(
+    "content"
+  ).innerHTML = `
 
     <div class="stats">
 
       <div class="stat">
         <small>کل محصولات</small>
-        <strong>${fa(DATA.products.length)}</strong>
+        <strong>
+          ${fa(DATA.products.length)}
+        </strong>
       </div>
 
       <div class="stat">
         <small>سفارش‌های در انتظار</small>
-        <strong>${fa(pending)}</strong>
+        <strong>
+          ${fa(pending)}
+        </strong>
       </div>
 
       <div class="stat">
         <small>کاربران</small>
-        <strong>${fa(DATA.users.length)}</strong>
+        <strong>
+          ${fa(DATA.users.length)}
+        </strong>
       </div>
 
       <div class="stat">
         <small>Subscription آزاد</small>
-        <strong>${fa(available)}</strong>
+        <strong>
+          ${fa(available)}
+        </strong>
       </div>
 
     </div>
@@ -935,12 +1128,16 @@ function renderDashboard(){
 
       <div class="stat">
         <small>نمایندگان فعال</small>
-        <strong>${fa(activeAgencies)}</strong>
+        <strong>
+          ${fa(activeAgencies)}
+        </strong>
       </div>
 
       <div class="stat">
         <small>رسید نمایندگی جدید</small>
-        <strong>${fa(agencyReceipts)}</strong>
+        <strong>
+          ${fa(agencyReceipts)}
+        </strong>
       </div>
 
     </div>
@@ -1022,7 +1219,9 @@ function renderDashboard(){
 
 function renderProducts(){
 
-  document.getElementById("content").innerHTML = `
+  document.getElementById(
+    "content"
+  ).innerHTML = `
 
     <div class="panel">
 
@@ -1145,9 +1344,13 @@ function drawProducts(){
               <div class="small">
                 ${esc(parent.id)}
                 •
-                ${esc(parent.category || "سرویس")}
+                ${esc(
+                  parent.category ||
+                  "سرویس"
+                )}
                 •
-                ${money(parent.price)} تومان
+                ${money(parent.price)}
+                تومان
               </div>
 
             </div>
@@ -1156,9 +1359,17 @@ function drawProducts(){
             <div class="actions">
 
               <span
-                class="badge ${parent.active ? "on" : "off"}"
+                class="badge ${
+                  parent.active
+                  ? "on"
+                  : "off"
+                }"
               >
-                ${parent.active ? "فعال" : "غیرفعال"}
+                ${
+                  parent.active
+                  ? "فعال"
+                  : "غیرفعال"
+                }
               </span>
 
 
@@ -1209,24 +1420,17 @@ function drawProducts(){
                     <div class="small">
 
                       ${esc(child.id)}
-
                       •
-
                       حجم:
                       ${esc(child.volume || "-")}
-
                       •
-
                       مدت:
                       ${esc(child.duration || "-")}
-
                       •
-
                       قیمت:
-                      ${money(child.price)} تومان
-
+                      ${money(child.price)}
+                      تومان
                       •
-
                       موجودی:
                       ${fa(child.stock || 0)}
 
@@ -1238,9 +1442,17 @@ function drawProducts(){
                   <div class="actions">
 
                     <span
-                      class="badge ${child.active ? "on" : "off"}"
+                      class="badge ${
+                        child.active
+                        ? "on"
+                        : "off"
+                      }"
                     >
-                      ${child.active ? "فعال" : "غیرفعال"}
+                      ${
+                        child.active
+                        ? "فعال"
+                        : "غیرفعال"
+                      }
                     </span>
 
 
@@ -1281,14 +1493,18 @@ function drawProducts(){
     "productTree"
   ).innerHTML =
     html ||
-    `<div class="empty">محصولی پیدا نشد.</div>`;
+    `<div class="empty">
+      محصولی پیدا نشد.
+    </div>`;
 
 }
 
 
 /* PRODUCT FORM */
 
-function fillParents(selected = ""){
+function fillParents(
+  selected = ""
+){
 
   const parents =
     DATA.products.filter(
@@ -1299,7 +1515,10 @@ function fillParents(selected = ""){
   document.getElementById(
     "parentProduct"
   ).innerHTML =
-    `<option value="">محصول اصلی</option>` +
+    `<option value="">
+      محصول اصلی
+    </option>` +
+
     parents.map(
       p =>
         `<option value="${esc(p.id)}">
@@ -1333,11 +1552,11 @@ function resetProductForm(){
     "productDescription"
   ].forEach(id => {
 
-    const element =
+    const el =
       document.getElementById(id);
 
-    if(element)
-      element.value = "";
+    if(el)
+      el.value = "";
 
   });
 
@@ -1369,7 +1588,9 @@ function resetProductForm(){
 }
 
 
-function openNewProduct(parentId = ""){
+function openNewProduct(
+  parentId = ""
+){
 
   resetProductForm();
 
@@ -1384,7 +1605,9 @@ function openNewProduct(parentId = ""){
       : "افزودن محصول";
 
 
-  openModal("productModal");
+  openModal(
+    "productModal"
+  );
 
 }
 
@@ -1393,11 +1616,13 @@ function editProduct(id){
 
   const product =
     DATA.products.find(
-      p => p.id === id
+      p =>
+        p.id === id
     );
 
 
-  if(!product) return;
+  if(!product)
+    return;
 
 
   fillParents(
@@ -1494,7 +1719,9 @@ function editProduct(id){
     product.active !== false;
 
 
-  openModal("productModal");
+  openModal(
+    "productModal"
+  );
 
 }
 
@@ -1626,7 +1853,10 @@ async function saveProduct(){
   }
 
 
-  closeModal("productModal");
+  closeModal(
+    "productModal"
+  );
+
 
   await loadAll();
 
@@ -1639,7 +1869,8 @@ async function deleteProduct(id){
 
   const children =
     DATA.products.filter(
-      p => p.parent_id === id
+      p =>
+        p.parent_id === id
     );
 
 
@@ -1656,7 +1887,8 @@ async function deleteProduct(id){
 
   if(!confirm(
     "این محصول حذف شود؟"
-  )) return;
+  ))
+    return;
 
 
   const result =
@@ -1668,7 +1900,9 @@ async function deleteProduct(id){
 
   if(result.error){
 
-    alert(result.error.message);
+    alert(
+      result.error.message
+    );
 
     return;
 
@@ -1688,7 +1922,8 @@ function openSubscriptionModal(){
 
   const products =
     DATA.products.filter(
-      p => p.active
+      p =>
+        p.active
     );
 
 
@@ -1715,7 +1950,9 @@ function openSubscriptionModal(){
   ).innerHTML = "";
 
 
-  openModal("subscriptionModal");
+  openModal(
+    "subscriptionModal"
+  );
 
 }
 
@@ -1763,14 +2000,19 @@ async function saveSubscription(){
     document.getElementById(
       "subscriptionError"
     ).innerHTML =
-      errorHTML(result.error);
+      errorHTML(
+        result.error
+      );
 
     return;
 
   }
 
 
-  closeModal("subscriptionModal");
+  closeModal(
+    "subscriptionModal"
+  );
+
 
   await loadAll();
 
@@ -1829,77 +2071,89 @@ function renderSubscriptions(){
 
             ${
               rows.length
-              ? rows.map(s => {
 
-                  const product =
-                    DATA.products.find(
-                      p =>
-                        p.id === s.product_id
-                    );
+              ? rows.map(
+                  s => {
 
-
-                  return `
-
-                    <tr>
-
-                      <td>
-                        ${esc(
-                          product?.name ||
+                    const product =
+                      DATA.products.find(
+                        p =>
+                          p.id ===
                           s.product_id
-                        )}
-                      </td>
+                      );
 
-                      <td class="ltr">
-                        ${esc(
-                          s.subscription_url
-                        )}
-                      </td>
 
-                      <td>
+                    return `
 
-                        <span
-                          class="badge ${
-                            s.status === "available"
-                            ? "on"
-                            : "pending"
-                          }"
-                        >
-                          ${statusText(s.status)}
-                        </span>
+                      <tr>
 
-                      </td>
+                        <td>
+                          ${esc(
+                            product?.name ||
+                            s.product_id
+                          )}
+                        </td>
 
-                      <td>
-                        ${esc(
-                          s.assigned_order_id ||
-                          "-"
-                        )}
-                      </td>
+                        <td class="ltr">
+                          ${esc(
+                            s.subscription_url
+                          )}
+                        </td>
 
-                      <td>
-                        ${
-                          new Date(
-                            s.created_at
-                          ).toLocaleString(
-                            "fa-IR"
-                          )
-                        }
-                      </td>
+                        <td>
 
-                    </tr>
+                          <span
+                            class="badge ${
+                              s.status ===
+                              "available"
+                              ? "on"
+                              : "pending"
+                            }"
+                          >
+                            ${statusText(
+                              s.status
+                            )}
+                          </span>
 
-                  `;
+                        </td>
 
-                }).join("")
+                        <td>
+                          ${esc(
+                            s.assigned_order_id ||
+                            "-"
+                          )}
+                        </td>
+
+                        <td>
+                          ${
+                            new Date(
+                              s.created_at
+                            ).toLocaleString(
+                              "fa-IR"
+                            )
+                          }
+                        </td>
+
+                      </tr>
+
+                    `;
+
+                  }
+                ).join("")
+
               : `
+
                 <tr>
+
                   <td
                     colspan="5"
                     class="empty"
                   >
                     Subscriptionای وجود ندارد.
                   </td>
+
                 </tr>
+
               `
             }
 
@@ -1927,7 +2181,9 @@ function renderOrders(){
     <div class="panel">
 
       <div class="head">
-        <h2>مدیریت سفارش‌ها</h2>
+        <h2>
+          مدیریت سفارش‌ها
+        </h2>
       </div>
 
 
@@ -1938,13 +2194,35 @@ function renderOrders(){
           <thead>
 
             <tr>
-              <th>شماره سفارش</th>
-              <th>کاربر</th>
-              <th>محصولات</th>
-              <th>مبلغ</th>
-              <th>وضعیت</th>
-              <th>تاریخ</th>
-              <th>عملیات</th>
+
+              <th>
+                شماره سفارش
+              </th>
+
+              <th>
+                کاربر
+              </th>
+
+              <th>
+                محصولات
+              </th>
+
+              <th>
+                مبلغ
+              </th>
+
+              <th>
+                وضعیت
+              </th>
+
+              <th>
+                تاریخ
+              </th>
+
+              <th>
+                عملیات
+              </th>
+
             </tr>
 
           </thead>
@@ -1954,107 +2232,128 @@ function renderOrders(){
 
             ${
               DATA.orders.length
-              ? DATA.orders.map(order => `
 
-                <tr>
+              ? DATA.orders.map(
+                  order => `
 
-                  <td>
-                    ${esc(
-                      order.order_number
-                    )}
-                  </td>
+                    <tr>
 
-                  <td class="ltr">
-                    ${esc(
-                      order.user_id
-                    )}
-                  </td>
+                      <td>
+                        ${esc(
+                          order.order_number
+                        )}
+                      </td>
 
-                  <td>
+                      <td class="ltr">
+                        ${esc(
+                          order.user_id
+                        )}
+                      </td>
 
-                    ${
-                      (order.order_items || [])
-                      .map(item =>
-                        `${esc(item.product_name)}
-                         ×
-                         ${fa(item.quantity)}`
-                      )
-                      .join("<br>")
-                    }
+                      <td>
 
-                  </td>
+                        ${
+                          (
+                            order.order_items ||
+                            []
+                          )
+                          .map(
+                            item =>
+                              `${esc(
+                                item.product_name
+                              )}
+                              ×
+                              ${fa(
+                                item.quantity
+                              )}`
+                          )
+                          .join("<br>")
+                        }
 
-                  <td>
-                    ${money(order.total)}
-                    تومان
-                  </td>
+                      </td>
 
-                  <td>
+                      <td>
+                        ${money(
+                          order.total
+                        )}
+                        تومان
+                      </td>
 
-                    <span
-                      class="badge ${order.status}"
-                    >
-                      ${statusText(
-                        order.status
-                      )}
-                    </span>
+                      <td>
 
-                  </td>
+                        <span
+                          class="badge ${
+                            order.status
+                          }"
+                        >
+                          ${statusText(
+                            order.status
+                          )}
+                        </span>
 
-                  <td>
-                    ${
-                      new Date(
-                        order.created_at
-                      ).toLocaleString(
-                        "fa-IR"
-                      )
-                    }
-                  </td>
+                      </td>
 
-                  <td>
+                      <td>
+                        ${
+                          new Date(
+                            order.created_at
+                          ).toLocaleString(
+                            "fa-IR"
+                          )
+                        }
+                      </td>
 
-                    <div class="actions">
+                      <td>
 
-                      ${
-                        order.status === "pending"
-                        ? `
+                        <div class="actions">
 
-                          <button
-                            type="button"
-                            class="btn primary"
-                            onclick="approveOrder('${order.id}')"
-                          >
-                            تأیید
-                          </button>
+                          ${
+                            order.status ===
+                            "pending"
 
-                          <button
-                            type="button"
-                            class="btn danger"
-                            onclick="rejectOrder('${order.id}')"
-                          >
-                            رد
-                          </button>
+                            ? `
 
-                        `
-                        : ""
-                      }
+                              <button
+                                type="button"
+                                class="btn primary"
+                                onclick="approveOrder('${order.id}')"
+                              >
+                                تأیید
+                              </button>
 
-                    </div>
+                              <button
+                                type="button"
+                                class="btn danger"
+                                onclick="rejectOrder('${order.id}')"
+                              >
+                                رد
+                              </button>
 
-                  </td>
+                            `
 
-                </tr>
+                            : ""
+                          }
 
-              `).join("")
+                        </div>
+
+                      </td>
+
+                    </tr>
+
+                  `
+                ).join("")
+
               : `
 
                 <tr>
+
                   <td
                     colspan="7"
                     class="empty"
                   >
                     سفارشی وجود ندارد.
                   </td>
+
                 </tr>
 
               `
@@ -2077,7 +2376,8 @@ async function approveOrder(id){
 
   if(!confirm(
     "این سفارش تأیید شود؟"
-  )) return;
+  ))
+    return;
 
 
   const result =
@@ -2111,7 +2411,8 @@ async function rejectOrder(id){
 
   if(!confirm(
     "این سفارش رد شود؟"
-  )) return;
+  ))
+    return;
 
 
   const result =
@@ -2152,7 +2453,11 @@ function renderUsers(){
     <div class="panel">
 
       <div class="head">
-        <h2>مدیریت کاربران</h2>
+
+        <h2>
+          مدیریت کاربران
+        </h2>
+
       </div>
 
 
@@ -2163,11 +2468,27 @@ function renderUsers(){
           <thead>
 
             <tr>
-              <th>ایمیل</th>
-              <th>نقش</th>
-              <th>تعداد سفارش</th>
-              <th>مجموع خرید</th>
-              <th>ثبت‌نام</th>
+
+              <th>
+                ایمیل
+              </th>
+
+              <th>
+                نقش
+              </th>
+
+              <th>
+                تعداد سفارش
+              </th>
+
+              <th>
+                مجموع خرید
+              </th>
+
+              <th>
+                ثبت‌نام
+              </th>
+
             </tr>
 
           </thead>
@@ -2177,67 +2498,79 @@ function renderUsers(){
 
             ${
               DATA.users.length
-              ? DATA.users.map(user => {
 
-                  const orders =
-                    DATA.orders.filter(
-                      o =>
-                        o.user_id === user.id
-                    );
+              ? DATA.users.map(
+                  user => {
 
-
-                  const total =
-                    orders
-                      .filter(
+                    const orders =
+                      DATA.orders.filter(
                         o =>
-                          o.status === "approved"
-                      )
-                      .reduce(
-                        (a,o) =>
-                          a +
-                          Number(
-                            o.total || 0
-                          ),
-                        0
+                          o.user_id ===
+                          user.id
                       );
 
 
-                  return `
+                    const total =
+                      orders
+                        .filter(
+                          o =>
+                            o.status ===
+                            "approved"
+                        )
+                        .reduce(
+                          (a,o) =>
+                            a +
+                            Number(
+                              o.total || 0
+                            ),
+                          0
+                        );
 
-                    <tr>
 
-                      <td class="ltr">
-                        ${esc(user.email)}
-                      </td>
+                    return `
 
-                      <td>
-                        ${esc(user.role)}
-                      </td>
+                      <tr>
 
-                      <td>
-                        ${fa(orders.length)}
-                      </td>
+                        <td class="ltr">
+                          ${esc(
+                            user.email
+                          )}
+                        </td>
 
-                      <td>
-                        ${money(total)}
-                        تومان
-                      </td>
+                        <td>
+                          ${esc(
+                            user.role
+                          )}
+                        </td>
 
-                      <td>
-                        ${
-                          new Date(
-                            user.created_at
-                          ).toLocaleDateString(
-                            "fa-IR"
-                          )
-                        }
-                      </td>
+                        <td>
+                          ${fa(
+                            orders.length
+                          )}
+                        </td>
 
-                    </tr>
+                        <td>
+                          ${money(total)}
+                          تومان
+                        </td>
 
-                  `;
+                        <td>
+                          ${
+                            new Date(
+                              user.created_at
+                            ).toLocaleDateString(
+                              "fa-IR"
+                            )
+                          }
+                        </td>
 
-                }).join("")
+                      </tr>
+
+                    `;
+
+                  }
+                ).join("")
+
               : `
 
                 <tr>
@@ -2267,7 +2600,7 @@ function renderUsers(){
 }
 
 
-/* AGENCY ADMIN */
+/* AGENCY */
 
 function renderAgencies(){
 
@@ -2278,7 +2611,8 @@ function renderAgencies(){
   const submitted =
     DATA.agencies.filter(
       a =>
-        a.payment_status === "submitted"
+        a.payment_status ===
+        "submitted"
     ).length;
 
 
@@ -2303,23 +2637,42 @@ function renderAgencies(){
     <div class="agency-stats">
 
       <div class="agency-stat">
-        <small>کل درخواست‌ها</small>
-        <strong>${fa(total)}</strong>
+        <small>
+          کل درخواست‌ها
+        </small>
+        <strong>
+          ${fa(total)}
+        </strong>
       </div>
 
-      <div class="agency-stat">
-        <small>رسیدهای جدید</small>
-        <strong>${fa(submitted)}</strong>
-      </div>
 
       <div class="agency-stat">
-        <small>نمایندگان فعال</small>
-        <strong>${fa(active)}</strong>
+        <small>
+          رسیدهای جدید
+        </small>
+        <strong>
+          ${fa(submitted)}
+        </strong>
       </div>
 
+
       <div class="agency-stat">
-        <small>رد شده</small>
-        <strong>${fa(rejected)}</strong>
+        <small>
+          نمایندگان فعال
+        </small>
+        <strong>
+          ${fa(active)}
+        </strong>
+      </div>
+
+
+      <div class="agency-stat">
+        <small>
+          رد شده
+        </small>
+        <strong>
+          ${fa(rejected)}
+        </strong>
       </div>
 
     </div>
@@ -2372,7 +2725,8 @@ function renderAgencies(){
         <button
           type="button"
           class="btn outline agency-filter ${
-            agencyFilter === "payment_pending"
+            agencyFilter ===
+            "payment_pending"
             ? "active"
             : ""
           }"
@@ -2385,7 +2739,8 @@ function renderAgencies(){
         <button
           type="button"
           class="btn outline agency-filter ${
-            agencyFilter === "submitted"
+            agencyFilter ===
+            "submitted"
             ? "active"
             : ""
           }"
@@ -2398,7 +2753,8 @@ function renderAgencies(){
         <button
           type="button"
           class="btn outline agency-filter ${
-            agencyFilter === "active"
+            agencyFilter ===
+            "active"
             ? "active"
             : ""
           }"
@@ -2411,7 +2767,8 @@ function renderAgencies(){
         <button
           type="button"
           class="btn outline agency-filter ${
-            agencyFilter === "rejected"
+            agencyFilter ===
+            "rejected"
             ? "active"
             : ""
           }"
@@ -2437,7 +2794,8 @@ function renderAgencies(){
 
 function setAgencyFilter(filter){
 
-  agencyFilter = filter;
+  agencyFilter =
+    filter;
 
   renderAgencies();
 
@@ -2452,37 +2810,43 @@ function drawAgencies(){
     );
 
 
-  if(!list) return;
+  if(!list)
+    return;
 
 
   let rows =
     [...DATA.agencies];
 
 
-  if(agencyFilter === "submitted"){
-
-    rows =
-      rows.filter(
-        a =>
-          a.payment_status === "submitted"
-      );
-
-  }
-
-
-  else if(
-    agencyFilter === "payment_pending"
+  if(
+    agencyFilter ===
+    "submitted"
   ){
 
     rows =
       rows.filter(
         a =>
-          a.status === "payment_pending" ||
-          a.payment_status === "unpaid"
+          a.payment_status ===
+          "submitted"
       );
 
   }
 
+  else if(
+    agencyFilter ===
+    "payment_pending"
+  ){
+
+    rows =
+      rows.filter(
+        a =>
+          a.status ===
+          "payment_pending" ||
+          a.payment_status ===
+          "unpaid"
+      );
+
+  }
 
   else if(
     agencyFilter !== "all"
@@ -2491,7 +2855,8 @@ function drawAgencies(){
     rows =
       rows.filter(
         a =>
-          a.status === agencyFilter
+          a.status ===
+          agencyFilter
       );
 
   }
@@ -2521,15 +2886,18 @@ function drawAgencies(){
 function renderAgencyCard(a){
 
   const paymentSubmitted =
-    a.payment_status === "submitted";
+    a.payment_status ===
+    "submitted";
 
 
   const active =
-    a.status === "active";
+    a.status ===
+    "active";
 
 
   const rejected =
-    a.status === "rejected";
+    a.status ===
+    "rejected";
 
 
   let statusClass =
@@ -2537,11 +2905,13 @@ function renderAgencyCard(a){
 
 
   if(active)
-    statusClass = "on";
+    statusClass =
+      "on";
 
 
   if(rejected)
-    statusClass = "off";
+    statusClass =
+      "off";
 
 
   let paymentClass =
@@ -2549,15 +2919,19 @@ function renderAgencyCard(a){
 
 
   if(
-    a.payment_status === "verified"
+    a.payment_status ===
+    "verified"
   )
-    paymentClass = "approved";
+    paymentClass =
+      "approved";
 
 
   if(
-    a.payment_status === "rejected"
+    a.payment_status ===
+    "rejected"
   )
-    paymentClass = "rejected";
+    paymentClass =
+      "rejected";
 
 
   return `
@@ -2569,7 +2943,9 @@ function renderAgencyCard(a){
         <div>
 
           <div class="agency-name">
-            ${esc(a.full_name || "-")}
+            ${esc(
+              a.full_name || "-"
+            )}
           </div>
 
           <div class="agency-sub">
@@ -2595,7 +2971,9 @@ function renderAgencyCard(a){
           <span
             class="badge ${statusClass}"
           >
-            ${agencyStatusText(a.status)}
+            ${agencyStatusText(
+              a.status
+            )}
           </span>
 
 
@@ -2632,7 +3010,8 @@ function renderAgencyCard(a){
         <div>
           <b>مبلغ نمایندگی:</b>
           ${money(
-            a.agency_fee || 499000
+            a.agency_fee ||
+            499000
           )}
           تومان
         </div>
@@ -2642,17 +3021,24 @@ function renderAgencyCard(a){
 
       <div class="agency-actions">
 
+        <!-- مهم:
+             بدون event listener
+             مستقیم تابع اجرا می‌شود -->
+
         <button
           type="button"
           class="btn outline"
-          data-agency-details="${esc(a.id)}"
+          onclick="showAgencyDetails(this.dataset.id)"
+          data-id="${esc(a.id)}"
         >
           مشاهده جزئیات
         </button>
 
 
         ${
-          paymentSubmitted && !active
+          paymentSubmitted &&
+          !active
+
           ? `
 
             <button
@@ -2664,12 +3050,15 @@ function renderAgencyCard(a){
             </button>
 
           `
+
           : ""
         }
 
 
         ${
-          !active && !rejected
+          !active &&
+          !rejected
+
           ? `
 
             <button
@@ -2681,6 +3070,7 @@ function renderAgencyCard(a){
             </button>
 
           `
+
           : ""
         }
 
@@ -2700,7 +3090,8 @@ function showAgencyDetails(id){
   const agency =
     DATA.agencies.find(
       a =>
-        String(a.id) === String(id)
+        String(a.id) ===
+        String(id)
     );
 
 
@@ -2715,30 +3106,66 @@ function showAgencyDetails(id){
   }
 
 
+  const modal =
+    document.getElementById(
+      "agencyModal"
+    );
+
+
+  const content =
+    document.getElementById(
+      "agencyModalContent"
+    );
+
+
+  if(!modal || !content){
+
+    alert(
+      "مودال جزئیات پیدا نشد."
+    );
+
+    return;
+
+  }
+
+
   const payment =
     agency.payment_data &&
-    typeof agency.payment_data === "object"
-      ? agency.payment_data
-      : {};
+    typeof agency.payment_data ===
+    "object"
+
+    ? agency.payment_data
+    : {};
 
 
   const conditions =
     agency.conditions &&
-    typeof agency.conditions === "object"
-      ? agency.conditions
-      : {};
+    typeof agency.conditions ===
+    "object"
+
+    ? agency.conditions
+    : {};
 
 
   let conditionsHTML =
-    "اطلاعاتی ثبت نشده است.";
+    `<div class="small">
+      اطلاعاتی ثبت نشده است.
+    </div>`;
 
 
-  if(Object.keys(conditions).length){
+  if(
+    Object.keys(
+      conditions
+    ).length
+  ){
 
     conditionsHTML =
-      Object.entries(conditions)
-        .map(
-          ([key,value]) => `
+      Object.entries(
+        conditions
+      )
+      .map(
+        ([key,value]) =>
+          `
 
             <div class="condition-row">
 
@@ -2748,54 +3175,32 @@ function showAgencyDetails(id){
 
               :
 
-              ${esc(String(value))}
+              ${esc(
+                String(value)
+              )}
 
             </div>
 
           `
-        )
-        .join("");
+      )
+      .join("");
 
   }
-
-
-  const paymentDate =
-    payment.payment_date ||
-    "-";
 
 
   const submittedAt =
     payment.submitted_at
+
       ? new Date(
           payment.submitted_at
-        ).toLocaleString("fa-IR")
+        ).toLocaleString(
+          "fa-IR"
+        )
+
       : "-";
 
 
-  const modalContent =
-    document.getElementById(
-      "agencyModalContent"
-    );
-
-
-  const modal =
-    document.getElementById(
-      "agencyModal"
-    );
-
-
-  if(!modalContent || !modal){
-
-    alert(
-      "مودال جزئیات نمایندگی پیدا نشد."
-    );
-
-    return;
-
-  }
-
-
-  modalContent.innerHTML = `
+  content.innerHTML = `
 
     <div class="agency-detail">
 
@@ -2808,80 +3213,112 @@ function showAgencyDetails(id){
 
 
         <div class="agency-detail-row">
-          <span>نام و نام خانوادگی</span>
+          <span>
+            نام و نام خانوادگی
+          </span>
+
           <b>
             ${esc(
-              agency.full_name || "-"
+              agency.full_name ||
+              "-"
             )}
           </b>
         </div>
 
 
         <div class="agency-detail-row">
-          <span>ایمیل</span>
+          <span>
+            ایمیل
+          </span>
+
           <b class="ltr">
             ${esc(
-              agency.email || "-"
+              agency.email ||
+              "-"
             )}
           </b>
         </div>
 
 
         <div class="agency-detail-row">
-          <span>موبایل</span>
+          <span>
+            موبایل
+          </span>
+
           <b>
             ${esc(
-              agency.phone || "-"
+              agency.phone ||
+              "-"
             )}
           </b>
         </div>
 
 
         <div class="agency-detail-row">
-          <span>تلگرام</span>
+          <span>
+            تلگرام
+          </span>
+
           <b>
             ${esc(
-              agency.telegram || "-"
+              agency.telegram ||
+              "-"
             )}
           </b>
         </div>
 
 
         <div class="agency-detail-row">
-          <span>شهر</span>
+          <span>
+            شهر
+          </span>
+
           <b>
             ${esc(
-              agency.city || "-"
+              agency.city ||
+              "-"
             )}
           </b>
         </div>
 
 
         <div class="agency-detail-row">
-          <span>نام نمایندگی</span>
+          <span>
+            نام نمایندگی
+          </span>
+
           <b>
             ${esc(
-              agency.agency_name || "-"
+              agency.agency_name ||
+              "-"
             )}
           </b>
         </div>
 
 
         <div class="agency-detail-row">
-          <span>روش‌های فروش</span>
+          <span>
+            روش‌های فروش
+          </span>
+
           <b>
             ${esc(
-              agency.sales_channels || "-"
+              agency.sales_channels ||
+              "-"
             )}
           </b>
         </div>
 
 
         <div class="agency-detail-row">
-          <span>توضیحات</span>
+          <span>
+            توضیحات
+          </span>
+
           <b>
             ${esc(
-              agency.notes || "-"
+              agency.notes ||
+              "-"
             )}
           </b>
         </div>
@@ -2897,49 +3334,74 @@ function showAgencyDetails(id){
 
 
         <div class="agency-detail-row">
-          <span>وضعیت نمایندگی</span>
+
+          <span>
+            وضعیت نمایندگی
+          </span>
+
           <b>
             ${agencyStatusText(
               agency.status
             )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>وضعیت پرداخت</span>
+
+          <span>
+            وضعیت پرداخت
+          </span>
+
           <b>
             ${paymentStatusText(
               agency.payment_status
             )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>هزینه</span>
+
+          <span>
+            هزینه
+          </span>
+
           <b>
             ${money(
-              agency.agency_fee || 499000
+              agency.agency_fee ||
+              499000
             )}
             تومان
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>تاریخ درخواست</span>
+
+          <span>
+            تاریخ درخواست
+          </span>
+
           <b>
+
             ${
               agency.created_at
+
               ? new Date(
                   agency.created_at
                 ).toLocaleString(
                   "fa-IR"
                 )
+
               : "-"
             }
+
           </b>
+
         </div>
 
       </div>
@@ -2953,7 +3415,11 @@ function showAgencyDetails(id){
 
 
         <div class="agency-detail-row">
-          <span>مبلغ پرداخت</span>
+
+          <span>
+            مبلغ پرداخت
+          </span>
+
           <b>
             ${money(
               payment.amount ||
@@ -2962,85 +3428,134 @@ function showAgencyDetails(id){
             )}
             تومان
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>پرداخت‌کننده</span>
+
+          <span>
+            پرداخت‌کننده
+          </span>
+
           <b>
             ${esc(
-              payment.payer_name || "-"
+              payment.payer_name ||
+              "-"
             )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>کد پیگیری</span>
+
+          <span>
+            کد پیگیری
+          </span>
+
           <b>
             ${esc(
-              payment.tracking_code || "-"
+              payment.tracking_code ||
+              "-"
             )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>تاریخ پرداخت</span>
+
+          <span>
+            تاریخ پرداخت
+          </span>
+
           <b>
-            ${esc(paymentDate)}
+            ${esc(
+              payment.payment_date ||
+              "-"
+            )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>بانک</span>
+
+          <span>
+            بانک
+          </span>
+
           <b>
             ${esc(
               payment.bank_name ||
               "بلو بانک"
             )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>شماره کارت</span>
+
+          <span>
+            شماره کارت
+          </span>
+
           <b class="ltr">
             ${esc(
               payment.card_number ||
               "6219861841635526"
             )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>نام صاحب حساب</span>
+
+          <span>
+            نام صاحب حساب
+          </span>
+
           <b>
             ${esc(
               payment.account_name ||
               "نامی"
             )}
           </b>
+
         </div>
 
 
         <div class="agency-detail-row">
-          <span>تاریخ ثبت رسید</span>
-          <b>
-            ${esc(submittedAt)}
-          </b>
-        </div>
 
+          <span>
+            تاریخ ثبت رسید
+          </span>
 
-        <div class="agency-detail-row">
-          <span>توضیحات پرداخت</span>
           <b>
             ${esc(
-              payment.note || "-"
+              submittedAt
             )}
           </b>
+
+        </div>
+
+
+        <div class="agency-detail-row">
+
+          <span>
+            توضیحات پرداخت
+          </span>
+
+          <b>
+            ${esc(
+              payment.note ||
+              "-"
+            )}
+          </b>
+
         </div>
 
       </div>
@@ -3059,6 +3574,7 @@ function showAgencyDetails(id){
 
       ${
         payment.rejection_reason
+
         ? `
 
           <div class="agency-detail-box">
@@ -3076,6 +3592,7 @@ function showAgencyDetails(id){
           </div>
 
         `
+
         : ""
       }
 
@@ -3084,29 +3601,45 @@ function showAgencyDetails(id){
 
 
         ${
-          paymentSubmitted &&
-          !active
+          payment.status ===
+          "submitted" ||
+          agency.payment_status ===
+          "submitted"
+
           ? `
 
-            <button
-              type="button"
-              class="btn primary"
-              onclick="
-                closeModal('agencyModal');
-                approveAgency('${esc(agency.id)}')
-              "
-            >
-              ✓ تأیید پرداخت و فعال‌سازی
-            </button>
+            ${
+              agency.status !==
+              "active"
+
+              ? `
+
+                <button
+                  type="button"
+                  class="btn primary"
+                  onclick="
+                    closeModal('agencyModal');
+                    approveAgency('${esc(agency.id)}')
+                  "
+                >
+                  ✓ تأیید پرداخت و فعال‌سازی
+                </button>
+
+              `
+
+              : ""
+            }
 
           `
+
           : ""
         }
 
 
         ${
-          !active &&
-          !rejected
+          agency.status !== "active" &&
+          agency.status !== "rejected"
+
           ? `
 
             <button
@@ -3121,6 +3654,7 @@ function showAgencyDetails(id){
             </button>
 
           `
+
           : ""
         }
 
@@ -3128,116 +3662,41 @@ function showAgencyDetails(id){
         <button
           type="button"
           class="btn outline"
-          onclick="closeModal('agencyModal')"
+          onclick="
+            closeModal('agencyModal')
+          "
         >
           بستن
         </button>
 
-
       </div>
-
 
     </div>
 
   `;
 
 
-  modal.classList.add("show");
+  /*
+    مهم:
+    قبل از نمایش، مودال را به صورت مستقیم باز می‌کنیم.
+  */
+
+  modal.classList.add(
+    "show"
+  );
 
 }
 
 
-/* AGENCY DETAILS BUTTON */
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    const button =
-      event.target.closest(
-        "[data-agency-details]"
-      );
-
-
-    if(!button)
-      return;
-
-
-    event.preventDefault();
-
-
-    const id =
-      button.getAttribute(
-        "data-agency-details"
-      );
-
-
-    if(!id)
-      return;
-
-
-    showAgencyDetails(id);
-
-  }
-);
-
-
-/* MODAL BACKDROP */
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target.classList.contains(
-        "modal"
-      )
-    ){
-
-      event.target.classList.remove(
-        "show"
-      );
-
-    }
-
-  }
-);
-
-
-/* ESC */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key !== "Escape")
-      return;
-
-
-    document
-      .querySelectorAll(
-        ".modal.show"
-      )
-      .forEach(modal => {
-
-        modal.classList.remove(
-          "show"
-        );
-
-      });
-
-  }
-);
-
-
-/* AGENCY APPROVE */
+/* APPROVE */
 
 async function approveAgency(id){
 
   const agency =
     DATA.agencies.find(
       a =>
-        String(a.id) === String(id)
+        String(a.id) ===
+        String(id)
     );
 
 
@@ -3259,13 +3718,9 @@ async function approveAgency(id){
   }
 
 
-  const ok =
-    confirm(
-      `آیا پرداخت «${agency.full_name}» تأیید و نمایندگی فعال شود؟`
-    );
-
-
-  if(!ok)
+  if(!confirm(
+    `آیا پرداخت «${agency.full_name}» تأیید و نمایندگی فعال شود؟`
+  ))
     return;
 
 
@@ -3276,7 +3731,10 @@ async function approveAgency(id){
         status:"active",
         payment_status:"verified"
       })
-      .eq("id",id);
+      .eq(
+        "id",
+        id
+      );
 
 
   if(result.error){
@@ -3303,14 +3761,15 @@ async function approveAgency(id){
 }
 
 
-/* AGENCY REJECT */
+/* REJECT */
 
 async function rejectAgency(id){
 
   const agency =
     DATA.agencies.find(
       a =>
-        String(a.id) === String(id)
+        String(a.id) ===
+        String(id)
     );
 
 
@@ -3349,13 +3808,17 @@ async function rejectAgency(id){
 
         status:"rejected",
 
-        payment_status:"rejected",
+        payment_status:
+          "rejected",
 
         payment_data:
           paymentData
 
       })
-      .eq("id",id);
+      .eq(
+        "id",
+        id
+      );
 
 
   if(result.error){
@@ -3382,7 +3845,7 @@ async function rejectAgency(id){
 }
 
 
-/* AGENCY REFRESH */
+/* REFRESH */
 
 async function refreshAgencies(){
 
@@ -3453,7 +3916,7 @@ async function logout(){
 }
 
 
-/* ERROR */
+/* FATAL */
 
 function showFatal(error){
 
@@ -3494,7 +3957,9 @@ window.addEventListener(
         await supabaseClient.auth.getSession();
 
 
-      if(session.data.session){
+      if(
+        session.data.session
+      ){
 
         await boot();
 
