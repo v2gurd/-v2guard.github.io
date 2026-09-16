@@ -16,10 +16,6 @@
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
   margin:0;
   background:var(--bg);
@@ -27,10 +23,7 @@ body{
   font-family:Vazirmatn,Tahoma,sans-serif;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -79,12 +72,7 @@ a{
   padding:9px 13px;
   font-size:10px;
   font-weight:800;
-  transition:.2s ease;
-}
-
-.nav button:hover{
-  border-color:var(--p);
-  color:var(--p);
+  transition:.2s;
 }
 
 .nav button.active{
@@ -151,17 +139,6 @@ a{
   padding:9px 13px;
   font-size:10px;
   font-weight:800;
-  transition:.2s ease;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
-}
-
-.btn:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-  transform:none;
 }
 
 .primary{
@@ -169,19 +146,10 @@ a{
   color:#fff;
 }
 
-.primary:hover{
-  background:var(--pd);
-}
-
 .outline{
   background:#fff;
   border:1px solid var(--line);
   color:var(--text);
-}
-
-.outline:hover{
-  border-color:var(--p);
-  color:var(--p);
 }
 
 .danger{
@@ -193,10 +161,6 @@ a{
 .warning{
   background:#fff8e8;
   color:var(--yellow);
-}
-
-.search{
-  margin-bottom:12px;
 }
 
 .input,
@@ -325,16 +289,16 @@ a{
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(10,20,18,.5);
+  background:rgba(10,20,18,.55);
   display:none;
   align-items:center;
   justify-content:center;
   padding:14px;
-  z-index:100;
+  z-index:9999;
 }
 
 .modal.show{
-  display:flex;
+  display:flex !important;
 }
 
 .modal-box{
@@ -344,7 +308,7 @@ a{
   background:#fff;
   border-radius:18px;
   padding:20px;
-  box-shadow:0 20px 70px rgba(0,0,0,.2);
+  box-shadow:0 20px 70px rgba(0,0,0,.25);
 }
 
 .modal-head{
@@ -368,10 +332,6 @@ a{
   font-size:20px;
 }
 
-.close:hover{
-  background:#e7edeb;
-}
-
 /* LOGIN */
 
 .login{
@@ -379,84 +339,78 @@ a{
   margin:70px auto;
 }
 
-/* LOGIN BEAR */
+/* BEAR */
 
 .login-bear{
-  width:160px;
+  width:170px;
   height:145px;
   margin:0 auto 18px;
   position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
 }
 
 .bear-head{
   width:108px;
   height:96px;
-  background:linear-gradient(
-    145deg,
-    #b87d50,
-    #8c5d3d
-  );
-  border-radius:48% 48% 45% 45%;
-  position:relative;
+  position:absolute;
+  left:31px;
+  bottom:12px;
   z-index:2;
+  background:linear-gradient(145deg,#b87d50,#8c5d3d);
+  border-radius:48% 48% 45% 45%;
   box-shadow:
     inset 0 -7px 0 rgba(0,0,0,.08),
     0 10px 24px rgba(60,35,20,.15);
 }
 
 .bear-ear{
-  width:36px;
-  height:36px;
+  width:37px;
+  height:37px;
+  position:absolute;
+  top:2px;
+  z-index:1;
   background:#9b6a45;
   border-radius:50%;
-  position:absolute;
-  top:4px;
-  z-index:1;
-  box-shadow:0 5px 10px rgba(60,35,20,.1);
 }
 
 .bear-ear:after{
   content:"";
-  position:absolute;
   width:19px;
   height:19px;
+  position:absolute;
+  left:9px;
+  top:9px;
   background:#6f4930;
   border-radius:50%;
-  left:8px;
-  top:8px;
 }
 
 .bear-ear.left{
-  left:15px;
+  left:13px;
 }
 
 .bear-ear.right{
-  right:15px;
+  right:13px;
 }
 
 .bear-eye{
   width:10px;
-  height:12px;
-  background:#17120f;
-  border-radius:50%;
+  height:13px;
   position:absolute;
   top:35px;
-  transition:.25s ease;
-  z-index:3;
+  z-index:5;
+  background:#17120f;
+  border-radius:50%;
+  transition:.25s;
 }
 
 .bear-eye:after{
   content:"";
-  position:absolute;
   width:3px;
   height:3px;
+  position:absolute;
+  left:2px;
+  top:2px;
   background:#fff;
   border-radius:50%;
-  top:2px;
-  left:2px;
 }
 
 .bear-eye.left{
@@ -468,102 +422,130 @@ a{
 }
 
 .bear-muzzle{
-  position:absolute;
   width:48px;
   height:34px;
-  background:#d9a77b;
-  border-radius:50%;
+  position:absolute;
   left:30px;
   top:52px;
+  background:#d9a77b;
+  border-radius:50%;
 }
 
 .bear-nose{
-  position:absolute;
   width:16px;
   height:11px;
+  position:absolute;
+  left:46px;
+  top:57px;
+  z-index:6;
   background:#241712;
   border-radius:50%;
-  top:57px;
-  left:46px;
-  z-index:4;
 }
 
 .bear-mouth{
-  position:absolute;
   width:16px;
   height:9px;
+  position:absolute;
+  left:46px;
+  top:66px;
+  z-index:6;
   border-bottom:2px solid #241712;
   border-radius:50%;
-  top:66px;
-  left:46px;
-  z-index:4;
 }
 
+/* بازوها فقط تزئینی‌اند */
 .bear-arm{
-  position:absolute;
   width:29px;
-  height:64px;
-  background:linear-gradient(
-    160deg,
-    #b87d50,
-    #8c5d3d
-  );
-  border-radius:20px;
-  top:68px;
-  z-index:4;
-  transition:
-    top .35s cubic-bezier(.2,.8,.2,1),
-    left .35s cubic-bezier(.2,.8,.2,1),
-    right .35s cubic-bezier(.2,.8,.2,1),
-    transform .35s cubic-bezier(.2,.8,.2,1);
-  box-shadow:0 4px 10px rgba(60,35,20,.13);
-}
-
-.bear-arm:after{
-  content:"";
+  height:60px;
   position:absolute;
-  width:31px;
-  height:28px;
-  background:#b87d50;
-  border-radius:50%;
-  bottom:-4px;
-  left:-1px;
+  top:79px;
+  z-index:3;
+  background:linear-gradient(160deg,#b87d50,#8c5d3d);
+  border-radius:20px;
+  transition:.35s;
 }
 
 .bear-arm.left{
-  left:8px;
-  transform:rotate(20deg);
+  left:12px;
+  transform:rotate(18deg);
 }
 
 .bear-arm.right{
-  right:8px;
-  transform:rotate(-20deg);
+  right:12px;
+  transform:rotate(-18deg);
 }
 
 /*
-  دست‌ها دقیقاً روی چشم‌ها قرار می‌گیرند
+  دست‌ها مستقل هستند.
+  مرکز دست دقیقاً روی مرکز چشم قرار می‌گیرد.
 */
 
-.login-bear.password-mode .bear-arm.left{
-  left:34px;
-  top:31px;
-  transform:rotate(48deg);
+.bear-hand{
+  width:32px;
+  height:27px;
+  position:absolute;
+  top:46px;
+  z-index:20;
+  opacity:0;
+  pointer-events:none;
+  background:linear-gradient(145deg,#b87d50,#8c5d3d);
+  border-radius:48% 48% 45% 45%;
+  box-shadow:
+    0 5px 10px rgba(50,30,15,.18),
+    inset 0 -3px 0 rgba(0,0,0,.08);
+  transition:
+    opacity .15s ease,
+    transform .3s cubic-bezier(.2,.8,.2,1);
 }
 
-.login-bear.password-mode .bear-arm.right{
-  right:34px;
-  top:31px;
-  transform:rotate(-48deg);
+/* دست چپ روی چشم چپ */
+
+.bear-hand.left{
+  left:40px;
+  transform:
+    translateY(25px)
+    rotate(-18deg)
+    scale(.7);
+}
+
+/* دست راست روی چشم راست */
+
+.bear-hand.right{
+  right:40px;
+  transform:
+    translateY(25px)
+    rotate(18deg)
+    scale(.7);
+}
+
+/*
+  وقتی رمز وارد می‌شود:
+  دست‌ها دقیقاً روی چشم‌ها قرار می‌گیرند.
+*/
+
+.login-bear.password-mode .bear-hand{
+  opacity:1;
+}
+
+.login-bear.password-mode .bear-hand.left{
+  transform:
+    translateY(0)
+    rotate(-8deg)
+    scale(1);
+}
+
+.login-bear.password-mode .bear-hand.right{
+  transform:
+    translateY(0)
+    rotate(8deg)
+    scale(1);
 }
 
 .login-bear.password-mode .bear-eye{
-  opacity:.05;
-  transform:scale(.8);
+  opacity:0;
+  transform:scale(.5);
 }
 
-.login-bear.password-mode .bear-mouth{
-  transform:translateY(1px);
-}
 
 /* AGENCY */
 
@@ -612,11 +594,6 @@ a{
   padding:15px;
   margin-bottom:10px;
   background:#fff;
-  transition:.2s ease;
-}
-
-.agency-card:hover{
-  box-shadow:0 8px 25px rgba(20,33,31,.06);
 }
 
 .agency-card-top{
@@ -708,13 +685,6 @@ a{
   border-bottom:0;
 }
 
-.agency-loading{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
-  font-size:10px;
-}
-
 .error{
   background:#fff1f1;
   color:#963737;
@@ -731,8 +701,6 @@ a{
   padding:25px;
   font-size:10px;
 }
-
-/* MOBILE */
 
 @media(max-width:800px){
 
@@ -763,7 +731,7 @@ a{
 @media(max-width:480px){
 
   .container{
-    width:min(100% - 16px,1250px);
+    width:calc(100% - 16px);
   }
 
   .stats,
