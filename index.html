@@ -572,18 +572,32 @@
 
     .hero-actions{
       display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:10px;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:12px;
     }
 
     .hero-actions .btn-primary{
-      order:-1;
-      flex-basis:100%;
-      min-height:52px;
-      padding:0 24px;
-      font-size:13px;
-      margin-bottom:2px;
+      min-height:54px;
+      padding:0 26px;
+      font-size:13.5px;
+      border-radius:999px;
+      align-self:stretch;
+      justify-content:space-between;
+    }
+
+    .hero-secondary-actions{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:8px;
+    }
+
+    .hero-secondary-actions .btn{
+      min-height:38px;
+      padding:0 14px;
+      font-size:10.5px;
+      border-radius:999px;
     }
 
     .btn{
@@ -642,11 +656,32 @@
       background:var(--primary);
       color:#fff;
       box-shadow:0 10px 24px rgba(49,87,213,.22);
+      padding-right:20px;
+      padding-left:6px;
+      gap:10px;
+    }
+
+    .btn-primary::after{
+      content:"←";
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      background:rgba(255,255,255,.22);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      flex-shrink:0;
+      transition:transform .3s cubic-bezier(.2,.7,.2,1);
     }
 
     .btn-primary:hover{
       background:var(--primary-dark);
       box-shadow:0 14px 30px rgba(49,87,213,.28);
+    }
+
+    .btn-primary:hover::after{
+      transform:translateX(-4px);
     }
 
     .btn-outline{
@@ -675,9 +710,13 @@
     }
 
     .btn-gold{
-      background:var(--gold);
+      background:linear-gradient(120deg,var(--ink),var(--primary));
       color:#fff;
-      box-shadow:0 10px 24px rgba(22,48,92,.24);
+      box-shadow:0 10px 24px rgba(17,24,39,.26);
+    }
+
+    .btn-gold:hover{
+      box-shadow:0 14px 30px rgba(17,24,39,.32);
     }
 
     .btn-purple{
@@ -696,16 +735,143 @@
 
     .hero-visual{
       position:relative;
+      padding:14px 22px 22px 0;
+    }
+
+    .hero-floater{
+      position:absolute;
+      z-index:3;
+      display:flex;
+      align-items:center;
+      gap:9px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:9px 13px;
+      box-shadow:0 16px 34px rgba(17,24,39,.14);
+      animation:floaterBob 5s ease-in-out infinite;
+    }
+
+    .hero-floater span{
+      width:30px;
+      height:30px;
+      border-radius:9px;
+      background:var(--primary-soft);
+      color:var(--primary);
+      display:grid;
+      place-items:center;
+      font-size:13px;
+      font-weight:800;
+      flex-shrink:0;
+    }
+
+    .hero-floater strong{
+      display:block;
+      font-size:10.5px;
+    }
+
+    .hero-floater small{
+      display:block;
+      color:var(--muted);
+      font-size:8.5px;
+      margin-top:1px;
+    }
+
+    .hero-floater-1{
+      top:0;
+      left:0;
+      animation-delay:0s;
+    }
+
+    .hero-floater-2{
+      bottom:26px;
+      right:-6px;
+      animation-delay:1.4s;
+    }
+
+    @keyframes floaterBob{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-9px);}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .hero-floater{animation:none;}
+    }
+
+    @media (max-width:640px){
+      .hero-floater{display:none;}
+    }
+
+    .hero-shape{
+      position:relative;
+    }
+
+    .hero-shape-top{
+      position:relative;
+      z-index:2;
+      background:var(--ink);
+      border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+      padding:20px 22px 34px;
+      overflow:visible;
+      box-shadow:0 18px 38px rgba(17,24,39,.24);
+    }
+
+    .hero-shape-dots{
+      position:absolute;
+      inset:0;
+      border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+      overflow:hidden;
+      background-image:radial-gradient(rgba(255,255,255,.16) 1.4px,transparent 1.4px);
+      background-size:16px 16px;
+      -webkit-mask-image:linear-gradient(200deg,#000,transparent 65%);
+      mask-image:linear-gradient(200deg,#000,transparent 65%);
+      pointer-events:none;
+    }
+
+    .hero-shape-top .hero-card-header{
+      position:relative;
+      z-index:1;
+      margin-bottom:0;
+    }
+
+    .hero-shape-top .hero-card-title{
+      color:#fff;
+    }
+
+    .hero-shape-top .live-badge{
+      background:rgba(255,255,255,.14);
+      border-color:rgba(255,255,255,.22);
+      color:#bcd4fb;
+    }
+
+    .hero-notch{
+      position:absolute;
+      bottom:-14px;
+      width:28px;
+      height:28px;
+    }
+
+    .hero-notch-l{
+      left:0;
+      background:radial-gradient(circle at bottom left,transparent 27px,var(--ink) 28px);
+    }
+
+    .hero-notch-r{
+      right:0;
+      background:radial-gradient(circle at bottom right,transparent 27px,var(--ink) 28px);
     }
 
     .hero-card{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
-      border-radius:var(--radius-xl);
-      padding:24px;
+      border-top:none;
+      border-radius:0 0 var(--radius-xl) var(--radius-xl);
+      padding:44px 24px 24px;
+      margin-top:-28px;
       box-shadow:var(--shadow-lg);
       position:relative;
       overflow:hidden;
+      z-index:1;
     }
 
     .hero-card::before{
@@ -828,40 +994,66 @@
     .trust-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-      border:1px solid var(--border);
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:var(--shadow-sm);
+      gap:14px;
     }
 
     .trust-item{
-      padding:19px;
+      padding:22px 16px;
       display:flex;
-      align-items:center;
+      flex-direction:column;
+      align-items:flex-start;
       gap:12px;
-      border-left:1px solid var(--border);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow-sm);
+      position:relative;
+      overflow:hidden;
+      transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s;
     }
 
-    .trust-item:last-child{
-      border-left:0;
+    .trust-item::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      left:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--primary),transparent);
+      opacity:0;
+      transition:opacity .3s;
+    }
+
+    .trust-item:hover{
+      transform:translateY(-5px);
+      box-shadow:var(--shadow);
+      border-color:#ccd9ef;
+    }
+
+    .trust-item:hover::before{
+      opacity:1;
     }
 
     .trust-icon{
-      width:40px;
-      height:40px;
-      border-radius:11px;
+      width:44px;
+      height:44px;
+      border-radius:13px;
       background:var(--primary-soft);
       color:var(--primary);
       display:grid;
       place-items:center;
-      font-size:17px;
+      font-size:18px;
       flex-shrink:0;
+      transition:transform .3s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .trust-item:hover .trust-icon{
+      transform:scale(1.08) rotate(-4deg);
     }
 
     .trust-item strong{
       display:block;
-      font-size:12px;
+      font-size:12.5px;
     }
 
     .trust-item span{
@@ -869,6 +1061,7 @@
       color:var(--muted);
       font-size:10px;
       margin-top:2px;
+      line-height:1.7;
     }
 
     /* =========================
@@ -888,10 +1081,22 @@
     }
 
     .section-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
       color:var(--primary);
       font-size:11px;
       font-weight:900;
       margin-bottom:4px;
+    }
+
+    .section-kicker::before{
+      content:"";
+      width:16px;
+      height:2px;
+      border-radius:2px;
+      background:var(--primary);
+      display:inline-block;
     }
 
     .section-title{
@@ -1090,17 +1295,17 @@
       background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:20px;
-      padding:19px;
+      padding:14px 14px 20px;
       box-shadow:var(--shadow-sm);
       position:relative;
-      transition:.25s;
+      transition:transform .32s cubic-bezier(.2,.7,.2,1),box-shadow .32s,border-color .32s;
       display:flex;
       flex-direction:column;
     }
 
     .product-card:hover{
-      transform:translateY(-4px);
-      box-shadow:var(--shadow);
+      transform:translateY(-6px);
+      box-shadow:var(--shadow-lg);
       border-color:#ccd9ef;
     }
 
@@ -1108,41 +1313,98 @@
       border-color:#b9d0f2;
     }
 
-    .product-badge{
-      position:absolute;
-      top:15px;
-      left:15px;
-      background:var(--gold-soft);
-      color:var(--gold);
-      border:1px solid #cfe0fb;
-      border-radius:20px;
-      padding:4px 8px;
-      font-size:9px;
-      font-weight:900;
-    }
-
-    .product-top{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:15px;
-      padding-left:70px;
-    }
-
-    .product-icon{
-      width:46px;
-      height:46px;
-      background:var(--primary-soft);
-      color:var(--primary);
-      border-radius:13px;
+    .product-photo{
+      position:relative;
+      min-height:118px;
+      border-radius:14px;
+      background:linear-gradient(155deg,var(--primary),var(--primary-dark));
       display:grid;
       place-items:center;
-      font-size:21px;
+      margin-bottom:16px;
+      overflow:visible;
+      transition:transform .3s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .product-card.special .product-photo{
+      background:linear-gradient(155deg,var(--ink),var(--primary-dark) 65%,var(--primary));
+    }
+
+    .product-card:hover .product-photo{
+      transform:translateY(-2px);
+    }
+
+    .product-photo-icon{
+      width:44px;
+      height:44px;
+      color:#fff;
+      opacity:.95;
+    }
+
+    .product-badge{
+      position:absolute;
+      top:10px;
+      left:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      background:rgba(255,255,255,.16);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:20px;
+      padding:5px 10px 5px 8px;
+      font-size:8.5px;
+      font-weight:800;
+    }
+
+    .product-badge::before{
+      content:"";
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:#bcd4fb;
       flex-shrink:0;
     }
 
+    .product-cart-btn{
+      position:absolute;
+      bottom:-18px;
+      left:12px;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:var(--ink);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      border:3px solid #fff;
+      box-shadow:0 10px 20px rgba(17,24,39,.3);
+      cursor:pointer;
+      transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s;
+      z-index:2;
+    }
+
+    .product-cart-btn:hover{
+      transform:scale(1.1);
+      background:var(--primary);
+    }
+
+    .product-cart-btn:active{
+      transform:scale(.94);
+    }
+
+    .product-cart-btn svg{
+      width:17px;
+      height:17px;
+    }
+
+    .product-top{
+      padding:0 2px;
+    }
+
     .product-top h3{
-      font-size:15px;
+      font-size:14.5px;
       line-height:1.5;
     }
 
@@ -1152,29 +1414,13 @@
       margin-top:2px;
     }
 
-    .product-features{
-      list-style:none;
-      display:grid;
-      gap:7px;
-      padding:14px 0;
-      border-top:1px solid var(--border);
-      border-bottom:1px solid var(--border);
-      margin-bottom:16px;
+    .product-summary{
+      font-size:9.5px;
+      color:var(--muted);
+      line-height:1.8;
+      padding:0 2px;
+      margin:9px 0 0;
       flex:1;
-    }
-
-    .product-features li{
-      color:#465872;
-      font-size:10px;
-      display:flex;
-      gap:7px;
-      align-items:flex-start;
-    }
-
-    .product-features li::before{
-      content:"✓";
-      color:var(--success);
-      font-weight:900;
     }
 
     .product-price-row{
@@ -1182,7 +1428,8 @@
       align-items:flex-end;
       justify-content:space-between;
       gap:10px;
-      margin-bottom:12px;
+      padding:0 2px;
+      margin:14px 0 12px;
     }
 
     .price-label{
@@ -1191,7 +1438,7 @@
     }
 
     .price{
-      font-size:21px;
+      font-size:19px;
       font-weight:900;
       direction:rtl;
     }
@@ -1203,19 +1450,33 @@
     }
 
     .product-actions{
-      display:grid;
-      grid-template-columns:1.5fr 1fr;
-      gap:8px;
+      padding:0 2px;
     }
 
-    .product-actions .btn{
-      min-height:42px;
-      padding:0 10px;
-      font-size:10.5px;
+    .product-actions .btn-outline{
+      width:100%;
+      min-height:36px;
+      border:1px solid var(--border);
+      background:transparent;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
+      box-shadow:none;
+      color:var(--ink);
+      font-size:10px;
+      font-weight:800;
+      border-radius:11px;
     }
 
-    .product-actions .btn-primary{
-      box-shadow:0 8px 18px rgba(49,87,213,.2);
+    .product-actions .btn-outline:hover{
+      background:var(--primary-soft);
+      border-color:#cfe0fb;
+      color:var(--primary);
+      transform:translateY(0);
+    }
+
+    .product-actions .btn-outline::after,
+    .product-actions .btn-outline::before{
+      display:none;
     }
 
     /* =========================
@@ -2702,11 +2963,12 @@
       }
 
       .hero-actions{
-        display:grid;
-        grid-template-columns:1fr 1fr;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
       }
 
-      .hero-actions .btn{
+      .hero-actions .btn-primary{
         width:100%;
       }
 
@@ -3071,70 +3333,95 @@
 
             <div class="hero-actions">
               <button class="btn btn-primary" onclick="showPage('wireguard')">
-                مشاهده سرویس‌ها
+                مشاهده سرویس‌ها ←
               </button>
 
-              <button class="btn btn-outline" onclick="openCart()">
-                🛒 مشاهده سبد خرید
-              </button>
+              <div class="hero-secondary-actions">
+                <button class="btn btn-outline" onclick="openCart()">
+                  🛒 سبد خرید
+                </button>
 
-              <a class="btn btn-outline" href="status.html">
-                وضعیت سرویس
-              </a>
+                <a class="btn btn-outline" href="status.html">
+                  ◉ وضعیت سرویس
+                </a>
 
-              <a class="btn btn-dark" href="https://t.me/Vtwoguard" target="_blank">
-                ✈️ پشتیبانی تلگرام
-              </a>
+                <a class="btn btn-dark" href="https://t.me/Vtwoguard" target="_blank">
+                  ✈️ پشتیبانی تلگرام
+                </a>
 
-              <a href="agency-request.html" class="btn btn-gold">
-                🤝 درخواست نمایندگی
-              </a>
+                <a href="agency-request.html" class="btn btn-gold">
+                  🤝 درخواست نمایندگی
+                </a>
+              </div>
             </div>
           </div>
 
           <div class="hero-visual">
-            <div class="hero-card">
+            <div class="hero-floater hero-floater-1">
+              <span>🛡️</span>
+              <div>
+                <strong>امنیت</strong>
+                <small>اتصال محافظت‌شده</small>
+              </div>
+            </div>
 
-              <div class="hero-card-header">
-                <div class="hero-card-title">وضعیت شبکه V2GURD</div>
-                <div class="live-badge">● آنلاین</div>
+            <div class="hero-floater hero-floater-2">
+              <span>۲۴</span>
+              <div>
+                <strong>پشتیبانی ۲۴/۷</strong>
+                <small>از طریق تلگرام</small>
+              </div>
+            </div>
+
+            <div class="hero-shape">
+
+              <div class="hero-shape-top">
+                <div class="hero-shape-dots"></div>
+                <div class="hero-card-header">
+                  <div class="hero-card-title">وضعیت شبکه V2GURD</div>
+                  <div class="live-badge">● آنلاین</div>
+                </div>
+                <div class="hero-notch hero-notch-l"></div>
+                <div class="hero-notch hero-notch-r"></div>
               </div>
 
-              <div class="network-card">
+              <div class="hero-card">
 
-                <div class="network-title">
-                  مسیر اتصال فعلی
-                </div>
+                <div class="network-card">
 
-                <div class="network-route">
-                  <div class="route-node">
-                    📱
-                    <small>دستگاه شما</small>
+                  <div class="network-title">
+                    مسیر اتصال فعلی
                   </div>
 
-                  <div class="route-arrow">←</div>
+                  <div class="network-route">
+                    <div class="route-node">
+                      📱
+                      <small>دستگاه شما</small>
+                    </div>
 
-                  <div class="route-node">
-                    🛡️
-                    <small>V2GURD</small>
+                    <div class="route-arrow">←</div>
+
+                    <div class="route-node">
+                      🛡️
+                      <small>V2GURD</small>
+                    </div>
+
+                    <div class="route-arrow">←</div>
+
+                    <div class="route-node">
+                      🌐
+                      <small>مقصد</small>
+                    </div>
                   </div>
 
-                  <div class="route-arrow">←</div>
+                  <div class="network-stats">
+                    <div class="stat">
+                      <strong id="heroPing">۳۸ms</strong>
+                      <span>Ping</span>
+                    </div>
 
-                  <div class="route-node">
-                    🌐
-                    <small>مقصد</small>
-                  </div>
-                </div>
-
-                <div class="network-stats">
-                  <div class="stat">
-                    <strong id="heroPing">۳۸ms</strong>
-                    <span>Ping</span>
-                  </div>
-
-                  <div class="stat">
-                    <strong id="heroLoss">۰٪</strong>
+                    <div class="stat">
+                      <strong id="heroLoss">۰٪</strong>
                     <span>Packet Loss</span>
                   </div>
 
@@ -3147,6 +3434,7 @@
               </div>
 
             </div>
+          </div>
           </div>
 
         </div>
@@ -3201,7 +3489,7 @@
             <div>
               <div class="featured-label">پیشنهاد ویژه فروشگاه</div>
 
-              <h2>🟣 وایرگارد تک‌کاربره</h2>
+              <h2>🔷 وایرگارد تک‌کاربره</h2>
 
               <p>
                 سرویس تک‌کاربره با IP ثابت، سرعت و پایداری بالا و اعتبار ۳۰ روزه.
@@ -3443,7 +3731,7 @@
                 سرویس تک‌کاربره
               </div>
 
-              <h1>🟣 وایرگارد</h1>
+              <h1>🔷 وایرگارد</h1>
 
               <p>
                 اتصال امن و پایدار برای استفاده شخصی با IP ثابت،
@@ -4262,7 +4550,7 @@
     </button>
 
     <button data-mobile-page="wireguard" onclick="showPage('wireguard')">
-      <span>🟣</span>
+      <span>🔷</span>
       فروشگاه
     </button>
 
@@ -4301,7 +4589,7 @@
     const CATEGORIES = [
       {
         id:"wireguard",
-        icon:"🟣",
+        icon:"🔷",
         title:"WireGuard",
         desc:"تک‌کاربره • IP ثابت • سرعت بالا",
         image:IMAGES.wireguard
@@ -4514,7 +4802,7 @@
 
     const DOWNLOADS = [
       {
-        icon:"🟣",
+        icon:"🔷",
         title:"WireGuard",
         image:IMAGES.wireguard,
         description:"اپلیکیشن رسمی WireGuard",
@@ -4589,7 +4877,7 @@
       FIXED_PRODUCTS[plan.id] = {
         id:plan.id,
         category:"WireGuard",
-        name:`🟣 وایرگارد ${toFa(plan.gb)} گیگ`,
+        name:`🔷 وایرگارد ${toFa(plan.gb)} گیگ`,
         shortName:`وایرگارد ${toFa(plan.gb)} گیگ`,
         price:plan.price,
         type:"wireguard",
@@ -5563,6 +5851,22 @@ ${formatPrice(total)}
        WIREGUARD
     ========================================== */
 
+    /* ==========================================
+       آیکون‌های خطی محصولات (فقط بصری - جایگزین ایموجی)
+    ========================================== */
+    const PRODUCT_ICONS = {
+      shield:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>`,
+      box:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>`,
+      bolt:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>`,
+      crown:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18"/><path d="M4 18l-1-9 5 4 4-6 4 6 5-4-1 9"/></svg>`
+    };
+
+    const CART_ICON_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H6"/></svg>`;
+
+    function productIcon(name){
+      return PRODUCT_ICONS[name] || PRODUCT_ICONS.box;
+    }
+
     function renderWireguard(plans = WIREGUARD_PLANS){
 
       const box =
@@ -5580,39 +5884,36 @@ ${formatPrice(total)}
 
             <article class="product-card ${plan.special ? "special" : ""}">
 
-              ${
-                plan.special
-                ? `<div class="product-badge">پیشنهاد ویژه</div>`
-                : ""
-              }
-
-              <div class="product-top">
-
-                <div class="product-icon">
-                  🟣
+              <div class="product-photo">
+                ${
+                  plan.special
+                  ? `<div class="product-badge">پیشنهاد ویژه</div>`
+                  : ""
+                }
+                <div class="product-photo-icon">
+                  ${productIcon("shield")}
                 </div>
-
-                <div>
-                  <h3>
-                    وایرگارد ${toFa(plan.gb)} گیگ
-                  </h3>
-
-                  <div class="product-type">
-                    تک‌کاربره • ۳۰ روزه
-                  </div>
-                </div>
-
+                <button
+                  class="product-cart-btn"
+                  onclick="addFixedProduct('${plan.id}')"
+                  aria-label="افزودن به سبد">
+                  ${CART_ICON_SVG}
+                </button>
               </div>
 
-              <ul class="product-features">
+              <div class="product-top">
+                <h3>
+                  وایرگارد ${toFa(plan.gb)} گیگ
+                </h3>
 
-                <li>تک‌کاربره و تک‌سرور</li>
-                <li>IP ثابت</li>
-                <li>سرعت و پایداری بالا</li>
-                <li>اعتبار ۳۰ روزه</li>
-                <li>پشتیبانی سریع</li>
+                <div class="product-type">
+                  تک‌کاربره • ۳۰ روزه
+                </div>
+              </div>
 
-              </ul>
+              <p class="product-summary">
+                تک‌کاربره و تک‌سرور • IP ثابت • سرعت و پایداری بالا
+              </p>
 
               <div class="product-price-row">
 
@@ -5634,15 +5935,9 @@ ${formatPrice(total)}
               <div class="product-actions">
 
                 <button
-                  class="btn btn-primary"
-                  onclick="addFixedProduct('${plan.id}')">
-                  افزودن به سبد
-                </button>
-
-                <button
                   class="btn btn-outline"
                   onclick="openProductDetail('${plan.id}')">
-                  جزئیات
+                  مشاهده جزئیات ←
                 </button>
 
               </div>
@@ -5700,42 +5995,36 @@ ${formatPrice(total)}
 
           <article class="product-card ${plan.special ? "special" : ""}">
 
-            ${
-              plan.special
-              ? `<div class="product-badge">${plan.status}</div>`
-              : ""
-            }
-
-            <div class="product-top">
-
-              <div class="product-icon">
-                ${plan.icon}
+            <div class="product-photo">
+              ${
+                plan.special
+                ? `<div class="product-badge">${plan.status}</div>`
+                : ""
+              }
+              <div class="product-photo-icon">
+                ${productIcon("box")}
               </div>
-
-              <div>
-                <h3>
-                  ${plan.title}
-                </h3>
-
-                <div class="product-type">
-                  ${plan.type} • ${plan.status}
-                </div>
-              </div>
-
+              <button
+                class="product-cart-btn"
+                onclick="addV2BoxProduct('${plan.id}')"
+                aria-label="افزودن به سبد">
+                ${CART_ICON_SVG}
+              </button>
             </div>
 
-            <ul class="product-features">
+            <div class="product-top">
+              <h3>
+                ${plan.title}
+              </h3>
 
-              ${plan.desc.map(
-                item =>
-                  `<li>${item}</li>`
-              ).join("")}
+              <div class="product-type">
+                ${plan.type} • ${plan.status}
+              </div>
+            </div>
 
-              <li>
-                مناسب: ${plan.bestFor}
-              </li>
-
-            </ul>
+            <p class="product-summary">
+              ${plan.desc.slice(0,2).join(" • ")} • مناسب: ${plan.bestFor}
+            </p>
 
             <div class="volume-box">
 
@@ -5776,15 +6065,9 @@ ${formatPrice(total)}
             <div class="product-actions">
 
               <button
-                class="btn btn-primary"
-                onclick="addV2BoxProduct('${plan.id}')">
-                افزودن به سبد
-              </button>
-
-              <button
                 class="btn btn-outline"
                 onclick="openV2BoxDetail('${plan.id}')">
-                جزئیات
+                مشاهده جزئیات ←
               </button>
 
             </div>
@@ -5885,54 +6168,37 @@ ${formatPrice(total)}
 
             <article class="product-card ${plan.special ? "special" : ""}">
 
-              ${
-                plan.special
-                ? `<div class="product-badge">${plan.status}</div>`
-                : ""
-              }
-
-              <div class="product-top">
-
-                <div class="product-icon">
-                  🚀
+              <div class="product-photo">
+                ${
+                  plan.special
+                  ? `<div class="product-badge">${plan.status}</div>`
+                  : ""
+                }
+                <div class="product-photo-icon">
+                  ${productIcon("bolt")}
                 </div>
-
-                <div>
-                  <h3>
-                    JumpJump
-                  </h3>
-
-                  <div class="product-type">
-                    ${toFa(plan.devices)} دستگاه •
-                    ${toFa(plan.months)} ماه
-                  </div>
-                </div>
-
+                <button
+                  class="product-cart-btn"
+                  onclick="addFixedProduct('${plan.id}')"
+                  aria-label="افزودن به سبد">
+                  ${CART_ICON_SVG}
+                </button>
               </div>
 
-              <ul class="product-features">
+              <div class="product-top">
+                <h3>
+                  JumpJump
+                </h3>
 
-                <li>
-                  ${toFa(plan.devices)} دستگاه
-                </li>
+                <div class="product-type">
+                  ${toFa(plan.devices)} دستگاه •
+                  ${toFa(plan.months)} ماه
+                </div>
+              </div>
 
-                <li>
-                  ${toFa(plan.months)} ماه اعتبار
-                </li>
-
-                <li>
-                  سرویس چند دستگاه
-                </li>
-
-                <li>
-                  پشتیبانی V2GURD
-                </li>
-
-                <li>
-                  مناسب استفاده روزمره
-                </li>
-
-              </ul>
+              <p class="product-summary">
+                سرویس چند دستگاه • پشتیبانی V2GURD • مناسب استفاده روزمره
+              </p>
 
               <div class="product-price-row">
 
@@ -5956,19 +6222,9 @@ ${formatPrice(total)}
               <div class="product-actions">
 
                 <button
-                  class="btn ${
-                    plan.special
-                    ? "btn-gold"
-                    : "btn-primary"
-                  }"
-                  onclick="addFixedProduct('${plan.id}')">
-                  افزودن به سبد
-                </button>
-
-                <button
                   class="btn btn-outline"
                   onclick="openProductDetail('${plan.id}')">
-                  جزئیات
+                  مشاهده جزئیات ←
                 </button>
 
               </div>
@@ -6250,7 +6506,7 @@ ${formatPrice(total)}
       ).innerHTML = `
 
         <div class="detail-icon">
-          ${product.type === "wireguard" ? "🟣" : "🚀"}
+          ${product.type === "wireguard" ? "🔷" : "🚀"}
         </div>
 
         <div class="detail-title">
