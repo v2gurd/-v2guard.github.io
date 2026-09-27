@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://v2gurd.github.io/-v2guard.github.io/">
 
-  <meta name="theme-color" content="#0c6b5b">
+  <meta name="theme-color" content="#123a7a">
 
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,17 +27,17 @@
 
   <style>
     :root{
-      --primary:#087765;
-      --primary-dark:#05594d;
-      --primary-soft:#e8f5f1;
-      --gold:#b78935;
-      --gold-soft:#fbf5e8;
+      --primary:#1656d6;
+      --primary-dark:#0e3fa6;
+      --primary-soft:#eaf1fd;
+      --gold:#16305c;
+      --gold-soft:#eef2f8;
 
-      --ink:#14211f;
-      --muted:#4b5c58;
-      --muted-2:#77857f;
+      --ink:#0b1526;
+      --muted:#465872;
+      --muted-2:#64789a;
 
-      --bg:#eef5f2;
+      --bg:#f3f6fb;
       --surface:rgba(255,255,255,.6);
       --surface-2:rgba(255,255,255,.38);
 
@@ -45,25 +45,25 @@
       --glass:rgba(255,255,255,.55);
       --glass-strong:rgba(255,255,255,.72);
       --glass-soft:rgba(255,255,255,.32);
-      --glass-blur:blur(22px) saturate(180%);
-      --glass-blur-sm:blur(12px) saturate(160%);
+      --glass-blur:blur(14px) saturate(140%);
+      --glass-blur-sm:blur(9px) saturate(130%);
 
       --border:rgba(255,255,255,.55);
-      --border-strong:rgba(20,33,31,.14);
+      --border-strong:rgba(11,21,38,.14);
 
       --success:#16845e;
       --danger:#c74848;
-      --warning:#a9781f;
-      --purple:#6946c6;
+      --warning:#b45309;
+      --purple:#2f7dff;
 
-      --shadow-sm:0 4px 18px rgba(20,60,50,.07);
-      --shadow:0 14px 42px rgba(20,60,50,.10);
-      --shadow-lg:0 30px 90px rgba(20,60,50,.16);
+      --shadow-sm:0 4px 18px rgba(10,30,60,.07);
+      --shadow:0 14px 42px rgba(10,30,60,.10);
+      --shadow-lg:0 30px 90px rgba(10,30,60,.16);
 
-      --radius-sm:10px;
-      --radius:16px;
-      --radius-lg:24px;
-      --radius-xl:32px;
+      --radius-sm:8px;
+      --radius:12px;
+      --radius-lg:18px;
+      --radius-xl:22px;
 
       --header-height:76px;
     }
@@ -106,37 +106,32 @@
     .liquid-bg span{
       position:absolute;
       border-radius:50%;
-      filter:blur(70px);
-      opacity:.55;
+      filter:blur(95px);
+      opacity:.14;
       will-change:transform;
     }
 
     .liquid-bg span:nth-child(1){
-      width:560px;
-      height:560px;
-      top:-160px;
-      right:-120px;
-      background:radial-gradient(circle at 30% 30%,#a9e6d4,#087765 75%);
-      animation:liquidFloat1 26s ease-in-out infinite;
+      width:620px;
+      height:620px;
+      top:-200px;
+      right:-160px;
+      background:radial-gradient(circle at 30% 30%,#bcd4fb,#1656d6 75%);
+      animation:liquidFloat1 32s ease-in-out infinite;
     }
 
     .liquid-bg span:nth-child(2){
-      width:480px;
-      height:480px;
-      bottom:-140px;
-      left:-100px;
-      background:radial-gradient(circle at 60% 40%,#f3ddab,#b78935 75%);
-      animation:liquidFloat2 30s ease-in-out infinite;
+      width:520px;
+      height:520px;
+      bottom:-180px;
+      left:-140px;
+      background:radial-gradient(circle at 60% 40%,#cfe0fb,#16305c 75%);
+      opacity:.10;
+      animation:liquidFloat2 36s ease-in-out infinite;
     }
 
     .liquid-bg span:nth-child(3){
-      width:420px;
-      height:420px;
-      top:38%;
-      left:42%;
-      background:radial-gradient(circle at 50% 50%,#cbb9f2,#6946c6 75%);
-      opacity:.3;
-      animation:liquidFloat3 34s ease-in-out infinite;
+      display:none;
     }
 
     @keyframes liquidFloat1{
@@ -306,6 +301,13 @@
       z-index:5000;
       backdrop-filter:var(--glass-blur);
       -webkit-backdrop-filter:var(--glass-blur);
+      transition:height .28s ease,box-shadow .28s ease,background .28s ease;
+    }
+
+    header.is-compact{
+      height:60px;
+      background:rgba(255,255,255,.88);
+      box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 12px 30px rgba(10,30,60,.09);
     }
 
     .header-inner{
@@ -335,7 +337,7 @@
       place-items:center;
       font-size:16px;
       font-weight:900;
-      box-shadow:0 7px 18px rgba(8,119,101,.2);
+      box-shadow:0 7px 18px rgba(22,86,214,.2);
     }
 
     .brand-text{
@@ -371,7 +373,7 @@
     nav a{
       padding:9px 11px;
       border-radius:9px;
-      color:#596865;
+      color:#465872;
       font-size:13px;
       font-weight:600;
       transition:.2s;
@@ -582,12 +584,12 @@
     .btn-primary{
       background:var(--primary);
       color:#fff;
-      box-shadow:0 10px 24px rgba(8,119,101,.22);
+      box-shadow:0 10px 24px rgba(22,86,214,.22);
     }
 
     .btn-primary:hover{
       background:var(--primary-dark);
-      box-shadow:0 14px 30px rgba(8,119,101,.28);
+      box-shadow:0 14px 30px rgba(22,86,214,.28);
     }
 
     .btn-outline{
@@ -604,11 +606,11 @@
     }
 
     .btn-dark{
-      background:rgba(20,33,31,.88);
+      background:rgba(11,21,38,.88);
       color:#fff;
       backdrop-filter:var(--glass-blur-sm);
       -webkit-backdrop-filter:var(--glass-blur-sm);
-      box-shadow:0 10px 24px rgba(20,33,31,.2);
+      box-shadow:0 10px 24px rgba(11,21,38,.2);
     }
 
     .btn-dark:hover{
@@ -618,13 +620,13 @@
     .btn-gold{
       background:var(--gold);
       color:#fff;
-      box-shadow:0 10px 24px rgba(183,137,53,.24);
+      box-shadow:0 10px 24px rgba(22,48,92,.24);
     }
 
     .btn-purple{
       background:var(--purple);
       color:#fff;
-      box-shadow:0 10px 24px rgba(105,70,198,.24);
+      box-shadow:0 10px 24px rgba(47,125,255,.24);
     }
 
     .btn-danger{
@@ -676,8 +678,8 @@
 
     .live-badge{
       color:var(--success);
-      background:#eaf7f1;
-      border:1px solid #d2eee3;
+      background:#eaf1fd;
+      border:1px solid #d3e3fb;
       border-radius:30px;
       padding:5px 9px;
       font-size:10px;
@@ -877,7 +879,7 @@
     }
 
     .featured-label{
-      color:#9de2d1;
+      color:#bcd4fb;
       font-size:10px;
       font-weight:800;
       margin-bottom:8px;
@@ -889,7 +891,7 @@
     }
 
     .featured p{
-      color:#b9c5c2;
+      color:#bac8e2;
       font-size:12px;
       max-width:650px;
       margin-bottom:16px;
@@ -907,7 +909,7 @@
       padding:6px 9px;
       border-radius:8px;
       font-size:9px;
-      color:#d8e0de;
+      color:#d7e1f0;
     }
 
     .featured-price{
@@ -919,7 +921,7 @@
 
     .featured-price small{
       display:block;
-      color:#8e9c98;
+      color:#7488a6;
       font-size:10px;
     }
 
@@ -956,12 +958,12 @@
     .category-card:hover{
       transform:translateY(-5px);
       box-shadow:var(--shadow);
-      border-color:#cddbd7;
+      border-color:#cfdaf0;
     }
 
     .category-image{
       height:170px;
-      background:#f0f4f3;
+      background:#f3f6fb;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -1042,11 +1044,11 @@
     .product-card:hover{
       transform:translateY(-4px);
       box-shadow:var(--shadow);
-      border-color:#cbd9d5;
+      border-color:#ccd9ef;
     }
 
     .product-card.special{
-      border-color:#ddcda9;
+      border-color:#b9d0f2;
     }
 
     .product-badge{
@@ -1055,7 +1057,7 @@
       left:15px;
       background:var(--gold-soft);
       color:var(--gold);
-      border:1px solid #eadbb9;
+      border:1px solid #cfe0fb;
       border-radius:20px;
       padding:4px 8px;
       font-size:9px;
@@ -1105,7 +1107,7 @@
     }
 
     .product-features li{
-      color:#596865;
+      color:#465872;
       font-size:10px;
       display:flex;
       gap:7px;
@@ -1156,7 +1158,7 @@
     }
 
     .product-actions .btn-primary{
-      box-shadow:0 8px 18px rgba(8,119,101,.2);
+      box-shadow:0 8px 18px rgba(22,86,214,.2);
     }
 
     /* =========================
@@ -1258,7 +1260,7 @@
       height:175px;
       border-radius:17px;
       overflow:hidden;
-      background:#f1f4f3;
+      background:#f3f6fb;
       position:relative;
       z-index:1;
     }
@@ -1408,7 +1410,7 @@
 
     .process-num{
       font-size:28px;
-      color:#dce6e3;
+      color:#dbe4f3;
       font-weight:900;
       position:absolute;
       left:15px;
@@ -1456,7 +1458,7 @@
       display:flex;
       align-items:center;
       gap:6px;
-      color:#8bd9bd;
+      color:#a9c8f7;
       font-size:10px;
       font-weight:800;
     }
@@ -1464,7 +1466,7 @@
     .status-online i{
       width:7px;
       height:7px;
-      background:#55c89d;
+      background:#3f8ff0;
       border-radius:50%;
       box-shadow:0 0 0 5px rgba(85,200,157,.1);
     }
@@ -1481,12 +1483,12 @@
       border:1px solid rgba(255,255,255,.09);
       background:rgba(255,255,255,.04);
       border-radius:9px;
-      color:#c4d0cc;
+      color:#c6d3ea;
       font-size:10px;
     }
 
     .server-chip.active{
-      color:#9ce0c7;
+      color:#bcd4fb;
       border-color:rgba(96,201,157,.2);
       background:rgba(96,201,157,.08);
     }
@@ -1506,7 +1508,7 @@
 
     .live-stat span{
       display:block;
-      color:#7e8e89;
+      color:#64789a;
       font-size:9px;
     }
 
@@ -1522,7 +1524,7 @@
 
     .referral-box{
       background:var(--gold-soft);
-      border:1px solid #eadbb9;
+      border:1px solid #cfe0fb;
       border-radius:20px;
       padding:24px;
       display:flex;
@@ -1537,7 +1539,7 @@
     }
 
     .referral-box p{
-      color:#7f6a43;
+      color:#16305c;
       font-size:10px;
     }
 
@@ -1550,7 +1552,7 @@
     .referral-code input{
       width:230px;
       height:42px;
-      border:1px solid #e0d1ad;
+      border:1px solid #b9d0f2;
       background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:10px;
       padding:0 10px;
@@ -1728,7 +1730,7 @@
       background:var(--surface-2);
       border:1px solid var(--border);
       border-radius:11px;
-      color:#596865;
+      color:#465872;
       font-size:10px;
     }
 
@@ -2190,7 +2192,7 @@
     }
 
     .payment-card small{
-      color:#8f9c98;
+      color:#7488a6;
       font-size:9px;
     }
 
@@ -2476,7 +2478,7 @@
     .ai-teach-title{
       font-size:10.5px;
       font-weight:900;
-      color:#7f6a2f;
+      color:#16305c;
       margin-bottom:8px;
       display:flex;
       align-items:center;
@@ -2518,7 +2520,7 @@
       font-weight:800;
       color:var(--gold);
       background:var(--gold-soft);
-      border:1px solid #eadbb9;
+      border:1px solid #cfe0fb;
       border-radius:20px;
       padding:3px 8px;
       margin-right:6px;
@@ -2842,7 +2844,7 @@
     }
       /* AUTH / ACCOUNT */
     .account-header-btn{position:relative}
-    .account-dot{position:absolute;width:7px;height:7px;right:5px;bottom:5px;border-radius:50%;background:#bfc9c6;border:2px solid #fff}
+    .account-dot{position:absolute;width:7px;height:7px;right:5px;bottom:5px;border-radius:50%;background:#c1cee6;border:2px solid #fff}
     .account-dot.online{background:var(--success)}
     .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px}
     .auth-tab{min-height:38px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:11px;font-weight:800}
@@ -2861,8 +2863,8 @@
     .account-item strong{font-size:10px}
     .account-item small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
     .account-status{padding:4px 7px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}
-    .account-status.pending{background:#fff7e7;color:var(--warning)}
-    .account-status.approved{background:#eaf7f1;color:var(--success)}
+    .account-status.pending{background:#eef2f8;color:var(--warning)}
+    .account-status.approved{background:#eaf1fd;color:var(--success)}
     .account-status.rejected{background:#fff2f2;color:var(--danger)}
     .subscription-value{margin-top:8px;padding:8px;border-radius:8px;background:var(--surface-2);border:1px dashed var(--border-strong);direction:ltr;text-align:left;font-size:9px;overflow:auto;white-space:nowrap}
     .account-empty{padding:14px;border:1px dashed var(--border-strong);border-radius:11px;color:var(--muted);text-align:center;font-size:9px}
@@ -3609,7 +3611,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,#e8f5f1,#f8f4ea);
+                background:linear-gradient(135deg,#eaf1fd,#eef4fb);
                 font-size:70px;
               ">🛒</div>
             </div>
@@ -3661,7 +3663,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:#f2f5f4;
+                background:#f3f6fb;
                 font-size:65px;
               ">📋</div>
             </div>
@@ -3745,7 +3747,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,#e8f5f1,#f5f7f6);
+                background:linear-gradient(135deg,#eaf1fd,#f3f6fb);
                 font-size:65px;
               ">💬</div>
             </div>
@@ -7524,6 +7526,27 @@ ${formatPrice(cartTotal())}
     if(document.readyState !== "loading"){
       init();
     }
+
+    /* ==========================================
+       جلوه بصری Navbar هنگام اسکرول (فقط ظاهری)
+       این بخش هیچ منطق تجاری/داده‌ای را تغییر نمی‌دهد
+       فقط کلاس is-compact را روی هدر اضافه/حذف می‌کند
+    ========================================== */
+    (function(){
+      var headerEl=document.querySelector("header");
+      if(!headerEl)return;
+      var ticking=false;
+      function onScroll(){
+        if(ticking)return;
+        ticking=true;
+        requestAnimationFrame(function(){
+          headerEl.classList.toggle("is-compact",window.scrollY>18);
+          ticking=false;
+        });
+      }
+      window.addEventListener("scroll",onScroll,{passive:true});
+      onScroll();
+    })();
 
   </script>
 
