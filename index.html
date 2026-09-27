@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://v2gurd.github.io/-v2guard.github.io/">
 
-  <meta name="theme-color" content="#0c6b5b">
+  <meta name="theme-color" content="#070b13">
 
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,30 +27,32 @@
 
   <style>
     :root{
-      --primary:#087765;
-      --primary-dark:#05594d;
-      --primary-soft:#e8f5f1;
-      --gold:#b78935;
-      --gold-soft:#fbf5e8;
+      --primary:#4f8ddb;
+      --primary-dark:#3569ab;
+      --primary-soft:rgba(79,141,219,.14);
+      --gold:#d9ad5c;
+      --gold-soft:rgba(217,173,92,.14);
 
-      --ink:#14211f;
-      --muted:#687673;
-      --muted-2:#8b9895;
+      --ink:#eef2f7;
+      --muted:#9aa7b5;
+      --muted-2:#6b7684;
 
-      --bg:#f5f7f6;
-      --surface:#ffffff;
-      --surface-2:#f9fbfa;
-      --border:#e4ebe8;
-      --border-strong:#d5dfdc;
+      --bg:#000000;
+      --surface:#111826;
+      --surface-2:#0c1220;
+      --border:#232c3d;
+      --border-strong:#33405a;
 
-      --success:#16845e;
-      --danger:#c74848;
-      --warning:#a9781f;
-      --purple:#6946c6;
+      --panel-dark:#05080f;
 
-      --shadow-sm:0 4px 16px rgba(20,33,31,.05);
-      --shadow:0 12px 35px rgba(20,33,31,.08);
-      --shadow-lg:0 24px 70px rgba(20,33,31,.14);
+      --success:#2fbf83;
+      --danger:#e06565;
+      --warning:#d6a33d;
+      --purple:#8b7ae0;
+
+      --shadow-sm:0 4px 16px rgba(0,0,0,.35);
+      --shadow:0 12px 35px rgba(0,0,0,.45);
+      --shadow-lg:0 24px 70px rgba(0,0,0,.55);
 
       --radius-sm:10px;
       --radius:16px;
@@ -68,14 +70,43 @@
 
     html{
       scroll-behavior:smooth;
+      background:var(--bg);
     }
 
     body{
       font-family:"Vazirmatn",Tahoma,sans-serif;
-      background:var(--bg);
+      background:transparent;
       color:var(--ink);
       line-height:1.8;
       overflow-x:hidden;
+    }
+
+    /* =========================
+       ANIMATED BACKGROUND
+    ========================== */
+
+    .site-bg-video{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:50% 50%;
+      z-index:-2;
+      pointer-events:none;
+      user-select:none;
+      -webkit-user-drag:none;
+      background:var(--bg);
+    }
+
+    .site-bg-veil{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        radial-gradient(140% 60% at 50% 30%, rgba(0,0,0,.55) 0%, rgba(0,0,0,.78) 55%, rgba(0,0,0,.92) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.85) 100%);
     }
 
     body.locked{
@@ -116,7 +147,7 @@
       position:fixed;
       inset:0;
       z-index:99999;
-      background:#ffffff;
+      background:var(--bg);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -176,7 +207,7 @@
     ========================== */
 
     .topbar{
-      background:var(--ink);
+      background:var(--panel-dark);
       color:#fff;
       font-size:12px;
       min-height:36px;
@@ -218,12 +249,27 @@
 
     header{
       height:var(--header-height);
-      background:rgba(255,255,255,.96);
-      border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.02);
+      background-blend-mode:luminosity;
+      border-bottom:none;
       position:sticky;
       top:0;
       z-index:5000;
-      backdrop-filter:blur(15px);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:inset 0 -1px 1px rgba(255,255,255,.08);
+    }
+
+    header::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(180deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.08) 60%, rgba(255,255,255,0) 100%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      padding:0 0 1.4px;
     }
 
     .header-inner{
@@ -289,7 +335,7 @@
     nav a{
       padding:9px 11px;
       border-radius:9px;
-      color:#596865;
+      color:var(--muted);
       font-size:13px;
       font-weight:600;
       transition:.2s;
@@ -311,7 +357,7 @@
       width:42px;
       height:42px;
       border:1px solid var(--border);
-      background:#fff;
+      background:var(--surface);
       border-radius:11px;
       display:grid;
       place-items:center;
@@ -348,7 +394,7 @@
       height:42px;
       padding:0 15px;
       border-radius:11px;
-      background:var(--ink);
+      background:var(--panel-dark);
       color:#fff;
       display:flex;
       align-items:center;
@@ -482,7 +528,7 @@
 
     .btn-outline{
       border-color:var(--border-strong);
-      background:#fff;
+      background:var(--surface);
       color:var(--ink);
     }
 
@@ -492,7 +538,7 @@
     }
 
     .btn-dark{
-      background:var(--ink);
+      background:var(--panel-dark);
       color:#fff;
     }
 
@@ -507,9 +553,9 @@
     }
 
     .btn-danger{
-      background:#fff2f2;
+      background:rgba(224,101,101,.12);
       color:var(--danger);
-      border:1px solid #f1d7d7;
+      border:1px solid rgba(224,101,101,.35);
     }
 
     .hero-visual{
@@ -517,7 +563,7 @@
     }
 
     .hero-card{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:var(--radius-xl);
       padding:24px;
@@ -553,8 +599,8 @@
 
     .live-badge{
       color:var(--success);
-      background:#eaf7f1;
-      border:1px solid #d2eee3;
+      background:rgba(47,191,131,.12);
+      border:1px solid rgba(47,191,131,.35);
       border-radius:30px;
       padding:5px 9px;
       font-size:10px;
@@ -586,7 +632,7 @@
     .route-node{
       flex:1;
       min-height:60px;
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:13px;
       display:flex;
@@ -617,7 +663,7 @@
 
     .stat{
       padding:10px;
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:11px;
       text-align:center;
@@ -646,7 +692,7 @@
     .trust-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:18px;
       overflow:hidden;
@@ -730,7 +776,7 @@
     ========================== */
 
     .featured{
-      background:var(--ink);
+      background:var(--panel-dark);
       color:#fff;
       border-radius:var(--radius-xl);
       padding:32px;
@@ -821,7 +867,7 @@
     }
 
     .category-card{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:20px;
       overflow:hidden;
@@ -833,12 +879,12 @@
     .category-card:hover{
       transform:translateY(-5px);
       box-shadow:var(--shadow);
-      border-color:#cddbd7;
+      border-color:rgba(255,255,255,.16);
     }
 
     .category-image{
       height:170px;
-      background:#f0f4f3;
+      background:rgba(255,255,255,.04);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -905,7 +951,7 @@
     }
 
     .product-card{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:20px;
       padding:19px;
@@ -919,11 +965,11 @@
     .product-card:hover{
       transform:translateY(-4px);
       box-shadow:var(--shadow);
-      border-color:#cbd9d5;
+      border-color:rgba(255,255,255,.16);
     }
 
     .product-card.special{
-      border-color:#ddcda9;
+      border-color:rgba(217,173,92,.35);
     }
 
     .product-badge{
@@ -932,7 +978,7 @@
       left:15px;
       background:var(--gold-soft);
       color:var(--gold);
-      border:1px solid #eadbb9;
+      border:1px solid rgba(217,173,92,.35);
       border-radius:20px;
       padding:4px 8px;
       font-size:9px;
@@ -982,7 +1028,7 @@
     }
 
     .product-features li{
-      color:#596865;
+      color:var(--muted);
       font-size:10px;
       display:flex;
       gap:7px;
@@ -1055,7 +1101,7 @@
       width:100%;
       height:36px;
       border:1px solid var(--border-strong);
-      background:#fff;
+      background:var(--surface);
       border-radius:8px;
       padding:0 9px;
       color:var(--ink);
@@ -1087,7 +1133,7 @@
     .inner-hero-box{
       min-height:230px;
       border-radius:26px;
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       box-shadow:var(--shadow-sm);
       display:grid;
@@ -1131,7 +1177,7 @@
       height:175px;
       border-radius:17px;
       overflow:hidden;
-      background:#f1f4f3;
+      background:rgba(255,255,255,.04);
       position:relative;
       z-index:1;
     }
@@ -1147,7 +1193,7 @@
     ========================== */
 
     .store-toolbar{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:15px;
       padding:12px;
@@ -1172,7 +1218,7 @@
     .toolbar-actions input{
       height:38px;
       border:1px solid var(--border);
-      background:#fff;
+      background:var(--surface);
       border-radius:9px;
       padding:0 10px;
       outline:none;
@@ -1188,7 +1234,7 @@
       overflow:auto;
       border:1px solid var(--border);
       border-radius:18px;
-      background:#fff;
+      background:var(--surface);
       box-shadow:var(--shadow-sm);
     }
 
@@ -1231,7 +1277,7 @@
     }
 
     .why-card{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:16px;
       padding:18px;
@@ -1272,7 +1318,7 @@
     }
 
     .process-card{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:16px;
       padding:20px;
@@ -1281,7 +1327,7 @@
 
     .process-num{
       font-size:28px;
-      color:#dce6e3;
+      color:rgba(255,255,255,.07);
       font-weight:900;
       position:absolute;
       left:15px;
@@ -1308,7 +1354,7 @@
     ========================== */
 
     .status-box{
-      background:var(--ink);
+      background:var(--panel-dark);
       border-radius:23px;
       padding:25px;
       color:#fff;
@@ -1395,7 +1441,7 @@
 
     .referral-box{
       background:var(--gold-soft);
-      border:1px solid #eadbb9;
+      border:1px solid rgba(217,173,92,.35);
       border-radius:20px;
       padding:24px;
       display:flex;
@@ -1410,7 +1456,7 @@
     }
 
     .referral-box p{
-      color:#7f6a43;
+      color:#e3c98a;
       font-size:10px;
     }
 
@@ -1423,8 +1469,8 @@
     .referral-code input{
       width:230px;
       height:42px;
-      border:1px solid #e0d1ad;
-      background:#fff;
+      border:1px solid rgba(217,173,92,.35);
+      background:var(--surface);
       border-radius:10px;
       padding:0 10px;
       font-size:10px;
@@ -1443,7 +1489,7 @@
     }
 
     .faq{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:13px;
       overflow:hidden;
@@ -1453,7 +1499,7 @@
       width:100%;
       min-height:52px;
       border:0;
-      background:#fff;
+      background:var(--surface);
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -1499,7 +1545,7 @@
     }
 
     .download-card{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:17px;
       padding:17px;
@@ -1546,7 +1592,7 @@
     ========================== */
 
     .content-box{
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:20px;
       padding:25px;
@@ -1601,7 +1647,7 @@
       background:var(--surface-2);
       border:1px solid var(--border);
       border-radius:11px;
-      color:#596865;
+      color:var(--muted);
       font-size:10px;
     }
 
@@ -1657,7 +1703,7 @@
       width:100%;
       border:1px solid var(--border);
       border-radius:11px;
-      background:#fff;
+      background:var(--surface);
       min-height:43px;
       padding:10px;
       outline:none;
@@ -1682,7 +1728,7 @@
     ========================== */
 
     footer{
-      background:#fff;
+      background:var(--surface);
       border-top:1px solid var(--border);
       margin-top:60px;
       padding:40px 0 25px;
@@ -1754,7 +1800,7 @@
       right:0;
       bottom:0;
       width:min(440px,100%);
-      background:#fff;
+      background:var(--surface);
       z-index:9500;
       transform:translateX(105%);
       transition:.3s cubic-bezier(.22,.8,.25,1);
@@ -1785,7 +1831,7 @@
       height:36px;
       border:1px solid var(--border);
       border-radius:9px;
-      background:#fff;
+      background:var(--surface);
       font-size:17px;
     }
 
@@ -1857,7 +1903,7 @@
       width:27px;
       height:27px;
       border:1px solid var(--border);
-      background:#fff;
+      background:var(--surface);
       border-radius:7px;
       font-weight:900;
     }
@@ -1879,7 +1925,7 @@
     .cart-footer{
       border-top:1px solid var(--border);
       padding:15px 18px;
-      background:#fff;
+      background:var(--surface);
     }
 
     .discount-row,
@@ -1959,7 +2005,7 @@
       width:min(560px,100%);
       max-height:90vh;
       overflow:auto;
-      background:#fff;
+      background:var(--surface);
       border-radius:22px;
       box-shadow:var(--shadow-lg);
       transform:translateY(15px) scale(.98);
@@ -1985,7 +2031,7 @@
     .modal-close{
       width:35px;
       height:35px;
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       border-radius:9px;
       font-size:16px;
@@ -2053,7 +2099,7 @@
     }
 
     .payment-card{
-      background:var(--ink);
+      background:var(--panel-dark);
       color:#fff;
       border-radius:17px;
       padding:20px;
@@ -2139,7 +2185,7 @@
       right:50%;
       bottom:25px;
       transform:translate(50%,20px);
-      background:var(--ink);
+      background:var(--panel-dark);
       color:#fff;
       border-radius:11px;
       padding:10px 15px;
@@ -2167,7 +2213,7 @@
       bottom:17px;
       transform:translateX(-50%) translateY(100px);
       z-index:7000;
-      background:#fff;
+      background:var(--surface);
       border:1px solid var(--border);
       box-shadow:var(--shadow-lg);
       border-radius:15px;
@@ -2189,7 +2235,7 @@
       min-width:90px;
       height:36px;
       border:0;
-      background:#fff;
+      background:var(--surface);
       border-radius:9px;
       font-size:9px;
       font-weight:800;
@@ -2652,7 +2698,7 @@
     .account-dot.online{background:var(--success)}
     .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px}
     .auth-tab{min-height:38px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:11px;font-weight:800}
-    .auth-tab.active{background:#fff;color:var(--primary);box-shadow:var(--shadow-sm)}
+    .auth-tab.active{background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm)}
     .account-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;margin-bottom:16px}
     .account-avatar{width:45px;height:45px;border-radius:13px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-size:20px}
     .account-card strong{display:block;font-size:11px;direction:ltr;text-align:right;overflow-wrap:anywhere}
@@ -2662,20 +2708,47 @@
     .account-section-head h3{font-size:12px}
     .account-refresh{min-height:32px!important;padding:0 9px!important;font-size:9px!important}
     .account-list{display:grid;gap:7px}
-    .account-item{border:1px solid var(--border);background:#fff;border-radius:11px;padding:11px}
+    .account-item{border:1px solid var(--border);background:var(--surface);border-radius:11px;padding:11px}
     .account-item-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
     .account-item strong{font-size:10px}
     .account-item small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
     .account-status{padding:4px 7px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}
-    .account-status.pending{background:#fff7e7;color:var(--warning)}
-    .account-status.approved{background:#eaf7f1;color:var(--success)}
-    .account-status.rejected{background:#fff2f2;color:var(--danger)}
+    .account-status.pending{background:rgba(217,173,92,.14);color:var(--warning)}
+    .account-status.approved{background:rgba(47,191,131,.12);color:var(--success)}
+    .account-status.rejected{background:rgba(224,101,101,.12);color:var(--danger)}
     .subscription-value{margin-top:8px;padding:8px;border-radius:8px;background:var(--surface-2);border:1px dashed var(--border-strong);direction:ltr;text-align:left;font-size:9px;overflow:auto;white-space:nowrap}
     .account-empty{padding:14px;border:1px dashed var(--border-strong);border-radius:11px;color:var(--muted);text-align:center;font-size:9px}
 </style>
 </head>
 
 <body>
+
+  <video class="site-bg-video" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="site-bg-veil" aria-hidden="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
+  <script>
+    (function(){
+      var HLS_URL="https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8";
+      var v=document.querySelector('.site-bg-video');
+      if(!v)return;
+
+      if(v.canPlayType('application/vnd.apple.mpegurl')){
+        v.src=HLS_URL;
+      }else if(window.Hls&&window.Hls.isSupported()){
+        var hls=new Hls();
+        hls.loadSource(HLS_URL);
+        hls.attachMedia(v);
+      }
+
+      var q=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)');
+      if(!q)return;
+      function sync(){ if(q.matches){v.pause();}
+                       else{var p=v.play();if(p)p.catch(function(){});} }
+      sync();
+      q.addEventListener ? q.addEventListener('change',sync) : q.addListener(sync);
+    })();
+  </script>
 
   <!-- INTRO -->
   <div id="intro">
@@ -2754,7 +2827,7 @@
     top:66px;
     right:0;
     left:0;
-    background:#fff;
+    background:var(--surface);
     z-index:4900;
     border-bottom:1px solid var(--border);
     box-shadow:var(--shadow);
@@ -3410,7 +3483,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,#e8f5f1,#f8f4ea);
+                background:linear-gradient(135deg,rgba(79,141,219,.10),rgba(217,173,92,.10));
                 font-size:70px;
               ">🛒</div>
             </div>
@@ -3462,7 +3535,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:#f2f5f4;
+                background:rgba(255,255,255,.04);
                 font-size:65px;
               ">📋</div>
             </div>
@@ -3546,7 +3619,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,#e8f5f1,#f5f7f6);
+                background:linear-gradient(135deg,rgba(79,141,219,.10),rgba(255,255,255,.03));
                 font-size:65px;
               ">💬</div>
             </div>
