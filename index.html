@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://v2gurd.github.io/-v2guard.github.io/">
 
-  <meta name="theme-color" content="#070b13">
+  <meta name="theme-color" content="#0c6b5b">
 
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,32 +27,38 @@
 
   <style>
     :root{
-      --primary:#4f8ddb;
-      --primary-dark:#3569ab;
-      --primary-soft:rgba(79,141,219,.14);
-      --gold:#d9ad5c;
-      --gold-soft:rgba(217,173,92,.14);
+      --primary:#087765;
+      --primary-dark:#05594d;
+      --primary-soft:#e8f5f1;
+      --gold:#b78935;
+      --gold-soft:#fbf5e8;
 
-      --ink:#eef2f7;
-      --muted:#9aa7b5;
-      --muted-2:#6b7684;
+      --ink:#14211f;
+      --muted:#4b5c58;
+      --muted-2:#77857f;
 
-      --bg:#000000;
-      --surface:#111826;
-      --surface-2:#0c1220;
-      --border:#232c3d;
-      --border-strong:#33405a;
+      --bg:#eef5f2;
+      --surface:rgba(255,255,255,.6);
+      --surface-2:rgba(255,255,255,.38);
 
-      --panel-dark:#05080f;
+      /* liquid-glass tokens */
+      --glass:rgba(255,255,255,.55);
+      --glass-strong:rgba(255,255,255,.72);
+      --glass-soft:rgba(255,255,255,.32);
+      --glass-blur:blur(22px) saturate(180%);
+      --glass-blur-sm:blur(12px) saturate(160%);
 
-      --success:#2fbf83;
-      --danger:#e06565;
-      --warning:#d6a33d;
-      --purple:#8b7ae0;
+      --border:rgba(255,255,255,.55);
+      --border-strong:rgba(20,33,31,.14);
 
-      --shadow-sm:0 4px 16px rgba(0,0,0,.35);
-      --shadow:0 12px 35px rgba(0,0,0,.45);
-      --shadow-lg:0 24px 70px rgba(0,0,0,.55);
+      --success:#16845e;
+      --danger:#c74848;
+      --warning:#a9781f;
+      --purple:#6946c6;
+
+      --shadow-sm:0 4px 18px rgba(20,60,50,.07);
+      --shadow:0 14px 42px rgba(20,60,50,.10);
+      --shadow-lg:0 30px 90px rgba(20,60,50,.16);
 
       --radius-sm:10px;
       --radius:16px;
@@ -70,47 +76,90 @@
 
     html{
       scroll-behavior:smooth;
-      background:var(--bg);
     }
 
     body{
       font-family:"Vazirmatn",Tahoma,sans-serif;
-      background:transparent;
+      background:var(--bg);
       color:var(--ink);
       line-height:1.8;
       overflow-x:hidden;
-    }
-
-    /* =========================
-       ANIMATED BACKGROUND
-    ========================== */
-
-    .site-bg-video{
-      position:fixed;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:50% 50%;
-      z-index:-2;
-      pointer-events:none;
-      user-select:none;
-      -webkit-user-drag:none;
-      background:var(--bg);
-    }
-
-    .site-bg-veil{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      pointer-events:none;
-      background:
-        radial-gradient(140% 60% at 50% 30%, rgba(0,0,0,.55) 0%, rgba(0,0,0,.78) 55%, rgba(0,0,0,.92) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.85) 100%);
+      position:relative;
     }
 
     body.locked{
       overflow:hidden;
+    }
+
+    /* =========================
+       LIQUID GLASS BACKDROP
+    ========================== */
+
+    .liquid-bg{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      overflow:hidden;
+      background:var(--bg);
+    }
+
+    .liquid-bg span{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.55;
+      will-change:transform;
+    }
+
+    .liquid-bg span:nth-child(1){
+      width:560px;
+      height:560px;
+      top:-160px;
+      right:-120px;
+      background:radial-gradient(circle at 30% 30%,#a9e6d4,#087765 75%);
+      animation:liquidFloat1 26s ease-in-out infinite;
+    }
+
+    .liquid-bg span:nth-child(2){
+      width:480px;
+      height:480px;
+      bottom:-140px;
+      left:-100px;
+      background:radial-gradient(circle at 60% 40%,#f3ddab,#b78935 75%);
+      animation:liquidFloat2 30s ease-in-out infinite;
+    }
+
+    .liquid-bg span:nth-child(3){
+      width:420px;
+      height:420px;
+      top:38%;
+      left:42%;
+      background:radial-gradient(circle at 50% 50%,#cbb9f2,#6946c6 75%);
+      opacity:.3;
+      animation:liquidFloat3 34s ease-in-out infinite;
+    }
+
+    @keyframes liquidFloat1{
+      0%,100%{transform:translate(0,0) scale(1);}
+      50%{transform:translate(-40px,50px) scale(1.08);}
+    }
+
+    @keyframes liquidFloat2{
+      0%,100%{transform:translate(0,0) scale(1);}
+      50%{transform:translate(35px,-45px) scale(1.06);}
+    }
+
+    @keyframes liquidFloat3{
+      0%,100%{transform:translate(-50%,-50%) scale(1);}
+      50%{transform:translate(-50%,-50%) translate(30px,25px) scale(1.1);}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .liquid-bg span{animation:none;}
+    }
+
+    @media(max-width:720px){
+      .liquid-bg span{filter:blur(50px);}
     }
 
     button,
@@ -147,7 +196,7 @@
       position:fixed;
       inset:0;
       z-index:99999;
-      background:var(--bg);
+      background:#ffffff;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -207,7 +256,7 @@
     ========================== */
 
     .topbar{
-      background:var(--panel-dark);
+      background:var(--ink);
       color:#fff;
       font-size:12px;
       min-height:36px;
@@ -249,27 +298,14 @@
 
     header{
       height:var(--header-height);
-      background:rgba(255,255,255,.02);
-      background-blend-mode:luminosity;
-      border-bottom:none;
+      background:var(--glass-strong);
+      border-bottom:1px solid var(--border);
+      box-shadow:0 1px 0 rgba(255,255,255,.6) inset,var(--shadow-sm);
       position:sticky;
       top:0;
       z-index:5000;
-      backdrop-filter:blur(16px) saturate(180%);
-      -webkit-backdrop-filter:blur(16px) saturate(180%);
-      box-shadow:inset 0 -1px 1px rgba(255,255,255,.08);
-    }
-
-    header::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:linear-gradient(180deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.08) 60%, rgba(255,255,255,0) 100%);
-      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-      -webkit-mask-composite:xor;
-      mask-composite:exclude;
-      padding:0 0 1.4px;
+      backdrop-filter:var(--glass-blur);
+      -webkit-backdrop-filter:var(--glass-blur);
     }
 
     .header-inner{
@@ -335,7 +371,7 @@
     nav a{
       padding:9px 11px;
       border-radius:9px;
-      color:var(--muted);
+      color:#596865;
       font-size:13px;
       font-weight:600;
       transition:.2s;
@@ -357,7 +393,7 @@
       width:42px;
       height:42px;
       border:1px solid var(--border);
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:11px;
       display:grid;
       place-items:center;
@@ -394,7 +430,7 @@
       height:42px;
       padding:0 15px;
       border-radius:11px;
-      background:var(--panel-dark);
+      background:var(--ink);
       color:#fff;
       display:flex;
       align-items:center;
@@ -495,12 +531,23 @@
     .hero-actions{
       display:flex;
       flex-wrap:wrap;
+      align-items:center;
       gap:10px;
     }
 
+    .hero-actions .btn-primary{
+      order:-1;
+      flex-basis:100%;
+      min-height:52px;
+      padding:0 24px;
+      font-size:13px;
+      margin-bottom:2px;
+    }
+
     .btn{
+      position:relative;
       min-height:45px;
-      border-radius:11px;
+      border-radius:13px;
       padding:0 18px;
       border:1px solid transparent;
       display:inline-flex;
@@ -509,7 +556,23 @@
       gap:8px;
       font-size:12px;
       font-weight:800;
-      transition:.22s;
+      letter-spacing:-.1px;
+      overflow:hidden;
+      isolation:isolate;
+      transition:transform .22s,box-shadow .22s,background .22s,color .22s,border-color .22s;
+    }
+
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 55%);
+      pointer-events:none;
+    }
+
+    .btn:active{
+      transform:translateY(0) scale(.98);
     }
 
     .btn:hover{
@@ -519,43 +582,57 @@
     .btn-primary{
       background:var(--primary);
       color:#fff;
-      box-shadow:0 8px 20px rgba(8,119,101,.16);
+      box-shadow:0 10px 24px rgba(8,119,101,.22);
     }
 
     .btn-primary:hover{
       background:var(--primary-dark);
+      box-shadow:0 14px 30px rgba(8,119,101,.28);
     }
 
     .btn-outline{
-      border-color:var(--border-strong);
-      background:var(--surface);
+      border-color:rgba(255,255,255,.7);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       color:var(--ink);
+      box-shadow:var(--shadow-sm);
     }
 
     .btn-outline:hover{
       border-color:var(--primary);
       color:var(--primary);
+      background:var(--glass-strong);
     }
 
     .btn-dark{
-      background:var(--panel-dark);
+      background:rgba(20,33,31,.88);
       color:#fff;
+      backdrop-filter:var(--glass-blur-sm);
+      -webkit-backdrop-filter:var(--glass-blur-sm);
+      box-shadow:0 10px 24px rgba(20,33,31,.2);
+    }
+
+    .btn-dark:hover{
+      background:var(--ink);
     }
 
     .btn-gold{
       background:var(--gold);
       color:#fff;
+      box-shadow:0 10px 24px rgba(183,137,53,.24);
     }
 
     .btn-purple{
       background:var(--purple);
       color:#fff;
+      box-shadow:0 10px 24px rgba(105,70,198,.24);
     }
 
     .btn-danger{
-      background:rgba(224,101,101,.12);
+      background:rgba(199,72,72,.1);
+      backdrop-filter:var(--glass-blur-sm);
+      -webkit-backdrop-filter:var(--glass-blur-sm);
       color:var(--danger);
-      border:1px solid rgba(224,101,101,.35);
+      border:1px solid rgba(199,72,72,.22);
     }
 
     .hero-visual{
@@ -563,7 +640,7 @@
     }
 
     .hero-card{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:var(--radius-xl);
       padding:24px;
@@ -599,8 +676,8 @@
 
     .live-badge{
       color:var(--success);
-      background:rgba(47,191,131,.12);
-      border:1px solid rgba(47,191,131,.35);
+      background:#eaf7f1;
+      border:1px solid #d2eee3;
       border-radius:30px;
       padding:5px 9px;
       font-size:10px;
@@ -632,7 +709,7 @@
     .route-node{
       flex:1;
       min-height:60px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:13px;
       display:flex;
@@ -663,7 +740,7 @@
 
     .stat{
       padding:10px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:11px;
       text-align:center;
@@ -692,7 +769,7 @@
     .trust-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:18px;
       overflow:hidden;
@@ -776,7 +853,7 @@
     ========================== */
 
     .featured{
-      background:var(--panel-dark);
+      background:var(--ink);
       color:#fff;
       border-radius:var(--radius-xl);
       padding:32px;
@@ -867,7 +944,7 @@
     }
 
     .category-card{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:20px;
       overflow:hidden;
@@ -879,12 +956,12 @@
     .category-card:hover{
       transform:translateY(-5px);
       box-shadow:var(--shadow);
-      border-color:rgba(255,255,255,.16);
+      border-color:#cddbd7;
     }
 
     .category-image{
       height:170px;
-      background:rgba(255,255,255,.04);
+      background:#f0f4f3;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -951,7 +1028,7 @@
     }
 
     .product-card{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:20px;
       padding:19px;
@@ -965,11 +1042,11 @@
     .product-card:hover{
       transform:translateY(-4px);
       box-shadow:var(--shadow);
-      border-color:rgba(255,255,255,.16);
+      border-color:#cbd9d5;
     }
 
     .product-card.special{
-      border-color:rgba(217,173,92,.35);
+      border-color:#ddcda9;
     }
 
     .product-badge{
@@ -978,7 +1055,7 @@
       left:15px;
       background:var(--gold-soft);
       color:var(--gold);
-      border:1px solid rgba(217,173,92,.35);
+      border:1px solid #eadbb9;
       border-radius:20px;
       padding:4px 8px;
       font-size:9px;
@@ -1028,7 +1105,7 @@
     }
 
     .product-features li{
-      color:var(--muted);
+      color:#596865;
       font-size:10px;
       display:flex;
       gap:7px;
@@ -1068,14 +1145,18 @@
 
     .product-actions{
       display:grid;
-      grid-template-columns:1fr auto;
-      gap:7px;
+      grid-template-columns:1.5fr 1fr;
+      gap:8px;
     }
 
     .product-actions .btn{
-      min-height:40px;
+      min-height:42px;
       padding:0 10px;
-      font-size:10px;
+      font-size:10.5px;
+    }
+
+    .product-actions .btn-primary{
+      box-shadow:0 8px 18px rgba(8,119,101,.2);
     }
 
     /* =========================
@@ -1101,7 +1182,7 @@
       width:100%;
       height:36px;
       border:1px solid var(--border-strong);
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:8px;
       padding:0 9px;
       color:var(--ink);
@@ -1133,7 +1214,7 @@
     .inner-hero-box{
       min-height:230px;
       border-radius:26px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       box-shadow:var(--shadow-sm);
       display:grid;
@@ -1177,7 +1258,7 @@
       height:175px;
       border-radius:17px;
       overflow:hidden;
-      background:rgba(255,255,255,.04);
+      background:#f1f4f3;
       position:relative;
       z-index:1;
     }
@@ -1193,7 +1274,7 @@
     ========================== */
 
     .store-toolbar{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:15px;
       padding:12px;
@@ -1218,7 +1299,7 @@
     .toolbar-actions input{
       height:38px;
       border:1px solid var(--border);
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:9px;
       padding:0 10px;
       outline:none;
@@ -1234,7 +1315,7 @@
       overflow:auto;
       border:1px solid var(--border);
       border-radius:18px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       box-shadow:var(--shadow-sm);
     }
 
@@ -1277,7 +1358,7 @@
     }
 
     .why-card{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:16px;
       padding:18px;
@@ -1318,7 +1399,7 @@
     }
 
     .process-card{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:16px;
       padding:20px;
@@ -1327,7 +1408,7 @@
 
     .process-num{
       font-size:28px;
-      color:rgba(255,255,255,.07);
+      color:#dce6e3;
       font-weight:900;
       position:absolute;
       left:15px;
@@ -1354,7 +1435,7 @@
     ========================== */
 
     .status-box{
-      background:var(--panel-dark);
+      background:var(--ink);
       border-radius:23px;
       padding:25px;
       color:#fff;
@@ -1441,7 +1522,7 @@
 
     .referral-box{
       background:var(--gold-soft);
-      border:1px solid rgba(217,173,92,.35);
+      border:1px solid #eadbb9;
       border-radius:20px;
       padding:24px;
       display:flex;
@@ -1456,7 +1537,7 @@
     }
 
     .referral-box p{
-      color:#e3c98a;
+      color:#7f6a43;
       font-size:10px;
     }
 
@@ -1469,8 +1550,8 @@
     .referral-code input{
       width:230px;
       height:42px;
-      border:1px solid rgba(217,173,92,.35);
-      background:var(--surface);
+      border:1px solid #e0d1ad;
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:10px;
       padding:0 10px;
       font-size:10px;
@@ -1489,7 +1570,7 @@
     }
 
     .faq{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:13px;
       overflow:hidden;
@@ -1499,7 +1580,7 @@
       width:100%;
       min-height:52px;
       border:0;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -1545,7 +1626,7 @@
     }
 
     .download-card{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:17px;
       padding:17px;
@@ -1592,7 +1673,7 @@
     ========================== */
 
     .content-box{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:20px;
       padding:25px;
@@ -1647,7 +1728,7 @@
       background:var(--surface-2);
       border:1px solid var(--border);
       border-radius:11px;
-      color:var(--muted);
+      color:#596865;
       font-size:10px;
     }
 
@@ -1703,7 +1784,7 @@
       width:100%;
       border:1px solid var(--border);
       border-radius:11px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       min-height:43px;
       padding:10px;
       outline:none;
@@ -1728,7 +1809,7 @@
     ========================== */
 
     footer{
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-top:1px solid var(--border);
       margin-top:60px;
       padding:40px 0 25px;
@@ -1781,8 +1862,9 @@
     .overlay{
       position:fixed;
       inset:0;
-      background:rgba(10,21,19,.45);
-      backdrop-filter:blur(4px);
+      background:rgba(10,21,19,.32);
+      backdrop-filter:blur(8px) saturate(140%);
+      -webkit-backdrop-filter:blur(8px) saturate(140%);
       z-index:9000;
       opacity:0;
       visibility:hidden;
@@ -1800,7 +1882,7 @@
       right:0;
       bottom:0;
       width:min(440px,100%);
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       z-index:9500;
       transform:translateX(105%);
       transition:.3s cubic-bezier(.22,.8,.25,1);
@@ -1831,7 +1913,7 @@
       height:36px;
       border:1px solid var(--border);
       border-radius:9px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       font-size:17px;
     }
 
@@ -1903,7 +1985,7 @@
       width:27px;
       height:27px;
       border:1px solid var(--border);
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:7px;
       font-weight:900;
     }
@@ -1925,7 +2007,7 @@
     .cart-footer{
       border-top:1px solid var(--border);
       padding:15px 18px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
     }
 
     .discount-row,
@@ -2005,7 +2087,7 @@
       width:min(560px,100%);
       max-height:90vh;
       overflow:auto;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:22px;
       box-shadow:var(--shadow-lg);
       transform:translateY(15px) scale(.98);
@@ -2031,7 +2113,7 @@
     .modal-close{
       width:35px;
       height:35px;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       border-radius:9px;
       font-size:16px;
@@ -2099,7 +2181,7 @@
     }
 
     .payment-card{
-      background:var(--panel-dark);
+      background:var(--ink);
       color:#fff;
       border-radius:17px;
       padding:20px;
@@ -2185,7 +2267,7 @@
       right:50%;
       bottom:25px;
       transform:translate(50%,20px);
-      background:var(--panel-dark);
+      background:var(--ink);
       color:#fff;
       border-radius:11px;
       padding:10px 15px;
@@ -2213,7 +2295,7 @@
       bottom:17px;
       transform:translateX(-50%) translateY(100px);
       z-index:7000;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--border);
       box-shadow:var(--shadow-lg);
       border-radius:15px;
@@ -2235,7 +2317,7 @@
       min-width:90px;
       height:36px;
       border:0;
-      background:var(--surface);
+      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border-radius:9px;
       font-size:9px;
       font-weight:800;
@@ -2375,6 +2457,72 @@
     .ai-input-row button:disabled{
       opacity:.55;
       cursor:not-allowed;
+    }
+
+    /* ===== حالت آموزش (فقط مدیر) ===== */
+    .ai-teach{
+      display:none;
+      margin-top:12px;
+      border:1px dashed var(--gold);
+      border-radius:var(--radius);
+      padding:12px;
+      background:var(--gold-soft);
+    }
+
+    .ai-teach.show{
+      display:block;
+    }
+
+    .ai-teach-title{
+      font-size:10.5px;
+      font-weight:900;
+      color:#7f6a2f;
+      margin-bottom:8px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .ai-teach label{
+      display:block;
+      font-size:9px;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    .ai-teach input,
+    .ai-teach textarea{
+      width:100%;
+      border:1px solid var(--border-strong);
+      border-radius:9px;
+      padding:8px 10px;
+      font-size:10.5px;
+      margin-bottom:8px;
+      background:var(--glass);
+      backdrop-filter:var(--glass-blur-sm);
+      -webkit-backdrop-filter:var(--glass-blur-sm);
+      outline:none;
+      color:var(--ink);
+      resize:vertical;
+    }
+
+    .ai-teach textarea{
+      min-height:60px;
+    }
+
+    .ai-badge-learn{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:9px;
+      font-weight:800;
+      color:var(--gold);
+      background:var(--gold-soft);
+      border:1px solid #eadbb9;
+      border-radius:20px;
+      padding:3px 8px;
+      margin-right:6px;
+      vertical-align:middle;
     }
 
     @media(max-width:980px){
@@ -2698,7 +2846,7 @@
     .account-dot.online{background:var(--success)}
     .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px}
     .auth-tab{min-height:38px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:11px;font-weight:800}
-    .auth-tab.active{background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm)}
+    .auth-tab.active{background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);color:var(--primary);box-shadow:var(--shadow-sm)}
     .account-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;margin-bottom:16px}
     .account-avatar{width:45px;height:45px;border-radius:13px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-size:20px}
     .account-card strong{display:block;font-size:11px;direction:ltr;text-align:right;overflow-wrap:anywhere}
@@ -2708,14 +2856,14 @@
     .account-section-head h3{font-size:12px}
     .account-refresh{min-height:32px!important;padding:0 9px!important;font-size:9px!important}
     .account-list{display:grid;gap:7px}
-    .account-item{border:1px solid var(--border);background:var(--surface);border-radius:11px;padding:11px}
+    .account-item{border:1px solid var(--border);background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-radius:11px;padding:11px}
     .account-item-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
     .account-item strong{font-size:10px}
     .account-item small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
     .account-status{padding:4px 7px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}
-    .account-status.pending{background:rgba(217,173,92,.14);color:var(--warning)}
-    .account-status.approved{background:rgba(47,191,131,.12);color:var(--success)}
-    .account-status.rejected{background:rgba(224,101,101,.12);color:var(--danger)}
+    .account-status.pending{background:#fff7e7;color:var(--warning)}
+    .account-status.approved{background:#eaf7f1;color:var(--success)}
+    .account-status.rejected{background:#fff2f2;color:var(--danger)}
     .subscription-value{margin-top:8px;padding:8px;border-radius:8px;background:var(--surface-2);border:1px dashed var(--border-strong);direction:ltr;text-align:left;font-size:9px;overflow:auto;white-space:nowrap}
     .account-empty{padding:14px;border:1px dashed var(--border-strong);border-radius:11px;color:var(--muted);text-align:center;font-size:9px}
 </style>
@@ -2723,32 +2871,10 @@
 
 <body>
 
-  <video class="site-bg-video" autoplay muted loop playsinline aria-hidden="true"></video>
-  <div class="site-bg-veil" aria-hidden="true"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
-  <script>
-    (function(){
-      var HLS_URL="https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8";
-      var v=document.querySelector('.site-bg-video');
-      if(!v)return;
-
-      if(v.canPlayType('application/vnd.apple.mpegurl')){
-        v.src=HLS_URL;
-      }else if(window.Hls&&window.Hls.isSupported()){
-        var hls=new Hls();
-        hls.loadSource(HLS_URL);
-        hls.attachMedia(v);
-      }
-
-      var q=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)');
-      if(!q)return;
-      function sync(){ if(q.matches){v.pause();}
-                       else{var p=v.play();if(p)p.catch(function(){});} }
-      sync();
-      q.addEventListener ? q.addEventListener('change',sync) : q.addListener(sync);
-    })();
-  </script>
+  <!-- LIQUID GLASS BACKDROP -->
+  <div class="liquid-bg" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
 
   <!-- INTRO -->
   <div id="intro">
@@ -2827,7 +2953,7 @@
     top:66px;
     right:0;
     left:0;
-    background:var(--surface);
+    background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
     z-index:4900;
     border-bottom:1px solid var(--border);
     box-shadow:var(--shadow);
@@ -3483,7 +3609,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,rgba(79,141,219,.10),rgba(217,173,92,.10));
+                background:linear-gradient(135deg,#e8f5f1,#f8f4ea);
                 font-size:70px;
               ">🛒</div>
             </div>
@@ -3535,7 +3661,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:rgba(255,255,255,.04);
+                background:#f2f5f4;
                 font-size:65px;
               ">📋</div>
             </div>
@@ -3619,7 +3745,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,rgba(79,141,219,.10),rgba(255,255,255,.03));
+                background:linear-gradient(135deg,#e8f5f1,#f5f7f6);
                 font-size:65px;
               ">💬</div>
             </div>
@@ -4015,23 +4141,23 @@
 
   <!-- QUICK BAR -->
 
-  <button class="ai-fab" id="aiFab" onclick="openModal('aiModal')" aria-label="دستیار هوشمند V2GURD">
+  <button class="ai-fab" id="aiFab" onclick="openAiAssistant()" aria-label="دستیار هوشمند V2GURD">
     <span class="ai-fab-icon">🤖</span>
   </button>
 
   <div class="modal-wrap" id="aiModal">
     <div class="modal">
       <div class="modal-header">
-        <h2>دستیار هوشمند V2GURD</h2>
+        <h2><span class="ai-badge-learn">🎓 خودآموز</span>دستیار هوشمند V2GURD</h2>
         <button class="modal-close" onclick="closeModal('aiModal')">×</button>
       </div>
       <div class="modal-body">
         <div class="ai-chat-window" id="aiChatWindow">
           <div class="ai-msg ai-msg-bot">
-            سلام 👋 من دستیار هوشمند V2GURD هستم. راجع به وایرگارد، V2Box، JumpJump و مشکلات اتصال بپرس.
+            سلام 👋 من دستیار هوشمند V2GURD هستم. راجع به وایرگارد، V2Box، JumpJump، فیلترینگ و مشکلات اتصال بپرس. هر سوالی که ندونم رو یادداشت می‌کنم تا تیم پشتیبانی یادم بده.
           </div>
         </div>
-        <div class="ai-soon-note" id="aiNote">این دستیار به سوالات پرتکرار پاسخ آماده می‌ده؛ برای موارد خاص با تلگرام پشتیبانی صحبت کن.</div>
+        <div class="ai-soon-note" id="aiNote">این دستیار با هر سوالی که تیم پشتیبانی بهش یاد بده، هوشمندتر می‌شه؛ برای موارد خاص با تلگرام پشتیبانی صحبت کن.</div>
         <div class="ai-chips">
           <button class="ai-chip" onclick="aiAskSuggestion('IP ثابت دارید؟')">IP ثابت</button>
           <button class="ai-chip" onclick="aiAskSuggestion('چطور اپلیکیشن رو دانلود کنم')">دانلود اپ</button>
@@ -4042,6 +4168,16 @@
           <input type="text" id="aiInputField" placeholder="سوالت رو بپرس..." onkeydown="if(event.key==='Enter')sendAiMessage();">
           <button class="btn btn-primary" onclick="sendAiMessage()" id="aiSendBtn">ارسال</button>
         </div>
+
+        <div class="ai-teach" id="aiTeachBox">
+          <div class="ai-teach-title">🎓 حالت آموزش (فقط مدیر) — یک سوال و جواب جدید به دستیار یاد بده</div>
+          <label>کلمات کلیدی (با ویرگول جدا کن)</label>
+          <input type="text" id="aiTeachKeywords" placeholder="مثلاً: تغییر رمز, فراموشی رمز عبور">
+          <label>پاسخ دستیار</label>
+          <textarea id="aiTeachAnswer" placeholder="پاسخی که دستیار از این به بعد بده رو اینجا بنویس..."></textarea>
+          <button class="btn btn-gold" style="width:100%;" onclick="aiTeachSubmit()">یاد بگیر ✅</button>
+        </div>
+
         <div class="modal-actions">
           <button class="btn btn-outline" onclick="closeModal('aiModal')">بستن</button>
         </div>
@@ -6814,8 +6950,24 @@ ${formatPrice(cartTotal())}
 
     const AI_KB = [
       {
+        keywords:["ساعت چنده","ساعت چند است","الان ساعت چنده","چه ساعتیه","الان چه ساعتیه"],
+        answer:()=>{
+          const d=new Date();
+          const time=d.toLocaleTimeString("fa-IR",{hour:"2-digit",minute:"2-digit"});
+          return "الان ساعت "+time+" هست ⏰ (به وقت دستگاه شما). اگه سوالی هم دربارهٔ سرویس‌ها داشتی بپرس.";
+        }
+      },
+      {
+        keywords:["امروز چندمه","تاریخ امروز","امروز چه روزیه","چندشنبه ایه امروز","امروز چندشنبه است"],
+        answer:()=>{
+          const d=new Date();
+          const date=d.toLocaleDateString("fa-IR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+          return "امروز "+date+" هست 📅";
+        }
+      },
+      {
         keywords:["سلام","درود","وقت بخیر","سلام خوبی","های","hi","hello"],
-        answer:"سلام 👋 خوش اومدی به V2GURD! می‌تونم دربارهٔ IP ثابت، نصب اپلیکیشن، مراحل خرید، مشکل اتصال یا سرعت کمکت کنم. سوالت چیه؟"
+        answer:"سلام 👋 خوش اومدی به V2GURD! می‌تونم دربارهٔ IP ثابت، نصب اپلیکیشن، مراحل خرید، فیلترینگ، مشکل اتصال یا سرعت کمکت کنم. سوالت چیه؟"
       },
       {
         keywords:["چطوری","حالت چطوره","خوبی","حال شما"],
@@ -6928,10 +7080,138 @@ ${formatPrice(cartTotal())}
       {
         keywords:["جوک","شوخی","لطیفه","بامزه","بخندون"],
         answer:"😄 باشه یه شوخی کوچیک: چرا با VPN هیچکس گمت نمی‌کنه؟ چون خودتم نمی‌دونی کجایی 😅 حالا بگو چطور می‌تونم کمکت کنم؟"
+      },
+
+      /* ===== فیلترینگ و مفاهیم پایه ===== */
+      {
+        keywords:["فیلترینگ چیست","فیلترینگ یعنی چی","چرا فیلتره","چرا اینترنت فیلتره","علت فیلترینگ","فیلترینگ اینترنت"],
+        answer:"فیلترینگ یعنی محدود کردن دسترسی به بخشی از سایت‌ها و اپلیکیشن‌ها توسط زیرساخت اینترنت کشور. سرویس‌های V2GURD با ساخت یک مسیر رمزنگاری‌شدهٔ جدا، این محدودیت‌ها رو دور می‌زنن تا اینترنت آزاد و پایدار داشته باشی."
+      },
+      {
+        keywords:["فیلترشکن چیست","فیلترشکن یعنی چی","vpn چیست","وی پی ان چیست","وی‌پی‌ان چیه","فیلتر شکن چیه"],
+        answer:"فیلترشکن (VPN) یه تونل رمزنگاری‌شده بین گوشی/سیستم تو و یه سرور دیگه می‌سازه؛ ترافیکت از همون مسیر رد می‌شه، محدودیت فیلترینگ دور زده می‌شه و آی‌پی واقعیت هم مخفی می‌مونه. V2GURD همین کار رو با پروتکل‌های وایرگارد، V2Box و JumpJump انجام می‌ده."
+      },
+      {
+        keywords:["تفاوت vpn و پراکسی","فرق vpn با پروکسی","پراکسی چیه","فرق پروکسی و وی پی ان"],
+        answer:"پراکسی فقط ترافیک مرورگر رو رد می‌کنه و معمولاً رمزنگاری قوی نداره؛ VPN کل ترافیک سیستم/گوشی رو رمزنگاری و تونل می‌کنه، پس امن‌تر و پایدارتره. سرویس‌های V2GURD از نوع VPN واقعی هستن."
+      },
+      {
+        keywords:["وایرگارد چیست","پروتکل وایرگارد","wireguard چیه","wireguard protocol","wireguard یعنی چی"],
+        answer:"WireGuard یه پروتکل VPN مدرن و سبکه که با کد کم، اتصال سریع‌تر و مصرف باتری/منابع کمتری نسبت به پروتکل‌های قدیمی‌تر ارائه می‌ده؛ به همین دلیل برای سرعت و پایداری بالا انتخاب خوبیه."
+      },
+      {
+        keywords:["v2ray چیست","v2box چیست","پروتکل v2ray","v2ray یعنی چی"],
+        answer:"V2Ray یه فریم‌ورک قدرتمند برای عبور از فیلترینگ‌های پیشرفته‌ست که ترافیک رو طوری می‌پوشونه که شبیه ترافیک عادی HTTPS به نظر برسه. V2Box نسخهٔ اپلیکیشنی و کاربرپسند همین فناوریه که تو V2GURD ارائه می‌شه."
+      },
+      {
+        keywords:["لاگ نگه میدارید","حریم خصوصی","اطلاعاتم ذخیره میشه","ردیابی میشم","لاگ نگهداری میشه","فعالیتم ذخیره میشه"],
+        answer:"حریم خصوصی برامون مهمه؛ سرویس‌ها برای عبور امن از فیلترینگ طراحی شدن، نه ذخیرهٔ محتوای فعالیت شما. برای جزئیات دقیق‌تر سیاست حریم خصوصی می‌تونی از پشتیبانی تلگرام بپرسی: "+TELEGRAM
+      },
+      {
+        keywords:["dns چیست","دی ان اس چیه","تغییر dns","dns یعنی چی"],
+        answer:"DNS مثل دفترچه تلفن اینترنته که اسم سایت رو به آدرس واقعی سرور تبدیل می‌کنه. بعضی فیلترینگ‌ها از همین مسیر انجام می‌شن؛ وقتی از VPN استفاده می‌کنی، درخواست DNS هم از تونل امن رد می‌شه و این مشکل هم حل می‌شه."
+      },
+      {
+        keywords:["فیلتر تلگرام","رفع فیلتر تلگرام","تلگرام فیلتره","تلگرام باز نمیشه"],
+        answer:"با روشن‌بودن یکی از سرویس‌های V2GURD (وایرگارد، V2Box یا JumpJump) تلگرام مثل بقیهٔ اپ‌ها از تونل امن رد می‌شه و به‌صورت عادی باز می‌شه. اگه بازم مشکل داشت، سرور رو عوض کن یا از تلگرام پشتیبانی کمک بگیر: "+TELEGRAM
+      },
+      {
+        keywords:["فیلتر اینستاگرام","اینستاگرام باز نمیشه","رفع فیلتر اینستا","اینستا فیلتره"],
+        answer:"دقیقاً مثل تلگرام، با فعال‌بودن سرویس V2GURD روی گوشی یا سیستمت، اینستاگرام هم از تونل امن رد می‌شه و باز می‌مونه. اگه لود نشد، یه سرور دیگه رو امتحان کن."
+      },
+      {
+        keywords:["قطعی اینترنت","اینترنت کل کشور قطعه","اختلال اینترنت","اینترنت کشور مشکل داره"],
+        answer:"در قطعی‌های سراسری زیرساخت اینترنت کشور، حتی VPN هم ممکنه محدود بشه چون مشکل از سمت شبکهٔ اصلیه، نه سرویس. تو این شرایط چند سرور مختلف رو امتحان کن و برای اطلاع از وضعیت لحظه‌ای با پشتیبانی تلگرام هماهنگ باش: "+TELEGRAM
+      },
+      {
+        keywords:["kill switch","کیل سوییچ","قطع خودکار اینترنت","killswitch"],
+        answer:"Kill Switch یه قابلیت امنیتیه که اگه اتصال VPN قطع بشه، به‌صورت خودکار اینترنت گوشی/سیستم رو هم قطع می‌کنه تا ترافیک بدون محافظت رد نشه. بسته به اپلیکیشن (WireGuard/V2Box/JumpJump) می‌تونی این گزینه رو از تنظیمات اپ فعال کنی."
+      },
+      {
+        keywords:["چند نفر همزمان","چند دستگاه","تعداد دستگاه مجاز","چند تا گوشی همزمان"],
+        answer:"تعداد دستگاه‌های مجاز بسته به نوع پلن فرق داره؛ سرویس‌های تک‌کاربره فقط روی یک دستگاه هم‌زمان کار می‌کنن، ولی پلن‌های JumpJump معمولاً چند دستگاهی هستن. جزئیات دقیق هر پلن تو همون بخش محصول سایت نوشته شده."
+      },
+      {
+        keywords:["نصب روی روتر","تنظیم روتر","vpn روی روتر","روتر تنظیم کنم"],
+        answer:"وایرگارد روی خیلی از روترها (مثل OpenWRT یا روترهای پشتیبان‌کنندهٔ WireGuard) قابل تنظیمه تا کل خونه/دفتر از یک اتصال استفاده کنه. برای راهنمای گام‌به‌گام با پشتیبانی تلگرام هماهنگ کن: "+TELEGRAM
+      },
+      {
+        keywords:["نصب روی ویندوز","نصب روی مک","نصب روی لینوکس","کامپیوتر نصب کنم","نصب روی pc"],
+        answer:"بله، WireGuard و V2Box اپلیکیشن رسمی برای ویندوز، مک و لینوکس هم دارن؛ کانفیگ یا کیوآرکدی که دریافت می‌کنی رو داخل همون اپلیکیشن وارد کن."
+      },
+      {
+        keywords:["handshake","خطای هندشیک","اتصال برقرار نمیشه هندشیک"],
+        answer:"خطای Handshake معمولاً یعنی بسته‌های اتصال به سرور نمی‌رسن. این مورد رو امتحان کن: تاریخ/ساعت گوشی رو درست کن، یه شبکهٔ دیگه (وای‌فای/دیتا) رو تست کن، و اگه ادامه داشت سرور دیگه‌ای رو امتحان کن یا با پشتیبانی هماهنگ شو: "+TELEGRAM
+      },
+      {
+        keywords:["فرق وایرگارد با openvpn","openvpn چیه","تفاوت wireguard و openvpn"],
+        answer:"OpenVPN پروتکل قدیمی‌تر و سنگین‌تره ولی سازگاری بالایی داره؛ WireGuard جدیدتر، سبک‌تر و معمولاً سریع‌تره. V2GURD روی WireGuard و V2Ray تمرکز داره تا بهترین ترکیب سرعت و پایداری رو بگیری."
+      },
+      {
+        keywords:["چرا قیمت فرق داره","اختلاف قیمت پلن ها","چرا این پلن گرون تره"],
+        answer:"قیمت پلن‌ها بر اساس حجم، مدت اعتبار، تعداد دستگاه مجاز و نوع سرویس (تک‌کاربره یا چندکاربره) فرق می‌کنه. جزئیات هر پلن رو می‌تونی تو همون بخش محصول ببینی."
+      },
+      {
+        keywords:["گارانتی","بازگشت وجه","ریفاند","پول برگشت میخوره"],
+        answer:"شرایط گارانتی و بازگشت وجه تو بخش قوانین سایت اومده. برای بررسی دقیق سفارش خودت با شماره سفارش، از تلگرام پشتیبانی کمک بگیر: "+TELEGRAM
+      },
+      {
+        keywords:["تمدید","تمدید سرویس","سرویسم تموم شد","اعتبار تموم شده"],
+        answer:"برای تمدید کافیه یه پلن جدید از همون سرویس (وایرگارد/V2Box/JumpJump) رو از سایت انتخاب و سفارش بدی؛ رسید رو هم از تلگرام برای پشتیبانی ارسال کن تا سرویس جدیدت فعال بشه."
+      },
+      {
+        keywords:["تغییر پلن","ارتقا پلن","آپگرید پلن","پلنمو عوض کنم"],
+        answer:"تغییر و ارتقای پلن طبق شرایطی که تو بخش قوانین نوشته شده انجام می‌شه. برای هماهنگی دقیق با شماره سفارشت، از پشتیبانی تلگرام کمک بگیر: "+TELEGRAM
+      },
+      {
+        keywords:["اشتراک گذاشتن اکانت","به کسی بدم سرویس","کانفیگ رو شیر کنم","اکانتمو بدم به دوستم"],
+        answer:"طبق قوانین سایت، اطلاعات سرویس نباید در اختیار افراد دیگه قرار بگیره چون روی کیفیت و امنیت اتصال خودت هم تاثیر می‌ذاره. مسئولیت استفادهٔ نادرست هم با خریداره."
+      },
+      {
+        keywords:["روش پرداخت","چطور پرداخت کنم","کارت به کارت","تتر پرداخت","با چی پرداخت کنم"],
+        answer:"پرداخت معمولاً به‌صورت کارت‌به‌کارت انجام می‌شه؛ بعد از ثبت سفارش، شمارهٔ کارت تو فاکتور نشون داده می‌شه و باید رسید پرداخت رو از تلگرام برای پشتیبانی بفرستی: "+TELEGRAM
+      },
+      {
+        keywords:["پرداخت امنه","امنیت کارت به کارت","مطمئنم بخرم"],
+        answer:"سفارش‌ها با شماره سفارش پیگیری می‌شن و بعد از تایید رسید، سرویس فعال می‌شه. اگه هر سوالی دربارهٔ امنیت خرید داشتی، پشتیبانی تلگرام همیشه در دسترسه: "+TELEGRAM
+      },
+      {
+        keywords:["چقدر طول میکشه پاسخ","کی جواب میدید","زمان پشتیبانی","پشتیبانی ۲۴ ساعته است"],
+        answer:"پشتیبانی V2GURD از طریق تلگرام و به‌صورت ۲۴ ساعته پاسخگوعه. برای سریع‌ترین پاسخ مستقیم پیام بده: "+TELEGRAM
+      },
+      {
+        keywords:["نمایندگی","درخواست نمایندگی","همکاری در فروش","نماینده فروش بشم"],
+        answer:"برای درخواست نمایندگی فروش V2GURD می‌تونی از صفحهٔ «درخواست نمایندگی» تو منوی سایت اقدام کنی یا مستقیم با پشتیبانی تلگرام هماهنگ بشی: "+TELEGRAM
+      },
+      {
+        keywords:["گیمینگ","استریم","برای گیم خوبه","پینگ","بازی آنلاین"],
+        answer:"برای گیمینگ و استریم، سرویس‌های وایرگارد به‌خاطر سرعت و پینگ پایین گزینهٔ خوبی هستن. اگه با یک سرور پینگ بالا بود، سرور دیگه‌ای رو امتحان کن تا بهترین مسیر رو پیدا کنی."
+      },
+      {
+        keywords:["سازمانی","شرکتی","تعداد بالا بخرم","خرید عمده","سفارش تعداد زیاد"],
+        answer:"برای خریدهای سازمانی و تعداد بالا، بهتره مستقیم با تیم پشتیبانی تلگرام هماهنگ کنی تا بهترین پلن و شرایط مخصوص همون حجم رو بهت پیشنهاد بدن: "+TELEGRAM
+      },
+
+      /* ===== گفتگوی عمومی ===== */
+      {
+        keywords:["خسته نباشید","دستت درد نکنه","خسته نباشی"],
+        answer:"ممنون از توجهت 🙏 اگه سوالی دربارهٔ سرویس‌ها یا فیلترینگ داشتی، همینجا بپرس."
+      },
+      {
+        keywords:["چیکار میکنی","مشغول چی هستی","چه خبر"],
+        answer:"همینجام و آمادهٔ کمک دربارهٔ سرویس‌های V2GURD 🙂 چه کمکی از دستم برمیاد؟"
+      },
+      {
+        keywords:["چقدر خوبی","دوست دارم","باهوشی","عالی هستی"],
+        answer:"لطف داری 🙏 خوشحال می‌شم بازم کمکت کنم، فقط بگو دنبال چه چیزی هستی."
+      },
+      {
+        keywords:["کی ساختت","کی تو رو ساخته","سازندت کیه"],
+        answer:"من دستیار پشتیبانی سایت V2GURD هستم و برای راهنمایی سریع کاربرا طراحی شدم؛ برای اطلاعات بیشتر دربارهٔ تیم، از تلگرام پشتیبانی بپرس: "+TELEGRAM
       }
     ];
 
-    const AI_FALLBACK="این یکی رو مطمئن نیستم بتونم جواب بدم 🙏 من فقط دربارهٔ سرویس‌های V2GURD (وایرگارد، V2Box، JumpJump)، خرید، و مشکلات اتصال می‌تونم کمک کنم. برای بقیهٔ موارد با پشتیبانی تلگرام صحبت کن: "+TELEGRAM;
+    const AI_FALLBACK="این یکی رو دقیق نمی‌دونم 🙏 من می‌تونم دربارهٔ سرویس‌های V2GURD (وایرگارد، V2Box، JumpJump)، فیلترینگ و رفع فیلتر، نحوهٔ خرید و پرداخت، نصب و مشکلات اتصال کمکت کنم؛ سوالتو یه‌جور دیگه بپرس یا با پشتیبانی تلگرام صحبت کن: "+TELEGRAM;
 
     // فحش و الفاظ نامناسب — می‌تونی این لیست رو گسترش بدی
     const AI_BAD_WORDS=["کیری","کسکش","کونی","جنده","لاشی","عوضی","حرومزاده","مادرجنده","گوه"];
@@ -6947,6 +7227,99 @@ ${formatPrice(cartTotal())}
       for(let i=0;i<fa.length;i++)out=out.split(fa[i]).join(en[i]);
       return out;
     }
+
+    // یکسان‌سازی حروف مشابه عربی/فارسی و فاصله‌ها تا تشخیص سوال‌ها دقیق‌تر باشه
+    function aiNormalizeChars(s){
+      return s
+        .replace(/ي/g,"ی")
+        .replace(/ك/g,"ک")
+        .replace(/[إأآا]/g,"ا")
+        .replace(/ة/g,"ه")
+        .replace(/[؟!،.,]/g," ")
+        .replace(/\u200c/g," ")
+        .replace(/\s+/g," ")
+        .trim();
+    }
+
+    /* ==========================================
+       خودآموزی دستیار (متصل به Supabase)
+       جدول ai_knowledge: پاسخ‌هایی که مدیر به دستیار یاد داده
+       جدول ai_unanswered: سوالاتی که دستیار جواب نداده تا مدیر بعداً یادش بده
+    ========================================== */
+
+    let AI_LEARNED = [];
+    let aiIsAdminUser = false;
+
+    async function aiLoadLearned(){
+      if(!supabaseClient)return;
+      try{
+        const {data,error}=await supabaseClient
+          .from("ai_knowledge")
+          .select("id,keywords,answer")
+          .order("created_at",{ascending:false});
+        if(!error && data){
+          AI_LEARNED=data.map(r=>({
+            id:r.id,
+            keywords:(r.keywords||"").split(",").map(s=>s.trim()).filter(Boolean),
+            answer:r.answer,
+            _learned:true
+          }));
+        }
+      }catch(e){
+        console.error("aiLoadLearned error:",e);
+      }
+    }
+
+    async function aiCheckAdmin(){
+      if(!supabaseClient)return false;
+      try{
+        const user=await getCurrentUser();
+        if(!user)return false;
+        const profile=await supabaseClient.from("profiles").select("role").eq("id",user.id).maybeSingle();
+        return !profile.error && profile.data?.role==="admin";
+      }catch(e){
+        return false;
+      }
+    }
+
+    async function openAiAssistant(){
+      openModal("aiModal");
+      aiIsAdminUser=await aiCheckAdmin();
+      const box=document.getElementById("aiTeachBox");
+      if(box)box.classList.toggle("show",aiIsAdminUser);
+    }
+    window.openAiAssistant=openAiAssistant;
+
+    async function aiLogUnanswered(question){
+      if(!supabaseClient)return;
+      try{
+        await supabaseClient.from("ai_unanswered").insert({question:question.slice(0,500)});
+      }catch(e){
+        // خاموش‌شکست — اگه لاگ نشد مشکلی برای کاربر پیش نمیاد
+      }
+    }
+
+    async function aiTeachSubmit(){
+      if(!supabaseClient){showToast("اتصال Supabase تنظیم نشده است");return;}
+      if(!aiIsAdminUser){showToast("فقط مدیر می‌تونه به دستیار آموزش بده");return;}
+
+      const kwField=document.getElementById("aiTeachKeywords");
+      const ansField=document.getElementById("aiTeachAnswer");
+      const keywords=kwField.value.trim();
+      const answer=ansField.value.trim();
+
+      if(!keywords||!answer){showToast("کلمات کلیدی و پاسخ رو پر کن");return;}
+
+      const {error}=await supabaseClient.from("ai_knowledge").insert({keywords,answer});
+      if(error){showToast("خطا در ذخیره: "+error.message);return;}
+
+      kwField.value="";
+      ansField.value="";
+      showToast("دستیار یاد گرفت ✅");
+      aiAppendMessage("bot","یاد گرفتم ✅ از این به بعد به این سوال جواب می‌دم — و همهٔ کاربرای دیگه هم همین جواب رو می‌گیرن.");
+      await aiLoadLearned();
+    }
+    window.aiTeachSubmit=aiTeachSubmit;
 
     let aiPendingPlans=null;
     let aiAwaitingCheckout=false;
@@ -7023,17 +7396,23 @@ ${formatPrice(cartTotal())}
     }
 
     function aiFindAnswer(rawText){
-      const text=rawText.toLowerCase();
+      const text=aiNormalizeChars(aiNormalizeDigits(rawText)).toLowerCase();
       let best=null;
       let bestScore=0;
-      AI_KB.forEach(entry=>{
+      [...AI_LEARNED,...AI_KB].forEach(entry=>{
         let score=0;
-        entry.keywords.forEach(k=>{
-          if(text.includes(k.toLowerCase()))score++;
+        (entry.keywords||[]).forEach(k=>{
+          const nk=aiNormalizeChars(k).toLowerCase();
+          if(nk && text.includes(nk))score+=nk.length>=4?2:1; // عبارت‌های طولانی‌تر و دقیق‌تر امتیاز بیشتری می‌گیرن
         });
+        if(entry._learned && score>0)score+=1; // پاسخ‌هایی که تیم پشتیبانی مستقیماً به دستیار یاد داده، اولویت کمی بالاتری دارن
         if(score>bestScore){bestScore=score;best=entry;}
       });
-      return best?best.answer:AI_FALLBACK;
+      if(!best){
+        aiLogUnanswered(rawText);
+        return AI_FALLBACK;
+      }
+      return typeof best.answer==="function"?best.answer():best.answer;
     }
 
     function aiGenerateReply(text){
@@ -7100,6 +7479,7 @@ ${formatPrice(cartTotal())}
       try{
 
         initSupabase();
+        aiLoadLearned();
 
         renderCategories();
         renderWireguard();
