@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://v2gurd.github.io/-v2guard.github.io/">
 
-  <meta name="theme-color" content="#123a7a">
+  <meta name="theme-color" content="#1d6fe8">
 
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,43 +27,35 @@
 
   <style>
     :root{
-      --primary:#3157d5;
-      --primary-dark:#22409e;
-      --primary-soft:#eaf2ff;
-      --gold:#111827;
-      --gold-soft:#eef1f6;
+      --primary:#1d6fe8;
+      --primary-dark:#1450b8;
+      --primary-soft:#e6f0ff;
+      --gold:#e11d48;
+      --gold-soft:#ffe9ee;
 
-      --ink:#111827;
-      --muted:#4b5768;
-      --muted-2:#6b7a90;
+      --ink:#0f1c33;
+      --muted:#5d6e8c;
+      --muted-2:#8b9895;
 
-      --bg:#f3f6fb;
-      --surface:rgba(255,255,255,.6);
-      --surface-2:rgba(255,255,255,.38);
+      --bg:#eef4ff;
+      --surface:#ffffff;
+      --surface-2:#f6f9ff;
+      --border:#dbe6f7;
+      --border-strong:#c7d7f0;
 
-      /* liquid-glass tokens */
-      --glass:rgba(255,255,255,.55);
-      --glass-strong:rgba(255,255,255,.72);
-      --glass-soft:rgba(255,255,255,.32);
-      --glass-blur:blur(14px) saturate(140%);
-      --glass-blur-sm:blur(9px) saturate(130%);
-
-      --border:rgba(255,255,255,.55);
-      --border-strong:rgba(17,24,39,.14);
-
-      --success:#16845e;
+      --success:#1a8fd8;
       --danger:#c74848;
-      --warning:#b45309;
-      --purple:#3157d5;
+      --warning:#be123c;
+      --purple:#6946c6;
 
-      --shadow-sm:0 4px 18px rgba(17,24,39,.07);
-      --shadow:0 14px 42px rgba(17,24,39,.10);
-      --shadow-lg:0 30px 90px rgba(17,24,39,.16);
+      --shadow-sm:0 4px 16px rgba(20,33,31,.05);
+      --shadow:0 12px 35px rgba(20,33,31,.08);
+      --shadow-lg:0 24px 70px rgba(20,33,31,.14);
 
-      --radius-sm:8px;
-      --radius:12px;
-      --radius-lg:18px;
-      --radius-xl:22px;
+      --radius-sm:10px;
+      --radius:16px;
+      --radius-lg:24px;
+      --radius-xl:32px;
 
       --header-height:76px;
     }
@@ -84,100 +76,10 @@
       color:var(--ink);
       line-height:1.8;
       overflow-x:hidden;
-      position:relative;
     }
 
     body.locked{
       overflow:hidden;
-    }
-
-    /* =========================
-       LIQUID GLASS BACKDROP
-    ========================== */
-
-    .liquid-bg{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      overflow:hidden;
-      background:var(--bg);
-    }
-
-    .liquid-bg span{
-      position:absolute;
-      border-radius:50%;
-      filter:blur(95px);
-      opacity:.14;
-      will-change:transform;
-    }
-
-    .liquid-bg span:nth-child(1){
-      width:620px;
-      height:620px;
-      top:-200px;
-      right:-160px;
-      background:radial-gradient(circle at 30% 30%,#bcd4fb,#3157d5 75%);
-      animation:liquidFloat1 32s ease-in-out infinite;
-    }
-
-    .liquid-bg span:nth-child(2){
-      width:520px;
-      height:520px;
-      bottom:-180px;
-      left:-140px;
-      background:radial-gradient(circle at 60% 40%,#cfe0fb,#111827 75%);
-      opacity:.10;
-      animation:liquidFloat2 36s ease-in-out infinite;
-    }
-
-    .liquid-bg span:nth-child(3){
-      display:none;
-    }
-
-    @keyframes liquidFloat1{
-      0%,100%{transform:translate(0,0) scale(1);}
-      50%{transform:translate(-40px,50px) scale(1.08);}
-    }
-
-    @keyframes liquidFloat2{
-      0%,100%{transform:translate(0,0) scale(1);}
-      50%{transform:translate(35px,-45px) scale(1.06);}
-    }
-
-    @keyframes liquidFloat3{
-      0%,100%{transform:translate(-50%,-50%) scale(1);}
-      50%{transform:translate(-50%,-50%) translate(30px,25px) scale(1.1);}
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      .liquid-bg span{animation:none;}
-    }
-
-    /* =========================
-       SCROLL REVEAL (بصری صرف)
-    ========================== */
-
-    .reveal{
-      opacity:0;
-      transform:translateY(22px);
-      transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .reveal.in-view{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      .reveal{
-        opacity:1;
-        transform:none;
-        transition:none;
-      }
-    }
-
-    @media(max-width:720px){
-      .liquid-bg span{filter:blur(50px);}
     }
 
     button,
@@ -316,21 +218,12 @@
 
     header{
       height:var(--header-height);
-      background:var(--glass-strong);
+      background:rgba(255,255,255,.96);
       border-bottom:1px solid var(--border);
-      box-shadow:0 1px 0 rgba(255,255,255,.6) inset,var(--shadow-sm);
       position:sticky;
       top:0;
       z-index:5000;
-      backdrop-filter:var(--glass-blur);
-      -webkit-backdrop-filter:var(--glass-blur);
-      transition:height .28s ease,box-shadow .28s ease,background .28s ease;
-    }
-
-    header.is-compact{
-      height:60px;
-      background:rgba(255,255,255,.88);
-      box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 12px 30px rgba(17,24,39,.09);
+      backdrop-filter:blur(15px);
     }
 
     .header-inner{
@@ -360,7 +253,7 @@
       place-items:center;
       font-size:16px;
       font-weight:900;
-      box-shadow:0 7px 18px rgba(49,87,213,.2);
+      box-shadow:0 7px 18px rgba(29,111,232,.2);
     }
 
     .brand-text{
@@ -396,7 +289,7 @@
     nav a{
       padding:9px 11px;
       border-radius:9px;
-      color:#465872;
+      color:#596865;
       font-size:13px;
       font-weight:600;
       transition:.2s;
@@ -418,7 +311,7 @@
       width:42px;
       height:42px;
       border:1px solid var(--border);
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border-radius:11px;
       display:grid;
       place-items:center;
@@ -513,23 +406,6 @@
       align-items:center;
     }
 
-    .hero-grid > *{
-      animation:heroFadeUp .8s cubic-bezier(.2,.7,.2,1) both;
-    }
-
-    .hero-grid > *:nth-child(2){
-      animation-delay:.12s;
-    }
-
-    @keyframes heroFadeUp{
-      from{opacity:0;transform:translateY(18px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      .hero-grid > *{animation:none;}
-    }
-
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -572,38 +448,13 @@
 
     .hero-actions{
       display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      gap:12px;
-    }
-
-    .hero-actions .btn-primary{
-      min-height:54px;
-      padding:0 26px;
-      font-size:13.5px;
-      border-radius:999px;
-      align-self:stretch;
-      justify-content:space-between;
-    }
-
-    .hero-secondary-actions{
-      display:flex;
       flex-wrap:wrap;
-      align-items:center;
-      gap:8px;
-    }
-
-    .hero-secondary-actions .btn{
-      min-height:38px;
-      padding:0 14px;
-      font-size:10.5px;
-      border-radius:999px;
+      gap:10px;
     }
 
     .btn{
-      position:relative;
       min-height:45px;
-      border-radius:13px;
+      border-radius:11px;
       padding:0 18px;
       border:1px solid transparent;
       display:inline-flex;
@@ -612,40 +463,7 @@
       gap:8px;
       font-size:12px;
       font-weight:800;
-      letter-spacing:-.1px;
-      overflow:hidden;
-      isolation:isolate;
-      transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s cubic-bezier(.2,.8,.2,1),background .22s,color .22s,border-color .22s;
-    }
-
-    .btn::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 55%);
-      pointer-events:none;
-    }
-
-    .btn::after{
-      content:"";
-      position:absolute;
-      top:0;
-      bottom:0;
-      left:-60%;
-      width:40%;
-      background:linear-gradient(115deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.35) 50%,rgba(255,255,255,0) 100%);
-      transform:skewX(-18deg);
-      pointer-events:none;
-      transition:left .55s ease;
-    }
-
-    .btn:hover::after{
-      left:120%;
-    }
-
-    .btn:active{
-      transform:translateY(0) scale(.97);
+      transition:.22s;
     }
 
     .btn:hover{
@@ -655,223 +473,57 @@
     .btn-primary{
       background:var(--primary);
       color:#fff;
-      box-shadow:0 10px 24px rgba(49,87,213,.22);
-      padding-right:20px;
-      padding-left:6px;
-      gap:10px;
-    }
-
-    .btn-primary::after{
-      content:"←";
-      width:26px;
-      height:26px;
-      border-radius:50%;
-      background:rgba(255,255,255,.22);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-size:13px;
-      flex-shrink:0;
-      transition:transform .3s cubic-bezier(.2,.7,.2,1);
+      box-shadow:0 8px 20px rgba(29,111,232,.16);
     }
 
     .btn-primary:hover{
       background:var(--primary-dark);
-      box-shadow:0 14px 30px rgba(49,87,213,.28);
-    }
-
-    .btn-primary:hover::after{
-      transform:translateX(-4px);
     }
 
     .btn-outline{
-      border-color:rgba(255,255,255,.7);
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      border-color:var(--border-strong);
+      background:#fff;
       color:var(--ink);
-      box-shadow:var(--shadow-sm);
     }
 
     .btn-outline:hover{
       border-color:var(--primary);
       color:var(--primary);
-      background:var(--glass-strong);
     }
 
     .btn-dark{
-      background:rgba(17,24,39,.88);
-      color:#fff;
-      backdrop-filter:var(--glass-blur-sm);
-      -webkit-backdrop-filter:var(--glass-blur-sm);
-      box-shadow:0 10px 24px rgba(17,24,39,.2);
-    }
-
-    .btn-dark:hover{
       background:var(--ink);
+      color:#fff;
     }
 
     .btn-gold{
-      background:linear-gradient(120deg,var(--ink),var(--primary));
+      background:var(--gold);
       color:#fff;
-      box-shadow:0 10px 24px rgba(17,24,39,.26);
-    }
-
-    .btn-gold:hover{
-      box-shadow:0 14px 30px rgba(17,24,39,.32);
     }
 
     .btn-purple{
       background:var(--purple);
       color:#fff;
-      box-shadow:0 10px 24px rgba(49,87,213,.24);
     }
 
     .btn-danger{
-      background:rgba(199,72,72,.1);
-      backdrop-filter:var(--glass-blur-sm);
-      -webkit-backdrop-filter:var(--glass-blur-sm);
+      background:#fff2f2;
       color:var(--danger);
-      border:1px solid rgba(199,72,72,.22);
+      border:1px solid #f1d7d7;
     }
 
     .hero-visual{
       position:relative;
-      padding:14px 22px 22px 0;
-    }
-
-    .hero-floater{
-      position:absolute;
-      z-index:3;
-      display:flex;
-      align-items:center;
-      gap:9px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:9px 13px;
-      box-shadow:0 16px 34px rgba(17,24,39,.14);
-      animation:floaterBob 5s ease-in-out infinite;
-    }
-
-    .hero-floater span{
-      width:30px;
-      height:30px;
-      border-radius:9px;
-      background:var(--primary-soft);
-      color:var(--primary);
-      display:grid;
-      place-items:center;
-      font-size:13px;
-      font-weight:800;
-      flex-shrink:0;
-    }
-
-    .hero-floater strong{
-      display:block;
-      font-size:10.5px;
-    }
-
-    .hero-floater small{
-      display:block;
-      color:var(--muted);
-      font-size:8.5px;
-      margin-top:1px;
-    }
-
-    .hero-floater-1{
-      top:0;
-      left:0;
-      animation-delay:0s;
-    }
-
-    .hero-floater-2{
-      bottom:26px;
-      right:-6px;
-      animation-delay:1.4s;
-    }
-
-    @keyframes floaterBob{
-      0%,100%{transform:translateY(0);}
-      50%{transform:translateY(-9px);}
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      .hero-floater{animation:none;}
-    }
-
-    @media (max-width:640px){
-      .hero-floater{display:none;}
-    }
-
-    .hero-shape{
-      position:relative;
-    }
-
-    .hero-shape-top{
-      position:relative;
-      z-index:2;
-      background:var(--ink);
-      border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-      padding:20px 22px 34px;
-      overflow:visible;
-      box-shadow:0 18px 38px rgba(17,24,39,.24);
-    }
-
-    .hero-shape-dots{
-      position:absolute;
-      inset:0;
-      border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-      overflow:hidden;
-      background-image:radial-gradient(rgba(255,255,255,.16) 1.4px,transparent 1.4px);
-      background-size:16px 16px;
-      -webkit-mask-image:linear-gradient(200deg,#000,transparent 65%);
-      mask-image:linear-gradient(200deg,#000,transparent 65%);
-      pointer-events:none;
-    }
-
-    .hero-shape-top .hero-card-header{
-      position:relative;
-      z-index:1;
-      margin-bottom:0;
-    }
-
-    .hero-shape-top .hero-card-title{
-      color:#fff;
-    }
-
-    .hero-shape-top .live-badge{
-      background:rgba(255,255,255,.14);
-      border-color:rgba(255,255,255,.22);
-      color:#bcd4fb;
-    }
-
-    .hero-notch{
-      position:absolute;
-      bottom:-14px;
-      width:28px;
-      height:28px;
-    }
-
-    .hero-notch-l{
-      left:0;
-      background:radial-gradient(circle at bottom left,transparent 27px,var(--ink) 28px);
-    }
-
-    .hero-notch-r{
-      right:0;
-      background:radial-gradient(circle at bottom right,transparent 27px,var(--ink) 28px);
     }
 
     .hero-card{
       background:#fff;
       border:1px solid var(--border);
-      border-top:none;
-      border-radius:0 0 var(--radius-xl) var(--radius-xl);
-      padding:44px 24px 24px;
-      margin-top:-28px;
+      border-radius:var(--radius-xl);
+      padding:24px;
       box-shadow:var(--shadow-lg);
       position:relative;
       overflow:hidden;
-      z-index:1;
     }
 
     .hero-card::before{
@@ -901,8 +553,8 @@
 
     .live-badge{
       color:var(--success);
-      background:#eaf1fd;
-      border:1px solid #d3e3fb;
+      background:#eaf7f1;
+      border:1px solid #d2eee3;
       border-radius:30px;
       padding:5px 9px;
       font-size:10px;
@@ -934,7 +586,7 @@
     .route-node{
       flex:1;
       min-height:60px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:13px;
       display:flex;
@@ -965,7 +617,7 @@
 
     .stat{
       padding:10px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:11px;
       text-align:center;
@@ -994,66 +646,40 @@
     .trust-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
-      gap:14px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
     }
 
     .trust-item{
-      padding:22px 16px;
+      padding:19px;
       display:flex;
-      flex-direction:column;
-      align-items:flex-start;
+      align-items:center;
       gap:12px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-      border:1px solid var(--border);
-      border-radius:16px;
-      box-shadow:var(--shadow-sm);
-      position:relative;
-      overflow:hidden;
-      transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s;
+      border-left:1px solid var(--border);
     }
 
-    .trust-item::before{
-      content:"";
-      position:absolute;
-      top:0;
-      right:0;
-      left:0;
-      height:3px;
-      background:linear-gradient(90deg,var(--primary),transparent);
-      opacity:0;
-      transition:opacity .3s;
-    }
-
-    .trust-item:hover{
-      transform:translateY(-5px);
-      box-shadow:var(--shadow);
-      border-color:#ccd9ef;
-    }
-
-    .trust-item:hover::before{
-      opacity:1;
+    .trust-item:last-child{
+      border-left:0;
     }
 
     .trust-icon{
-      width:44px;
-      height:44px;
-      border-radius:13px;
+      width:40px;
+      height:40px;
+      border-radius:11px;
       background:var(--primary-soft);
       color:var(--primary);
       display:grid;
       place-items:center;
-      font-size:18px;
+      font-size:17px;
       flex-shrink:0;
-      transition:transform .3s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .trust-item:hover .trust-icon{
-      transform:scale(1.08) rotate(-4deg);
     }
 
     .trust-item strong{
       display:block;
-      font-size:12.5px;
+      font-size:12px;
     }
 
     .trust-item span{
@@ -1061,7 +687,6 @@
       color:var(--muted);
       font-size:10px;
       margin-top:2px;
-      line-height:1.7;
     }
 
     /* =========================
@@ -1081,22 +706,10 @@
     }
 
     .section-kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
       color:var(--primary);
       font-size:11px;
       font-weight:900;
       margin-bottom:4px;
-    }
-
-    .section-kicker::before{
-      content:"";
-      width:16px;
-      height:2px;
-      border-radius:2px;
-      background:var(--primary);
-      display:inline-block;
     }
 
     .section-title{
@@ -1141,7 +754,7 @@
     }
 
     .featured-label{
-      color:#bcd4fb;
+      color:#9de2d1;
       font-size:10px;
       font-weight:800;
       margin-bottom:8px;
@@ -1153,7 +766,7 @@
     }
 
     .featured p{
-      color:#bac8e2;
+      color:#b9c5c2;
       font-size:12px;
       max-width:650px;
       margin-bottom:16px;
@@ -1171,7 +784,7 @@
       padding:6px 9px;
       border-radius:8px;
       font-size:9px;
-      color:#d7e1f0;
+      color:#d8e0de;
     }
 
     .featured-price{
@@ -1183,7 +796,7 @@
 
     .featured-price small{
       display:block;
-      color:#7488a6;
+      color:#8e9c98;
       font-size:10px;
     }
 
@@ -1208,7 +821,7 @@
     }
 
     .category-card{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:20px;
       overflow:hidden;
@@ -1220,12 +833,12 @@
     .category-card:hover{
       transform:translateY(-5px);
       box-shadow:var(--shadow);
-      border-color:#cfdaf0;
+      border-color:#cddbd7;
     }
 
     .category-image{
       height:170px;
-      background:#f3f6fb;
+      background:#f0f4f3;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -1292,119 +905,62 @@
     }
 
     .product-card{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:20px;
-      padding:14px 14px 20px;
+      padding:19px;
       box-shadow:var(--shadow-sm);
       position:relative;
-      transition:transform .32s cubic-bezier(.2,.7,.2,1),box-shadow .32s,border-color .32s;
+      transition:.25s;
       display:flex;
       flex-direction:column;
     }
 
     .product-card:hover{
-      transform:translateY(-6px);
-      box-shadow:var(--shadow-lg);
-      border-color:#ccd9ef;
+      transform:translateY(-4px);
+      box-shadow:var(--shadow);
+      border-color:#cbd9d5;
     }
 
     .product-card.special{
-      border-color:#b9d0f2;
-    }
-
-    .product-photo{
-      position:relative;
-      min-height:118px;
-      border-radius:14px;
-      background:linear-gradient(155deg,var(--primary),var(--primary-dark));
-      display:grid;
-      place-items:center;
-      margin-bottom:16px;
-      overflow:visible;
-      transition:transform .3s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .product-card.special .product-photo{
-      background:linear-gradient(155deg,var(--ink),var(--primary-dark) 65%,var(--primary));
-    }
-
-    .product-card:hover .product-photo{
-      transform:translateY(-2px);
-    }
-
-    .product-photo-icon{
-      width:44px;
-      height:44px;
-      color:#fff;
-      opacity:.95;
+      border-color:#ddcda9;
     }
 
     .product-badge{
       position:absolute;
-      top:10px;
-      left:10px;
-      display:inline-flex;
-      align-items:center;
-      gap:5px;
-      background:rgba(255,255,255,.16);
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.3);
+      top:15px;
+      left:15px;
+      background:var(--gold-soft);
+      color:var(--gold);
+      border:1px solid #eadbb9;
       border-radius:20px;
-      padding:5px 10px 5px 8px;
-      font-size:8.5px;
-      font-weight:800;
-    }
-
-    .product-badge::before{
-      content:"";
-      width:5px;
-      height:5px;
-      border-radius:50%;
-      background:#bcd4fb;
-      flex-shrink:0;
-    }
-
-    .product-cart-btn{
-      position:absolute;
-      bottom:-18px;
-      left:12px;
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      background:var(--ink);
-      color:#fff;
-      display:grid;
-      place-items:center;
-      border:3px solid #fff;
-      box-shadow:0 10px 20px rgba(17,24,39,.3);
-      cursor:pointer;
-      transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s;
-      z-index:2;
-    }
-
-    .product-cart-btn:hover{
-      transform:scale(1.1);
-      background:var(--primary);
-    }
-
-    .product-cart-btn:active{
-      transform:scale(.94);
-    }
-
-    .product-cart-btn svg{
-      width:17px;
-      height:17px;
+      padding:4px 8px;
+      font-size:9px;
+      font-weight:900;
     }
 
     .product-top{
-      padding:0 2px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:15px;
+      padding-left:70px;
+    }
+
+    .product-icon{
+      width:46px;
+      height:46px;
+      background:var(--primary-soft);
+      color:var(--primary);
+      border-radius:13px;
+      display:grid;
+      place-items:center;
+      font-size:21px;
+      flex-shrink:0;
     }
 
     .product-top h3{
-      font-size:14.5px;
+      font-size:15px;
       line-height:1.5;
     }
 
@@ -1414,13 +970,29 @@
       margin-top:2px;
     }
 
-    .product-summary{
-      font-size:9.5px;
-      color:var(--muted);
-      line-height:1.8;
-      padding:0 2px;
-      margin:9px 0 0;
+    .product-features{
+      list-style:none;
+      display:grid;
+      gap:7px;
+      padding:14px 0;
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      margin-bottom:16px;
       flex:1;
+    }
+
+    .product-features li{
+      color:#596865;
+      font-size:10px;
+      display:flex;
+      gap:7px;
+      align-items:flex-start;
+    }
+
+    .product-features li::before{
+      content:"✓";
+      color:var(--success);
+      font-weight:900;
     }
 
     .product-price-row{
@@ -1428,8 +1000,7 @@
       align-items:flex-end;
       justify-content:space-between;
       gap:10px;
-      padding:0 2px;
-      margin:14px 0 12px;
+      margin-bottom:12px;
     }
 
     .price-label{
@@ -1438,7 +1009,7 @@
     }
 
     .price{
-      font-size:19px;
+      font-size:21px;
       font-weight:900;
       direction:rtl;
     }
@@ -1450,33 +1021,15 @@
     }
 
     .product-actions{
-      padding:0 2px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:7px;
     }
 
-    .product-actions .btn-outline{
-      width:100%;
-      min-height:36px;
-      border:1px solid var(--border);
-      background:transparent;
-      backdrop-filter:none;
-      -webkit-backdrop-filter:none;
-      box-shadow:none;
-      color:var(--ink);
+    .product-actions .btn{
+      min-height:40px;
+      padding:0 10px;
       font-size:10px;
-      font-weight:800;
-      border-radius:11px;
-    }
-
-    .product-actions .btn-outline:hover{
-      background:var(--primary-soft);
-      border-color:#cfe0fb;
-      color:var(--primary);
-      transform:translateY(0);
-    }
-
-    .product-actions .btn-outline::after,
-    .product-actions .btn-outline::before{
-      display:none;
     }
 
     /* =========================
@@ -1502,7 +1055,7 @@
       width:100%;
       height:36px;
       border:1px solid var(--border-strong);
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border-radius:8px;
       padding:0 9px;
       color:var(--ink);
@@ -1534,7 +1087,7 @@
     .inner-hero-box{
       min-height:230px;
       border-radius:26px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       box-shadow:var(--shadow-sm);
       display:grid;
@@ -1578,7 +1131,7 @@
       height:175px;
       border-radius:17px;
       overflow:hidden;
-      background:#f3f6fb;
+      background:#f1f4f3;
       position:relative;
       z-index:1;
     }
@@ -1594,7 +1147,7 @@
     ========================== */
 
     .store-toolbar{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:15px;
       padding:12px;
@@ -1619,7 +1172,7 @@
     .toolbar-actions input{
       height:38px;
       border:1px solid var(--border);
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border-radius:9px;
       padding:0 10px;
       outline:none;
@@ -1635,7 +1188,7 @@
       overflow:auto;
       border:1px solid var(--border);
       border-radius:18px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       box-shadow:var(--shadow-sm);
     }
 
@@ -1678,7 +1231,7 @@
     }
 
     .why-card{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:16px;
       padding:18px;
@@ -1719,7 +1272,7 @@
     }
 
     .process-card{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:16px;
       padding:20px;
@@ -1728,7 +1281,7 @@
 
     .process-num{
       font-size:28px;
-      color:#dbe4f3;
+      color:#dce6e3;
       font-weight:900;
       position:absolute;
       left:15px;
@@ -1776,7 +1329,7 @@
       display:flex;
       align-items:center;
       gap:6px;
-      color:#a9c8f7;
+      color:#8bd9bd;
       font-size:10px;
       font-weight:800;
     }
@@ -1784,7 +1337,7 @@
     .status-online i{
       width:7px;
       height:7px;
-      background:#3f8ff0;
+      background:#55c89d;
       border-radius:50%;
       box-shadow:0 0 0 5px rgba(85,200,157,.1);
     }
@@ -1801,12 +1354,12 @@
       border:1px solid rgba(255,255,255,.09);
       background:rgba(255,255,255,.04);
       border-radius:9px;
-      color:#c6d3ea;
+      color:#c4d0cc;
       font-size:10px;
     }
 
     .server-chip.active{
-      color:#bcd4fb;
+      color:#9ce0c7;
       border-color:rgba(96,201,157,.2);
       background:rgba(96,201,157,.08);
     }
@@ -1826,7 +1379,7 @@
 
     .live-stat span{
       display:block;
-      color:#64789a;
+      color:#7e8e89;
       font-size:9px;
     }
 
@@ -1842,7 +1395,7 @@
 
     .referral-box{
       background:var(--gold-soft);
-      border:1px solid #cfe0fb;
+      border:1px solid #eadbb9;
       border-radius:20px;
       padding:24px;
       display:flex;
@@ -1857,7 +1410,7 @@
     }
 
     .referral-box p{
-      color:#111827;
+      color:#7f6a43;
       font-size:10px;
     }
 
@@ -1870,8 +1423,8 @@
     .referral-code input{
       width:230px;
       height:42px;
-      border:1px solid #b9d0f2;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      border:1px solid #e0d1ad;
+      background:#fff;
       border-radius:10px;
       padding:0 10px;
       font-size:10px;
@@ -1890,7 +1443,7 @@
     }
 
     .faq{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:13px;
       overflow:hidden;
@@ -1900,7 +1453,7 @@
       width:100%;
       min-height:52px;
       border:0;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -1946,7 +1499,7 @@
     }
 
     .download-card{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:17px;
       padding:17px;
@@ -1993,7 +1546,7 @@
     ========================== */
 
     .content-box{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:20px;
       padding:25px;
@@ -2048,7 +1601,7 @@
       background:var(--surface-2);
       border:1px solid var(--border);
       border-radius:11px;
-      color:#465872;
+      color:#596865;
       font-size:10px;
     }
 
@@ -2104,7 +1657,7 @@
       width:100%;
       border:1px solid var(--border);
       border-radius:11px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       min-height:43px;
       padding:10px;
       outline:none;
@@ -2129,7 +1682,7 @@
     ========================== */
 
     footer{
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border-top:1px solid var(--border);
       margin-top:60px;
       padding:40px 0 25px;
@@ -2182,9 +1735,8 @@
     .overlay{
       position:fixed;
       inset:0;
-      background:rgba(10,21,19,.32);
-      backdrop-filter:blur(8px) saturate(140%);
-      -webkit-backdrop-filter:blur(8px) saturate(140%);
+      background:rgba(10,21,19,.45);
+      backdrop-filter:blur(4px);
       z-index:9000;
       opacity:0;
       visibility:hidden;
@@ -2202,7 +1754,7 @@
       right:0;
       bottom:0;
       width:min(440px,100%);
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       z-index:9500;
       transform:translateX(105%);
       transition:.3s cubic-bezier(.22,.8,.25,1);
@@ -2233,7 +1785,7 @@
       height:36px;
       border:1px solid var(--border);
       border-radius:9px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       font-size:17px;
     }
 
@@ -2305,7 +1857,7 @@
       width:27px;
       height:27px;
       border:1px solid var(--border);
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border-radius:7px;
       font-weight:900;
     }
@@ -2327,7 +1879,7 @@
     .cart-footer{
       border-top:1px solid var(--border);
       padding:15px 18px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
     }
 
     .discount-row,
@@ -2407,7 +1959,7 @@
       width:min(560px,100%);
       max-height:90vh;
       overflow:auto;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border-radius:22px;
       box-shadow:var(--shadow-lg);
       transform:translateY(15px) scale(.98);
@@ -2433,7 +1985,7 @@
     .modal-close{
       width:35px;
       height:35px;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:9px;
       font-size:16px;
@@ -2510,7 +2062,7 @@
     }
 
     .payment-card small{
-      color:#7488a6;
+      color:#8f9c98;
       font-size:9px;
     }
 
@@ -2615,7 +2167,7 @@
       bottom:17px;
       transform:translateX(-50%) translateY(100px);
       z-index:7000;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border:1px solid var(--border);
       box-shadow:var(--shadow-lg);
       border-radius:15px;
@@ -2637,7 +2189,7 @@
       min-width:90px;
       height:36px;
       border:0;
-      background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      background:#fff;
       border-radius:9px;
       font-size:9px;
       font-weight:800;
@@ -2779,72 +2331,6 @@
       cursor:not-allowed;
     }
 
-    /* ===== حالت آموزش (فقط مدیر) ===== */
-    .ai-teach{
-      display:none;
-      margin-top:12px;
-      border:1px dashed var(--gold);
-      border-radius:var(--radius);
-      padding:12px;
-      background:var(--gold-soft);
-    }
-
-    .ai-teach.show{
-      display:block;
-    }
-
-    .ai-teach-title{
-      font-size:10.5px;
-      font-weight:900;
-      color:#111827;
-      margin-bottom:8px;
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
-
-    .ai-teach label{
-      display:block;
-      font-size:9px;
-      color:var(--muted);
-      margin-bottom:4px;
-    }
-
-    .ai-teach input,
-    .ai-teach textarea{
-      width:100%;
-      border:1px solid var(--border-strong);
-      border-radius:9px;
-      padding:8px 10px;
-      font-size:10.5px;
-      margin-bottom:8px;
-      background:var(--glass);
-      backdrop-filter:var(--glass-blur-sm);
-      -webkit-backdrop-filter:var(--glass-blur-sm);
-      outline:none;
-      color:var(--ink);
-      resize:vertical;
-    }
-
-    .ai-teach textarea{
-      min-height:60px;
-    }
-
-    .ai-badge-learn{
-      display:inline-flex;
-      align-items:center;
-      gap:4px;
-      font-size:9px;
-      font-weight:800;
-      color:var(--gold);
-      background:var(--gold-soft);
-      border:1px solid #cfe0fb;
-      border-radius:20px;
-      padding:3px 8px;
-      margin-right:6px;
-      vertical-align:middle;
-    }
-
     @media(max-width:980px){
       .ai-fab{
         bottom:78px;
@@ -2963,12 +2449,11 @@
       }
 
       .hero-actions{
-        display:flex;
-        flex-direction:column;
-        align-items:stretch;
+        display:grid;
+        grid-template-columns:1fr 1fr;
       }
 
-      .hero-actions .btn-primary{
+      .hero-actions .btn{
         width:100%;
       }
 
@@ -3163,11 +2648,11 @@
     }
       /* AUTH / ACCOUNT */
     .account-header-btn{position:relative}
-    .account-dot{position:absolute;width:7px;height:7px;right:5px;bottom:5px;border-radius:50%;background:#c1cee6;border:2px solid #fff}
+    .account-dot{position:absolute;width:7px;height:7px;right:5px;bottom:5px;border-radius:50%;background:#bfc9c6;border:2px solid #fff}
     .account-dot.online{background:var(--success)}
     .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px}
     .auth-tab{min-height:38px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:11px;font-weight:800}
-    .auth-tab.active{background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);color:var(--primary);box-shadow:var(--shadow-sm)}
+    .auth-tab.active{background:#fff;color:var(--primary);box-shadow:var(--shadow-sm)}
     .account-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;margin-bottom:16px}
     .account-avatar{width:45px;height:45px;border-radius:13px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-size:20px}
     .account-card strong{display:block;font-size:11px;direction:ltr;text-align:right;overflow-wrap:anywhere}
@@ -3177,13 +2662,13 @@
     .account-section-head h3{font-size:12px}
     .account-refresh{min-height:32px!important;padding:0 9px!important;font-size:9px!important}
     .account-list{display:grid;gap:7px}
-    .account-item{border:1px solid var(--border);background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-radius:11px;padding:11px}
+    .account-item{border:1px solid var(--border);background:#fff;border-radius:11px;padding:11px}
     .account-item-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
     .account-item strong{font-size:10px}
     .account-item small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
     .account-status{padding:4px 7px;border-radius:20px;font-size:8px;font-weight:800;white-space:nowrap}
-    .account-status.pending{background:#eef2f8;color:var(--warning)}
-    .account-status.approved{background:#eaf1fd;color:var(--success)}
+    .account-status.pending{background:#fff7e7;color:var(--warning)}
+    .account-status.approved{background:#eaf7f1;color:var(--success)}
     .account-status.rejected{background:#fff2f2;color:var(--danger)}
     .subscription-value{margin-top:8px;padding:8px;border-radius:8px;background:var(--surface-2);border:1px dashed var(--border-strong);direction:ltr;text-align:left;font-size:9px;overflow:auto;white-space:nowrap}
     .account-empty{padding:14px;border:1px dashed var(--border-strong);border-radius:11px;color:var(--muted);text-align:center;font-size:9px}
@@ -3191,11 +2676,6 @@
 </head>
 
 <body>
-
-  <!-- LIQUID GLASS BACKDROP -->
-  <div class="liquid-bg" aria-hidden="true">
-    <span></span><span></span><span></span>
-  </div>
 
   <!-- INTRO -->
   <div id="intro">
@@ -3274,7 +2754,7 @@
     top:66px;
     right:0;
     left:0;
-    background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+    background:#fff;
     z-index:4900;
     border-bottom:1px solid var(--border);
     box-shadow:var(--shadow);
@@ -3333,95 +2813,70 @@
 
             <div class="hero-actions">
               <button class="btn btn-primary" onclick="showPage('wireguard')">
-                مشاهده سرویس‌ها ←
+                مشاهده سرویس‌ها
               </button>
 
-              <div class="hero-secondary-actions">
-                <button class="btn btn-outline" onclick="openCart()">
-                  🛒 سبد خرید
-                </button>
+              <button class="btn btn-outline" onclick="openCart()">
+                🛒 مشاهده سبد خرید
+              </button>
 
-                <a class="btn btn-outline" href="status.html">
-                  ◉ وضعیت سرویس
-                </a>
+              <a class="btn btn-outline" href="status.html">
+                وضعیت سرویس
+              </a>
 
-                <a class="btn btn-dark" href="https://t.me/Vtwoguard" target="_blank">
-                  ✈️ پشتیبانی تلگرام
-                </a>
+              <a class="btn btn-dark" href="https://t.me/Vtwoguard" target="_blank">
+                ✈️ پشتیبانی تلگرام
+              </a>
 
-                <a href="agency-request.html" class="btn btn-gold">
-                  🤝 درخواست نمایندگی
-                </a>
-              </div>
+              <a href="agency-request.html" class="btn btn-gold">
+                🤝 درخواست نمایندگی
+              </a>
             </div>
           </div>
 
           <div class="hero-visual">
-            <div class="hero-floater hero-floater-1">
-              <span>🛡️</span>
-              <div>
-                <strong>امنیت</strong>
-                <small>اتصال محافظت‌شده</small>
+            <div class="hero-card">
+
+              <div class="hero-card-header">
+                <div class="hero-card-title">وضعیت شبکه V2GURD</div>
+                <div class="live-badge">● آنلاین</div>
               </div>
-            </div>
 
-            <div class="hero-floater hero-floater-2">
-              <span>۲۴</span>
-              <div>
-                <strong>پشتیبانی ۲۴/۷</strong>
-                <small>از طریق تلگرام</small>
-              </div>
-            </div>
+              <div class="network-card">
 
-            <div class="hero-shape">
-
-              <div class="hero-shape-top">
-                <div class="hero-shape-dots"></div>
-                <div class="hero-card-header">
-                  <div class="hero-card-title">وضعیت شبکه V2GURD</div>
-                  <div class="live-badge">● آنلاین</div>
+                <div class="network-title">
+                  مسیر اتصال فعلی
                 </div>
-                <div class="hero-notch hero-notch-l"></div>
-                <div class="hero-notch hero-notch-r"></div>
-              </div>
 
-              <div class="hero-card">
-
-                <div class="network-card">
-
-                  <div class="network-title">
-                    مسیر اتصال فعلی
+                <div class="network-route">
+                  <div class="route-node">
+                    📱
+                    <small>دستگاه شما</small>
                   </div>
 
-                  <div class="network-route">
-                    <div class="route-node">
-                      📱
-                      <small>دستگاه شما</small>
-                    </div>
+                  <div class="route-arrow">←</div>
 
-                    <div class="route-arrow">←</div>
-
-                    <div class="route-node">
-                      🛡️
-                      <small>V2GURD</small>
-                    </div>
-
-                    <div class="route-arrow">←</div>
-
-                    <div class="route-node">
-                      🌐
-                      <small>مقصد</small>
-                    </div>
+                  <div class="route-node">
+                    🛡️
+                    <small>V2GURD</small>
                   </div>
 
-                  <div class="network-stats">
-                    <div class="stat">
-                      <strong id="heroPing">۳۸ms</strong>
-                      <span>Ping</span>
-                    </div>
+                  <div class="route-arrow">←</div>
 
-                    <div class="stat">
-                      <strong id="heroLoss">۰٪</strong>
+                  <div class="route-node">
+                    🌐
+                    <small>مقصد</small>
+                  </div>
+                </div>
+
+                <div class="network-stats">
+                  <div class="stat">
+                    <strong id="heroPing">۳۸ms</strong>
+                    <span>Ping</span>
+                  </div>
+
+                  <div class="stat">
+                    <strong id="heroLoss">۰٪</strong>
                     <span>Packet Loss</span>
                   </div>
 
@@ -3434,7 +2889,6 @@
               </div>
 
             </div>
-          </div>
           </div>
 
         </div>
@@ -3489,7 +2943,7 @@
             <div>
               <div class="featured-label">پیشنهاد ویژه فروشگاه</div>
 
-              <h2>🔷 وایرگارد تک‌کاربره</h2>
+              <h2>🟣 وایرگارد تک‌کاربره</h2>
 
               <p>
                 سرویس تک‌کاربره با IP ثابت، سرعت و پایداری بالا و اعتبار ۳۰ روزه.
@@ -3731,7 +3185,7 @@
                 سرویس تک‌کاربره
               </div>
 
-              <h1>🔷 وایرگارد</h1>
+              <h1>🟣 وایرگارد</h1>
 
               <p>
                 اتصال امن و پایدار برای استفاده شخصی با IP ثابت،
@@ -3956,7 +3410,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,#eaf1fd,#eef4fb);
+                background:linear-gradient(135deg,#e6f0ff,#f8f4ea);
                 font-size:70px;
               ">🛒</div>
             </div>
@@ -4008,7 +3462,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:#f3f6fb;
+                background:#f2f5f4;
                 font-size:65px;
               ">📋</div>
             </div>
@@ -4092,7 +3546,7 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                background:linear-gradient(135deg,#eaf1fd,#f3f6fb);
+                background:linear-gradient(135deg,#e6f0ff,#f5f7f6);
                 font-size:65px;
               ">💬</div>
             </div>
@@ -4488,23 +3942,23 @@
 
   <!-- QUICK BAR -->
 
-  <button class="ai-fab" id="aiFab" onclick="openAiAssistant()" aria-label="دستیار هوشمند V2GURD">
+  <button class="ai-fab" id="aiFab" onclick="openModal('aiModal')" aria-label="دستیار هوشمند V2GURD">
     <span class="ai-fab-icon">🤖</span>
   </button>
 
   <div class="modal-wrap" id="aiModal">
     <div class="modal">
       <div class="modal-header">
-        <h2><span class="ai-badge-learn">🎓 خودآموز</span>دستیار هوشمند V2GURD</h2>
+        <h2>دستیار هوشمند V2GURD</h2>
         <button class="modal-close" onclick="closeModal('aiModal')">×</button>
       </div>
       <div class="modal-body">
         <div class="ai-chat-window" id="aiChatWindow">
           <div class="ai-msg ai-msg-bot">
-            سلام 👋 من دستیار هوشمند V2GURD هستم. راجع به وایرگارد، V2Box، JumpJump، فیلترینگ و مشکلات اتصال بپرس. هر سوالی که ندونم رو یادداشت می‌کنم تا تیم پشتیبانی یادم بده.
+            سلام 👋 من دستیار هوشمند V2GURD هستم. راجع به وایرگارد، V2Box، JumpJump و مشکلات اتصال بپرس.
           </div>
         </div>
-        <div class="ai-soon-note" id="aiNote">این دستیار با هر سوالی که تیم پشتیبانی بهش یاد بده، هوشمندتر می‌شه؛ برای موارد خاص با تلگرام پشتیبانی صحبت کن.</div>
+        <div class="ai-soon-note" id="aiNote">این دستیار به سوالات پرتکرار پاسخ آماده می‌ده؛ برای موارد خاص با تلگرام پشتیبانی صحبت کن.</div>
         <div class="ai-chips">
           <button class="ai-chip" onclick="aiAskSuggestion('IP ثابت دارید؟')">IP ثابت</button>
           <button class="ai-chip" onclick="aiAskSuggestion('چطور اپلیکیشن رو دانلود کنم')">دانلود اپ</button>
@@ -4515,16 +3969,6 @@
           <input type="text" id="aiInputField" placeholder="سوالت رو بپرس..." onkeydown="if(event.key==='Enter')sendAiMessage();">
           <button class="btn btn-primary" onclick="sendAiMessage()" id="aiSendBtn">ارسال</button>
         </div>
-
-        <div class="ai-teach" id="aiTeachBox">
-          <div class="ai-teach-title">🎓 حالت آموزش (فقط مدیر) — یک سوال و جواب جدید به دستیار یاد بده</div>
-          <label>کلمات کلیدی (با ویرگول جدا کن)</label>
-          <input type="text" id="aiTeachKeywords" placeholder="مثلاً: تغییر رمز, فراموشی رمز عبور">
-          <label>پاسخ دستیار</label>
-          <textarea id="aiTeachAnswer" placeholder="پاسخی که دستیار از این به بعد بده رو اینجا بنویس..."></textarea>
-          <button class="btn btn-gold" style="width:100%;" onclick="aiTeachSubmit()">یاد بگیر ✅</button>
-        </div>
-
         <div class="modal-actions">
           <button class="btn btn-outline" onclick="closeModal('aiModal')">بستن</button>
         </div>
@@ -4550,7 +3994,7 @@
     </button>
 
     <button data-mobile-page="wireguard" onclick="showPage('wireguard')">
-      <span>🔷</span>
+      <span>🟣</span>
       فروشگاه
     </button>
 
@@ -4589,7 +4033,7 @@
     const CATEGORIES = [
       {
         id:"wireguard",
-        icon:"🔷",
+        icon:"🟣",
         title:"WireGuard",
         desc:"تک‌کاربره • IP ثابت • سرعت بالا",
         image:IMAGES.wireguard
@@ -4802,7 +4246,7 @@
 
     const DOWNLOADS = [
       {
-        icon:"🔷",
+        icon:"🟣",
         title:"WireGuard",
         image:IMAGES.wireguard,
         description:"اپلیکیشن رسمی WireGuard",
@@ -4877,7 +4321,7 @@
       FIXED_PRODUCTS[plan.id] = {
         id:plan.id,
         category:"WireGuard",
-        name:`🔷 وایرگارد ${toFa(plan.gb)} گیگ`,
+        name:`🟣 وایرگارد ${toFa(plan.gb)} گیگ`,
         shortName:`وایرگارد ${toFa(plan.gb)} گیگ`,
         price:plan.price,
         type:"wireguard",
@@ -5851,22 +5295,6 @@ ${formatPrice(total)}
        WIREGUARD
     ========================================== */
 
-    /* ==========================================
-       آیکون‌های خطی محصولات (فقط بصری - جایگزین ایموجی)
-    ========================================== */
-    const PRODUCT_ICONS = {
-      shield:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>`,
-      box:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>`,
-      bolt:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>`,
-      crown:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18"/><path d="M4 18l-1-9 5 4 4-6 4 6 5-4-1 9"/></svg>`
-    };
-
-    const CART_ICON_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H6"/></svg>`;
-
-    function productIcon(name){
-      return PRODUCT_ICONS[name] || PRODUCT_ICONS.box;
-    }
-
     function renderWireguard(plans = WIREGUARD_PLANS){
 
       const box =
@@ -5884,36 +5312,39 @@ ${formatPrice(total)}
 
             <article class="product-card ${plan.special ? "special" : ""}">
 
-              <div class="product-photo">
-                ${
-                  plan.special
-                  ? `<div class="product-badge">پیشنهاد ویژه</div>`
-                  : ""
-                }
-                <div class="product-photo-icon">
-                  ${productIcon("shield")}
-                </div>
-                <button
-                  class="product-cart-btn"
-                  onclick="addFixedProduct('${plan.id}')"
-                  aria-label="افزودن به سبد">
-                  ${CART_ICON_SVG}
-                </button>
-              </div>
+              ${
+                plan.special
+                ? `<div class="product-badge">پیشنهاد ویژه</div>`
+                : ""
+              }
 
               <div class="product-top">
-                <h3>
-                  وایرگارد ${toFa(plan.gb)} گیگ
-                </h3>
 
-                <div class="product-type">
-                  تک‌کاربره • ۳۰ روزه
+                <div class="product-icon">
+                  🟣
                 </div>
+
+                <div>
+                  <h3>
+                    وایرگارد ${toFa(plan.gb)} گیگ
+                  </h3>
+
+                  <div class="product-type">
+                    تک‌کاربره • ۳۰ روزه
+                  </div>
+                </div>
+
               </div>
 
-              <p class="product-summary">
-                تک‌کاربره و تک‌سرور • IP ثابت • سرعت و پایداری بالا
-              </p>
+              <ul class="product-features">
+
+                <li>تک‌کاربره و تک‌سرور</li>
+                <li>IP ثابت</li>
+                <li>سرعت و پایداری بالا</li>
+                <li>اعتبار ۳۰ روزه</li>
+                <li>پشتیبانی سریع</li>
+
+              </ul>
 
               <div class="product-price-row">
 
@@ -5935,9 +5366,15 @@ ${formatPrice(total)}
               <div class="product-actions">
 
                 <button
+                  class="btn btn-primary"
+                  onclick="addFixedProduct('${plan.id}')">
+                  افزودن به سبد
+                </button>
+
+                <button
                   class="btn btn-outline"
                   onclick="openProductDetail('${plan.id}')">
-                  مشاهده جزئیات ←
+                  جزئیات
                 </button>
 
               </div>
@@ -5995,36 +5432,42 @@ ${formatPrice(total)}
 
           <article class="product-card ${plan.special ? "special" : ""}">
 
-            <div class="product-photo">
-              ${
-                plan.special
-                ? `<div class="product-badge">${plan.status}</div>`
-                : ""
-              }
-              <div class="product-photo-icon">
-                ${productIcon("box")}
-              </div>
-              <button
-                class="product-cart-btn"
-                onclick="addV2BoxProduct('${plan.id}')"
-                aria-label="افزودن به سبد">
-                ${CART_ICON_SVG}
-              </button>
-            </div>
+            ${
+              plan.special
+              ? `<div class="product-badge">${plan.status}</div>`
+              : ""
+            }
 
             <div class="product-top">
-              <h3>
-                ${plan.title}
-              </h3>
 
-              <div class="product-type">
-                ${plan.type} • ${plan.status}
+              <div class="product-icon">
+                ${plan.icon}
               </div>
+
+              <div>
+                <h3>
+                  ${plan.title}
+                </h3>
+
+                <div class="product-type">
+                  ${plan.type} • ${plan.status}
+                </div>
+              </div>
+
             </div>
 
-            <p class="product-summary">
-              ${plan.desc.slice(0,2).join(" • ")} • مناسب: ${plan.bestFor}
-            </p>
+            <ul class="product-features">
+
+              ${plan.desc.map(
+                item =>
+                  `<li>${item}</li>`
+              ).join("")}
+
+              <li>
+                مناسب: ${plan.bestFor}
+              </li>
+
+            </ul>
 
             <div class="volume-box">
 
@@ -6065,9 +5508,15 @@ ${formatPrice(total)}
             <div class="product-actions">
 
               <button
+                class="btn btn-primary"
+                onclick="addV2BoxProduct('${plan.id}')">
+                افزودن به سبد
+              </button>
+
+              <button
                 class="btn btn-outline"
                 onclick="openV2BoxDetail('${plan.id}')">
-                مشاهده جزئیات ←
+                جزئیات
               </button>
 
             </div>
@@ -6168,37 +5617,54 @@ ${formatPrice(total)}
 
             <article class="product-card ${plan.special ? "special" : ""}">
 
-              <div class="product-photo">
-                ${
-                  plan.special
-                  ? `<div class="product-badge">${plan.status}</div>`
-                  : ""
-                }
-                <div class="product-photo-icon">
-                  ${productIcon("bolt")}
-                </div>
-                <button
-                  class="product-cart-btn"
-                  onclick="addFixedProduct('${plan.id}')"
-                  aria-label="افزودن به سبد">
-                  ${CART_ICON_SVG}
-                </button>
-              </div>
+              ${
+                plan.special
+                ? `<div class="product-badge">${plan.status}</div>`
+                : ""
+              }
 
               <div class="product-top">
-                <h3>
-                  JumpJump
-                </h3>
 
-                <div class="product-type">
-                  ${toFa(plan.devices)} دستگاه •
-                  ${toFa(plan.months)} ماه
+                <div class="product-icon">
+                  🚀
                 </div>
+
+                <div>
+                  <h3>
+                    JumpJump
+                  </h3>
+
+                  <div class="product-type">
+                    ${toFa(plan.devices)} دستگاه •
+                    ${toFa(plan.months)} ماه
+                  </div>
+                </div>
+
               </div>
 
-              <p class="product-summary">
-                سرویس چند دستگاه • پشتیبانی V2GURD • مناسب استفاده روزمره
-              </p>
+              <ul class="product-features">
+
+                <li>
+                  ${toFa(plan.devices)} دستگاه
+                </li>
+
+                <li>
+                  ${toFa(plan.months)} ماه اعتبار
+                </li>
+
+                <li>
+                  سرویس چند دستگاه
+                </li>
+
+                <li>
+                  پشتیبانی V2GURD
+                </li>
+
+                <li>
+                  مناسب استفاده روزمره
+                </li>
+
+              </ul>
 
               <div class="product-price-row">
 
@@ -6222,9 +5688,19 @@ ${formatPrice(total)}
               <div class="product-actions">
 
                 <button
+                  class="btn ${
+                    plan.special
+                    ? "btn-gold"
+                    : "btn-primary"
+                  }"
+                  onclick="addFixedProduct('${plan.id}')">
+                  افزودن به سبد
+                </button>
+
+                <button
                   class="btn btn-outline"
                   onclick="openProductDetail('${plan.id}')">
-                  مشاهده جزئیات ←
+                  جزئیات
                 </button>
 
               </div>
@@ -6506,7 +5982,7 @@ ${formatPrice(total)}
       ).innerHTML = `
 
         <div class="detail-icon">
-          ${product.type === "wireguard" ? "🔷" : "🚀"}
+          ${product.type === "wireguard" ? "🟣" : "🚀"}
         </div>
 
         <div class="detail-title">
@@ -7196,7 +6672,7 @@ ${problem}
       if(!user)throw new Error("برای خرید ابتدا وارد حساب شوید");
       if(!cart.length)throw new Error("سبد خرید خالی است");
 
-      const items=cart.map(item=>({product_id:item.id,quantity:Number(item.qty||1)}));
+      const items=cart.map(item=>({product_key:item.id,quantity:Number(item.qty||1)}));
       const discountPercent=Math.min(15,Math.max(0,Number(couponDiscount||0)+Number(referralDiscount||0)));
 
       const {data,error}=await supabaseClient.rpc("create_order",{p_items:items,p_discount_percent:discountPercent});
@@ -7224,7 +6700,7 @@ ${problem}
             <div class="invoice-head"><div><strong>V2GURD</strong><span style="display:block;">فاکتور سفارش</span></div><span>${currentOrderId}</span></div>
             ${itemsHTML}
             <div class="invoice-item" style="margin-top:10px;"><span>مبلغ سفارش</span><span>${formatPrice(order.subtotal)}</span></div>
-            <div class="invoice-item"><span>تخفیف</span><span>${formatPrice(order.discount)}</span></div>
+            <div class="invoice-item"><span>تخفیف</span><span>${formatPrice(order.discount_amount)}</span></div>
             <div class="invoice-total"><span>مبلغ نهایی</span><span style="color:var(--primary);">${formatPrice(order.total)}</span></div>
           </div>
           <div style="margin-top:10px;color:var(--muted);font-size:9px;">سفارش شما ثبت شد. پس از پرداخت، رسید را در تلگرام ارسال کنید.</div>`;
@@ -7265,24 +6741,8 @@ ${formatPrice(cartTotal())}
 
     const AI_KB = [
       {
-        keywords:["ساعت چنده","ساعت چند است","الان ساعت چنده","چه ساعتیه","الان چه ساعتیه"],
-        answer:()=>{
-          const d=new Date();
-          const time=d.toLocaleTimeString("fa-IR",{hour:"2-digit",minute:"2-digit"});
-          return "الان ساعت "+time+" هست ⏰ (به وقت دستگاه شما). اگه سوالی هم دربارهٔ سرویس‌ها داشتی بپرس.";
-        }
-      },
-      {
-        keywords:["امروز چندمه","تاریخ امروز","امروز چه روزیه","چندشنبه ایه امروز","امروز چندشنبه است"],
-        answer:()=>{
-          const d=new Date();
-          const date=d.toLocaleDateString("fa-IR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
-          return "امروز "+date+" هست 📅";
-        }
-      },
-      {
         keywords:["سلام","درود","وقت بخیر","سلام خوبی","های","hi","hello"],
-        answer:"سلام 👋 خوش اومدی به V2GURD! می‌تونم دربارهٔ IP ثابت، نصب اپلیکیشن، مراحل خرید، فیلترینگ، مشکل اتصال یا سرعت کمکت کنم. سوالت چیه؟"
+        answer:"سلام 👋 خوش اومدی به V2GURD! می‌تونم دربارهٔ IP ثابت، نصب اپلیکیشن، مراحل خرید، مشکل اتصال یا سرعت کمکت کنم. سوالت چیه؟"
       },
       {
         keywords:["چطوری","حالت چطوره","خوبی","حال شما"],
@@ -7395,138 +6855,10 @@ ${formatPrice(cartTotal())}
       {
         keywords:["جوک","شوخی","لطیفه","بامزه","بخندون"],
         answer:"😄 باشه یه شوخی کوچیک: چرا با VPN هیچکس گمت نمی‌کنه؟ چون خودتم نمی‌دونی کجایی 😅 حالا بگو چطور می‌تونم کمکت کنم؟"
-      },
-
-      /* ===== فیلترینگ و مفاهیم پایه ===== */
-      {
-        keywords:["فیلترینگ چیست","فیلترینگ یعنی چی","چرا فیلتره","چرا اینترنت فیلتره","علت فیلترینگ","فیلترینگ اینترنت"],
-        answer:"فیلترینگ یعنی محدود کردن دسترسی به بخشی از سایت‌ها و اپلیکیشن‌ها توسط زیرساخت اینترنت کشور. سرویس‌های V2GURD با ساخت یک مسیر رمزنگاری‌شدهٔ جدا، این محدودیت‌ها رو دور می‌زنن تا اینترنت آزاد و پایدار داشته باشی."
-      },
-      {
-        keywords:["فیلترشکن چیست","فیلترشکن یعنی چی","vpn چیست","وی پی ان چیست","وی‌پی‌ان چیه","فیلتر شکن چیه"],
-        answer:"فیلترشکن (VPN) یه تونل رمزنگاری‌شده بین گوشی/سیستم تو و یه سرور دیگه می‌سازه؛ ترافیکت از همون مسیر رد می‌شه، محدودیت فیلترینگ دور زده می‌شه و آی‌پی واقعیت هم مخفی می‌مونه. V2GURD همین کار رو با پروتکل‌های وایرگارد، V2Box و JumpJump انجام می‌ده."
-      },
-      {
-        keywords:["تفاوت vpn و پراکسی","فرق vpn با پروکسی","پراکسی چیه","فرق پروکسی و وی پی ان"],
-        answer:"پراکسی فقط ترافیک مرورگر رو رد می‌کنه و معمولاً رمزنگاری قوی نداره؛ VPN کل ترافیک سیستم/گوشی رو رمزنگاری و تونل می‌کنه، پس امن‌تر و پایدارتره. سرویس‌های V2GURD از نوع VPN واقعی هستن."
-      },
-      {
-        keywords:["وایرگارد چیست","پروتکل وایرگارد","wireguard چیه","wireguard protocol","wireguard یعنی چی"],
-        answer:"WireGuard یه پروتکل VPN مدرن و سبکه که با کد کم، اتصال سریع‌تر و مصرف باتری/منابع کمتری نسبت به پروتکل‌های قدیمی‌تر ارائه می‌ده؛ به همین دلیل برای سرعت و پایداری بالا انتخاب خوبیه."
-      },
-      {
-        keywords:["v2ray چیست","v2box چیست","پروتکل v2ray","v2ray یعنی چی"],
-        answer:"V2Ray یه فریم‌ورک قدرتمند برای عبور از فیلترینگ‌های پیشرفته‌ست که ترافیک رو طوری می‌پوشونه که شبیه ترافیک عادی HTTPS به نظر برسه. V2Box نسخهٔ اپلیکیشنی و کاربرپسند همین فناوریه که تو V2GURD ارائه می‌شه."
-      },
-      {
-        keywords:["لاگ نگه میدارید","حریم خصوصی","اطلاعاتم ذخیره میشه","ردیابی میشم","لاگ نگهداری میشه","فعالیتم ذخیره میشه"],
-        answer:"حریم خصوصی برامون مهمه؛ سرویس‌ها برای عبور امن از فیلترینگ طراحی شدن، نه ذخیرهٔ محتوای فعالیت شما. برای جزئیات دقیق‌تر سیاست حریم خصوصی می‌تونی از پشتیبانی تلگرام بپرسی: "+TELEGRAM
-      },
-      {
-        keywords:["dns چیست","دی ان اس چیه","تغییر dns","dns یعنی چی"],
-        answer:"DNS مثل دفترچه تلفن اینترنته که اسم سایت رو به آدرس واقعی سرور تبدیل می‌کنه. بعضی فیلترینگ‌ها از همین مسیر انجام می‌شن؛ وقتی از VPN استفاده می‌کنی، درخواست DNS هم از تونل امن رد می‌شه و این مشکل هم حل می‌شه."
-      },
-      {
-        keywords:["فیلتر تلگرام","رفع فیلتر تلگرام","تلگرام فیلتره","تلگرام باز نمیشه"],
-        answer:"با روشن‌بودن یکی از سرویس‌های V2GURD (وایرگارد، V2Box یا JumpJump) تلگرام مثل بقیهٔ اپ‌ها از تونل امن رد می‌شه و به‌صورت عادی باز می‌شه. اگه بازم مشکل داشت، سرور رو عوض کن یا از تلگرام پشتیبانی کمک بگیر: "+TELEGRAM
-      },
-      {
-        keywords:["فیلتر اینستاگرام","اینستاگرام باز نمیشه","رفع فیلتر اینستا","اینستا فیلتره"],
-        answer:"دقیقاً مثل تلگرام، با فعال‌بودن سرویس V2GURD روی گوشی یا سیستمت، اینستاگرام هم از تونل امن رد می‌شه و باز می‌مونه. اگه لود نشد، یه سرور دیگه رو امتحان کن."
-      },
-      {
-        keywords:["قطعی اینترنت","اینترنت کل کشور قطعه","اختلال اینترنت","اینترنت کشور مشکل داره"],
-        answer:"در قطعی‌های سراسری زیرساخت اینترنت کشور، حتی VPN هم ممکنه محدود بشه چون مشکل از سمت شبکهٔ اصلیه، نه سرویس. تو این شرایط چند سرور مختلف رو امتحان کن و برای اطلاع از وضعیت لحظه‌ای با پشتیبانی تلگرام هماهنگ باش: "+TELEGRAM
-      },
-      {
-        keywords:["kill switch","کیل سوییچ","قطع خودکار اینترنت","killswitch"],
-        answer:"Kill Switch یه قابلیت امنیتیه که اگه اتصال VPN قطع بشه، به‌صورت خودکار اینترنت گوشی/سیستم رو هم قطع می‌کنه تا ترافیک بدون محافظت رد نشه. بسته به اپلیکیشن (WireGuard/V2Box/JumpJump) می‌تونی این گزینه رو از تنظیمات اپ فعال کنی."
-      },
-      {
-        keywords:["چند نفر همزمان","چند دستگاه","تعداد دستگاه مجاز","چند تا گوشی همزمان"],
-        answer:"تعداد دستگاه‌های مجاز بسته به نوع پلن فرق داره؛ سرویس‌های تک‌کاربره فقط روی یک دستگاه هم‌زمان کار می‌کنن، ولی پلن‌های JumpJump معمولاً چند دستگاهی هستن. جزئیات دقیق هر پلن تو همون بخش محصول سایت نوشته شده."
-      },
-      {
-        keywords:["نصب روی روتر","تنظیم روتر","vpn روی روتر","روتر تنظیم کنم"],
-        answer:"وایرگارد روی خیلی از روترها (مثل OpenWRT یا روترهای پشتیبان‌کنندهٔ WireGuard) قابل تنظیمه تا کل خونه/دفتر از یک اتصال استفاده کنه. برای راهنمای گام‌به‌گام با پشتیبانی تلگرام هماهنگ کن: "+TELEGRAM
-      },
-      {
-        keywords:["نصب روی ویندوز","نصب روی مک","نصب روی لینوکس","کامپیوتر نصب کنم","نصب روی pc"],
-        answer:"بله، WireGuard و V2Box اپلیکیشن رسمی برای ویندوز، مک و لینوکس هم دارن؛ کانفیگ یا کیوآرکدی که دریافت می‌کنی رو داخل همون اپلیکیشن وارد کن."
-      },
-      {
-        keywords:["handshake","خطای هندشیک","اتصال برقرار نمیشه هندشیک"],
-        answer:"خطای Handshake معمولاً یعنی بسته‌های اتصال به سرور نمی‌رسن. این مورد رو امتحان کن: تاریخ/ساعت گوشی رو درست کن، یه شبکهٔ دیگه (وای‌فای/دیتا) رو تست کن، و اگه ادامه داشت سرور دیگه‌ای رو امتحان کن یا با پشتیبانی هماهنگ شو: "+TELEGRAM
-      },
-      {
-        keywords:["فرق وایرگارد با openvpn","openvpn چیه","تفاوت wireguard و openvpn"],
-        answer:"OpenVPN پروتکل قدیمی‌تر و سنگین‌تره ولی سازگاری بالایی داره؛ WireGuard جدیدتر، سبک‌تر و معمولاً سریع‌تره. V2GURD روی WireGuard و V2Ray تمرکز داره تا بهترین ترکیب سرعت و پایداری رو بگیری."
-      },
-      {
-        keywords:["چرا قیمت فرق داره","اختلاف قیمت پلن ها","چرا این پلن گرون تره"],
-        answer:"قیمت پلن‌ها بر اساس حجم، مدت اعتبار، تعداد دستگاه مجاز و نوع سرویس (تک‌کاربره یا چندکاربره) فرق می‌کنه. جزئیات هر پلن رو می‌تونی تو همون بخش محصول ببینی."
-      },
-      {
-        keywords:["گارانتی","بازگشت وجه","ریفاند","پول برگشت میخوره"],
-        answer:"شرایط گارانتی و بازگشت وجه تو بخش قوانین سایت اومده. برای بررسی دقیق سفارش خودت با شماره سفارش، از تلگرام پشتیبانی کمک بگیر: "+TELEGRAM
-      },
-      {
-        keywords:["تمدید","تمدید سرویس","سرویسم تموم شد","اعتبار تموم شده"],
-        answer:"برای تمدید کافیه یه پلن جدید از همون سرویس (وایرگارد/V2Box/JumpJump) رو از سایت انتخاب و سفارش بدی؛ رسید رو هم از تلگرام برای پشتیبانی ارسال کن تا سرویس جدیدت فعال بشه."
-      },
-      {
-        keywords:["تغییر پلن","ارتقا پلن","آپگرید پلن","پلنمو عوض کنم"],
-        answer:"تغییر و ارتقای پلن طبق شرایطی که تو بخش قوانین نوشته شده انجام می‌شه. برای هماهنگی دقیق با شماره سفارشت، از پشتیبانی تلگرام کمک بگیر: "+TELEGRAM
-      },
-      {
-        keywords:["اشتراک گذاشتن اکانت","به کسی بدم سرویس","کانفیگ رو شیر کنم","اکانتمو بدم به دوستم"],
-        answer:"طبق قوانین سایت، اطلاعات سرویس نباید در اختیار افراد دیگه قرار بگیره چون روی کیفیت و امنیت اتصال خودت هم تاثیر می‌ذاره. مسئولیت استفادهٔ نادرست هم با خریداره."
-      },
-      {
-        keywords:["روش پرداخت","چطور پرداخت کنم","کارت به کارت","تتر پرداخت","با چی پرداخت کنم"],
-        answer:"پرداخت معمولاً به‌صورت کارت‌به‌کارت انجام می‌شه؛ بعد از ثبت سفارش، شمارهٔ کارت تو فاکتور نشون داده می‌شه و باید رسید پرداخت رو از تلگرام برای پشتیبانی بفرستی: "+TELEGRAM
-      },
-      {
-        keywords:["پرداخت امنه","امنیت کارت به کارت","مطمئنم بخرم"],
-        answer:"سفارش‌ها با شماره سفارش پیگیری می‌شن و بعد از تایید رسید، سرویس فعال می‌شه. اگه هر سوالی دربارهٔ امنیت خرید داشتی، پشتیبانی تلگرام همیشه در دسترسه: "+TELEGRAM
-      },
-      {
-        keywords:["چقدر طول میکشه پاسخ","کی جواب میدید","زمان پشتیبانی","پشتیبانی ۲۴ ساعته است"],
-        answer:"پشتیبانی V2GURD از طریق تلگرام و به‌صورت ۲۴ ساعته پاسخگوعه. برای سریع‌ترین پاسخ مستقیم پیام بده: "+TELEGRAM
-      },
-      {
-        keywords:["نمایندگی","درخواست نمایندگی","همکاری در فروش","نماینده فروش بشم"],
-        answer:"برای درخواست نمایندگی فروش V2GURD می‌تونی از صفحهٔ «درخواست نمایندگی» تو منوی سایت اقدام کنی یا مستقیم با پشتیبانی تلگرام هماهنگ بشی: "+TELEGRAM
-      },
-      {
-        keywords:["گیمینگ","استریم","برای گیم خوبه","پینگ","بازی آنلاین"],
-        answer:"برای گیمینگ و استریم، سرویس‌های وایرگارد به‌خاطر سرعت و پینگ پایین گزینهٔ خوبی هستن. اگه با یک سرور پینگ بالا بود، سرور دیگه‌ای رو امتحان کن تا بهترین مسیر رو پیدا کنی."
-      },
-      {
-        keywords:["سازمانی","شرکتی","تعداد بالا بخرم","خرید عمده","سفارش تعداد زیاد"],
-        answer:"برای خریدهای سازمانی و تعداد بالا، بهتره مستقیم با تیم پشتیبانی تلگرام هماهنگ کنی تا بهترین پلن و شرایط مخصوص همون حجم رو بهت پیشنهاد بدن: "+TELEGRAM
-      },
-
-      /* ===== گفتگوی عمومی ===== */
-      {
-        keywords:["خسته نباشید","دستت درد نکنه","خسته نباشی"],
-        answer:"ممنون از توجهت 🙏 اگه سوالی دربارهٔ سرویس‌ها یا فیلترینگ داشتی، همینجا بپرس."
-      },
-      {
-        keywords:["چیکار میکنی","مشغول چی هستی","چه خبر"],
-        answer:"همینجام و آمادهٔ کمک دربارهٔ سرویس‌های V2GURD 🙂 چه کمکی از دستم برمیاد؟"
-      },
-      {
-        keywords:["چقدر خوبی","دوست دارم","باهوشی","عالی هستی"],
-        answer:"لطف داری 🙏 خوشحال می‌شم بازم کمکت کنم، فقط بگو دنبال چه چیزی هستی."
-      },
-      {
-        keywords:["کی ساختت","کی تو رو ساخته","سازندت کیه"],
-        answer:"من دستیار پشتیبانی سایت V2GURD هستم و برای راهنمایی سریع کاربرا طراحی شدم؛ برای اطلاعات بیشتر دربارهٔ تیم، از تلگرام پشتیبانی بپرس: "+TELEGRAM
       }
     ];
 
-    const AI_FALLBACK="این یکی رو دقیق نمی‌دونم 🙏 من می‌تونم دربارهٔ سرویس‌های V2GURD (وایرگارد، V2Box، JumpJump)، فیلترینگ و رفع فیلتر، نحوهٔ خرید و پرداخت، نصب و مشکلات اتصال کمکت کنم؛ سوالتو یه‌جور دیگه بپرس یا با پشتیبانی تلگرام صحبت کن: "+TELEGRAM;
+    const AI_FALLBACK="این یکی رو مطمئن نیستم بتونم جواب بدم 🙏 من فقط دربارهٔ سرویس‌های V2GURD (وایرگارد، V2Box، JumpJump)، خرید، و مشکلات اتصال می‌تونم کمک کنم. برای بقیهٔ موارد با پشتیبانی تلگرام صحبت کن: "+TELEGRAM;
 
     // فحش و الفاظ نامناسب — می‌تونی این لیست رو گسترش بدی
     const AI_BAD_WORDS=["کیری","کسکش","کونی","جنده","لاشی","عوضی","حرومزاده","مادرجنده","گوه"];
@@ -7542,99 +6874,6 @@ ${formatPrice(cartTotal())}
       for(let i=0;i<fa.length;i++)out=out.split(fa[i]).join(en[i]);
       return out;
     }
-
-    // یکسان‌سازی حروف مشابه عربی/فارسی و فاصله‌ها تا تشخیص سوال‌ها دقیق‌تر باشه
-    function aiNormalizeChars(s){
-      return s
-        .replace(/ي/g,"ی")
-        .replace(/ك/g,"ک")
-        .replace(/[إأآا]/g,"ا")
-        .replace(/ة/g,"ه")
-        .replace(/[؟!،.,]/g," ")
-        .replace(/\u200c/g," ")
-        .replace(/\s+/g," ")
-        .trim();
-    }
-
-    /* ==========================================
-       خودآموزی دستیار (متصل به Supabase)
-       جدول ai_knowledge: پاسخ‌هایی که مدیر به دستیار یاد داده
-       جدول ai_unanswered: سوالاتی که دستیار جواب نداده تا مدیر بعداً یادش بده
-    ========================================== */
-
-    let AI_LEARNED = [];
-    let aiIsAdminUser = false;
-
-    async function aiLoadLearned(){
-      if(!supabaseClient)return;
-      try{
-        const {data,error}=await supabaseClient
-          .from("ai_knowledge")
-          .select("id,keywords,answer")
-          .order("created_at",{ascending:false});
-        if(!error && data){
-          AI_LEARNED=data.map(r=>({
-            id:r.id,
-            keywords:(r.keywords||"").split(",").map(s=>s.trim()).filter(Boolean),
-            answer:r.answer,
-            _learned:true
-          }));
-        }
-      }catch(e){
-        console.error("aiLoadLearned error:",e);
-      }
-    }
-
-    async function aiCheckAdmin(){
-      if(!supabaseClient)return false;
-      try{
-        const user=await getCurrentUser();
-        if(!user)return false;
-        const profile=await supabaseClient.from("profiles").select("role").eq("id",user.id).maybeSingle();
-        return !profile.error && profile.data?.role==="admin";
-      }catch(e){
-        return false;
-      }
-    }
-
-    async function openAiAssistant(){
-      openModal("aiModal");
-      aiIsAdminUser=await aiCheckAdmin();
-      const box=document.getElementById("aiTeachBox");
-      if(box)box.classList.toggle("show",aiIsAdminUser);
-    }
-    window.openAiAssistant=openAiAssistant;
-
-    async function aiLogUnanswered(question){
-      if(!supabaseClient)return;
-      try{
-        await supabaseClient.from("ai_unanswered").insert({question:question.slice(0,500)});
-      }catch(e){
-        // خاموش‌شکست — اگه لاگ نشد مشکلی برای کاربر پیش نمیاد
-      }
-    }
-
-    async function aiTeachSubmit(){
-      if(!supabaseClient){showToast("اتصال Supabase تنظیم نشده است");return;}
-      if(!aiIsAdminUser){showToast("فقط مدیر می‌تونه به دستیار آموزش بده");return;}
-
-      const kwField=document.getElementById("aiTeachKeywords");
-      const ansField=document.getElementById("aiTeachAnswer");
-      const keywords=kwField.value.trim();
-      const answer=ansField.value.trim();
-
-      if(!keywords||!answer){showToast("کلمات کلیدی و پاسخ رو پر کن");return;}
-
-      const {error}=await supabaseClient.from("ai_knowledge").insert({keywords,answer});
-      if(error){showToast("خطا در ذخیره: "+error.message);return;}
-
-      kwField.value="";
-      ansField.value="";
-      showToast("دستیار یاد گرفت ✅");
-      aiAppendMessage("bot","یاد گرفتم ✅ از این به بعد به این سوال جواب می‌دم — و همهٔ کاربرای دیگه هم همین جواب رو می‌گیرن.");
-      await aiLoadLearned();
-    }
-    window.aiTeachSubmit=aiTeachSubmit;
 
     let aiPendingPlans=null;
     let aiAwaitingCheckout=false;
@@ -7711,23 +6950,17 @@ ${formatPrice(cartTotal())}
     }
 
     function aiFindAnswer(rawText){
-      const text=aiNormalizeChars(aiNormalizeDigits(rawText)).toLowerCase();
+      const text=rawText.toLowerCase();
       let best=null;
       let bestScore=0;
-      [...AI_LEARNED,...AI_KB].forEach(entry=>{
+      AI_KB.forEach(entry=>{
         let score=0;
-        (entry.keywords||[]).forEach(k=>{
-          const nk=aiNormalizeChars(k).toLowerCase();
-          if(nk && text.includes(nk))score+=nk.length>=4?2:1; // عبارت‌های طولانی‌تر و دقیق‌تر امتیاز بیشتری می‌گیرن
+        entry.keywords.forEach(k=>{
+          if(text.includes(k.toLowerCase()))score++;
         });
-        if(entry._learned && score>0)score+=1; // پاسخ‌هایی که تیم پشتیبانی مستقیماً به دستیار یاد داده، اولویت کمی بالاتری دارن
         if(score>bestScore){bestScore=score;best=entry;}
       });
-      if(!best){
-        aiLogUnanswered(rawText);
-        return AI_FALLBACK;
-      }
-      return typeof best.answer==="function"?best.answer():best.answer;
+      return best?best.answer:AI_FALLBACK;
     }
 
     function aiGenerateReply(text){
@@ -7794,7 +7027,6 @@ ${formatPrice(cartTotal())}
       try{
 
         initSupabase();
-        aiLoadLearned();
 
         renderCategories();
         renderWireguard();
@@ -7840,55 +7072,224 @@ ${formatPrice(cartTotal())}
       init();
     }
 
-    /* ==========================================
-       جلوه بصری Navbar هنگام اسکرول (فقط ظاهری)
-       این بخش هیچ منطق تجاری/داده‌ای را تغییر نمی‌دهد
-       فقط کلاس is-compact را روی هدر اضافه/حذف می‌کند
-    ========================================== */
-    (function(){
-      var headerEl=document.querySelector("header");
-      if(!headerEl)return;
-      var ticking=false;
-      function onScroll(){
-        if(ticking)return;
-        ticking=true;
-        requestAnimationFrame(function(){
-          headerEl.classList.toggle("is-compact",window.scrollY>18);
-          ticking=false;
-        });
-      }
-      window.addEventListener("scroll",onScroll,{passive:true});
-      onScroll();
-    })();
-
-    /* ==========================================
-       جلوه Scroll Reveal (فقط بصری - بدون تغییر داده)
-    ========================================== */
-    (function(){
-      var targets=document.querySelectorAll(
-        ".section, .featured, .trust-grid, .hero-card, .category-card, .footer-grid, .inner-hero-box"
-      );
-      if(!targets.length)return;
-      targets.forEach(function(el,i){
-        el.classList.add("reveal");
-        el.style.transitionDelay=(Math.min(i%4,3)*70)+"ms";
-      });
-      if(!("IntersectionObserver" in window)){
-        targets.forEach(function(el){el.classList.add("in-view");});
-        return;
-      }
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting){
-            entry.target.classList.add("in-view");
-            io.unobserve(entry.target);
-          }
-        });
-      },{threshold:.12,rootMargin:"0px 0px -60px 0px"});
-      targets.forEach(function(el){io.observe(el);});
-    })();
-
   </script>
 
+
+<style id="v3d-style">
+#bg3d{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hero-card,.card,.plan-card,.price-card{transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .3s}
+.hero-card{animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.rv{opacity:0;transform:translateY(38px) rotateX(12deg);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+h1 span{background:linear-gradient(90deg,#1d6fe8,#22d3ee,#1d6fe8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.btn,button.btn,.hero-actions a{position:relative;overflow:hidden}
+.btn::after,.hero-actions a::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:sweep 3.5s infinite}
+@keyframes sweep{to{left:140%}}
+#livepill{position:fixed;left:14px;bottom:14px;z-index:50;background:rgba(15,28,51,.88);color:#dff1ff;font:600 12px Vazirmatn,sans-serif;padding:8px 14px;border-radius:99px;display:flex;gap:8px;align-items:center;backdrop-filter:blur(8px);direction:ltr}
+#livepill i{width:8px;height:8px;border-radius:50%;background:#22d3ee;box-shadow:0 0 0 0 #22d3ee;animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+#cursorGlow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(34,211,238,.18),transparent 65%);transform:translate(-50%,-50%);transition:left .12s,top .12s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.rv{opacity:1;transform:none}}
+</style>
+<canvas id="bg3d"></canvas><div id="cursorGlow"></div>
+<div id="livepill"><i></i><span id="pingTxt">LIVE · 24 ms</span></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+try{
+var cv=document.getElementById('bg3d');if(!window.THREE||!cv)return;
+var R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(55,1,.1,200);C.position.z=13;
+var G=new THREE.Group();S.add(G);
+var blue=0x1d6fe8,cyan=0x22d3ee;
+// wireframe globe
+var globe=new THREE.Mesh(new THREE.IcosahedronGeometry(4,2),new THREE.MeshBasicMaterial({color:blue,wireframe:true,transparent:true,opacity:.28}));G.add(globe);
+var core=new THREE.Mesh(new THREE.IcosahedronGeometry(2.2,1),new THREE.MeshBasicMaterial({color:cyan,wireframe:true,transparent:true,opacity:.35}));G.add(core);
+// orbit rings
+var rings=[];for(var i=0;i<3;i++){var r=new THREE.Mesh(new THREE.TorusGeometry(5.5+i*.9,.02,8,120),new THREE.MeshBasicMaterial({color:i%2?cyan:blue,transparent:true,opacity:.5}));r.rotation.x=Math.random()*3;r.rotation.y=Math.random()*3;G.add(r);rings.push(r)}
+// network nodes on sphere + packets travelling on links
+var nodes=[],N=26;for(var i=0;i<N;i++){var v=new THREE.Vector3().randomDirection?new THREE.Vector3().randomDirection():new THREE.Vector3(Math.random()-.5,Math.random()-.5,Math.random()-.5).normalize();v.multiplyScalar(4);nodes.push(v);
+var d=new THREE.Mesh(new THREE.SphereGeometry(.09,10,10),new THREE.MeshBasicMaterial({color:cyan}));d.position.copy(v);G.add(d)}
+var links=[],lm=new THREE.LineBasicMaterial({color:blue,transparent:true,opacity:.25});
+for(var i=0;i<N;i++){var j=(i+1+Math.floor(Math.random()*5))%N;var g=new THREE.BufferGeometry().setFromPoints([nodes[i],nodes[j]]);G.add(new THREE.Line(g,lm));links.push([i,j])}
+var pk=[];for(var k=0;k<14;k++){var m=new THREE.Mesh(new THREE.SphereGeometry(.13,8,8),new THREE.MeshBasicMaterial({color:0xffffff}));G.add(m);pk.push({m:m,l:links[k%links.length],t:Math.random(),s:.004+Math.random()*.006})}
+// floating particles
+var pg=new THREE.BufferGeometry(),pa=new Float32Array(600*3);for(var i=0;i<pa.length;i++)pa[i]=(Math.random()-.5)*60;pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
+var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:blue,size:.08,transparent:true,opacity:.6}));S.add(pts);
+G.position.x=-4;
+function size(){var w=innerWidth,h=innerHeight;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix();G.position.x=w>900?-4.5:0;G.scale.setScalar(w>900?1:.75)}
+size();addEventListener('resize',size);
+var mx=0,my=0,sy=0;
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;var g=document.getElementById('cursorGlow');g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'});
+addEventListener('scroll',function(){sy=scrollY/Math.max(1,document.body.scrollHeight-innerHeight)},{passive:true});
+var t0=0;
+function loop(t){requestAnimationFrame(loop);if(document.hidden)return;
+G.rotation.y+=.0025;G.rotation.x=my*.5+sy*1.2;G.rotation.z=mx*.3;core.rotation.y-=.008;
+rings.forEach(function(r,i){r.rotation.z+=.003*(i+1)});
+pts.rotation.y+=.0004;C.position.x+=(mx*3-C.position.x)*.04;C.position.y+=(-my*2-C.position.y)*.04;C.lookAt(0,0,0);
+pk.forEach(function(p){p.t+=p.s;if(p.t>1){p.t=0;p.l=links[Math.floor(Math.random()*links.length)]}p.m.position.lerpVectors(nodes[p.l[0]],nodes[p.l[1]],p.t)});
+globe.scale.setScalar(1+Math.sin(t*.001)*.02);
+R.render(S,C)}
+loop(0);
+}catch(e){console.warn('3D bg off',e)}
+// 3D tilt on cards
+var sel='.hero-card,.card,.plan-card,.price-card,.feature-card,.step-card';
+document.addEventListener('pointermove',function(e){var c=e.target.closest&&e.target.closest(sel);if(!c||matchMedia('(hover:none)').matches)return;var b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform='perspective(900px) rotateY('+(x*-10)+'deg) rotateX('+(y*10)+'deg) translateZ(8px)'});
+document.addEventListener('pointerout',function(e){var c=e.target.closest&&e.target.closest(sel);if(c)c.style.transform=''});
+// scroll reveal
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(a){a.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+document.querySelectorAll('.section,.section .card,.section>.container>div>div').forEach(function(el){el.classList.add('rv');io.observe(el)})}
+// live ping ticker
+var pt=document.getElementById('pingTxt');setInterval(function(){pt.textContent='LIVE \u00b7 '+(18+Math.floor(Math.random()*16))+' ms'},1800);
+})();
+</script>
+
+<style id="btn3d-style">
+.btn,.telegram-btn{--rx:0deg;--ry:0deg;--ty:0px;--edge:#1450b8;--sh:rgba(20,80,184,.28);
+ border:0!important;border-radius:10px!important;font-weight:700!important;font-size:14px!important;
+ padding:10px 18px!important;min-height:0!important;line-height:1.4;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+ transform:perspective(600px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--ty));
+ transition:transform .12s ease-out,box-shadow .12s ease-out,filter .2s;
+ box-shadow:0 3px 0 var(--edge),0 6px 12px var(--sh),inset 0 1px 0 rgba(255,255,255,.3)!important}
+.btn:hover,.telegram-btn:hover{--ty:-2px;filter:brightness(1.06);box-shadow:0 5px 0 var(--edge),0 10px 16px var(--sh),inset 0 1px 0 rgba(255,255,255,.35)!important}
+.btn:active,.telegram-btn:active{--ty:3px;box-shadow:0 0 0 var(--edge),0 2px 4px var(--sh)!important}
+.btn-primary,.telegram-btn{background:linear-gradient(180deg,#3b8bf5,#1d6fe8)!important;color:#fff!important}
+.btn-gold{--edge:#9f1239;--sh:rgba(190,18,60,.3);background:linear-gradient(180deg,#f43f5e,#e11d48)!important;color:#fff!important}
+.btn-dark{--edge:#050b18;--sh:rgba(5,11,24,.3);background:linear-gradient(180deg,#1f3157,#0f1c33)!important;color:#fff!important}
+.btn-outline{--edge:#c2d4f2;--sh:rgba(29,111,232,.12);background:#fff!important;color:#1450b8!important;border:1px solid #c7d7f0!important}
+.btn-purple{--edge:#3f2790;background:linear-gradient(180deg,#7f5be0,#6946c6)!important;color:#fff!important}
+.btn-danger{--edge:#8a2323;background:linear-gradient(180deg,#d95c5c,#c74848)!important;color:#fff!important}
+.icon-btn{border:0!important;box-shadow:0 3px 0 #c2d4f2,0 5px 10px rgba(29,111,232,.15)!important;transition:transform .12s,box-shadow .12s}
+.icon-btn:hover{transform:translateY(-2px)}.icon-btn:active{transform:translateY(2px);box-shadow:0 0 0 #c2d4f2!important}
+.hero-actions{display:flex!important;flex-wrap:wrap;gap:12px!important;margin-top:22px}
+.hero-actions .btn{width:auto;flex:0 0 auto}
+.hero-actions .btn-primary{order:1}.hero-actions .btn-gold{order:2}.hero-actions .btn-outline,.hero-actions .btn-dark{order:3}
+.header-actions{flex-direction:row-reverse}
+@media(max-width:600px){.hero-actions .btn{flex:1 1 44%}}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+<script>
+document.addEventListener('pointermove',function(e){var b=e.target.closest&&e.target.closest('.btn');if(!b||matchMedia('(hover:none)').matches)return;var r=b.getBoundingClientRect();b.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*14+'deg');b.style.setProperty('--rx',((e.clientY-r.top)/r.height-.5)*-14+'deg')});
+document.addEventListener('pointerout',function(e){var b=e.target.closest&&e.target.closest('.btn');if(b){b.style.removeProperty('--rx');b.style.removeProperty('--ry')}});
+</script>
+
+<style id="netcard-style">
+.hero-card{background:linear-gradient(160deg,#0a1836,#0f2c66 60%,#0b3a7a)!important;border:1px solid rgba(96,165,250,.35)!important;color:#e8f1ff;
+ box-shadow:0 30px 70px rgba(15,60,150,.45),0 0 0 1px rgba(34,211,238,.12),0 0 60px rgba(34,211,238,.18)!important;animation:floaty 6s ease-in-out infinite,cardGlow 3.5s ease-in-out infinite}
+@keyframes cardGlow{50%{box-shadow:0 30px 70px rgba(15,60,150,.5),0 0 0 1px rgba(34,211,238,.4),0 0 90px rgba(34,211,238,.35)}}
+.hero-card::before{width:320px!important;height:320px!important;background:radial-gradient(circle,rgba(34,211,238,.35),transparent 65%)!important;top:-140px!important;left:-100px!important;animation:drift 9s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(260px,180px)}}
+.hero-card::after{content:"";position:absolute;left:0;right:0;height:70px;top:-70px;background:linear-gradient(180deg,transparent,rgba(34,211,238,.16),transparent);animation:scan 4.5s linear infinite;pointer-events:none;z-index:2}
+@keyframes scan{to{top:110%}}
+.hero-card-title{color:#fff!important;text-shadow:0 0 16px rgba(34,211,238,.6)}
+.live-badge{background:rgba(34,211,238,.12)!important;border-color:rgba(34,211,238,.5)!important;color:#7fe7ff!important;display:inline-flex;align-items:center;gap:6px}
+.live-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#22d3ee;animation:pulse 1.4s infinite}
+.network-card{background:rgba(255,255,255,.05)!important;border:1px solid rgba(147,197,253,.22)!important;backdrop-filter:blur(6px)}
+.network-title{color:#9bb8e6!important}
+.route-node{background:rgba(255,255,255,.07)!important;border:1px solid rgba(96,165,250,.35)!important;color:#fff;animation:nodeIn .7s both,nodePulse 3s ease-in-out infinite;position:relative}
+.network-route .route-node:nth-child(1){animation-delay:.1s,.1s}.network-route .route-node:nth-child(3){animation-delay:.3s,1s}.network-route .route-node:nth-child(5){animation-delay:.5s,2s}
+@keyframes nodeIn{from{opacity:0;transform:translateY(16px) scale(.85)}}
+@keyframes nodePulse{50%{box-shadow:0 0 22px rgba(34,211,238,.55);border-color:#22d3ee}}
+.route-node small{color:#9bb8e6!important}
+.route-arrow{color:#22d3ee!important;animation:flow 1.2s ease-in-out infinite;text-shadow:0 0 10px #22d3ee}
+.network-route .route-arrow:nth-child(4){animation-delay:.4s}
+@keyframes flow{0%{opacity:.15;transform:translateX(7px)}50%{opacity:1}100%{opacity:.15;transform:translateX(-7px)}}
+.stat{background:rgba(255,255,255,.07)!important;border:1px solid rgba(96,165,250,.28)!important;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+.stat:hover{transform:translateY(-3px);border-color:#22d3ee!important}
+.stat strong{color:#7fe7ff;text-shadow:0 0 12px rgba(34,211,238,.6);font-variant-numeric:tabular-nums}
+.stat span{color:#9bb8e6!important}
+.stat::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,transparent,#22d3ee,transparent);animation:bar 2.4s ease-in-out infinite}
+.stat:nth-child(2)::after{animation-delay:.6s}.stat:nth-child(3)::after{animation-delay:1.2s}
+@keyframes bar{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+#pingGraph{display:block;width:100%;height:64px;margin:0 0 14px;border-radius:10px;background:rgba(3,10,30,.35);border:1px solid rgba(147,197,253,.18)}
+#pingGraph .ln{fill:none;stroke:#22d3ee;stroke-width:2;filter:drop-shadow(0 0 4px #22d3ee)}
+#pingGraph .ar{fill:url(#pgGrad)}
+.orbit{position:absolute;right:-50px;bottom:-50px;width:170px;height:170px;border-radius:50%;border:1px dashed rgba(34,211,238,.4);animation:spin 14s linear infinite;pointer-events:none}
+.orbit::after{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:#22d3ee;box-shadow:0 0 14px #22d3ee}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+<script>
+(function(){
+try{
+var nc=document.querySelector('.hero-card .network-card'),st=document.querySelector('.network-stats');
+if(!nc||!st)return;
+var ns='http://www.w3.org/2000/svg',W=300,H=64,N=30,data=[];for(var i=0;i<N;i++)data.push(26);
+var svg=document.createElementNS(ns,'svg');svg.id='pingGraph';svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('preserveAspectRatio','none');
+svg.innerHTML='<defs><linearGradient id="pgGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".45"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></linearGradient></defs><path class="ar"/><path class="ln"/>';
+nc.insertBefore(svg,st);
+var ar=svg.querySelector('.ar'),ln=svg.querySelector('.ln');
+var o=document.createElement('div');o.className='orbit';document.querySelector('.hero-card').appendChild(o);
+function draw(){var pts=data.map(function(v,i){return [i*W/(N-1),H-8-(v-10)/40*(H-16)]});
+var d='M'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' L');ln.setAttribute('d',d);ar.setAttribute('d',d+' L'+W+','+H+' L0,'+H+' Z')}
+setInterval(function(){var el=document.getElementById('heroPing'),n=el?parseInt((el.textContent||'').replace(/[^\d]/g,'')):NaN;
+var last=data[data.length-1];var v=isNaN(n)?Math.max(14,Math.min(48,last+(Math.random()-.5)*10)):Math.max(10,Math.min(50,n+(Math.random()-.5)*4));
+data.push(v);data.shift();draw()},900);draw();
+}catch(e){console.warn(e)}
+})();
+</script>
+
+<style id="products-style">
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes ang{to{--ang:360deg}}
+.product-card{--rx:0deg;--ry:0deg;--ty:0px;--mx:50%;--my:50%;overflow:hidden;background:linear-gradient(180deg,#fff,#f3f8ff)!important;border:1px solid #d3e2f8!important;
+ transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--ty));transition:transform .15s ease-out,box-shadow .3s,border-color .3s!important;
+ animation:cardIn .7s cubic-bezier(.2,.8,.2,1) both;will-change:transform}
+.product-grid .product-card:nth-child(1){animation-delay:.05s}.product-grid .product-card:nth-child(2){animation-delay:.15s}.product-grid .product-card:nth-child(3){animation-delay:.25s}
+.product-grid .product-card:nth-child(4){animation-delay:.35s}.product-grid .product-card:nth-child(5){animation-delay:.45s}.product-grid .product-card:nth-child(n+6){animation-delay:.55s}
+@keyframes cardIn{from{opacity:0;transform:perspective(900px) translateY(50px) rotateX(-18deg) scale(.94)}}
+.product-card:hover{--ty:-8px;border-color:#5aa2ff!important;box-shadow:0 26px 50px rgba(29,111,232,.28),0 0 0 1px rgba(34,211,238,.25)!important}
+.product-card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(34,211,238,.28),transparent 60%)}
+.product-card:hover::before{opacity:1}
+.product-card::after{content:"";position:absolute;inset:0;border-radius:20px;padding:2px;pointer-events:none;opacity:0;transition:opacity .3s;
+ background:conic-gradient(from var(--ang),transparent 0 62%,#22d3ee,#1d6fe8,transparent);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ang 3s linear infinite}
+.product-card:hover::after{opacity:1}
+.product-card.special{border-color:#ffb3c2!important;background:linear-gradient(180deg,#fff,#fff2f5)!important;box-shadow:0 10px 30px rgba(225,29,72,.18)!important}
+.product-card.special::after{opacity:1;background:conic-gradient(from var(--ang),transparent 0 55%,#ff5c7c,#e11d48,#fbbf24,transparent)}
+.product-card.special:hover{box-shadow:0 26px 50px rgba(225,29,72,.32)!important;border-color:#ff5c7c!important}
+.product-card>*:not(.product-badge){position:relative;z-index:1}.product-badge{z-index:2}
+.product-badge{background:linear-gradient(90deg,#f43f5e,#e11d48)!important;color:#fff!important;border:0!important;box-shadow:0 4px 14px rgba(225,29,72,.5);animation:badgePulse 1.8s ease-in-out infinite;overflow:hidden}
+.product-badge::after{content:"";position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);animation:sweep 2.6s infinite}
+@keyframes badgePulse{50%{transform:scale(1.09)}}
+.product-icon{background:linear-gradient(145deg,#3b8bf5,#1d6fe8)!important;color:#fff!important;box-shadow:0 8px 18px rgba(29,111,232,.45),inset 0 1px 0 rgba(255,255,255,.4);animation:iconFloat 3.2s ease-in-out infinite;transition:transform .4s}
+.product-card.special .product-icon{background:linear-gradient(145deg,#ff5c7c,#e11d48)!important;box-shadow:0 8px 18px rgba(225,29,72,.45),inset 0 1px 0 rgba(255,255,255,.4)}
+.product-card:hover .product-icon{transform:rotate(-10deg) scale(1.15)}
+@keyframes iconFloat{50%{translate:0 -5px}}
+.product-top h3{transition:letter-spacing .3s,color .3s}.product-card:hover .product-top h3{color:#1450b8}
+.product-features li{opacity:0;transform:translateX(14px);animation:liIn .5s both;transition:transform .25s}
+.product-features li:nth-child(1){animation-delay:.5s}.product-features li:nth-child(2){animation-delay:.6s}.product-features li:nth-child(3){animation-delay:.7s}.product-features li:nth-child(4){animation-delay:.8s}.product-features li:nth-child(n+5){animation-delay:.9s}
+@keyframes liIn{to{opacity:1;transform:none}}
+.product-card:hover .product-features li{transform:translateX(-4px)}
+.product-features li::before{color:#22d3ee!important;text-shadow:0 0 8px rgba(34,211,238,.7);display:inline-block;animation:tick 2.4s ease-in-out infinite}
+@keyframes tick{50%{transform:scale(1.35)}}
+.price{background:linear-gradient(90deg,#1d6fe8,#22d3ee,#1d6fe8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 3.5s linear infinite}
+.product-card.special .price{background-image:linear-gradient(90deg,#e11d48,#fb923c,#e11d48);background-size:200% auto;-webkit-background-clip:text;background-clip:text}
+.price .price-unit{-webkit-text-fill-color:#5d6e8c}
+/* featured block */
+.featured{background:linear-gradient(120deg,#0a1836,#123a85,#0a1836,#0e4a9c)!important;background-size:250% 250%;animation:bgshift 9s ease infinite;--rx:0deg;--ry:0deg;transform:perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .15s ease-out;box-shadow:0 24px 60px rgba(15,60,150,.4)}
+@keyframes bgshift{50%{background-position:100% 100%}}
+.featured::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-60px;top:-110px;background:radial-gradient(circle,rgba(34,211,238,.45),transparent 65%);animation:drift2 7s ease-in-out infinite alternate;pointer-events:none}
+@keyframes drift2{to{transform:translate(-120px,80px) scale(1.3)}}
+.featured::after{border-color:rgba(34,211,238,.35)!important;animation:spin 18s linear infinite}
+.featured>*{position:relative;z-index:1}
+.featured-label{color:#7fe7ff!important;text-shadow:0 0 12px rgba(34,211,238,.7)}
+.featured-list span{background:rgba(255,255,255,.08);border:1px solid rgba(96,165,250,.35);border-radius:20px;padding:4px 10px;display:inline-block;animation:chipFloat 3.6s ease-in-out infinite}
+.featured-list span:nth-child(2){animation-delay:.5s}.featured-list span:nth-child(3){animation-delay:1s}.featured-list span:nth-child(4){animation-delay:1.5s}
+@keyframes chipFloat{50%{transform:translateY(-4px);box-shadow:0 6px 14px rgba(34,211,238,.3)}}
+.featured-price strong{background:linear-gradient(90deg,#fff,#7fe7ff,#fff);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 3s linear infinite;filter:drop-shadow(0 0 10px rgba(34,211,238,.5))}
+@media(hover:none){.product-card:hover{--ty:0px}}
+@media(prefers-reduced-motion:reduce){.product-card,.product-features li{animation:none;opacity:1;transform:none}}
+</style>
+<script>
+(function(){
+var mob=function(){return matchMedia('(hover:none)').matches};
+document.addEventListener('pointermove',function(e){if(mob())return;var c=e.target.closest&&e.target.closest('.product-card,.featured');if(!c)return;
+var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height,k=c.classList.contains('featured')?3:9;
+c.style.setProperty('--mx',(x*100)+'%');c.style.setProperty('--my',(y*100)+'%');c.style.setProperty('--ry',((x-.5)*k)+'deg');c.style.setProperty('--rx',((y-.5)*-k)+'deg')});
+document.addEventListener('pointerout',function(e){var c=e.target.closest&&e.target.closest('.product-card,.featured');if(c&&!c.contains(e.relatedTarget)){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}});
+})();
+</script>
 </body>
 </html>
