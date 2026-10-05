@@ -7467,5 +7467,259 @@ var fg=document.querySelector('#page-support .form-grid');
 if(fg&&!document.querySelector('.sup-live')){var d=document.createElement('div');d.className='sup-live';d.innerHTML='<i></i><span>پشتیبانی ۲۴ ساعته V2GURD آنلاین است</span>';fg.parentNode.insertBefore(d,fg)}
 })();
 </script>
+<!-- ===== V2GURD: بخش سفارش طراحی سایت ===== -->
+
+<style id="wd-style">
+.wd-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:18px;align-items:start}
+.wd-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:20px;box-shadow:var(--shadow-sm);margin-bottom:14px}
+.wd-card h3{font-size:13px;margin-bottom:4px}
+.wd-card .wd-sub{font-size:10px;color:var(--muted);margin-bottom:12px}
+.wd-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.wd-opt{border:1.5px solid var(--border);border-radius:12px;padding:11px;cursor:pointer;display:flex;gap:9px;align-items:flex-start;background:#fff;transition:.2s}
+.wd-opt:hover{border-color:var(--primary)}
+.wd-opt.on{border-color:var(--primary);background:var(--primary-soft)}
+.wd-opt input{margin-top:4px;accent-color:var(--primary);flex-shrink:0}
+.wd-opt b{font-size:11px;display:block;line-height:1.6}
+.wd-opt small{font-size:9px;color:var(--muted);display:block;line-height:1.7}
+.wd-opt em{font-style:normal;font-size:9px;color:var(--primary);font-weight:800}
+.wd-sum{position:sticky;top:90px;background:linear-gradient(135deg,#0a1836,#123a85);color:#fff;border-radius:22px;padding:22px;box-shadow:var(--shadow-lg)}
+.wd-sum h3{font-size:14px;margin-bottom:12px}
+.wd-line{display:flex;justify-content:space-between;gap:8px;font-size:10px;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.15);color:#cfe0ff}
+.wd-line span:last-child{white-space:nowrap;font-weight:800;color:#fff}
+.wd-total{margin:14px 0;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);text-align:center}
+.wd-total small{display:block;font-size:10px;color:#9bb8e6}
+.wd-total strong{display:block;font-size:26px;color:#7fe7ff;margin-top:2px}
+.wd-note{font-size:9px;color:#9bb8e6;line-height:1.9;margin-bottom:12px}
+.wd-sum .btn{width:100%}
+.wd-range{font-size:9px;color:#9bb8e6;text-align:center;margin-top:8px}
+.wd-pay{display:none}
+.wd-pay.show{display:block}
+@media(max-width:900px){.wd-grid{grid-template-columns:1fr}.wd-sum{position:static}.wd-opts{grid-template-columns:1fr}}
+</style>
+
+<script>
+(function(){
+/* ============ تنظیمات قیمت (هر عددی رو می‌تونی عوض کنی) ============ */
+var WD_MIN = 1000000;       // حداقل قیمت
+var WD_MAX = 10000000;      // حداکثر قیمت
+var WD_FAST = 0.15;         // هزینه تحویل فوری (۱۵٪)
+var WD_DEPOSIT = 50;        // درصد پیش‌پرداخت
+
+var TYPES = [
+  {id:"landing",  t:"صفحه معرفی (Landing)",        d:"یک صفحه حرفه‌ای برای معرفی کسب‌وکار", p:1000000},
+  {id:"portfolio",t:"نمونه‌کار / شخصی",             d:"رزومه و گالری کارها",                p:1500000},
+  {id:"company",  t:"سایت شرکتی",                   d:"چندصفحه‌ای با درباره ما و تماس",     p:1800000},
+  {id:"shop",     t:"فروشگاه اینترنتی",             d:"محصولات، سبد خرید و فاکتور",         p:3000000},
+  {id:"vpn",      t:"فروشگاه فیلترشکن / VPN",       d:"مثل V2GURD؛ پلن، حجم، سبد، پرداخت", p:3500000}
+];
+var PAGES = [
+  {id:"p3",  t:"تا ۳ صفحه",     p:0},
+  {id:"p6",  t:"۴ تا ۶ صفحه",   p:500000},
+  {id:"p10", t:"۷ تا ۱۰ صفحه",  p:1000000},
+  {id:"p10p",t:"بیش از ۱۰ صفحه",p:1800000}
+];
+var DESIGNS = [
+  {id:"tpl",  t:"قالب آماده",        d:"سریع و اقتصادی، رنگ و لوگوی شما", p:0},
+  {id:"semi", t:"نیمه‌اختصاصی",      d:"شخصی‌سازی چیدمان و استایل",       p:500000},
+  {id:"full", t:"کاملاً اختصاصی",    d:"طراحی از صفر + انیمیشن",           p:1200000}
+];
+var FEATURES = [
+  {id:"cart",  t:"سبد خرید و فاکتور",         p:800000},
+  {id:"auth",  t:"ورود/ثبت‌نام و پنل کاربر",   p:1200000},
+  {id:"admin", t:"پنل مدیریت سفارش‌ها",        p:1500000},
+  {id:"bot",   t:"ربات تلگرام فروش",           p:1500000},
+  {id:"ai",    t:"دستیار هوشمند پاسخ‌گو",      p:500000},
+  {id:"3d",    t:"انیمیشن و افکت سه‌بعدی",     p:700000},
+  {id:"lang",  t:"چندزبانه",                   p:400000},
+  {id:"seo",   t:"سئو پایه و سرعت بالا",       p:300000},
+  {id:"pwa",   t:"نسخه PWA (نصب روی موبایل)",  p:500000},
+  {id:"app",   t:"اپلیکیشن اندروید",           p:3000000}
+];
+var SPEEDS = [
+  {id:"normal", t:"عادی (۷ تا ۱۴ روز)", f:0},
+  {id:"fast",   t:"فوری (۲ تا ۴ روز)",  f:WD_FAST}
+];
+
+/* ============ ابزارها ============ */
+var fa = function(v){return (typeof toFa==="function")?toFa(v):String(v)};
+var money = function(v){return (typeof formatPrice==="function")?formatPrice(v):String(v)};
+var $ = function(id){return document.getElementById(id)};
+var find = function(arr,id){return arr.filter(function(x){return x.id===id})[0]};
+var state = {type:"landing",pages:"p3",design:"tpl",speed:"normal",features:[]};
+var orderId = null, lastCalc = null;
+
+function radioGroup(name,items,showPrice){
+  return '<div class="wd-opts">'+items.map(function(i){
+    return '<label class="wd-opt" data-name="'+name+'"><input type="radio" name="wd_'+name+'" value="'+i.id+'">'+
+      '<div><b>'+i.t+'</b>'+(i.d?'<small>'+i.d+'</small>':'')+
+      (showPrice&&i.p!==undefined?'<em>'+(i.p? (name==="type"?'از ':'+')+money(i.p)+' تومان':'بدون هزینه')+'</em>':'')+
+      (i.f!==undefined?'<em>'+(i.f?'+'+fa(Math.round(i.f*100))+'٪':'بدون هزینه')+'</em>':'')+
+      '</div></label>';
+  }).join('')+'</div>';
+}
+
+/* ============ ساخت صفحه ============ */
+var html =
+'<section class="page" id="page-webdesign">'+
+ '<div class="inner-hero"><div class="container"><div class="inner-hero-box">'+
+  '<div class="inner-hero-content">'+
+   '<div class="eyebrow"><span class="eyebrow-dot"></span>خدمات طراحی سایت</div>'+
+   '<h1>🎨 سفارش طراحی سایت</h1>'+
+   '<p>نوع سایت و امکانات موردنیازت رو انتخاب کن؛ قیمت لحظه‌ای محاسبه می‌شه. محدوده قیمت از '+money(WD_MIN)+' تا '+money(WD_MAX)+' تومان بر اساس نیاز پروژه است.</p>'+
+  '</div>'+
+  '<div class="inner-hero-image"><div style="width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#e6f0ff,#f8f4ea);font-size:70px;">🖥️</div></div>'+
+ '</div></div></div>'+
+ '<section class="section"><div class="container"><div class="wd-grid">'+
+  '<div>'+
+   '<div class="wd-card"><h3>۱) نوع سایت</h3><div class="wd-sub">قیمت پایه بر اساس نوع سایت</div>'+radioGroup("type",TYPES,true)+'</div>'+
+   '<div class="wd-card"><h3>۲) تعداد صفحات</h3><div class="wd-sub">صفحات اصلی و داخلی</div>'+radioGroup("pages",PAGES,true)+'</div>'+
+   '<div class="wd-card"><h3>۳) سطح طراحی</h3><div class="wd-sub">ظاهر و شخصی‌سازی</div>'+radioGroup("design",DESIGNS,true)+'</div>'+
+   '<div class="wd-card"><h3>۴) امکانات</h3><div class="wd-sub">هر تعداد که لازم داری انتخاب کن</div><div class="wd-opts">'+
+     FEATURES.map(function(f){return '<label class="wd-opt"><input type="checkbox" name="wd_feat" value="'+f.id+'"><div><b>'+f.t+'</b><em>+'+money(f.p)+' تومان</em></div></label>'}).join('')+
+   '</div></div>'+
+   '<div class="wd-card"><h3>۵) زمان تحویل</h3><div class="wd-sub">تحویل فوری هزینه اضافه دارد</div>'+radioGroup("speed",SPEEDS,true)+'</div>'+
+   '<div class="wd-card"><h3>۶) اطلاعات پروژه</h3><div class="wd-sub">برای هماهنگی در تلگرام</div><div class="form-grid">'+
+     '<div class="field"><label for="wdName">نام شما *</label><input id="wdName" placeholder="نام و نام خانوادگی"></div>'+
+     '<div class="field"><label for="wdContact">آیدی تلگرام یا شماره تماس *</label><input id="wdContact" dir="ltr" placeholder="@username"></div>'+
+     '<div class="field"><label for="wdBrand">نام برند / سایت</label><input id="wdBrand" placeholder="مثلاً V2GURD"></div>'+
+     '<div class="field"><label for="wdColor">رنگ‌ها و سبک موردعلاقه</label><input id="wdColor" placeholder="مثلاً آبی و سفید، مینیمال"></div>'+
+     '<div class="field"><label for="wdDesc">توضیحات پروژه</label><textarea id="wdDesc" placeholder="سایت مرجع، ایده‌ها و هر چیزی که لازم است بدانیم..."></textarea></div>'+
+   '</div></div>'+
+  '</div>'+
+  '<aside class="wd-sum"><h3>🧾 خلاصه سفارش</h3><div id="wdLines"></div>'+
+   '<div class="wd-total"><small>قیمت تخمینی نهایی</small><strong id="wdTotal">—</strong></div>'+
+   '<div class="wd-note">قیمت نهایی پس از هماهنگی در تلگرام تأیید می‌شود. پرداخت به‌صورت <b>'+fa(WD_DEPOSIT)+'٪ پیش‌پرداخت</b> و باقی‌مانده هنگام تحویل است.</div>'+
+   '<button class="btn btn-primary" onclick="wdSubmit()">ثبت سفارش و پرداخت</button>'+
+   '<div class="wd-range">محدوده قیمت: '+money(WD_MIN)+' تا '+money(WD_MAX)+' تومان</div>'+
+  '</aside>'+
+ '</div></div></section>'+
+'</section>';
+
+var modal =
+'<div class="modal-wrap" id="wdModal"><div class="modal">'+
+ '<div class="modal-header"><h2 id="wdModalTitle">فاکتور طراحی سایت</h2><button class="modal-close" onclick="closeModal(\'wdModal\')">×</button></div>'+
+ '<div class="modal-body">'+
+  '<div id="wdInvoice"></div>'+
+  '<div class="wd-pay" id="wdPay">'+
+   '<div class="payment-card" style="margin-top:14px"><small>شماره کارت جهت پرداخت پیش‌پرداخت</small>'+
+   '<div class="card-number" id="wdCard"></div><strong>نامی — بانک بلو</strong><br>'+
+   '<button class="copy-card" onclick="copyText(CARD_NUMBER)">کپی شماره کارت</button></div>'+
+   '<p style="font-size:10px;color:var(--muted);text-align:center;">بعد از واریز، دکمهٔ زیر را بزنید تا جزئیات پروژه در تلگرام آماده شود و رسید را همان‌جا بفرستید.</p>'+
+  '</div>'+
+  '<div class="modal-actions">'+
+   '<button class="btn btn-primary" id="wdMainBtn" onclick="wdNext()">ادامه به پرداخت</button>'+
+   '<button class="btn btn-outline" onclick="closeModal(\'wdModal\')">بستن</button>'+
+  '</div>'+
+ '</div></div></div>';
+
+/* ============ محاسبه ============ */
+function calc(){
+  var ty=find(TYPES,state.type), pg=find(PAGES,state.pages), ds=find(DESIGNS,state.design), sp=find(SPEEDS,state.speed);
+  var feats=state.features.map(function(id){return find(FEATURES,id)});
+  var sub=ty.p+pg.p+ds.p+feats.reduce(function(s,f){return s+f.p},0);
+  var rush=Math.round(sub*sp.f);
+  var raw=sub+rush;
+  var total=Math.min(WD_MAX,Math.max(WD_MIN,Math.round(raw/10000)*10000));
+  return {ty:ty,pg:pg,ds:ds,sp:sp,feats:feats,rush:rush,raw:raw,total:total,deposit:Math.round(total*WD_DEPOSIT/100/10000)*10000,capped:raw>WD_MAX};
+}
+function refresh(){
+  var c=calc(); lastCalc=c;
+  var rows=[['نوع سایت',c.ty.t,c.ty.p],['صفحات',c.pg.t,c.pg.p],['طراحی',c.ds.t,c.ds.p]];
+  var h=rows.map(function(r){return '<div class="wd-line"><span>'+r[1]+'</span><span>'+(r[2]?money(r[2]):'—')+'</span></div>'}).join('');
+  h+=c.feats.map(function(f){return '<div class="wd-line"><span>'+f.t+'</span><span>'+money(f.p)+'</span></div>'}).join('');
+  if(c.rush)h+='<div class="wd-line"><span>هزینه تحویل فوری</span><span>'+money(c.rush)+'</span></div>';
+  if(c.capped)h+='<div class="wd-line"><span>سقف قیمت اعمال شد</span><span>✓</span></div>';
+  $('wdLines').innerHTML=h;
+  $('wdTotal').textContent=money(c.total)+' تومان';
+  document.querySelectorAll('#page-webdesign .wd-opt').forEach(function(l){var i=l.querySelector('input');l.classList.toggle('on',i.checked)});
+}
+
+/* ============ مراحل سفارش ============ */
+window.wdSubmit=function(){
+  var name=$('wdName').value.trim(), contact=$('wdContact').value.trim();
+  if(!name){showToast('لطفاً نام خود را وارد کنید');$('wdName').focus();return}
+  if(!contact){showToast('آیدی تلگرام یا شماره تماس را وارد کنید');$('wdContact').focus();return}
+  var c=calc(); lastCalc=c;
+  var d=new Date();
+  orderId='WD-'+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+Math.floor(1000+Math.random()*9000);
+  var el=document.createElement('div');
+  var items=[['نوع سایت',c.ty.t],['صفحات',c.pg.t],['طراحی',c.ds.t],['امکانات',c.feats.length?c.feats.map(function(f){return f.t}).join('، '):'—'],['زمان تحویل',c.sp.t]];
+  var h='<div class="invoice"><div class="invoice-head"><div><strong>V2GURD</strong><span style="display:block;">فاکتور طراحی سایت</span></div><span>'+orderId+'</span></div>';
+  items.forEach(function(r){h+='<div class="invoice-item"><span>'+r[0]+'</span><span style="white-space:normal;text-align:left;">'+r[1]+'</span></div>'});
+  h+='<div class="invoice-item" style="margin-top:8px"><span>قیمت کل</span><span>'+money(c.total)+' تومان</span></div>'+
+     '<div class="invoice-total"><span>پیش‌پرداخت ('+fa(WD_DEPOSIT)+'٪)</span><span style="color:var(--primary)">'+money(c.deposit)+' تومان</span></div></div>';
+  $('wdInvoice').innerHTML=h;
+  $('wdCard').textContent=CARD_NUMBER;
+  $('wdPay').classList.remove('show');
+  $('wdMainBtn').textContent='ادامه به پرداخت';
+  $('wdMainBtn').dataset.step='1';
+  $('wdModalTitle').textContent='فاکتور طراحی سایت';
+  openModal('wdModal');
+};
+
+window.wdNext=function(){
+  var b=$('wdMainBtn');
+  if(b.dataset.step==='1'){
+    $('wdPay').classList.add('show');
+    $('wdModalTitle').textContent='پرداخت پیش‌پرداخت';
+    b.textContent='✈️ ارسال جزئیات و رسید در تلگرام';
+    b.dataset.step='2';
+    return;
+  }
+  var c=lastCalc;
+  var msg=
+'سلام V2GURD 👋\n\nسفارش طراحی سایت دارم.\n\n'+
+'شماره سفارش:\n'+orderId+'\n\n'+
+'نام: '+$('wdName').value.trim()+'\n'+
+'تماس: '+$('wdContact').value.trim()+'\n'+
+'برند/سایت: '+($('wdBrand').value.trim()||'—')+'\n\n'+
+'نوع سایت: '+c.ty.t+'\n'+
+'تعداد صفحات: '+c.pg.t+'\n'+
+'سطح طراحی: '+c.ds.t+'\n'+
+'امکانات: '+(c.feats.length?c.feats.map(function(f){return f.t}).join('، '):'—')+'\n'+
+'زمان تحویل: '+c.sp.t+'\n'+
+'رنگ/سبک: '+($('wdColor').value.trim()||'—')+'\n\n'+
+'توضیحات:\n'+($('wdDesc').value.trim()||'—')+'\n\n'+
+'قیمت کل: '+money(c.total)+' تومان\n'+
+'پیش‌پرداخت ('+fa(WD_DEPOSIT)+'٪): '+money(c.deposit)+' تومان\n\n'+
+'رسید پرداخت را در ادامه ارسال می‌کنم.';
+  window.open(TELEGRAM+'?text='+encodeURIComponent(msg),'_blank');
+  closeModal('wdModal');
+  showToast('سفارش ثبت شد؛ رسید را در تلگرام بفرستید');
+};
+
+/* ============ نصب روی سایت ============ */
+var main=document.querySelector('main');
+if(main){main.insertAdjacentHTML('beforeend',html)}
+document.body.insertAdjacentHTML('beforeend',modal);
+
+var nav=$('desktopNav');
+if(nav){var a=document.createElement('a');a.href='#webdesign';a.dataset.page='webdesign';a.textContent='طراحی سایت';a.onclick=function(){showPage('webdesign')};var sup=nav.querySelector('[data-page="rules"]');nav.insertBefore(a,sup||null)}
+var mm=$('mobileMenu');
+if(mm){var m=document.createElement('a');m.href='#webdesign';m.textContent='🎨 طراحی سایت';m.onclick=function(){showPage('webdesign');closeMobileMenu()};mm.insertBefore(m,mm.children[4]||null)}
+var fc=document.querySelectorAll('.footer-col')[0];
+if(fc){var f=document.createElement('a');f.href='#webdesign';f.textContent='طراحی سایت';f.onclick=function(){showPage('webdesign')};fc.appendChild(f)}
+
+/* رویدادها */
+var pageEl=$('page-webdesign');
+pageEl.addEventListener('change',function(e){
+  var t=e.target; if(!t.name)return;
+  if(t.name==='wd_feat'){
+    state.features=Array.prototype.map.call(pageEl.querySelectorAll('input[name="wd_feat"]:checked'),function(i){return i.value});
+  }else if(t.name.indexOf('wd_')===0){
+    state[t.name.slice(3)]=t.value;
+  }
+  refresh();
+});
+['type','pages','design','speed'].forEach(function(n){
+  var i=pageEl.querySelector('input[name="wd_'+n+'"][value="'+state[n]+'"]');if(i)i.checked=true;
+});
+refresh();
+
+/* اگر کاربر مستقیم با #webdesign وارد شد */
+if(location.hash==='#webdesign'){setTimeout(function(){showPage('webdesign',false)},60)}
+})();
+</script>
+
 </body>
 </html>
